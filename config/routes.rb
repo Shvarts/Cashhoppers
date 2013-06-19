@@ -2,15 +2,13 @@ CashHoppers::Application.routes.draw do
   get "pages/home"
 
   devise_for :users do
-    post 'sessions' => 'sessions#create', :as => 'login'
-    post 'sessions/new' => 'sessions#sign_up', :as => 'sign_up'
-    delete 'sessions' => 'sessions#destroy', :as => 'logout'
-
+    namespace :API do
+      post 'sessions' => 'sessions#create', :as => 'login'
+      get 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
+      delete 'sessions' => 'sessions#destroy', :as => 'logout'
+    end
   end
 
-  resources :API do
-
-  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
