@@ -7,8 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<div id="page">
+  <div id="header">
+    <h1>CashHoppers</h1>
+  </div>
+  <div id="content"><%= yield %></div>
+  <div id="sidebar">
+    <%= yield :sidebar %>
+  </div>
+  <div id="footer">CashHoppers&copy;All rights reserved</div>
+</div>
 </body>
 </html>
