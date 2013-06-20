@@ -4,7 +4,7 @@ CashHoppers::Application.routes.draw do
   devise_for :users do
     namespace :API do
       post 'sessions' => 'sessions#create', :as => 'login'
-      get 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
+      post 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
     end
   end

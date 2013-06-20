@@ -7,32 +7,35 @@ class Api::SessionsController < Devise::SessionsController
       user.ensure_authentication_token!
       render :json => {:authentication_token => user.authentication_token, :user => user}, :status => :created
     else
-      render :json => user.errors.to_json
+      invalid_login_attempt user.errors
     end
   end
   
   def create
-    #user = User.find_for_database_authentication(:email => params[:email])
-    #
-    #if user && user.valid_password?(params[:password])
-    #  user.ensure_authentication_token!  # make sure the user has a token generated
-    #  render :json => { :authentication_token => user.authentication_token, :user => user }, :status => :created
-    #else
-    #  return invalid_login_attempt
-    #end
+    user = User.find_for_database_authentication(:email => params[:email])
+    if user && user.valid_password?(params[:password])
+      user.ensure_authentication_token!  # make sure the user has a token generated
+      render :json => { :authentication_token => user.authentication_token, :user => user }, :status => :created
+    else
+      invalid_login_attempt :errors => ["Invalid login or password."]
+    end
   end
 
   def destroy
-    ## expire auth token
-    #user = User.where(:authentication_token => params[:authentication_token]).first
-    #user.reset_authentication_token!
-    #render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
+    # expire auth token
+    user = User.where(:authentication_token => params[:authentication_token]).first
+    if user
+      user.reset_authentication_token!
+      render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
+    else
+      invalid_login_attempt :errors => ["Bad token."]
+    end
   end
 
   private
 
-  def invalid_login_attempt
+  def invalid_login_attempt errors
     warden.custom_failure!
-    render :json => { :errors => ["Invalid email or password."] },  :success => false, :status => :unauthorized
+    render :json => {:errors => errors,  :success => false, :status => :unauthorized}.to_json
   end
 end
