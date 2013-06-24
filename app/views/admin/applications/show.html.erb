@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @admin_application.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @admin_application.description %>
+</p>
+
+<p>
+  <b>Api key:</b>
+  <%= @admin_application.api_key %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_application_path(@admin_application) %> |
+<%= link_to 'Back', admin_applications_path %>
