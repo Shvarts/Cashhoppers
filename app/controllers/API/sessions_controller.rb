@@ -5,7 +5,7 @@ class Api::SessionsController < Devise::SessionsController
     user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
     if user.save
       user.ensure_authentication_token!
-      render :json => {:authentication_token => user.authentication_token,:success => true, :user => user}, :status => :created
+      render :json => {:authentication_token => user.authentication_token, :user => user}, :status => :created
     else
       invalid_login_attempt user.errors
     end
@@ -15,7 +15,7 @@ class Api::SessionsController < Devise::SessionsController
     user = User.find_for_database_authentication(:email => params[:email])
     if user && user.valid_password?(params[:password])
       user.ensure_authentication_token!  # make sure the user has a token generated
-      render :json => { :authentication_token => user.authentication_token, :success => true, :user => user }, :status => :created
+      render :json => { :authentication_token => user.authentication_token, :user => user }, :status => :created
     else
       invalid_login_attempt :errors => ["Invalid login or password."]
     end
