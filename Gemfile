@@ -9,7 +9,11 @@ gem 'mysql2'
 
 # authentification
 gem 'devise'
+
 gem 'paperclip'
+
+gem 'cancan'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
