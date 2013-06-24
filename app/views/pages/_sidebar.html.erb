@@ -18,4 +18,4 @@ Authentication
 <br/>
 Admin page
 <hr/>
-<%= link_to "Admin page", admin_index_path %>
+<%= link_to "Admin page", admin_index_path if can? :manage, :all%>

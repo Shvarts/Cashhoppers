@@ -1,5 +1,6 @@
 class Api::SessionsController < Devise::SessionsController
   #skip_before_filter :authenticate_user!, :only => :create
+  before_filter :check_api_key
 
   def sign_up
     user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
@@ -38,4 +39,11 @@ class Api::SessionsController < Devise::SessionsController
     warden.custom_failure!
     render :json => {:errors => errors,  :success => false, :status => :unauthorized}.to_json
   end
+
+  def check_api_key
+    if Application.where(:api_key => params[:api_key]).blank?
+      invalid_login_attempt 'Bad api key'
+    end
+  end
+
 end

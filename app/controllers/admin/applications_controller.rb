@@ -1,8 +1,9 @@
 class Admin::ApplicationsController < ApplicationController
+  load_and_authorize_resource
   # GET /admin/applications
   # GET /admin/applications.json
   def index
-    @admin_applications = Admin::Application.all
+    @admin_applications = Application.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class Admin::ApplicationsController < ApplicationController
   # GET /admin/applications/1
   # GET /admin/applications/1.json
   def show
-    @admin_application = Admin::Application.find(params[:id])
+    @admin_application = Application.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class Admin::ApplicationsController < ApplicationController
   # GET /admin/applications/new
   # GET /admin/applications/new.json
   def new
-    @admin_application = Admin::Application.new
+    @admin_application = Application.new
     range = [*'0'..'9', *'a'..'z', *'A'..'Z']
     @admin_application.api_key = Array.new(30){range.sample}.join
 
@@ -36,13 +37,13 @@ class Admin::ApplicationsController < ApplicationController
 
   # GET /admin/applications/1/edit
   def edit
-    @admin_application = Admin::Application.find(params[:id])
+    @admin_application = Application.find(params[:id])
   end
 
   # POST /admin/applications
   # POST /admin/applications.json
   def create
-    @admin_application = Admin::Application.new(params[:admin_application])
+    @admin_application = Application.new(params[:admin_application])
 
     respond_to do |format|
       if @admin_application.save
@@ -58,7 +59,7 @@ class Admin::ApplicationsController < ApplicationController
   # PUT /admin/applications/1
   # PUT /admin/applications/1.json
   def update
-    @admin_application = Admin::Application.find(params[:id])
+    @admin_application = Application.find(params[:id])
 
     respond_to do |format|
       if @admin_application.update_attributes(params[:admin_application])
@@ -74,7 +75,7 @@ class Admin::ApplicationsController < ApplicationController
   # DELETE /admin/applications/1
   # DELETE /admin/applications/1.json
   def destroy
-    @admin_application = Admin::Application.find(params[:id])
+    @admin_application = Application.find(params[:id])
     @admin_application.destroy
 
     respond_to do |format|

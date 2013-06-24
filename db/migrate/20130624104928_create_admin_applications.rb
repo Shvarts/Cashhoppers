@@ -1,6 +1,6 @@
 class CreateAdminApplications < ActiveRecord::Migration
   def change
-    create_table :admin_applications do |t|
+    create_table :applications do |t|
       t.string :name
       t.text :description
       t.string :api_key

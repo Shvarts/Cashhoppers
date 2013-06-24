@@ -15,7 +15,7 @@
     <td><%= admin_application.name %></td>
     <td><%= admin_application.description %></td>
     <td><%= admin_application.api_key %></td>
-    <td><%= link_to 'Show', admin_application %></td>
+    <td><%= link_to 'Show', admin_application_path(admin_application) %></td>
     <td><%= link_to 'Edit', edit_admin_application_path(admin_application) %></td>
     <td><%= link_to 'Destroy', admin_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
