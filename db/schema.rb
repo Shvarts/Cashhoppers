@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130624122054) do
 
-  create_table "admin_applications", :force => true do |t|
+  create_table "applications", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "api_key"

@@ -1,3 +1,4 @@
+require_relative "../app/controllers/API/sessions_controller.rb"
 CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
