@@ -5,10 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+admin = User.where(:email => 'admin@cashhoppers.com').first
+if admin
+  admin.destroy
+end
 
+Role.destroy_all
 
 Role.create(:name => :admin)
 Role.create(:name => :user)
-
-admin = User.create(:email => 'admin@cash.com', :password => 'qwerty11', :password_confirmation => 'qwerty11')
+admin = User.create(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
 admin.roles = [Role.find_by_name(:admin)]
