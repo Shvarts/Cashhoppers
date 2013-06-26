@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :last_name, :first_name, 
          :user_name, :password_confirmation, :remember_me, :zip,:avatar
   has_attached_file :avatar
-  validates :zip, :numericality => true
-  validates :last_name, :first_name, :zip, :user_name, :presence => true
+  #validates :zip, :numericality => true
+  #validates :last_name, :first_name, :zip, :user_name, :presence => true
   
 
   attr_accessible :email, :password, :password_confirmation, :remember_me

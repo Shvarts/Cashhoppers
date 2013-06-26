@@ -32,7 +32,7 @@ class ServicesController < ApplicationController
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
       elsif service_route == 'twitter'
         email = ''    # Twitter API never returns the email address
-        omniauth['user_info']['name'] ? name =  omniauth['user_info']['name'] : name = ''
+        omniauth['extra']['raw_info']['name'] ? name =  omniauth['extra']['raw_info']['name'] : name = ''
         omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
       else
