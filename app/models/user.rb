@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable
 
@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/images/avatars/users/:basename.:extension"
 
 
- validates :zip, :numericality => true
-  validates :last_name, :first_name, :zip, :user_name, :presence => true
+ validates :zip, numericality: {only_integer: true}
+  validates  :zip, :email, :password, :presence => true
   
 
   
