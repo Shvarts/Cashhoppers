@@ -1,3 +1,5 @@
+require_relative "../app/controllers/API/sessions_controller.rb"
+require 'base64'
 CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'

@@ -1,14 +1,27 @@
-require 'base64'
+#require 'base64'
 
 class Api::SessionsController < Devise::SessionsController
   #skip_before_filter :authenticate_user!, :only => :create
-  before_filter :check_api_key
+
+ before_filter :check_api_key
 
   def sign_up
-    params[:avatar]=Base.decode64(params[:avatar])
-    user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip], :password => params[:password], :avatar => params[:avatar], :password_confirmation => params[:password])
+      if params[:avatar]  
+         jpg=params[:avatar]
+      
+         File.open("public/images/avatars/users/#{params[:avatar_name]}.#{params[:avatar_type]}", 'wb'){ |file| file.write decoded_file = Base64.decode64(jpg) }
+      end
+      
+  
+    
+    user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip], :password => params[:password], :password_confirmation => params[:password])
     if user.save
-      user.ensure_authentication_token!
+      if params[:avatar]
+        user.avatar_file_name= "#{params[:avatar_name]}.#{params[:avatar_type]}"
+        user.avatar_content_type= params[:avatar_type]
+      end
+        user.ensure_authentication_token!
+      
       render :json => {:authentication_token => user.authentication_token, :success => true , :user => user}, :status => :created ,  :success => true
     else
       invalid_login_attempt user.errors
