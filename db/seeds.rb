@@ -14,5 +14,7 @@ Role.destroy_all
 
 Role.create(:name => :admin)
 Role.create(:name => :user)
-admin = User.create(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+admin.skip_confirmation!
+admin.save
 admin.roles = [Role.find_by_name(:admin)]
