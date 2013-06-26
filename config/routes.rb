@@ -1,5 +1,3 @@
-require_relative "../app/controllers/API/sessions_controller.rb"
-
 CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
@@ -14,9 +12,12 @@ CashHoppers::Application.routes.draw do
   devise_for :users do
     namespace :API do
       post 'sessions' => 'sessions#create', :as => 'login'
-      post 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
+      get 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
     end
   end
+
+  match '/auth/:service/callback' => 'services#create'
+  resources :services, :only => [:index, :create, :destroy]
 
 end

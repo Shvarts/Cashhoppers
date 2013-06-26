@@ -2,18 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 
 # authentification
 gem 'devise'
-
-gem 'paperclip'
-
 gem 'cancan'
 
+gem 'paperclip'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,7 +23,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
