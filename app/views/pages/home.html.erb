@@ -1,4 +1,7 @@
 Hello World !!!
+<% if flash[:notice] %>
+<h3 id="error_explanation"><%= flash[:notice]%></h3>
+<% end %>
 
 <% content_for :sidebar do %>
     <%=  render :partial=>'sidebar' %>
