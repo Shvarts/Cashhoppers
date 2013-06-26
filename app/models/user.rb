@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/images/avatars/users/:basename.:extension"
 
 
- validates :zip, numericality: {only_integer: true}
  validates :email, :password, :presence => true   # zip by default
+#validates :zip, numericality: {only_integer: true}
   
 
   
