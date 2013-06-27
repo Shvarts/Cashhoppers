@@ -36,4 +36,6 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE
 response:
 {"message":["Session deleted."]}
 
+ new method:POST
+  curl -H ent-Type: application/json" -X POST -d '{"ad_type": "2","hop_id":"2"}'  http://localhost:3000/api/send_ad
 

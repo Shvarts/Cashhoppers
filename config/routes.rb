@@ -1,5 +1,3 @@
-require_relative "../app/controllers/API/sessions_controller.rb"
-require 'base64'
 CashHoppers::Application.routes.draw do
 
   resources :ads
@@ -18,9 +16,13 @@ CashHoppers::Application.routes.draw do
   get "pages/home"
 
   devise_for :users do
-    namespace :API do
+    namespace :api do
       post 'sessions' => 'sessions#create', :as => 'login'
       get 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
+
+      post 'send_ad' => 'ad#send_ad' ,   :as => 'send_ad'
+
+
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
     end
   end

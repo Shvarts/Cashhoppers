@@ -80,4 +80,24 @@ class AdsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def send_ad
+
+    if params[:ad_type]==1
+
+      render :json => {:sucsses => true, :type=>1} ,  :success => false
+
+    elsif params[:ad_type]==2
+
+      render :json => {:success => true, :type=>2} ,  :success => true
+
+      elseif  params[:ad_type]==3
+
+      render :json => {:success => true, :type=>3} ,  :success => true
+
+    else
+      render :json => {:success => false} ,  :success => false
+
+    end
+  end
 end
