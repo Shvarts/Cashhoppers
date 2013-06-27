@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626072407) do
+ActiveRecord::Schema.define(:version => 20130627123558) do
+
+  create_table "ads", :force => true do |t|
+    t.integer  "advert_id"
+    t.string   "advertiser_name"
+    t.integer  "hop_id"
+    t.text     "contact"
+    t.integer  "phone"
+    t.string   "email"
+    t.string   "type_add"
+    t.integer  "price"
+    t.integer  "amd_paid"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "applications", :force => true do |t|
     t.string   "name"

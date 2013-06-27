@@ -2,6 +2,12 @@ require_relative "../app/controllers/API/sessions_controller.rb"
 require 'base64'
 CashHoppers::Application.routes.draw do
 
+  resources :ads
+
+
+  resources :ad_types
+
+
   root :to => 'pages#home'
 
   namespace :admin do

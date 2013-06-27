@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Advert:</b>
+  <%= @ad.advert_id %>
+</p>
+
+<p>
+  <b>Advertiser name:</b>
+  <%= @ad.advertiser_name %>
+</p>
+
+<p>
+  <b>Hop:</b>
+  <%= @ad.hop_id %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @ad.contact %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @ad.phone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @ad.email %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @ad.type_add %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @ad.price %>
+</p>
+
+<p>
+  <b>Amd paid:</b>
+  <%= @ad.amd_paid %>
+</p>
+
+
+<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<%= link_to 'Back', ads_path %>
