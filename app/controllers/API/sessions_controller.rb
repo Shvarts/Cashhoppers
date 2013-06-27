@@ -20,11 +20,23 @@ class Api::SessionsController < Devise::SessionsController
         user.avatar_file_name= "#{params[:avatar_name]}.#{params[:avatar_type]}"
         user.avatar_content_type= params[:avatar_type]
       end
-        user.ensure_authentication_token!
+      #user.ensure_authentication_token!
       
-      render :json => {:authentication_token => user.authentication_token, :success => true , :user => user}, :status => :created ,  :success => true
+      render :json => {:message => 'Check your email and confirm registration.', :success => true , :user => user}, :status => :created ,  :success => true
     else
       invalid_login_attempt user.errors
+    end
+  end
+
+  def confirm_registration
+    user = User.find_by_confirmation_token params[:confirmation_token]
+    if params[:confirmation_token] != '' && user
+      user.confirmation_token = nil
+      user.confirmed_at = Time.now
+      user.save
+      render :json => {:message => 'Confirmation successfully.', :success => true}, :status => :confirmed ,  :success => true
+    else
+      invalid_login_attempt :errors => ['Bad confirmation token']
     end
   end
   
