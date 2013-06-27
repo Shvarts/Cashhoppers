@@ -15,5 +15,5 @@
 /tmp
 config/database.yml
 .idea
-/public/system
-/public/assets
+public/images
+public/assets
