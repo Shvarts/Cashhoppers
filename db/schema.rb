@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627123558) do
+ActiveRecord::Schema.define(:version => 20130627133747) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advert_id"
@@ -23,8 +23,12 @@ ActiveRecord::Schema.define(:version => 20130627123558) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "applications", :force => true do |t|

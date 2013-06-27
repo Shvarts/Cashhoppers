@@ -45,6 +45,11 @@
   <%= @ad.amd_paid %>
 </p>
 
+<p>
+  <b>Picture:</b>
+  <%= image_tag @ad.picture.url %>
+</p>
+
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |
 <%= link_to 'Back', ads_path %>
