@@ -19,7 +19,11 @@ CashHoppers::Application.routes.draw do
     end
   end
 
-  match '/auth/:service/callback' => 'services#create'
+
+  match '/auth/:service/callback' => 'services#add_zip'
+
+  get 'services/add_zip', :to => 'services#add_zip'
+ 
   resources :services, :only => [:index, :create, :destroy]
 
 end

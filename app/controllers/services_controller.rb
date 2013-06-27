@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create]
+  before_filter :authenticate_user!, :except => [:create, :add_zip]
 
   def index
     # get all authentication services assigned to the current user
@@ -14,12 +14,29 @@ class ServicesController < ApplicationController
     redirect_to services_path
   end
 
+  def add_zip
+    session[:service]=params['service']
+    session[:omniauth] = request.env['omniauth.auth']
+  end
+  
+
   def create
+
+    @zip=params[:zip]
+    params[:service] =session['service']
+    session.delete('service')
+
+
+
     # get the service parameter from the Rails router
+
+ 
+
     params[:service] ? service_route = params[:service] : service_route = 'no service (invalid callback)'
 
     # get the full hash from omniauth
-    omniauth = request.env['omniauth.auth']
+    omniauth = session[:omniauth]
+    session.delete(:omniauth)
 
     # continue only if hash and parameter exist
     if omniauth and params[:service]
