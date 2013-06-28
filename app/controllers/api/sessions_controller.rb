@@ -62,17 +62,55 @@ class Api::SessionsController < Devise::SessionsController
     end
   end
 
-  private
+  def sign_in_via_service
+    #api_key, email, name, uid, provider
+    auth = Service.find_by_provider_and_uid(params[:provider], params[:uid])
+    if auth
+      auth.user.ensure_authentication_token!
+      render :json => {:message => 'Signed in successfully via ' + params[:provider].capitalize + '.', :authentication_token => auth.user.authentication_token, :success => true ,:user => auth.user },
+             :status => :created ,  :success => true
+    else
+      if params[:email] != ''
+        existinguser = User.find_by_email(params[:email])
+        if existinguser
+          existinguser.services.create(:provider => params[:provider], :uid => params[:uid], :uname => params[:name], :uemail => params[:email])
+          existinguser.ensure_authentication_token!
+          render :json => {:message => 'Sign in via ' + params[:provider].capitalize + '. ' + params[:provider].capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!',
+                           :authentication_token => user.authentication_token, :success => true, :user => user }, :status => :created ,  :success => true
+        else
+          params[:name] = params[:name][0, 39] if params[:name].length > 39
 
-  def invalid_login_attempt errors
-    warden.custom_failure!
-    render :json => {:errors => errors,  :success => false, :status => :unauthorized}.to_json
-  end
+          user = User.new :email => params[:email], :password => SecureRandom.hex(10), :user_name => params[:name], :zip => params[:zip]
 
-  def check_api_key
-    if Application.where(:api_key => params[:api_key]).blank?
-      invalid_login_attempt 'Bad api key'
+          user.services.build(:provider => params[:provider], :uid => params[:uid], :uname => params[:name], :uemail => params[:email])
+
+          user.skip_confirmation!
+          if user.save
+            user.confirm!
+            user.ensure_authentication_token!
+            render :json => {:message => 'Your account has been created via ' + params[:provider].capitalize,
+                             :authentication_token => user.authentication_token, :success => true ,:user => user }, :status => :created ,  :success => true
+          else
+            invalid_login_attempt :errors => user.errors.to_json
+          end
+        end
+      else
+        invalid_login_attempt :errors => ["Email can't be blank."]
+      end
     end
   end
+
+ private
+
+ def invalid_login_attempt errors
+   warden.custom_failure!
+   render :json => {:errors => errors,  :success => false, :status => :unauthorized}.to_json
+ end
+
+ def check_api_key
+   if Application.where(:api_key => params[:api_key]).blank?
+     invalid_login_attempt 'Bad api key'
+   end
+ end
 
 end

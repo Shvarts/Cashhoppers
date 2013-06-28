@@ -16,6 +16,8 @@ CashHoppers::Application.routes.draw do
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
       post 'confirm_registration' => 'sessions#confirm_registration'
 
+      post 'sign_in_via_service' => 'sessions#sign_in_via_service'
+
       post 'send_ad' => 'ad#send_ad' ,   :as => 'send_ad'
     end
   end
