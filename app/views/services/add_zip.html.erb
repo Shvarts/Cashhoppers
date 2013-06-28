@@ -1,10 +1,38 @@
-
-
- <%= params[:service] %>
-<%  session.inspect %>
- <%= form_tag(controller: "services", action: "create", :method=> "post") do %>
-    <div><%=label_tag( :zip, "Put your zip") %><br />
-    <%= text_field_tag( :zip )%></div>
+ <%= form_tag(controller: "services", action: "create", :method => "post") do %>
+     <div>
+       <%=label_tag :service %>:
+       <%= @service %>
+       <%= hidden_field_tag :service, @service %>
+     </div>
+     <div>
+       <%=label_tag :name %>:
+       <%= @name %>
+       <%= hidden_field_tag :name, @name %>
+     </div>
+     <div>
+       <%=label_tag :uid %>:
+       <%= @uid %>
+       <%= hidden_field_tag :uid, @uid %>
+     </div>
+     <div>
+       <%=label_tag :provider %>:
+       <%= @provider %>
+       <%= hidden_field_tag :provider, @provider %>
+     </div>
+     <% if @service == 'twitter' %>
+         <div>
+           <%=label_tag :email %><br/>
+           <%= text_field_tag :email, @email %>
+         </div>
+     <% else %>
+         <%=label_tag :email %>:
+         <%= @email %>
+         <%= hidden_field_tag :email, @email %>
+     <% end %>
+     <div>
+       <%=label_tag :zip, "Put your zip" %><br/>
+       <%= text_field_tag :zip %>
+     </div>
     <div><%= submit_tag( "Sign up") %></div>
  <% end %>
 

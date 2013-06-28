@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
 
   attr_accessible :email, :password, :last_name, :first_name, 
-         :user_name, :password_confirmation, :remember_me, :zip,:avatar
+         :user_name, :password_confirmation, :remember_me, :zip, :avatar
 
   has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
