@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+ <%= @sponsor%>
+<p>
+  <b>Text for hop:</b>
+  <%= @hop_task.text_for_hop %>
+</p>
+
+<p>
+  <b>Sponsor:</b>
+  <%= @hop_task.sponsor_id %>
+</p>
+
+<p>
+  <b>Hop task price:</b>
+  <%= @hop_task.hop_task_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_hop_hop_task_path(@hop_task.hop, @hop_task) %> |
+<%= link_to 'Back', hop_hop_tasks_path(@hop_task.hop) %>

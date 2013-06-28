@@ -1,5 +1,12 @@
 CashHoppers::Application.routes.draw do
 
+  resources :hops do
+    resources :hop_tasks
+  end
+
+
+
+
   root :to => 'pages#home'
 
   namespace :admin do
