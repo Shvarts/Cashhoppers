@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable, :confirmable
 
-  # Setup accessible (or protected) attributes for your model
-
   attr_accessible :email, :password, :last_name, :first_name, 
          :user_name, :password_confirmation, :remember_me, :zip, :avatar
 
@@ -24,12 +22,8 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
 
 
- validates :email, :password, :zip, :presence => true   # zip by default
+ validates :email, :password, :zip, :presence => true
  validates :zip, numericality: {only_integer: true}
-  
-
-  
-  # attr_accessible :title, :body
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)

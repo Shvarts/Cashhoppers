@@ -1,12 +1,4 @@
 CashHoppers::Application.routes.draw do
-
-  resources :hops do
-    resources :hop_tasks
-  end
-
-
-
-
   root :to => 'pages#home'
 
   namespace :admin do
@@ -29,14 +21,14 @@ CashHoppers::Application.routes.draw do
     end
   end
 
-
   match '/auth/:service/callback' => 'services#add_zip'
-
   get 'services/add_zip', :to => 'services#add_zip'
  
   resources :services, :only => [:index, :create, :destroy]
 
   resources :ads
-
   resources :ad_types
+  resources :hops do
+    resources :hop_tasks
+  end
 end
