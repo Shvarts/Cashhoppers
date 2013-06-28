@@ -87,7 +87,7 @@ class HopTasksController < ApplicationController
     @hop_task.destroy
 
     respond_to do |format|
-      format.html { redirect_to hop_hop_tasks_url(hop) }
+      format.html { redirect_to hop_hop_tasks_url(@hop) }
       format.json { head :ok }
     end
   end

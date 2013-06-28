@@ -9,13 +9,14 @@ Hello World !!!
 <br />
 <h3>Hops</h3>
 <p>
-  <% for i in @hop_list %>
-    <p><%= i.name %></p>
-  <% end %>
+
+  < for i in @daily_hop %>
+    <p><= i.inspect %></p>
+  < end %>
 </p>
 <h3>Hop tasks</h3>
 <p>
-   <% for i in @hop_tasks %>
-      <p><%= i.text_for_hop%></p>
-   <% end %>
+   < for i in @hop_tasks %>
+      <p><= i.text_for_hop%></p>
+   < end %>
 </p>

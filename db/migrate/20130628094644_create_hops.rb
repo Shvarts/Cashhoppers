@@ -12,6 +12,7 @@ class CreateHops < ActiveRecord::Migration
       t.string :hop_price
       t.string :jackpot
       t.string :hop_items
+      t.integer :daily_hop_id
 
       t.timestamps
     end

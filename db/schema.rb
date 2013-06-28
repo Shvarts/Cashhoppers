@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628110814) do
+ActiveRecord::Schema.define(:version => 20130628125745) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advert_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130628110814) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
+    t.string   "link_to_ad"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "ad_picture_file_name"
@@ -37,6 +38,19 @@ ActiveRecord::Schema.define(:version => 20130628110814) do
     t.string   "api_key"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "daily_hops", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "text_for_item"
+    t.string   "winner"
+    t.string   "points"
+    t.string   "share_point"
+    t.string   "jackpot"
+    t.string   "users"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "hop_tasks", :force => true do |t|
@@ -62,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130628110814) do
     t.string   "hop_price"
     t.string   "jackpot"
     t.string   "hop_items"
+    t.integer  "daily_hop_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
