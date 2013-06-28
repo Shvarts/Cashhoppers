@@ -12,28 +12,7 @@
  *= require_tree .
  */
 
-body, html {
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
-}
-
-#page {
-    width: 1000px;
+.page{
     margin: 0 auto;
-    text-align: left;
-}
-
-#content{
-    width: 800px;
-    float: left;
-}
-
-#sidebar{
-    margin-left: 802px;
-}
-
-#footer{
-    clear: both;
-    text-align: center;
+    width: 1000px;
 }
