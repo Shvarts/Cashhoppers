@@ -16,14 +16,14 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :last_name, :first_name, 
          :user_name, :password_confirmation, :remember_me, :zip,:avatar
 
-  has_attached_file :avatar, # ,:styles => { :original => "400x400>" },
-                    :url  => "/images/avatars/users/:basename.:extension",
+  has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
+                    :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
                     :default_url => "/assets/noavatar.gif",
-                    :path => ":rails_root/public/images/avatars/users/:basename.:extension"
+                    :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
 
 
- validates :email, :password, :presence => true   # zip by default
-#validates :zip, numericality: {only_integer: true}
+ validates :email, :password, :zip, :presence => true   # zip by default
+ validates :zip, numericality: {only_integer: true}
   
 
   

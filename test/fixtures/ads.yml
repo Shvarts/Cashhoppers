@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  advert_id: 1
+  advertiser_name: MyString
+  hop_id: 1
+  contact: MyText
+  phone: 1
+  email: MyString
+  type: 
+  price: 1
+  amd_paid: 1
+
+two:
+  advert_id: 1
+  advertiser_name: MyString
+  hop_id: 1
+  contact: MyText
+  phone: 1
+  email: MyString
+  type: 
+  price: 1
+  amd_paid: 1

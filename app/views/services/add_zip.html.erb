@@ -1,0 +1,12 @@
+
+
+ <%= params[:service] %>
+<%  session.inspect %>
+ <%= form_tag(controller: "services", action: "create", :method=> "post") do %>
+    <div><%=label_tag( :zip, "Put your zip") %><br />
+    <%= text_field_tag( :zip )%></div>
+    <div><%= submit_tag( "Sign up") %></div>
+ <% end %>
+
+
+

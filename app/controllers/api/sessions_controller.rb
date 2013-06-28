@@ -1,5 +1,3 @@
-#require 'base64'
-
 class Api::SessionsController < Devise::SessionsController
   #skip_before_filter :authenticate_user!, :only => :create
 

@@ -28,7 +28,7 @@ test:
   database: CashHoppers_test
   pool: 5
   username: root
-  password: remeta
+  password: 
   host: 127.0.0.1
 
 
