@@ -1,0 +1,43 @@
+<h1>Listing hops</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Time start</th>
+    <th>Time end</th>
+    <th>Producer</th>
+    <th>Producer contact</th>
+    <th>Contact phone</th>
+    <th>Contact email</th>
+    <th>Hop code</th>
+    <th>Hop price</th>
+    <th>Jackpot</th>
+    <th>Hop items</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hops.each do |hop| %>
+  <tr>
+    <td><%= hop.name %></td>
+    <td><%= hop.time_start %></td>
+    <td><%= hop.time_end %></td>
+    <td><%= hop.producer_id %></td>
+    <td><%= hop.producer_contact %></td>
+    <td><%= hop.contact_phone %></td>
+    <td><%= hop.contact_email %></td>
+    <td><%= hop.hop_code %></td>
+    <td><%= hop.hop_price %></td>
+    <td><%= hop.jackpot %></td>
+    <td><%= hop.hop_items %></td>
+    <td><%= link_to 'Show', hop %></td>
+    <td><%= link_to 'Edit', edit_hop_path(hop) %></td>
+    <td><%= link_to 'Destroy', hop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Hop', new_hop_path %>

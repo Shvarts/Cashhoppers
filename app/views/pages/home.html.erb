@@ -6,3 +6,8 @@ Hello World !!!
 <% content_for :sidebar do %>
     <%=  render :partial=>'sidebar' %>
 <% end %>
+
+
+<% for i in @hop_list %>
+  <%= i.name %>
+<% end %>
