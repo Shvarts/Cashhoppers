@@ -1,0 +1,27 @@
+<h1>Listing hop_tasks</h1>
+
+<table>
+  <tr>
+    <th>Text for hop</th>
+    <th>Sponsor</th>
+    <th>Hop task price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hop_tasks.each do |hop_task| %>
+  <tr>
+    <td><%= hop_task.text_for_hop %></td>
+    <td><%= hop_task.sponsor_id %></td>
+    <td><%= hop_task.hop_task_price %></td>
+    <td><%= link_to 'Show', [hop_task.hop, hop_task] %></td>
+    <td><%= link_to 'Edit', edit_hop_hop_task_path(hop_task.hop, hop_task) %></td>
+    <td><%= link_to 'Destroy', [hop_task.hop, hop_task], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Hop task', new_hop_hop_task_path(params[:hop_id]) %>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :hops,  foreign_key: "producer_id"
+  has_many :hop_tasks,  foreign_key: "sponsor_id"
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy
