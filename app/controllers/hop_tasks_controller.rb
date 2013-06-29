@@ -6,7 +6,7 @@ class HopTasksController < ApplicationController
     @hop_tasks = @hop.hop_tasks
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render :json => @hop_tasks }
     end
   end
@@ -19,7 +19,7 @@ class HopTasksController < ApplicationController
     @hop_task = @hop.hop_tasks.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render :json => @hop_task }
     end
   end
@@ -32,7 +32,7 @@ class HopTasksController < ApplicationController
     @hop_task = @hop.hop_tasks.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render :json => @hop_task }
     end
   end

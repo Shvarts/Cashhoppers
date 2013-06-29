@@ -6,7 +6,7 @@ class Admin::ApplicationsController < ApplicationController
     @applications = Application.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @applications }
     end
   end
@@ -17,7 +17,7 @@ class Admin::ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @application }
     end
   end
@@ -30,7 +30,7 @@ class Admin::ApplicationsController < ApplicationController
     @application.api_key = Array.new(30){range.sample}.join
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @application }
     end
   end
@@ -47,10 +47,16 @@ class Admin::ApplicationsController < ApplicationController
 
     respond_to do |format|
       if @application.save
-        format.html { redirect_to [:admin, @application], notice: 'Application was successfully created.' }
+        format.html {
+          flash[:success] = 'Application ' + @application.name + ' was successfully created.'
+          redirect_to [:admin, @application]
+        }
         format.json { render json: @application, status: :created, location: @application }
       else
-        format.html { render action: "new" }
+        format.html {
+          flash[:error] = 'Failed to update application.'
+          render action: "new"
+        }
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end
     end
@@ -63,10 +69,16 @@ class Admin::ApplicationsController < ApplicationController
 
     respond_to do |format|
       if @application.update_attributes(params[:application])
-        format.html { redirect_to [:admin, @application], notice: 'Application was successfully updated.' }
+        format.html {
+          flash[:success] = 'Application was successfully updated.'
+          redirect_to [:admin, @application]
+        }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html {
+          flash[:error] = 'Failed to update application.'
+          render action: "edit"
+        }
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end
     end
@@ -79,7 +91,10 @@ class Admin::ApplicationsController < ApplicationController
     @application.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_applications_url }
+      format.html {
+        flash[:notice] = 'Application was successfully destroyed.'
+        redirect_to admin_applications_url
+      }
       format.json { head :no_content }
     end
   end
