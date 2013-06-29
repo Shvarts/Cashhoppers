@@ -31,4 +31,5 @@ CashHoppers::Application.routes.draw do
   resources :hops do
     resources :hop_tasks
   end
+  resources :daily_hops
 end

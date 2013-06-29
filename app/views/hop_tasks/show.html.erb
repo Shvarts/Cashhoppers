@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
- <%= @sponsor%>
+
 <p>
   <b>Text for hop:</b>
   <%= @hop_task.text_for_hop %>
@@ -16,5 +16,9 @@
 </p>
 
 
+<p>
+  <b>Picture:</b>
+  <%= image_tag @hop_task.hop_picture.url %>
+</p>
 <%= link_to 'Edit', edit_hop_hop_task_path(@hop_task.hop, @hop_task) %> |
 <%= link_to 'Back', hop_hop_tasks_path(@hop_task.hop) %>

@@ -46,9 +46,16 @@
 </p>
 
 <p>
+  <b>Ads link:</b>
+  <%= @ad.link_to_ad %>
+</p>
+
+<p>
   <b>Picture:</b>
   <%= image_tag @ad.ad_picture.url %>
 </p>
+
+
 
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |

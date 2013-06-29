@@ -10,6 +10,7 @@ class CreateAds < ActiveRecord::Migration
       t.string :type_add
       t.integer :price
       t.integer :amd_paid
+      t.string :link_to_ad
 
       t.timestamps
     end

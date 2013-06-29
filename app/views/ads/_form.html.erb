@@ -48,9 +48,14 @@
     <%= f.number_field :amd_paid %>
   </div>
   <div class="field">
+    <%= f.label :link_to_ad %><br />
+    <%= f.text_field :link_to_ad %>
+  </div>
+  <div class="field">
     <%= f.label :ad_picture %><br />
     <%= f.file_field :ad_picture %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
