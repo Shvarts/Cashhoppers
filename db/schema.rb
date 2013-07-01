@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130701122759) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
-    t.string   "link_to_ad"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "ad_picture_file_name"
@@ -92,7 +91,6 @@ ActiveRecord::Schema.define(:version => 20130701122759) do
     t.string   "hop_price"
     t.string   "jackpot"
     t.string   "hop_items"
-    t.integer  "daily_hop_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

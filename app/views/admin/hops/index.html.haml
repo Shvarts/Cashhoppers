@@ -1,0 +1,23 @@
+%h2
+  .row-fluid
+    .text-left.span6
+      Listing hops:
+    .text-right.span6
+      = link_to 'New Hop', new_admin_hop_path, class: 'btn btn-info'
+%table.table.table-striped
+  %tr
+    %th
+      Name
+    %th
+      Hop price
+    %th
+  - @hops.each do |hop|
+    %tr
+      %td
+        = hop.name
+      %td
+        = hop.hop_price
+      %td{style: 'text-align: right'}
+        = link_to 'Show', admin_hop_path(hop), class: 'btn'
+        = link_to 'Edit', edit_admin_hop_path(hop), class: 'btn btn-primary'
+        = link_to 'Destroy', admin_hop_path(hop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

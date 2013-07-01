@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DailyHopTest < ActiveSupport::TestCase
+class Admin::AdminControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

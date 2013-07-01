@@ -31,6 +31,4 @@ CashHoppers::Application.routes.draw do
 
   resources :ads
   resources :ad_types
-
-  resources :daily_hops
 end

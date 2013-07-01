@@ -1,4 +1,4 @@
-class Admin::ApplicationsController < ApplicationController
+class Admin::ApplicationsController < Admin::AdminController
   load_and_authorize_resource
   # GET /admin/applications
   # GET /admin/applications.json

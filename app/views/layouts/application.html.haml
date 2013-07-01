@@ -42,4 +42,4 @@
             = yield :sidebar
           .span9
             .well
-              = yield
+              = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield

@@ -1,5 +1,4 @@
-
-class Admin::HopsController < ApplicationController
+class Admin::HopsController < Admin::AdminController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!

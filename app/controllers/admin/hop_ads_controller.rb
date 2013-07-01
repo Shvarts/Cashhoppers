@@ -1,11 +1,11 @@
-class Admin::HopAdsController < ApplicationController
+class Admin::HopAdsController < Admin::AdminController
   # GET /hop_ads
   # GET /hop_ads.json
   def index
     @hop_ads = HopAd.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @hop_ads }
     end
   end

@@ -1,4 +1,4 @@
-class Admin::HopTasksController < ApplicationController
+class Admin::HopTasksController < Admin::AdminController
   # GET hops/1/hop_tasks
   # GET hops/1/hop_tasks.json
   before_filter :authenticate_user!
