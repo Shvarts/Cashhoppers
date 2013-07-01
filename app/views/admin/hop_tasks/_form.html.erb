@@ -1,4 +1,4 @@
-<%= form_for([@hop_task.hop, @hop_task]) do |f| %>
+<%= form_for([:admin, @hop_task]) do |f| %>
   <% if @hop_task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@hop_task.errors.count, "error") %> prohibited this hop_task from being saved:</h2>

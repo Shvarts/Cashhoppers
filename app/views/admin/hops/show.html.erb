@@ -90,8 +90,8 @@
     </td>
 
     <td><%= link_to 'Show', admin_hop_task_path(hop_task.id)  %></td>
-    <td><%= link_to 'Edit',  %></td>
-    <td><%= link_to 'Destroy',  %></td>
+    <td><%= link_to 'Edit', edit_admin_hop_task_path(hop_task) %></td>
+    <td><%= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete %></td>
 
   </tr>
 </table>
@@ -127,6 +127,42 @@
 
 
 <h2>Ad</h2>
+
+<% @hop.hop_ads.each do |hop_ad| %>
+    <table>
+      <tr>
+        <td><strong>text:</strong></td>
+        <td><strong>price:</strong></td>
+        <td><strong>picture:</strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      <tr>
+
+      <tr>
+        <td>
+
+          <%= hop_ad.ad_name %>
+        </td>
+        <td>
+
+          <%= hop_ad.phone %>
+        </td>
+        <td>
+
+          <%= hop_ad.email %>
+        </td>
+
+        <td><%= link_to 'Show', %></td>
+        <td><%= link_to 'Edit',  %></td>
+        <td><%= link_to 'Destroy',  %></td>
+
+      </tr>
+    </table>
+
+<% end %>
+
 
 <%= form_tag admin_hop_ads_path do %>
 

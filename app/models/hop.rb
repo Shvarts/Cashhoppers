@@ -1,5 +1,6 @@
 class Hop < ActiveRecord::Base
   has_many :hop_tasks
+  has_many :hop_ads
   belongs_to :user
   belongs_to :daily_hop
 

@@ -81,6 +81,7 @@ class Admin::HopsController < ApplicationController
   def destroy
     @hop = Hop.find(params[:id])
     @hop.hop_tasks.delete_all
+    @hop.hop_ads.delete_all
     @hop.destroy
 
     respond_to do |format|

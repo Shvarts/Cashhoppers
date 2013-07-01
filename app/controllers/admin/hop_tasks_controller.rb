@@ -41,8 +41,11 @@ class Admin::HopTasksController < ApplicationController
 
   # GET hops/1/hop_tasks/1/edit
   def edit
-    @hop = Hop.find(params[:hop_id])
-    @hop_task = @hop.hop_tasks.find(params[:id])
+    @hop_task=HopTask.find(params[:id])
+    @hop=@hop_task.hop
+
+    #@hop = Hop.find(params[:hop_id])
+ #   @hop_task = @hop.hop_tasks.find(params[:id])
   end
 
   # POST hops/1/hop_tasks
@@ -75,12 +78,13 @@ class Admin::HopTasksController < ApplicationController
   # PUT hops/1/hop_tasks/1
   # PUT hops/1/hop_tasks/1.json
   def update
-    @hop = Hop.find(params[:hop_id])
-    @hop_task = @hop.hop_tasks.find(params[:id])
+
+
+    @hop_task = HopTask.find(params[:id])
 
     respond_to do |format|
       if @hop_task.update_attributes(params[:hop_task])
-        format.html { redirect_to([@hop_task.hop, @hop_task], :notice => 'Hop task was successfully updated.') }
+        format.html { redirect_to(admin_hop_path(@hop_task.hop), :notice => 'Hop task was successfully updated.') }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -92,12 +96,12 @@ class Admin::HopTasksController < ApplicationController
   # DELETE hops/1/hop_tasks/1
   # DELETE hops/1/hop_tasks/1.json
   def destroy
-    @hop = Hop.find(params[:hop_id])
-    @hop_task = @hop.hop_tasks.find(params[:id])
+
+    @hop_task = HopTask.find(params[:id])
     @hop_task.destroy
 
     respond_to do |format|
-      format.html { redirect_to hop_hop_tasks_url(@hop) }
+      format.html { redirect_to admin_hop_path(@hop_task.hop)}
       format.json { head :ok }
     end
   end

@@ -50,12 +50,13 @@ class Admin::HopAdsController < ApplicationController
                             :hop_id => params["hop_id"] )
 
     respond_to do |format|
-      if @hop_ad.save
-        format.html { redirect_to :back, 'Hop ad was successfully created.' }
-        format.json { render json: @hop_ad, status: :created, location: @hop_ad }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
+     if @hop_ad.save
+ #       render :text=>params
+       format.html { redirect_to :back, notice:'Hop ad was successfully created.' }
+#      format.json { render json: @hop_ad, status: :created, location: @hop_ad }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
       end
     end
   end
