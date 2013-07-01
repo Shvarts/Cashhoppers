@@ -1,4 +1,5 @@
-class HopsController < ApplicationController
+
+class Admin::HopsController < ApplicationController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!
@@ -45,15 +46,16 @@ class HopsController < ApplicationController
   # POST /hops.json
   def create
     params[:hop][:producer_id]=current_user.id
+#    render :text=> params[:hop]
     @hop = Hop.new(params[:hop])
 
     respond_to do |format|
       if @hop.save
-        format.html { redirect_to @hop, notice: 'Hop was successfully created.' }
-        format.json { render json: @hop, status: :created, location: @hop }
+        format.html { redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.' }
+        format.json { render json: [:admin, @hop ], status: :created, location: @hop }
       else
         format.html { render action: "new" }
-        format.json { render json: @hop.errors, status: :unprocessable_entity }
+        format.json { render json: [:admin, @hop ].errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +67,7 @@ class HopsController < ApplicationController
 
     respond_to do |format|
       if @hop.update_attributes(params[:hop])
-        format.html { redirect_to @hop, notice: 'Hop was successfully updated.' }
+        format.html { redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,10 +80,11 @@ class HopsController < ApplicationController
   # DELETE /hops/1.json
   def destroy
     @hop = Hop.find(params[:id])
+    @hop.hop_tasks.delete_all
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to hops_url }
+      format.html { redirect_to [:admin, @hop ] }
       format.json { head :no_content }
     end
   end

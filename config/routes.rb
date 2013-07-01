@@ -2,8 +2,11 @@ CashHoppers::Application.routes.draw do
   root :to => 'pages#home'
 
   namespace :admin do
-    get 'pages/index', :as => 'index'
-    resources :applications
+       get 'pages/index', :as => 'index'
+      resources :applications
+      resources :hops
+      resources :hop_tasks
+      resources :hop_ads
   end
 
   get "pages/home"
@@ -28,8 +31,6 @@ CashHoppers::Application.routes.draw do
 
   resources :ads
   resources :ad_types
-  resources :hops do
-    resources :hop_tasks
-  end
+
   resources :daily_hops
 end

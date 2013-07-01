@@ -32,14 +32,14 @@
     <td><%= hop.hop_price %></td>
     <td><%= hop.jackpot %></td>
     <td><%= hop.hop_items %></td>
-    <td><%= link_to 'Show', hop %></td>
-    <td><%= link_to 'Edit', edit_hop_path(hop) %></td>
-    <td><%= link_to 'Destroy', hop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'Hop tasks',  hop_hop_tasks_path(hop) %></td>
+    <td><%= link_to 'Show', admin_hop_path(hop) %></td>
+    <td><%= link_to 'Edit', edit_admin_hop_path(hop) %></td>
+    <td><%= link_to 'Destroy', admin_hop_path(hop), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Hop tasks', admin_hop_tasks_path(hop) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Hop', new_hop_path %>
+<%= link_to 'New Hop', new_admin_hop_path %>

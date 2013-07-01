@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Ad name:
+  = @hop_ad.ad_name
+%p
+  %b Contact:
+  = @hop_ad.contact
+%p
+  %b Email:
+  = @hop_ad.email
+%p
+  %b Phone:
+  = @hop_ad.phone
+%p
+  %b Price:
+  = @hop_ad.price
+
+= link_to 'Edit', edit_hop_ad_path(@hop_ad)
+\|
+= link_to 'Back', hop_ads_path

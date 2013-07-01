@@ -1,0 +1,27 @@
+
+<%= form_for(:hop_task) do |f| %>
+
+    <div class="field">
+      <%= f.label :text_for_hop %><br />
+      <%= f.text_area :text_for_hop %>
+    </div>
+    <div class="field">
+      <%= f.label :sponsor_id %><br />
+      <%= f.number_field :sponsor_id %>
+    </div>
+    <div class="field">
+      <%= f.label :hop_task_price %><br />
+      <%= f.text_field :hop_task_price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hop_picture %><br />
+      <%= f.file_field :hop_picture %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_admin_hop_task_path(@hop_task.hop, @hop_task) %> |
+<%= link_to 'Back', admin_hop_tasks_path(@hop_task.hop) %>
