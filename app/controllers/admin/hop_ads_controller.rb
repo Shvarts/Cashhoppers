@@ -5,7 +5,7 @@ class Admin::HopAdsController < Admin::AdminController
     @hop_ads = HopAd.all
 
     respond_to do |format|
-      format.html # index.html.haml
+      format.html # index.html.erb
       format.json { render json: @hop_ads }
     end
   end
@@ -46,6 +46,7 @@ class Admin::HopAdsController < Admin::AdminController
                             :email=>params["email"],
                             :phone=>params["phone"],
                             :price=>params["price"],
+                            :ad_type=>params["ad_type"],
                             # :hop_picture =>params["hop_picture"],
                             :hop_id => params["hop_id"] )
 
@@ -68,7 +69,7 @@ class Admin::HopAdsController < Admin::AdminController
 
     respond_to do |format|
       if @hop_ad.update_attributes(params[:hop_ad])
-        format.html { redirect_to @hop_ad, notice: 'Hop ad was successfully updated.' }
+        format.html { redirect_to admin_hop_path(@hop_ad.hop), notice: 'Hop ad was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,7 +85,7 @@ class Admin::HopAdsController < Admin::AdminController
     @hop_ad.destroy
 
     respond_to do |format|
-      format.html { redirect_to hop_ads_url }
+      format.html {redirect_to admin_hop_path(@hop_ad.hop) }
       format.json { head :no_content }
     end
   end

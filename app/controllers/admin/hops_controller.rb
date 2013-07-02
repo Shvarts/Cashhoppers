@@ -4,10 +4,18 @@ class Admin::HopsController < Admin::AdminController
   before_filter :authenticate_user!
 
   def index
-    @hops = Hop.all
+
+    if params[:daily_hop]
+
+      @hops = Hop.where(:daily_hop => 1).all
+    else
+      @hops = Hop.all
+    end
+
+
 
     respond_to do |format|
-      format.html # index.html.haml
+      format.html # index.html.erb
       format.json { render json: @hops }
     end
   end
@@ -19,7 +27,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.html.erb
       format.json { render json: @hop }
     end
   end
@@ -31,7 +39,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.new
 
     respond_to do |format|
-      format.html # new.html.haml
+      format.html # new.html.erb
       format.json { render json: @hop }
     end
   end
@@ -79,8 +87,7 @@ class Admin::HopsController < Admin::AdminController
   # DELETE /hops/1.json
   def destroy
     @hop = Hop.find(params[:id])
-    @hop.hop_tasks.delete_all
-    @hop.hop_ads.delete_all
+
     @hop.destroy
 
     respond_to do |format|

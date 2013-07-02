@@ -8,7 +8,7 @@ class Admin::HopsController < ApplicationController
     @hops = Hop.all
 
     respond_to do |format|
-      format.html # index.html.haml
+      format.html # index.html.erb
       format.json { render json: @hops }
     end
   end
@@ -20,7 +20,7 @@ class Admin::HopsController < ApplicationController
     @hop = Hop.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.html.erb
       format.json { render json: @hop }
     end
   end
@@ -32,7 +32,7 @@ class Admin::HopsController < ApplicationController
     @hop = Hop.new
 
     respond_to do |format|
-      format.html # new.html.haml
+      format.html # new.html.erb
       format.json { render json: @hop }
     end
   end

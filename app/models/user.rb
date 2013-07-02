@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy
-  has_many :daily_hops
+
 
   before_create :create_role
   # Include default devise modules. Others available are:

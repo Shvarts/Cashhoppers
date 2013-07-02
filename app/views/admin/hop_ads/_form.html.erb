@@ -1,0 +1,45 @@
+<%= form_for([:admin, @hop_ad]) do |f| %>
+<% if @hop_ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hop_ad.errors.count, "error") %> prohibited this hop_task from being saved:</h2>
+
+      <ul>
+        <% @hop_ad.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="field">
+  <%= f.label :ad_name %><br />
+  <%= f.text_field :ad_name %>
+</div>
+<div class="field">
+  <%= f.label :price %><br />
+  <%= f.text_field :price %>
+</div>
+<div class="field">
+  <%= f.label :phone %><br />
+  <%= f.text_field :phone %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.file_field :email %>
+</div>
+
+<div class="field">
+   <%= radio_button_tag :ad_type, "sp"%>
+   <%= label_tag :ad_type,  "SP" %>
+   <%= radio_button_tag :ad_type, "rofl" %>
+   <%= label_tag :ad_type,  "ROFL" %>
+   <%= radio_button_tag :ad_type, "ropu"%>
+   <%= label_tag :ad_type, "ROPU" %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+ <% end %>

@@ -154,9 +154,9 @@
           <%= hop_ad.email %>
         </td>
 
-        <td><%= link_to 'Show'%></td>
-        <td><%= link_to 'Edit'  %></td>
-        <td><%= link_to 'Destroy'  %></td>
+        <td><%= link_to 'Show',  admin_hop_ad_path(hop_ad.id)%></td>
+        <td><%= link_to 'Edit', edit_admin_hop_ad_path(hop_ad)  %></td>
+        <td><%= link_to 'Destroy',  [:admin, hop_ad], :confirm => 'Are you sure?', :method => :delete  %></td>
 
       </tr>
     </table>
@@ -189,6 +189,17 @@
     <div class="field">
       <%= label_tag :price%><br />
       <%= number_field_tag :price %>
+    </div>
+
+    <div class="field">
+
+      <%= radio_button_tag :ad_type, "sp"%>
+      <%= label_tag :ad_type,  "SP" %>
+      <%= radio_button_tag :ad_type, "rofl" %>
+      <%= label_tag :ad_type,  "ROFL" %>
+      <%= radio_button_tag :ad_type, "ropu"%>
+      <%= label_tag :ad_type, "ROPU" %>
+
     </div>
 
     <div class="field">
