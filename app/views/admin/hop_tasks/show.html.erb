@@ -14,16 +14,11 @@
       <%= f.text_field :hop_task_price %>
     </div>
 
-    <div class="field">
-      <%= f.label :hop_picture %><br />
-      <%= f.file_field :hop_picture %>
-    </div>
-
-      <div class="actions">
-        <%= f.submit %>
-      </div>
 <% end %>
+<%= image_tag @hop_task.hop_picture.url%><br />
 
 
-<%= link_to 'Edit', edit_admin_hop_task_path(@hop_task.hop, @hop_task) %> |
+
+
+<%= link_to 'Edit', edit_admin_hop_task_path(@hop_task) %> |
 <%= link_to 'Back', admin_hop_path(@hop_task.hop) %>

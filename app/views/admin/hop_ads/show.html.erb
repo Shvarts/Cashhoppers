@@ -25,10 +25,12 @@
       <%= f.text_field :ad_type %>
     </div>
 
-      <div class="actions">
-        <%= f.submit %>
-      </div>
+
+
+
 <% end %>
+
+<%= image_tag @hop_ad.hop_ad_picture.url%><br />
 
 
 <%= link_to 'Edit', edit_admin_hop_ad_path(@hop_ad) %> |

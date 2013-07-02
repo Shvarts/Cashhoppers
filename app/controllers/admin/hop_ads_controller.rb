@@ -47,7 +47,7 @@ class Admin::HopAdsController < Admin::AdminController
                             :phone=>params["phone"],
                             :price=>params["price"],
                             :ad_type=>params["ad_type"],
-                            # :hop_picture =>params["hop_picture"],
+                            :hop_ad_picture =>params["hop_ad_picture"],
                             :hop_id => params["hop_id"] )
 
     respond_to do |format|

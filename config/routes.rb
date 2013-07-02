@@ -7,7 +7,9 @@ CashHoppers::Application.routes.draw do
       resources :hops
       resources :hop_tasks
       resources :hop_ads
+      post 'hops/close/:id', to: 'hops#close' , :as=>'close'
   end
+
 
   get "pages/home"
 

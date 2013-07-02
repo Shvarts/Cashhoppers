@@ -58,6 +58,10 @@
 </p>
 
 
+  <%= @hop.close %>
+
+
+
 <%= link_to 'Edit', edit_admin_hop_path(@hop) %> |
 <%= link_to 'Back', admin_hops_path %>
 
@@ -98,7 +102,7 @@
 
 <% end %>
 
-<%= form_tag admin_hop_tasks_path do %>
+<%= form_tag admin_hop_tasks_path, :multipart => true do %>
 
     <div class="field">
       <%= label_tag :text_for_hop %><br />
@@ -164,7 +168,7 @@
 <% end %>
 
 
-<%= form_tag admin_hop_ads_path do %>
+<%= form_tag admin_hop_ads_path, :multipart => true do %>
 
     <div class="field">
       <%= label_tag :ad_name %><br />
@@ -192,6 +196,11 @@
     </div>
 
     <div class="field">
+      <%= label_tag :hop_ad_picture%><br />
+      <%= file_field_tag :hop_ad_picture %>
+    </div>
+
+    <div class="field">
 
       <%= radio_button_tag :ad_type, "sp"%>
       <%= label_tag :ad_type,  "SP" %>
@@ -214,5 +223,7 @@
         <%= submit_tag %>
       </div>
 <% end %>
-
+<div class="actions">
+  <td><%= button_to 'Close project', admin_close_path(@hop.id) %></td>
+</div>
 

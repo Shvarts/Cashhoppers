@@ -12,47 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <b>Hop name</b>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :time_start %><br />
+    <b>Dates/times of hop</b>
+
     <%= f.text_field :time_start %>
-  </div>
-  <div class="field">
-    <%= f.label :time_end %><br />
+    <b> to </b>
+
     <%= f.text_field :time_end %>
   </div>
 
 
 
   <div class="field">
-    <%= f.label :producer_contact %><br />
+    <b> Producer contact </b>
     <%= f.text_field :producer_contact %>
   </div>
   <div class="field">
-    <%= f.label :contact_phone %><br />
+    <b>Contact phone </b>
     <%= f.text_field :contact_phone %>
   </div>
   <div class="field">
-    <%= f.label :contact_email %><br />
+    <b>Contact email </b>
     <%= f.text_field :contact_email %>
   </div>
   <div class="field">
-    <%= f.label :hop_code %><br />
+    <b> Hop code </b>
     <%= f.text_field :hop_code %>
   </div>
   <div class="field">
-    <%= f.label :hop_price %><br />
+    <b>  Hop price </b>
     <%= f.text_field :hop_price %>
   </div>
   <div class="field">
-    <%= f.label :jackpot %><br />
+    <b>  Jackpot </b>
     <%= f.text_field :jackpot %>
   </div>
   <div class="field">
-    <%= f.label :hop_items %><br />
+    <b>  Hop items </b>
     <%= f.text_field :hop_items %>
+    <%= f.hidden_field :daily_hop%>
   </div>
   <div class="actions">
     <%= f.submit %>
