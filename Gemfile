@@ -7,7 +7,7 @@ gem 'mysql2'
 # authentification
 gem 'devise'
 gem 'cancan'
-
+gem "wice_grid", '3.2.1'
 gem 'paperclip'
 
 group :assets do
