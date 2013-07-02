@@ -1,0 +1,2 @@
+module HopAdsHelper
+end

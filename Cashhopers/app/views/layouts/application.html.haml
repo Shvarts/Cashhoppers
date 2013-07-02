@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %title
+      CashHoppers
+    = stylesheet_link_tag 'application', media: :all
+    = stylesheet_link_tag 'bootstrap', media: :all
+    = stylesheet_link_tag 'bootstrap-responsive', media: :all
+    = javascript_include_tag 'application'
+    = javascript_include_tag 'bootstrap'
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    = csrf_meta_tags
+  %body
+    .row-fluid
+      .span8.offset2
+        .page-header
+          .row-fluid
+            .span5
+              %h1
+                CashHoppers
+            .span7.text-right
+              = render partial: 'layouts/authentication'
+        .row-fluid
+          - if flash[:error]
+            .alert.alert-error
+              %button.close{type: :button, 'data-dismiss' => 'alert'}
+                &times;
+              = flash[:error]
+          - elsif flash[:success]
+            .alert.alert-success
+              %button.close{type: :button, 'data-dismiss' => 'alert'}
+                &times;
+              = flash[:success]
+          - elsif flash[:notice]
+            .alert.alert-notice
+              %button.close{type: :button, 'data-dismiss' => 'alert'}
+                &times;
+              = flash[:notice]
+        .row-fluid
+          .span3
+            = render partial: 'layouts/sidebar'
+            = yield :sidebar
+          .span9
+            .well
+              = yield

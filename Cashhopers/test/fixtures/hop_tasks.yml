@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  text_for_hop: MyText
+  sponsor_id: 1
+  hop_task_price: MyString
+
+two:
+  text_for_hop: MyText
+  sponsor_id: 1
+  hop_task_price: MyString
