@@ -1,0 +1,45 @@
+<%= form_for(@daily_hop) do |f| %>
+  <% if @daily_hop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@daily_hop.errors.count, "error") %> prohibited this daily_hop from being saved:</h2>
+
+      <ul>
+      <% @daily_hop.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :text_for_item %><br />
+    <%= f.text_area :text_for_item %>
+  </div>
+  <div class="field">
+    <%= f.label :winner %><br />
+    <%= f.text_field :winner %>
+  </div>
+  <div class="field">
+    <%= f.label :points %><br />
+    <%= f.text_field :points %>
+  </div>
+  <div class="field">
+    <%= f.label :share_point %><br />
+    <%= f.text_field :share_point %>
+  </div>
+  <div class="field">
+    <%= f.label :jackpot %><br />
+    <%= f.text_field :jackpot %>
+  </div>
+  <div class="field">
+    <%= f.label :users %><br />
+    <%= f.text_field :users %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

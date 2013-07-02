@@ -1,0 +1,219 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Name:</b>
+  <%= @hop.name %>
+</p>
+
+<p>
+  <b>Time start:</b>
+  <%= @hop.time_start %>
+</p>
+
+<p>
+  <b>Time end:</b>
+  <%= @hop.time_end %>
+</p>
+
+<p>
+  <b>Producer:</b>
+  <%= @hop.producer_id %>
+</p>
+
+<p>
+  <b>Producer contact:</b>
+  <%= @hop.producer_contact %>
+</p>
+
+<p>
+  <b>Contact phone:</b>
+  <%= @hop.contact_phone %>
+</p>
+
+<p>
+  <b>Contact email:</b>
+  <%= @hop.contact_email %>
+</p>
+
+<p>
+  <b>Hop code:</b>
+  <%= @hop.hop_code %>
+</p>
+
+<p>
+  <b>Hop price:</b>
+  <%= @hop.hop_price %>
+</p>
+
+<p>
+  <b>Jackpot:</b>
+  <%= @hop.jackpot %>
+</p>
+
+  <b>Hop items:</b>
+  <%= @hop.hop_items %>
+
+<p>
+  <b>Hop daily:</b>
+  <%= @hop.hop_daily %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_hop_path(@hop) %> |
+<%= link_to 'Back', admin_hops_path %>
+
+
+<h2>Tasks</h2>
+<% @hop.hop_tasks.each do |hop_task| %>
+<table>
+  <tr>
+    <td><strong>text:</strong></td>
+    <td><strong>price:</strong></td>
+    <td><strong>picture:</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+
+  <tr>
+
+  <tr>
+    <td>
+
+      <%= hop_task.text_for_hop %>
+    </td>
+    <td>
+
+      <%= hop_task.hop_task_price %>
+    </td>
+    <td>
+
+      <%= hop_task.hop_picture.url %>
+    </td>
+
+    <td><%= link_to 'Show', admin_hop_task_path(hop_task.id)  %></td>
+    <td><%= link_to 'Edit', edit_admin_hop_task_path(hop_task) %></td>
+    <td><%= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete %></td>
+
+  </tr>
+</table>
+
+<% end %>
+
+<%= form_tag admin_hop_tasks_path do %>
+
+    <div class="field">
+      <%= label_tag :text_for_hop %><br />
+      <%= text_area_tag :text_for_hop %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :hop_task_price %><br />
+      <%= number_field_tag :hop_task_price %>
+    </div>
+
+    <div class="field">
+
+      <%= hidden_field_tag :hop_id, @hop.id %>
+    </div>
+
+
+    <div class="field">
+      <%= label_tag :hop_picture %><br />
+      <%= file_field_tag :hop_picture %><br />
+
+      <div class="actions">
+        <%= submit_tag %>
+      </div>
+<% end %>
+
+
+<h2>Ad</h2>
+
+<% @hop.hop_ads.each do |hop_ad| %>
+    <table>
+      <tr>
+        <td><strong>text:</strong></td>
+        <td><strong>price:</strong></td>
+        <td><strong>picture:</strong></td>
+        <td><strong>type:</strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      <tr>
+
+      <tr>
+        <td>
+
+          <%= hop_ad.ad_name %>
+        </td>
+        <td>
+
+          <%= hop_ad.phone %>
+        </td>
+        <td>
+
+          <%= hop_ad.email %>
+        </td>
+
+        <td><%= link_to 'Show', admin_hop_ad_path(hop_ad.id)  %></td>
+        <td><%= link_to 'Edit', edit_admin_hop_ad_path(hop_ad) %></td>
+        <td><%= link_to 'Destroy',  [:admin, hop_ad], :confirm => 'Are you sure?', :method => :delete  %></td>
+
+      </tr>
+    </table>
+
+<% end %>
+
+
+<%= form_tag admin_hop_ads_path do %>
+
+    <div class="field">
+      <%= label_tag :ad_name %><br />
+      <%= text_area_tag :ad_name %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :contact %><br />
+      <%= number_field_tag :contact %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :email%><br />
+      <%= number_field_tag :emailt %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :phone%><br />
+      <%= number_field_tag :phone %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :price%><br />
+      <%= number_field_tag :price %>
+    </div>
+   <div class="field">
+      <%= radio_button_tag :hop_ad_type, "sp" %>
+      <%= label_tag :hop_ad_type, "SP"%> 
+      <%= radio_button_tag :hop_ad_type, "rolp" %>
+      <%= label_tag :hop_ad_type, "ROLP"%>
+      <%= radio_button_tag :hop_ad_type, "rolf" %>
+      <%= label_tag :hop_ad_type, "ROFL"%>
+    </div>
+
+    <div class="field">
+
+      <%= hidden_field_tag :hop_id, @hop.id %>
+    </div>
+
+
+
+
+      <div class="actions">
+        <%= submit_tag %>
+      </div>
+<% end %>
+
+

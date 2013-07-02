@@ -1,0 +1,68 @@
+<%= form_for([:admin, @hop ]) do |f| %>
+  <% if @hop.errors.any? %>
+    <div id="error_explanation">
+      <h2><= pluralize(@admin.hops.errors.count, "error") %> prohibited this hop from being saved:</h2>
+
+      <ul>
+      < @hop.errors.full_messages.each do |msg| %>
+        <li><= msg %></li>
+      < end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :time_start %><br />
+    <%= f.text_field :time_start %>
+  </div>
+  <div class="field">
+    <%= f.label :time_end %><br />
+    <%= f.text_field :time_end %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :producer_contact %><br />
+    <%= f.text_field :producer_contact %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_phone %><br />
+    <%= f.text_field :contact_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_email %><br />
+    <%= f.text_field :contact_email %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_code %><br />
+    <%= f.text_field :hop_code %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_price %><br />
+    <%= f.text_field :hop_price %>
+  </div>
+  <div class="field">
+    <%= f.label :jackpot %><br />
+    <%= f.text_field :jackpot %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_items %><br />
+    <%= f.text_field :hop_items %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_close %>
+    <%= f.check_box :hop_close %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_daily %><br />
+    <%= f.check_box :hop_daily %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

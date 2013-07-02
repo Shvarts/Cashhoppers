@@ -1,0 +1,14 @@
+%h6
+  Hops
+- @hop_list.each do |hop|
+  = hop.inspect
+%h6
+  Daily Hops
+- @daily_hops.each do |daily_hop|
+  = daily_hop.inspect
+%h6
+  Hop tasks
+- @hop_tasks.each do |hop_task|
+  = hop_task.text_for_hop
+
+
