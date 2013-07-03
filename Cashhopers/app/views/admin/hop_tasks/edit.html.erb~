@@ -1,6 +1,0 @@
-<h1>Editing hop_task</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', admin_hop_ad_path(@hop_ad.id) %> |
-<%= link_to 'Back', admin_hop_path(@hop_ad.hop) %>

@@ -1,9 +1,0 @@
-%h2
-  .row-fluid
-    .text-left.span8
-      Edit Application
-      = @application.name
-    .text-right.span4
-      = link_to 'Back', admin_applications_path, class: 'btn btn-info'
-      = link_to 'Show', admin_application_path(@application), class: 'btn'
-= render 'form'
