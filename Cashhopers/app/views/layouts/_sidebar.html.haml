@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs.nav-stacked
+  %li
+    = link_to 'Home', root_path
+  %li
+    = link_to 'Admin Page', admin_index_path if can? :manage, :all
+  %li
+    = link_to 'My Services', services_path
