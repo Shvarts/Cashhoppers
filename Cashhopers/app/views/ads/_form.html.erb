@@ -1,0 +1,62 @@
+<%= form_for(@ad) do |f| %>
+  <% if @ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ad.errors.count, "error") %> prohibited this ad from being saved:</h2>
+
+      <ul>
+      <% @ad.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :advert_id %><br />
+    <%= f.number_field :advert_id %>
+  </div>
+  <div class="field">
+    <%= f.label :advertiser_name %><br />
+    <%= f.text_field :advertiser_name %>
+  </div>
+  <div class="field">
+    <%= f.label :hop_id, "Hop_id" %><br />
+    <%= f.number_field :hop_id %>
+  </div>
+  <div class="field">
+    <%= f.label :contact %><br />
+    <%= f.text_area :contact %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :type_add %><br />
+    <%= f.text_field :type_add %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :amd_paid %><br />
+    <%= f.number_field :amd_paid %>
+  </div>
+  <div class="field">
+    <%= f.label :link_to_ad %><br />
+    <%= f.text_field :link_to_ad %>
+  </div>
+  <div class="field">
+    <%= f.label :ad_picture %><br />
+    <%= f.file_field :ad_picture %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

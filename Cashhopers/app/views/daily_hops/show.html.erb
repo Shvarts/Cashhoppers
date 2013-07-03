@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @daily_hop.name %>
+</p>
+
+<p>
+  <b>Text for item:</b>
+  <%= @daily_hop.text_for_item %>
+</p>
+
+<p>
+  <b>Winner:</b>
+  <%= @daily_hop.winner %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @daily_hop.points %>
+</p>
+
+<p>
+  <b>Share point:</b>
+  <%= @daily_hop.share_point %>
+</p>
+
+<p>
+  <b>Jackpot:</b>
+  <%= @daily_hop.jackpot %>
+</p>
+
+<p>
+  <b>Users:</b>
+  <%= @daily_hop.users %>
+</p>
+
+
+<%= link_to 'Edit', edit_daily_hop_path(@daily_hop) %> |
+<%= link_to 'Back', daily_hops_path %>

@@ -1,0 +1,27 @@
+%h1 Listing hop_ads
+
+%table
+  %tr
+    %th Ad name
+    %th Contact
+    %th Email
+    %th Phone
+    %th Price
+    %th
+    %th
+    %th
+
+  - @hop_ads.each do |hop_ad|
+    %tr
+      %td= hop_ad.ad_name
+      %td= hop_ad.contact
+      %td= hop_ad.email
+      %td= hop_ad.phone
+      %td= hop_ad.price
+      %td= link_to 'Show', hop_ad
+      %td= link_to 'Edit', edit_hop_ad_path(hop_ad)
+      %td= link_to 'Destroy', hop_ad, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Hop ad', new_hop_ad_path
