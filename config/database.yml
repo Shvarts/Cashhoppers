@@ -15,7 +15,7 @@ development:
   database: CashHoppers_development
   pool: 5
   username: root
-  password: remeta
+  password: 
   host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
