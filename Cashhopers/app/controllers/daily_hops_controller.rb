@@ -6,7 +6,7 @@ class DailyHopsController < ApplicationController
     @daily_hops = DailyHop.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @daily_hops }
     end
   end
@@ -28,7 +28,7 @@ class DailyHopsController < ApplicationController
     @daily_hop = DailyHop.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @daily_hop }
     end
   end

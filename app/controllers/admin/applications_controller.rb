@@ -6,7 +6,7 @@ class Admin::ApplicationsController < Admin::AdminController
     @applications = Application.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @applications }
     end
   end
@@ -30,7 +30,7 @@ class Admin::ApplicationsController < Admin::AdminController
     @application.api_key = Array.new(30){range.sample}.join
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @application }
     end
   end

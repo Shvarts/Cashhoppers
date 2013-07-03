@@ -1,37 +1,41 @@
 
 
-<%= form_for(:hop_ad) do |f| %>
+
 
     <div class="field">
-      <%= f.label :ad_name %><br />
-      <%= f.text_field :ad_name %>
+      <b> Name </b>
+      <%=@hop_ad.ad_name %>
     </div>
     <div class="field">
-      <%= f.label :price %><br />
-      <%= f.text_field :price %>
+      <b> Price </b>
+      <%= @hop_ad.price %>
     </div>
     <div class="field">
-      <%= f.label :phone %><br />
-      <%= f.text_field :phone %>
-    </div>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
+      <b> Phone </b>
+      <%= @hop_ad.phone %>
     </div>
 
     <div class="field">
-      <%= f.label :ad_type %><br />
-      <%= f.text_field :ad_type %>
+      <b> Email </b>
+      <%= @hop_ad.email %>
+    </div>
+
+    <div class="field">
+      <b> Type </b>
+      <%= @hop_ad.ad_type %>
     </div>
 
 
 
 
-<% end %>
+
 
 <%= image_tag @hop_ad.hop_ad_picture.url%><br />
 
 
 <%= link_to 'Edit', edit_admin_hop_ad_path(@hop_ad) %> |
-<%= link_to 'Back', admin_hop_path(@hop_ad.hop) %>
+ <% if @hop_ad.hop %>
+  <%= link_to 'Back', admin_hop_path(@hop_ad.hop) %>
+ <% else %>
+  <%= link_to 'Back', admin_hop_ads_path %>
+ <% end %>

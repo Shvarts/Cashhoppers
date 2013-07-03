@@ -14,7 +14,7 @@ class Admin::HopsController < Admin::AdminController
 
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @hops }
     end
   end
@@ -40,7 +40,7 @@ class Admin::HopsController < Admin::AdminController
 
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @hop }
     end
   end
@@ -48,6 +48,8 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops/1/edit
   def edit
     @hop = Hop.find(params[:id])
+    @hop.time_end=0
+    @hop.time_start=0
   end
 
   # POST /hops
@@ -55,10 +57,8 @@ class Admin::HopsController < Admin::AdminController
   def create
     params[:hop][:producer_id]=current_user.id
    #hop_time_end_4i
-
-
-
-
+    Hop.time_start(params)
+    Hop.time_end(params)
     @hop = Hop.new(params[:hop])
 
     respond_to do |format|
@@ -76,6 +76,8 @@ class Admin::HopsController < Admin::AdminController
   # PUT /hops/1.json
   def update
     @hop = Hop.find(params[:id])
+    Hop.time_start(params)
+    Hop.time_end(params)
 
     respond_to do |format|
       if @hop.update_attributes(params[:hop])
@@ -106,7 +108,7 @@ class Admin::HopsController < Admin::AdminController
 
     respond_to do |format|
       if @hop.update_attributes(:close=>1)
-        format.html { redirect_to admin_hops_path , notice: 'Hop was successfully updated.' }
+        format.html { redirect_to admin_hops_path(@hop.daily_hop) , notice: 'Hop was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -18,6 +18,10 @@
 }
 
 body input[type=text]{
-    width: 80px;
+    width: 90px;
+
+}
+body select{
+    width: 75px;
 
 }

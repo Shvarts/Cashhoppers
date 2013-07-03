@@ -2,10 +2,10 @@ class Admin::HopAdsController < Admin::AdminController
   # GET /hop_ads
   # GET /hop_ads.json
   def index
-    @hop_ads = HopAd.all
+    @hop_ads = HopAd.where(:hop_id => nil).all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @hop_ads }
     end
   end
@@ -27,7 +27,7 @@ class Admin::HopAdsController < Admin::AdminController
     @hop_ad = HopAd.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @hop_ad }
     end
   end
@@ -40,24 +40,33 @@ class Admin::HopAdsController < Admin::AdminController
   # POST /hop_ads
   # POST /hop_ads.json
   def create
-    @hop=Hop.find(params["hop_id"])
-    @hop_ad = HopAd.new(:sponsor_id=>current_user.id, :ad_name=>params["ad_name"],
-                            :contact=>params["contact"],
-                            :email=>params["email"],
-                            :phone=>params["phone"],
-                            :price=>params["price"],
-                            :ad_type=>params["ad_type"],
-                            :hop_ad_picture =>params["hop_ad_picture"],
-                            :hop_id => params["hop_id"] )
 
+    if params["hop_id"]
+      @hop=Hop.find(params["hop_id"])
+      params[:hop_ad]["hop_id"]=params["hop_id"]
+    end
+
+    @hop_ad = HopAd.new(params[:hop_ad])
+#                           :contact=>params["contact"],
+ #                           :email=>params["email"],
+ #                           :phone=>params["phone"],
+ #                           :price=>params["price"],
+ #                           :ad_type=>params["ad_type"],
+ #                           :hop_ad_picture =>params["hop_ad_picture"],
+ #                           :hop_id => params["hop_id"] )
+ #
     respond_to do |format|
      if @hop_ad.save
- #       render :text=>params
-       format.html { redirect_to :back, notice:'Hop ad was successfully created.' }
-#      format.json { render json: @hop_ad, status: :created, location: @hop_ad }
-#      else
-#        format.html { render action: "new" }
-#        format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
+
+       if params["hop_id"]
+         format.html { redirect_to :back, notice:'Hop ad was successfully created.' }
+       else
+         format.html { redirect_to admin_hop_ad_path(@hop_ad.id), notice:'Hop ad was successfully created.' }
+       end
+      format.json { render json: @hop_ad, status: :created, location: @hop_ad }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,8 +78,13 @@ class Admin::HopAdsController < Admin::AdminController
 
     respond_to do |format|
       if @hop_ad.update_attributes(params[:hop_ad])
-        format.html { redirect_to admin_hop_path(@hop_ad.hop), notice: 'Hop ad was successfully updated.' }
-        format.json { head :no_content }
+        if @hop_ad.hop
+          format.html { redirect_to admin_hop_path(@hop_ad.hop), notice: 'Hop ad was successfully updated.' }
+        else
+          format.html { redirect_to admin_hop_ad_path(@hop_ad.id), notice:'Hop ad was successfully created.' }
+        end
+
+          format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
@@ -85,7 +99,11 @@ class Admin::HopAdsController < Admin::AdminController
     @hop_ad.destroy
 
     respond_to do |format|
-      format.html {redirect_to admin_hop_path(@hop_ad.hop) }
+      if @hop_ad.hop
+        format.html {redirect_to admin_hop_path(@hop_ad.hop) }
+      else
+        format.html { redirect_to admin_hop_ads_path, notice:'Hop ad was successfully created.' }
+      end
       format.json { head :no_content }
     end
   end

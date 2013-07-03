@@ -18,10 +18,10 @@
   <div class="field">
     <b>Dates/times of hop</b>
 
-    <%= f.text_field :time_start %>
+    <%= f.datetime_select :time_start, discard_year: true %>
     <b> to </b>
 
-    <%= f.text_field :time_end %>
+    <%= f.datetime_select :time_end, discard_year: true %>
   </div>
 
 

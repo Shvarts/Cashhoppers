@@ -9,7 +9,7 @@ class Admin::HopTasksController < Admin::AdminController
     @hop_tasks = @hop.hop_tasks
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render :json => @hop_tasks }
     end
   end
@@ -35,7 +35,7 @@ class Admin::HopTasksController < Admin::AdminController
     @hop_task = @hop.hop_tasks.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render :json => @hop_task }
     end
   end

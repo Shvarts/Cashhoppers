@@ -56,9 +56,9 @@
   <b>Hop items:</b>
   <%= @hop.hop_items %>
 </p>
+<%= @hop.id %>
 
-
-  <%= @hop.close %>
+  <% @hop.close %>
 
 
 
@@ -141,6 +141,7 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
 
       <tr>
 
@@ -168,53 +169,49 @@
 <% end %>
 
 
-<%= form_tag admin_hop_ads_path, :multipart => true do %>
+<%= form_tag admin_hop_ads_path(:hop_id=>@hop.id) , :multipart => true do %>
 
     <div class="field">
       <%= label_tag :ad_name %><br />
-      <%= text_area_tag :ad_name %>
+      <%= text_area(:hop_ad, :ad_name, :rows=>5) %>
     </div>
 
     <div class="field">
       <%= label_tag :contact %><br />
-      <%= number_field_tag :contact %>
+      <%= text_field(:hop_ad,:contact) %>
     </div>
 
     <div class="field">
       <%= label_tag :email%><br />
-      <%= number_field_tag :emailt %>
+      <%= email_field(:hop_ad,:email) %>
     </div>
 
     <div class="field">
       <%= label_tag :phone%><br />
-      <%= number_field_tag :phone %>
+      <%= text_field(:hop_ad,:phone) %>
     </div>
 
     <div class="field">
       <%= label_tag :price%><br />
-      <%= number_field_tag :price %>
+      <%= number_field(:hop_ad, :price) %>
     </div>
 
     <div class="field">
       <%= label_tag :hop_ad_picture%><br />
-      <%= file_field_tag :hop_ad_picture %>
+      <%= file_field(:hop_ad, :hop_ad_picture) %>
     </div>
 
     <div class="field">
 
-      <%= radio_button_tag :ad_type, "sp"%>
+      <%= radio_button(:hop_ad,:ad_type, "sp")%>
       <%= label_tag :ad_type,  "SP" %>
-      <%= radio_button_tag :ad_type, "rofl" %>
+      <%= radio_button(:hop_ad, :ad_type, "rofl") %>
       <%= label_tag :ad_type,  "ROFL" %>
-      <%= radio_button_tag :ad_type, "ropu"%>
+      <%= radio_button(:hop_ad, :ad_type, "ropu")%>
       <%= label_tag :ad_type, "ROPU" %>
 
     </div>
 
-    <div class="field">
-
-      <%= hidden_field_tag :hop_id, @hop.id %>
-    </div>
 
 
 
@@ -224,6 +221,6 @@
       </div>
 <% end %>
 <div class="actions">
-  <td><%= button_to 'Close project', admin_close_path(@hop.id) %></td>
+  <td><%= button_to 'Close project', admin_close_path %></td>
 </div>
 
