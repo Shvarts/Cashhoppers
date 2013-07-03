@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
-    t.string   "link_to_ad"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "ad_picture_file_name"
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.text     "text_for_hop"
     t.integer  "sponsor_id"
     t.string   "hop_task_price"
-    t.string   "sponsor_name"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -99,9 +97,6 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.string   "hop_price"
     t.string   "jackpot"
     t.string   "hop_items"
-    t.integer  "daily_hop"
-    t.integer  "close"
-    t.string   "event"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
