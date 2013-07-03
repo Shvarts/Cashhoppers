@@ -1,4 +1,4 @@
-include AdsHelper
+
 class Api::AdController < ApplicationController
 
   before_filter :check_api_key

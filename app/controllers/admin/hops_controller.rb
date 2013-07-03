@@ -98,7 +98,7 @@ class Admin::HopsController < Admin::AdminController
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to [:admin, @hop ] }
+      format.html { redirect_to admin_hops_path(:daily_hop =>1) }
       format.json { head :no_content }
     end
   end

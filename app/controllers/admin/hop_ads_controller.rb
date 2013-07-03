@@ -76,6 +76,7 @@ class Admin::HopAdsController < Admin::AdminController
   def update
     @hop_ad = HopAd.find(params[:id])
 
+
     respond_to do |format|
       if @hop_ad.update_attributes(params[:hop_ad])
         if @hop_ad.hop

@@ -52,8 +52,11 @@
              "SP"
            <%= radio_button_tag :ad_type, "rofl" %>
             "ROFL"
-           <%= radio_button_tag :ad_type, "ropu"%>
+          <% if @hop_ad.hop.daily_hop %>
+             <%= radio_button_tag :ad_type, "ropu"%>
             "ROPU"
+          <% end %>
+
        </div>
        <br />
    <% else %>

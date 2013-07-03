@@ -6,57 +6,59 @@
      <td><b>Name:</b></td>
     <td><b>Time start:</b></td>
     <td><b>Time end:</b></td>
-    <td><b>Showprod id:</b></td>
+
 
   </tr>
+
 
   <tr>
     <td><%= @hop.name %></td>
     <td><%= @hop.time_start %></td>
     <td><%= @hop.time_end %></td>
-    <td><%= @hop.producer_id %></td>
-  </tr>
-
-
-  <tr>
-    <td><b>Showprod contact:</b></td>
-    <td><b>Contact phone:</b></td>
-    <td><b>Contact email:</b> </td>
-    <td><b>Hop code:</b></td>
 
   </tr>
+  <% if !@hop.daily_hop %>
 
-  <tr>
+    <tr>
+      <td><b>Showprod id:</b></td>
+      <td><b>Showprod contact:</b></td>
+      <td><b>Contact phone:</b></td>
+      <td><b>Contact email:</b> </td>
+      <td><b>Hop code:</b></td>
 
-    <td><%= @hop.contact_phone %></td>
-    <td><%= @hop.producer_contact %></td>
-    <td><%= @hop.contact_email %></td>
-    <td><%= @hop.hop_code %></td>
-  </tr>
+    </tr>
+
+    <tr>
+      <td><%= @hop.producer_id %></td>
+      <td><%= @hop.contact_phone %></td>
+      <td><%= @hop.producer_contact %></td>
+      <td><%= @hop.contact_email %></td>
+      <td><%= @hop.hop_code %></td>
+    </tr>
 
 
 
-  <tr>
-    <td><b>Hop price:</b></td>
-    <td><b>Jackpot:</b></td>
-    <td><b>Hop items:</b></td>
-    <td><b>Special event:</b></td>
+    <tr>
+      <td><b>Hop price:</b></td>
+      <td><b>Jackpot:</b></td>
+      <td><b>Hop items:</b></td>
+      <td><b>Special event:</b></td>
 
-  </tr>
+    </tr>
 
-  <tr>
-    <td><%= @hop.hop_price %></td>
-    <td><%= @hop.jackpot %></td>
-    <td><%= @hop.hop_items %></td>
-    <td><%= @hop.event %></td>
-  </tr>
-
+    <tr>
+      <td><%= @hop.hop_price %></td>
+      <td><%= @hop.jackpot %></td>
+      <td><%= @hop.hop_items %></td>
+      <td><%= @hop.event %></td>
+    </tr>
+  <% end %>
 
 </table>
 <br />
 
 <%= link_to 'Edit', edit_admin_hop_path(@hop) %> |
-<%= link_to 'Back', admin_hops_path %>
+<%= link_to 'Back', admin_hops_path(:daily_hop =>1) %>
 <br />
 
 
@@ -110,15 +112,28 @@
       <td><%= number_field_tag :hop_task_price %></td>
      </tr>
 
+     <% if @hop.daily_hop %>
+       <tr>
+         <td><%= label_tag :pts %></td>
+         <td><%= number_field_tag :pts %></td>
+       </tr>
+
+       <tr>
+         <td><%= label_tag :bonus %></td>
+         <td><%= number_field_tag :bonus %></td>
+       </tr>
+     <% end %>
+
      <tr>
-      <td><%= label_tag :sponsor_name %></td>
-      <td><%= number_field_tag :sponsor_name %></td>
+       <td><%= label_tag :sponsor_name %></td>
+       <td><%= number_field_tag :sponsor_name %></td>
      </tr>
 
      <tr>
-      <td><%= label_tag :hop_picture %></td>
-      <td><%= file_field_tag :hop_picture %></td>
+        <td><%= label_tag :hop_picture %></td>
+        <td><%= file_field_tag :hop_picture %></td>
      </tr>
+
 
 
      <tr>
@@ -216,12 +231,13 @@
     <div class="field" id="radio_button">
 
       <%= radio_button(:hop_ad,:ad_type, "sp")%>
-      "SP"
+        "SP"
       <%= radio_button(:hop_ad, :ad_type, "rofl") %>
         "ROFL"
-      <%= radio_button(:hop_ad, :ad_type, "ropu")%>
-       "ROPU"
-
+      <%if @hop.daily_hop%>
+        <%= radio_button(:hop_ad, :ad_type, "ropu")%>
+        "ROPU"
+      <% end %>
     </div>
 
     <br />

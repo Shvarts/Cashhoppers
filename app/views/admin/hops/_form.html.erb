@@ -19,6 +19,7 @@
   </div>
   <div class="field">
     <b>Dates/times of hop</b>
+    <%= f.hidden_field :daily_hop%>
 
     <%= f.datetime_select :time_start, discard_year: true , prompt: {day: 'day',
                                                                      minute: 'minute' ,month: ' month', hour: 'hour'}%>
@@ -29,48 +30,52 @@
 
   </div>
 
+  <% if !@hop.daily_hop %>
+
     <div class="field">
       <b>Showprod id </b>
       <%= f.text_field :producer_id %>
     </div>
 
-  <div class="field">
-    <b> Showprod contact </b>
-    <%= f.text_field :producer_contact %>
-  </div>
+    <div class="field">
+      <b> Showprod contact </b>
+      <%= f.text_field :producer_contact %>
+    </div>
 
-  <div class="field">
-    <b>Contact phone </b>
-    <%= f.text_field :contact_phone %>
-  </div>
-  <div class="field">
-    <b>Contact email </b>
-    <%= f.email_field :contact_email %>
-  </div>
-  <div class="field">
-    <b> Hop code </b>
-    <%= f.text_field :hop_code %>
-  </div>
-  <div class="field">
-    <b>  Hop price </b>
-    <%= f.text_field :hop_price %>
-  </div>
+    <div class="field">
+      <b>Contact phone </b>
+      <%= f.text_field :contact_phone %>
+    </div>
+    <div class="field">
+      <b>Contact email </b>
+      <%= f.email_field :contact_email %>
+    </div>
+    <div class="field">
+      <b> Hop code </b>
+      <%= f.text_field :hop_code %>
+    </div>
+    <div class="field">
+      <b>  Hop price </b>
+      <%= f.text_field :hop_price %>
+    </div>
 
-  <div class="field">
-    <b> Special event  </b>
-    <%= f.text_field :event %>
-  </div>
-  <div class="field">
-    <b>  Jackpot </b>
-    <%= f.text_field :jackpot %>
-  </div>
-  <div class="field">
-    <b>  Hop items </b>
-    <%= f.text_field :hop_items %>
-    <%= f.hidden_field :daily_hop%>
-  </div>
+    <div class="field">
+      <b> Special event  </b>
+      <%= f.text_field :event %>
+    </div>
+    <div class="field">
+      <b>  Jackpot </b>
+      <%= f.text_field :jackpot %>
+    </div>
+    <div class="field">
+      <b>  Hop items </b>
+      <%= f.text_field :hop_items %>
+
+    </div>
+
+  <%end%>
     <br />
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+       <%= f.submit %>
+    </div>
 <% end %>

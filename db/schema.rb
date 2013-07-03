@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130702144336) do
+ActiveRecord::Schema.define(:version => 20130703154906) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advert_id"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.string   "hop_picture_content_type"
     t.integer  "hop_picture_file_size"
     t.datetime "hop_picture_updated_at"
+    t.integer  "pts"
+    t.integer  "bonus"
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
