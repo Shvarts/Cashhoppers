@@ -16,7 +16,7 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.html.erb
       format.json { render json: @ad }
     end
   end

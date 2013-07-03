@@ -2,9 +2,11 @@
   .navbar-inner
     %ul.nav
       %li.divider-vertical
-        = link_to 'Hops', admin_hops_path
+        = link_to 'hops', admin_hops_path
       %li.divider-vertical
-        = link_to 'Archived Hops', admin_hops_path
+        = link_to 'daily hops', admin_hops_path(:daily_hop =>1)
       %li.divider-vertical
-        = link_to 'Current Hops', '/admin/search/current_hops'
+        = link_to 'current hops', admin_hops_path
+      %li.divider-vertical
+        = link_to 'hops archive', admin_hops_path
 = yield

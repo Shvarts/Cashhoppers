@@ -20,7 +20,7 @@ class Admin::HopsController < ApplicationController
     @hop = Hop.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.html.erb
       format.json { render json: @hop }
     end
   end

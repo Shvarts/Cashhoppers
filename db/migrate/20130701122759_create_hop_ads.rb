@@ -6,6 +6,7 @@ class CreateHopAds < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.string :price
+      t.string :ad_type
       t.integer :hop_id
       t.integer :sponsor_id
 

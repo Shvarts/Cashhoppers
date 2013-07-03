@@ -7,9 +7,13 @@ CashHoppers::Application.routes.draw do
       resources :hops
       resources :hop_tasks
       resources :hop_ads
+
       match '/search/current_hops' => "search#current_hops"
       match '/search/hops_archive' => "search#hops_archive"
+
+      post 'hops/close/:id', to: 'hops#close' , :as=>'close'
   end
+
 
   get "pages/home"
 

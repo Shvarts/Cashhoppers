@@ -1,0 +1,11 @@
+<h1>Editing hop ad</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', admin_hop_ad_path(@hop_ad.id) %> |
+<% if @hop_ad.hop %>
+    <%= link_to 'Back', admin_hop_path(@hop_ad.hop) %>
+<% else %>
+    <%= link_to 'Back', admin_hop_ads_path %>
+<% end %>
+

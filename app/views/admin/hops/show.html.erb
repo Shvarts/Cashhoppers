@@ -56,6 +56,10 @@
   <b>Hop items:</b>
   <%= @hop.hop_items %>
 </p>
+<%= @hop.id %>
+
+  <% @hop.close %>
+
 
 
 <%= link_to 'Edit', edit_admin_hop_path(@hop) %> |
@@ -98,7 +102,7 @@
 
 <% end %>
 
-<%= form_tag admin_hop_tasks_path do %>
+<%= form_tag admin_hop_tasks_path, :multipart => true do %>
 
     <div class="field">
       <%= label_tag :text_for_hop %><br />
@@ -137,6 +141,7 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
 
       <tr>
 
@@ -154,9 +159,9 @@
           <%= hop_ad.email %>
         </td>
 
-        <td><%= link_to 'Show'%></td>
-        <td><%= link_to 'Edit'  %></td>
-        <td><%= link_to 'Destroy'  %></td>
+        <td><%= link_to 'Show',  admin_hop_ad_path(hop_ad.id)%></td>
+        <td><%= link_to 'Edit', edit_admin_hop_ad_path(hop_ad)  %></td>
+        <td><%= link_to 'Destroy',  [:admin, hop_ad], :confirm => 'Are you sure?', :method => :delete  %></td>
 
       </tr>
     </table>
@@ -164,37 +169,49 @@
 <% end %>
 
 
-<%= form_tag admin_hop_ads_path do %>
+<%= form_tag admin_hop_ads_path(:hop_id=>@hop.id) , :multipart => true do %>
 
     <div class="field">
       <%= label_tag :ad_name %><br />
-      <%= text_area_tag :ad_name %>
+      <%= text_area(:hop_ad, :ad_name, :rows=>5) %>
     </div>
 
     <div class="field">
       <%= label_tag :contact %><br />
-      <%= number_field_tag :contact %>
+      <%= text_field(:hop_ad,:contact) %>
     </div>
 
     <div class="field">
       <%= label_tag :email%><br />
-      <%= number_field_tag :emailt %>
+      <%= email_field(:hop_ad,:email) %>
     </div>
 
     <div class="field">
       <%= label_tag :phone%><br />
-      <%= number_field_tag :phone %>
+      <%= text_field(:hop_ad,:phone) %>
     </div>
 
     <div class="field">
       <%= label_tag :price%><br />
-      <%= number_field_tag :price %>
+      <%= number_field(:hop_ad, :price) %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :hop_ad_picture%><br />
+      <%= file_field(:hop_ad, :hop_ad_picture) %>
     </div>
 
     <div class="field">
 
-      <%= hidden_field_tag :hop_id, @hop.id %>
+      <%= radio_button(:hop_ad,:ad_type, "sp")%>
+      <%= label_tag :ad_type,  "SP" %>
+      <%= radio_button(:hop_ad, :ad_type, "rofl") %>
+      <%= label_tag :ad_type,  "ROFL" %>
+      <%= radio_button(:hop_ad, :ad_type, "ropu")%>
+      <%= label_tag :ad_type, "ROPU" %>
+
     </div>
+
 
 
 
@@ -203,5 +220,7 @@
         <%= submit_tag %>
       </div>
 <% end %>
-
+<div class="actions">
+  <td><%= button_to 'Close project', admin_close_path %></td>
+</div>
 

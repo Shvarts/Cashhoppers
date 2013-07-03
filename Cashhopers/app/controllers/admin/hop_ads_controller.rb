@@ -5,7 +5,7 @@ class Admin::HopAdsController < ApplicationController
     @hop_ads = HopAd.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @hop_ads }
     end
   end
@@ -27,7 +27,7 @@ class Admin::HopAdsController < ApplicationController
     @hop_ad = HopAd.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @hop_ad }
     end
   end

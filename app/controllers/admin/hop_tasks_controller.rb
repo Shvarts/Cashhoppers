@@ -1,4 +1,5 @@
 class Admin::HopTasksController < Admin::AdminController
+
   # GET hops/1/hop_tasks
   # GET hops/1/hop_tasks.json
   before_filter :authenticate_user!
@@ -21,7 +22,7 @@ class Admin::HopTasksController < Admin::AdminController
 
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.html.erb
       format.json { render :json => @hop_task }
     end
   end
@@ -55,7 +56,7 @@ class Admin::HopTasksController < Admin::AdminController
     @hop=Hop.find(params["hop_id"])
     @hop_task = HopTask.new(:sponsor_id=>current_user.id, :text_for_hop=>params["text_for_hop"],
                              :hop_task_price=>params["hop_task_price"],
-                            # :hop_picture =>params["hop_picture"],
+                             :hop_picture => params["hop_picture"],
                              :hop_id => params["hop_id"]
     )
     if @hop_task.save

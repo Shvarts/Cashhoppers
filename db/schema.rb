@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701122759) do
+ActiveRecord::Schema.define(:version => 20130702144336) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advert_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130701122759) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
+    t.string   "link_to_ad"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "ad_picture_file_name"
@@ -58,10 +59,15 @@ ActiveRecord::Schema.define(:version => 20130701122759) do
     t.string   "email"
     t.string   "phone"
     t.string   "price"
+    t.string   "ad_type"
     t.integer  "hop_id"
     t.integer  "sponsor_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "hop_ad_picture_file_name"
+    t.string   "hop_ad_picture_content_type"
+    t.integer  "hop_ad_picture_file_size"
+    t.datetime "hop_ad_picture_updated_at"
   end
 
   create_table "hop_tasks", :force => true do |t|
@@ -91,6 +97,9 @@ ActiveRecord::Schema.define(:version => 20130701122759) do
     t.string   "hop_price"
     t.string   "jackpot"
     t.string   "hop_items"
+    t.integer  "daily_hop"
+    t.integer  "close"
+    t.integer  "event"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
