@@ -7,6 +7,7 @@ class CreateHopAds < ActiveRecord::Migration
       t.string :phone
       t.string :price
       t.string :ad_type
+      t.string :link_to_ad
       t.integer :hop_id
       t.integer :sponsor_id
 

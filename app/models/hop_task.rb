@@ -2,7 +2,7 @@ class HopTask < ActiveRecord::Base
   belongs_to :hop
 
   belongs_to :user
-  attr_accessible :hop_task_price, :sponsor_id, :text_for_hop, :hop_picture, :hop_id
+  attr_accessible :hop_task_price, :sponsor_id, :text_for_hop, :hop_picture, :hop_id, :sponsor_name
   has_attached_file :hop_picture,
                     :url  => "/images/ad_pictures/hoptask/:id/AD_PICTURE.:extension",
                     :default_url => "/assets/no_ad_picture.jpg",

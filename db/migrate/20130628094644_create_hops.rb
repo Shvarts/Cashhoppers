@@ -14,7 +14,7 @@ class CreateHops < ActiveRecord::Migration
       t.string :hop_items
       t.integer :daily_hop
       t.integer :close
-      t.integer :event
+      t.string :event
 
       t.timestamps
     end

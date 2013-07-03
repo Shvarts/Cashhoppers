@@ -5,6 +5,7 @@ class CreateHopTasks < ActiveRecord::Migration
       t.text :text_for_hop
       t.integer :sponsor_id
       t.string :hop_task_price
+      t.string :sponsor_name
 
       t.timestamps
     end

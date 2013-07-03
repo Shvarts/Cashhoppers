@@ -11,54 +11,68 @@
     </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :ad_name %><br />
-  <%= f.text_field :ad_name %>
-</div>
-<div class="field">
-  <%= f.label :price %><br />
-  <%= f.text_field :price %>
-</div>
-<div class="field">
-  <%= f.label :phone %><br />
-  <%= f.text_field :phone %>
-</div>
-<div class="field">
-   <%= f.label :email %><br />
-   <%= f.text_field :email%>
-</div>
 
-<div class="field">
-  <%= f.label :hop_ad_picture %><br />
-  <%= f.file_field :hop_ad_picture %>
-</div>
+  <table>
+    <tr>
+      <td>Ad name</td>
+      <td><%= f.text_field :ad_name %></td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td><%= f.text_field :price %></td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td><%= f.text_field :phone %></td>
+    </tr>
+    <tr>
+      <td>Link to ad</td>
+      <td><%= f.text_field :link_to_ad%></td>
+    </tr>
+    <tr>
+      <td>Contact</td>
+      <td><%= f.text_field :contact%></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><%= f.email_field :email%></td>
+    </tr>
+
+    <tr>
+      <td>Photo</td>
+      <td><%= f.file_field :hop_ad_picture %></td>
+    </tr>
+
+      </table>
     <% if @hop_ad.hop_id %>
 
+        <br />
        <div class="field">
            <%= radio_button_tag :ad_type, "sp"%>
-           <%= label_tag :ad_type,  "SP" %>
+             "SP"
            <%= radio_button_tag :ad_type, "rofl" %>
-           <%= label_tag :ad_type,  "ROFL" %>
+            "ROFL"
            <%= radio_button_tag :ad_type, "ropu"%>
-           <%= label_tag :ad_type, "ROPU" %>
+            "ROPU"
        </div>
-
+       <br />
    <% else %>
 
+        <br />
        <div class="field">
           <%= radio_button_tag :ad_type, "log_in"%>
-          <%= label_tag :ad_type,  "log_in" %>
+           "log_in"
           <%= radio_button_tag :ad_type, "hop_list" %>
-          <%= label_tag :ad_type,  "hop_list" %>
+           "hop_list"
           <%= radio_button_tag :ad_type, "gallery"%>
-          <%= label_tag :ad_type, "gallery" %>
+          "gallery"
           <%= radio_button_tag :ad_type, "friends"%>
-          <%= label_tag :ad_type, "friends" %>
+          "friends"
          <%= radio_button_tag :ad_type, "message"%>
-         <%= label_tag :ad_type, "message" %>
+          "message"
         </div>
 
-
+        <br />
 
    <% end %>
 

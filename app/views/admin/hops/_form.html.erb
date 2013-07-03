@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+
+
   <div class="field">
     <b>Hop name</b>
     <%= f.text_field :name %>
@@ -18,25 +20,32 @@
   <div class="field">
     <b>Dates/times of hop</b>
 
-    <%= f.datetime_select :time_start, discard_year: true %>
+    <%= f.datetime_select :time_start, discard_year: true , prompt: {day: 'day',
+                                                                     minute: 'minute' ,month: ' month', hour: 'hour'}%>
     <b> to </b>
 
-    <%= f.datetime_select :time_end, discard_year: true %>
+    <%= f.datetime_select :time_end, discard_year: true , prompt: {day: 'day',
+                                                                   minute: 'minute' ,month: ' month', hour: 'hour'}%>
+
   </div>
 
-
+    <div class="field">
+      <b>Showprod id </b>
+      <%= f.text_field :producer_id %>
+    </div>
 
   <div class="field">
-    <b> Producer contact </b>
+    <b> Showprod contact </b>
     <%= f.text_field :producer_contact %>
   </div>
+
   <div class="field">
     <b>Contact phone </b>
     <%= f.text_field :contact_phone %>
   </div>
   <div class="field">
     <b>Contact email </b>
-    <%= f.text_field :contact_email %>
+    <%= f.email_field :contact_email %>
   </div>
   <div class="field">
     <b> Hop code </b>
@@ -45,6 +54,11 @@
   <div class="field">
     <b>  Hop price </b>
     <%= f.text_field :hop_price %>
+  </div>
+
+  <div class="field">
+    <b> Special event  </b>
+    <%= f.text_field :event %>
   </div>
   <div class="field">
     <b>  Jackpot </b>
@@ -55,6 +69,7 @@
     <%= f.text_field :hop_items %>
     <%= f.hidden_field :daily_hop%>
   </div>
+    <br />
   <div class="actions">
     <%= f.submit %>
   </div>

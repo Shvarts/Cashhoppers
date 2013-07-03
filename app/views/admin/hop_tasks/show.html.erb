@@ -1,21 +1,35 @@
 
 <%= form_for(:hop_task) do |f| %>
+  <table id="show">
+    <tr>
+      <td>Text for hop</td>
+      <td><%= f.text_area :text_for_hop, :rows=>5 %></td>
+    </tr>
+    <tr>
+      <td>Sponsor id </td>
+      <td><%= f.number_field :sponsor_id %> </td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td><%= f.text_field :hop_task_price %></td>
+    </tr>
 
-    <div class="field">
-      <%= f.label :text_for_hop %><br />
-      <%= f.text_area :text_for_hop %>
-    </div>
-    <div class="field">
-      <%= f.label :sponsor_id %><br />
-      <%= f.number_field :sponsor_id %>
-    </div>
-    <div class="field">
-      <%= f.label :hop_task_price %><br />
-      <%= f.text_field :hop_task_price %>
-    </div>
+    <tr>
+      <td>Sponsor name</td>
+      <td><%= f.text_field :sponsor_name %></td>
+    </tr>
+
+
+    <tr>
+      <td>Photo</td>
+      <td><%= image_tag @hop_task.hop_picture.url%></td>
+    </tr>
+
+  </table>
+     <br />
 
 <% end %>
-<%= image_tag @hop_task.hop_picture.url%><br />
+
 
 
 

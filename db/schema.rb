@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.string   "phone"
     t.string   "price"
     t.string   "ad_type"
+    t.string   "link_to_ad"
     t.integer  "hop_id"
     t.integer  "sponsor_id"
     t.datetime "created_at",                  :null => false
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.text     "text_for_hop"
     t.integer  "sponsor_id"
     t.string   "hop_task_price"
+    t.string   "sponsor_name"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -99,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20130702144336) do
     t.string   "hop_items"
     t.integer  "daily_hop"
     t.integer  "close"
-    t.integer  "event"
+    t.string   "event"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

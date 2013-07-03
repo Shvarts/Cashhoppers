@@ -1,36 +1,37 @@
 
+<table id="show">
+
+
+   <tr>
+      <td><b> Name </b></td>
+     <td><%=@hop_ad.ad_name %></td>
+  </tr>
+  <tr>
+    <td><b> Price </b></td>
+    <td><%= @hop_ad.price %></td>
+  </tr>
+  <tr>
+    <td><b> Phone </b> </td>
+    <td><%= @hop_ad.phone %></td>
+  </tr>
+  <tr>
+    <td><b> Email </b></td>
+    <td><%= @hop_ad.email %> </td>
+  </tr>
+  <tr>
+    <td><b> Type </b></td>
+    <td><%= @hop_ad.ad_type %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= image_tag @hop_ad.hop_ad_picture.url%></td>
+  </tr>
+  </table>
+
+ <br />
 
 
 
-    <div class="field">
-      <b> Name </b>
-      <%=@hop_ad.ad_name %>
-    </div>
-    <div class="field">
-      <b> Price </b>
-      <%= @hop_ad.price %>
-    </div>
-    <div class="field">
-      <b> Phone </b>
-      <%= @hop_ad.phone %>
-    </div>
-
-    <div class="field">
-      <b> Email </b>
-      <%= @hop_ad.email %>
-    </div>
-
-    <div class="field">
-      <b> Type </b>
-      <%= @hop_ad.ad_type %>
-    </div>
-
-
-
-
-
-
-<%= image_tag @hop_ad.hop_ad_picture.url%><br />
 
 
 <%= link_to 'Edit', edit_admin_hop_ad_path(@hop_ad) %> |
