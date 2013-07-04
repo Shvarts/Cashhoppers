@@ -22,7 +22,7 @@ class Admin::HopTasksController < Admin::AdminController
 
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render :json => @hop_task }
     end
   end

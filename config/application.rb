@@ -56,6 +56,17 @@ module CashHoppers
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # generators configuration
+    config.generators do |g|
+      g.test_framework :rspec, :fixture => true
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.view_specs false
+      g.helper_specs false
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+    end
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.action_mailer.default_url_options = Rails.env.production? ? {:host => 'perechin.net:3000'}: { :host => 'localhost:3000' }

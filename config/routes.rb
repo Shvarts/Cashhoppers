@@ -26,7 +26,10 @@ CashHoppers::Application.routes.draw do
 
       post 'sign_in_via_service' => 'sessions#sign_in_via_service'
 
-      post 'send_ad' => 'ad#send_ad' ,   :as => 'send_ad'
+      resources :ads
+      resources :hops do
+        get :daily, :on => :collection
+      end
     end
   end
 

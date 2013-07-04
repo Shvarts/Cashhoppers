@@ -26,7 +26,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @hop }
     end
   end
@@ -75,6 +75,7 @@ class Admin::HopsController < Admin::AdminController
   # PUT /hops/1
   # PUT /hops/1.json
   def update
+
     @hop = Hop.find(params[:id])
     Hop.time_start(params)
     Hop.time_end(params)
@@ -98,7 +99,7 @@ class Admin::HopsController < Admin::AdminController
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to [:admin, @hop ] }
+      format.html { redirect_to admin_hops_path(:daily_hop =>1) }
       format.json { head :no_content }
     end
   end
@@ -108,7 +109,7 @@ class Admin::HopsController < Admin::AdminController
 
     respond_to do |format|
       if @hop.update_attributes(:close=>1)
-        format.html { redirect_to admin_hops_path(@hop.daily_hop) , notice: 'Hop was successfully updated.' }
+        format.html { redirect_to admin_hops_path({:daily_hop => @hop.daily_hop}) , notice: 'Hop was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

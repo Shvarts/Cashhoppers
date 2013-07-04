@@ -16,7 +16,7 @@ class Admin::HopAdsController < Admin::AdminController
     @hop_ad = HopAd.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @hop_ad }
     end
   end
@@ -75,6 +75,7 @@ class Admin::HopAdsController < Admin::AdminController
   # PUT /hop_ads/1.json
   def update
     @hop_ad = HopAd.find(params[:id])
+
 
     respond_to do |format|
       if @hop_ad.update_attributes(params[:hop_ad])

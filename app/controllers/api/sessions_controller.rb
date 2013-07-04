@@ -100,17 +100,4 @@ class Api::SessionsController < Devise::SessionsController
     end
   end
 
- private
-
- def invalid_login_attempt errors
-   warden.custom_failure!
-   render :json => {:errors => errors,  :success => false, :status => :unauthorized}.to_json
- end
-
- def check_api_key
-   if Application.where(:api_key => params[:api_key]).blank?
-     invalid_login_attempt 'Bad api key'
-   end
- end
-
 end
