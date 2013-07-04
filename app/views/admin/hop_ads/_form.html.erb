@@ -27,7 +27,7 @@
     </tr>
     <tr>
       <td>Link to ad</td>
-      <td><%= f.text_field :link_to_ad%></td>
+      <td><%= f.url_field :link_to_ad%></td>
     </tr>
     <tr>
       <td>Contact</td>
@@ -48,27 +48,30 @@
 
         <br />
        <div class="field">
-           <%= radio_button_tag :ad_type, "sp"%>
+           <%= f.radio_button :ad_type, "sp"%>
              "SP"
-           <%= radio_button_tag :ad_type, "rofl" %>
+           <%= f.radio_button :ad_type, "rofl" %>
             "ROFL"
-           <%= radio_button_tag :ad_type, "ropu"%>
+          <% if @hop_ad.hop.daily_hop %>
+             <%= f.radio_button :ad_type, "ropu"%>
             "ROPU"
+          <% end %>
+
        </div>
        <br />
    <% else %>
 
         <br />
        <div class="field">
-          <%= radio_button_tag :ad_type, "log_in"%>
+          <%= f.radio_button :ad_type, "log_in"%>
            "log_in"
-          <%= radio_button_tag :ad_type, "hop_list" %>
+          <%= f.radio_button :ad_type, "hop_list" %>
            "hop_list"
-          <%= radio_button_tag :ad_type, "gallery"%>
+          <%= f.radio_button :ad_type, "gallery"%>
           "gallery"
-          <%= radio_button_tag :ad_type, "friends"%>
+          <%= f.radio_button :ad_type, "friends"%>
           "friends"
-         <%= radio_button_tag :ad_type, "message"%>
+         <%= f.radio_button :ad_type, "message"%>
           "message"
         </div>
 

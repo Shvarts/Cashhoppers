@@ -17,7 +17,7 @@ class Admin::ApplicationsController < Admin::AdminController
     @application = Application.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @application }
     end
   end

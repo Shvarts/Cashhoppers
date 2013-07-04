@@ -1,23 +1,34 @@
 
-<%= form_for(:hop_task) do |f| %>
+
   <table id="show">
     <tr>
       <td>Text for hop</td>
-      <td><%= f.text_area :text_for_hop, :rows=>5 %></td>
+      <td><%= @hop_task.text_for_hop %></td>
     </tr>
     <tr>
       <td>Sponsor id </td>
-      <td><%= f.number_field :sponsor_id %> </td>
+      <td><%= @hop_task.sponsor_id %> </td>
     </tr>
     <tr>
       <td>Price</td>
-      <td><%= f.text_field :hop_task_price %></td>
+      <td><%= @hop_task.hop_task_price %></td>
     </tr>
 
     <tr>
       <td>Sponsor name</td>
-      <td><%= f.text_field :sponsor_name %></td>
+      <td><%= @hop_task.sponsor_name %></td>
     </tr>
+
+    <% if @hop_task.hop.daily_hop %>
+        <tr>
+          <td>PTS</td>
+          <td><%= @hop_task.pts %></td>
+        </tr>
+        <tr>
+          <td>Bonus for sharing</td>
+          <td><%= @hop_task.bonus %></td>
+        </tr>
+    <% end %>
 
 
     <tr>
@@ -28,7 +39,7 @@
   </table>
      <br />
 
-<% end %>
+
 
 
 
