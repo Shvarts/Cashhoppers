@@ -15,17 +15,17 @@
 
   <div class="field">
     <b>Hop name</b>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :html=>{:placeholder=>"Name"}%>
   </div>
   <div class="field">
     <b>Dates/times of hop</b>
     <%= f.hidden_field :daily_hop%>
 
-    <%= f.datetime_select :time_start, discard_year: true , prompt: {day: 'day',
+    <%= f.datetime_select :time_start, discard_year: true, prefix: :date_start, prompt: {day: 'day',
                                                                      minute: 'minute' ,month: ' month', hour: 'hour'}%>
     <b> to </b>
 
-    <%= f.datetime_select :time_end, discard_year: true , prompt: {day: 'day',
+    <%= f.datetime_select :time_end, discard_year: true, prefix: :date_end, prompt: {day: 'day',
                                                                    minute: 'minute' ,month: ' month', hour: 'hour'}%>
 
   </div>
