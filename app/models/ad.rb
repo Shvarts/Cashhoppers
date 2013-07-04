@@ -12,7 +12,8 @@ class Ad < ActiveRecord::Base
                   :phone,
                   :price,
                   :type_add,
-                  :sponsor_id
+                  :sponsor_id,
+                  :ad_type
 
   has_attached_file :ad_picture,
     :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",

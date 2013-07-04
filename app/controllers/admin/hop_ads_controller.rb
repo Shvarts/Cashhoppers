@@ -46,7 +46,7 @@ class Admin::HopAdsController < Admin::AdminController
       params[:hop_ad]["hop_id"]=params["hop_id"]
     end
 
-    @hop_ad = HopAd.new(params[:hop_ad])
+    @hop.ads.new(params[:hop_ad])
 #                           :contact=>params["contact"],
  #                           :email=>params["email"],
  #                           :phone=>params["phone"],

@@ -40,12 +40,24 @@ ActiveRecord::Schema.define(:version => 20130704114058) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "daily_hops", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "text_for_item"
+    t.string   "winner"
+    t.string   "points"
+    t.string   "share_point"
+    t.string   "jackpot"
+    t.string   "users"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "hop_tasks", :force => true do |t|
     t.integer  "hop_id"
     t.text     "text_for_hop"
     t.integer  "sponsor_id"
     t.string   "hop_task_price"
-    t.string   "sponsor_name"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -72,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20130704114058) do
     t.string   "hop_items"
     t.boolean  "daily_hop",        :default => false
     t.boolean  "close",            :default => false
-    t.string   "event"
+    t.integer  "event"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end

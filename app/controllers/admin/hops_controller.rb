@@ -6,9 +6,9 @@ class Admin::HopsController < Admin::AdminController
   def index
    if params[:daily_hop]
      @daily_hop=1
-     @hops= Hop.where(:daily_hop => 1, :close=>nil).all
+     @hops= Hop.daily
    else
-     @hops = Hop.where(:daily_hop => nil, :close=>nil).all
+     @hops = Hop.regular 
    end
 
 
