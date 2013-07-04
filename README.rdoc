@@ -11,6 +11,8 @@ Before you start:
 
 ==API documentation
 
+Android API key: DI2YWC2YvoEGLXwstpKw4JFJ9R6tiL 
+
 ===sign_up method:POST
 
 -request: JSON
