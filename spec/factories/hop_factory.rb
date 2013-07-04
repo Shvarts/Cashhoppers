@@ -3,6 +3,8 @@ FactoryGirl.define do
     sequence(:contact_email){|i| "example#{i}@mail.com"}
     contact_phone '123-212-212'
     sequence(:hop_code){|i| "j1h3#{i}"}
+    close false
+    daily_hop false
     hop_items nil
     hop_price {rand(20)}
     jackpot nil

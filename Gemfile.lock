@@ -194,6 +194,7 @@ GEM
       rack (>= 1.0)
     wice_grid (3.2.1)
       kaminari (>= 0.13.0)
+    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
@@ -222,3 +223,4 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   wice_grid (= 3.2.1)
+  will_paginate (~> 3.0)

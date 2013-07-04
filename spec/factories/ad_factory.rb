@@ -10,7 +10,7 @@ FactoryGirl.define do
     price {rand(30)}
     amd_paid nil
     factory :ad_with_hop do
-      hop []
+      hop {FactoryGirl.create(:hop)}
     end
   end
 end

@@ -1,11 +1,14 @@
 class Hop < ActiveRecord::Base
   has_many :hop_tasks, :dependent => :destroy
-  has_many :hop_ads,  :dependent => :destroy
+  has_many :ads,  :dependent => :destroy
   belongs_to :user
-
 
   attr_accessible :contact_email, :close, :event, :daily_hop, :contact_phone, :hop_code, :hop_items, :hop_price, :jackpot, :name, :producer_contact, :producer_id, :time_end, :time_start
 
+  # get only active for default
+  default_scope where(:close => false)
+  scope :daily, where(:daily_hop => true)
+  scope :regular, where(:daily_hop => false)
 
   def Hop.time_start(params)
 #    time_start=DateTime.civil(h=0,m= params[:hop]['time_start(2i)'].to_i, d=params[:hop]['time_start(3i)'].to_i, h= params[:hop]['time_start(4i)'].to_i, min=params[:hop]['time_start(5i)'].to_i, s=0, of=0, sq=0)

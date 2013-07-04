@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::AdsController do
-  render_views
 
   describe 'send_ad' do
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703154906) do
+ActiveRecord::Schema.define(:version => 20130704114058) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advert_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130703154906) do
     t.string   "type_add"
     t.integer  "price"
     t.integer  "amd_paid"
+    t.string   "link_to_ad"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "ad_picture_file_name"
@@ -39,42 +40,12 @@ ActiveRecord::Schema.define(:version => 20130703154906) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "daily_hops", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.text     "text_for_item"
-    t.string   "winner"
-    t.string   "points"
-    t.string   "share_point"
-    t.string   "jackpot"
-    t.string   "users"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "hop_ads", :force => true do |t|
-    t.string   "ad_name"
-    t.string   "contact"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "price"
-    t.string   "ad_type"
-    t.string   "link_to_ad"
-    t.integer  "hop_id"
-    t.integer  "sponsor_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.string   "hop_ad_picture_file_name"
-    t.string   "hop_ad_picture_content_type"
-    t.integer  "hop_ad_picture_file_size"
-    t.datetime "hop_ad_picture_updated_at"
-  end
-
   create_table "hop_tasks", :force => true do |t|
     t.integer  "hop_id"
     t.text     "text_for_hop"
     t.integer  "sponsor_id"
     t.string   "hop_task_price"
+    t.string   "sponsor_name"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -99,8 +70,11 @@ ActiveRecord::Schema.define(:version => 20130703154906) do
     t.string   "hop_price"
     t.string   "jackpot"
     t.string   "hop_items"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.boolean  "daily_hop",        :default => false
+    t.boolean  "close",            :default => false
+    t.string   "event"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "roles", :force => true do |t|
