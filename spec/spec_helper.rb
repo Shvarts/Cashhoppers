@@ -58,10 +58,18 @@ RSpec.configure do |config|
 end
 
 def login_as(user)
-  @request.env["devise.mapping"] = Devise.mappings[user]
+  device_mapping(user)
   user = FactoryGirl.create(user)
   user.confirm!
   sign_in user
   @current_user = user
+end
+
+def api_key_error
+  {:errors => 'Bad api key', :success => false, :status => 401}
+end
+  # required for device sessions request
+def device_mapping(user = :user)
+  @request.env["devise.mapping"] = Devise.mappings[user]
 end
 

@@ -4,8 +4,7 @@ describe Api::HopsController do
   describe 'index' do
     it 'should not allow access' do
       get :index
-      error = {:errors => 'Bad api key', :success => false, :status => 401}
-      assert error == Oj.load(response.body)
+      assert api_key_error == Oj.load(response.body)
     end
 
     describe 'return hop' do
