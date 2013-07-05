@@ -98,4 +98,27 @@ request JSON:
 response JSON
     {"picture_url":"/images/ad_pictures/ads/4/AD_PICTURE.jpg?1372405353","success":true}
 
+===hops method:GET
+Return all regular hops (not daily) by 30 per page
+
+request: hops.json?api_key={api_key}
+
+Return curr date daily hops
+
+request: hops/daily.json?api_key={api_key}
+
+response: hops: [ name,
+                  time_start,
+                  time_end,
+                  hop_code,
+                  hop_price,
+                  jackpot,
+                  hop_items,
+                  daily_hop,
+                  close,
+                  event,
+                  created_at,
+                  updated_at
+                ]
+
 

@@ -2,6 +2,7 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!
+  before_filter :parse_datetime_select, :only => [:create, :update]
 
   def index
    if params[:daily_hop]
@@ -34,10 +35,8 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops/new
   # GET /hops/new.json
   def new
-
     @hop = Hop.new
-    @hop.daily_hop=params["daily_hop"]
-
+    @hop.daily_hop = true if params[:daily_hop]
 
     respond_to do |format|
       format.html # new.html.haml
@@ -56,9 +55,7 @@ class Admin::HopsController < Admin::AdminController
   # POST /hops.json
   def create
     params[:hop][:producer_id]=current_user.id
-   #hop_time_end_4i
-    Hop.time_start(params)
-    Hop.time_end(params)
+    p params[:hop]
     @hop = Hop.new(params[:hop])
 
     respond_to do |format|
@@ -77,8 +74,6 @@ class Admin::HopsController < Admin::AdminController
   def update
 
     @hop = Hop.find(params[:id])
-    Hop.time_start(params)
-    Hop.time_end(params)
 
     respond_to do |format|
       if @hop.update_attributes(params[:hop])
@@ -115,6 +110,18 @@ class Admin::HopsController < Admin::AdminController
         format.html { render action: "edit" }
         format.json { render json: @hop.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  private
+  def parse_datetime_select
+    {:date_start => :time_start, :date_end => :time_end}.each_pair do |k, v|
+      p = params[k]
+      params[:hop][v] = DateTime.new(Date.today.year,
+                                     p["#{v}(2i)"].to_i,
+                                     p["#{v}(3i)"].to_i,
+                                     p["#{v}(4i)"].to_i,
+                                     p["#{v}(5i)"].to_i)
     end
   end
 end

@@ -1,4 +1,4 @@
-collections :@hops
+collection :@hops
 attributes :name,
            :time_start,
            :time_end,
@@ -10,4 +10,4 @@ attributes :name,
            :close,
            :event,
            :created_at,
-           :updated_at,
+           :updated_at
