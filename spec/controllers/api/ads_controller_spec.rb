@@ -15,7 +15,7 @@ describe Api::AdsController do
       end
 
       it 'should find ads by ad_type (1 ad)' do
-        ad = FactoryGirl.create(:ad, :type_add => 'today')
+        ad = FactoryGirl.create(:ad, :ad_type => 'today')
 
         get :index,
             :ad_type => 'today',
@@ -28,10 +28,10 @@ describe Api::AdsController do
       it 'should find ads by ad_type (3 ads)' do
 
         3.times do
-          FactoryGirl.create(:ad, :type_add => 'start')
+          FactoryGirl.create(:ad, :ad_type => 'start')
         end
 
-        ads = Ad.find_all_by_type_add('start')
+        ads = Ad.find_all_by_ad_type('start')
 
         get :index,
             :ad_type => 'start',
