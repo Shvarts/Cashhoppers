@@ -35,7 +35,6 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops/new
   # GET /hops/new.json
   def new
-
     @hop = Hop.new
     @hop.daily_hop = true if params[:daily_hop]
 
@@ -94,7 +93,7 @@ class Admin::HopsController < Admin::AdminController
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_hops_path(:daily_hop =>daily_hop) }
+      format.html { redirect_to admin_hops_path(:daily_hop => daily_hop) }
       format.json { head :no_content }
     end
   end

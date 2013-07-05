@@ -9,6 +9,8 @@ Before you start:
     //email admin@cashhoppers.com
     //password qwerty11
 
+Run server: rails s thin
+
 ==API documentation
 
 Android API key: DI2YWC2YvoEGLXwstpKw4JFJ9R6tiL 
@@ -119,6 +121,26 @@ response: hops: [ name,
                   event,
                   created_at,
                   updated_at
+                ]
+===ads method:GET
+
+Return ads by ad_type
+
+request: ads.json?api_key={api_key}&ad_type={ad_type}
+
+Return ads by hop_id
+
+request: ads.json?api_key={api_key}&hop_id={hop_id}
+
+response: ads: [ id,
+                 ad_name,
+                 ad_type,
+                 link_to_ad,
+                 hop_id,
+                 created_at,
+                 updated_at,
+                 hop_ad_picture_updated_at,
+                 ad_picture_url
                 ]
 
 
