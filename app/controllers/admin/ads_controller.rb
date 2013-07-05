@@ -94,7 +94,7 @@ class Admin::AdsController < Admin::AdminController
 
     respond_to do |format|
       if @hop_ad.hop
-        format.html {redirect_to admin_path(@hop_ad.hop) }
+        format.html {redirect_to admin_hop_path(@hop_ad.hop) }
       else
         format.html { redirect_to admin_ads_path, notice:'Hop ad was successfully created.' }
       end
