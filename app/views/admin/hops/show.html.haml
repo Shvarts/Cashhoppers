@@ -80,8 +80,9 @@
   = number_field(:hop_task, :pts, :placeholder=>"PTS")
   = number_field(:hop_task, :bonus, :placeholder=>"bonus")
   -if !@hop.daily_hop
-    = number_field(:hop_task, :hop_task_price, :placeholder=>"price")
-    = number_field(:hop_task, :sponsor_name,:placeholder=>"sponsor name")
+    %div{class: "controls controls-row"}
+      = number_field(:hop_task, :sponsor_name,:placeholder=>"sponsor name",:class=>"span10")
+      = number_field(:hop_task, :hop_task_price, :placeholder=>"price", :class=>"span2")
     = file_field(:hop_task, :hop_picture)
   %br
     = submit_tag
