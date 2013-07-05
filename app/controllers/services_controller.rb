@@ -29,6 +29,11 @@ class ServicesController < ApplicationController
         omniauth['extra']['raw_info']['name'] ? @name =  omniauth['extra']['raw_info']['name'] : @name = ''
         omniauth['uid'] ?  @uid =  omniauth['uid'] : @uid = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
+      elsif service_route == 'google'
+        omniauth['info']['email'] ? @email =  omniauth['extra']['email'] : @email = ''
+        omniauth['info']['name'] ? @name =  omniauth['info']['name'] : @name = ''
+        omniauth['info']['uid'] ?  @uid =  omniauth['info']['uid'] : @uid = ''
+        omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
       else
         render :text => omniauth.to_yaml
       end
