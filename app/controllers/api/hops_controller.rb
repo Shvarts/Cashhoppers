@@ -7,7 +7,10 @@ class Api::HopsController < Api::ApplicationController
 
   def daily
     @hops = Hop.daily.paginate(:page => params[:page])
-    invalid_login_attempt('daily hops not found') if @hops.blank?
-    render 'api/hops/index'
+    if @hops.blank?
+      invalid_login_attempt('daily hops not found')
+    else
+      render 'api/hops/index'
+    end
   end
 end

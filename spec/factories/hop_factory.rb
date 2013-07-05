@@ -12,6 +12,6 @@ FactoryGirl.define do
     producer_contact nil
     producer_id nil
     time_start Time.now
-    time_end Time.now + 1.days
+    time_end Time.now + 8.hours
   end
 end

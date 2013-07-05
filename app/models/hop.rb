@@ -7,7 +7,7 @@ class Hop < ActiveRecord::Base
 
   # get only active for default
   default_scope where(:close => false)
-  scope :daily, where(:daily_hop => true)
+  scope :daily, where('daily_hop = 1 AND DATE(time_start) = CURDATE()')
   scope :regular, where(:daily_hop => false)
 
   def Hop.time_start(params)
