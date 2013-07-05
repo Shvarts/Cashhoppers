@@ -1,6 +1,6 @@
 %p{:id=>"notice"}
   =notice
-%table#show
+%table{:class=>"table, table-bordered table-condensed"}
   %tr
     %td
       %b
@@ -22,15 +22,20 @@
     -if !@hop.daily_hop
       %tr
         %td
-          %bShowprod id:
+          %b
+            Showprod id:
         %td
-          %bShowprod contact:
+          %b
+            Showprod contact:
         %td
-          %bContact phone:
+          %b
+            Contact phone:
         %td
-          %bContact email:
+          %b
+            Contact email:
         %td
-          %bHop code:
+          %b
+            Hop code:
       %tr
         %td
           =@hop.producer_id
@@ -68,118 +73,29 @@
 = link_to 'Edit', edit_admin_hop_path(@hop)  |
 = link_to 'Back', admin_hops_path(:daily_hop =>@hop.daily_hop)
 %br
-%h2
-  Tasks
-%br
--@hop.hop_tasks.each do |hop_task|
-  %table#show
-    %tr
-      %td
-        %strong
-          Sponsor id:
-      %td
-        %strong
-          Price:
-      %td
-        %strong
-          Text:
-      %td
-      %td
-      %td
-    %tr
-      %td
-        = hop_task.sponsor_id
-      %td
-        = hop_task.hop_task_price
-      %td
-        = hop_task.text_for_hop
-      %td
-        = link_to 'Show', admin_hop_task_path(hop_task.id)
-      %td
-        = link_to 'Edit', edit_admin_hop_task_path(hop_task)
-      %td
-        = link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
-
-  %br
+%h3
+  Create task
 = form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
-  %table#show
-    %tr
-      %td= label(:hop_task, :text_for_hop)
-      %td= text_field(:hop_task, :text_for_hop)
-    -if @hop.daily_hop
-      %tr
-        %td= label(:hop_task, :pts)
-        %td= number_field(:hop_task, :pts)
-      %tr
-        %td= label(:hop_task, :bonus)
-        %td= number_field(:hop_task, :bonus)
-    -else
-      %tr
-        %td= label(:hop_task, :hop_task_price)
-        %td= number_field(:hop_task, :hop_task_price)
-      %tr
-        %td= label(:hop_task, :sponsor_name)
-        %td= number_field(:hop_task, :sponsor_name)
-      %tr
-        %td= label(:hop_task, :hop_picture)
-        %td= file_field(:hop_task, :hop_picture)
-    %tr
-      %td
-      %td= submit_tag
-%h2
-  Ad
-%br
--@hop.ads.each do |hop_ad|
-  %table#show
-    %tr
-      %td
-        %strong
-          Advert Name:
-      %td
-        %strong>
-          Phone:
-      %td
-        %strong
-          Email:
-      %td
-      %td
-      %td
-      %td
-    %tr
-      %td
-        = hop_ad.ad_name
-      %td
-        = hop_ad.phone
-      %td
-        = hop_ad.email
-      %td= link_to 'Show',  admin_ad_path(hop_ad.id)
-      %td= link_to 'Edit', edit_admin_ad_path(hop_ad)
-      %td= link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
-%br
+  = text_field(:hop_task, :text_for_hop, :placeholder=>"text for task", :class=>"input-xxlarge")
+  = number_field(:hop_task, :pts, :placeholder=>"PTS")
+  = number_field(:hop_task, :bonus, :placeholder=>"bonus")
+  -if !@hop.daily_hop
+    = number_field(:hop_task, :hop_task_price, :placeholder=>"price")
+    = number_field(:hop_task, :sponsor_name,:placeholder=>"sponsor name")
+    = file_field(:hop_task, :hop_picture)
+  %br
+    = submit_tag
+%h3
+  Create ad
 %br
 = form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
-  %table#show
-    %tr
-      %td= label_tag :ad_name
-      %td= text_field(:ad, :ad_name)
-    %tr
-      %td= label_tag :contact
-      %td= text_field(:ad,:contact)
-    %tr
-      %td= label_tag :email
-      %td= email_field(:ad,:email)
-    %tr
-      %td= label_tag :phone
-      %td= text_field(:ad,:phone)
-    %tr
-      %td= label_tag :link_to_ad
-      %td= url_field(:ad,:link_to_ad)
-    %tr
-      %td= label_tag :price
-      %td= number_field(:ad, :price)
-    %tr
-      %td= label_tag :ad_picture
-      %td= file_field(:ad, :hop_ad_picture)
+  = text_field(:ad, :ad_name, :placeholder=>"name")
+  = text_field(:ad,:contact, :placeholder=>"Contact")
+  = email_field(:ad,:email, :placeholder=>"email")
+  = text_field(:ad,:phone, :placeholder=>"phone")
+  = url_field(:ad,:link_to_ad, :placeholder=>"link to ad")
+  = number_field(:ad, :price, :placeholder=>"price")
+  = file_field(:ad, :hop_ad_picture)
   %div{:class=>"field", :id=>"radio_button" }
     = radio_button(:ad,:ad_type, "sp")
     %b
@@ -196,3 +112,56 @@
 %br
 %div{:class=>"actions"}
   = button_to 'Close project', admin_close_path
+%h3
+  Tasks
+-@hop.hop_tasks.each do |hop_task|
+  %table{:class=>"table, table-bordered table-condensed"}
+    %tr
+      %td
+        %strong
+          Sponsor id:
+      %td
+        %strong
+          Price:
+      %td
+        %strong
+          Text:
+      %td
+    %tr
+      %td
+        = hop_task.sponsor_id
+      %td
+        = hop_task.hop_task_price
+      %td
+        = hop_task.text_for_hop
+      %td
+        = link_to 'Show', admin_hop_task_path(hop_task.id)
+        = link_to 'Edit', edit_admin_hop_task_path(hop_task)
+        = link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
+%h3
+  Ads
+-@hop.ads.each do |hop_ad|
+  %table{:class=>"table, table-bordered table-condensed"}
+    %tr
+      %td
+        %strong
+          Advert Name:
+      %td
+        %strong>
+          Phone:
+      %td
+        %strong
+          Email:
+      %td
+    %tr
+      %td
+        = hop_ad.ad_name
+      %td
+        = hop_ad.phone
+      %td
+        = hop_ad.email
+      %td
+        = link_to 'Show',  admin_ad_path(hop_ad.id)
+        = link_to 'Edit', edit_admin_ad_path(hop_ad)
+        = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
+
