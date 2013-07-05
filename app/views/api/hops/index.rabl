@@ -10,4 +10,4 @@ attributes :name,
            :close,
            :event,
            :created_at,
-           :updated_at,
+           :updated_at

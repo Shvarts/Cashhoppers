@@ -28,6 +28,7 @@ group :development, :test do
   gem 'simplecov', :require => false
   # turns off the Rails asset pipeline log
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 group :assets do

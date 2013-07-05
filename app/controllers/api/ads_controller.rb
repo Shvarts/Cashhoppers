@@ -2,7 +2,7 @@ class Api::AdsController < Api::ApplicationController
 
   def index
     if params[:ad_type].present?
-      @ads = Ad.find_all_by_type_add(params[:ad_type])
+      @ads = Ad.find_all_by_ad_type(params[:ad_type])
     elsif params[:hop_id].present?
       @ads = Ad.find_all_by_hop_id(params[:hop_id])
     end
