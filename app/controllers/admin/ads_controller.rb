@@ -52,15 +52,16 @@ class Admin::AdsController < Admin::AdminController
     if @hop_ad.save
 
        if params["hop_id"]
+         @hop_ad=Ad.new
          format.html { redirect_to :back, notice:'Hop ad was successfully created.' }
        else
          format.html { redirect_to admin_ad_path(@hop_ad.id), notice:'Hop ad was successfully created.' }
        end
       format.json { render json: @hop_ad, status: :created, location: @hop_ad }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
-      end
+    else
+      format.html { render action: "new" }
+      format.json { render json: @hop_ad.errors, status: :unprocessable_entity }
+    end
     end
   end
 

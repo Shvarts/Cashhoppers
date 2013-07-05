@@ -76,7 +76,16 @@
 %h3
   Create task
 = form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
-  = text_field(:hop_task, :text_for_hop, :placeholder=>"text for task", :class=>"input-xxlarge")
+  -if @hop_task.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@hop_task.errors.count, "error")
+        prohibited this hop_task from being saved:
+      %ul
+        -@hop_task.errors.full_messages.each do |msg|
+          %li
+            = msg
+  = text_field(:hop_task, :text_for_hop, :placeholder=>"text for task", :class=>"span10")
   = number_field(:hop_task, :pts, :placeholder=>"PTS")
   = number_field(:hop_task, :bonus, :placeholder=>"bonus")
   -if !@hop.daily_hop
@@ -90,6 +99,15 @@
   Create ad
 %br
 = form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
+  -if @hop_ad.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@hop_ad.errors.count, "error")
+        prohibited this hop_task from being saved:
+      %ul
+        -@hop_ad.errors.full_messages.each do |msg|
+          %li
+            = msg
   = text_field(:ad, :ad_name, :placeholder=>"name")
   = text_field(:ad,:contact, :placeholder=>"Contact")
   = email_field(:ad,:email, :placeholder=>"email")
@@ -98,7 +116,7 @@
   = number_field(:ad, :price, :placeholder=>"price")
   = file_field(:ad, :hop_ad_picture)
   %div{:class=>"field", :id=>"radio_button" }
-    = radio_button(:ad,:ad_type, "sp")
+    = radio_button(:ad,:ad_type, "sp", :checked => true )
     %b
       SP
     = radio_button(:ad, :ad_type, "rofl")

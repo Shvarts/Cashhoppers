@@ -9,14 +9,18 @@
     %th
       Name
     %th
-      Hop price
+      Hop id
+    %th
+      Hop date
     %th
   - @hops.each do |hop|
     %tr
       %td
         = hop.name
       %td
-        = hop.hop_price
+        = hop.id
+      %td
+        =hop.time_start
       %td{style: 'text-align: right'}
         = link_to 'Show', admin_hop_path(hop), class: 'btn'
         = link_to 'Edit', edit_admin_hop_path(hop), class: 'btn btn-primary'

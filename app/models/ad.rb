@@ -21,4 +21,13 @@ class Ad < ActiveRecord::Base
     :default_url => "/assets/no_ad_picture.jpg",
     :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
+
+  validates :ad_name, length: { minimum: 3, maximum:140 }
+
+
+
+  def daily_hop?
+    ad.daily_hop.class == FalseClass
+  end
+
 end
