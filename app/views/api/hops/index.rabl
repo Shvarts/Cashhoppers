@@ -1,4 +1,4 @@
-collections :@hops
+collection :@hops
 attributes :name,
            :time_start,
            :time_end,

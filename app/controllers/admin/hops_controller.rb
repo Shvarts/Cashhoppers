@@ -1,22 +1,28 @@
+
+
 class Admin::HopsController < Admin::AdminController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!
 
+
+
   def index
+#  render :text=>params[:daily_hop].to_s.to_bool
+
+   #
    if params[:daily_hop]
-     @daily_hop=1
+    @daily_hop=params[:daily_hop]
+
      @hops= Hop.daily
    else
-     @hops = Hop.regular 
+     @hops = Hop.regular
    end
-
-
-
-    respond_to do |format|
-      format.html # index.html.haml
-      format.json { render json: @hops }
-    end
+#   render :text=>@hops.first.daily_hop.class
+   respond_to do |format|
+     format.html # index.html.haml
+     format.json { render json: @hops }
+   end
   end
 
   # GET /hops/1
@@ -59,10 +65,12 @@ class Admin::HopsController < Admin::AdminController
    #hop_time_end_4i
     Hop.time_start(params)
     Hop.time_end(params)
+
     @hop = Hop.new(params[:hop])
 
     respond_to do |format|
       if @hop.save
+
         format.html { redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.' }
         format.json { render json: [:admin, @hop ], status: :created, location: @hop }
       else
@@ -95,11 +103,11 @@ class Admin::HopsController < Admin::AdminController
   # DELETE /hops/1.json
   def destroy
     @hop = Hop.find(params[:id])
-
+    daily_hop=@hop.daily_hop
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_hops_path(:daily_hop =>1) }
+      format.html { redirect_to admin_hops_path(:daily_hop =>daily_hop) }
       format.json { head :no_content }
     end
   end

@@ -16,28 +16,28 @@
          <td>Text for task</td>
          <td><%= f.text_area :text_for_hop, :rows=>5 %></td>
       </tr>
+      <% if ! @hop_task.hop.daily_hop %>
+        <tr>
+          <td>Price</td>
+          <td><%= f.text_field :hop_task_price %></td>
+        </tr>
 
-      <tr>
-        <td>Price</td>
-        <td><%= f.text_field :hop_task_price %></td>
-      </tr>
-
-      <tr>
-        <td>Photo</td>
-        <td><%= f.file_field :hop_picture %></td>
-      </tr>
-      <% if @hop_task.hop.daily_hop %>
-
-          <tr>
-            <td>PTS</td>
-            <td><%= f.text_field :pts %></td>
-          </tr>
-          <tr>
-            <td>Bonus point for sharing</td>
-            <td><%= f.text_field :bonus %></td>
-          </tr>
-
+        <tr>
+          <td>Photo</td>
+          <td><%= f.file_field :hop_picture %></td>
+        </tr>
       <% end %>
+
+      <tr>
+         <td>PTS</td>
+         <td><%= f.text_field :pts %></td>
+      </tr>
+      <tr>
+         <td>Bonus point for sharing</td>
+         <td><%= f.text_field :bonus %></td>
+      </tr>
+
+
 
       <tr>
         <td></td>
