@@ -6,6 +6,6 @@ class AddPictureToHopAd < ActiveRecord::Migration
   end
 
   def self.down
-    drop_attached_file :hop_ads, :hop_ad_picture
+    drop_attached_file :ads, :hop_ad_picture
   end
 end

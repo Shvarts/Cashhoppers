@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(:version => 20130704132956) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "daily_hops", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "text_for_item"
+    t.string   "winner"
+    t.string   "points"
+    t.string   "share_point"
+    t.string   "jackpot"
+    t.string   "users"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "hop_tasks", :force => true do |t|
     t.integer  "hop_id"
     t.text     "text_for_hop"

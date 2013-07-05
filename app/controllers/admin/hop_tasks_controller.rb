@@ -52,24 +52,22 @@ class Admin::HopTasksController < Admin::AdminController
   # POST hops/1/hop_tasks
   # POST hops/1/hop_tasks.json
   def create
-#    params[:hop_task][:sponsor_id]=current_user.id
+    params[:hop_task][:sponsor_id]=current_user.id
+
+
     @hop=Hop.find(params["hop_id"])
-    @hop_task = HopTask.new(:sponsor_id=>current_user.id, :text_for_hop=>params["text_for_hop"],
-                             :hop_task_price=>params["hop_task_price"],
-                             :hop_picture => params["hop_picture"],
-                             :hop_id => params["hop_id"]
-    )
-    if @hop_task.save
+    @hop_task = @hop.hop_tasks.new(params[:hop_task])
+
 
 
 #    @hop = Hop.find(params[:hop_id])
 #    @hop_task = @hop.hop_tasks.build(params[:hop_task])
 #
    respond_to do |format|
-#      if @hop_task.save
+      if @hop_task.save
         format.html { redirect_to :back, :notice => 'Hop task was successfully created.' }
         format.json { render :json => @hop_task, :status => :created, :location => [@hop_task.hop, @hop_task] }
-#      else
+      else
         format.html {  redirect_to :back }
         format.json { render :json => @hop_task.errors, :status => :unprocessable_entity }
       end

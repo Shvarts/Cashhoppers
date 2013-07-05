@@ -38,9 +38,9 @@
 
 
 
-<%= link_to 'Edit', edit_admin_hop_ad_path(@hop_ad) %> |
+<%= link_to 'Edit', edit_admin_ad_path(@hop_ad) %> |
  <% if @hop_ad.hop %>
   <%= link_to 'Back', admin_hop_path(@hop_ad.hop) %>
  <% else %>
-  <%= link_to 'Back', admin_hop_ads_path %>
+  <%= link_to 'Back', admin_ads_path %>
  <% end %>

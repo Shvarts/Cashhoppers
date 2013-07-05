@@ -66,7 +66,7 @@
           = @hop.event
 %br
 = link_to 'Edit', edit_admin_hop_path(@hop)  |
-= link_to 'Back', admin_hops_path(:daily_hop =>1)
+= link_to 'Back', admin_hops_path(:daily_hop =>@hop.daily_hop)
 %br
 %h2
   Tasks
@@ -76,7 +76,7 @@
     %tr
       %td
         %strong
-          Sponsor name:
+          Sponsor id:
       %td
         %strong
           Price:
@@ -88,7 +88,7 @@
       %td
     %tr
       %td
-        = hop_task.sponsor_name
+        = hop_task.sponsor_id
       %td
         = hop_task.hop_task_price
       %td
@@ -99,32 +99,33 @@
         = link_to 'Edit', edit_admin_hop_task_path(hop_task)
       %td
         = link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
+
   %br
-= form_tag admin_hop_tasks_path, :multipart => true do
+= form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
   %table#show
     %tr
-      %td= label_tag :text_for_hop
-      %td= text_area_tag :text_for_hop
+      %td= label(:hop_task, :text_for_hop)
+      %td= text_field(:hop_task, :text_for_hop)
     -if @hop.daily_hop
       %tr
-        %td= label_tag :pts
-        %td= number_field_tag :pts
+        %td= label(:hop_task, :pts)
+        %td= number_field(:hop_task, :pts)
       %tr
-        %td= label_tag :bonus
-        %td= number_field_tag :bonus
+        %td= label(:hop_task, :bonus)
+        %td= number_field(:hop_task, :bonus)
     -else
       %tr
-        %td= label_tag :hop_task_price
-        %td= number_field_tag :hop_task_price
+        %td= label(:hop_task, :hop_task_price)
+        %td= number_field(:hop_task, :hop_task_price)
       %tr
-        %td= label_tag :sponsor_name
-        %td= number_field_tag :sponsor_name
+        %td= label(:hop_task, :sponsor_name)
+        %td= number_field(:hop_task, :sponsor_name)
       %tr
-        %td= label_tag :hop_picture
-        %td= file_field_tag :hop_picture
-      %tr
-        %td= hidden_field_tag :hop_id, @hop.id
-        %td= submit_tag
+        %td= label(:hop_task, :hop_picture)
+        %td= file_field(:hop_task, :hop_picture)
+    %tr
+      %td
+      %td= submit_tag
 %h2
   Ad
 %br
@@ -151,43 +152,43 @@
         = hop_ad.phone
       %td
         = hop_ad.email
-      %td= link_to 'Show',  admin_hop_ad_path(hop_ad.id)
-      %td= link_to 'Edit', edit_admin_hop_ad_path(hop_ad)
-      %td= link_to 'Destroy',  [:admin, hop_ad], :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show',  admin_ad_path(hop_ad.id)
+      %td= link_to 'Edit', edit_admin_ad_path(hop_ad)
+      %td= link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
 %br
 %br
-= form_tag admin_hop_ads_path(:hop_id=>@hop.id), :multipart => true do
+= form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
   %table#show
     %tr
       %td= label_tag :ad_name
-      %td= text_field(:hop_ad, :ad_name)
+      %td= text_field(:ad, :ad_name)
     %tr
       %td= label_tag :contact
-      %td= text_field(:hop_ad,:contact)
+      %td= text_field(:ad,:contact)
     %tr
       %td= label_tag :email
-      %td= email_field(:hop_ad,:email)
+      %td= email_field(:ad,:email)
     %tr
       %td= label_tag :phone
-      %td= text_field(:hop_ad,:phone)
+      %td= text_field(:ad,:phone)
     %tr
       %td= label_tag :link_to_ad
-      %td= url_field(:hop_ad,:link_to_ad)
+      %td= url_field(:ad,:link_to_ad)
     %tr
       %td= label_tag :price
-      %td= number_field(:hop_ad, :price)
+      %td= number_field(:ad, :price)
     %tr
-      %td= label_tag :hop_ad_picture
-      %td= file_field(:hop_ad, :hop_ad_picture)
+      %td= label_tag :ad_picture
+      %td= file_field(:ad, :hop_ad_picture)
   %div{:class=>"field", :id=>"radio_button" }
-    = radio_button(:hop_ad,:ad_type, "sp")
+    = radio_button(:ad,:ad_type, "sp")
     %b
       SP
-    = radio_button(:hop_ad, :ad_type, "rofl")
+    = radio_button(:ad, :ad_type, "rofl")
     %b
       ROFL
     - if @hop.daily_hop
-      = radio_button(:hop_ad, :ad_type, "ropu")
+      = radio_button(:ad, :ad_type, "ropu")
       %b
         ROPU
   %div{:class=>"actions"}

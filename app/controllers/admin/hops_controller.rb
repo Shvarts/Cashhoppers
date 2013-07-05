@@ -35,6 +35,7 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops/new
   # GET /hops/new.json
   def new
+
     @hop = Hop.new
     @hop.daily_hop = true if params[:daily_hop]
 
@@ -55,7 +56,6 @@ class Admin::HopsController < Admin::AdminController
   # POST /hops.json
   def create
     params[:hop][:producer_id]=current_user.id
-    p params[:hop]
     @hop = Hop.new(params[:hop])
 
     respond_to do |format|
@@ -90,11 +90,11 @@ class Admin::HopsController < Admin::AdminController
   # DELETE /hops/1.json
   def destroy
     @hop = Hop.find(params[:id])
-
+    daily_hop=@hop.daily_hop
     @hop.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_hops_path(:daily_hop =>1) }
+      format.html { redirect_to admin_hops_path(:daily_hop =>daily_hop) }
       format.json { head :no_content }
     end
   end
