@@ -76,15 +76,12 @@
 %h3
   Create task
 = form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
-  -if @hop_task.errors.any?
+  -if flash[:hop_task_error]
     %div#error_explanation
-      %h2
-        = pluralize(@hop_task.errors.count, "error")
-        prohibited this hop_task from being saved:
-      %ul
-        -@hop_task.errors.full_messages.each do |msg|
+      -flash[:hop_task_error].each do |i|
+        %ul
           %li
-            = msg
+            =i
   = text_field(:hop_task, :text_for_hop, :placeholder=>"text for task", :class=>"span10")
   = number_field(:hop_task, :pts, :placeholder=>"PTS")
   = number_field(:hop_task, :bonus, :placeholder=>"bonus")
@@ -93,28 +90,28 @@
       = number_field(:hop_task, :sponsor_name,:placeholder=>"sponsor name",:class=>"span10")
       = number_field(:hop_task, :hop_task_price, :placeholder=>"price", :class=>"span2")
     = file_field(:hop_task, :hop_picture)
+    = number_field(:hop_task, :amt, :placeholder=>"AMT")
   %br
     = submit_tag
 %h3
   Create ad
 %br
 = form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
-  -if @hop_ad.errors.any?
+  -if flash[:hop_ad_error]
     %div#error_explanation
-      %h2
-        = pluralize(@hop_ad.errors.count, "error")
-        prohibited this hop_task from being saved:
-      %ul
-        -@hop_ad.errors.full_messages.each do |msg|
+      -flash[:hop_ad_error].each do |i|
+        %ul
           %li
-            = msg
+            =i
   = text_field(:ad, :ad_name, :placeholder=>"name")
   = text_field(:ad,:contact, :placeholder=>"Contact")
   = email_field(:ad,:email, :placeholder=>"email")
   = text_field(:ad,:phone, :placeholder=>"phone")
   = url_field(:ad,:link_to_ad, :placeholder=>"link to ad")
   = number_field(:ad, :price, :placeholder=>"price")
+  = number_field(:ad, :amt, :placeholder=>"AMT")
   = file_field(:ad, :hop_ad_picture)
+  %br
   %div{:class=>"field", :id=>"radio_button" }
     = radio_button(:ad,:ad_type, "sp", :checked => true )
     %b

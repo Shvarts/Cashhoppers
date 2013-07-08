@@ -45,7 +45,9 @@ class Admin::HopTasksController < Admin::AdminController
       if @hop_task.save
          redirect_to :back, :notice => 'Hop task was successfully created.'
       else
-          redirect_to admin_hop_path(@hop)
+
+        flash[:hop_task_error] = @hop_task.errors.full_messages
+        redirect_to admin_hop_path(@hop)
 
       end
 

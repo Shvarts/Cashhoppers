@@ -5,8 +5,8 @@ class Admin::HopsController < Admin::AdminController
   before_filter :parse_datetime_select, :only => [:create, :update]
 
   def index
-
-   if params[:daily_hop]
+  #  render :text=>params[:daily_hop].to_s.to_bool
+   if params[:daily_hop].to_s.to_bool
      @daily_hop=1
      @hops= Hop.daily_all
    else
@@ -20,9 +20,13 @@ class Admin::HopsController < Admin::AdminController
   def show
 
     @hop = Hop.find(params[:id])
-    @hop_task=HopTask.new
-    @hop_ad=Ad.new
+    @hop_task_errors=params[:hop_task_errors].to_json
+    @hop_task = HopTask.new
 
+    @hop_ad=Ad.new
+    puts "_________________________________________________________________"
+    puts params
+    puts "_________________________________________________________________"
   end
 
 
@@ -73,11 +77,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.find(params[:id])
      @daily_hop=@hop.daily_hop
     @hop.destroy
-
-
-       redirect_to admin_hops_path(:daily_hop => @daily_hop)
-
-
+    redirect_to admin_hops_path(:daily_hop => @daily_hop)
   end
 
   def close
@@ -97,14 +97,18 @@ class Admin::HopsController < Admin::AdminController
   private
   def parse_datetime_select
 
-    {:date_start => :time_start, :date_end => :time_end}.each_pair do |k, v|
+    date=[params[:date_start].to_a,params[:date_end].to_a]
+    if date.flatten.include?('')
+      params[:hop][:time_start]=params[:hop][:time_end]=nil
+    else
+      {:date_start => :time_start, :date_end => :time_end}.each_pair do |k, v|
       p = params[k]
       params[:hop][v] = DateTime.new(Date.today.year,
                                      p["#{v}(2i)"].to_i,
                                      p["#{v}(3i)"].to_i,
                                      p["#{v}(4i)"].to_i,
                                      p["#{v}(5i)"].to_i)
+      end
     end
-
   end
 end
