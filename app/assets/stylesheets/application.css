@@ -12,25 +12,3 @@
  *= require_tree .
  */
 
-.page{
-    margin: 0 auto;
-    width: 1000px;
-}
-
-
-
-}
-body select{
-    width: 70px;
-
-}
-div#radio_button{
-     display:inline;
-}
-
-table#show tr td {
-    width: 120px;
-    height: 40px;
-    text-align: center;
-
-}
