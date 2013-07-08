@@ -24,9 +24,6 @@ class Admin::HopsController < Admin::AdminController
     @hop_task = HopTask.new
 
     @hop_ad=Ad.new
-    puts "_________________________________________________________________"
-    puts params
-    puts "_________________________________________________________________"
   end
 
 

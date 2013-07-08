@@ -1,0 +1,46 @@
+<h1>Send message</h1>
+<br />
+<%= form_tag() do %>
+    <table>
+      <tr>
+        <td class ="span4">Filters</td>
+        <td class ="span4">Hop</td>
+        <td class ="span4">Zip code</td>
+        <td class ="span4">User id</td>
+      </tr>
+      <tr>
+        <td><%= %></td>
+        <td><%= text_field_tag(:hop, nil, :class=>"input-mini") %></td>
+        <td><%= text_field_tag(:zip, nil, :class=>"input-mini") %></td>
+        <td><%= text_field_tag(:user, nil, :class=>"input-mini") %></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td id="top"><%= text_field_tag(:user, nil, :class=>"input-medium ",  :placeholder=>"SEND FORM") %></td>
+        <td><%= text_area_tag(:user, nil, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10") %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><%= submit_tag("SEND", :class=>"span10 btn btn-success", ) %></td>
+        <td></td>
+      </tr>
+
+    </table>
+<% end %>
+
+<%= form_tag() do %>
+    <table>
+      <tr>
+        <td class="span3"><%= submit_tag("SCHEDULE SEND", :class=>" btn btn-success" ) %></td>
+        <td class="span3"><%= text_field_tag(:hop, nil, :class=>"input-small", :placeholder=>"DATE" ) %></td>
+        <td class="span3"><%= text_field_tag(:hop, nil, :class=>"input-small", placeholder: "Time" ) %></td>
+      </tr>
+    </table>
+<% end %>
+
+<div class="pull-right"><%= link_to "Message history"%></div>
