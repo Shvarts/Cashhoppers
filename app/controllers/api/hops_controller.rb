@@ -1,7 +1,10 @@
 class Api::HopsController < Api::ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:index, :daily]
 
   def index
-    @hops = Hop.regular.paginate(:page => params[:page])
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+    @hops = Hop.regular.paginate(page: params[:page], per_page: params[:per_page])
     invalid_login_attempt('hops not found') if @hops.blank?
   end
 

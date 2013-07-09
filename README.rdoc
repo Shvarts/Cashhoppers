@@ -101,13 +101,16 @@ response JSON
     {"picture_url":"/images/ad_pictures/ads/4/AD_PICTURE.jpg?1372405353","success":true}
 
 ===hops method:GET
-Return all regular hops (not daily) by 30 per page
+Return all regular hops (not daily) by 10 per page(default)
 
-request: hops.json?api_key={api_key}
+request JSON:
+
+
+    curl -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/get_hops
 
 Return curr date daily hops
 
-request: hops/daily.json?api_key={api_key}
+request JSON:
 
 response JSON: 
           hops: [ 
