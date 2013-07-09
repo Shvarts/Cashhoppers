@@ -1,0 +1,28 @@
+
+
+<%= grid(@hops_grid, upper_pagination_panel: true) do |g|
+
+
+
+  g.column name:'ID', attribute: 'id', filter_type: :range
+
+
+
+  g.column name:'Name', attribute: 'name'
+
+
+  g.column name:'Time start', attribute: 'time_start' , helper_style: :standard do |hop|
+    hop.time_start.to_s()
+  end
+
+  g.column name:'Daily', attribute: 'daily_hop', auto_reload:  true do |hop|
+    hop.daily_hop ? 'Yes' : 'No'
+  end
+
+  g.column name:'Close', attribute: 'close', auto_reload:  true do |hop|
+    hop.close ? 'Yes' : 'No'
+  end
+
+
+
+end -%>
