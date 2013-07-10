@@ -106,7 +106,7 @@ Return all regular hops (not daily) by 10 per page(default)
 request JSON:
 
 
-    curl -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/get_hops
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/hops
 
 Return curr date daily hops
 
