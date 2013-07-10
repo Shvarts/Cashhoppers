@@ -10,5 +10,7 @@
   %li
     = link_to 'Ad', admin_ads_path if can? :manage, :all
   %li
-    = link_to 'Users', admin_hoppers_list_path if can? :manage, :all
+    = link_to 'Messages',  admin_messages_email_tool_path if can? :manage, :all
+  %li
+    = link_to 'Hoppers',  admin_hoppers_find_hopper_path if can? :manage, :all
 

@@ -1,0 +1,39 @@
+<%= render :partial => "admin_hoppers_links" %>
+
+
+<h2>Generate hopper list</h2>
+<br />
+<%= form_tag() do %>
+    <table class="pull-right"  >
+      <tr>
+        <td class ="span4">By user name</td>
+        <td class ="span4">By user id</td>
+      </tr>
+      <tr>
+        <td><%= text_field_tag(:hopper_name, nil, :class=>"input-mini")%></td>
+        <td><%= text_field_tag(:hopper_id, nil, :class=>"input-mini") %></td>
+      </tr>
+      <tr>
+        <td><%= submit_tag("Find hopper", :class=>"span9 pull-right" ) %></td>
+      </tr>
+    </table>
+
+<% end %>
+
+<fieldset>
+
+  TEXT
+</fieldset>
+
+   <div class="form-inline">
+     <%= button_to("Email to list",'#', :class=>"span4 btn btn-success" ) %>
+     <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
+
+   </div>
+
+
+   <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success" ) %>
+   <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
+
+
+
