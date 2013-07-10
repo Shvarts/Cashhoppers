@@ -1,8 +1,17 @@
 
 
-<%= grid(@hops_grid, upper_pagination_panel: true) do |g|
+<%= grid(@hops_grid, upper_pagination_panel: true,  allow_showing_all_records:  false) do |g|
 
 
+  g.last_row do |number_of_columns|
+    content_tag(:tr,
+                content_tag(:td,
+                            content_tag(:button, "Don't panic", class: "btn btn-info"),
+                            colspan: 9),
+                class: 'last-row pull-right')
+  end
+
+  g.action_column
 
   g.column name:'ID', attribute: 'id', filter_type: :range
 
@@ -24,5 +33,5 @@
   end
 
 
-
 end -%>
+

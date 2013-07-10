@@ -9,6 +9,7 @@ CashHoppers::Application.routes.draw do
       resources :hops
       resources :hop_tasks
       resources :ads
+      post '/messages/close_grid' => "messages#close_grid"
       match '/messages/wice_grid' => "messages#wice_grid"
       match '/messages/email_tool' => "messages#email_tool"
       match '/messages/message_tool' => "messages#message_tool"
