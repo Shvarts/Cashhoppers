@@ -9,4 +9,6 @@
     = link_to 'Applications', admin_applications_path if can? :manage, :all
   %li
     = link_to 'Ad', admin_ads_path if can? :manage, :all
+  %li
+    = link_to 'Users', admin_hoppers_list_path if can? :manage, :all
 

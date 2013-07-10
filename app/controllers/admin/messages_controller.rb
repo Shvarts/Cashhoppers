@@ -1,13 +1,15 @@
 class Admin::MessagesController < ApplicationController
-  layout "application", except: [:wice_grid]
+  before_filter :authenticate_user!
+
+
   def email_tool
-    puts"-------------------------------#{flash[:text]}--------------------------------"
+
     @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
 
  end
   @var=12
   def wice_grid
-     puts"-----------------------------------------------------------------"
+
     @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
       :include => [:hop]
     )
@@ -21,6 +23,7 @@ class Admin::MessagesController < ApplicationController
 
   def close_grid
     if params[:close].to_i==0
+      session[:close]=0
       session.delete('close')
     else
      session[:close]=params["close"]

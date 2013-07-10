@@ -1,3 +1,4 @@
+ <%= render :partial => "admin/admin_sub_layout.html.erb"%>
 <h1>Send emails</h1>
 <br />
 <%= form_tag() do %>
@@ -44,15 +45,13 @@
 
 <div class="pull-right"><%= link_to "Email history"%></div>
 
-<%= session[:close] %>
+
 
 <div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog"
-    <% if session[:close].to_i==0 %>
+
       style="display: none;"
-    <% else %>
-      style="display: block;"
-    <%end%>
-" aria-labelledby="myModalLabel" aria-hidden="true">
+
+ aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
    <h3 id="myModalLabel">Modal header</h3>
   </div>
@@ -68,13 +67,4 @@
   </div>
 </div>
 
-<%= button_to 'search','#' , name: "menuitem" %>
-<div neme="#example-1">
-  <%= @var %>
-</div>
-
-
-<div id="example-1" class="example cursor">
-  Click to update
-</div>
 

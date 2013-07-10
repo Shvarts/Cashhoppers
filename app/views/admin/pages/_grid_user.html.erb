@@ -1,0 +1,15 @@
+<%= grid(@users_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+
+  g.column name: "ID", attribute: 'id', detach_with_id: :id_filter
+
+  g.column name:  'email', attribute: 'email', detach_with_id: :email_filter
+
+  g.column name:  'zip', attribute: 'zip', detach_with_id: :zip_filter
+
+  g.column name:  'first name', attribute: 'first_name', detach_with_id: :first_name_filter
+
+  g.column name:  'last name', attribute: 'last_name', detach_with_id: :last_name_filter
+
+end -%>
+
+
