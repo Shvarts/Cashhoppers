@@ -21,9 +21,6 @@
 
 <% end %>
 <fieldset >
-  <% if flash[:not_found] %>
-      <h3>  <%= flash[:not_found] %></h3>
-  <% end %>
 
   <table class="pull-right" >
 
@@ -91,6 +88,8 @@
         <td class ="span4"></td>
       </tr>
     </table>
+ <% else %>
+   <h3>Not Found</h3>
 
  <%end%>
 

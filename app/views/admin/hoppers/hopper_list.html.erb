@@ -21,9 +21,6 @@
 <% end %>
 
 <fieldset>
-  <% if flash[:not_found] %>
-      <h3>  <%= flash[:not_found] %></h3>
-  <% end %>
 
   <% if !@user.blank? %>
   <table>
@@ -46,6 +43,8 @@
     </tr>
 
   </table>
+  <% else %>
+      <h3>Not Found</h3>
 
   <% end %>
 
