@@ -1,0 +1,10 @@
+= render :partial => 'tabs'
+%ul
+- @friends.each do |friend|
+  %li
+    = friend.firstname
+    = friend.lastname
+    = friend.email
+
+
+

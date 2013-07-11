@@ -42,7 +42,8 @@ CashHoppers::Application.routes.draw do
   get 'services/add_zip', :to => 'services#add_zip'
  
   resources :services, :only => [:index, :create, :destroy]
-
-
   resources :ad_types
+
+  get 'friends', :to => 'friends#friends'
+  get 'find_friends', :to => 'friends#find_friends'
 end

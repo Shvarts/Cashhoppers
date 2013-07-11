@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy
+  has_and_belongs_to_many :friends,
+                          :class_name => 'User',
+                          :association_foreign_key => 'friend_id',
+                          :join_table => 'friends_users'
 
 
   before_create :create_role
