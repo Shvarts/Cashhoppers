@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.string   "link_to_ad"
     t.integer  "hop_id"
     t.integer  "sponsor_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "hop_ad_picture_file_name"
     t.string   "hop_ad_picture_content_type"
     t.integer  "hop_ad_picture_file_size"
     t.datetime "hop_ad_picture_updated_at"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
     t.integer  "amt"
   end
 

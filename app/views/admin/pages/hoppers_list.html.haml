@@ -1,0 +1,39 @@
+.well
+  %h2 Users
+
+- render partial:  'grid_user'
+
+.row-fluid
+  .span2
+    User id:
+  .span10
+    = grid_filter @users_grid, :id_filter
+
+.row-fluid
+  .span2
+    User email
+  .span10
+    = grid_filter @users_grid, :email_filter
+
+.row-fluid
+  .span2
+    Zip
+  .span10
+    = grid_filter @users_grid, :zip_filter
+
+.row-fluid
+  .span2
+    First name
+  .span10
+    = grid_filter @users_grid, :first_name_filter
+
+.row-fluid
+  .span2
+    Last name
+  .span10
+    = grid_filter @users_grid, :last_name_filter
+
+.row-fluid
+  .span12
+
+    = render_grid(@users_grid)
