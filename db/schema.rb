@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711114046) do
+ActiveRecord::Schema.define(:version => 20130711140424) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(:version => 20130711114046) do
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
+
+  create_table "hoppers_hops", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "hop_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "hops", :force => true do |t|
     t.string   "name"

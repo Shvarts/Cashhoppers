@@ -1,4 +1,7 @@
 class Hop < ActiveRecord::Base
+
+  has_and_belongs_to_many :hoppers, :join_table =>"hoppers_hops" , :class_name=>"User"
+
   has_many :hop_tasks, :dependent => :destroy
   has_many :ads,  :dependent => :destroy
   belongs_to :user
