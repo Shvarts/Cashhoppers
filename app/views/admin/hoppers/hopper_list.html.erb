@@ -3,15 +3,15 @@
 
 <h2>Generate hopper list</h2>
 <br />
-<%= form_tag() do %>
+<%= form_tag admin_hoppers_search_hoppers_path do %>
     <table class="pull-right"  >
       <tr>
-        <td class ="span4">By user name</td>
-        <td class ="span4">By user id</td>
+        <td class ="span4">By hop name</td>
+        <td class ="span4">By zip</td>
       </tr>
       <tr>
-        <td><%= text_field_tag(:hopper_name, nil, :class=>"input-mini")%></td>
-        <td><%= text_field_tag(:hopper_id, nil, :class=>"input-mini") %></td>
+        <td><%= text_field_tag(:hop_id, nil, :class=>"input-mini")%></td>
+        <td><%= text_field_tag(:zip, nil, :class=>"input-mini") %></td>
       </tr>
       <tr>
         <td><%= submit_tag("Find hopper", :class=>"span9 pull-right" ) %></td>
@@ -21,8 +21,34 @@
 <% end %>
 
 <fieldset>
+  <% if flash[:not_found] %>
+      <h3>  <%= flash[:not_found] %></h3>
+  <% end %>
 
-  TEXT
+  <% if !@user.blank? %>
+  <table>
+
+    <tr>
+      <td class ="span4">Hop name</td>
+      <td class ="span4"><%= @user.id %></td>
+    </tr>
+    <tr>
+      <td class ="span4">User id</td>
+      <td class ="span4"><%= @user.user_name %></td>
+    </tr>
+    <tr>
+      <td class ="span4">Password</td>
+      <td class ="span4"><%= @user.hops.count  %></td>
+    </tr>
+    <tr>
+      <td class ="span4">Name</td>
+      <td class ="span4"><%=  %></td>
+    </tr>
+
+  </table>
+
+  <% end %>
+
 </fieldset>
 
    <div class="form-inline">
@@ -34,6 +60,5 @@
 
    <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success" ) %>
    <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
-
 
 

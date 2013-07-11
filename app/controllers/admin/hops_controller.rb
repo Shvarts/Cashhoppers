@@ -55,18 +55,17 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def update
-
+ puts("______________________________________!!!!!!!!!!!!!!!!!!!")
     @hop = Hop.find(params[:id])
 
-    respond_to do |format|
       if @hop.update_attributes(params[:hop])
+
         redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
-
       else
-        render action: "edit"
 
-      end
-    end
+        render action: "edit"
+     end
+
   end
 
 
