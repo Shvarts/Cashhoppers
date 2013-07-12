@@ -25,7 +25,7 @@
 
 
   <% if !@user.blank? %>
-  <table>
+  <table class="table-bordered">
 
     <tr>
       <td class ="span4">User id</td>
@@ -52,14 +52,10 @@
 
 </fieldset>
 
-   <div class="form-inline">
-     <%= button_to("Email to list",'#', :class=>"span4 btn btn-success" ) %>
-     <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
-
-   </div>
-
-
-   <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success" ) %>
-   <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
+  <%= button_to("Email to list",'#', :class=>"span4 btn btn-success pull-right" ) %>
+ <br />
+  <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success pull-right" ) %>
+  <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
+  <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
 
 

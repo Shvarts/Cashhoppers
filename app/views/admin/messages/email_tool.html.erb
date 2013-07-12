@@ -1,7 +1,25 @@
 <%= render :partial => "admin_messages_tool.html.haml"%>
 <h1>Send emails</h1>
 <br />
-<%= form_tag() do %>
+
+<% if flash[:success] %>
+    <%= flash[:success] %>
+<% end %>
+
+<%= form_for @message, :url=>admin_messages_create_email_path do |e| %>
+
+    <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this hop_task from being saved:</h2>
+
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
 <table>
   <tr>
     <td class ="span4">Filters</td>
@@ -11,50 +29,47 @@
   </tr>
   <tr>
     <td><%= %></td>
-    <td>
-      <%= text_field_tag(:hop, nil, :class=>"input-mini", onclick:"$('#myModal').modal()" ) %>
-    </td>
-
-    <td><%= text_field_tag(:zip, nil, :class=>"input-mini") %></td>
-    <td><%= text_field_tag(:user, nil, :class=>"input-mini") %></td>
+    <td><%= e.text_field :receiver_id, :class=>"input-mini"  %></td>
+    <td><%= e.text_field :receiver_id, :class=>"input-mini" %></td>
+    <td><%= e.text_field :receiver_id, :class=>"input-mini" %></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td class="span5"><%= text_field_tag(:user, nil, :class=>"input-medium", :placeholder=>"TEMPLATE") %></td>
-    <td><%= text_field_tag(:user, nil, :class=>"input-xlarge", :placeholder=>"SABJECT LINE") %></td>
+    <td class="span5"><%= e.radio_button :template,"temp1", :checked => true %>Temp 1 <%= e.radio_button :template, "temp2" %>Temp 2  <%= e.radio_button :template, "temp3" %>Temp 3</td>
+    <td><%= e.text_field :subject, :class=>"input-xlarge", :placeholder=>"SABJECT LINE" %></td>
   </tr>
   <tr>
-    <td><%= text_field_tag(:user, nil, :class=>"input-medium",  :placeholder=>"SEND FORM") %></td>
+    <td><%= e.select :email_author, ['HOPMASTER@CashHoppers.com',current_user.email],:class=>"input-medium",  :placeholder=>"SEND FROM" %></td>
     <td></td>
   </tr>
   <tr>
-    <td><%= text_field_tag(:user, nil, :class=>"input-medium",  :placeholder=>"ATTACHE FILE") %></td>
+    <td><%= e.file_field :file, :class=>"input-medium",  :placeholder=>"ATTACHE FILE" %></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
-    <td><%= text_area_tag(:user, nil, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10") %></td>
+    <td><%= e.text_area :email_text ,:class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10" %></td>
   </tr>
   <tr>
-    <td><%= submit_tag("SEND", :class=>"input-medium btn btn-success", "data-toggle" => "modal" ) %></td>
+    <td><%= e.submit "SEND", :class=>"input-medium btn btn-success" %></td>
   </tr>
 </table>
 <% end %>
 
-<div class="pull-right"><%= link_to "Email history"%></div>
+<div class="pull-right"><%= link_to  "Email history", admin_messages_email_history_path%></div>
 
 
 
 <div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
+  <div class="modal-header" onclick:"$('#myModal').modal()">
    <h3 id="myModalLabel">Modal header</h3>
   </div>
   <div class="modal-body">
     <div id="myModal" class="example cursor">
 
-      <%= render partial: "wice_grid" %>
+      <= render partial: "wice_grid" %>
     </div>
   </div>
   <div class="modal-footer">

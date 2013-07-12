@@ -1,7 +1,25 @@
 <%= render :partial => "admin_messages_tool.html.haml"%>
 <h1>Send message</h1>
 <br />
-<%= form_tag() do %>
+
+<% if flash[:success] %>
+    <%= flash[:success] %>
+<% end %>
+
+<%= form_for @message, url: admin_messages_create_message_path do |f| %>
+
+    <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this hop_task from being saved:</h2>
+
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
     <table>
       <tr>
         <td class ="span4">Filters</td>
@@ -11,23 +29,23 @@
       </tr>
       <tr>
         <td><%= %></td>
-        <td><%= text_field_tag(:hop, nil, :class=>"input-mini") %></td>
-        <td><%= text_field_tag(:zip, nil, :class=>"input-mini") %></td>
-        <td><%= text_field_tag(:user, nil, :class=>"input-mini") %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
       </tr>
     </table>
 
     <table>
       <tr>
-        <td id="top"><%= text_field_tag(:user, nil, :class=>"input-medium ",  :placeholder=>"SEND FORM") %></td>
-        <td><%= text_area_tag(:user, nil, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10") %></td>
+        <td id="top"><%= f.select :email_author, ['HOPMASTER@CashHoppers.com',current_user.email],:class=>"input-medium"%></td>
+        <td><%= f.text_area :text, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10" %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td><%= submit_tag("SEND", :class=>"span10 btn btn-success", ) %></td>
+        <td><%= f.submit "SEND", :class=>"span10 btn btn-success",  %></td>
         <td></td>
       </tr>
 
@@ -44,4 +62,4 @@
     </table>
 <% end %>
 
-<div class="pull-right"><%= link_to "Message history"%></div>
+<div class="pull-right"><%= link_to "Message history", admin_messages_message_history_path %></div>

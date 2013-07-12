@@ -1,0 +1,27 @@
+<h2>Messages list</h2>
+<table class="table">
+  <tr>
+    <td>Message from</td>
+    <td>Text</td>
+    <td>Receiver id</td>
+    <td>Author id</td>
+  </tr>
+    <% if !@messages.blank? %>
+      <% for i in @messages do %>
+          <tr>
+            <td><%= i.email_author %></td>
+            <td><%= i.text %></td>
+            <td><%= i.receiver_id %></td>
+            <td><%= i.author_id %></td>
+          </tr>
+      <% end %>
+     <% else %>
+        <tr>
+        <h1>Not Found</h1>
+        </tr>
+     <% end %>
+
+
+</table>
+
+<%= link_to "Back", admin_messages_message_tool_path %>
