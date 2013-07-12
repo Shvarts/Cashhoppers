@@ -7,4 +7,8 @@
     = link_to 'My Services', services_path
   %li
     = link_to 'Friends', friends_path
+  %li
+    = link_to 'Messages(to admin)',  admin_messages_email_tool_path if can? :manage, :all
+  %li
+    = link_to 'Hoppers(to admin)',  admin_hoppers_find_hopper_path if can? :manage, :all
 

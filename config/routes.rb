@@ -1,6 +1,7 @@
 CashHoppers::Application.routes.draw do
 
 
+
   root :to => 'pages#home'
 
   namespace :admin do
@@ -9,7 +10,10 @@ CashHoppers::Application.routes.draw do
       resources :hops
       resources :hop_tasks
       resources :ads
-      get '/pages/hoppers_list', :as=>"hoppers_list"
+      match "hoppers/find_hopper"
+      match "hoppers/hopper_list"
+      match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
+      match '/hoppers/search_hopper' => "hoppers#search_hopper"
       post '/messages/close_grid' => "messages#close_grid"
       match '/messages/wice_grid' => "messages#wice_grid"
       match '/messages/email_tool' => "messages#email_tool"

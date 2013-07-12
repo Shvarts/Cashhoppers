@@ -1,0 +1,114 @@
+<%= render :partial => "admin_hoppers_links" %>
+
+
+<h2>Find hopper</h2>
+<br />
+
+<%= form_tag admin_hoppers_search_hopper_path do %>
+    <table class="pull-right"  >
+      <tr>
+        <td class ="span4">By user name</td>
+        <td class ="span4">By user id</td>
+      </tr>
+      <tr>
+        <td><%= text_field_tag(:name, nil, :class=>"input-mini")%></td>
+        <td><%= text_field_tag(:id, nil, :class=>"input-mini") %></td>
+      </tr>
+      <tr>
+        <td><%= submit_tag("Find hopper", :class=>"span9 pull-right" ) %></td>
+      </tr>
+    </table>
+
+<% end %>
+<fieldset >
+  <% if flash[:not_found] %>
+      <h3>  <%= flash[:not_found] %></h3>
+  <% end %>
+
+  <table class="pull-right" >
+
+    <tr>
+      <td class ="span4">Hops played  </td>
+      <td class ="span4">Hops won</td>
+
+    </tr>
+    <tr>
+      <td ><%= text_area_tag(:text, nil, :rows=>"5") %></td>
+      <td> <%= text_area_tag(:text, nil, :rows=>"5") %></td>
+    </tr>
+
+  </table>
+
+
+<% if !@user.blank? %>
+
+  <table>
+
+      <tr>
+        <td class ="span4">User name</td>
+        <td class ="span4"><%= @user.first_name %></td>
+        <td><img src="..." class="img-rounded"><% @user.avatar.url %></td>
+
+      </tr>
+      <tr>
+        <td class ="span4">User id</td>
+        <td class ="span4"><%= @user.id %></td>
+      </tr>
+      <tr>
+        <td class ="span4">Password</td>
+        <td class ="span4"><%= @user.password %></td>
+      </tr>
+      <tr>
+        <td class ="span4">Name</td>
+        <td class ="span4"><%= @user.user_name %></td>
+      </tr>
+
+      <tr>
+        <td class ="span4">Zip</td>
+        <td class ="span4"><%= @user.zip %></td>
+      </tr>
+
+      <tr>
+        <td class ="span4">Email</td>
+        <td class ="span4"><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <td class ="span4">Phone</td>
+        <td class ="span4"><%= @user.user_name %></td>
+      </tr>
+      <tr>
+        <td class ="span4">Facebook id</td>
+        <td class ="span4"><%= @user.user_name %></td>
+      </tr>
+
+      <tr>
+        <td class ="span4">Twitter id</td>
+        <td class ="span4"><%= @user.user_name %></td>
+      </tr>
+      <tr>
+        <td class ="span4">Player since</td>
+        <td class ="span4"></td>
+      </tr>
+    </table>
+
+ <%end%>
+
+    <table>
+      <tr>
+        <td class="span9"><%= submit_tag("Send email to user", :class=>"span9 pull-right  btn-success span10" ) %></td>
+      </tr>
+      <tr>
+        <td class="span9"><%= submit_tag("Send app massege to user", :class=>"span9 pull-right  btn-success" ) %></td>
+      </tr>
+      <tr>
+        <td class="span9"><%= submit_tag("send text to user", :class=>"span9 pull-right  btn-success" ) %></td>
+      </tr>
+    </table>
+
+
+</fieldset>
+
+<%= button_to("Export file to PDF",nil, :class=>"span7 pull-right btn btn-success" ) %>
+
+<%= button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" ) %>
