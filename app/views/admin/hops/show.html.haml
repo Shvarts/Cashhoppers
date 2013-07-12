@@ -1,5 +1,3 @@
-%p{:id=>"notice"}
-  =notice
 %table{:class=>"table, table-bordered table-condensed"}
   %tr
     %td
@@ -13,40 +11,41 @@
         Time end:
   %tr
     %td
-      =@hop.name
+      = @hop.name
     %td
-      =@hop.time_start
+      = @hop.time_start
     %td
-      =@hop.time_end
+      = @hop.time_end
   %tr
     -if !@hop.daily_hop
       %tr
         %td
           %b
-            Showprod id:
+            Producer:
         %td
           %b
-            Showprod contact:
+            Producer contact:
         %td
           %b
-            Contact phone:
+            Producer phone:
         %td
           %b
-            Contact email:
+            Producer email:
         %td
           %b
             Hop code:
       %tr
         %td
-          =@hop.producer_id
+          = @hop.producer.first_name
+          = @hop.producer.last_name
         %td
-          = @hop.contact_phone
+          = @hop.producer.phone
         %td
-          = @hop.producer_contact
+          = @hop.producer.contact
         %td
-          = @hop.contact_email
+          = @hop.producer.email
         %td
-          = @hop.hop_code
+          = @hop.code
       %tr
         %td
           %b
@@ -56,17 +55,12 @@
             Jackpot:
         %td
           %b
-            Hop items:
-        %td
-          %b
             Special event:
       %tr
         %td
-          = @hop.hop_price
+          = @hop.price
         %td
           = @hop.jackpot
-        %td
-          = @hop.hop_items
         %td
           = @hop.event
 %br
@@ -82,13 +76,12 @@
         %ul
           %li
             =i
-  = text_field(:hop_task, :text_for_hop, :placeholder=>"text for task", :class=>"span10")
+  = text_field(:hop_task, :text, :placeholder=>"text for task", :class=>"span10")
   = number_field(:hop_task, :pts, :placeholder=>"PTS")
   = number_field(:hop_task, :bonus, :placeholder=>"bonus")
   -if !@hop.daily_hop
     %div{class: "controls controls-row"}
-      = number_field(:hop_task, :sponsor_name,:placeholder=>"sponsor name",:class=>"span10")
-      = number_field(:hop_task, :hop_task_price, :placeholder=>"price", :class=>"span2")
+      = number_field(:hop_task, :price, :placeholder=>"price", :class=>"span2")
     = file_field(:hop_task, :hop_picture)
     = number_field(:hop_task, :amt, :placeholder=>"AMT")
   %br
@@ -145,11 +138,12 @@
       %td
     %tr
       %td
-        = hop_task.sponsor_id
+        = hop_task.sponsor.first_name
+        = hop_task.sponsor.last_name
       %td
-        = hop_task.hop_task_price
+        = hop_task.price
       %td
-        = hop_task.text_for_hop
+        = hop_task.text
       %td
         = link_to 'Show', admin_hop_task_path(hop_task.id)
         = link_to 'Edit', edit_admin_hop_task_path(hop_task)

@@ -37,10 +37,11 @@ CashHoppers::Application.routes.draw do
 
       post 'sign_in_via_service' => 'sessions#sign_in_via_service'
 
-      resources :ads
+      resources :ads, :only => :index
       resources :hops do
         get :daily, :on => :collection
       end
+      get 'get_hop_tasks' => 'hops#get_hop_tasks'
     end
   end
 
@@ -48,7 +49,8 @@ CashHoppers::Application.routes.draw do
   get 'services/add_zip', :to => 'services#add_zip'
  
   resources :services, :only => [:index, :create, :destroy]
-
-
   resources :ad_types
+
+  get 'friends', :to => 'friends#friends'
+  get 'find_friends', :to => 'friends#find_friends'
 end

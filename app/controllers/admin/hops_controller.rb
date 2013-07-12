@@ -2,16 +2,15 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!
-  before_filter :parse_datetime_select, :only => [:create, :update]
 
   def index
   #  render :text=>params[:daily_hop].to_s.to_bool
-   if params[:daily_hop].to_s.to_bool
+  if params[:daily_hop].to_s.to_bool
      @daily_hop=1
      @hops= Hop.daily_all
-   else
+  else
      @hops = Hop.regular
-   end
+  end
 
  end
 
@@ -29,7 +28,7 @@ class Admin::HopsController < Admin::AdminController
 
   def new
     @hop = Hop.new
-    @hop.daily_hop = true if params[:daily_hop]
+    @hop.daily_hop = params[:daily_hop]? true: false
 
   end
 
@@ -42,32 +41,25 @@ class Admin::HopsController < Admin::AdminController
 
 
   def create
-    params[:hop][:producer_id]=current_user.id
+    params[:hop][:producer_id] = current_user.id
     @hop = Hop.new(params[:hop])
 
-
-      if @hop.save
-        redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
-      else
-        render action: "new"
-      end
+    if @hop.save
+      redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
+    else
+      render action: "new"
+    end
 
   end
 
   def update
- puts("______________________________________!!!!!!!!!!!!!!!!!!!")
     @hop = Hop.find(params[:id])
-
-      if @hop.update_attributes(params[:hop])
-
-        redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
-      else
-
-        render action: "edit"
-     end
-
+    if @hop.update_attributes(params[:hop])
+      redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
+    else
+      render action: "edit"
+    end
   end
-
 
   def destroy
     @hop = Hop.find(params[:id])
@@ -90,21 +82,4 @@ class Admin::HopsController < Admin::AdminController
     end
   end
 
-  private
-  def parse_datetime_select
-
-    date=[params[:date_start].to_a,params[:date_end].to_a]
-    if date.flatten.include?('')
-      params[:hop][:time_start]=params[:hop][:time_end]=nil
-    else
-      {:date_start => :time_start, :date_end => :time_end}.each_pair do |k, v|
-      p = params[k]
-      params[:hop][v] = DateTime.new(Date.today.year,
-                                     p["#{v}(2i)"].to_i,
-                                     p["#{v}(3i)"].to_i,
-                                     p["#{v}(4i)"].to_i,
-                                     p["#{v}(5i)"].to_i)
-      end
-    end
-  end
 end

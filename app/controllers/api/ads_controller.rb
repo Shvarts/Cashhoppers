@@ -1,4 +1,6 @@
 class Api::AdsController < Api::ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:index]
+
 
   def index
     if params[:ad_type].present?

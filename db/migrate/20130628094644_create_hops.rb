@@ -5,15 +5,11 @@ class CreateHops < ActiveRecord::Migration
       t.string :time_start
       t.string :time_end
       t.integer :producer_id
-      t.string :producer_contact
-      t.string :contact_phone
-      t.string :contact_email
-      t.string :hop_code
-      t.string :hop_price
-      t.string :jackpot
-      t.string :hop_items
-      t.integer :daily_hop
-      t.integer :close
+      t.string :code
+      t.string :price
+      t.integer :jackpot
+      t.boolean :daily_hop
+      t.boolean :close
       t.string :event
 
       t.timestamps

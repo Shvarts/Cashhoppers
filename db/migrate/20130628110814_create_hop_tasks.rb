@@ -2,10 +2,9 @@ class CreateHopTasks < ActiveRecord::Migration
   def change
     create_table :hop_tasks do |t|
       t.references :hop
-      t.text :text_for_hop
+      t.text :text
       t.integer :sponsor_id
-      t.string :hop_task_price
-      t.string :sponsor_name
+      t.string :price
 
       t.timestamps
     end

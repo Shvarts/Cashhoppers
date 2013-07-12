@@ -6,24 +6,17 @@ class Admin::HopTasksController < Admin::AdminController
   def index
     @hop = Hop.find(params[:hop_id])
     @hop_tasks = @hop.hop_tasks
-
-
   end
 
 
   def show
-
     @hop_task = HopTask.find(params[:id])
-
-
   end
 
 
   def new
-
     @hop = Hop.find(params[:hop_id])
     @hop_task = @hop.hop_tasks.build
-
   end
 
 

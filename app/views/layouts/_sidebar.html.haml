@@ -13,4 +13,6 @@
     = link_to 'Messages',  admin_messages_email_tool_path if can? :manage, :all
   %li
     = link_to 'Hoppers',  admin_hoppers_find_hopper_path if can? :manage, :all
+  %li
+    = link_to 'Friends', friends_path
 
