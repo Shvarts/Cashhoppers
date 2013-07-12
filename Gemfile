@@ -19,7 +19,8 @@ gem 'devise'
 gem 'cancan'
 gem "wice_grid", '3.2.1'
 gem 'paperclip'
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-datetimepicker-rails'
 
 group :development, :test do
   gem 'therubyracer'

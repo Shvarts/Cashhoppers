@@ -40,19 +40,6 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "daily_hops", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.text     "text_for_item"
-    t.string   "winner"
-    t.string   "points"
-    t.string   "share_point"
-    t.string   "jackpot"
-    t.string   "users"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "friends_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "friend_id"
@@ -60,10 +47,9 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
 
   create_table "hop_tasks", :force => true do |t|
     t.integer  "hop_id"
-    t.text     "text_for_hop"
+    t.text     "text"
     t.integer  "sponsor_id"
-    t.string   "hop_task_price"
-    t.string   "sponsor_name"
+    t.string   "price"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -82,18 +68,14 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.string   "time_start"
     t.string   "time_end"
     t.integer  "producer_id"
-    t.string   "producer_contact"
-    t.string   "contact_phone"
-    t.string   "contact_email"
-    t.string   "hop_code"
-    t.string   "hop_price"
-    t.string   "jackpot"
-    t.string   "hop_items"
-    t.boolean  "daily_hop",        :default => false
-    t.boolean  "close",            :default => false
+    t.string   "code"
+    t.string   "price"
+    t.integer  "jackpot"
+    t.boolean  "daily_hop"
+    t.boolean  "close"
     t.string   "event"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -135,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.string   "last_name"
     t.integer  "zip"
     t.string   "user_name"
+    t.string   "contact"
+    t.integer  "phone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :hops,  foreign_key: "producer_id"
-  has_many :hop_tasks,  foreign_key: "sponsor_id"
+
+  has_many :sponsored_hop_tasks, class_name: 'HopTask'
+  has_many :hop_tasks, :foreign_key => :sponsor_id
+
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy
@@ -19,7 +22,7 @@ class User < ActiveRecord::Base
          :token_authenticatable, :confirmable
 
   attr_accessible :email, :password, :last_name, :first_name, 
-         :user_name, :password_confirmation, :remember_me, :zip, :avatar
+         :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone
 
   has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",

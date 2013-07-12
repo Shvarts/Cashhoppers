@@ -37,6 +37,7 @@ CashHoppers::Application.routes.draw do
       resources :hops do
         get :daily, :on => :collection
       end
+      get 'get_hop_tasks' => 'hops#get_hop_tasks'
     end
   end
 
