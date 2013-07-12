@@ -6,7 +6,7 @@
 <%= form_tag admin_hoppers_search_hoppers_path do %>
     <table class="pull-right"  >
       <tr>
-        <td class ="span4">By hop name</td>
+        <td class ="span4">By hop id</td>
         <td class ="span4">By zip</td>
       </tr>
       <tr>
@@ -52,9 +52,9 @@
 
 </fieldset>
 
-  <%= button_to("Email to list",'#', :class=>"span4 btn btn-success pull-right" ) %>
+  <%= button_to "Email to list", admin_messages_email_tool_path,:class=>"span4 btn btn-success pull-right"  %>
  <br />
-  <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success pull-right" ) %>
+  <%= button_to "Messages to list", admin_messages_message_tool_path , :class=>"span4 btn btn-success pull-right"  %>
   <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
   <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
 

@@ -88,22 +88,24 @@
         <td class ="span4"></td>
       </tr>
     </table>
- <% else %>
-   <h3>Not Found</h3>
 
- <%end%>
 
     <table>
       <tr>
-        <td class="span9"><%= submit_tag("Send email to user", :class=>"span9 pull-right  btn-success span10" ) %></td>
+        <td class="span9"><%= button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9 pull-right  btn-success span10"  %></td>
       </tr>
       <tr>
-        <td class="span9"><%= submit_tag("Send app massege to user", :class=>"span9 pull-right  btn-success" ) %></td>
+        <td class="span9"><%= button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9 pull-right  btn-success"  %></td>
       </tr>
       <tr>
         <td class="span9"><%= submit_tag("send text to user", :class=>"span9 pull-right  btn-success" ) %></td>
       </tr>
     </table>
+
+  <% else %>
+      <h3>Not Found</h3>
+
+  <%end%>
 
 
 </fieldset>

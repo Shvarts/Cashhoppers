@@ -40,10 +40,10 @@ class Admin::MessagesController < ApplicationController
 
   def email_tool
     @message= Message.new
+    @message.receiver_id=params[:id]  if params[:id]
   #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
+  end
 
- end
-  @var=12
   def wice_grid
 
     @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
@@ -55,6 +55,7 @@ class Admin::MessagesController < ApplicationController
 
   def message_tool
     @message= Message.new
+    @message.receiver_id=params[:id]  if params[:id]
   end
 
   def close_grid
