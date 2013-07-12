@@ -1,13 +1,49 @@
 class Admin::MessagesController < ApplicationController
   before_filter :authenticate_user!
 
+  def message_history
+    @messages = Message.where(:email=>false)
+  end
+
+  def email_history
+    @emails=Message.find_all_by_email(true)
+  end
+
+  def create_email
+
+    params[:message][:author_id]=current_user.id
+    params[:message][:email]=true
+    @message = Message.new(params[:message])
+    if @message.save
+      flash[:success]="message has created"
+      redirect_to admin_messages_email_tool_path
+    else
+      flash[:success]="message has not created"
+      render admin_messages_email_tool_path
+    end
+  end
+
+  def create_message
+   #render :text=>params
+    params[:message][:author_id]=current_user.id
+    params[:message][:email]=false
+   @message = Message.new(params[:message])
+    if @message.save
+      flash[:success]="message has created"
+      redirect_to admin_messages_message_tool_path
+    else
+      flash[:success]="message has not created"
+      render admin_messages_message_tool_path
+    end
+  end
+
 
   def email_tool
+    @message= Message.new
+    @message.receiver_id=params[:id]  if params[:id]
+  #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
+  end
 
-    @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
-
- end
-  @var=12
   def wice_grid
 
     @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
@@ -18,7 +54,8 @@ class Admin::MessagesController < ApplicationController
   end
 
   def message_tool
-
+    @message= Message.new
+    @message.receiver_id=params[:id]  if params[:id]
   end
 
   def close_grid

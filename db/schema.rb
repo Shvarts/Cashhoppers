@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709060531) do
+ActiveRecord::Schema.define(:version => 20130712092238) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
 
+  create_table "hoppers_hops", :force => true do |t|
+    t.integer "user_id"
+    t.integer "hop_id"
+  end
+
   create_table "hops", :force => true do |t|
     t.string   "name"
     t.string   "time_start"
@@ -76,6 +81,23 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.string   "event"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "text"
+    t.integer  "author_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.boolean  "email"
+    t.string   "template"
+    t.string   "email_author"
+    t.text     "email_text"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "subject"
   end
 
   create_table "roles", :force => true do |t|
@@ -98,6 +120,18 @@ ActiveRecord::Schema.define(:version => 20130709060531) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_hop_tasks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "hop_task_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "user_hop_tasks", ["hop_task_id"], :name => "index_user_hop_tasks_on_hop_task_id"
+  add_index "user_hop_tasks", ["user_id"], :name => "index_user_hop_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

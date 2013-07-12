@@ -1,4 +1,5 @@
 class HopTask < ActiveRecord::Base
+  has_many :user_hop_tasks
   belongs_to :hop
   belongs_to :sponsor, class_name: 'User', foreign_key: :sponsor_id
 

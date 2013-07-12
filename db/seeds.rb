@@ -15,6 +15,9 @@ User.destroy_all
 admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
 admin.skip_confirmation!
 admin.save
+
+
+
 admin.roles = [Role.find_by_name(:admin)]
 
 5.times do |t|

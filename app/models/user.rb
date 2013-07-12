@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :hops,  foreign_key: "producer_id"
 
+  has_and_belongs_to_many :games, :join_table => "hoppers_hops" , :class_name=>"Hop"
+
+  has_many :hops,  foreign_key: "producer_id"
   has_many :sponsored_hop_tasks, class_name: 'HopTask'
   has_many :hop_tasks, :foreign_key => :sponsor_id
-
+  has_many :user_hop_tasks
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy

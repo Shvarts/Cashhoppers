@@ -6,7 +6,7 @@
 <%= form_tag admin_hoppers_search_hoppers_path do %>
     <table class="pull-right"  >
       <tr>
-        <td class ="span4">By hop name</td>
+        <td class ="span4">By hop id</td>
         <td class ="span4">By zip</td>
       </tr>
       <tr>
@@ -21,44 +21,41 @@
 <% end %>
 
 <fieldset>
-  <% if flash[:not_found] %>
-      <h3>  <%= flash[:not_found] %></h3>
-  <% end %>
+
+
 
   <% if !@user.blank? %>
-  <table>
+  <table class="table-bordered">
 
-    <tr>
-      <td class ="span4">Hop name</td>
-      <td class ="span4"><%= @user.id %></td>
-    </tr>
     <tr>
       <td class ="span4">User id</td>
-      <td class ="span4"><%= @user.user_name %></td>
+      <td class ="span4">User name</td>
+      <td class ="span4">email</td>
+      <td class ="span4">zip</td>
     </tr>
+ <% for i in @user do %>
     <tr>
-      <td class ="span4">Password</td>
-      <td class ="span4"><%= @user.hops.count  %></td>
+      <td class ="span4"><%= i.id %></td>
+      <td class ="span4"><%= i.user_name %></td>
+      <td class ="span4"><%= i.email  %></td>
+      <td class ="span4"><%= i.zip  %></td>
+      <td class ="span4"><%= i.email  %></td>
+      <td class ="span4"><%= i.zip  %></td>
     </tr>
-    <tr>
-      <td class ="span4">Name</td>
-      <td class ="span4"><%=  %></td>
-    </tr>
+  <% end %>
 
   </table>
+  <% else %>
+      <h3>Not Found</h3>
 
   <% end %>
 
 </fieldset>
 
-   <div class="form-inline">
-     <%= button_to("Email to list",'#', :class=>"span4 btn btn-success" ) %>
-     <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
-
-   </div>
-
-
-   <%= button_to("Messages to list",nil, :class=>"span4 btn btn-success" ) %>
-   <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
+  <%= button_to "Email to list", admin_messages_email_tool_path,:class=>"span4 btn btn-success pull-right"  %>
+ <br />
+  <%= button_to "Messages to list", admin_messages_message_tool_path , :class=>"span4 btn btn-success pull-right"  %>
+  <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
+  <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
 
 
