@@ -40,7 +40,7 @@ class Admin::MessagesController < ApplicationController
 
   def email_tool
     @message= Message.new
-    @message.receiver_id=params[:id]  if params[:id]
+    @message.receiver_id=params[:id]  if !params[:id].blank?
   #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
   end
 

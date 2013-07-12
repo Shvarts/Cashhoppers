@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20130712092238) do
   create_table "messages", :force => true do |t|
     t.string   "text"
     t.integer  "author_id"
-    t.integer  "receiver_id"
+    t.string   "receiver_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.boolean  "email"

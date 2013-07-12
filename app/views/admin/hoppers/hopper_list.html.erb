@@ -3,6 +3,7 @@
 
 <h2>Generate hopper list</h2>
 <br />
+
 <%= form_tag admin_hoppers_search_hoppers_path do %>
     <table class="pull-right"  >
       <tr>
@@ -52,9 +53,11 @@
 
 </fieldset>
 
-  <%= button_to "Email to list", admin_messages_email_tool_path,:class=>"span4 btn btn-success pull-right"  %>
+<% if !@user.blank? %>
+  <%= button_to "Email to list", admin_messages_email_tool_path({"id"=>@id}),:class=>"span4 btn btn-success pull-right"  %>
  <br />
-  <%= button_to "Messages to list", admin_messages_message_tool_path , :class=>"span4 btn btn-success pull-right"  %>
+  <%= button_to "Messages to list", admin_messages_message_tool_path({"id"=>@id}) , :class=>"span4 btn btn-success pull-right"  %>
+<% end %>
   <%= button_to("Export file to Exel",nil,  :class=>"span4 btn-success" ) %>
   <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
 
