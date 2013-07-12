@@ -11,7 +11,7 @@ Role.destroy_all
   Role.create(:name => role)
 end
 
-User.destroy_all(:email => 'admin@cashhoppers.com')
+User.destroy_all
 admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
 admin.skip_confirmation!
 admin.save
@@ -19,5 +19,19 @@ admin.save
 
 
 admin.roles = [Role.find_by_name(:admin)]
+
+5.times do |t|
+  user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+  user.skip_confirmation!
+  user.save
+  user.roles = [Role.find_by_name(:admin)]
+end
+
+60.times do |t|
+  user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+  user.skip_confirmation!
+  user.save
+  user.roles = [Role.find_by_name(:user)]
+end
 
 Application.create(:name => 'dev key', :api_key => '123')

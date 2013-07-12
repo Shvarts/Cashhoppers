@@ -40,12 +40,16 @@ ActiveRecord::Schema.define(:version => 20130712092238) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "friends_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+  end
+
   create_table "hop_tasks", :force => true do |t|
     t.integer  "hop_id"
-    t.text     "text_for_hop"
+    t.text     "text"
     t.integer  "sponsor_id"
-    t.string   "hop_task_price"
-    t.string   "sponsor_name"
+    t.string   "price"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "hop_picture_file_name"
@@ -71,18 +75,14 @@ ActiveRecord::Schema.define(:version => 20130712092238) do
     t.string   "time_start"
     t.string   "time_end"
     t.integer  "producer_id"
-    t.string   "producer_contact"
-    t.string   "contact_phone"
-    t.string   "contact_email"
-    t.string   "hop_code"
-    t.string   "hop_price"
-    t.string   "jackpot"
-    t.string   "hop_items"
-    t.boolean  "daily_hop",        :default => false
-    t.boolean  "close",            :default => false
+    t.string   "code"
+    t.string   "price"
+    t.integer  "jackpot"
+    t.boolean  "daily_hop"
+    t.boolean  "close"
     t.string   "event"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20130712092238) do
     t.string   "last_name"
     t.integer  "zip"
     t.string   "user_name"
+    t.string   "contact"
+    t.integer  "phone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

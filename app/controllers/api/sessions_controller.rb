@@ -1,5 +1,5 @@
 class Api::SessionsController < Devise::SessionsController
-  #skip_before_filter :authenticate_user!, :only => :create
+ skip_before_filter :authenticate_user!, :only => [:sign_in_via_service, :sign_up, :create, :confirm_registration]
 
  before_filter :check_api_key
 

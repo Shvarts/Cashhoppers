@@ -1,0 +1,21 @@
+= will_paginate @users
+%table.table.table-condensed
+  %tr
+    %th
+      First Name
+    %th
+      Last Name
+    %th
+  %tr
+    %td{colspan: 3}
+      = text_field_tag :input
+      = button_tag 'Search', class: 'btn'
+  - @users.each do |user|
+    %tr
+      %td
+        = user.first_name
+      %td
+        = user.last_name
+      %td{style: 'text-align: right'}
+        = link_to 'Add to friends', root_path, class: 'btn btn-mini'
+= will_paginate @users

@@ -1,2 +1,33 @@
-%h1 Search#hops_archive
-%p Find me in app/views/search/hops_archive.html.haml
+.well
+  %h2 Archived hops
+
+= render partial:  'grid'
+
+.row-fluid
+  .span2
+    ID:
+  .span10
+    = grid_filter @tasks_grid, :id_filter
+
+.row-fluid
+  .span2
+    Hop name:
+  .span10
+    = grid_filter @tasks_grid, :name_filter
+
+.row-fluid
+  .span2
+    Hop Producer ID:
+  .span10
+    = grid_filter @tasks_grid, :producer_id
+
+.row-fluid
+  .span12
+    .external-buttons
+      %button.btn.btn-primary.wg-external-submit-button{'data-grid-name' => 'grid'} Submit
+      %button.btn.wg-external-reset-button{'data-grid-name' => 'grid'} Reset
+
+.row-fluid
+  .span12
+
+    = render_grid(@tasks_grid)

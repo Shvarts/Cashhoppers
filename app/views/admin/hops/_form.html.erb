@@ -19,44 +19,46 @@
   </div>
   <div class="field">
     <b>Dates/times of hop</b>
-    <%= f.hidden_field :daily_hop%>
+    <%= f.hidden_field :daily_hop %>
+    <div id="datetimepicker1" class="input-append date">
+      <%= f.text_field :time_start, 'data-format' => 'dd/MM/yyyy hh:mm:ss', 'type' => 'text' %>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+        <script>
+          $(function(){
+              $('#datetimepicker1').datetimepicker({
+                  language: 'pt-BR'
+              });
+          });
+        </script>
+      </span>
+    </div>
 
-    <%= f.datetime_select :time_start, discard_year: true, prefix: :date_start, prompt: {day: 'day',
-                                                                     minute: 'minute' ,month: ' month', hour: 'hour'}%>
+    <% if !@hop.daily_hop %>
     <b> to </b>
-
-    <%= f.datetime_select :time_end, discard_year: true, prefix: :date_end, prompt: {day: 'day',
-                                                                   minute: 'minute' ,month: ' month', hour: 'hour'}%>
-
+    <div id="datetimepicker2" class="input-append date">
+      <%= f.text_field :time_end, 'data-format' => 'dd/MM/yyyy hh:mm:ss', 'type' => 'text' %>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+        <script>
+            $(function(){
+                $('#datetimepicker2').datetimepicker({
+                    language: 'pt-BR'
+                });
+            });
+        </script>
+      </span>
+    </div>
   </div>
 
-  <% if !@hop.daily_hop %>
 
-    <div class="field">
-      <b>Showprod id </b>
-      <%= f.text_field :producer_id %>
-    </div>
-
-    <div class="field">
-      <b> Showprod contact </b>
-      <%= f.text_field :producer_contact %>
-    </div>
-
-    <div class="field">
-      <b>Contact phone </b>
-      <%= f.text_field :contact_phone %>
-    </div>
-    <div class="field">
-      <b>Contact email </b>
-      <%= f.email_field :contact_email %>
-    </div>
     <div class="field">
       <b> Hop code </b>
-      <%= f.text_field :hop_code %>
+      <%= f.text_field :code %>
     </div>
     <div class="field">
       <b>  Hop price </b>
-      <%= f.text_field :hop_price %>
+      <%= f.text_field :price %>
     </div>
 
     <div class="field">
@@ -66,11 +68,6 @@
     <div class="field">
       <b>  Jackpot </b>
       <%= f.text_field :jackpot %>
-    </div>
-    <div class="field">
-      <b>  Hop items </b>
-      <%= f.text_field :hop_items %>
-
     </div>
 
   <%end%>
