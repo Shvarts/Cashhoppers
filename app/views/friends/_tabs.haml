@@ -2,13 +2,14 @@
   %li{:class => ('active' if params[:tab] == :friends)}
     =link_to 'Friends', friends_path
   %li{:class => ('active' if params[:tab] == :find_friends)}
-    = link_to 'Find friends', find_friends_path
+    = link_to 'Find', find_friends_path
   %li
     %a{href: "#"}
-      Invite facebook friends
+      Facebook
   %li
     %a{href: "#"}
-      Invite twitter friends
+      Twitter
   %li
     %a{href: "#"}
-      Invite google + friends
+      Google +
+= yield

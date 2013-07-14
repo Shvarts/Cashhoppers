@@ -21,9 +21,10 @@ gem "wice_grid", '3.2.1'
 gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datetimepicker-rails'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
-  gem 'therubyracer'
+  gem 'therubyracer', :platform => :ruby
   gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'database_cleaner'

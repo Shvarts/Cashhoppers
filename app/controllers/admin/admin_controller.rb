@@ -6,6 +6,4 @@ class Admin::AdminController < ApplicationController
     'admin/admin_sub_layout'
   end
 
-
-
 end

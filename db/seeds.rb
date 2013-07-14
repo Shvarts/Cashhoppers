@@ -28,7 +28,7 @@ admin.roles = [Role.find_by_name(:admin)]
 end
 
 60.times do |t|
-  user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+  user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => "admin_#{t}", :last_name => "admin_#{t}", :zip => 88000, :user_name => 'admin')
   user.skip_confirmation!
   user.save
   user.roles = [Role.find_by_name(:user)]

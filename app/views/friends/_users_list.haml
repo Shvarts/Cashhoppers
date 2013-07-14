@@ -1,4 +1,9 @@
-= will_paginate @users
+.row-fluid
+  .span7
+    = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+  .span5.text-right.row
+    = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+    = link_to 'Search', find_friends_path, class: 'btn span4', id: 'search_button'
 %table.table.table-condensed
   %tr
     %th
@@ -6,10 +11,6 @@
     %th
       Last Name
     %th
-  %tr
-    %td{colspan: 3}
-      = text_field_tag :input
-      = button_tag 'Search', class: 'btn'
   - @users.each do |user|
     %tr
       %td
@@ -18,4 +19,4 @@
         = user.last_name
       %td{style: 'text-align: right'}
         = link_to 'Add to friends', root_path, class: 'btn btn-mini'
-= will_paginate @users
+= will_paginate @users, renderer: BootstrapPagination::Rails
