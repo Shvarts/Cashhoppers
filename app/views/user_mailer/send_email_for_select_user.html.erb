@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<h1>Hello <%= @user.user_name %></h1>
+<p>
+ <%= image_tag attachments['image'].url %>.<br/>
+</p>
+<p>
+  <%= attachments['content'] %>.<br/>
+</p>
+<p>
+  Go to our site right now, just follow this link: <%= @url %>.
+</p>
+
+</body>
+</html>

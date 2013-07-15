@@ -7,7 +7,7 @@
     <%= flash[:success] %>
 <% end %>
 
-<%= form_for @message, :url=>admin_messages_create_email_path do |e| %>
+<%= form_for @message, :url=> admin_messages_send_email_path do |e| %>              #admin_messages_create_email_path do |e| %>
 
     <% if @message.errors.any? %>
         <div id="error_explanation">

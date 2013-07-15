@@ -71,4 +71,13 @@ class Admin::MessagesController < ApplicationController
   def text_tool
 
   end
+
+  def send_email
+    @user = User.find_by_id(params[:message][:receiver_id])
+    file = params[:message][:subject]
+    email= UserMailer.send_email_for_select_user(@user, params[:message][:email_author], params[:message][:subject], params[:message][:email_text], file)
+    render :text => email
+  end
+
+
 end

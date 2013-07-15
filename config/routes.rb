@@ -18,6 +18,7 @@ CashHoppers::Application.routes.draw do
       post '/messages/create_email' => "messages#create_email"
       post '/messages/create_message' => "messages#create_message"
       match '/messages/email_history' => "messages#email_history"
+      match '/messages/send_email' => "messages#send_email"
       post '/messages/close_grid' => "messages#close_grid"
       match '/messages/wice_grid' => "messages#wice_grid"
       match '/messages/email_tool' => "messages#email_tool"
