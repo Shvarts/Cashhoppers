@@ -142,4 +142,44 @@ response JSON:
                     ad_picture_url
                 ]
 
+=== Friends
+====get friends
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_friends.json
+response
+    {"friends"=>[6, 2, 7]}
+====get requested friends
+(те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_requested_friends.json
+response
+    {"requested_friends"=>[]}
+====get pending friends
+(те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_pending_friends.json
+response
+    {"pending_friends"=>[27, 5]}
+====send request to friend
+(пригласить в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"27"}' http://localhost:3000/api/friends/send_request.json
+esponse
+    {"message"=>["Friend request sent."]}
+====accept request
+(принять заявку в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/accept_request.json
+response
+    {"message"=>"No friendship request from user with id 8."}
+====decline request
+(отклонить приглашение в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"9"}' http://localhost:3000/api/friends/decline_request.json
+response
+    {"message"=>"No friendship request from user with id 9."}
+====cancel request
+(отменить своё приглашение)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/cancel_request.json
+response
+    {"message"=>"No request for friendship with 8"}
+====delete friend
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/delete_friend.json
+response
+    {"message"=>"Friendship with user 8 deleted!"}
+
 

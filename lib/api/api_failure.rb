@@ -3,7 +3,8 @@ class Api::ApiFailure < Devise::FailureApp
   def respond
     puts '--------------------------------------------here++++++++++++++++++++++++++++++++++++++++'
     if request_format == :json
-      render 'app/views/api/api_failure/respond', status: 401
+      puts 'okay json'
+      render 'app/views/api/api_failure/respond', status: 200
     else
       puts '--------------------------------------------else++++++++++++++++++++++++++++++++++++++++'
       super

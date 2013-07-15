@@ -65,7 +65,7 @@ class FriendsController < ApplicationController
       Friendship.breakup(@user, @friend)
       flash[:notice] = "Friendship request canceled."
     else
-      flash[:notice] = "No request for friendship with #{@friend.screen_name}"
+      flash[:notice] = "No request for friendship with #{@friend.first_name}"
     end
     redirect_to :back
   end

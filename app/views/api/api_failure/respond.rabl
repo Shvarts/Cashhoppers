@@ -1,8 +1,8 @@
 object false
 
-node do
-    {
-        :success => false,
-        :info => 'Login Failed',
-    }
-end
+   node do
+       {
+           :success => false,
+           :info => 'Login Failed',
+       }
+   end

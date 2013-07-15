@@ -46,6 +46,15 @@ CashHoppers::Application.routes.draw do
         get :daily, :on => :collection
       end
       get 'get_hop_tasks' => 'hops#get_hop_tasks'
+
+      post 'friends/get_friends', to: 'friends#get_friends'
+      post 'friends/get_requested_friends', to: 'friends#get_requested_friends'
+      post 'friends/get_pending_friends', to: 'friends#get_pending_friends'
+      post 'friends/send_request', to: 'friends#send_request'
+      post 'friends/accept_request', to: 'friends#accept_request'
+      post 'friends/decline_request', to: 'friends#decline_request'
+      post 'friends/cancel_request', to: 'friends#cancel_request'
+      post 'friends/delete_friend', to: 'friends#delete_friend'
     end
   end
 
