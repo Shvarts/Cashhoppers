@@ -14,7 +14,7 @@
   - @users.each do |user|
     %tr
       %td
-        = user.first_name
+        = link_to user.first_name, users_profile_path(:id => user.id)
       %td
         = user.last_name
       %td{style: 'text-align: right'}

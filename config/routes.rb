@@ -2,6 +2,8 @@ CashHoppers::Application.routes.draw do
 
 
 
+  get "users/profile"
+
   root :to => 'pages#home'
 
   namespace :admin do
