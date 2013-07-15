@@ -16,7 +16,8 @@ class Admin::MessagesController < ApplicationController
     @message = Message.new(params[:message])
     if @message.save
       flash[:success]="message has created"
-      redirect_to admin_messages_email_tool_path
+
+      redirect_to admin_messages_send_email_path(:id=>params[:message][:receiver_id],:author=>params[:message][:email_author],:subject => params[:message][:subject], :text => params[:message][:email_text], :file=> @message.file)
     else
       flash[:success]="message has not created"
       render admin_messages_email_tool_path
@@ -73,10 +74,12 @@ class Admin::MessagesController < ApplicationController
   end
 
   def send_email
-    @user = User.find_by_id(params[:message][:receiver_id])
-    file = params[:message][:subject]
-    email= UserMailer.send_email_for_select_user(@user, params[:message][:email_author], params[:message][:subject], params[:message][:email_text], file)
-    render :text => email
+    @user = User.find_by_id(params[:id])
+    #@user = User.find_by_id(params[:message][:receiver_id])
+    email= UserMailer.send_email_for_select_user(@user,params[:author], params[:subject], params[:text], params[:file]).deliver
+
+    #email= UserMailer.send_email_for_select_user(@user, params[:message][:email_author], params[:message][:subject], params[:message][:email_text], params[:message][:file]).deliver
+    redirect_to admin_messages_email_tool_path
   end
 
 

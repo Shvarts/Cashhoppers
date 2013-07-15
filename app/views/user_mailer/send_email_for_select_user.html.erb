@@ -4,12 +4,18 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-<h1>Hello <%= @user.user_name %></h1>
+<h1>Hello <%= @user %></h1>
 <p>
- <%= image_tag attachments['image'].url %>.<br/>
+ <%= image_tag attachments['noavatar.jpeg'].url %>.<br/>
 </p>
 <p>
-  <%= attachments['content'] %>.<br/>
+  <%= @text %>.<br/>
+</p>
+<p>
+  <%= @href %>.<br/>
+</p>
+<p>
+  <%= @file %>.<br/>
 </p>
 <p>
   Go to our site right now, just follow this link: <%= @url %>.
