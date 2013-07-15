@@ -148,12 +148,12 @@ response JSON:
 response
     {"friends"=>[6, 2, 7]}
 ====get requested friends
-(те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
+(те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
     curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_requested_friends.json
 response
     {"requested_friends"=>[]}
 ====get pending friends
-(те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
+(те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
     curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_pending_friends.json
 response
     {"pending_friends"=>[27, 5]}
