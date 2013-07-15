@@ -1,0 +1,35 @@
+%h1 Users#profile
+%p.pull-right
+  = image_tag @user.avatar.url
+%table
+  %tr
+    %td.span5  First name
+    %td
+      = @user.first_name
+  %tr
+    %td  Last name
+    %td
+      = @user.last_name
+  %tr
+    %td  User name
+    %td
+      = @user.user_name
+  %tr
+    %td  Email
+    %td
+      = @user.email
+  %tr
+    %td  ZIP
+    %td
+      = @user.zip
+  %tr
+    %td  Contact
+    %td
+      = @user.contact
+  %tr
+    %td  Phone
+    %td
+      = @user.phone
+
+
+

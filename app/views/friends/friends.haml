@@ -10,7 +10,7 @@
     - @friends.each do |friend|
       %tr
         %td
-          = friend.first_name
+          = linc_to friend.first_name, users_profile_path(:id=>friend.id)
         %td
           = friend.last_name
         %td{style: 'text-align: right'}
