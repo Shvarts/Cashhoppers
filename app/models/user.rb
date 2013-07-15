@@ -7,14 +7,21 @@ class User < ActiveRecord::Base
 
   has_many :sponsored_hop_tasks, class_name: 'HopTask'
   has_many :hop_tasks, :foreign_key => :sponsor_id
-
   has_many :users_roles
   has_and_belongs_to_many :roles
   has_many :services, :dependent => :destroy
-  has_and_belongs_to_many :friends,
-                          :class_name => 'User',
-                          :association_foreign_key => 'friend_id',
-                          :join_table => 'friends_users'
+  has_many :friendships
+  has_many :friends,
+           :through => :friendships,
+           :conditions => "status = 'accepted'"
+  has_many :requested_friends,
+           :through => :friendships,
+           :source => :friend,
+           :conditions => "status = 'requested'"
+  has_many :pending_friends,
+           :through => :friendships,
+           :source => :friend,
+           :conditions => "status = 'pending'"
 
 
   before_create :create_role

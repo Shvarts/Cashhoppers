@@ -55,6 +55,11 @@ CashHoppers::Application.routes.draw do
   resources :services, :only => [:index, :create, :destroy]
   resources :ad_types
 
-  get 'friends', :to => 'friends#friends'
-  get 'find_friends', :to => 'friends#find_friends'
+  get 'friends', to: 'friends#friends'
+  get 'find_friends', to: 'friends#find_friends'
+  post 'friends/create_request', to: 'friends#create_request'
+  post 'friends/cancel_request', to: 'friends#cancel_request'
+  post 'friends/accept_request', to: 'friends#accept_request'
+  post 'friends/decline_request', to: 'friends#decline_request'
+  post 'friends/delete_friend', to: 'friends#delete_friend'
 end
