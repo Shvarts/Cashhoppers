@@ -182,4 +182,22 @@ response
 response
     {"message"=>"Friendship with user 8 deleted!"}
 
+=== Users
+==== get users list
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","page":"2","per_page":"3"}' http://localhost:3000/api/users/get_users.json
+response
+    {"users"=>[{"id"=>4, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}, {"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}, {"id"=>6, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}]}
+====get my info
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","test":"test"}' http://localhost:3000/api/users/get_my_info.json
+response
+    {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avatar"=>nil}}
+====get user info
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","user_id":"5"}' http://localhost:3000/api/users/get_user_info.json
+response
+    {"user"=>{"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avatar
+    "=>nil}}
+
 
