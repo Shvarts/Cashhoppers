@@ -5,6 +5,7 @@
     <td>Text</td>
     <td>Receiver id</td>
     <td>Author id</td>
+    <td>Author id</td>
   </tr>
     <% if !@messages.blank? %>
       <% for i in @messages do %>
@@ -12,7 +13,8 @@
             <td><%= i.email_author %></td>
             <td><%= i.text %></td>
             <td><%= i.receiver_id %></td>
-            <td><%= i.author_id %></td>
+            <td><%= i.sender_id %></td>
+            <td><%= i.send_at %></td>
           </tr>
       <% end %>
      <% else %>

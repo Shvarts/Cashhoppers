@@ -50,15 +50,29 @@
       </tr>
 
     </table>
-<% end %>
 
-<%= form_tag() do %>
+
+
     <table>
       <tr>
-        <td class="span3"><%= submit_tag("SCHEDULE SEND", :class=>" btn btn-success" ) %></td>
-        <td class="span3"><%= text_field_tag(:hop, nil, :class=>"input-small", :placeholder=>"DATE" ) %></td>
-        <td class="span3"><%= text_field_tag(:hop, nil, :class=>"input-small", placeholder: "Time" ) %></td>
-      </tr>
+        <td class="span" ><%= check_box_tag(:schedule ) %> SCHEDULE SEND </td>
+        <td ><div class="field" id="data">
+
+          <div id="datetimepicker1" class="input-append date" >
+            <%= f.text_field :send_at, 'data-format' => 'dd/MM/yyyy hh:mm:ss', 'type' => 'text' %>
+             <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+        <script>
+            $(function(){
+                $('#datetimepicker1').datetimepicker({
+                    language: 'pt-BR'
+                });
+            });
+        </script>
+      </span>
+          </div>
+        </div>
+      </td>
     </table>
 <% end %>
 

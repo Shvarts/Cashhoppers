@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :games, :join_table => "hoppers_hops" , :class_name=>"Hop"
 
+  has_many :incoming_messages, :class_name =>  'Message' ,  :foreign_key => :sender_id
+  has_many :outcoming_messages, :class_name => 'Message' , :foreign_key => :receiver_id
+
+
   has_many :hops,  foreign_key: "producer_id"
   has_many :user_hop_tasks
 

@@ -26,7 +26,7 @@ class Admin::MessagesController < ApplicationController
 
   def create_message
    #render :text=>params
-    params[:message][:author_id]=current_user.id
+    params[:message][:sender_id]=current_user.id
     params[:message][:email]=false
    @message = Message.new(params[:message])
     if @message.save
