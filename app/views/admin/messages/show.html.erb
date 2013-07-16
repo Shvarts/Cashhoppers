@@ -1,0 +1,37 @@
+<h2><%= @message.sender.user_name if @message.sender  %></h2>
+
+<table>
+  <tr>
+    <td class= 'span'>Sender email</td>
+    <td><%= @message.sender.email if @message.sender %></td>
+  </tr>
+  <tr>
+    <td>Receiver email</td>
+    <td><%= @message.receiver.email if @message.receiver %></td>
+  </tr>
+  <tr>
+    <td>Time send</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Text</td>
+    <td><%= text_area_tag '', @message.text, :rows=>'6', :cols => '20', :display => 'block' %></td>
+
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<% if @message.email %>
+  <b>Attach file</b>
+  <%= image_tag @message.file.url %>
+<%end%>
+
+<br />
+<% if !@message.email %>
+   <%= link_to 'Back', admin_messages_message_history_path  %>
+<% else %>
+   <%= link_to 'Back', admin_messages_email_history_path  %>
+<% end %>

@@ -2,19 +2,22 @@
 <table class="table">
   <tr>
     <td>Message from</td>
-    <td>Text</td>
-    <td>Receiver id</td>
-    <td>Author id</td>
-    <td>Author id</td>
+    <td>Receiver email</td>
+    <td>Send on</td>
+    <td></td>
   </tr>
     <% if !@messages.blank? %>
       <% for i in @messages do %>
           <tr>
             <td><%= i.email_author %></td>
-            <td><%= i.text %></td>
-            <td><%= i.receiver_id %></td>
-            <td><%= i.sender_id %></td>
+            <td><%= i.receiver.email  if i.receiver%></td>
             <td><%= i.send_at %></td>
+            <td>
+              <%= link_to 'show', admin_messages_show_path(:id=>i.id) %>
+              <%= link_to 'Destroy', admin_messages_destroy_path(:id => i.id), :method => 'delete', :data=> { confirm: 'Are you sure?' } %>
+
+
+            </td>
           </tr>
       <% end %>
      <% else %>

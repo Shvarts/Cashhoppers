@@ -15,6 +15,8 @@ CashHoppers::Application.routes.draw do
       match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
       match '/hoppers/search_hopper' => "hoppers#search_hopper"
       match '/messages/message_history' => "messages#message_history"
+      match '/messages/show' => "messages#show"
+      delete '/messages/destroy' => "messages#destroy"
       post '/messages/create_email' => "messages#create_email"
       post '/messages/create_message' => "messages#create_message"
       match '/messages/email_history' => "messages#email_history"

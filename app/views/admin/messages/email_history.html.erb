@@ -2,21 +2,19 @@
  <table class="table">
      <tr>
        <td>Email from</td>
-       <td>Subject line</td>
-       <td>Text</td>
-       <td>Receiver id</td>
-       <td>Author id</td>
-       <td>Attach file</td>
-     </tr>
+        <td>Receiver id</td>
+        <td></td>
+   </tr>
        <% if !@emails.blank? %>
          <% for i in @emails do %>
            <tr>
              <td><%= i.email_author %></td>
-             <td><%= i.subject %></td>
-             <td><%= i.text %></td>
              <td><%= i.receiver.email if i.receiver %></td>
-             <td><%= i.sender_id %></td>
-             <td><%= image_tag(i.file.url) %></td>
+             <td><%= link_to 'Show', admin_messages_show_path(:id=> i.id) %>
+                 <%= link_to 'Destroy', admin_messages_destroy_path(:id => i.id), :method => 'delete', :data=> { confirm: 'Are you sure?' } %>
+
+             </td>
+
            </tr>
 
          <% end %>

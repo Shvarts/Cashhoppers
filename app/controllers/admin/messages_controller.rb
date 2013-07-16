@@ -16,7 +16,6 @@ class Admin::MessagesController < ApplicationController
   end
 
   def create_message
-
     n = Message.send_messages_to(params[:message],current_user.id)
     flash[:success]=" #{n} emails  have created"
     redirect_to admin_messages_message_tool_path
@@ -30,17 +29,30 @@ class Admin::MessagesController < ApplicationController
   end
 
   def wice_grid
-
-    @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
+   @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
       :include => [:hop]
     )
     render :partial => 'wice_grid'
-
-  end
+ end
 
   def message_tool
     @message= Message.new
     @message.receiver_id=params[:id]  if params[:id]
+  end
+
+  def show
+    @message = Message.find_by_id(params[:id])
+  end
+
+  def destroy
+    @message = Message.find_by_id(params[:id])
+    email = @message.email
+    @message.destroy
+    if !email
+      redirect_to admin_messages_message_history_path
+    else
+      redirect_to admin_messages_email_history_path
+    end
   end
 
   def close_grid
@@ -54,14 +66,6 @@ class Admin::MessagesController < ApplicationController
   end
 
   def text_tool
-
-  end
-
-  def send_email
-
-    email= UserMailer.send_email_for_select_user(params[:id]).deliver
-   # flash[:success]="Email has created"
-  #  redirect_to admin_messages_email_tool_path
 
   end
 
