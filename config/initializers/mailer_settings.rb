@@ -1,7 +1,6 @@
 if %w(test development).include?(Rails.env)
   # We dont need send email directly on dev env, just use sendmail mock
   ActionMailer::Base.delivery_method = :sendmail
-  ActionMailer::Base.sendmail_settings = {:location => '/usr/bin/fake_sendmail.sh'}
 else
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
