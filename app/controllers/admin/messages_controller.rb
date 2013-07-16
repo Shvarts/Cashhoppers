@@ -10,32 +10,16 @@ class Admin::MessagesController < ApplicationController
   end
 
   def create_email
-
-    params[:message][:author_id]=current_user.id
-    params[:message][:email]=true
-    @message = Message.new(params[:message])
-    if @message.save
-      flash[:success]="message has created"
-
-      redirect_to admin_messages_send_email_path(:id=>params[:message][:receiver_id],:author=>params[:message][:email_author],:subject => params[:message][:subject], :text => params[:message][:email_text], :file=> @message.file)
-    else
-      flash[:success]="message has not created"
-      render admin_messages_email_tool_path
-    end
+    n = Message.send_emails_to(params[:message],current_user.id)
+    flash[:success]=" #{n} emails  have created"
+    redirect_to admin_messages_email_tool_path
   end
 
   def create_message
-   #render :text=>params
-    params[:message][:sender_id]=current_user.id
-    params[:message][:email]=false
-   @message = Message.new(params[:message])
-    if @message.save
-      flash[:success]="message has created"
-      redirect_to admin_messages_message_tool_path
-    else
-      flash[:success]="message has not created"
-      render admin_messages_message_tool_path
-    end
+
+    n = Message.send_messages_to(params[:message],current_user.id)
+    flash[:success]=" #{n} emails  have created"
+    redirect_to admin_messages_message_tool_path
   end
 
 
@@ -74,12 +58,11 @@ class Admin::MessagesController < ApplicationController
   end
 
   def send_email
-    @user = User.find_by_id(params[:id])
-    #@user = User.find_by_id(params[:message][:receiver_id])
-    email= UserMailer.send_email_for_select_user(@user,params[:author], params[:subject], params[:text], params[:file]).deliver
 
-    #email= UserMailer.send_email_for_select_user(@user, params[:message][:email_author], params[:message][:subject], params[:message][:email_text], params[:message][:file]).deliver
-    redirect_to admin_messages_email_tool_path
+    email= UserMailer.send_email_for_select_user(params[:id]).deliver
+   # flash[:success]="Email has created"
+  #  redirect_to admin_messages_email_tool_path
+
   end
 
 

@@ -3,7 +3,7 @@
   #ActionMailer::Base.delivery_method = :sendmail
   #ActionMailer::Base.sendmail_settings = {:location => '/usr/bin/fake_sendmail.sh'}
 #else
-  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.delivery_method = :test
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.default :charset => "utf-8"

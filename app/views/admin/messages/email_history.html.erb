@@ -14,7 +14,7 @@
              <td><%= i.email_author %></td>
              <td><%= i.subject %></td>
              <td><%= i.text %></td>
-             <td><%= i.receiver_id %></td>
+             <td><%= i.receiver.email if i.receiver %></td>
              <td><%= i.sender_id %></td>
              <td><%= image_tag(i.file.url) %></td>
            </tr>

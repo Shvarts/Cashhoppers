@@ -10,10 +10,49 @@ class Message < ActiveRecord::Base
   validates_presence_of :receiver_id , :text, :sender
   validates_presence_of :email_author, if: :email?
 
-  #def email?
-  #  email.class == TrueClass
-  #end
+  def email?
+    email.class == TrueClass
+  end
 
+  def self.create_arr_receivers(messages)
+    arr = messages.to_s.chars.to_a
+    emails= []
+    for i in arr
+      emails << i if !(i.to_i == 0)
+    end
+    emails
+  end
 
+  def self.send_emails_to(message,user_id)
+    emails = Message.create_arr_receivers(message[:receiver_id])
+    n = 0
+    for i in emails
+      message[:receiver_id] = i
+      message[:sender_id]=user_id
+      message[:email]=true
+    @message = Message.new(message)
+    if @message.save
+      if UserMailer.send_email_for_select_user(@message.id).deliver
+        n= n + 1
+      end
+    end
+    end
+    n
+  end
+
+  def self.send_messages_to(message,user_id)
+    emails = Message.create_arr_receivers(message[:receiver_id])
+    n = 0
+    for i in emails
+      message[:receiver_id] = i
+      message[:sender_id] = user_id
+      message[:email]= false
+      @message = Message.new(message)
+      if @message.save
+         n = n + 1
+      end
+    end
+    n
+  end
 
 end
