@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715070723) do
+ActiveRecord::Schema.define(:version => 20130716075341) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -93,19 +93,19 @@ ActiveRecord::Schema.define(:version => 20130715070723) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.integer  "author_id"
+    t.integer  "sender_id"
     t.string   "receiver_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.boolean  "email"
     t.string   "template"
     t.string   "email_author"
-    t.text     "email_text"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "subject"
+    t.datetime "send_at"
   end
 
   create_table "roles", :force => true do |t|
