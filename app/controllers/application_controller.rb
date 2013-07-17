@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     nil
   end
 
+  def sidebar
+    nil
+  end
+
   private
   def invalid_login_attempt(errors, status = 200)
     warden.custom_failure!
