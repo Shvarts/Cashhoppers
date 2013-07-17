@@ -40,11 +40,6 @@ ActiveRecord::Schema.define(:version => 20130717081359) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "friends_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
-  end
-
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -93,19 +88,19 @@ ActiveRecord::Schema.define(:version => 20130717081359) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.integer  "sender_id"
+    t.integer  "author_id"
     t.string   "receiver_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.boolean  "email"
     t.string   "template"
     t.string   "email_author"
+    t.text     "email_text"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "subject"
-    t.datetime "send_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -132,6 +127,8 @@ ActiveRecord::Schema.define(:version => 20130717081359) do
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

@@ -209,4 +209,18 @@ response
 response
     {"success"=>true, "message"=>"profile successfully updated."}
 
+=== Let's play game
+====get events list
+   curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","page":"1","per_page":"3"
+   }' http://localhost:3000/api/tasks/get_events_list.json
+response
+   {"tasks"=>[{"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:01:00Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/25/original/PHOTO.jp
+   g?1374058860"}, {"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:00:28Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/24/original/PHO
+   TO.jpg?1374058828"}, {"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:00:27Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/23/origina
+   l/PHOTO.jpg?1374058827"}]}
+====upload users hop task
+   curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","task":"{:user_id=>"1", :
+   hop_task_id=>"1", :photo=>#<File:1.jpg>}}' http://localhost:3000/api/tasks/create_task.json
+response
+   {"message"=>"Task create!"}
 

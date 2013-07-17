@@ -21,36 +21,19 @@ class Api::UsersController < ApplicationController
   end
 
   def get_user_info
-
+    respond_to do |format|
+      format.json{}
+    end
   end
 
   def update_profile
     respond_to do |format|
-      puts '----------------------------'
-      puts @attributes
-      puts '----------------------------'
       if current_user.update_attributes(@attributes)
         format.json {render :json => {success: true, message: 'profile successfully updated.'} }
       else
         format.json {render :json => current_user.errors.to_json }
       end
     end
-    #
-    #@user = User.find(current_user.id)
-    #successfully_updated = if needs_password?(@user, params)
-    #                         @user.update_with_password(params[:user])
-    #                       else
-    #                         params[:user].delete(:current_password)
-    #                         @user.update_without_password(params[:user])
-    #                       end
-    #
-    #if successfully_updated
-    #  set_flash_message :notice, :updated
-    #  sign_in @user, :bypass => true
-    #  redirect_to after_update_path_for(@user)
-    #else
-    #  render "edit"
-    #end
   end
 
   private

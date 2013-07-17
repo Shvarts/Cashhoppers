@@ -62,6 +62,9 @@ CashHoppers::Application.routes.draw do
       post 'users/get_my_info', to: 'users#get_my_info'
       post 'users/get_user_info', to: 'users#get_user_info'
       post 'users/update_profile', to: 'users#update_profile'
+
+      post 'tasks/get_events_list', to: 'user_hop_tasks#events_list'
+      post 'tasks/create_task', to: 'user_hop_tasks#create'
     end
   end
 

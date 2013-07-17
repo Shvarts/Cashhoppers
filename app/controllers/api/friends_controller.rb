@@ -33,7 +33,7 @@ class Api::FriendsController < ApplicationController
     if current_user.requested_friends.include?(@friend)
       Friendship.accept(current_user, @friend)
       flash[:notice] = "Friendship with #{@friend.first_name} accepted!"
-      render json: { :message => "Friendship with user #{@friend.id} accepted!" },  success: false, status: :ok
+      render json: { :message => "Friendship with user #{@friend.id} accepted!" },  success: true, status: :ok
     else
       render json: { :message => "No friendship request from user with id #{@friend.id}." },  success: false, status: :ok
     end
