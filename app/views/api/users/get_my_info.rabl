@@ -1,6 +1,6 @@
 object :@user
 
-attributes :id, :last_name, :first_name, :user_name, :zip, :contact, :phone
+attributes:id, :last_name, :first_name, :user_name, :zip, :contact, :phone, :bio, :twitter, :facebook, :google, :email
 
 node :role do |user|
 	user.roles.first.name

@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
          :token_authenticatable, :confirmable
 
   attr_accessible :email, :password, :last_name, :first_name, 
-         :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone
+         :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
+         :bio, :twitter, :facebook, :google
 
   has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
@@ -41,7 +42,7 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
 
 
- validates :email, :password, :zip, :presence => true
+ validates :email, :zip, :presence => true
  validates :zip, numericality: {only_integer: true}
 
   def role?(role)

@@ -191,13 +191,22 @@ response
     ar"=>nil}, {"id"=>6, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
     ar"=>nil}]}
 ====get my info
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","test":"test"}' http://localhost:3000/api/users/get_my_info.json
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/users/get_my_info.json
 response
-    {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avatar"=>nil}}
+    {"user"=>{"id"=>1, "last_name"=>"my last name", "first_name"=>"my first name", "user_name"=>"user_name", "zip"=>515, "contact"=>"my cont", "phone"=>0, "bio"=>"i
+    was born in the old sity York", "twitter"=>"twitter link", "facebook"=>"facebook link", "google"=>"g + link", "email"=>"admin@cashhoppers.com", "role"=>"admin",
+    "avatar"=>nil}}
 ====get user info
     curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","user_id":"5"}' http://localhost:3000/api/users/get_user_info.json
 response
-    {"user"=>{"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avatar
-    "=>nil}}
+    {"user"=>{"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
+    il, "facebook"=>nil, "google"=>nil, "role"=>"admin", "avatar"=>nil}}
+====update my profile
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"HJRXG3dujLmYx3HS4xSV","last_name":"my last name
+    ","first_name":"my first name","user_name":"user_name","zip":"515","contact":"my cont","phone":"phone","bio":"i was born in the old sity York","twitter":"twitte
+    r link","facebook":"facebook link","google":"g + link","password":"newpassword","avatar":"#<File:0x34f9ad0>"}' http://localhost:3000/api/users/upd
+    ate_profile.json
+response
+    {"success"=>true, "message"=>"profile successfully updated."}
 
 
