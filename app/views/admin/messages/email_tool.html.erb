@@ -30,9 +30,9 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= e.text_field :receiver_id, :class=>"input-mini"  %></td>
+    <td><%= e.text_field :receiver_id ,:class=>"input-mini"%></td>
     <td><%= e.text_field :receiver_id, :class=>"input-mini" %></td>
-    <td><%= e.text_field :receiver_id, :class=>"input-mini" %></td>
+    <td><%= e.text_field :receiver_id, :class=>"input-mini" ,  onclick:"$('#myModal').modal()" %></td>
   </tr>
 </table>
 
@@ -66,18 +66,17 @@
 
 
 <div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header" onclick:"$('#myModal').modal()">
-   <h3 id="myModalLabel">Modal header</h3>
+  <div class="modal-header" >
+
   </div>
   <div class="modal-body">
     <div id="myModal" class="example cursor">
 
-      <= render partial: "wice_grid" %>
+      <%= render partial: "users_list" %>
     </div>
   </div>
   <div class="modal-footer">
-    <%= button_to "close", "#", :id=>"close" %>
-    <button class="btn btn-primary">Save changes</button>
+    <%= button_to "close", :url => {:action => 'email_tool'}, :close=>true%>
   </div>
 </div>
 

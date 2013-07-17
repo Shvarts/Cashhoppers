@@ -10,22 +10,53 @@ class Admin::MessagesController < ApplicationController
   end
 
   def create_email
-    n = Message.send_emails_to(params[:message],current_user.id)
+    n = Message.send_emails_to(params[:message],current_user.id, true)
     flash[:success]=" #{n} emails  have created"
     redirect_to admin_messages_email_tool_path
   end
 
   def create_message
-    n = Message.send_messages_to(params[:message],current_user.id)
+    n = Message.send_emails_to(params[:message],current_user.id, false)
     flash[:success]=" #{n} emails  have created"
     redirect_to admin_messages_message_tool_path
   end
 
 
   def email_tool
+    @select_id = []
+    if !params[:id_user].blank?
+      @select_id << params[:id_user]
+      @select_id << flash[:id]
+      @select_id.flatten!
+      @select_id.compact!
+      @select_id.uniq!
+      flash[:id] = @select_id
+    end
+    params[:id] = flash[:id] if !params[:close].blank?
+
+   puts"----------------------------- #{params}--------------------------------------------"
     @message= Message.new
-    @message.receiver_id=params[:id]  if !params[:id].blank?
-  #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
+    @message.receiver_id= params[:id]  if !params[:id].blank?
+
+    conditions = []
+    unless params[:query].blank?
+ #     conditions = ["first_name LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+      if params[:id]=='true'
+        conditions = ["id LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+      else
+        conditions = ["zip LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+      end
+
+
+    end
+
+    @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
+
+
+   if params[:page] || params[:query]|| params[:id_user]
+          render partial: 'users_list'
+    end
+
   end
 
   def wice_grid
@@ -68,6 +99,9 @@ class Admin::MessagesController < ApplicationController
   def text_tool
 
   end
+
+
+
 
 
 end

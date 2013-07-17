@@ -23,13 +23,13 @@ class Message < ActiveRecord::Base
     emails
   end
 
-  def self.send_emails_to(message,user_id)
+  def self.send_emails_to(message,user_id, email_state)
     emails = Message.create_arr_receivers(message[:receiver_id])
     n = 0
     for i in emails
       message[:receiver_id] = i
       message[:sender_id]=user_id
-      message[:email]=true
+      message[:email]= email_state
     @message = Message.new(message)
     if @message.save
       if UserMailer.send_email_for_select_user(@message.id).deliver
@@ -40,19 +40,6 @@ class Message < ActiveRecord::Base
     n
   end
 
-  def self.send_messages_to(message,user_id)
-    emails = Message.create_arr_receivers(message[:receiver_id])
-    n = 0
-    for i in emails
-      message[:receiver_id] = i
-      message[:sender_id] = user_id
-      message[:email]= false
-      @message = Message.new(message)
-      if @message.save
-         n = n + 1
-      end
-    end
-    n
-  end
+
 
 end

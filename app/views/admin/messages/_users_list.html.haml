@@ -1,0 +1,39 @@
+#users_list
+  .row-fluid
+    .span7
+      = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+    .span5.text-right.row
+      = radio_button_tag :by, 'id', checked: :true
+      %b
+        Id
+      = radio_button_tag :by, "zip"
+      %b
+        zip
+      = radio_button_tag :by, "hop"
+      %b
+        hop
+      = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+      = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_button'
+  %table.table.table-condensed
+    %tr
+      %th
+        Id
+      %th
+        First Name
+      %th
+        Zip
+      %th
+    - @users.each do |user|
+      %tr
+        %td
+          = user.id
+        %td
+          = user.first_name
+        %td
+          = user.zip
+
+        %td{style: 'text-align: right'}
+          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id'
+
+  = text_field_tag :input, @select_id
+  = will_paginate @users, renderer: BootstrapPagination::Rails
