@@ -1,4 +1,5 @@
 $(function(){
+
     $('div#datetimepicker1').css('display', 'none');
  $('input#schedule').click(function(){
    if ($(this).is(':checked')   ){
@@ -7,6 +8,17 @@ $(function(){
        $('div#datetimepicker1').css('display', 'none'); }
   });
 });
+
+$(function() {
+    $('#e9').select2({val:'12'});
+
+});
+
+$(function() {
+    $('#close').cl;
+
+});
+
 
 function setAjaxPagination(block_id){
     $('#' + block_id + ' .pagination a').click(function(){
@@ -35,7 +47,7 @@ function setAjaxPagination(block_id){
         $.ajax({
             url: $(this).attr('href'),
             dataType: 'text',
-            data: {query: $('#' + block_id + ' #search_field').val(), id: $('#' + block_id + ' #by_id').is(':checked'), hop: $('#' + block_id + ' #by_hop').is(':checked')},
+            data: {query: $('#' + block_id + ' #search_field').val()},
             type: 'GET',
             beforeSend: function () {
                 //start spinner

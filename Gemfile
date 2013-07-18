@@ -22,7 +22,7 @@ gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'will_paginate-bootstrap'
-gem "select2-rails", "~> 3.4.3"
+gem "select2-rails"
 
 group :development, :test do
   gem 'therubyracer', :platform => :ruby

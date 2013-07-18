@@ -23,6 +23,16 @@ class Message < ActiveRecord::Base
     emails
   end
 
+  def self.user_arr(arr)
+    ids=Message.create_arr_receivers(arr)
+    @users =[]
+    for i in ids
+      @users << User.find_by_id(i)
+    end
+
+    @users
+  end
+
   def self.send_emails_to(message,user_id, email_state)
     emails = Message.create_arr_receivers(message[:receiver_id])
     n = 0

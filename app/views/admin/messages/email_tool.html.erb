@@ -30,11 +30,18 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= e.text_field :receiver_id ,:class=>"input-mini"%></td>
-    <td><%= e.text_field :receiver_id, :class=>"input-mini" %></td>
-    <td><%= e.text_field :receiver_id, :class=>"input-mini" ,  onclick:"$('#myModal').modal()" %></td>
+    <td><%= text_field_tag :receiver_id ,'' ,:class=>"input-mini", onclick:"$('#myModalhop').modal()"%></td>
+    <td><%= text_field_tag :receiver_id, '' , :class=>"input-mini", onclick:"$('#myModalzip').modal()" %></td>
+    <td><%= text_field_tag :receiver_id,'' , :class=>"input-mini" ,  onclick:"$('#myModal').modal()" %></td>
+
+
   </tr>
 </table>
+    <%= select_tag  'users_id[]', options_from_collection_for_select(@selected_id, "id","user_name", @count), id: 'e9',multiple:true, class:"populate select2-offscreen",
+                     :tabindex=>"-1" %>
+
+
+
 
 <table>
   <tr>
@@ -81,3 +88,32 @@
 </div>
 
 
+<div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+
+  </div>
+  <div class="modal-body">
+    <div id="myModalzip" class="example cursor">
+
+      <%= render partial: "zips_list" %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= button_to "close"%>
+  </div>
+</div>
+
+<div class="modal hide fade in" id="myModalhop" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+
+  </div>
+  <div class="modal-body">
+    <div id="myModalhop" class="example cursor">
+
+      <%= render partial: "hops_list" %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= button_to "close"%>
+  </div>
+</div>

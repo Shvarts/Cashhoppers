@@ -1,26 +1,22 @@
 #users_list
   .row-fluid
     .span7
-      = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+      = will_paginate @zips, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
     .span5.text-right.row
       = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
       = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_button'
   %table.table.table-condensed
     %tr
       %th
-        Id
+        Zip
       %th
-        User Name
-      %th
-    - @users.each do |user|
+    - @zips.each do |zip|
       %tr
         %td
-          = user.id
-        %td
-          = user.user_name
+          = zip
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id'
+          = link_to 'Search',  admin_messages_email_tool_path(:id_zip =>zip), id: 'select_id'
 
   = text_field_tag :input, @select_id
   = will_paginate @users, renderer: BootstrapPagination::Rails

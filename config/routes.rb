@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
 

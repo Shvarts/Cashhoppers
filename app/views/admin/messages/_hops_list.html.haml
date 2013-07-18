@@ -1,7 +1,7 @@
 #users_list
   .row-fluid
     .span7
-      = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+      = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
     .span5.text-right.row
       = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
       = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_button'
@@ -10,17 +10,21 @@
       %th
         Id
       %th
-        User Name
+        First Name
       %th
-    - @users.each do |user|
+        Zip
+      %th
+    - @hops.each do |hop|
       %tr
         %td
-          = user.id
+          = hop.id
         %td
-          = user.user_name
+          = hop.name
+        %td
+          = hop.daily_hop
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id'
+          = link_to 'Search',  admin_messages_email_tool_path(:id_hop =>hop.id), id: 'select_id'
 
   = text_field_tag :input, @select_id
   = will_paginate @users, renderer: BootstrapPagination::Rails

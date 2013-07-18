@@ -10,6 +10,9 @@ class Admin::MessagesController < ApplicationController
   end
 
   def create_email
+
+
+
     n = Message.send_emails_to(params[:message],current_user.id, true)
     flash[:success]=" #{n} emails  have created"
     redirect_to admin_messages_email_tool_path
@@ -32,9 +35,24 @@ class Admin::MessagesController < ApplicationController
       @select_id.uniq!
       flash[:id] = @select_id
     end
-    params[:id] = flash[:id] if !params[:close].blank?
 
-   puts"----------------------------- #{params}--------------------------------------------"
+  if !params[:close].blank?
+    @selected_id = Message.user_arr(flash[:id])
+    @count = []
+    i=0
+    while (i < @selected_id.count) do
+      i = i + 1
+     @count << i
+
+    end
+  end
+    @selected_id =[] if !@selected_id
+        puts"----------------------------- #{params}--------------------------------------------"
+    puts"----------------------------- #{params}--------------------------------------------"
+    puts"----------------------------- #{params}--------------------------------------------"
+
+
+
     @message= Message.new
     @message.receiver_id= params[:id]  if !params[:id].blank?
 
@@ -46,12 +64,22 @@ class Admin::MessagesController < ApplicationController
       else
         conditions = ["zip LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
       end
-
+    end
+    @user= User.all
+    @zips = []
+    for i in @user
+      @zips << i.zip
+      @zips.uniq!
 
     end
 
+    @zips = @zips.paginate(:page => 1, :per_page => 9)
+
     @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
 
+    @hops = Hop.paginate(page: params[:page], per_page:9, conditions: '')
+
+    #@zips = @zips.paginate(page: params[:page], per_page:9, conditions: '')
 
    if params[:page] || params[:query]|| params[:id_user]
           render partial: 'users_list'
