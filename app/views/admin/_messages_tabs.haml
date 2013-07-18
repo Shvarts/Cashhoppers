@@ -1,0 +1,9 @@
+%ul.nav.nav-tabs
+  %li{:class => ('active' if @tab == 'email_tool')}
+    = link_to 'Email Tool', admin_messages_email_tool_path
+  %li{:class => ('active' if @tab == 'message_tool')}
+    = link_to 'Message Tool', admin_messages_message_tool_path
+  %li
+    = link_to 'Text Tool', '#'
+= yield
+

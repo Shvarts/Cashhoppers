@@ -2,6 +2,8 @@ CashHoppers::Application.routes.draw do
 
 
 
+  get "users/profile"
+
   root :to => 'pages#home'
 
   namespace :admin do
@@ -25,7 +27,6 @@ CashHoppers::Application.routes.draw do
       match '/messages/wice_grid' => "messages#wice_grid"
       match '/messages/email_tool' => "messages#email_tool"
       match '/messages/message_tool' => "messages#message_tool"
-      match '/messages/text_tool' => "messages#text_tool"
       match '/search/current_hops' => "search#current_hops"
       match '/search/hops_archive' => "search#hops_archive"
 
@@ -49,6 +50,23 @@ CashHoppers::Application.routes.draw do
         get :daily, :on => :collection
       end
       get 'get_hop_tasks' => 'hops#get_hop_tasks'
+
+      post 'friends/get_friends', to: 'friends#get_friends'
+      post 'friends/get_requested_friends', to: 'friends#get_requested_friends'
+      post 'friends/get_pending_friends', to: 'friends#get_pending_friends'
+      post 'friends/send_request', to: 'friends#send_request'
+      post 'friends/accept_request', to: 'friends#accept_request'
+      post 'friends/decline_request', to: 'friends#decline_request'
+      post 'friends/cancel_request', to: 'friends#cancel_request'
+      post 'friends/delete_friend', to: 'friends#delete_friend'
+
+      post 'users/get_users', to: 'users#index'
+      post 'users/get_my_info', to: 'users#get_my_info'
+      post 'users/get_user_info', to: 'users#get_user_info'
+      post 'users/update_profile', to: 'users#update_profile'
+
+      post 'tasks/get_events_list', to: 'user_hop_tasks#events_list'
+      post 'tasks/create_task', to: 'user_hop_tasks#create'
     end
   end
 
@@ -58,6 +76,11 @@ CashHoppers::Application.routes.draw do
   resources :services, :only => [:index, :create, :destroy]
   resources :ad_types
 
-  get 'friends', :to => 'friends#friends'
-  get 'find_friends', :to => 'friends#find_friends'
+  get 'friends', to: 'friends#friends'
+  get 'find_friends', to: 'friends#find_friends'
+  post 'friends/create_request', to: 'friends#create_request'
+  post 'friends/cancel_request', to: 'friends#cancel_request'
+  post 'friends/accept_request', to: 'friends#accept_request'
+  post 'friends/decline_request', to: 'friends#decline_request'
+  post 'friends/delete_friend', to: 'friends#delete_friend'
 end

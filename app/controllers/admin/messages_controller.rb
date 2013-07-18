@@ -1,11 +1,13 @@
-class Admin::MessagesController < ApplicationController
+class Admin::MessagesController < Admin::AdminController
   before_filter :authenticate_user!
 
   def message_history
+    @tab = 'message_tool'
     @messages = Message.where(:email=>false)
   end
 
   def email_history
+    @tab = 'email_tool'
     @emails=Message.find_all_by_email(true)
   end
 
@@ -23,6 +25,7 @@ class Admin::MessagesController < ApplicationController
 
 
   def email_tool
+    @tab = 'email_tool'
     @message= Message.new
     @message.receiver_id=params[:id]  if !params[:id].blank?
   #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
@@ -36,6 +39,7 @@ class Admin::MessagesController < ApplicationController
  end
 
   def message_tool
+    @tab = 'message_tool'
     @message= Message.new
     @message.receiver_id=params[:id]  if params[:id]
   end
@@ -65,8 +69,8 @@ class Admin::MessagesController < ApplicationController
     redirect_to 'email_tool'
   end
 
-  def text_tool
-
+  def sub_layout
+    'admin/messages_tabs'
   end
 
 

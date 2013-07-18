@@ -14,9 +14,16 @@
   - @users.each do |user|
     %tr
       %td
-        = user.first_name
+        = link_to user.first_name, users_profile_path(:id => user.id)
       %td
         = user.last_name
       %td{style: 'text-align: right'}
-        = link_to 'Add to friends', root_path, class: 'btn btn-mini'
+        - if current_user && user != current_user
+          = friendship_status current_user, user
+          - unless Friendship.exists? current_user, user
+            = link_to "Add to friends",
+              friends_create_request_path(id: user.id),
+              method: :post,
+              confirm: "Send friend request to #{user.first_name}?",
+              class: 'btn btn-mini'
 = will_paginate @users, renderer: BootstrapPagination::Rails

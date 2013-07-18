@@ -1,0 +1,121 @@
+%h1.offset3
+  = @user.first_name
+%br
+%br
+%p.pull-right
+  = image_tag @user.avatar.url
+%table
+  %tr
+    %td.span5
+      %strong
+        First name
+      %br
+      %br
+
+    %td
+      = @user.first_name
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Last name
+      %br
+      %br
+    %td
+      = @user.last_name
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        User name
+      %br
+      %br
+    %td
+      = @user.user_name
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Email
+      %br
+      %br
+    %td
+      = @user.email
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        ZIP
+      %br
+      %br
+    %td
+      = @user.zip
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Contact
+      %br
+      %br
+    %td
+      = @user.contact
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Phone
+      %br
+      %br
+    %td
+      = @user.phone
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Bio
+      %br
+      %br
+    %td
+      = @user.bio
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Twitter
+      %br
+      %br
+    %td
+      = @user.twitter
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Facebook
+      %br
+      %br
+    %td
+      = @user.facebook
+      %br
+      %br
+  %tr
+    %td
+      %strong
+        Google +
+      %br
+      %br
+    %td
+      = @user.google
+      %br
+      %br
+
+
+

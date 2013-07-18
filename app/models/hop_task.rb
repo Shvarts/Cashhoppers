@@ -16,7 +16,7 @@ class HopTask < ActiveRecord::Base
 
 
   def daily_hop?
-   hop.daily_hop.class == FalseClass
+    hop.daily_hop.class == FalseClass if hop
   end
 
 end

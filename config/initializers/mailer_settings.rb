@@ -1,9 +1,9 @@
-#if %w(test development).include?(Rails.env)
-  # We dont need send email directly on dev env, just use sendmail mock
-  #ActionMailer::Base.delivery_method = :sendmail
-  #ActionMailer::Base.sendmail_settings = {:location => '/usr/bin/fake_sendmail.sh'}
-#else
+if %w(test development).include?(Rails.env)
   ActionMailer::Base.delivery_method = :test
+else
+  ActionMailer::Base.delivery_method = :sendmail
+end
+
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.default :charset => "utf-8"
@@ -12,9 +12,9 @@
       :port => 587,
      #   :domain => "localhost",
       :authentication => "plain",
-      :domain               => 'baci.lindsaar.net',
-      :user_name            => 'rg.kiev.workshop',
-      :password             => 'octocats',
+      :domain               => 'perechin.net',
+      :user_name            => 'mail',
+      :password             => 'pass',
       :enable_starttls_auto => true
   }
 #end

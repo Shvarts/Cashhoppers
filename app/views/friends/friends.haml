@@ -1,9 +1,59 @@
-%ul
-- @friends.each do |friend|
-  %li
-    = friend.firstname
-    = friend.lastname
-    = friend.email
+%h3
+  = pluralize(current_user.friends.count, "friend")
+%table.table.table-condensed
+  %tr
+    %th
+      First Name
+    %th
+      Last Name
+    %th
+    - @friends.each do |friend|
+      %tr
+        %td
+          = link_to friend.first_name, users_profile_path(:id=>friend.id)
+        %td
+          = friend.last_name
+        %td{style: 'text-align: right'}
+          = link_to "Delete", friends_delete_friend_path(id: friend.id), confirm: "Really delete friendship with #{friend.first_name}?", method: :post, class: 'btn btn-mini btn-danger'
+%h3
+  = pluralize(current_user.requested_friends.count, "requested friend")
+%table.table.table-condensed
+  %tr
+    %th
+      First Name
+    %th
+      Last Name
+    %th
+    - @requested_friends.each do |requester|
+      %tr
+        %td
+          = requester.first_name
+        %td
+          = requester.last_name
+        %td{style: 'text-align: right'}
+          = link_to "Accept", friends_accept_request_path(id: requester.id), method: :post, class: 'btn btn-mini btn-success'
+          = link_to "Decline", friends_decline_request_path(id: requester.id), confirm: "Really decline friendship with #{requester.first_name}?", method: :post, class: 'btn btn-mini btn-danger'
+%h3
+  = pluralize(current_user.pending_friends.count, "pending friend")
+%table.table.table-condensed
+  %tr
+    %th
+      First Name
+    %th
+      Last Name
+    %th
+    - @pending_friends.each do |friend|
+      %tr
+        %td
+          = friend.first_name
+        %td
+          = friend.last_name
+        %td{style: 'text-align: right'}
+          = link_to "Cancel",
+                friends_cancel_request_path(id: friend.id),
+                confirm: "Cancel friendship request?",
+                method: :post,
+                class: 'btn btn-mini btn-danger'
 
 
 

@@ -1,5 +1,26 @@
-%h1
-  Welcome
-
-
-
+= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
+%table.table.table-condensed
+  %tr
+    %th
+      User Name
+    %th
+      Hop Name
+    %th
+      task
+    %th
+      created at
+    %th
+      Photo
+  - @user_hop_tasks.each do |task|
+    %tr
+      %td
+        = link_to task.user.first_name, users_profile_path(task.user) if task.user
+      %td
+        = task.hop_task.hop.name if task.hop_task
+      %td
+        = task.hop_task.text if task.hop_task
+      %td
+        = task.created_at
+      %td{style: 'text-align: right'}
+        = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
+= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails

@@ -1,16 +1,12 @@
 FactoryGirl.define do
   factory :hop do
-    sequence(:contact_email){|i| "example#{i}@mail.com"}
-    contact_phone '123-212-212'
-    sequence(:hop_code){|i| "j1h3#{i}"}
+    sequence(:code){|i| "j1h3#{i}"}
     close false
     daily_hop false
-    hop_items nil
-    hop_price {rand(20)}
-    jackpot nil
+    price {rand(20)}
+    jackpot 30
     sequence(:name){|i| "hop_#{i}"}
-    producer_contact nil
-    producer_id nil
+    producer_id 1
     time_start Time.now
     time_end Time.now + 8.hours
   end

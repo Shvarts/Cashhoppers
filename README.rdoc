@@ -142,4 +142,85 @@ response JSON:
                     ad_picture_url
                 ]
 
+=== Friends
+====get friends
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_friends.json
+response
+    {"friends"=>[6, 2, 7]}
+====get requested friends
+(те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_requested_friends.json
+response
+    {"requested_friends"=>[]}
+====get pending friends
+(те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_pending_friends.json
+response
+    {"pending_friends"=>[27, 5]}
+====send request to friend
+(пригласить в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"27"}' http://localhost:3000/api/friends/send_request.json
+esponse
+    {"message"=>["Friend request sent."]}
+====accept request
+(принять заявку в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/accept_request.json
+response
+    {"message"=>"No friendship request from user with id 8."}
+====decline request
+(отклонить приглашение в друзья)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"9"}' http://localhost:3000/api/friends/decline_request.json
+response
+    {"message"=>"No friendship request from user with id 9."}
+====cancel request
+(отменить своё приглашение)
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/cancel_request.json
+response
+    {"message"=>"No request for friendship with 8"}
+====delete friend
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/delete_friend.json
+response
+    {"message"=>"Friendship with user 8 deleted!"}
+
+=== Users
+==== get users list
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","page":"2","per_page":"3"}' http://localhost:3000/api/users/get_users.json
+response
+    {"users"=>[{"id"=>4, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}, {"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}, {"id"=>6, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+    ar"=>nil}]}
+====get my info
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/users/get_my_info.json
+response
+    {"user"=>{"id"=>1, "last_name"=>"my last name", "first_name"=>"my first name", "user_name"=>"user_name", "zip"=>515, "contact"=>"my cont", "phone"=>0, "bio"=>"i
+    was born in the old sity York", "twitter"=>"twitter link", "facebook"=>"facebook link", "google"=>"g + link", "email"=>"admin@cashhoppers.com", "role"=>"admin",
+    "avatar"=>nil}}
+====get user info
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","user_id":"5"}' http://localhost:3000/api/users/get_user_info.json
+response
+    {"user"=>{"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
+    il, "facebook"=>nil, "google"=>nil, "role"=>"admin", "avatar"=>nil}}
+====update my profile
+    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"HJRXG3dujLmYx3HS4xSV","last_name":"my last name
+    ","first_name":"my first name","user_name":"user_name","zip":"515","contact":"my cont","phone":"phone","bio":"i was born in the old sity York","twitter":"twitte
+    r link","facebook":"facebook link","google":"g + link","password":"newpassword","avatar":"#<File:0x34f9ad0>"}' http://localhost:3000/api/users/upd
+    ate_profile.json
+response
+    {"success"=>true, "message"=>"profile successfully updated."}
+
+=== Let's play game
+====get events list
+   curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","page":"1","per_page":"3"
+   }' http://localhost:3000/api/tasks/get_events_list.json
+response
+   {"tasks"=>[{"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:01:00Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/25/original/PHOTO.jp
+   g?1374058860"}, {"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:00:28Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/24/original/PHO
+   TO.jpg?1374058828"}, {"user_id"=>1, "hop_task_id"=>1, "created_at"=>"2013-07-17T11:00:27Z", "hop_id"=>1, "photo"=>"/images/user_hop_task_photos/tasks/23/origina
+   l/PHOTO.jpg?1374058827"}]}
+====upload users hop task
+   curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","task":"{:user_id=>"1", :
+   hop_task_id=>"1", :photo=>#<File:1.jpg>}}' http://localhost:3000/api/tasks/create_task.json
+response
+   {"message"=>"Task create!"}
 

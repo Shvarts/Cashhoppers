@@ -1,11 +1,13 @@
-class Admin::HoppersController < ApplicationController
+class Admin::HoppersController < Admin::AdminController
+
   def find_hopper
     @users = User.all
+    @tab = 'find_hoppers'
   end
 
   def hopper_list
     @users = User.all
-
+    @tab = 'generate_hoppers_list'
   end
 
   def search_hopper
@@ -26,6 +28,8 @@ class Admin::HoppersController < ApplicationController
     render 'admin/hoppers/hopper_list'
   end
 
-
+  def sub_layout
+    'admin/hoppers_tabs'
+  end
 
 end

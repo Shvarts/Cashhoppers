@@ -40,9 +40,12 @@ ActiveRecord::Schema.define(:version => 20130716075341) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "friends_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "accepted_at"
   end
 
   create_table "hop_tasks", :force => true do |t|
@@ -124,6 +127,8 @@ ActiveRecord::Schema.define(:version => 20130716075341) do
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -161,6 +166,10 @@ ActiveRecord::Schema.define(:version => 20130716075341) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.text     "bio"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "google"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

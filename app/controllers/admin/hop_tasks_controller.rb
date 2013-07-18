@@ -31,9 +31,8 @@ class Admin::HopTasksController < Admin::AdminController
   def create
     params[:hop_task][:sponsor_id]=current_user.id
 
-
     @hop=Hop.find(params["hop_id"])
-    @hop_task = @hop.hop_tasks.new(params[:hop_task])
+    @hop_task = @hop.hop_tasks.build(params[:hop_task])
 
       if @hop_task.save
          redirect_to :back, :notice => 'Hop task was successfully created.'

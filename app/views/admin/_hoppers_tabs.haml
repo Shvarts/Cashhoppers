@@ -1,0 +1,6 @@
+%ul.nav.nav-tabs
+  %li{:class => ('active' if @tab == 'find_hoppers')}
+    = link_to 'Find hopper' ,   admin_hoppers_find_hopper_path
+  %li{:class => ('active' if @tab == 'generate_hoppers_list')}
+    = link_to 'Generate hopper list' ,  admin_hoppers_hopper_list_path
+= yield

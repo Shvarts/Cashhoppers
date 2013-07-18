@@ -2,17 +2,18 @@ class Admin::HopsController < Admin::AdminController
   # GET /hops
   # GET /hops.json
   before_filter :authenticate_user!
+  before_filter :set_tabs
 
   def index
-  #  render :text=>params[:daily_hop].to_s.to_bool
-  if params[:daily_hop].to_s.to_bool
-     @daily_hop=1
-     @hops= Hop.daily_all
-  else
-     @hops = Hop.regular
+    if params[:daily_hop].to_s.to_bool
+      @daily_hop = 1
+      @hops = Hop.daily_all
+      @tab = 'daily_hops'
+    else
+      @hops = Hop.regular
+      @tab = 'hops'
+    end
   end
-
- end
 
   # GET /hops/1
   # GET /hops/1.json
@@ -79,6 +80,20 @@ class Admin::HopsController < Admin::AdminController
         format.html { render action: "edit" }
         format.json { render json: @hop.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def sub_layout
+    'admin/hops_tabs'
+  end
+
+  private
+
+  def set_tabs
+    if params[:daily_hop].to_s.to_bool
+      @tab = 'daily_hops'
+    else
+      @tab = 'hops'
     end
   end
 
