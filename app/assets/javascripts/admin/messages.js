@@ -10,12 +10,14 @@ $(function(){
 });
 
 $(function() {
-    $('#e9').select2({val:'12'});
+    $('#e9').select2();
 
 });
 
 $(function() {
-    $('#close').cl;
+  $('#users_list a#select_id').click(function(){
+      $('#e9').select2({data:[{val:'12'}]});
+  });
 
 });
 

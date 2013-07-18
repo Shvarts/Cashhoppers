@@ -37,7 +37,7 @@
 
   </tr>
 </table>
-    <%= select_tag  'users_id[]', options_from_collection_for_select(@selected_id, "id","user_name", @count), id: 'e9',multiple:true, class:"populate select2-offscreen",
+    <%= select_tag  'users_id[]', options_from_collection_for_select(@users, "id","user_name"), id: 'e9',multiple:true, class:"populate select2-offscreen",
                      :tabindex=>"-1" %>
 
 
@@ -83,7 +83,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <%= button_to "close", :url => {:action => 'email_tool'}, :close=>true%>
+
   </div>
 </div>
 
@@ -99,7 +99,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <%= button_to "close"%>
+
   </div>
 </div>
 
@@ -114,6 +114,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <%= button_to "close"%>
+
   </div>
 </div>

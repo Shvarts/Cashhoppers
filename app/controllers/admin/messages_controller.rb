@@ -12,10 +12,10 @@ class Admin::MessagesController < ApplicationController
   def create_email
 
 
-
-    n = Message.send_emails_to(params[:message],current_user.id, true)
-    flash[:success]=" #{n} emails  have created"
-    redirect_to admin_messages_email_tool_path
+    render :text=>params
+    #n = Message.send_emails_to(params[:message],current_user.id, true)
+    #flash[:success]=" #{n} emails  have created"
+    #redirect_to admin_messages_email_tool_path
   end
 
   def create_message
@@ -36,22 +36,12 @@ class Admin::MessagesController < ApplicationController
       flash[:id] = @select_id
     end
 
-  if !params[:close].blank?
-    @selected_id = Message.user_arr(flash[:id])
-    @count = []
-    i=0
-    while (i < @selected_id.count) do
-      i = i + 1
-     @count << i
 
-    end
-  end
-    @selected_id =[] if !@selected_id
-        puts"----------------------------- #{params}--------------------------------------------"
+    params[:id] = flash[:id] if !params[:close].blank?
+
+   puts"----------------------------- #{params}--------------------------------------------"
     puts"----------------------------- #{params}--------------------------------------------"
     puts"----------------------------- #{params}--------------------------------------------"
-
-
 
     @message= Message.new
     @message.receiver_id= params[:id]  if !params[:id].blank?

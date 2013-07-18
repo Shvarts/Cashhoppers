@@ -20,7 +20,7 @@
           = user.user_name
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id'
+          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id', name: 'btn', class:user.id
 
   = text_field_tag :input, @select_id
   = will_paginate @users, renderer: BootstrapPagination::Rails
