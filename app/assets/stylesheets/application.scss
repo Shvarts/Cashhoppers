@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require twitter-bootstrap-static/bootstrap
+ *= require twitter-bootstrap-static/fontawesome
+ *= require twitter-bootstrap-static/sprites
+ *= require bootstrap-datetimepicker
+ */
+
+body fieldset{
+    margin-top: 20%;
+}
+
+.container-grid{
+     margin-top: 70px;
+}
+
+.header{
+  background: #027036; /* Для старых браузров */
+  background: -moz-linear-gradient(top, #009242, #027036); /* Firefox 3.6+ */
+  /* Chrome 1-9, Safari 4-5 */
+  background: -webkit-gradient(linear, left top, left bottom,
+  color-stop(0%,#009242), color-stop(100%,#027036));
+  /* Chrome 10+, Safari 5.1+ */
+  background: -webkit-linear-gradient(top, #009242, #027036);
+  background: -o-linear-gradient(top, #009242, #027036); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #009242, #027036); /* IE10 */
+  background: linear-gradient(top, #009242, #027036); /* CSS3 */
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 0px;
+  .header-content{
+    width: 950px;
+    margin: 0 auto;
+    height: 70px;
+    .header-menu{
+      border: 1px solid red;
+      width: 400px;
+      float: left;
+      vertical-align: middle;
+      display: table-cell;
+      ul{
+        margin: 0;
+        padding: 4px;
+        li{
+          display: inline;
+          margin-right: 5px;
+          font-size: 20px;
+          font-weight: bolder;
+          color: white;
+          border-right: 3px solid white;
+          padding-right: 4px;
+        }
+      }
+    }
+    .header-button{
+      text-align: right;
+      height: 70px;
+      width: 530px;
+      float: right;
+      vertical-align: middle;
+      display: table-cell;
+      input{
+      }
+    }
+  }
+}
+
