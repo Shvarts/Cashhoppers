@@ -15,7 +15,8 @@ class Message < ActiveRecord::Base
   end
 
   def self.create_arr_receivers(messages)
-    arr = messages.to_s.chars.to_a
+    arr = messages
+    arr = messages.split(',')   unless messages.class == Array
     emails= []
     for i in arr
       emails << i if !(i.to_i == 0)
@@ -42,14 +43,62 @@ class Message < ActiveRecord::Base
       message[:email]= email_state
     @message = Message.new(message)
     if @message.save
-      if UserMailer.send_email_for_select_user(@message.id).deliver
-        n= n + 1
-      end
-    end
+
+      UserMailer.send_email_for_select_user(@message.id).deliver if email_state
+      n= n + 1
+
+
+     end
     end
     n
   end
 
+  def self.create_hoppers_id_arr(params)
+    if params
+      hop = Hop.find_by_id(params)
+      if !hop.hoppers.blank?
+        @users = hop.hoppers.select(:id).all
+        arr_id=[]
+        for i in @users do
+          arr_id << i.id
+        end
+       end
+    end
+    arr_id
+  end
 
+
+  def self.create_user_id_arr_by_zip(params)
+
+    if params
+      @users = User.where(:zip => params).select(:id).all
+      arr_id=[]
+      for i in @users do
+        arr_id << i.id
+      end
+    end
+   arr_id
+  end
+
+
+
+  def self.create_users_id_list(params,flash)
+    select_id = []
+    if !params.blank?
+      select_id << params
+      select_id << flash
+      select_id.flatten!
+      select_id.compact!
+      select_id.uniq!
+     end
+    select_id
+  end
+
+  def self.conditions_for_users(params)
+    conditions = []
+    conditions = ["first_name LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
+    conditions = ["id LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
+    conditions
+  end
 
 end

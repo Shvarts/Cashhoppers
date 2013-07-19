@@ -27,6 +27,8 @@ CashHoppers::Application.routes.draw do
       match '/messages/find_users' => "messages#find_users"
       match '/messages/email_tool' => "messages#email_tool"
       match '/messages/message_tool' => "messages#message_tool"
+      match '/messages/find_hop' => "messages#find_hop"
+       match '/messages/find_zip' => "messages#find_zip"
       match '/messages/text_tool' => "messages#text_tool"
       match '/search/current_hops' => "search#current_hops"
       match '/search/hops_archive' => "search#hops_archive"

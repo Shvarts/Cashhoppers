@@ -30,18 +30,17 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= text_field_tag :receiver_id ,'' ,:class=>"input-mini", onclick:"$('#myModalhop').modal()"%></td>
-    <td><%= text_field_tag :receiver_id, '' , :class=>"input-mini", onclick:"$('#myModalzip').modal()" %></td>
+    <td><%= text_field_tag :receiver_id ,'' ,:class=>"input-mini", :id=>'find_hop' , onclick:"$('#myModalhop').modal()"%></td>
+    <td><%= text_field_tag :receiver_id, '' , :class=>"input-mini", :id=>'find_zip' ,onclick:"$('#myModalzip').modal()" %></td>
     <td><%= text_field_tag :receiver_id,'' , :class=>"input-mini" ,  onclick:"$('#myModal').modal()" %></td>
 
 
   </tr>
 </table>
-    <%= select_tag  'users_id[]', options_from_collection_for_select(@users, "id","user_name"), id: 'e9',multiple:true, class:"populate select2-offscreen",
+    <%= select_tag  'users_id[]', [], id: 'e9',multiple:true, class:"populate select2-offscreen",
                      :tabindex=>"-1" %>
 
-
-
+    <%= hidden_field_tag :email , true %>
 
 <table>
   <tr>
@@ -61,7 +60,9 @@
     <td><%= e.text_area :text, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10" %></td>
   </tr>
   <tr>
+
     <td><%= e.submit "SEND", :class=>"input-medium btn btn-success" %></td>
+    <td></td>
   </tr>
 </table>
 <% end %>
@@ -78,7 +79,6 @@
   </div>
   <div class="modal-body">
     <div id="myModal" class="example cursor">
-
       <%= render partial: "users_list" %>
     </div>
   </div>
@@ -90,12 +90,9 @@
 
 <div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header" >
-
-  </div>
+ </div>
   <div class="modal-body">
     <div id="myModalzip" class="example cursor">
-
-      <%= render partial: "zips_list" %>
     </div>
   </div>
   <div class="modal-footer">
@@ -105,15 +102,11 @@
 
 <div class="modal hide fade in" id="myModalhop" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header" >
-
-  </div>
+ </div>
   <div class="modal-body">
     <div id="myModalhop" class="example cursor">
-
-      <%= render partial: "hops_list" %>
     </div>
   </div>
   <div class="modal-footer">
-
-  </div>
+ </div>
 </div>

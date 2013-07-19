@@ -6,7 +6,7 @@
     <%= flash[:success] %>
 <% end %>
 
-<%= form_for @message, url: admin_messages_create_message_path do |f| %>
+<%= form_for @message, url: admin_messages_create_email_path do |f| %>
 
     <% if @message.errors.any? %>
         <div id="error_explanation">
@@ -29,9 +29,9 @@
       </tr>
       <tr>
         <td><%= %></td>
-        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
-        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
-        <td><%= f.text_field :receiver_id, :class=>"input-mini" %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini", :id=>'find_hop', onclick:"$('#myModalhop').modal()" %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini", :id=>'find_zip', onclick:"$('#myModalzip').modal()" %></td>
+        <td><%= f.text_field :receiver_id, :class=>"input-mini" , onclick:"$('#myModal').modal()"%></td>
       </tr>
     </table>
 
@@ -79,3 +79,40 @@
 <div class="pull-right"><%= link_to "Message history", admin_messages_message_history_path %></div>
 <%= link_to "Find hopper", admin_hoppers_search_hopper_path %>|
 <%= link_to "Hopper list", admin_hoppers_search_hoppers_path %>
+
+
+<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModal" class="example cursor">
+    </div>
+    <%= render partial: "users_list" %>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
+
+
+<div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalhop" class="example cursor">
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
+
+
+<div class="modal hide fade in" id="myModalhop" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalhop" class="example cursor">
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
