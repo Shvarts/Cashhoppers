@@ -45,24 +45,25 @@ CashHoppers::Application.routes.draw do
 
       post 'sign_in_via_service' => 'sessions#sign_in_via_service'
 
-      resources :ads, :only => :index
+      get 'ads/get_ads' => 'ads#index'
+
       resources :hops do
         get :daily, :on => :collection
       end
       get 'get_hop_tasks' => 'hops#get_hop_tasks'
 
-      post 'friends/get_friends', to: 'friends#get_friends'
-      post 'friends/get_requested_friends', to: 'friends#get_requested_friends'
-      post 'friends/get_pending_friends', to: 'friends#get_pending_friends'
+      get 'friends/get_friends', to: 'friends#get_friends'
+      get 'friends/get_requested_friends', to: 'friends#get_requested_friends'
+      get 'friends/get_pending_friends', to: 'friends#get_pending_friends'
       post 'friends/send_request', to: 'friends#send_request'
       post 'friends/accept_request', to: 'friends#accept_request'
       post 'friends/decline_request', to: 'friends#decline_request'
       post 'friends/cancel_request', to: 'friends#cancel_request'
       post 'friends/delete_friend', to: 'friends#delete_friend'
 
-      post 'users/get_users', to: 'users#index'
-      post 'users/get_my_info', to: 'users#get_my_info'
-      post 'users/get_user_info', to: 'users#get_user_info'
+      get 'users/get_users', to: 'users#index'
+      get 'users/get_my_info', to: 'users#get_my_info'
+      get 'users/get_user_info', to: 'users#get_user_info'
       post 'users/update_profile', to: 'users#update_profile'
 
       post 'tasks/get_events_list', to: 'user_hop_tasks#events_list'
