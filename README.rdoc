@@ -136,81 +136,25 @@ provider can be 'facebook', 'google' and 'twitter'
         success: {"success"=>true, "message"=>"profile successfully updated."}
         error: {"errors"=>{"password"=>["is too short (minimum is 8 characters)"]}, "success"=>false, "status"=>406}
 
-===Ads
+===Ads(уточнить)
 ====get_ad(method: GET)
-    url: http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
+by daily hop id
+    ad type: sp, rofl, ropu
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
     response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
               2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
-    url: http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=rofl&hop_id=2
-{"ads"=>[{"id"=>2, "ad_name"=>"fhgdtg", "ad_type"=>"rofl", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:58Z", "updated_at"=
->"2013-07-19T16:24:58Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:58Z", "ad_picture_url"=>"/images/ad_pictures/ads/2/AD_PICTURE.png?1374251098"}]}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=ropu&hop_id=2
-{"ads"=>[{"id"=>3, "ad_name"=>"fhgdtg", "ad_type"=>"ropu", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:25:03Z", "updated_at"=
->"2013-07-19T16:25:03Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:25:03Z", "ad_picture_url"=>"/images/ad_pictures/ads/3/AD_PICTURE.png?1374251103"}]}
-------------------------------------------------------------
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
-{"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
-2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=rofl&hop_id=2
-{"ads"=>[{"id"=>2, "ad_name"=>"fhgdtg", "ad_type"=>"rofl", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:58Z", "updated_at"=
->"2013-07-19T16:24:58Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:58Z", "ad_picture_url"=>"/images/ad_pictures/ads/2/AD_PICTURE.png?1374251098"}]}
-------------------------------------------------------------
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
-{"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
-at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=hop_list
-{"ads"=>[{"id"=>7, "ad_name"=>"adsdfg", "ad_type"=>"hop_list", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:04Z", "update
-d_at"=>"2013-07-19T16:28:04Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=gallery
-{"ads"=>[{"id"=>8, "ad_name"=>"adsdfg", "ad_type"=>"gallery", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:09Z", "updated
-_at"=>"2013-07-19T16:28:09Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=friends
-{"errors"=>["Invalid type."], "success"=>false, "status"=>406}
-------------------------------------------------------------
-http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=message
-{"ads"=>[{"id"=>10, "ad_name"=>"adsdfg", "ad_type"=>"message", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:21Z", "update
-d_at"=>"2013-07-19T16:28:21Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
-
-===get_hops_tasks method: GET
-
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/hops
-
-response
-
-    {"hop_tasks":[{"id":3,"price":"453","amt":343,"bonus":453453,"pts":2345,"sponsor_id":1,"text":"just task","hop_id":4,"picture":"/assets/no_ad_picture.jpg"}]}
-
-===ads method:GET
-
-Return ads by ad_type
-
-request: ads.json?api_key={api_key}&ad_type={ad_type}
-
-Return ads by hop_id
-
-request: ads.json?api_key={api_key}&hop_id={hop_id}
-
-response JSON: 
-            ads: [  
-                    id,
-                    ad_name,
-                    ad_type,
-                    link_to_ad,
-                    hop_id,
-                    created_at,
-                    updated_at,
-                    hop_ad_picture_updated_at,
-                    ad_picture_url
-                ]
-
+by hop id
+    ad type: sp, rofl
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
+    response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
+              2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
+other ads
+    ad type: log_in, hop_list, gallery, friends, message'}
+    url: http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
+    response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
+               at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
 === Let's play game
-====get events list
+====get users tasks list
    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","page":"1","per_page":"3"
    }' http://localhost:3000/api/tasks/get_events_list.json
 response
