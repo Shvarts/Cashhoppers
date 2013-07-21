@@ -2,9 +2,9 @@
   %li{:class => ('active' if @tab == 'hops')}
     = link_to 'Hops', admin_regular_hops_path
   %li{:class => ('active' if @tab == 'daily_hops')}
-    = link_to 'daily hops', admin_daily_hops_path(:daily_hop =>1)
-  -#%li{:class => ('active' if @tab == 'current_hops')}
-  -#  = link_to 'current hops', admin_search_current_hops_path
+    = link_to 'daily hops', admin_daily_hops_path
+  %li{:class => ('active' if @tab == 'current_hops')}
+    = link_to 'current hops', admin_current_hops_path
   -#%li{:class => ('active' if @tab == 'archived_hops')}
   -#  = link_to 'hops archive', admin_search_hops_archive_path
 = yield

@@ -4,7 +4,7 @@ class Admin::HopsController < Admin::AdminController
 
   def regular
     @tab = 'hops'
-    conditions = {:daily => false}
+    conditions = {daily: false, close: false}
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
@@ -12,10 +12,23 @@ class Admin::HopsController < Admin::AdminController
 
   def daily
     @tab = 'daily_hops'
-    conditions = {:daily => true}
+    conditions = {daily: true, close: false}
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
+  end
+
+  def current
+    @tab = 'current_hops'
+    conditions = ["time_start < ? and (time_end > ? or daily = 1)", Time.now.utc, Time.now.utc]
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
+  def hops_archive
+    @tab = 'archived_hops'
+    @tasks_grid = initialize_grid(Hop)#.where(:close => true))
   end
 
   def show
@@ -39,6 +52,7 @@ class Admin::HopsController < Admin::AdminController
 
   def create
     params[:hop][:producer_id] = current_user.id
+    params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
     if @hop.save
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'

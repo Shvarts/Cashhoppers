@@ -10,6 +10,7 @@ CashHoppers::Application.routes.draw do
     resources :hops, only: [:create]
     get 'regular_hops',                    to: 'hops#regular'
     get 'daily_hops',                      to: 'hops#daily'
+    get 'current_hops',                    to: 'hops#current'
     get 'hop/:id',                         to: 'hops#show',              as: 'hop'
     get 'hops/new_regular',                to: 'hops#new_regular',       as: 'new_regular_hop'
     get 'hops/new_daily',                  to: 'hops#new_daily',         as: 'new_daily_hop'
@@ -38,8 +39,6 @@ CashHoppers::Application.routes.draw do
     match '/messages/wice_grid' => "messages#wice_grid"
     match '/messages/email_tool' => "messages#email_tool"
     match '/messages/message_tool' => "messages#message_tool"
-    match '/search/current_hops' => "search#current_hops"
-    match '/search/hops_archive' => "search#hops_archive"
 
   end
 

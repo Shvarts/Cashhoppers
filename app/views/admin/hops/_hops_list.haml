@@ -6,10 +6,14 @@
       - link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
     - g.column name: 'Price', attribute: 'price'
     - g.column name: 'Jackpot', attribute: 'jackpot'
-    - g.column name: 'Time Start', :attribute => 'time_start', :helper_style => :calendar do |hop|
+    - g.column name: 'Time Start', :attribute => 'time_start' do |hop|
       - hop.time_start.to_s if hop.time_start
-    - g.column name: 'Time End', :attribute => 'time_end', :helper_style => :calendar do |hop|
-      - hop.time_end.to_s if hop.time_end
+    - unless @tab == 'daily_hops'
+      - g.column name: 'Time End', :attribute => 'time_end' do |hop|
+        - hop.time_end.to_s if hop.time_end
+    - if @tab == 'current_hops'
+      - g.column name: 'Type', :attribute => 'daily', custom_filter: [['Daily', true], ['Regular', false]] do |hop|
+        - hop.daily ? 'Daily': 'Regular'
     - g.column do |hop|
       - link_to('Show', admin_hop_path(hop), class: 'btn btn-mini')
     - g.column do |hop|
