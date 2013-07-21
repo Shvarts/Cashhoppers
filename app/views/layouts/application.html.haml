@@ -10,22 +10,27 @@
   %body
     .header
       .header-content
-        .header-menu
+        .header-left
           %ul
             %li
-              test
+              ABOUT
             %li
-              test
-        .header-button
-          %input.btn.btn-warning{value: 'Download the app', type: :button}
+              HOW TO PLAY
+            %li
+              PHOTO GALLERY
+            %li
+              BUSINESES
+            %li
+              SHOWS & EVENTS
+        .header-right
+          .button-container
+            %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
+      = image_tag 'logo.png'
     .row-fluid.container-grid
       .span8.offset2
         .page-header
           .row-fluid
-            .span3
-              %h1
-                CashHoppers
-            .span9.text-right
+            .span12.text-right
               = render partial: 'layouts/authentication'
         .row-fluid
           - if flash[:error]

@@ -20,11 +20,11 @@ body fieldset{
 }
 
 .container-grid{
-     margin-top: 70px;
+     margin-top: 160px;
 }
 
 .header{
-  background: #027036; /* Для старых браузров */
+  background: #027036;
   background: -moz-linear-gradient(top, #009242, #027036); /* Firefox 3.6+ */
   /* Chrome 1-9, Safari 4-5 */
   background: -webkit-gradient(linear, left top, left bottom,
@@ -42,36 +42,50 @@ body fieldset{
     width: 950px;
     margin: 0 auto;
     height: 70px;
-    .header-menu{
-      border: 1px solid red;
-      width: 400px;
+    .header-left{
+      height: 70px;
+      width: 600px;
       float: left;
-      vertical-align: middle;
-      display: table-cell;
+      display: table;
       ul{
-        margin: 0;
-        padding: 4px;
+        vertical-align: middle;
+        display: table-cell;
         li{
           display: inline;
-          margin-right: 5px;
-          font-size: 20px;
+          font-size: 12px;
           font-weight: bolder;
           color: white;
-          border-right: 3px solid white;
-          padding-right: 4px;
+          border-right: 2px solid white;
+          padding: 0px 5px 0px 5px;
+        }
+        li:last-child{
+          border-right: 0px;
         }
       }
     }
-    .header-button{
+    .header-right{
+      display: table;
       text-align: right;
       height: 70px;
-      width: 530px;
+      width: 330px;
       float: right;
-      vertical-align: middle;
-      display: table-cell;
-      input{
+      .button-container{
+        vertical-align: middle;
+        display: table-cell;
+        input{
+          font-size: 12px;
+          font-weight: bolder;
+          width: 270px;
+        }
       }
     }
+  }
+  img{
+    display: block;
+    margin: 0 auto;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
   }
 }
 
