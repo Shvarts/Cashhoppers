@@ -6,8 +6,16 @@ class Admin::HopsController < Admin::AdminController
     @tab = 'hops'
     conditions = {:daily => false}
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
-                                     :order => 'created_at',
-                                     :order_direction => 'desc')
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
+  def daily
+    @tab = 'daily_hops'
+    conditions = {:daily => true}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
   end
 
   def show
@@ -23,6 +31,12 @@ class Admin::HopsController < Admin::AdminController
     @hop.daily = false
   end
 
+  def new_daily
+    @tab = 'hops'
+    @hop = Hop.new
+    @hop.daily = true
+  end
+
   def create
     params[:hop][:producer_id] = current_user.id
     @hop = Hop.new(params[:hop])
@@ -30,7 +44,7 @@ class Admin::HopsController < Admin::AdminController
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
       if @hop.daily
-
+        render action: 'new_daily'
       else
         render action: 'new_regular'
       end
@@ -42,6 +56,9 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.find(params[:id])
   end
 
+  def edit_daily
+    @hop = Hop.find(params[:id])
+  end
 
   def update
     @hop = Hop.find(params[:id])
@@ -49,7 +66,7 @@ class Admin::HopsController < Admin::AdminController
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
       if hop.daily
-
+        render action: 'edit_daily'
       else
         render action: 'edit_regular'
       end
@@ -61,7 +78,7 @@ class Admin::HopsController < Admin::AdminController
     daily_hop = @hop.daily
     @hop.destroy
     if daily_hop
-
+      redirect_to admin_daily_hops_path
     else
       redirect_to admin_regular_hops_path
     end

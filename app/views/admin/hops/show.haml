@@ -6,7 +6,7 @@
     .text-right.span4
       = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-info')
       - if @hop.daily
-        link to daily hops
+        = link_to 'Back', admin_daily_hops_path, class: 'btn btn-info'
       - else
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
       = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
@@ -23,13 +23,13 @@
         Time start:
     %td
       = @hop.time_start
-  %tr
-    %td
-      %b
-        Time end:
-    %td
-      = @hop.time_end
   - unless @hop.daily
+    %tr
+      %td
+        %b
+          Time end:
+      %td
+        = @hop.time_end
     %tr
       %td
         %b

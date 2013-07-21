@@ -9,9 +9,12 @@ CashHoppers::Application.routes.draw do
     #hops
     resources :hops, only: [:create]
     get 'regular_hops',                    to: 'hops#regular'
+    get 'daily_hops',                      to: 'hops#daily'
     get 'hop/:id',                         to: 'hops#show',              as: 'hop'
     get 'hops/new_regular',                to: 'hops#new_regular',       as: 'new_regular_hop'
+    get 'hops/new_daily',                  to: 'hops#new_daily',         as: 'new_daily_hop'
     get 'hop/:id/edit_regular',            to: 'hops#edit_regular',      as: 'edit_regular_hop'
+    get 'hop/:id/edit_daily',              to: 'hops#edit_daily',        as: 'edit_daily_hop'
     delete 'hop/:id',                      to: 'hops#destroy',           as: 'hop'
     put 'hop/:id',                         to: 'hops#update',            as: 'hop'
 

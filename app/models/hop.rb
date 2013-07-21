@@ -9,11 +9,13 @@ class Hop < ActiveRecord::Base
   attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start
 
   validates_presence_of :time_start, :name
-  validates_presence_of :time_end, :jackpot,  :producer_id, if: :daily?
-  validates :jackpot, numericality: { only_integer: true }, if: :daily?
-  validates :price, numericality: true, if: :daily?
+  validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
+  validates :jackpot, numericality: { only_integer: true }, unless: :daily?
+  validates :price, numericality: true, unless: :daily?
 
-  def daily
+
+
+  def daily_today
     where('daily = 1 AND DATE(time_start) = CURDATE()')
   end
 
