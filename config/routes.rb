@@ -11,6 +11,7 @@ CashHoppers::Application.routes.draw do
     get 'regular_hops',                    to: 'hops#regular'
     get 'daily_hops',                      to: 'hops#daily'
     get 'current_hops',                    to: 'hops#current'
+    get 'archived_hops',                   to: 'hops#archived'
     get 'hop/:id',                         to: 'hops#show',              as: 'hop'
     get 'hops/new_regular',                to: 'hops#new_regular',       as: 'new_regular_hop'
     get 'hops/new_daily',                  to: 'hops#new_daily',         as: 'new_daily_hop'
@@ -18,9 +19,7 @@ CashHoppers::Application.routes.draw do
     get 'hop/:id/edit_daily',              to: 'hops#edit_daily',        as: 'edit_daily_hop'
     delete 'hop/:id',                      to: 'hops#destroy',           as: 'hop'
     put 'hop/:id',                         to: 'hops#update',            as: 'hop'
-
-    post 'hops/close/:id', to: 'hops#close' , :as=>'close'
-
+    post 'close_hop/:id',                  to: 'hops#close',             as: 'close_hop'
 
     resources :hop_tasks
     resources :ads

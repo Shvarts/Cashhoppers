@@ -20,15 +20,18 @@ class Admin::HopsController < Admin::AdminController
 
   def current
     @tab = 'current_hops'
-    conditions = ["time_start < ? and (time_end > ? or daily = 1)", Time.now.utc, Time.now.utc]
+    conditions = ["time_start < ? and (time_end > ? or daily = 1) and close = 0", Time.now.utc, Time.now.utc]
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
   end
 
-  def hops_archive
+  def archived
     @tab = 'archived_hops'
-    @tasks_grid = initialize_grid(Hop)#.where(:close => true))
+    conditions = {close: true}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
   end
 
   def show
@@ -97,20 +100,16 @@ class Admin::HopsController < Admin::AdminController
       redirect_to admin_regular_hops_path
     end
   end
-  #
-  #def close
-  #  @hop = Hop.find(params[:id])
-  #
-  #  respond_to do |format|
-  #    if @hop.update_attributes(:close=>1)
-  #      format.html { redirect_to admin_hops_path({:daily_hop => @hop.daily_hop}) , notice: 'Hop was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-  #      format.html { render action: "edit" }
-  #      format.json { render json: @hop.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
+
+  def close
+    @hop = Hop.find(params[:id])
+    if @hop.update_attributes( close: 1)
+        flash[:notice] = 'Hop was successfully closed.'
+    else
+        flash[:error] = 'Error update hop.'
+    end
+    redirect_to :back
+  end
 
   def sub_layout
     'admin/hops_tabs'

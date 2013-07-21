@@ -11,7 +11,7 @@
     - unless @tab == 'daily_hops'
       - g.column name: 'Time End', :attribute => 'time_end' do |hop|
         - hop.time_end.to_s if hop.time_end
-    - if @tab == 'current_hops'
+    - if @tab == 'current_hops' || @tab == 'archived_hops'
       - g.column name: 'Type', :attribute => 'daily', custom_filter: [['Daily', true], ['Regular', false]] do |hop|
         - hop.daily ? 'Daily': 'Regular'
     - g.column do |hop|
@@ -20,4 +20,7 @@
       - link_to('Edit', admin_edit_regular_hop_path(hop), class: 'btn btn-mini btn-info')
     - g.column do |hop|
       - link_to('Destroy', admin_hop_path(hop), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+    - unless @tab == 'archived_hops'
+      - g.column do |hop|
+        - link_to('Close', admin_close_hop_path(hop), method: :post, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
 
