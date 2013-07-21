@@ -21,7 +21,8 @@ CashHoppers::Application.routes.draw do
     put 'hop/:id',                         to: 'hops#update',            as: 'hop'
     post 'close_hop/:id',                  to: 'hops#close',             as: 'close_hop'
 
-    resources :hop_tasks
+    resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
+
     resources :ads
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"

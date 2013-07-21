@@ -1,48 +1,32 @@
 class Admin::HopTasksController < Admin::AdminController
 
-
-  before_filter :authenticate_user!
-
   def index
     @hop = Hop.find(params[:hop_id])
-    @hop_tasks = @hop.hop_tasks
+    @tasks = @hop.hop_tasks
+    render partial: 'tasks'
   end
-
-
-  def show
-    @hop_task = HopTask.find(params[:id])
-  end
-
 
   def new
     @hop = Hop.find(params[:hop_id])
     @hop_task = @hop.hop_tasks.build
+    render partial: 'form'
   end
 
 
   def edit
-    @hop_task=HopTask.find(params[:id])
-    @hop=@hop_task.hop
-
-
+    @hop_task = HopTask.find(params[:id])
+    @hop = @hop_task.hop
   end
 
 
   def create
-    params[:hop_task][:sponsor_id]=current_user.id
-
-    @hop=Hop.find(params["hop_id"])
-    @hop_task = @hop.hop_tasks.build(params[:hop_task])
-
-      if @hop_task.save
-         redirect_to :back, :notice => 'Hop task was successfully created.'
-      else
-
-        flash[:hop_task_error] = @hop_task.errors.full_messages
-        redirect_to admin_hop_path(@hop)
-
-      end
-
+    @hop_task = HopTask.new(params[:hop_task])
+    @hop_task.sponsor = current_user
+    if @hop_task.save
+      render text: 'ok'
+    else
+      render partial: 'form'
+    end
   end
 
 

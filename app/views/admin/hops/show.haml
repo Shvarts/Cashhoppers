@@ -83,28 +83,30 @@
           Special event:
       %td
         = @hop.event
+%hr
+.row-fluid
+  .span6
+    %h4
+      Tasks:
+  .span6.text-right
+    %button.btn.btn-info{onclick: 'newTaskModal(' + @hop.id.to_s + ')'}
+      New Hop Task
+#tasksTable
+  = render partial: 'admin/hop_tasks/tasks'
+
+#new-task-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+  .modal-header
+    %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
+      ×
+    %h3#myModalLabel
+      New Hop Task:
+  .modal-body
+
+
 
 %hr
 need refactoring
 %hr
-Create task
-= form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
-  -if flash[:hop_task_error]
-    %div#error_explanation
-      -flash[:hop_task_error].each do |i|
-        %ul
-          %li
-            =i
-  = text_field(:hop_task, :text, :placeholder=>"text for task", :class=>"span10")
-  = number_field(:hop_task, :pts, :placeholder=>"PTS")
-  = number_field(:hop_task, :bonus, :placeholder=>"bonus")
-  -if !@hop.daily
-    %div{class: "controls controls-row"}
-      = number_field(:hop_task, :price, :placeholder=>"price", :class=>"span2")
-    = file_field(:hop_task, :hop_picture)
-    = number_field(:hop_task, :amt, :placeholder=>"AMT")
-  %br
-    = submit_tag
 %h3
   Create ad
 %br
@@ -140,34 +142,7 @@ Create task
 %br
 %div{:class=>"actions"}
   = button_to 'Close project', admin_close_path
-%h3
-  Tasks
--@hop.hop_tasks.each do |hop_task|
-  %table{:class=>"table, table-bordered table-condensed"}
-    %tr
-      %td
-        %strong
-          Sponsor id:
-      %td
-        %strong
-          Price:
-      %td
-        %strong
-          Text:
-      %td
-    %tr
-      %td
-        = hop_task.sponsor.first_name
-        = hop_task.sponsor.last_name
-      %td
-        = hop_task.price
-      %td
-        = hop_task.text
-      %td
-        = link_to 'Show', admin_hop_task_path(hop_task.id)
-        = link_to 'Edit', edit_admin_hop_task_path(hop_task)
-        = link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
-%h3
+
   Ads
 -@hop.ads.each do |hop_ad|
   %table{:class=>"table, table-bordered table-condensed"}

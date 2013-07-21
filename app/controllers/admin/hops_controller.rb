@@ -1,6 +1,6 @@
 class Admin::HopsController < Admin::AdminController
 
-  before_filter :init_hop, only: [:show, :edit_regular]
+  before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
 
   def regular
     @tab = 'hops'
@@ -35,10 +35,7 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def show
-    @hop_task_errors=params[:hop_task_errors].to_json
-    @hop_task = HopTask.new
-
-    @hop_ad=Ad.new
+    @tasks = @hop.hop_tasks
   end
 
   def new_regular
@@ -70,11 +67,11 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def edit_regular
-    @hop = Hop.find(params[:id])
+
   end
 
   def edit_daily
-    @hop = Hop.find(params[:id])
+
   end
 
   def update

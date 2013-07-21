@@ -1,0 +1,54 @@
+- if @hop_task.errors.any?
+  - @hop_task.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
+= form_for([:admin, @hop_task]) do |f|
+  = f.hidden_field :hop_id
+  %table.hops-form
+    %tr
+      %td
+        %b
+          Text:
+      %td
+        = f.text_area :text, :rows=>3, class: 'span12'
+    - unless @hop_task.hop.daily
+      %tr
+        %td
+          %b
+            Price:
+        %td
+          = f.text_field :price, class: 'span12'
+      %tr
+        %td
+          %b
+            AMT:
+        %td
+          = f.text_field :amt, class: 'span12'
+      %tr
+        %td
+          %b
+            Logo?:
+        %td
+          .fileupload.fileupload-new{'data-provides' => 'fileupload'}
+            .fileupload-preview.fileupload-exists.thumbnail{style: 'max-width: 200px; max-height: 150px; line-height: 20px;'}
+              = image_tag @hop_task.hop_picture.url, style: 'max-width: 200px; max-height: 150px;'
+            %div
+              = f.file_field :hop_picture
+              %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload'}
+                Remove
+    %tr
+      %td
+        %b
+          PTS:
+      %td
+        = f.text_field :pts, class: 'span12'
+    %tr
+      %td
+        %b
+          Bonus point for sharing:
+      %td
+        = f.text_field :bonus, class: 'span12'
+    %tr
+      %td{colspan: 2}
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitTaskForm(' + @hop_task.hop.id.to_s + '); return false;'
