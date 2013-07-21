@@ -24,6 +24,7 @@ body fieldset{
 }
 
 .header{
+  z-index: 100;
   background: #027036;
   background: -moz-linear-gradient(top, #009242, #027036); /* Firefox 3.6+ */
   /* Chrome 1-9, Safari 4-5 */

@@ -16,7 +16,7 @@
          <td>Text for task</td>
          <td><%= f.text_area :text_for_hop, :rows=>5 %></td>
       </tr>
-      <% if ! @hop_task.hop.daily_hop %>
+      <% if ! @hop_task.hop.daily %>
         <tr>
           <td>Price</td>
           <td><%= f.text_field :hop_task_price %></td>

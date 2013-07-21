@@ -12,11 +12,11 @@ class HopTask < ActiveRecord::Base
 
   validates :bonus, :pts, numericality: { only_integer: true }
   validates :text, length: { minimum: 5, maximum:140 }
-  validates :price,:amt,  numericality: { only_integer: true }, if: :daily_hop?
+  validates :price,:amt,  numericality: { only_integer: true }, if: :daily?
 
 
-  def daily_hop?
-    hop.daily_hop.class == FalseClass if hop
+  def daily?
+    hop.daily if hop
   end
 
 end

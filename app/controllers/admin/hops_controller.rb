@@ -1,87 +1,85 @@
 class Admin::HopsController < Admin::AdminController
-  # GET /hops
-  # GET /hops.json
-  before_filter :authenticate_user!
-  before_filter :set_tabs
 
-  def index
-    if params[:daily_hop].to_s.to_bool
-      @daily_hop = 1
-      @hops = Hop.daily_all
-      @tab = 'daily_hops'
-    else
-      @hops = Hop.regular
-      @tab = 'hops'
-    end
+  before_filter :init_hop, only: [:show, :edit_regular]
+
+  def regular
+    @tab = 'hops'
+    conditions = {:daily => false}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                     :order => 'created_at',
+                                     :order_direction => 'desc')
   end
 
-  # GET /hops/1
-  # GET /hops/1.json
   def show
-
-    @hop = Hop.find(params[:id])
     @hop_task_errors=params[:hop_task_errors].to_json
     @hop_task = HopTask.new
 
     @hop_ad=Ad.new
   end
 
-
-  def new
+  def new_regular
+    @tab = 'hops'
     @hop = Hop.new
-    @hop.daily_hop = params[:daily_hop]? true: false
-
+    @hop.daily = false
   end
-
-
-  def edit
-    @hop = Hop.find(params[:id])
-    @hop.time_end=0
-    @hop.time_start=0
-  end
-
 
   def create
     params[:hop][:producer_id] = current_user.id
     @hop = Hop.new(params[:hop])
-
     if @hop.save
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
-      render action: "new"
+      if @hop.daily
+
+      else
+        render action: 'new_regular'
+      end
     end
 
   end
+
+  def edit_regular
+    @hop = Hop.find(params[:id])
+  end
+
 
   def update
     @hop = Hop.find(params[:id])
     if @hop.update_attributes(params[:hop])
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
-      render action: "edit"
+      if hop.daily
+
+      else
+        render action: 'edit_regular'
+      end
     end
   end
 
   def destroy
     @hop = Hop.find(params[:id])
-     @daily_hop=@hop.daily_hop
+    daily_hop = @hop.daily
     @hop.destroy
-    redirect_to admin_hops_path(:daily_hop => @daily_hop)
-  end
+    if daily_hop
 
-  def close
-    @hop = Hop.find(params[:id])
-
-    respond_to do |format|
-      if @hop.update_attributes(:close=>1)
-        format.html { redirect_to admin_hops_path({:daily_hop => @hop.daily_hop}) , notice: 'Hop was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @hop.errors, status: :unprocessable_entity }
-      end
+    else
+      redirect_to admin_regular_hops_path
     end
   end
+  #
+  #def close
+  #  @hop = Hop.find(params[:id])
+  #
+  #  respond_to do |format|
+  #    if @hop.update_attributes(:close=>1)
+  #      format.html { redirect_to admin_hops_path({:daily_hop => @hop.daily_hop}) , notice: 'Hop was successfully updated.' }
+  #      format.json { head :no_content }
+  #    else
+  #      format.html { render action: "edit" }
+  #      format.json { render json: @hop.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   def sub_layout
     'admin/hops_tabs'
@@ -89,8 +87,9 @@ class Admin::HopsController < Admin::AdminController
 
   private
 
-  def set_tabs
-    if params[:daily_hop].to_s.to_bool
+  def init_hop
+    @hop = Hop.find(params[:id])
+    if @hop.daily
       @tab = 'daily_hops'
     else
       @tab = 'hops'

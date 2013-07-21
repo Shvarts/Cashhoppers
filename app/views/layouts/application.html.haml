@@ -27,7 +27,7 @@
             %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
       = image_tag 'logo.png'
     .row-fluid.container-grid
-      .span8.offset2
+      .span10.offset1
         .page-header
           .row-fluid
             .span12.text-right
@@ -49,11 +49,11 @@
                 &times;
               = flash[:notice]
         .row-fluid
-          .span3
+          .span2
             = render partial: 'layouts/sidebar'
             = yield :sidebar
             = controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
-          .span9
+          .span10
             .well
               = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
 

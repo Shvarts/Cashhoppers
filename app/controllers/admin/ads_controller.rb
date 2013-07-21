@@ -16,7 +16,7 @@ class Admin::AdsController < Admin::AdminController
     @hop_ad = Ad.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.haml
+      format.html # show.haml
       format.json { render json: @hop_ad }
     end
   end

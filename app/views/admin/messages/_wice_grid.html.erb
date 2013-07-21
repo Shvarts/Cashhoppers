@@ -24,8 +24,8 @@
     hop.time_start.to_s()
   end
 
-  g.column name:'Daily', attribute: 'daily_hop', auto_reload:  true do |hop|
-    hop.daily_hop ? 'Yes' : 'No'
+  g.column name:'Daily', attribute: 'daily', auto_reload:  true do |hop|
+    hop.daily ? 'Yes' : 'No'
   end
 
   g.column name:'Close', attribute: 'close', auto_reload:  true do |hop|

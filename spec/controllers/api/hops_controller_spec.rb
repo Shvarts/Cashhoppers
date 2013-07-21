@@ -19,10 +19,10 @@ describe Api::HopsController do
       end
       # daily hops
       2.times do
-        FactoryGirl.create(:hop, :daily_hop => true, :time_start => Time.now)
+        FactoryGirl.create(:hop, :daily => true, :time_start => Time.now)
       end
       # daily hop with yesterday date
-      FactoryGirl.create(:hop, :daily_hop => true, :time_start => Date.yesterday)
+      FactoryGirl.create(:hop, :daily => true, :time_start => Date.yesterday)
     end
 
     it 'should return all hops but not daily' do

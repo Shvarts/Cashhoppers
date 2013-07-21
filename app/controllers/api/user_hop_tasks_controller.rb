@@ -1,4 +1,4 @@
-class Api::UserHopTasksController < ApplicationController
+class Api::UserHopTasksController < Api::ApplicationController
   respond_to :json
 
   def events_list

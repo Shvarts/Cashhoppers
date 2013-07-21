@@ -1,4 +1,4 @@
-class Api::SessionsController < Devise::SessionsController
+class Api::SessionsController < Api::ApplicationController
 
   skip_before_filter :api_authentikate_user
   before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration]

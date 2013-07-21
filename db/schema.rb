@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20130719093903) do
     t.string   "code"
     t.string   "price"
     t.integer  "jackpot"
-    t.boolean  "daily_hop"
+    t.boolean  "daily"
     t.boolean  "close"
     t.string   "event"
     t.datetime "created_at",  :null => false

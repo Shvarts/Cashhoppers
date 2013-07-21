@@ -1,4 +1,4 @@
-class Api::FriendsController < ApplicationController
+class Api::FriendsController < Api::ApplicationController
 
   before_filter :load_friend, only: [:send_request, :accept_request, :decline_request, :cancel_request, :delete_friend]
 

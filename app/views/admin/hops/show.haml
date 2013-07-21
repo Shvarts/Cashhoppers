@@ -1,74 +1,93 @@
-%table{:class=>"table, table-bordered table-condensed"}
+%h2
+  .row-fluid
+    .text-left.span8
+      Hop:
+      = @hop.name
+    .text-right.span4
+      = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-info')
+      - if @hop.daily
+        link to daily hops
+      - else
+        = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
+      = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+%table.hops-form
   %tr
     %td
       %b
         Name:
     %td
+      = @hop.name
+  %tr
+    %td
       %b
         Time start:
     %td
+      = @hop.time_start
+  %tr
+    %td
       %b
         Time end:
-  %tr
-    %td
-      = @hop.name
-    %td
-      = @hop.time_start
     %td
       = @hop.time_end
-  %tr
-    -if !@hop.daily_hop
-      %tr
-        %td
-          %b
-            Producer:
-        %td
-          %b
-            Producer contact:
-        %td
-          %b
-            Producer phone:
-        %td
-          %b
-            Producer email:
-        %td
-          %b
-            Hop code:
-      %tr
-        %td
+  - unless @hop.daily
+    %tr
+      %td
+        %b
+          Producer:
+      %td
+        - if @hop.producer
           = @hop.producer.first_name
           = @hop.producer.last_name
-        %td
-          = @hop.producer.phone
-        %td
+    %tr
+      %td
+        %b
+          Producer contact:
+      %td
+        - if @hop.producer
           = @hop.producer.contact
-        %td
+    %tr
+      %td
+        %b
+          Producer Phone:
+      %td
+        - if @hop.producer
+          = @hop.producer.phone
+    %tr
+      %td
+        %b
+          Producer Email:
+      %td
+        - if @hop.producer
           = @hop.producer.email
-        %td
-          = @hop.code
-      %tr
-        %td
-          %b
-            Hop price:
-        %td
-          %b
-            Jackpot:
-        %td
-          %b
-            Special event:
-      %tr
-        %td
-          = @hop.price
-        %td
-          = @hop.jackpot
-        %td
-          = @hop.event
-%br
-= link_to 'Edit', edit_admin_hop_path(@hop)  |
-= link_to 'Back', admin_hops_path(:daily_hop =>@hop.daily_hop)
-%br
-%h3
-  Create task
+    %tr
+      %td
+        %b
+          Code:
+      %td
+        = @hop.code
+    %tr
+      %td
+        %b
+          Price:
+      %td
+        = @hop.price
+    %tr
+      %td
+        %b
+          Jackpot:
+      %td
+        = @hop.jackpot
+    %tr
+      %td
+        %b
+          Special event:
+      %td
+        = @hop.event
+
+%hr
+need refactoring
+%hr
+Create task
 = form_tag admin_hop_tasks_path(:hop_id=>@hop.id) , :multipart => true do
   -if flash[:hop_task_error]
     %div#error_explanation
@@ -79,7 +98,7 @@
   = text_field(:hop_task, :text, :placeholder=>"text for task", :class=>"span10")
   = number_field(:hop_task, :pts, :placeholder=>"PTS")
   = number_field(:hop_task, :bonus, :placeholder=>"bonus")
-  -if !@hop.daily_hop
+  -if !@hop.daily
     %div{class: "controls controls-row"}
       = number_field(:hop_task, :price, :placeholder=>"price", :class=>"span2")
     = file_field(:hop_task, :hop_picture)
@@ -112,7 +131,7 @@
     = radio_button(:ad, :ad_type, "rofl")
     %b
       ROFL
-    - if @hop.daily_hop
+    - if @hop.daily
       = radio_button(:ad, :ad_type, "ropu")
       %b
         ROPU

@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < Api::ApplicationController
   respond_to :json
 
   before_filter :find_user, only: [:get_user_info]
