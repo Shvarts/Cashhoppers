@@ -1,4 +1,3 @@
-
 =CashHoppers project
 
 Hosting: http://perechin.net:3000/
@@ -13,204 +12,149 @@ Run server: rails s thin
 
 ==API documentation
 
-Android API key: DI2YWC2YvoEGLXwstpKw4JFJ9R6tiL 
+Android API key: http://perechin.net:3000/admin/applications
 
-===sign_up method:POST
+Headers:
+    "Accept: application/json"
+    "Content-Type: application/json"
 
--request: JSON
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"api_key":"*your api key",
-    "email":"my.email@gmail.com","password":"qwerty11","password_confirmation":"qwerty11", "first_name":"myFirstName",
-    "last_name":"MyLastName","user_name":"username","zip":"12321","avatar_content_type":"image/jpeg",
-    "avatar_original_filename":"myavatar.jpg","base64avatar":"/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS
-    h/Kg/7tAAABwMflRsUnOBn6UHHpRx/nFAAUDdQD+FIEVRkAflS8f5xRxjp/KgB3PqPyopvH+cUUAICSDk0pJ55oooAMnPX/OaXJ9f85oooAATkc0mTjr
-    /nFFFADqKKKAP/2Q=="}'  http://perechin.net:3000/api/sign_up
--response:
-    {"message":"Check your email and confirm registration.","success":true,"user":{"avatar_content_type":null,
-    "avatar_file_name":null,"avatar_file_size":null,"avatar_updated_at":null,	"created_at":"2013-06-27T12:08:15Z",
-    "email":"misha.skubch@gmail.com","first_name":"myFirstName","id":49,"last_name":"MyLastName",
-    "updated_at":"2013-06-27T12:08:15Z","user_name":"username","zip":12321}}
+===Session
+====sign_in(method POST)
+    url: http://localhost:3000/api/sessions
+    data: {"api_key":"123","email":"admin@cashhoppers.com","password":"qwerty11"}
+    response:
+        success: {"success"=>true, "info"=>"Logged in", "data"=>{"authentication_token"=>"nYXd4049if7qCcgAdJgt2DbkIFcZTM", "email"=>"admin@cashhoppers.com"}, "status"=>200}
+        error: {"errors"=>["Bad api key"], "success"=>false, "status"=>401}
+               {"errors"=>["Invalid login or password"], "success"=>false, "status"=>401}
+===sign_in via Facebook, Google+ and Twitter(method POST)
+    url: http://localhost:3000/api/sign_in_via_service
+    data: {"api_key":"123","email":"misha.skubenich@gmail.com","name":"Misha  Skubenich","uid":"100004130052528","provider":"facebook","zip":"88000",}'
+    response:
+        {"success"=>true, "info"=>"Signed in successfully via Facebook", "data"=>{"authentication_token"=>"GhhvviL2jsZOw6mINwnimqPK1KYPxA", "email"=>{"avatar_content_ty
+        pe"=>"image/jpeg", "avatar_file_name"=>"1.jpg", "avatar_file_size"=>36303, "avatar_updated_at"=>"2013-07-19T11:32:03Z", "bio"=>nil, "contact"=>nil, "created_at"
+        =>"2013-07-19T11:32:03Z", "email"=>"misha.skubenich@gmail.com", "facebook"=>nil, "first_name"=>"myFirstName", "google"=>nil, "id"=>70, "last_name"=>"MyLastName"
+        , "phone"=>nil, "twitter"=>nil, "updated_at"=>"2013-07-19T11:32:03Z", "user_name"=>"username", "zip"=>12321}}, "status"=>200}
+provider can be 'facebook', 'google' and 'twitter'
+===sign_out(method: DELETE)
+    url: http://localhost:3000/api/sessions.json?api_key=123&authentication_token=JqZVQ4phtzwFTo1hOcj6p7jh7EPcAQ
+    response:
+        success: {"success"=>true, "info"=>"Logged out", "status"=>200}
+        error: {"errors"=>["session invalid or expired"], "success"=>false, "status"=>401}
+===sign_up(method: POST)
+    url: http://localhost:3000/api/sign_up.json
+    data: {"api_key":"123","email":"misha.skubenich@gmail.com","password":"qwerty11","first_name"
+          :"myFirstName","last_name":"MyLastName","user_name":"username","zip":"12321","bio":"my bio","google":"sdfdfd","twitter":"facebook","facebook":"facebook","avatar
+          ":"#<File:0x36660f0>"}
+    response:
+          success: {"success"=>true, "info"=>"Check your email and confirm registration.", "data"=>{"user"=>{"avatar_content_type"=>"image/jpeg", "avatar_file_name"=>"1.jpg", "ava
+                   tar_file_size"=>36303, "avatar_updated_at"=>"2013-07-19T12:19:42Z", "bio"=>nil, "contact"=>nil, "created_at"=>"2013-07-19T12:19:42Z", "email"=>"misha.skubenich@
+                   gmail.com", "facebook"=>nil, "first_name"=>"myFirstName", "google"=>nil, "id"=>71, "last_name"=>"MyLastName", "phone"=>nil, "twitter"=>nil, "updated_at"=>"2013-
+                   07-19T12:19:42Z", "user_name"=>"username", "zip"=>12321}}, "status"=>200}
+          error: {"errors"=>{"email"=>["has already been taken"]}, "success"=>false, "status"=>406}
+===confirm_registration(method:POST)
+    url: http://localhost:3000/api/confirm_registration.json
+    data: {"api_key":"123","confirmation_token":"rwee"}
+    response:
+        success: {"success"=>true, "info"=>"Confirmation successfully.", "data"=>{"email"=>"misha.skubenich@gmail.com"}, "status"=>200}
+        error: {"errors"=>{"errors"=>["Bad confirmation token"]}, "success"=>false, "status"=>406}
 
-===confirm_registration method:POST
-
--request: JSON
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"api_key":"*your api key",
-    "confirmation_token":"*confirmation token from confirmation email"}' http://localhost:3000/api/confirm_registration
--response:
-    {"message":"Confirmation successfully.","success":true}
-	
-===login method:POST
-
--request: REST
-    curl -X POST -d "api_key=1234567&email=some%2Etest%2Eemail@gmail%2Ecom&password=password11"
-    http://localhost:3000/api/sessions
--request: JSON
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"api_key":"application key",
-    "email":"my.email@gmail.com","password":"mysecret"}'  http://localhost:3000/api/sessions
--response:
-    {"authentication_token":"gTx2aQWtyQmxCXaLqjWq","user":{"created_at":"2013-06-20T09:29:20Z",
-    "email":"some.test.email@gmail.com","id":19,"updated_at":"2013-06-20T 09:29:56Z"}}
-
-===sign_in via Facebook and Twitter
-
-    curl -H "Content-Type: application/json" -X POST -d '{"api_key":"vsOQpMKst8MU0ULwK9iCanGj1uEHqm",
-    "email": "misha.skubenich@gmail.com","name": "Misha  Skubenich","uid": "100004130052528","provider": "facebook",
-    "zip": "88000"}'  http://localhost:3000/api/sign_in_via_service
-
-    curl -H "Content-Type: application/json" -X POST -d '{"api_key":"vsOQpMKst8MU0ULwK9iCanGj1uEHqm",
-    "email": "misha.skubenich@gmail.com","name": "misha.skubenich","uid": "392549959","provider": "twitter",
-    "zip": "88000"}'  http://localhost:3000/api/sign_in_via_service
-
-You can receive email, name, uid here:
-Facebook: http://localhost:3000/auth/facebook
-Twitter: http://localhost:3000/auth/twitter
-
-provider can be 'facebook' and 'twitter'
-
-===sessions method:DELETE
-
-request: REST
-    curl -X DELETE -d "api_key=1234567&authentication_token=vtqY8PBFx2wWNmPT2L2X" http://localhost:3000/api/sessions
-request: JSON
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE -d '{"api_key":"application key",
-    "authentication_token":"vtqY8PBFx2wWNmPT2L2X","password":"mysecret"}' http://localhost:3000/api/sessions
-response:
-    {"message":["Session deleted."]}
-
-===send_ad method:POST
-
-request JSON:
-    curl -H ent-Type: application/json" -X POST -d '{"ad_type": "2","hop_id":"2"}'  http://localhost:3000/api/send_ad
-response JSON
-    {"picture_url":"/images/ad_pictures/ads/4/AD_PICTURE.jpg?1372405353","success":true}
-
-===hops method:GET
-Return all regular hops (not daily) by 10 per page(default)
-
-request JSON:
-
-
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/hops
-
-Return curr date daily hops
-
-request JSON:
-
-response JSON: 
-          hops: [ 
-                  name,
-                  time_start,
-                  time_end,
-                  hop_code,
-                  hop_price,
-                  jackpot,
-                  hop_items,
-                  daily_hop,
-                  close,
-                  event,
-                  created_at,
-                  updated_at
-                ]
-
-===get_hops_tasks method: GET
-
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123", "page":"45", "per_page":"15"}'  http://localhost:3000/api/hops
-
-response
-
-    {"hop_tasks":[{"id":3,"price":"453","amt":343,"bonus":453453,"pts":2345,"sponsor_id":1,"text":"just task","hop_id":4,"picture":"/assets/no_ad_picture.jpg"}]}
-
-===ads method:GET
-
-Return ads by ad_type
-
-request: ads.json?api_key={api_key}&ad_type={ad_type}
-
-Return ads by hop_id
-
-request: ads.json?api_key={api_key}&hop_id={hop_id}
-
-response JSON: 
-            ads: [  
-                    id,
-                    ad_name,
-                    ad_type,
-                    link_to_ad,
-                    hop_id,
-                    created_at,
-                    updated_at,
-                    hop_ad_picture_updated_at,
-                    ad_picture_url
-                ]
-
-=== Friends
-====get friends
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_friends.json
-response
-    {"friends"=>[6, 2, 7]}
-====get requested friends
+===Friends
+====get friends(method: GET)
+    url: http://localhost:3000/api/friends/get_friends.json?api_key=123&authentication_token=6o93YmJyXdYUxDsNUxQq
+    response:
+        success: {"friends"=>[3, 4, 5]}
+        error: {"errors"=>["You have no friends."], "success"=>false, "status"=>200}
+====get requested friends(method: GET)
 (те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_requested_friends.json
-response
-    {"requested_friends"=>[]}
-====get pending friends
+    url: http://localhost:3000/api/friends/get_requested_friends.json?api_key=123&authentication_token=8wkSglamnW681aIzyhxEApvBfeGouj
+    response:
+        success: {"requested_friends"=>[3, 4, 5]}
+        error: {"errors"=>["You have no requested friends."], "success"=>false, "status"=>200}
+====get pending friends(method: GET)
 (те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/friends/get_pending_friends.json
-response
-    {"pending_friends"=>[27, 5]}
-====send request to friend
+    url:  http://localhost:3000/api/friends/get_pending_friends.json?api_key=123&authentication_token=dciI7a6wizkbaYAicqAJUdJo15S3R3
+    response:
+        success: {"pending_friends"=>[3, 4, 5]}
+        error: {"errors"=>["You have no pending friends."], "success"=>false, "status"=>200}
+====send request to friend(method: POST)
 (пригласить в друзья)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"27"}' http://localhost:3000/api/friends/send_request.json
-esponse
-    {"message"=>["Friend request sent."]}
-====accept request
+    url: http://localhost:3000/api/friends/send_request.json
+    data: {"api_key":"123","authentication_token":"dciI7a6wizkbaYAicqAJUdJo15S3R3","friend_id":"2337"}
+    response:
+        success: {"success"=>true, "info"=>"Friend request sent.", "status"=>200}
+        error: {"errors"=>["Can't find user by id 2337"], "success"=>false, "status"=>406}
+====accept request(method: POST)
 (принять заявку в друзья)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/accept_request.json
-response
-    {"message"=>"No friendship request from user with id 8."}
-====decline request
+    url: http://localhost:3000/api/friends/accept_request.json
+    data: {"api_key":"123","authentication_token":"88pi7iUcBXQjkWBEX8xshu2rzz6GLi","friend_id":"3"}
+    response:
+        success: {"success"=>true, "info"=>"Friendship with user 3 accepted!", "status"=>200}
+        error: {"errors"=>["No friendship request from user with id 3."], "success"=>false, "status"=>406}
+====decline request(method: POST)
 (отклонить приглашение в друзья)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"9"}' http://localhost:3000/api/friends/decline_request.json
-response
-    {"message"=>"No friendship request from user with id 9."}
-====cancel request
+    url: http://localhost:3000/api/friends/decline_request.json
+    data: {"api_key":"123","authentication_token":"kevhxJO4fGWlF6GoRKjYlM9IKEafA5","friend_id":"3"}
+    response:
+        success: {"success"=>true, "info"=>"Friendship with user 3 declined!", "status"=>200}
+        error: {"errors"=>["No friendship request from user with id 3."], "success"=>false, "status"=>406}
+====cancel request(method: POST)
 (отменить своё приглашение)
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/cancel_request.json
-response
-    {"message"=>"No request for friendship with 8"}
-====delete friend
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","friend_id":"8"}' http://localhost:3000/api/friends/delete_friend.json
-response
-    {"message"=>"Friendship with user 8 deleted!"}
+    url: http://localhost:3000/api/friends/cancel_request.json
+    data: {"api_key":"123","authentication_token":"W8uDPNiADqA2FeEkwopGeK238NiC4V","friend_id":"24"}
+    response:
+        success: {"success"=>true, "info"=>"Friendship request to user 24 canceled!", "status"=>200}
+        error: {"errors"=>["No request for friendship with 24"], "success"=>false, "status"=>406}
 
-=== Users
-==== get users list
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","page":"2","per_page":"3"}' http://localhost:3000/api/users/get_users.json
-response
-    {"users"=>[{"id"=>4, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
-    ar"=>nil}, {"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
-    ar"=>nil}, {"id"=>6, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
-    ar"=>nil}]}
-====get my info
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq"}' http://localhost:3000/api/users/get_my_info.json
-response
-    {"user"=>{"id"=>1, "last_name"=>"my last name", "first_name"=>"my first name", "user_name"=>"user_name", "zip"=>515, "contact"=>"my cont", "phone"=>0, "bio"=>"i
-    was born in the old sity York", "twitter"=>"twitter link", "facebook"=>"facebook link", "google"=>"g + link", "email"=>"admin@cashhoppers.com", "role"=>"admin",
-    "avatar"=>nil}}
-====get user info
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"6o93YmJyXdYUxDsNUxQq","user_id":"5"}' http://localhost:3000/api/users/get_user_info.json
-response
-    {"user"=>{"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
-    il, "facebook"=>nil, "google"=>nil, "role"=>"admin", "avatar"=>nil}}
-====update my profile
-    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"HJRXG3dujLmYx3HS4xSV","last_name":"my last name
-    ","first_name":"my first name","user_name":"user_name","zip":"515","contact":"my cont","phone":"phone","bio":"i was born in the old sity York","twitter":"twitte
-    r link","facebook":"facebook link","google":"g + link","password":"newpassword","avatar":"#<File:0x34f9ad0>"}' http://localhost:3000/api/users/upd
-    ate_profile.json
-response
-    {"success"=>true, "message"=>"profile successfully updated."}
+====delete friend(method: POST)
+    url: http://localhost:3000/api/friends/delete_friend.json
+    data: {"api_key":"123","authentication_token":"BEUuGXrG67EL8DOyICvinDAWapEITN","friend_id":"3"}
+    response:
+        success: {"success"=>true, "info"=>"Friendship with user 3 deleted!", "status"=>200}
+        error: {"errors"=>["You aren't friends with 3"], "success"=>false, "status"=>406}
+===Users
+====get users list(method: GET)
+    url: http://localhost:3000/api/users/get_users.json?api_key=123&authentication_token=HjmvgovE91aIKZNJemh4Da7yzq3A9s&page=1&per_page=3
+    response:
+        {"users"=>[{"id"=>4, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+        ar"=>nil}, {"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+        ar"=>nil}, {"id"=>6, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
+        ar"=>nil}]}
+====get my info(method: GET)
+    url: http://localhost:3000/api/users/get_my_info.json?api_key=123&authentication_token=DKZbipTUhaNEGn7lL37w8MRQk30Qt4
+    response: {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
+              il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
+====get user info(method: GET)
+    url: http://localhost:3000/api/users/get_my_info.json?t=e&api_key=123&authentication_token=vtqviY0AGvo2lJbK62rXCZ6mrcJKFs&user_id=3
+         {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
+         il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
+====update my profile(method: POST)
+    url: http://localhost:3000/api/users/update_profile.json
+    data: {"api_key":"123","authentication_token":"Ok1KuxeGZVogWyXR8stHzeJFiewtUO","user_id":"3","last_name":"my last name","first_name":"my first name",
+          "user_name":"user_name","zip":"515","contact":"my cont","phone":"phone","bio":"i was born in the old sity York","twitter":"twitter link","facebook":"facebook li
+          nk","google":"g + link","password":"newpassword","avatar":"#<File:0x3456fc0>",}'
+    response:
+        success: {"success"=>true, "message"=>"profile successfully updated."}
+        error: {"errors"=>{"password"=>["is too short (minimum is 8 characters)"]}, "success"=>false, "status"=>406}
 
+===Ads(уточнить)
+====get_ad(method: GET)
+by daily hop id
+    ad type: sp, rofl, ropu
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
+    response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
+              2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
+by hop id
+    ad type: sp, rofl
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
+    response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
+              2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
+other ads
+    ad type: log_in, hop_list, gallery, friends, message'}
+    url: http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
+    response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
+               at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
 === Let's play game
-====get events list
+====get users tasks list
    curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{"api_key":"123","auth_token":"1Tra7TJsMqGr599TpzbU","page":"1","per_page":"3"
    }' http://localhost:3000/api/tasks/get_events_list.json
 response
