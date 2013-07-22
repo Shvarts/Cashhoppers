@@ -116,7 +116,9 @@
       = @user.google
       %br
       %br
-%hr
+-if @user == current_user
+  = button_to 'Update information', users_edit_path(:id => @user)
+
 %h4
   Hops:
 %table.table.table-condensed

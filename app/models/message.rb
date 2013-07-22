@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
   belongs_to :sender, :class_name => 'User'
   belongs_to :receiver, :class_name => 'User'
+
   attr_accessible :sender_id, :receiver_id, :text, :email, :template, :email_author, :subject, :file , :send_at
   has_attached_file :file,
                     :url  => "/images/ad_pictures/file/:id/MESSAGE_PICTURE.:extension",
