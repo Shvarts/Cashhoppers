@@ -10,12 +10,15 @@ class Api::UserHopTasksController < Api::ApplicationController
   end
 
   def create
-    hop_task = HopTask.where(id: params[:task][:hop_task_id]).first
+    hop_task = HopTask.where(id: params[:hop_task_id]).first
     unless hop_task
       bad_request(['Hop task not found.'], 406) unless @hop
     else
-      params[:task][:user_id] = @current_user.id
-      @task = UserHopTask.new(params[:task])
+      hop_task_data = {}
+      hop_task_data[:user_id] = @current_user.id
+      hop_task_data[:hop_task_id] = params[:hop_task_id]
+      hop_task_data[:photo] = params[:photo]
+      @task = UserHopTask.new(hop_task_data)
       if @task.save
         render :json => {success: true,
                          info: "Task create!",

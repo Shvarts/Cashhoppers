@@ -185,7 +185,7 @@ other ads
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 ====submit users hop task(method: POST)
     url: http://localhost:3000/api/task/submit.json
-    data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, task:{hop_task_id: 1, photo: #<File:1.jpg>}}
+    data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, hop_task_id: 1, photo: #<File:1.jpg>}
     response:
         success: {"success"=>true, "info"=>"Task create!", "status"=>200}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
