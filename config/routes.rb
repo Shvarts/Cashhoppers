@@ -59,9 +59,8 @@ CashHoppers::Application.routes.draw do
 
     get 'ads/get_ads' => 'ads#index'
 
-    resources :hops do
-      get :daily, :on => :collection
-    end
+    get 'hops/regular',                    to: 'hops#regular',           as: 'regular_hops'
+    get 'hops/daily',                      to: 'hops#daily',             as: 'daily_hops'
     get 'get_hop_tasks' => 'hops#get_hop_tasks'
 
     get 'friends/get_friends', to: 'friends#get_friends'

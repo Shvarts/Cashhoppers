@@ -13,18 +13,4 @@ class Hop < ActiveRecord::Base
   validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: true, unless: :daily?
 
-
-
-  def daily_today
-    where('daily = 1 AND DATE(time_start) = CURDATE()')
-  end
-
-  def daily_all
-    where(:daily => true )
-  end
-
-  def regular
-    where(:daily => false )
-  end
-
 end

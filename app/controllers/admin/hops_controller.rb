@@ -45,7 +45,7 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def new_daily
-    @tab = 'hops'
+    @tab = 'daily_hops'
     @hop = Hop.new
     @hop.daily = true
   end
