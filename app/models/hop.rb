@@ -13,4 +13,8 @@ class Hop < ActiveRecord::Base
   validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: true, unless: :daily?
 
+  def assign user
+    hoppers << user
+  end
+
 end

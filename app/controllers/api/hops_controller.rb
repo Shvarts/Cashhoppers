@@ -1,5 +1,5 @@
 class Api::HopsController < Api::ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:index, :daily, :get_hop_tasks]
+  skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_hop_tasks]
   before_filter :load_hop, only: [:assign, :get_tasks]
 
   def regular
@@ -19,7 +19,15 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def assign
-    @hop.assign @current_user
+    if @hop.hoppers.include? @current_user
+      bad_request(['User already assigned to this hop.'], 406)
+    else
+      @hop.assign @current_user
+      render :json => {success: true,
+                       info: "Assigned to hop successfully!",
+                       status: 200
+      }
+    end
   end
 
   def get_tasks

@@ -169,4 +169,10 @@ other ads
     response:
         success: {"hops"=>[{"id"=>3, "name"=>"daily hop #1", "time_start"=>"22/07/2013 11:44:01", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "clo
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
-
+====assign to hop
+    url: http://localhost:3000/api/hops/assign.json?t=e&api_key=123&authentication_token=lgzYkMy0uUrBisPuuAkhfqVSKbsgp4&hop_id=1
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
+    response:
+        success: {"success"=>true, "info"=>"Assigned to hop successfully!", "status"=>200}
+        error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
+               {"errors"=>["User already assigned to this hop."], "success"=>false, "status"=>406}
