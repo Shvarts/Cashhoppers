@@ -14,7 +14,7 @@
   - @user_hop_tasks.each do |task|
     %tr
       %td
-        = link_to task.user.first_name, users_profile_path(task.user) if task.user
+        = link_to task.user.first_name, user_path(task.user) if task.user
       %td
         = task.hop_task.hop.name if task.hop_task
       %td
