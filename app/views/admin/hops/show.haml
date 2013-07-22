@@ -1,0 +1,171 @@
+%h2
+  .row-fluid
+    .text-left.span8
+      Hop:
+      = @hop.name
+    .text-right.span4
+      = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-info')
+      - if @hop.daily
+        = link_to 'Back', admin_daily_hops_path, class: 'btn btn-info'
+      - else
+        = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
+      = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+%table.hops-form
+  %tr
+    %td
+      %b
+        Name:
+    %td
+      = @hop.name
+  %tr
+    %td
+      %b
+        Time start:
+    %td
+      = @hop.time_start
+  - unless @hop.daily
+    %tr
+      %td
+        %b
+          Time end:
+      %td
+        = @hop.time_end
+    %tr
+      %td
+        %b
+          Producer:
+      %td
+        - if @hop.producer
+          = @hop.producer.first_name
+          = @hop.producer.last_name
+    %tr
+      %td
+        %b
+          Producer contact:
+      %td
+        - if @hop.producer
+          = @hop.producer.contact
+    %tr
+      %td
+        %b
+          Producer Phone:
+      %td
+        - if @hop.producer
+          = @hop.producer.phone
+    %tr
+      %td
+        %b
+          Producer Email:
+      %td
+        - if @hop.producer
+          = @hop.producer.email
+    %tr
+      %td
+        %b
+          Code:
+      %td
+        = @hop.code
+    %tr
+      %td
+        %b
+          Price:
+      %td
+        = @hop.price
+    %tr
+      %td
+        %b
+          Jackpot:
+      %td
+        = @hop.jackpot
+    %tr
+      %td
+        %b
+          Special event:
+      %td
+        = @hop.event
+%hr
+.row-fluid
+  .span6
+    %h4
+      Tasks:
+  .span6.text-right
+    %button.btn.btn-info{onclick: 'newTaskModal(' + @hop.id.to_s + ')'}
+      New Hop Task
+#tasksTable
+  = render partial: 'admin/hop_tasks/tasks'
+
+#new-task-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+  .modal-header
+    %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
+      ×
+    %h3#myModalLabel
+      New Hop Task:
+  .modal-body
+
+
+
+%hr
+need refactoring
+%hr
+%h3
+  Create ad
+%br
+= form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
+  -if flash[:hop_ad_error]
+    %div#error_explanation
+      -flash[:hop_ad_error].each do |i|
+        %ul
+          %li
+            =i
+  = text_field(:ad, :ad_name, :placeholder=>"name")
+  = text_field(:ad,:contact, :placeholder=>"Contact")
+  = email_field(:ad,:email, :placeholder=>"email")
+  = text_field(:ad,:phone, :placeholder=>"phone")
+  = url_field(:ad,:link_to_ad, :placeholder=>"link to ad")
+  = number_field(:ad, :price, :placeholder=>"price")
+  = number_field(:ad, :amt, :placeholder=>"AMT")
+  = file_field(:ad, :hop_ad_picture)
+  %br
+  %div{:class=>"field", :id=>"radio_button" }
+    = radio_button(:ad,:ad_type, "sp", :checked => true )
+    %b
+      SP
+    = radio_button(:ad, :ad_type, "rofl")
+    %b
+      ROFL
+    - if @hop.daily
+      = radio_button(:ad, :ad_type, "ropu")
+      %b
+        ROPU
+  %div{:class=>"actions"}
+    = submit_tag
+%br
+%div{:class=>"actions"}
+  = button_to 'Close project', admin_close_path
+
+  Ads
+-@hop.ads.each do |hop_ad|
+  %table{:class=>"table, table-bordered table-condensed"}
+    %tr
+      %td
+        %strong
+          Advert Name:
+      %td
+        %strong>
+          Phone:
+      %td
+        %strong
+          Email:
+      %td
+    %tr
+      %td
+        = hop_ad.ad_name
+      %td
+        = hop_ad.phone
+      %td
+        = hop_ad.email
+      %td
+        = link_to 'Show',  admin_ad_path(hop_ad.id)
+        = link_to 'Edit', edit_admin_ad_path(hop_ad)
+        = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
+

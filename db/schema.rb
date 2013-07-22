@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716075341) do
+ActiveRecord::Schema.define(:version => 20130719093903) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20130716075341) do
     t.string   "code"
     t.string   "price"
     t.integer  "jackpot"
-    t.boolean  "daily_hop"
+    t.boolean  "daily"
     t.boolean  "close"
     t.string   "event"
     t.datetime "created_at",  :null => false
@@ -120,6 +120,13 @@ ActiveRecord::Schema.define(:version => 20130716075341) do
     t.string   "uid"
     t.string   "uname"
     t.string   "uemail"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "auth_token"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,26 @@
+.grid
+  = grid(@hops_grid, upper_pagination_panel: true) do |g|
+    - g.blank_slate content_tag(:div, 'No records found')
+    - g.column name: 'Name', attribute: 'name'
+    - g.column name: 'Producer', attribute: 'user_name', model: User do |hop|
+      - link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
+    - g.column name: 'Price', attribute: 'price'
+    - g.column name: 'Jackpot', attribute: 'jackpot'
+    - g.column name: 'Time Start', :attribute => 'time_start' do |hop|
+      - hop.time_start.to_s if hop.time_start
+    - unless @tab == 'daily_hops'
+      - g.column name: 'Time End', :attribute => 'time_end' do |hop|
+        - hop.time_end.to_s if hop.time_end
+    - if @tab == 'current_hops' || @tab == 'archived_hops'
+      - g.column name: 'Type', :attribute => 'daily', custom_filter: [['Daily', true], ['Regular', false]] do |hop|
+        - hop.daily ? 'Daily': 'Regular'
+    - g.column do |hop|
+      - link_to('Show', admin_hop_path(hop), class: 'btn btn-mini')
+    - g.column do |hop|
+      - link_to('Edit', admin_edit_regular_hop_path(hop), class: 'btn btn-mini btn-info')
+    - g.column do |hop|
+      - link_to('Destroy', admin_hop_path(hop), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+    - unless @tab == 'archived_hops'
+      - g.column do |hop|
+        - link_to('Close', admin_close_hop_path(hop), method: :post, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+

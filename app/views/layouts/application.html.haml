@@ -8,14 +8,29 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     = csrf_meta_tags
   %body
-    .row-fluid
-      .span8.offset2
+    .header
+      .header-content
+        .header-left
+          %ul
+            %li
+              ABOUT
+            %li
+              HOW TO PLAY
+            %li
+              PHOTO GALLERY
+            %li
+              BUSINESES
+            %li
+              SHOWS & EVENTS
+        .header-right
+          .button-container
+            %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
+      = image_tag 'logo.png'
+    .row-fluid.container-grid
+      .span10.offset1
         .page-header
           .row-fluid
-            .span3
-              %h1
-                CashHoppers
-            .span9.text-right
+            .span12.text-right
               = render partial: 'layouts/authentication'
         .row-fluid
           - if flash[:error]
@@ -34,10 +49,11 @@
                 &times;
               = flash[:notice]
         .row-fluid
-          .span3
+          .span2
             = render partial: 'layouts/sidebar'
             = yield :sidebar
             = controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
-          .span9
+          .span10
             .well
               = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
+

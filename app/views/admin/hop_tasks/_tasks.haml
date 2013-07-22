@@ -1,0 +1,38 @@
+%table.table.table-condensed
+  %tr
+    %th
+      Text
+    %th
+      Sponsor
+    %th
+      Price
+    %th
+      AMT
+    %th
+      PTS
+    %th
+      Bonus point for sharing
+    %th
+      Logo?
+    %th
+  - @tasks.each do |task|
+    %tr
+      %td
+        = task.text
+      %td
+        - if task.sponsor
+          = task.sponsor.first_name
+          = task.sponsor.last_name
+      %td
+        = task.price
+      %td
+        = task.amt
+      %td
+        = task.pts
+      %td
+        = task.bonus
+      %td
+        = image_tag task.hop_picture.url, class: 'img-polaroid', style: 'height: 110px'
+      %td{style: 'text-align: right'}
+        -#= link_to 'Edit', edit_admin_hop_task_path(hop_task)
+        -#= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete

@@ -1,31 +1,37 @@
-class Api::SessionsController < Devise::SessionsController
- skip_before_filter :authenticate_user!, :only => [:sign_in_via_service, :sign_up, :create, :confirm_registration]
+class Api::SessionsController < Api::ApplicationController
 
- before_filter :check_api_key
+  skip_before_filter :api_authentikate_user
+  before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration]
+
+  respond_to :json
 
   def sign_up
-
-    if params[:base64avatar] && params[:avatar_content_type] && params[:avatar_original_filename]
-      decoded_data = Base64.decode64(params[:base64avatar])
-
-      data = StringIO.new(decoded_data)
-      data.class_eval do
-        attr_accessor :content_type, :original_filename
-      end
-
-      data.content_type = params[:avatar_content_type]
-      data.original_filename = File.basename(params[:avatar_original_filename])
-
-      params[:avatar] = data
-    end
+    #
+    #if params[:base64avatar] && params[:avatar_content_type] && params[:avatar_original_filename]
+    #  decoded_data = Base64.decode64(params[:base64avatar])
+    #
+    #  data = StringIO.new(decoded_data)
+    #  data.class_eval do
+    #    attr_accessor :content_type, :original_filename
+    #  end
+    #
+    #  data.content_type = params[:avatar_content_type]
+    #  data.original_filename = File.basename(params[:avatar_original_filename])
+    #
+    #  params[:avatar] = data
+    #end
 
     user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip],
                     :password => params[:password], :password_confirmation => params[:password], :avatar => params[:avatar])
 
     if user.save
-      render :json => {:message => 'Check your email and confirm registration.', :success => true , :user => user}, :status => :created ,  :success => true
+      render :json => {:success=>true,
+                       :info => 'Check your email and confirm registration.',
+                       :data => {:user => user},
+                       :status => 200
+      }
     else
-      invalid_login_attempt user.errors
+      bad_request user.errors, 406
     end
   end
 
@@ -35,30 +41,39 @@ class Api::SessionsController < Devise::SessionsController
       user.confirmation_token = nil
       user.confirmed_at = Time.now
       user.save
-      render :json => {:message => 'Confirmation successfully.', :success => true}, :status => :confirmed ,  :success => true
+      render :json => {:success=>true,
+                       :info => 'Confirmation successfully.',
+                       :data => {email: user.email},
+                       :status => 200
+      }
     else
-      invalid_login_attempt :errors => ['Bad confirmation token']
+      bad_request ['Bad confirmation token'], 406
     end
   end
-  
+
   def create
-    user = User.find_for_database_authentication(:email => params[:email])
-    if user && user.valid_password?(params[:password])
-      user.ensure_authentication_token!  # make sure the user has a token generated
-      render :json => { :authentication_token => user.authentication_token, :success => true ,:user => user }, :status => :created ,  :success => true
+    @user = User.find_for_database_authentication(:email=>params[:email])
+
+    if @user && @user.valid_password?(params[:password])
+      session = create_session @user
+      render :json => {:success=>true,
+                       :info => "Logged in",
+                       :data => {authentication_token: session.auth_token, email: @user.email},
+                       :status => 200
+      }
     else
-      invalid_login_attempt :errors => ["Invalid login or password."]
+      bad_request ['Invalid login or password'], 401
     end
   end
 
   def destroy
-    # expire auth token
-    user = User.where(:authentication_token => params[:authentication_token]).first
-    if user
-      user.reset_authentication_token!
-      render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
+    remove_expired_sessions   #sorry
+    session = Session.where(:auth_token => params[:authentication_token]).first
+    if session
+      session.destroy
+      render :json => { :success => true,  :info => "Logged out", :status => 200 }
     else
-      invalid_login_attempt :errors => ["Bad token."]
+      bad_request ['invalid login or password'], 401
     end
   end
 
@@ -66,17 +81,23 @@ class Api::SessionsController < Devise::SessionsController
     #api_key, email, name, uid, provider
     auth = Service.find_by_provider_and_uid(params[:provider], params[:uid])
     if auth
-      auth.user.ensure_authentication_token!
-      render :json => {:message => 'Signed in successfully via ' + params[:provider].capitalize + '.', :authentication_token => auth.user.authentication_token, :success => true ,:user => auth.user },
-             :status => :created ,  :success => true
+      session = create_session auth.user
+      render :json => {success: true,
+                       info: 'Signed in successfully via ' + params[:provider].capitalize,
+                       data: {authentication_token: session.auth_token, email: auth.user},
+                       status: 200
+      }
     else
       if params[:email] != ''
         existinguser = User.find_by_email(params[:email])
         if existinguser
           existinguser.services.create(:provider => params[:provider], :uid => params[:uid], :uname => params[:name], :uemail => params[:email])
-          existinguser.ensure_authentication_token!
-          render :json => {:message => 'Sign in via ' + params[:provider].capitalize + '. ' + params[:provider].capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!',
-                           :authentication_token => user.authentication_token, :success => true, :user => user }, :status => :created ,  :success => true
+          session = create_session existinguser
+          render :json => {success: true,
+                           info: 'Sign in via ' + params[:provider].capitalize + '. ' + params[:provider].capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!',
+                           data: {authentication_token: session.auth_token, :user => existinguser},
+                           status: 200
+          }
         else
           params[:name] = params[:name][0, 39] if params[:name].length > 39
 
@@ -87,17 +108,35 @@ class Api::SessionsController < Devise::SessionsController
           user.skip_confirmation!
           if user.save
             user.confirm!
-            user.ensure_authentication_token!
-            render :json => {:message => 'Your account has been created via ' + params[:provider].capitalize,
-                             :authentication_token => user.authentication_token, :success => true ,:user => user }, :status => :created ,  :success => true
+            session = create_session user
+            render :json => {success: true,
+                             info: 'Your account has been created via ' + params[:provider].capitalize,
+                             data: {authentication_token: session.auth_token, :user => user},
+                             status: 200
+            }
           else
-            invalid_login_attempt :errors => user.errors.to_json
+            session.destroy
+            bad_request user.errors, 406
           end
         end
       else
-        invalid_login_attempt :errors => ["Email can't be blank."]
+        session.destroy
+        bad_request ["Email can't be blank."], 401
       end
     end
+  end
+
+  private
+
+  def remove_expired_sessions
+    Session.where("updated_at < ?", Time.now - 1.week).each do |session|
+      session.destroy
+    end
+  end
+
+  def create_session user
+    range = [*'0'..'9', *'a'..'z', *'A'..'Z']
+    Session.create(user_id: user.id, auth_token: Array.new(30){range.sample}.join)
   end
 
 end

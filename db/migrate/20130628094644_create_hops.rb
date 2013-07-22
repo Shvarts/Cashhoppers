@@ -8,7 +8,7 @@ class CreateHops < ActiveRecord::Migration
       t.string :code
       t.string :price
       t.integer :jackpot
-      t.boolean :daily_hop
+      t.boolean :daily
       t.boolean :close
       t.string :event
 

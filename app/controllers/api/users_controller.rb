@@ -1,5 +1,6 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < Api::ApplicationController
   respond_to :json
+
   before_filter :find_user, only: [:get_user_info]
   before_filter :filter_attributes, only: [:update_profile]
 
@@ -27,12 +28,13 @@ class Api::UsersController < ApplicationController
   end
 
   def update_profile
-    respond_to do |format|
-      if current_user.update_attributes(@attributes)
-        format.json {render :json => {success: true, message: 'profile successfully updated.'} }
-      else
-        format.json {render :json => current_user.errors.to_json }
-      end
+    if current_user.update_attributes(@attributes)
+      render :json => {success: true,
+                       info: 'Profile successfully updated.',
+                       status: 200
+      }
+    else
+      bad_request @current_user.errors 406
     end
   end
 

@@ -5,18 +5,17 @@ class HopTask < ActiveRecord::Base
 
   attr_accessible :price, :amt, :bonus, :pts, :sponsor_id, :text, :hop_picture, :hop_id
   has_attached_file :hop_picture,
-                    :url  => "/images/ad_pictures/hoptask/:id/AD_PICTURE.:extension",
-                    :default_url => "/assets/no_ad_picture.jpg",
-                    :path => ":rails_root/public/images/ad_pictures/hoptask/:id/AD_PICTURE.:extension"
-
+                    :url  => "/images/hop_tasks_logo/task/:id/hop_task_logo.:extension",
+                    :default_url => "/assets/no_hop_task.png",
+                    :path => ":rails_root/public/images/hop_tasks_logo/task/:id/hop_task_logo.:extension"
 
   validates :bonus, :pts, numericality: { only_integer: true }
   validates :text, length: { minimum: 5, maximum:140 }
-  validates :price,:amt,  numericality: { only_integer: true }, if: :daily_hop?
+  validates :price,:amt,  numericality: { only_integer: true }, if: :daily?
 
 
-  def daily_hop?
-    hop.daily_hop.class == FalseClass if hop
+  def daily?
+    hop.daily if hop
   end
 
 end

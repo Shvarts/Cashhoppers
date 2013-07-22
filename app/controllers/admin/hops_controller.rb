@@ -1,55 +1,76 @@
 class Admin::HopsController < Admin::AdminController
-  # GET /hops
-  # GET /hops.json
-  before_filter :authenticate_user!
-  before_filter :set_tabs
 
-  def index
-    if params[:daily_hop].to_s.to_bool
-      @daily_hop = 1
-      @hops = Hop.daily_all
-      @tab = 'daily_hops'
-    else
-      @hops = Hop.regular
-      @tab = 'hops'
-    end
+  before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
+
+  def regular
+    @tab = 'hops'
+    conditions = {daily: false, close: false}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
   end
 
-  # GET /hops/1
-  # GET /hops/1.json
+  def daily
+    @tab = 'daily_hops'
+    conditions = {daily: true, close: false}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
+  def current
+    @tab = 'current_hops'
+    conditions = ["time_start < ? and (time_end > ? or daily = 1) and close = 0", Time.now.utc, Time.now.utc]
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
+  def archived
+    @tab = 'archived_hops'
+    conditions = {close: true}
+    @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
   def show
-
-    @hop = Hop.find(params[:id])
-    @hop_task_errors=params[:hop_task_errors].to_json
-    @hop_task = HopTask.new
-
-    @hop_ad=Ad.new
+    @tasks = @hop.hop_tasks
   end
 
-
-  def new
+  def new_regular
+    @tab = 'hops'
     @hop = Hop.new
-    @hop.daily_hop = params[:daily_hop]? true: false
-
+    @hop.daily = false
   end
 
-
-  def edit
-    @hop = Hop.find(params[:id])
-    @hop.time_end=0
-    @hop.time_start=0
+  def new_daily
+    @tab = 'hops'
+    @hop = Hop.new
+    @hop.daily = true
   end
-
 
   def create
     params[:hop][:producer_id] = current_user.id
+    params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
-
     if @hop.save
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
-      render action: "new"
+      if @hop.daily
+        render action: 'new_daily'
+      else
+        render action: 'new_regular'
+      end
     end
+
+  end
+
+  def edit_regular
+
+  end
+
+  def edit_daily
 
   end
 
@@ -58,29 +79,33 @@ class Admin::HopsController < Admin::AdminController
     if @hop.update_attributes(params[:hop])
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
-      render action: "edit"
+      if hop.daily
+        render action: 'edit_daily'
+      else
+        render action: 'edit_regular'
+      end
     end
   end
 
   def destroy
     @hop = Hop.find(params[:id])
-     @daily_hop=@hop.daily_hop
+    daily_hop = @hop.daily
     @hop.destroy
-    redirect_to admin_hops_path(:daily_hop => @daily_hop)
+    if daily_hop
+      redirect_to admin_daily_hops_path
+    else
+      redirect_to admin_regular_hops_path
+    end
   end
 
   def close
     @hop = Hop.find(params[:id])
-
-    respond_to do |format|
-      if @hop.update_attributes(:close=>1)
-        format.html { redirect_to admin_hops_path({:daily_hop => @hop.daily_hop}) , notice: 'Hop was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @hop.errors, status: :unprocessable_entity }
-      end
+    if @hop.update_attributes( close: 1)
+        flash[:notice] = 'Hop was successfully closed.'
+    else
+        flash[:error] = 'Error update hop.'
     end
+    redirect_to :back
   end
 
   def sub_layout
@@ -89,8 +114,9 @@ class Admin::HopsController < Admin::AdminController
 
   private
 
-  def set_tabs
-    if params[:daily_hop].to_s.to_bool
+  def init_hop
+    @hop = Hop.find(params[:id])
+    if @hop.daily
       @tab = 'daily_hops'
     else
       @tab = 'hops'
