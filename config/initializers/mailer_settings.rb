@@ -18,5 +18,3 @@ end
       :password             => 'pass',
       :enable_starttls_auto => true
   }
-
-end
