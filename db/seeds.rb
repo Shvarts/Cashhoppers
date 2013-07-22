@@ -12,7 +12,9 @@ Role.destroy_all
 end
 
 User.destroy_all
-admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin',
+                 :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 admin.skip_confirmation!
 admin.save
 
@@ -21,14 +23,18 @@ admin.save
 admin.roles = [Role.find_by_name(:admin)]
 
 5.times do |t|
-  user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin', :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+  user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                  :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin',
+                  :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
   user.skip_confirmation!
   user.save
   user.roles = [Role.find_by_name(:admin)]
 end
 
 60.times do |t|
-  user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => "admin_#{t}", :last_name => "admin_#{t}", :zip => 88000, :user_name => 'admin')
+  user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => "user_#{t}",
+                  :last_name => "user_#{t}", :zip => 88000, :user_name => 'user',
+                  :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
   user.skip_confirmation!
   user.save
   user.roles = [Role.find_by_name(:user)]

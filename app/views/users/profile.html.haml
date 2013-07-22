@@ -116,6 +116,28 @@
       = @user.google
       %br
       %br
+%hr
+%h4
+  Hops:
+%table.table.table-condensed
+  %tr
+    %th
+      Name:
+    %th
+      Producer:
+    %th
+      Type
+    %th
+  - @hops.each do |hop|
+    %tr
+      %td
+        = link_to hop.name, admin_hop_path(hop)
+      %td
+        = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
+      %td
+        =  hop.daily ? 'Daily': 'Regular'
+
+
 
 
 
