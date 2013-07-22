@@ -12,36 +12,58 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def create_email
-    n = Message.send_emails_to(params[:message],current_user.id)
-    flash[:success]=" #{n} emails  have created"
-    redirect_to admin_messages_email_tool_path
+
+     if flash[:id]
+        params[:message][:receiver_id] = flash[:id]
+        (params[:email])? email = true : email = false
+        n = Message.send_emails_to(params[:message],current_user.id, email)
+        flash[:success]=" #{n} emails  have created"
+        flash[:success]=" #{n} messages  have created"  if  !email
+     else
+        flash[:success]=" emails  have  not created"
+        flash[:success]=" emails  have  not created"  if  !email
+     end
+
+     if  email
+       redirect_to admin_messages_email_tool_path
+     else
+       redirect_to admin_messages_message_tool_path
+     end
   end
 
-  def create_message
-    n = Message.send_messages_to(params[:message],current_user.id)
-    flash[:success]=" #{n} emails  have created"
-    redirect_to admin_messages_message_tool_path
-  end
+
 
 
   def email_tool
     @tab = 'email_tool'
-    @message= Message.new
-    @message.receiver_id=params[:id]  if !params[:id].blank?
-  #  @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name')
-  end
+    flash[:id] = params[:id] if params[:id]
+    flash[:id] = Message.create_users_id_list(params[:id_user],flash[:id]) if params[:id_user]
 
-  def wice_grid
-   @hops_grid= initialize_grid(Hop, per_page: 5, :order => 'hops.name',
-      :include => [:hop]
-    )
-    render :partial => 'wice_grid'
- end
+    conditions = Message.conditions_for_users(params[:query])
+    flash[:id] =  flash[:id]
+
+    @message= Message.new
+
+    @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
+    render partial: 'users_list' if params[:page] || params[:query]|| params[:id_user]
+
+
+  end
 
   def message_tool
     @tab = 'message_tool'
+    flash[:id] = Message.create_users_id_list(params[:id_user],flash[:id]) if params[:id_user]
+
+    conditions = Message.conditions_for_users(params[:query])
+    flash[:id] =  flash[:id]
     @message= Message.new
-    @message.receiver_id=params[:id]  if params[:id]
+
+    @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
+    render partial: 'users_list' if params[:page] || params[:query]|| params[:id_user]
+
+
+
+
   end
 
   def show
@@ -59,19 +81,32 @@ class Admin::MessagesController < Admin::AdminController
     end
   end
 
-  def close_grid
-    if params[:close].to_i==0
-      session[:close]=0
-      session.delete('close')
-    else
-     session[:close]=params["close"]
-    end
-    redirect_to 'email_tool'
-  end
 
   def sub_layout
     'admin/messages_tabs'
   end
 
+  def find_hop
+
+    flash[:id] = Message.create_hoppers_id_arr(params[:id_hop])
+    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    @hops = Hop.paginate(page: params[:page], per_page:9, conditions:  conditions)
+    render :partial=> 'hops_list'
+
+
+
+  end
+
+
+  def find_zip
+
+    flash[:id]= Message.create_user_id_arr_by_zip(params[:zip])
+    conditions = ["zip LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    @zips = User.group(:zip).select(:zip)
+    @zips = @zips.paginate(:page => 1, :per_page => 9,  conditions:  conditions )
+
+    render :partial=> 'zips_list'
+
+  end
 
 end

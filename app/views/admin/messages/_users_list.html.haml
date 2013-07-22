@@ -1,0 +1,26 @@
+#users_list
+  .row-fluid
+    .span7
+      = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+    .span5.text-right.row
+      = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+      = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_button'
+  %table.table.table-condensed
+    %tr
+      %th
+        Id
+      %th
+        User Name
+      %th
+    - @users.each do |user|
+      %tr
+        %td
+          = user.id
+        %td
+          = user.user_name
+
+        %td{style: 'text-align: right'}
+          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id', name: 'btn', class:user.id
+
+  = text_field_tag :input, flash[:id]
+  = will_paginate @users, renderer: BootstrapPagination::Rails

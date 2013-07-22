@@ -1,0 +1,30 @@
+#hops_list
+  .row-fluid
+    .span7
+      = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+    .span5.text-right.row
+      = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+      = link_to 'Search',  admin_messages_find_hop_path, class: 'btn span4', id: 'search_button'
+  %table.table.table-condensed
+    %tr
+      %th
+        Id
+      %th
+        First Name
+      %th
+        Daily
+      %th
+    - @hops.each do |hop|
+      %tr
+        %td
+          = hop.id
+        %td
+          = hop.name
+        %td
+          = hop.daily_hop
+
+        %td{style: 'text-align: right'}
+          = link_to 'Search',  admin_messages_find_hop_path(:id_hop =>hop.id), id: 'select_id'
+  -if flash[:id]
+    = text_field_tag :input, flash[:id]
+  = will_paginate @hops, renderer: BootstrapPagination::Rails

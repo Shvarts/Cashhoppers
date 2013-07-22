@@ -1,41 +1,3 @@
-$(function(){
-
-    $('div#datetimepicker1').css('display', 'none');
- $('input#schedule').click(function(){
-   if ($(this).is(':checked')   ){
-       $('div#datetimepicker1').css('display', 'block');}
-   else{
-       $('div#datetimepicker1').css('display', 'none'); }
-  });
-});
-
-$(function() {
-
-    $("#e9").select2();
-//    $('#e9').on({tags:["re", "reen", "blue"]});
-//        tags:["red", "green", "blue"],
-//        maximumInputLength: 10});
-
-//    $("#e9").val("CA")
-});
-
-$(function() {
-
-
-
-});
-
-
-
-function bint_click(){
-    alert('bint');
-    $('#select_id').click(function(){
-        alert($(this).attr('class'));
-        $("#e9").append("<option name='1'>" +$(this).attr('class')+ "</option>");
-    });
-
-}
-
 function show_modal_hop(element,url,partial) {
 
     $.ajax({
@@ -146,4 +108,3 @@ function setAjaxPagination(block_id){
 $(document).ready(function(){
     setAjaxPagination('users_list');
 });
-
