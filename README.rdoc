@@ -129,7 +129,7 @@ provider can be 'facebook', 'google' and 'twitter'
          il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
 ====update my profile(method: POST)
     url: http://localhost:3000/api/users/update_profile.json
-    data: {"api_key":"123","authentication_token":"Ok1KuxeGZVogWyXR8stHzeJFiewtUO","user_id":"3","last_name":"my last name","first_name":"my first name",
+    data: {"api_key":"123","authentication_token":"Ok1KuxeGZVogWyXR8stHzeJFiewtUO","last_name":"my last name","first_name":"my first name",
           "user_name":"user_name","zip":"515","contact":"my cont","phone":"phone","bio":"i was born in the old sity York","twitter":"twitter link","facebook":"facebook li
           nk","google":"g + link","password":"newpassword","avatar":"#<File:0x3456fc0>",}'
     response:
@@ -150,7 +150,7 @@ by hop id
               2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
 other ads
     ad type: log_in, hop_list, gallery, friends, message'}
-    url: http://localhost:3000/api/ads/get_ads.json?t=e&api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
     response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
                at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
 === Hops
@@ -164,15 +164,22 @@ other ads
                  created_at"=>"2013-07-22T08:36:51Z", "updated_at"=>"2013-07-22T08:36:51Z"}]}
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
 ====get daily hops (today)(method: GET)
-    url: http://localhost:3000/api/hops/daily.json?t=e&api_key=123&authentication_token=ZyI1Lpv0jrujOodUCwcsdzDYRWUc5y&page=1&per_page=10
+    url: http://localhost:3000/api/hops/daily.json?api_key=123&authentication_token=ZyI1Lpv0jrujOodUCwcsdzDYRWUc5y&page=1&per_page=10
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
         success: {"hops"=>[{"id"=>3, "name"=>"daily hop #1", "time_start"=>"22/07/2013 11:44:01", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "clo
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
-====assign to hop
-    url: http://localhost:3000/api/hops/assign.json?t=e&api_key=123&authentication_token=lgzYkMy0uUrBisPuuAkhfqVSKbsgp4&hop_id=1
+====assign to hop(method: POST)
+    url: http://localhost:3000/api/hops/assign.json?api_key=123&authentication_token=lgzYkMy0uUrBisPuuAkhfqVSKbsgp4&hop_id=1
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
         success: {"success"=>true, "info"=>"Assigned to hop successfully!", "status"=>200}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
                {"errors"=>["User already assigned to this hop."], "success"=>false, "status"=>406}
+====get hop tasks(method: GET)
+    url: http://localhost:3000/api/hop/get_tasks.json?api_key=123&authentication_token=IWJiYu6xXzt1X0zGewFAL6O4oJJVFO&hop_id=1
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
+    response:
+        success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs", "hop_id"=>1, "picture"=>"/images/hop_tasks_
+                 logo/task/1/hop_task_logo.jpg?1374491715"}]}
+        error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}

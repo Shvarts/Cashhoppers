@@ -38,7 +38,7 @@ class Api::HopsController < Api::ApplicationController
 
   def load_hop
     @hop = Hop.where(:id => params[:hop_id]).first
-    bad_request ['Hop not found.'] unless @hop
+    bad_request(['Hop not found.'], 406) unless @hop
   end
 
 end
