@@ -15,7 +15,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def get_my_info
-    @user = current_user
+    @user = @current_user
     respond_to do |format|
       format.json{}
     end
@@ -28,13 +28,13 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def update_profile
-    if current_user.update_attributes(@attributes)
+    if @current_user.update_attributes(@attributes)
       render :json => {success: true,
                        info: 'Profile successfully updated.',
                        status: 200
       }
     else
-      bad_request @current_user.errors 406
+      bad_request @current_user.errors, 406
     end
   end
 

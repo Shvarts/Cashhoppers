@@ -1,5 +1,5 @@
 class Api::HopsController < Api::ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_hop_tasks]
+  skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_tasks]
   before_filter :load_hop, only: [:assign, :get_tasks]
 
   def regular
@@ -31,8 +31,6 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def get_tasks
-    @hop = Hop.where(:id => params[:hop_id]).first
-    invalid_login_attempt('hops not found') unless @hop
     @hop_tasks = @hop.hop_tasks
   end
 
