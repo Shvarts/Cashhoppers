@@ -99,4 +99,7 @@ CashHoppers::Application.routes.draw do
   post 'friends/accept_request', to: 'friends#accept_request'
   post 'friends/decline_request', to: 'friends#decline_request'
   post 'friends/delete_friend', to: 'friends#delete_friend'
+
+  post 'messages/create_message', to: 'messages#create_message'
+  get 'messages/message_list', to: 'messages#message_list'
 end

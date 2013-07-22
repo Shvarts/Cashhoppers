@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719093903) do
+ActiveRecord::Schema.define(:version => 20130722104958) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20130719093903) do
     t.datetime "file_updated_at"
     t.string   "subject"
     t.datetime "send_at"
+    t.string   "user_name"
   end
 
   create_table "roles", :force => true do |t|
