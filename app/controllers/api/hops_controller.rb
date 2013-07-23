@@ -1,6 +1,6 @@
 class Api::HopsController < Api::ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_tasks]
-  before_filter :load_hop, only: [:assign, :get_tasks]
+  before_filter :load_hop, only: [:assign, :get_tasks, :get_hop_by_id]
 
   def regular
     params[:page] ||= 1
@@ -21,6 +21,12 @@ class Api::HopsController < Api::ApplicationController
 
   def get_tasks
     @hop_tasks = @hop.hop_tasks
+  end
+
+  def get_hop_by_id
+    respond_to do |format|
+      format.json{}
+    end
   end
 
   private

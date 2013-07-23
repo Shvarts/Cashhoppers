@@ -179,7 +179,13 @@ assigned: true if user assigned to hop of false if not
         success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs", "hop_id"=>1, "picture"=>"/images/hop_tasks_
                  logo/task/1/hop_task_logo.jpg?1374491715", "completed"=>false}]}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
-
+====get hop by id(method: GET)
+    url: http://localhost:3000/api/hop/get_hop.json?api_key=123&authentication_token=0lPy1JnFy3BQVUOR3kxZ1hDMk4Z18Z&hop_id=2
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
+    response:
+        success: {"hop"=>{"id"=>2, "name"=>"admin reg hop #2", "time_start"=>"08/07/2013 09:38:42", "time_end"=>"08/07/2013 09:38:42", "code"=>"34", "price"=>"34", "jackpot"=>34
+                 , "daily"=>false, "close"=>false, "event"=>"34", "created_at"=>"2013-07-23T06:39:03Z", "updated_at"=>"2013-07-23T06:39:03Z", "assigned"=>true}}
+        error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 ===Hop Tasks
 ====submit users hop task(automatikally assign you to hop)(method: POST)
     url: http://localhost:3000/api/task/submit.json
@@ -188,6 +194,14 @@ assigned: true if user assigned to hop of false if not
         success: {"success"=>true, "info"=>"Task create!", "status"=>200}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
                {"errors"=>["Hop task already comleted."], "success"=>false, "status"=>406}
+====get hop task by id(method: GET)
+
+    url: http://localhost:3000/api/task/get_hop_task.json?api_key=123&authentication_token=VAdHZlkp4v9iupjTvfEnrI3SWgXYM5&hop_task_id=2
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_task_id: 1}
+    response:
+        success: {"hop_task"=>{"id"=>2, "price"=>"34", "amt"=>34, "bonus"=>23, "pts"=>34, "sponsor_id"=>1, "text"=>"admin hop task #1", "hop_id"=>4, "picture"=>nil, "completed"=
+                 >true}}
+        error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
 ====get friends hop tasks(method: GET)
     url: http://localhost:3000/api/tasks/get_friends_hop_tasks.json?api_key=123&authentication_token=wsATs6e59ht17UpDzlwVHexyg9Zr4z&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}

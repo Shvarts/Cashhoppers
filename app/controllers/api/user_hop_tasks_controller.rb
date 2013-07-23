@@ -1,20 +1,6 @@
 class Api::UserHopTasksController < Api::ApplicationController
   respond_to :json
 
-  def hoppers_activity
-    #params[:page] ||= 1
-    #params[:per_page] ||= 10
-    #@tasks = UserHopTask.paginate(page: params[:page], per_page: params[:per_page], :order => 'created_at DESC')
-    #@user_hop_tasks = UserHopTask.select_by_sql("SELECT user_hop_tasks.* FROM users
-    #    RIGHT JOIN hoppers_hops ON users.id = hoppers_hops.user_id
-    #    RIGHT JOIN hops ON hops.id = hoppers_hops.hop_id
-    #    RIGHT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
-    #    RIGHT JOIN user_hop_tasks ON user_hop_tasks.hop_task_id = hop_tasks.id
-		 # WHERE users.id = 1
-		 # ORDER BY user_hop_tasks.created_at;")
-    #render :text => @user_hop_tasks.to_json
-  end
-
   def create
     hop_task = HopTask.where(id: params[:hop_task_id]).first
     if !hop_task
@@ -58,6 +44,17 @@ class Api::UserHopTasksController < Api::ApplicationController
                                   order: 'created_at DESC')
     respond_to do |format|
       format.json{}
+    end
+  end
+
+  def get_hop_task_by_id
+    @hop_task = HopTask.where(:id => params[:hop_task_id]).first
+    unless @hop_task
+      bad_request(['Hop task not found.'], 406)
+    else
+      respond_to do |format|
+        format.json{}
+      end
     end
   end
 
