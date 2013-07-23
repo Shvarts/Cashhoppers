@@ -18,18 +18,6 @@ class Api::HopsController < Api::ApplicationController
     end
   end
 
-  def assign
-    if @hop.hoppers.include? @current_user
-      bad_request(['User already assigned to this hop.'], 406)
-    else
-      @hop.assign @current_user
-      render :json => {success: true,
-                       info: "Assigned to hop successfully!",
-                       status: 200
-      }
-    end
-  end
-
   def get_tasks
     @hop_tasks = @hop.hop_tasks
   end

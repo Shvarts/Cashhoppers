@@ -59,11 +59,15 @@ CashHoppers::Application.routes.draw do
 
     get 'ads/get_ads' => 'ads#index'
 
+    #hops
     get 'hops/regular',                    to: 'hops#regular'
     get 'hops/daily',                      to: 'hops#daily'
     post 'hops/assign',                    to: 'hops#assign'
     get 'hop/get_tasks',                   to: 'hops#get_tasks'
+
+    #users hop tasks
     post 'task/submit',                    to: 'user_hop_tasks#create'
+    get 'tasks/get_friends_hop_tasks',     to: 'user_hop_tasks#friends_hop_tasks'
 
     get 'friends/get_friends', to: 'friends#get_friends'
     get 'friends/get_requested_friends', to: 'friends#get_requested_friends'

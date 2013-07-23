@@ -7,5 +7,5 @@ class UserHopTask < ActiveRecord::Base
                     :default_url => "/images/noavatar.jpeg",
                     :path => ":rails_root/public/images/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension"
 
-  attr_accessible :user_id, :hop_task_id, :photo
+  attr_accessible :user_id, :hop_task_id, :photo, :comment
 end

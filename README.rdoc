@@ -154,7 +154,16 @@ other ads
     response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
                at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
 === Hops
-==== get regular hops(method: GET)
+-get daily hops
+-get my friends hop tasks
+- get all users hop tasks
+
+-like hop tasks
+-comment hop tasks
+
+
+
+==== get hops(order by date, my assigned hops first)(method: GET)
     url: http://localhost:3000/api/hops/regular.json?api_key=123&authentication_token=kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO&page=1&per_page=10
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
@@ -169,13 +178,6 @@ other ads
     response:
         success: {"hops"=>[{"id"=>3, "name"=>"daily hop #1", "time_start"=>"22/07/2013 11:44:01", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "clo
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
-====assign to hop(method: POST)
-    url: http://localhost:3000/api/hops/assign.json?api_key=123&authentication_token=lgzYkMy0uUrBisPuuAkhfqVSKbsgp4&hop_id=1
-    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
-    response:
-        success: {"success"=>true, "info"=>"Assigned to hop successfully!", "status"=>200}
-        error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
-               {"errors"=>["User already assigned to this hop."], "success"=>false, "status"=>406}
 ====get hop tasks(method: GET)
     url: http://localhost:3000/api/hop/get_tasks.json?api_key=123&authentication_token=IWJiYu6xXzt1X0zGewFAL6O4oJJVFO&hop_id=1
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
@@ -183,9 +185,23 @@ other ads
         success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs", "hop_id"=>1, "picture"=>"/images/hop_tasks_
                  logo/task/1/hop_task_logo.jpg?1374491715"}]}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
-====submit users hop task(method: POST)
+
+===Hop Tasks
+====submit users hop task(automatikally assign you to hop)(method: POST)
     url: http://localhost:3000/api/task/submit.json
-    data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, hop_task_id: 1, photo: #<File:1.jpg>}
+    data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, hop_task_id: 1, photo: #<File:1.jpg>, comment: 'comment text'}
     response:
         success: {"success"=>true, "info"=>"Task create!", "status"=>200}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
+====get friends hop tasks(method: GET)
+    url: http://localhost:3000/api/tasks/get_friends_hop_tasks.json?api_key=123&authentication_token=bNXt6axDNm12vWJAOE9RRiXQUbylQt
+    data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F}
+    response:
+        success: {"tasks"=>[{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_phot
+                 os/tasks/7/original/PHOTO.jpg?1374562222"}, {"user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2", "hop_id"=>3, "ph
+                 oto"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223"}, {"user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"
+                 friend task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225"}]}
+
+
+
+

@@ -1,6 +1,6 @@
 collection :@tasks
 
-attributes :user_id, :hop_task_id, :created_at
+attributes :user_id, :hop_task_id, :created_at, :comment
 
 node :hop_id do |task|
     task.hop_task.hop.id if (task.hop_task && task.hop_task.hop)

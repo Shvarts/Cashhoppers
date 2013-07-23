@@ -14,7 +14,9 @@ class Hop < ActiveRecord::Base
   validates :price, numericality: true, unless: :daily?
 
   def assign user
-    hoppers << user
+    unless hoppers.include? user
+      hoppers << user
+    end
   end
 
 end

@@ -10,6 +10,8 @@
     %th
       created at
     %th
+      Comment
+    %th
       Photo
   - @user_hop_tasks.each do |task|
     %tr
@@ -21,6 +23,8 @@
         = task.hop_task.text if task.hop_task
       %td
         = task.created_at
+      %td
+        = task.comment
       %td{style: 'text-align: right'}
         = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
 = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
