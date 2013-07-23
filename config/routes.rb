@@ -73,6 +73,8 @@ CashHoppers::Application.routes.draw do
     get 'task/get_hop_task',               to: 'user_hop_tasks#get_hop_task_by_id'
     post 'task/like',                      to: 'user_hop_tasks#like'
     get 'task/likes_count',                to: 'user_hop_tasks#likes_count'
+    post 'task/comment',                   to: 'user_hop_tasks#comment'
+    get 'task/get_comments',               to: 'user_hop_tasks#comments'
 
     get 'friends/get_friends', to: 'friends#get_friends'
     get 'friends/get_requested_friends', to: 'friends#get_requested_friends'
