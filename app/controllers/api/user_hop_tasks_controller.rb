@@ -39,7 +39,21 @@ class Api::UserHopTasksController < Api::ApplicationController
   end
 
   def friends_hop_tasks
-    @tasks = UserHopTask.find_by_sql(%q{SELECT * FROM user_hop_tasks WHERE user_hop_tasks.user_id IN (SELECT friendships.friend_id FROM friendships WHERE friendships.user_id = 1)})
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+    @tasks = UserHopTask.find_by_sql("SELECT * FROM user_hop_tasks WHERE user_hop_tasks.user_id IN (SELECT friendships.friend_id FROM friendships
+                                      WHERE friendships.user_id = 1) LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i}")
+    respond_to do |format|
+      format.json{}
+    end
+  end
+
+  def all_hoppers_hop_tasks
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+    @tasks = UserHopTask.paginate(page: params[:page],
+                                  per_page: params[:per_page],
+                                  order: 'created_at DESC')
     respond_to do |format|
       format.json{}
     end
