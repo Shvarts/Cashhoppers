@@ -12,6 +12,8 @@
     %th
       Comment
     %th
+      Likes
+    %th
       Photo
   - @user_hop_tasks.each do |task|
     %tr
@@ -25,6 +27,8 @@
         = task.created_at
       %td
         = task.comment
+      %td
+        = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
       %td{style: 'text-align: right'}
         = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
 = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails

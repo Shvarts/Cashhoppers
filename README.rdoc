@@ -195,7 +195,6 @@ assigned: true if user assigned to hop of false if not
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
                {"errors"=>["Hop task already comleted."], "success"=>false, "status"=>406}
 ====get hop task by id(method: GET)
-
     url: http://localhost:3000/api/task/get_hop_task.json?api_key=123&authentication_token=VAdHZlkp4v9iupjTvfEnrI3SWgXYM5&hop_task_id=2
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_task_id: 1}
     response:
@@ -207,17 +206,31 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_phot
-                 os/tasks/7/original/PHOTO.jpg?1374562222"}, {"user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2", "hop_id"=>3, "ph
-                 oto"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223"}, {"user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"
-                 friend task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225"}]}
+                 os/tasks/7/original/PHOTO.jpg?1374562222", "likes_count"=>1, "liked"=>true}, {"user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2", "hop_id"=>3, "ph
+                 oto"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223", "likes_count"=>1, "liked"=>true}, {"user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"
+                 friend task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225", "likes_count"=>1, "liked"=>true}]}
 ====get all hoppers hop tasks(method: GET)
     url: http://localhost:3000/api/tasks/get_all_hoppers_hop_tasks.json?api_key=123&authentication_token=6cmdqJrrc1AXwiIOvu4mHSoLqK5BQa&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[{"user_id"=>3, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:52:27Z", "comment"=>"other_user task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_
-                 photos/tasks/12/original/PHOTO.jpg?1374562347"}, {"user_id"=>3, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:52:26Z", "comment"=>"other_user task #2", "hop_id
-                 "=>3, "photo"=>"/images/user_hop_task_photos/tasks/11/original/PHOTO.jpg?1374562346"}, {"user_id"=>3, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:52:25Z", "c
-                 omment"=>"other_user task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/10/original/PHOTO.jpg?1374562345"}]}
+                 photos/tasks/12/original/PHOTO.jpg?1374562347", "likes_count"=>1, "liked"=>true}, {"user_id"=>3, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:52:26Z", "comment"=>"other_user task #2", "hop_id
+                 "=>3, "photo"=>"/images/user_hop_task_photos/tasks/11/original/PHOTO.jpg?1374562346", "likes_count"=>1, "liked"=>true}, {"user_id"=>3, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:52:25Z", "c
+                 omment"=>"other_user task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/10/original/PHOTO.jpg?1374562345", "likes_count"=>1, "liked"=>true}]}
+====like user hop task(method: POST)
+    url: http://localhost:3000/api/task/like.json
+    data: {"api_key":"123","authentication_token":"gxNd68bCxjICtftu7Ja8Bj2H2FOYCY","hop_task_id":"2"}
+    response:
+        success: {"success"=>true, "info"=>"Like Successfully!", "likes_count"=>2, "hop_task_id"=>2, "status"=>200}
+        error: {"errors"=>["User hop task not found."], "success"=>false, "status"=>406}
+               {"errors"=>["Already liked."], "success"=>false, "status"=>406}
+====get likes count fop user hop task(method: GET)
+    url: http://localhost:3000/api/task/likes_count.json?api_key=123&authentication_token=LktpFvEY4ZNH1iqZOOI2X5iNirMdJi&hop_task_id=2
+    data: {"api_key":"123","authentication_token":"gxNd68bCxjICtftu7Ja8Bj2H2FOYCY","hop_task_id":"2"}
+    response:
+        success: {"likes_count"=>3, "hop_task_id"=>2}
+        error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
+
 
 
 

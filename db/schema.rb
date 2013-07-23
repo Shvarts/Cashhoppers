@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723064533) do
+ActiveRecord::Schema.define(:version => 20130723113037) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
     t.string   "event"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "target_object_id"
+    t.string   "target_object"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "messages", :force => true do |t|

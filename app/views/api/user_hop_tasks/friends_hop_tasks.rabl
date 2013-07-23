@@ -10,4 +10,12 @@ node :photo do |task|
     task.photo.url if task.photo
 end
 
+node :likes_count do |task|
+   Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
+end
+
+node :liked do |task|
+   Like.where(target_object_id: task.id, target_object: 'UserHopTask', user_id: @current_user.id).first ? true : false
+end
+
 

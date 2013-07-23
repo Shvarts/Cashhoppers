@@ -58,6 +58,44 @@ class Api::UserHopTasksController < Api::ApplicationController
     end
   end
 
+  def like
+    @hop_task = UserHopTask.where(:id => params[:hop_task_id]).first
+    unless @hop_task
+      bad_request(['User hop task not found.'], 406)
+    else
+      unless Like.where(target_object_id: @hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
+        Like.create(target_object_id: @hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
+        respond_to do |format|
+          format.json{
+            render :json => {success: true,
+                             info: "Like Successfully!",
+                             likes_count: Like.where(target_object_id: @hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).count ,
+                             hop_task_id: @hop_task.id,
+                             status: 200
+            }
+          }
+        end
+      else
+        bad_request(['Already liked.'], 406)
+      end
+    end
+  end
+
+  def likes_count
+    @hop_task = HopTask.where(:id => params[:hop_task_id]).first
+    unless @hop_task
+      bad_request(['Hop task not found.'], 406)
+    else
+      respond_to do |format|
+        format.json{
+          render :json => {likes_count: Like.where(target_object_id: @hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).count ,
+                           hop_task_id: @hop_task.id
+          }
+        }
+      end
+    end
+  end
+
   private
 
   def load_hop
