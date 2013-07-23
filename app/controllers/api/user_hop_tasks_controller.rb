@@ -17,8 +17,10 @@ class Api::UserHopTasksController < Api::ApplicationController
 
   def create
     hop_task = HopTask.where(id: params[:hop_task_id]).first
-    unless hop_task
-      bad_request(['Hop task not found.'], 406) unless @hop
+    if !hop_task
+      bad_request(['Hop task not found.'], 406)
+    elsif UserHopTask.where(user_id: @current_user.id, hop_task_id: hop_task.id).first
+      bad_request(['Hop task already comleted.'], 406)
     else
       hop_task.hop.assign @current_user
       hop_task_data = {}

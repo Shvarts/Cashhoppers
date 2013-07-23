@@ -124,7 +124,7 @@ provider can be 'facebook', 'google' and 'twitter'
     response: {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
               il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
 ====get user info(method: GET)
-    url: http://localhost:3000/api/users/get_my_info.json?t=e&api_key=123&authentication_token=vtqviY0AGvo2lJbK62rXCZ6mrcJKFs&user_id=3
+    url: http://localhost:3000/api/users/get_my_info.json?api_key=123&authentication_token=vtqviY0AGvo2lJbK62rXCZ6mrcJKFs&user_id=3
          {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
          il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
 ====update my profile(method: POST)
@@ -177,7 +177,7 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
         success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs", "hop_id"=>1, "picture"=>"/images/hop_tasks_
-                 logo/task/1/hop_task_logo.jpg?1374491715"}]}
+                 logo/task/1/hop_task_logo.jpg?1374491715", "completed"=>false}]}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 
 ===Hop Tasks
@@ -187,8 +187,9 @@ assigned: true if user assigned to hop of false if not
     response:
         success: {"success"=>true, "info"=>"Task create!", "status"=>200}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
+               {"errors"=>["Hop task already comleted."], "success"=>false, "status"=>406}
 ====get friends hop tasks(method: GET)
-    url: http://localhost:3000/api/tasks/get_friends_hop_tasks.json?t=e&api_key=123&authentication_token=wsATs6e59ht17UpDzlwVHexyg9Zr4z&page=1&per_page=3
+    url: http://localhost:3000/api/tasks/get_friends_hop_tasks.json?api_key=123&authentication_token=wsATs6e59ht17UpDzlwVHexyg9Zr4z&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_phot
@@ -196,7 +197,7 @@ assigned: true if user assigned to hop of false if not
                  oto"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223"}, {"user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"
                  friend task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225"}]}
 ====get all hoppers hop tasks(method: GET)
-    url: http://localhost:3000/api/tasks/get_all_hoppers_hop_tasks.json?t=e&api_key=123&authentication_token=6cmdqJrrc1AXwiIOvu4mHSoLqK5BQa&page=1&per_page=3
+    url: http://localhost:3000/api/tasks/get_all_hoppers_hop_tasks.json?api_key=123&authentication_token=6cmdqJrrc1AXwiIOvu4mHSoLqK5BQa&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[{"user_id"=>3, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:52:27Z", "comment"=>"other_user task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_
