@@ -117,7 +117,7 @@
       %br
       %br
 -if @user == current_user
-  = button_to 'Update information', users_edit_path(:id => @user)
+  = button_to 'Update information', edit_user_registration_path, :method => 'get'
 
 %h4
   Hops:

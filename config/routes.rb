@@ -106,6 +106,5 @@ namespace :admin do
   post 'friends/decline_request', to: 'friends#decline_request'
   post 'friends/delete_friend', to: 'friends#delete_friend'
 
-  post 'users/edit' => 'users#edit'
-  put 'users/update' => 'users#update'
+
 end

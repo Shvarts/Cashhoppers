@@ -24,3 +24,4 @@
       %td{style: 'text-align: right'}
         = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
 = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
+
