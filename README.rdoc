@@ -154,29 +154,23 @@ other ads
     response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
                at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
 === Hops
--get daily hops
--get my friends hop tasks
-- get all users hop tasks
-
--like hop tasks
--comment hop tasks
-
-
-
+====get daily hops (today)(method: GET)
+assigned: true if user assigned to hop of false if not
+    url: http://localhost:3000/api/hops/daily.json?api_key=123&authentication_token=ZyI1Lpv0jrujOodUCwcsdzDYRWUc5y&page=1&per_page=10
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
+    response:
+        success: {"hops"=>[{"id"=>7, "name"=>"new daily hop", "time_start"=>"23/07/2013 11:52:13", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "cl
+                 ose"=>false, "event"=>nil, "created_at"=>"2013-07-23T08:52:21Z", "updated_at"=>"2013-07-23T08:52:21Z", "assigned"=>false}]}
+        error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
 ==== get hops(order by date, my assigned hops first)(method: GET)
+assigned: true if user assigned to hop of false if not
     url: http://localhost:3000/api/hops/regular.json?api_key=123&authentication_token=kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO&page=1&per_page=10
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
         success: {"hops"=>[{"id"=>1, "name"=>"hop #1", "time_start"=>"01/07/2013 11:35:32", "time_end"=>"01/07/2013 11:35:32", "code"=>"345", "price"=>"2", "jackpot"=>34, "daily
-                 "=>false, "close"=>false, "event"=>"new year", "created_at"=>"2013-07-22T08:35:50Z", "updated_at"=>"2013-07-22T08:35:50Z"}, {"id"=>2, "name"=>"hop #2", "time_st
+                 "=>false, "close"=>false, "event"=>"new year", "created_at"=>"2013-07-22T08:35:50Z", "updated_at"=>"2013-07-22T08:35:50Z", "assigned"=>true}, {"id"=>2, "name"=>"hop #2", "time_st
                  art"=>"16/07/2013 11:36:35", "time_end"=>"31/07/2013 11:36:35", "code"=>"3", "price"=>"34", "jackpot"=>3, "daily"=>false, "close"=>false, "event"=>"new year", "
-                 created_at"=>"2013-07-22T08:36:51Z", "updated_at"=>"2013-07-22T08:36:51Z"}]}
-        error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
-====get daily hops (today)(method: GET)
-    url: http://localhost:3000/api/hops/daily.json?api_key=123&authentication_token=ZyI1Lpv0jrujOodUCwcsdzDYRWUc5y&page=1&per_page=10
-    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
-    response:
-        success: {"hops"=>[{"id"=>3, "name"=>"daily hop #1", "time_start"=>"22/07/2013 11:44:01", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "clo
+                 created_at"=>"2013-07-22T08:36:51Z", "updated_at"=>"2013-07-22T08:36:51Z", "assigned"=>false}]}
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
 ====get hop tasks(method: GET)
     url: http://localhost:3000/api/hop/get_tasks.json?api_key=123&authentication_token=IWJiYu6xXzt1X0zGewFAL6O4oJJVFO&hop_id=1

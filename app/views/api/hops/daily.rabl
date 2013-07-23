@@ -11,3 +11,7 @@ attributes :id,
            :event,
            :created_at,
            :updated_at
+
+node :assigned do |hop|
+   (hop.hoppers.include? @current_user) ? true : false
+end
