@@ -1,5 +1,19 @@
-function show_modal_hop(element,url,partial) {
+$(document).ready(function(){
 
+
+    modal_window('#findName','#myModalname');
+    modal_window('#findId','#myModalid');
+
+    ajaxSearch('#names_list .pagination a',{},'#names_list');
+    ajaxSearch('#ids_list .pagination a',{},'#ids_list');
+
+    ajaxSearch('#names_list #search_button',{query: function (){ return $('#names_list #search_field').val();}},'#names_list');
+    ajaxSearch('#ids_list #search_button',{query: function (){ return $('#ids_list #search_field').val();}}, '#ids_list');
+
+
+}) ;
+
+function show_modal_hop(element,url,partial) {
     $.ajax({
         url: url,
         dataType: 'text',
@@ -11,59 +25,44 @@ function show_modal_hop(element,url,partial) {
         complete: function(){
             //stop_spinner
         },
-//            error: function(err){
-//                alert("error");
-//            },
+        error: function(err){
+            alert("error");
+        },
         success: function(data){
             $(element).html(data);
-            setAjaxPagination(partial);
-
         }
     });
     return false;
+};
+
+function modal_window(url, window_id){
+    $(document).on('click', url , function(){
+
+        $( window_id).modal();
+
+        if(window_id == '#myModalname' ){
+            show_modal_hop('#myModalname','/admin/hoppers/search_by_name', 'names_list');
+        }
+        else if(window_id == '#myModalid' ){
+            show_modal_hop('#myModalid','/admin/hoppers/search_by_id', 'id_list');
+        }
+
+    }) ;
 }
 
-$(function() {
-    $('#find_hop').click(function(){
-
-        show_modal_hop('#myModalhop','/admin/messages/find_hop', 'hops_list');
-    })
-    $('#find_zip').click(function(){
-
-        show_modal_hop('#myModalzip','/admin/messages/find_zip','zips_list');
-    })
-});
 
 
+function ajaxSearch(selector, data, list){
 
-function setAjaxPagination(block_id){
-    $('#' + block_id + ' .pagination a').click(function(){
+    $(document).on('click', selector, function(e){
+
+
+        var aj_data = data.query ? {query: data.query()} : null
+        e.preventDefault();
         $.ajax({
             url: $(this).attr('href'),
             dataType: 'text',
-            data: null,
-            type: 'GET',
-            beforeSend: function () {
-                //start spinner
-            },
-            complete: function(){
-                //stop_spinner
-            },
-//            error: function(err){
-//                alert("error");
-//            },
-            success: function(data){
-                $('#' + block_id).html(data);
-                setAjaxPagination(block_id);
-            }
-        });
-        return false;
-    });
-    $('#' + block_id + ' #search_button').click(function(){
-        $.ajax({
-            url: $(this).attr('href'),
-            dataType: 'text',
-            data: {query: $('#' + block_id + ' #search_field').val()},
+            data: aj_data,
             type: 'GET',
             beforeSend: function () {
                 //start spinner
@@ -75,36 +74,9 @@ function setAjaxPagination(block_id){
                 alert("error");
             },
             success: function(data){
-                $('#' + block_id).html(data);
-                setAjaxPagination(block_id);
+                $(list).html(data);
             }
         });
         return false;
     });
-    $('#' + block_id + ' #select_id').click(function(){
-        $.ajax({
-            url: $(this).attr('href'),
-            dataType: 'text',
-            data: null,
-            type: 'GET',
-            beforeSend: function () {
-                //start spinner
-            },
-            complete: function(){
-                //stop_spinner
-            },
-//            error: function(err){
-//                alert("error");
-//            },
-            success: function(data){
-                $('#' + block_id).html(data);
-                setAjaxPagination(block_id);
-            }
-        });
-        return false;
-    });
-}
-
-$(document).ready(function(){
-    setAjaxPagination('users_list');
-});
+};
