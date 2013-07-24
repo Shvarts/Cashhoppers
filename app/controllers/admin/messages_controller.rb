@@ -43,7 +43,7 @@ class Admin::MessagesController < Admin::AdminController
   def email_tool
     @tab = 'email_tool'
 
-     flash[:id] = Message.create_users_id_list(params[:id_user],flash[:id]) if params[:id_user]
+    flash[:id] = Message.create_users_id_list(params[:id_user],flash[:id]) if params[:id_user]
 
     conditions = Message.conditions_for_users(params[:query])
     flash[:id] =  flash[:id]
@@ -53,17 +53,20 @@ class Admin::MessagesController < Admin::AdminController
     @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
     render partial: 'users_list' if params[:page] || params[:query]|| params[:id_user]
 
+    (params[:id])? (@arr, @arr_id = Message.external_id(params[:id])) : (@arr = @arr_id = [])
 
   end
 
   def message_tool
-    @tab = 'message_tool'
+   @tab = 'message_tool'
 
-    conditions = Message.conditions_for_users(params[:query])
-    @message= Message.new
+   conditions = Message.conditions_for_users(params[:query])
+   @message= Message.new
    @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
-    render partial: 'users_list' if params[:page] || params[:query]
 
+   render partial: 'users_list' if params[:page] || params[:query]
+
+   (params[:id])? (@arr, @arr_id = Message.external_id(params[:id])) : (@arr = @arr_id = [])
 
 
 

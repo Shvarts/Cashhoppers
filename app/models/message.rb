@@ -30,16 +30,10 @@ class Message < ActiveRecord::Base
 
       UserMailer.send_email_for_select_user(@message.id).deliver if email_state
       n= n + 1
-
-
      end
     end
     n
   end
-
-
-
-
 
   def self.users_from_hop( params)
       users_id = []
@@ -71,9 +65,16 @@ class Message < ActiveRecord::Base
 
   def self.conditions_for_users(params)
     conditions = []
-    conditions = ["first_name LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
     conditions = ["id LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
     conditions
   end
+
+  def self.external_id(params)
+    (params.class == Array)? (arr_id = params) : (arr_id = %W{ #{params.to_i} })
+    arr = arr_id.repeated_permutation(1).to_a
+    return arr, arr_id
+
+  end
+
 
 end
