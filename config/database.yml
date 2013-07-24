@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: CashHoppers_development
+  database: CashHoppersDB
   pool: 5
   username: root
   password:
@@ -25,7 +25,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: CashHoppers_test
+  database: CashHoppersDB
   pool: 5
   username: root
   password:
@@ -36,7 +36,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: CashHoppers_production
+  database: CashHoppersDB
   pool: 5
   username: root
   password:
