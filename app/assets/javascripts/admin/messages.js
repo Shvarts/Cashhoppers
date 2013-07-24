@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
 
-    $('.chzn-select').chosen();
+    $('.chzn-select').chosen({placeholder: "qwe"});
 
     modal_window('#find_user_chzn', '#myModal') ;
     modal_window('#find_hop_chzn', '#myModalhop') ;

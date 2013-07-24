@@ -94,11 +94,9 @@ class Admin::MessagesController < Admin::AdminController
     @message = Message.find_by_id(params[:id])
     email = @message.email
     @message.destroy
-    if !email
-      redirect_to admin_messages_message_history_path
-    else
-      redirect_to admin_messages_email_history_path
-    end
+
+    (email)? (redirect_to admin_messages_email_history_path):(redirect_to admin_messages_message_history_path)
+
   end
 
 

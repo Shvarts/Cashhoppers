@@ -24,9 +24,9 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= select_tag 'hopId[]', nil ,:class=>"input-large chzn-select", :id=>'find_hop', :multiple=>"multiple" %></td>
-    <td><%= select_tag 'zipId[]', nil , :class=>"input-large chzn-select", :id=>'find_zip' ,:multiple=>"multiple" %></td>
-    <td><%= select_tag 'userId[]', nil , :class=>"input-large chzn-select" , :id=>'find_user', :multiple=>"multiple" %></td>
+    <td><%= select_tag 'hopId[]', nil ,:class=>"input-large chzn-select", :id=>'find_hop', :multiple=>"multiple", data: {placeholder: "choose by hop"} %></td>
+    <td><%= select_tag 'zipId[]', nil , :class=>"input-large chzn-select", :id=>'find_zip' ,:multiple=>"multiple", data: {placeholder: "choose by zip"} %></td>
+    <td><%= select_tag 'userId[]', nil , :class=>"input-large chzn-select" , :id=>'find_user', :multiple=>"multiple", data: {placeholder: "choose by user"} %></td>
   </tr>
 
 
