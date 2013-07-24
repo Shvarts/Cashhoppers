@@ -1,12 +1,12 @@
 class Api::HopsController < Api::ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_tasks]
-  before_filter :load_hop, only: [:assign, :get_tasks, :get_hop_by_id]
+  before_filter :load_hop, only: [:assign, :get_tasks, :get_hop_by_id, :score]
 
   def regular
     params[:page] ||= 1
     params[:per_page] ||= 10
     @hops =  Hop.find_by_sql("SELECT hops.*, IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) AS isnull
-                              FROM hops LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
+                              FROM hops LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id WHERE hops.daily = 0 ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
                               LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i};")
     bad_request(['Hops not found.'], 406) if @hops.blank?
   end
@@ -27,6 +27,17 @@ class Api::HopsController < Api::ApplicationController
   def get_hop_by_id
     respond_to do |format|
       format.json{}
+    end
+  end
+
+  def score
+    respond_to do |format|
+      format.json{
+        render :json => {success: true,
+                         likes_count: @hop.score(@current_user),
+                         status: 200
+        }
+      }
     end
   end
 

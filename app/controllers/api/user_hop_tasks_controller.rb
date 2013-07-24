@@ -1,13 +1,12 @@
 class Api::UserHopTasksController < Api::ApplicationController
   respond_to :json
   before_filter :load_hop_task, only: [:create, :get_hop_task_by_id]
-  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments]
+  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments, :notify_by_share]
 
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
       bad_request(['Hop task already comleted.'], 406)
     else
-      @hop_task.hop.assign @current_user
       hop_task_data = {}
       hop_task_data[:user_id] = @current_user.id
       hop_task_data[:hop_task_id] = params[:hop_task_id]
@@ -15,6 +14,8 @@ class Api::UserHopTasksController < Api::ApplicationController
       hop_task_data[:comment] = params[:comment]
       @task = UserHopTask.new(hop_task_data)
       if @task.save
+        @hop_task.hop.assign @current_user
+        @hop_task.hop.increase_score @current_user, @hop_task.pts
         render :json => {success: true,
                          info: "Task create!",
                          status: 200
@@ -56,6 +57,7 @@ class Api::UserHopTasksController < Api::ApplicationController
     unless Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
       @like = Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
       Event.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
+      @user_hop_task.hop_task.hop.increase_score @current_user, 1
       respond_to do |format|
         format.json{
           render :json => {success: true,
@@ -102,6 +104,34 @@ class Api::UserHopTasksController < Api::ApplicationController
   def comments
     @comments = @user_hop_task.comments
     bad_request(['User hop task has no comments.'], 406) if @comments.blank?
+  end
+
+  def notify_by_share
+    shared = false
+    case params[:service]
+    when 'facebook'
+      shared = true if @user_hop_task.facebook_shared
+      @user_hop_task.update_attribute :facebook_shared, true
+    when 'twitter'
+      shared = true if @user_hop_task.twitter_shared
+      @user_hop_task.update_attribute :twitter_shared, true
+    when 'google'
+      shared = true if @user_hop_task.google_shared
+      @user_hop_task.update_attribute :google_shared, true
+    end
+    if !shared
+      @user_hop_task.hop_task.hop.increase_score @current_user, @user_hop_task.hop_task.bonus
+      respond_to do |format|
+        format.json{
+          render :json => {success: true,
+                           info: 'Success.',
+                           status: 200
+          }
+        }
+      end
+    else
+      bad_request(['Already shared.'], 406)
+    end
   end
 
   private

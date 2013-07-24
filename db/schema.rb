@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724103430) do
+ActiveRecord::Schema.define(:version => 20130724145250) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130724103430) do
   create_table "hoppers_hops", :force => true do |t|
     t.integer "user_id"
     t.integer "hop_id"
+    t.integer "pts"
   end
 
   create_table "hops", :force => true do |t|
@@ -169,6 +170,9 @@ ActiveRecord::Schema.define(:version => 20130724103430) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "comment"
+    t.boolean  "facebook_shared"
+    t.boolean  "twitter_shared"
+    t.boolean  "google_shared"
   end
 
   add_index "user_hop_tasks", ["hop_task_id"], :name => "index_user_hop_tasks_on_hop_task_id"

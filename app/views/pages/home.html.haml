@@ -33,7 +33,9 @@
         = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
     %tr
       %td{style: 'width: 100%', colspan: 7}
-        = pluralize(task.comments.count, 'comment')
+        Hop Score:
+        Hop Score
+        = task.hop_task.hop.score current_user
         - task.comments.each do |comment|
           .well
             .row_fluid

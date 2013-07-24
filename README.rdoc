@@ -160,7 +160,7 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
         success: {"hops"=>[{"id"=>7, "name"=>"new daily hop", "time_start"=>"23/07/2013 11:52:13", "time_end"=>nil, "code"=>nil, "price"=>nil, "jackpot"=>nil, "daily"=>true, "cl
-                 ose"=>false, "event"=>nil, "created_at"=>"2013-07-23T08:52:21Z", "updated_at"=>"2013-07-23T08:52:21Z", "assigned"=>false}]}
+                 ose"=>false, "event"=>nil, "created_at"=>"2013-07-23T08:52:21Z", "updated_at"=>"2013-07-23T08:52:21Z", "assigned"=>false, "score"=>0}]}
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
 ==== get hops(order by date, my assigned hops first)(method: GET)
 assigned: true if user assigned to hop of false if not
@@ -168,9 +168,9 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
         success: {"hops"=>[{"id"=>1, "name"=>"hop #1", "time_start"=>"01/07/2013 11:35:32", "time_end"=>"01/07/2013 11:35:32", "code"=>"345", "price"=>"2", "jackpot"=>34, "daily
-                 "=>false, "close"=>false, "event"=>"new year", "created_at"=>"2013-07-22T08:35:50Z", "updated_at"=>"2013-07-22T08:35:50Z", "assigned"=>true}, {"id"=>2, "name"=>"hop #2", "time_st
+                 "=>false, "close"=>false, "event"=>"new year", "created_at"=>"2013-07-22T08:35:50Z", "updated_at"=>"2013-07-22T08:35:50Z", "assigned"=>true, "score"=>0}, {"id"=>2, "name"=>"hop #2", "time_st
                  art"=>"16/07/2013 11:36:35", "time_end"=>"31/07/2013 11:36:35", "code"=>"3", "price"=>"34", "jackpot"=>3, "daily"=>false, "close"=>false, "event"=>"new year", "
-                 created_at"=>"2013-07-22T08:36:51Z", "updated_at"=>"2013-07-22T08:36:51Z", "assigned"=>false}]}
+                 created_at"=>"2013-07-22T08:36:51Z", "updated_at"=>"2013-07-22T08:36:51Z", "assigned"=>false, "score"=>0}]}
         error: {"errors"=>["Hops not found."], "success"=>false, "status"=>406}
 ====get hop tasks(method: GET)
     url: http://localhost:3000/api/hop/get_tasks.json?api_key=123&authentication_token=IWJiYu6xXzt1X0zGewFAL6O4oJJVFO&hop_id=1
@@ -184,8 +184,22 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
         success: {"hop"=>{"id"=>2, "name"=>"admin reg hop #2", "time_start"=>"08/07/2013 09:38:42", "time_end"=>"08/07/2013 09:38:42", "code"=>"34", "price"=>"34", "jackpot"=>34
-                 , "daily"=>false, "close"=>false, "event"=>"34", "created_at"=>"2013-07-23T06:39:03Z", "updated_at"=>"2013-07-23T06:39:03Z", "assigned"=>true}}
+                 , "daily"=>false, "close"=>false, "event"=>"34", "created_at"=>"2013-07-23T06:39:03Z", "updated_at"=>"2013-07-23T06:39:03Z", "assigned"=>true, "score"=>0}}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
+====get hop score for current user(method: GET)
+    url: http://localhost:3000/api/hop/score.json?api_key=123&authentication_token=xgARx5XV9DULIQRa39V20HPmudnPUg&hop_id=2
+    data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
+    response:
+        success: {"success"=>true, "likes_count"=>0, "status"=>200}
+        error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
+====notify server by shring(method: POST)
+service should be 'twitter', 'facebook', 'google'
+    url: http://localhost:3000/api/task/notify_by_share.json
+    data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct","user_hop_task_id":"13","service":"facebook"}
+    response:
+        success: {"success"=>true, "info"=>"Success.", "status"=>200}
+        error: {"errors"=>["Already shared."], "success"=>false, "status"=>406}
+-----------------------------Notifications-------------------------------
 ===Hop Tasks
 ====submit users hop task(automatikally assign you to hop)(method: POST)
     url: http://localhost:3000/api/task/submit.json
@@ -252,6 +266,8 @@ assigned: true if user assigned to hop of false if not
                  Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:58:03Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T
                  15:58:34Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:58:57Z"}]}
         error: {"errors"=>["User hop task has no comments."], "success"=>false, "status"=>406}
+====notify server of share action(method: POST)
+
 ===Notifications
 ====notifications(method: GET)
     url: http://localhost:3000/api/notifications.json?api_key=123&authentication_token=eIldvK7N5ysng6M7cwyqgS8UXQyf21&page=1&per_page=3

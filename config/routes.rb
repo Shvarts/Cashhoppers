@@ -68,6 +68,7 @@ namespace :admin do
     post 'hops/assign',                    to: 'hops#assign'
     get 'hop/get_tasks',                   to: 'hops#get_tasks'
     get 'hop/get_hop',                     to: 'hops#get_hop_by_id'
+    get 'hop/score',                       to: 'hops#score'
 
     #users hop tasks
     post 'task/submit',                    to: 'user_hop_tasks#create'
@@ -78,6 +79,7 @@ namespace :admin do
     get 'task/likes_count',                to: 'user_hop_tasks#likes_count'
     post 'task/comment',                   to: 'user_hop_tasks#comment'
     get 'task/get_comments',               to: 'user_hop_tasks#comments'
+    post 'task/notify_by_share',           to: 'user_hop_tasks#notify_by_share'
 
     #friends
     get 'friends/get_friends',             to: 'friends#get_friends'
