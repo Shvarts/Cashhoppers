@@ -15,15 +15,15 @@
         .header-left
           %ul
             %li
-              %a ABOUT
+              %a{:href=>"#gray-page"} ABOUT
             %li
-              %a HOW TO PLAY
+              %a{:href=>"#yellow-page"} HOW TO PLAY
             %li
-              %a PHOTO GALLERY
+              %a{:href=>"#what-page"} PHOTO GALLERY
             %li
-              %a BUSINESES
+              %a{:href=>"#business-page"} BUSINESSES
             %li
-              %a SHOWS & EVENTS
+              %a{:href=>"#events-page"} SHOWS & EVENTS
         .header-right
           .button-container
             %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
@@ -62,13 +62,18 @@
     .custom-pg.first-page
     .page-divider
     .custom-pg.gray-page
+      %h2{:id=>"gray-page"}
     .page-divider
     .custom-pg.yellow-page
+      %h2{:id=>"yellow-page"}
     .page-divider
-    .custom-pg
+    .custom-pg.what-page
+      %h2{:id=>"what-page"}
     .page-divider
-    .custom-pg
+    .custom-pg.business-page
+      %h2{:id=>"business-page"}
     .page-divider
-    .custom-pg
+    .custom-pg.events-page
+      %h2{:id=>"events-page"}
     .page-divider
-
+  %script{:src=>"http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"}
