@@ -4,8 +4,7 @@ class CreateLikes < ActiveRecord::Migration
       t.integer :user_id
       t.integer :target_object_id
       t.string :target_object
-
-      t.datetime :created_at
+      t.column :created_at, :datetime
     end
   end
 end

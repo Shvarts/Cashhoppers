@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723143135) do
+ActiveRecord::Schema.define(:version => 20130724103430) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -43,15 +43,22 @@ ActiveRecord::Schema.define(:version => 20130723143135) do
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "commentable_id"
+    t.integer  "event_id"
     t.text     "text"
-    t.string   "commentable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "event_type"
+    t.integer  "comment_id"
+    t.integer  "like_id"
+    t.text     "description"
+    t.datetime "created_at"
+  end
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -122,7 +129,6 @@ ActiveRecord::Schema.define(:version => 20130723143135) do
     t.datetime "file_updated_at"
     t.string   "subject"
     t.datetime "send_at"
-    t.string   "user_name"
   end
 
   create_table "roles", :force => true do |t|

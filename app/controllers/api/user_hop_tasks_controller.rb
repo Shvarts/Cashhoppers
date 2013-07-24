@@ -54,7 +54,8 @@ class Api::UserHopTasksController < Api::ApplicationController
 
   def like
     unless Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
-      Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
+      @like = Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
+      Event.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
       respond_to do |format|
         format.json{
           render :json => {success: true,
@@ -83,6 +84,7 @@ class Api::UserHopTasksController < Api::ApplicationController
   def comment
     comment = @user_hop_task.comments.build(user_id: @current_user.id, text: params[:text])
     if comment.save
+      Event.create(user_id: @user_hop_task.user_id, comment_id: comment.id, event_type: 'Comment')
       respond_to do |format|
         format.json{
           render :json => {success: true,

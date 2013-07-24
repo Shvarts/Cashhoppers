@@ -54,12 +54,11 @@ namespace :admin do
   end
 
   namespace :api do
-    post 'sessions' => 'sessions#create', :as => 'login'
-    post 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
-    delete 'sessions' => 'sessions#destroy', :as => 'logout'
-    post 'confirm_registration' => 'sessions#confirm_registration'
-
-    post 'sign_in_via_service' => 'sessions#sign_in_via_service'
+    post 'sessions',                       to: 'sessions#create',        as: 'login'
+    post 'sign_up',                        to: 'sessions#sign_up',       as: 'sign_up'
+    delete 'sessions',                     to: 'sessions#destroy',       as: 'logout'
+    post 'confirm_registration',           to: 'sessions#confirm_registration'
+    post 'sign_in_via_service',            to: 'sessions#sign_in_via_service'
 
     get 'ads/get_ads' => 'ads#index'
 
@@ -80,22 +79,24 @@ namespace :admin do
     post 'task/comment',                   to: 'user_hop_tasks#comment'
     get 'task/get_comments',               to: 'user_hop_tasks#comments'
 
-    get 'friends/get_friends', to: 'friends#get_friends'
-    get 'friends/get_requested_friends', to: 'friends#get_requested_friends'
-    get 'friends/get_pending_friends', to: 'friends#get_pending_friends'
-    post 'friends/send_request', to: 'friends#send_request'
-    post 'friends/accept_request', to: 'friends#accept_request'
-    post 'friends/decline_request', to: 'friends#decline_request'
-    post 'friends/cancel_request', to: 'friends#cancel_request'
-    post 'friends/delete_friend', to: 'friends#delete_friend'
+    #friends
+    get 'friends/get_friends',             to: 'friends#get_friends'
+    get 'friends/get_requested_friends',   to: 'friends#get_requested_friends'
+    get 'friends/get_pending_friends',     to: 'friends#get_pending_friends'
+    post 'friends/send_request',           to: 'friends#send_request'
+    post 'friends/accept_request',         to: 'friends#accept_request'
+    post 'friends/decline_request',        to: 'friends#decline_request'
+    post 'friends/cancel_request',         to: 'friends#cancel_request'
+    post 'friends/delete_friend',          to: 'friends#delete_friend'
 
-    get 'users/get_users', to: 'users#index'
-    get 'users/get_my_info', to: 'users#get_my_info'
-    get 'users/get_user_info', to: 'users#get_user_info'
-    post 'users/update_profile', to: 'users#update_profile'
+    #users
+    get 'users/get_users',                 to: 'users#index'
+    get 'users/get_my_info',               to: 'users#get_my_info'
+    get 'users/get_user_info',             to: 'users#get_user_info'
+    post 'users/update_profile',           to: 'users#update_profile'
 
-    post 'tasks/get_events_list', to: 'user_hop_tasks#events_list'
-    post 'tasks/create_task', to: 'user_hop_tasks#create'
+    #events
+    get 'notifications',                   to: 'notifications#get_events_list'
   end
 
   devise_for :users
