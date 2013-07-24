@@ -3,7 +3,10 @@ CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
 
-  namespace :admin do
+
+
+
+namespace :admin do
 
     get 'pages/index', :as => 'index'
     resources :applications
@@ -24,6 +27,7 @@ CashHoppers::Application.routes.draw do
     post 'close_hop/:id',                  to: 'hops#close',             as: 'close_hop'
 
     resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
+
 
     resources :ads
 
@@ -95,8 +99,10 @@ CashHoppers::Application.routes.draw do
   end
 
   devise_for :users
+
   get 'hop/:id/edit_regular',            to: 'hops#edit_regular',      as: 'edit_regular_hop'
   get 'user/:id',                        to: 'users#profile',          as: 'user'
+
 
   match '/auth/:service/callback' => 'services#add_zip'
   get 'services/add_zip', :to => 'services#add_zip'

@@ -3,27 +3,77 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <table>
+    <tr>
+      <td>Email:</td>
+      <td><%= f.email_field :email, :autofocus => true %></td>
+      <td><%= f.file_field :avatar %></td>
+    </tr>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <tr>
+      <td>First name:</td>
+      <td><%= f.text_field :first_name %></td>
+    </tr>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+    <tr>
+      <td>Last name</td>
+      <td><%= f.text_field :last_name  %></td>
+    </tr>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <tr>
+      <td>User name</td>
+      <td><%= f.text_field :user_name %></td>
+    </tr>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+    <tr>
+      <td class= 'span3'>Phone</td>
+      <td><%= f.text_field :phone %></td>
+    </tr>
+
+    <tr>
+      <td>Contact</td>
+      <td><%= f.text_field :contact %></td>
+    </tr>
+
+    <tr>
+      <td>Biography</td>
+      <td><%= f.text_area :bio , :rows => 5%></td>
+    </tr>
+
+    <tr>
+      <td><% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Password <i>(leave blank if you don't want to change it)</i></td>
+      <td>  <%= f.password_field :password, :autocomplete => "off" %></td>
+    </tr>
+
+    <tr>
+      <td>Confirm password</td>
+      <td><%= f.password_field :password_confirmation %></td>
+    </tr>
+
+    <tr>
+      <td>Current password <i>(we need your current password to confirm your changes)</i></td>
+      <td><%= f.password_field :current_password %></td>
+    </tr>
+
+    <tr>
+      <td></td>
+
+      <td><%= f.submit "Update" %></td>
+    </tr>
+
+  </table>
+
+
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
 <%= link_to "Back", :back %>
+
+
