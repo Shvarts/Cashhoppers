@@ -1,12 +1,12 @@
 class Admin::HoppersController < Admin::AdminController
 
   def find_hopper
-    @users = User.all
+
     @tab = 'find_hoppers'
   end
 
   def hopper_list
-    @users = User.all
+
     @tab = 'generate_hoppers_list'
   end
 
