@@ -7,7 +7,7 @@ class Message < ActiveRecord::Base
                     :default_url => "/images/no_ad_picture.jpg",
                     :path => ":rails_root/public/images/ad_pictures/file/:id/MESSAGE_PICTURE.:extension"
 
-  validates_presence_of :receiver_id , :text, :sender
+  validates_presence_of :receiver_id , :text, :sender_id
   validates_presence_of :email_author, if: :email?
 
   def email?
@@ -101,4 +101,13 @@ class Message < ActiveRecord::Base
     conditions
   end
 
+  def self.complit_params(user,current_user,params)
+
+    message = {}
+    message[:receiver_id] = user.id
+
+    message[:sender_id]= current_user.id
+    message[:text]= params[:message][:text]
+    message
+  end
 end

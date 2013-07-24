@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130723143135) do
     t.datetime "file_updated_at"
     t.string   "subject"
     t.datetime "send_at"
+    t.string   "user_name"
   end
 
   create_table "roles", :force => true do |t|
