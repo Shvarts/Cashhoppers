@@ -16,13 +16,50 @@
  *= require wice_grid
  */
 
-body fieldset{
+
+
+
+
+    body fieldset{
+
     margin-top: 20%;
 }
 
 .container-grid{
      margin-top: 160px;
 }
+.custom-pg{
+        /* background-image: url('cahshop1.jpg'); */
+        /*-webkit-background-size: cover;*/
+        /*-moz-background-size: cover;*/
+        /*-o-background-size: cover;*/
+        /*background-size: cover;*/
+        min-height: 600px;
+}
+.first-page{
+    background-image: url('cahshop1.jpg');
+    background-size: cover;
+}
+.yellow-page{
+      background-color: yellow;
+}
+.gray-page{
+      background-color: gray;
+}
+
+.page-divider
+{
+    background: white;
+background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwLjUxNzI0MSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3ODc4NyIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODc4Nzg3IiAvPjxyZWN0IHg9Ii0zNyUiIHk9Ii03NCUiIHdpZHRoPSIxNzQlIiBoZWlnaHQ9IjM0OCUiIGZpbGw9InVybCgjZykiIC8+PC9zdmc+);
+background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 728, color-stop(51.7241%, #ffffff), color-stop(100%, #878787));
+background-image: -webkit-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+background-image: -moz-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+background-image: -ms-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
+
+    padding: 20px;
+  }
 
 .header{
   z-index: 100;
@@ -40,6 +77,7 @@ body fieldset{
   width: 100%;
   height: 70px;
   top: 0px;
+
   .header-content{
     width: 950px;
     margin: 0 auto;
@@ -60,11 +98,15 @@ body fieldset{
           border-right: 2px solid white;
           padding: 0px 5px 0px 5px;
         }
+        a{
+            color: #f5f5f5;
+        }
         li:last-child{
           border-right: 0px;
         }
       }
     }
+
     .header-right{
       display: table;
       text-align: right;
@@ -89,5 +131,8 @@ body fieldset{
     border-right: 1px solid black;
     border-bottom: 1px solid black;
   }
+
 }
+
+
 
