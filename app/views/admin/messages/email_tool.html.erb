@@ -24,16 +24,16 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= text_field_tag :receiver_id ,'' ,:class=>"input-mini", :id=>'find_hop' , onclick:"$('#myModalhop').modal()"%></td>
-    <td><%= text_field_tag :receiver_id, '' , :class=>"input-mini", :id=>'find_zip' ,onclick:"$('#myModalzip').modal()" %></td>
-    <td><%= text_field_tag :receiver_id,'' , :class=>"input-mini" ,  onclick:"$('#myModal').modal()" %></td>
-
-
+    <td><%= select_tag 'hopId[]', nil ,:class=>"input-large chzn-select", :id=>'find_hop', :multiple=>"multiple" %></td>
+    <td><%= select_tag 'zipId[]', nil , :class=>"input-large chzn-select", :id=>'find_zip' ,:multiple=>"multiple" %></td>
+    <td><%= select_tag 'userId[]', nil , :class=>"input-large chzn-select" , :id=>'find_user', :multiple=>"multiple" %></td>
   </tr>
-</table>
-    <%= select_tag  'users_id[]', [], id: 'e9',multiple:true, class:"populate select2-offscreen",
-                     :tabindex=>"-1" %>
 
+
+</table>
+<br />
+<br />
+<br />
     <%= hidden_field_tag :email , true %>
 
 <table>
@@ -87,6 +87,7 @@
  </div>
   <div class="modal-body">
     <div id="myModalzip" class="example cursor">
+
     </div>
   </div>
   <div class="modal-footer">
@@ -99,6 +100,7 @@
  </div>
   <div class="modal-body">
     <div id="myModalhop" class="example cursor">
+
     </div>
   </div>
   <div class="modal-footer">

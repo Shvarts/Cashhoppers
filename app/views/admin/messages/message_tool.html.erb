@@ -27,8 +27,8 @@
         <td class ="span4">User id</td>
       </tr>
       <tr>
-        <td><%= %></td>
-        <td><%= f.text_field :receiver_id, :class=>"input-mini", :id=>'find_hop', onclick:"$('#myModalhop').modal()" %></td>
+        <td></td>
+        <td><%= f.text_field :receiver_id ,:class=>"input-mini", :id=>'find_hop' , onclick:"$('#myModalhop').modal()"%></td>
         <td><%= f.text_field :receiver_id, :class=>"input-mini", :id=>'find_zip', onclick:"$('#myModalzip').modal()" %></td>
         <td><%= f.text_field :receiver_id, :class=>"input-mini" , onclick:"$('#myModal').modal()"%></td>
       </tr>
@@ -97,7 +97,7 @@
   <div class="modal-header" >
   </div>
   <div class="modal-body">
-    <div id="myModalhop" class="example cursor">
+    <div id="myModalzip" class="example cursor">
     </div>
   </div>
   <div class="modal-footer">
@@ -109,7 +109,7 @@
   <div class="modal-header" >
   </div>
   <div class="modal-body">
-    <div id="myModalhop" class="example cursor">
+    <div id="myModalzip" class="example cursor">
     </div>
   </div>
   <div class="modal-footer">

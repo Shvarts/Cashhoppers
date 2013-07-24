@@ -36,13 +36,14 @@ other_user.roles = [Role.find_by_name(:user)]
 Friendship.request(admin, friend)
 Friendship.accept(friend, admin)
 
-hop = Hop.create(close: false, event: 'new year', daily: false, code: 'ewre', price: 12, jackpot: 34, name: 'hop #1', producer_id: admin.id, :time_end, :time_start)
+60.times do |t|
+  hop = Hop.create!(close: false, event: 'new year', daily: false, code: 'ewre', price: 12, jackpot: 34, name: "hop #{t}" , producer_id: admin.id, time_end: '16/07/2013 10:46:16', time_start: '16/07/2013 10:46:18')
 
-
+end
 
 5.times do |t|
   user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                  :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin',
+                  :last_name => 'CashHoppers', :zip => 8800 + t, :user_name => 'admin',
                   :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
   user.skip_confirmation!
   user.save
