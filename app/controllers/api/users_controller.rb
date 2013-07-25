@@ -42,8 +42,6 @@ class Api::UsersController < Api::ApplicationController
     end
   end
 
-
-
   private
 
   def find_user

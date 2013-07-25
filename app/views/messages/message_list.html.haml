@@ -33,7 +33,7 @@
       %li.field_with_error
         = flash[:error]
 = form_tag messages_create_message_path  do
-  = text_field(:message, :receiver_name, :placeholder=>"receiver")
+  = text_field(:message, :receiver_id, :placeholder=>"receiver id")
   = text_field(:message, :text, :placeholder=>"message text")
   = submit_tag 'create message'
 

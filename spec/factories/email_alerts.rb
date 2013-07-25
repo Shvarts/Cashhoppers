@@ -1,11 +1,12 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :message do
-    text "MyString"
+  factory :email_alert do
+    text "MyText"
     sender_id 1
     receiver_id 1
-    shadule_date "2013-07-25 15:46:52"
-    synchronized false
+    schedule_date "2013-07-25 15:51:02"
+    subject "MyString"
+    template_id 1
   end
 end
