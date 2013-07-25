@@ -1,19 +1,19 @@
-<%= form_tag admin_hoppers_search_hopper_path do %>
+
     <table class="pull-right"  >
       <tr>
         <td class ="span4">By user name</td>
         <td class ="span4">By user id</td>
       </tr>
       <tr>
-        <td><%= text_field_tag(:name, nil, :class=>"input-mini")%></td>
-        <td><%= text_field_tag(:id, nil, :class=>"input-mini") %></td>
+        <td><%= text_field_tag(:name, nil, :class=>"input-mini", :id=>"findName", :onclick=>'')%></td>
+        <td><%= text_field_tag(:id, nil, :class=>"input-mini", :id=>"findId") %></td>
       </tr>
       <tr>
         <td><%= submit_tag("Find hopper", :class=>"span9 pull-right" ) %></td>
       </tr>
     </table>
 
-<% end %>
+
 <fieldset >
 
   <table class="pull-right" >
@@ -107,3 +107,28 @@
 <%= button_to("Export file to PDF",nil, :class=>"span7 pull-right btn btn-success" ) %>
 
 <%= button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" ) %>
+
+<div class="modal hide fade in" id="myModalname" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalname" class="example cursor">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</div>
+
+<div class="modal hide fade in" id="myModalid" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalid" class="example cursor">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>

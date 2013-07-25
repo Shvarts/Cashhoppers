@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require select2
+
+//= require chosen-jquery
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-alert
 //= require twitter/bootstrap/bootstrap-modal

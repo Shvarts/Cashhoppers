@@ -1,25 +1,25 @@
-<%= form_tag admin_hoppers_search_hoppers_path do %>
+
     <table class="pull-right"  >
       <tr>
         <td class ="span4">By hop id</td>
         <td class ="span4">By zip</td>
       </tr>
       <tr>
-        <td><%= text_field_tag(:hop_id, nil, :class=>"input-mini")%></td>
-        <td><%= text_field_tag(:zip, nil, :class=>"input-mini") %></td>
+        <td><%= text_field_tag(:hop_id, nil, :class=>"input-mini", :id=>"findhop")%></td>
+        <td><%= text_field_tag(:zip, nil, :class=>"input-mini", :id=>"findzip") %></td>
       </tr>
       <tr>
         <td><%= submit_tag("Find hopper", :class=>"span9 pull-right" ) %></td>
       </tr>
     </table>
 
-<% end %>
+
 
 <fieldset>
 
 
 
-  <% if !@user.blank? %>
+  <% if !@users.blank? %>
   <table class="table-bordered">
 
     <tr>
@@ -28,12 +28,10 @@
       <td class ="span4">email</td>
       <td class ="span4">zip</td>
     </tr>
- <% for i in @user do %>
+ <% for i in @users do %>
     <tr>
       <td class ="span4"><%= i.id %></td>
       <td class ="span4"><%= i.user_name %></td>
-      <td class ="span4"><%= i.email  %></td>
-      <td class ="span4"><%= i.zip  %></td>
       <td class ="span4"><%= i.email  %></td>
       <td class ="span4"><%= i.zip  %></td>
     </tr>
@@ -47,7 +45,7 @@
 
 </fieldset>
 
-<% if !@user.blank? %>
+<% if !@users.blank? %>
   <%= button_to "Email to list", admin_messages_email_tool_path({"id"=>@id}),:class=>"span4 btn btn-success pull-right"  %>
  <br />
   <%= button_to "Messages to list", admin_messages_message_tool_path({"id"=>@id}) , :class=>"span4 btn btn-success pull-right"  %>
@@ -56,3 +54,27 @@
   <%= button_to("Export file to PDF", nil,  :class=>"span4 btn-success" ) %>
 
 
+<div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalname" class="example cursor">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</div>
+
+<div class="modal hide fade in" id="myModalhop" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+  </div>
+  <div class="modal-body">
+    <div id="myModalid" class="example cursor">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>

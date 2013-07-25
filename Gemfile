@@ -22,7 +22,11 @@ gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'will_paginate-bootstrap'
-gem "select2-rails"
+
+gem 'chosen-rails'
+
+#, :git => "https://github.com/prawnpdf/prawn.git", :ref => '8028ca0cd2'
+gem 'prawn'
 
 group :development, :test do
   gem 'therubyracer', :platform => :ruby

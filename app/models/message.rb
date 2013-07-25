@@ -15,30 +15,14 @@ class Message < ActiveRecord::Base
     email.class == TrueClass
   end
 
-  def self.create_arr_receivers(messages)
-    arr = messages
-    arr = messages.split(',')   unless messages.class == Array
-    emails= []
-    for i in arr
-      emails << i if !(i.to_i == 0)
-    end
-    emails
-  end
 
-  def self.user_arr(arr)
-    ids=Message.create_arr_receivers(arr)
-    @users =[]
-    for i in ids
-      @users << User.find_by_id(i)
-    end
 
-    @users
-  end
 
-  def self.send_emails_to(message,user_id, email_state)
-    emails = Message.create_arr_receivers(message[:receiver_id])
+  def self.send_emails_to(message, user_id, receivers_id, email_state)
+
     n = 0
-    for i in emails
+
+    for i in receivers_id
       message[:receiver_id] = i
       message[:sender_id]=user_id
       message[:email]= email_state
@@ -47,68 +31,48 @@ class Message < ActiveRecord::Base
 
       UserMailer.send_email_for_select_user(@message.id).deliver if email_state
       n= n + 1
-
-
      end
     end
     n
   end
 
-  def self.create_hoppers_id_arr(params)
-    if params
-      hop = Hop.find_by_id(params)
-      if !hop.hoppers.blank?
-        @users = hop.hoppers.select(:id).all
-        arr_id=[]
-        for i in @users do
-          arr_id << i.id
+  def self.users_from_hop( params)
+      users_id = []
+      for i in params
+        hop = Hop.find_by_id(i)
+        users = hop.hoppers
+        for u in users
+          users_id << u.id
         end
-       end
-    end
-    arr_id
-  end
-
-
-  def self.create_user_id_arr_by_zip(params)
-
-    if params
-      @users = User.where(:zip => params).select(:id).all
-      arr_id=[]
-      for i in @users do
-        arr_id << i.id
       end
-    end
-   arr_id
+      users_id
   end
 
 
+  def self.users_from_zip(params)
 
-  def self.create_users_id_list(params,flash)
-    select_id = []
-    if !params.blank?
-      select_id << params
-      select_id << flash
-      select_id.flatten!
-      select_id.compact!
-      select_id.uniq!
-     end
-    select_id
+    users_id = []
+    for i in params
+      users = User.where(:zip => i)
+     for u in users
+        users_id << u.id
+      end
+
+    end
+    users_id
   end
 
   def self.conditions_for_users(params)
     conditions = []
-    conditions = ["first_name LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
     conditions = ["id LIKE ? OR last_name LIKE ?", "%#{params}%", "%#{params}%"]
     conditions
   end
 
-  def self.complit_params(user,current_user,params)
+  def self.external_id(params)
+    (params.class == Array)? (arr_id = params) : (arr_id = %W{ #{params.to_i} })
+    arr = arr_id.repeated_permutation(1).to_a
+    return arr, arr_id
 
-    message = {}
-    message[:receiver_id] = user.id
-
-    message[:sender_id]= current_user.id
-    message[:text]= params[:message][:text]
-    message
   end
+
 end

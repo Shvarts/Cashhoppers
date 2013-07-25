@@ -34,7 +34,12 @@ namespace :admin do
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"
     match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
-    match '/hoppers/search_hopper' => "hoppers#search_hopper"
+    get '/hoppers/search_by_name' => 'hoppers#search_by_name'
+    get '/hoppers/search_by_id' => 'hoppers#search_by_id'
+    get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
+    get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
+
+
     match '/messages/message_history' => "messages#message_history"
     match '/messages/show' => "messages#show"
     delete '/messages/destroy' => "messages#destroy"
