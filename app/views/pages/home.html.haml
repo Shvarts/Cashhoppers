@@ -35,7 +35,7 @@
       %td{style: 'width: 100%', colspan: 7}
         Hop Score:
         Hop Score
-        = task.hop_task.hop.score current_user
+        = task.hop_task.hop.score(current_user) if current_user
         - task.comments.each do |comment|
           .well
             .row_fluid
