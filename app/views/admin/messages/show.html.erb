@@ -35,3 +35,8 @@
 <% else %>
    <%= link_to 'Back', admin_messages_email_history_path  %>
 <% end %>
+
+
+
+<p><%= link_to "PDF",  admin_messages_show_path(@message,  :type => "application/pdf", :format => 'pdf') %></p>
+

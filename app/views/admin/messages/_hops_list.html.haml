@@ -21,10 +21,10 @@
         %td
           = hop.name
         %td
-          = hop.daily_hop
+          = hop.daily
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_find_hop_path(:id_hop =>hop.id), id: 'select_id'
+          = link_to 'Search',  admin_messages_find_hop_path(:id_hop =>hop.id), id: 'select_id',  :data => { 'user-id' => hop.id }
   -if flash[:id]
     = text_field_tag :input, flash[:id]
   = will_paginate @hops, renderer: BootstrapPagination::Rails

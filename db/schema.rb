@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723064533) do
+ActiveRecord::Schema.define(:version => 20130724145250) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -38,6 +38,26 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
     t.string   "api_key"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.integer  "event_id"
+    t.text     "text"
+    t.datetime "created_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "event_type"
+    t.integer  "comment_id"
+    t.integer  "like_id"
+    t.text     "description"
+    t.datetime "created_at"
   end
 
   create_table "friendships", :force => true do |t|
@@ -69,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
   create_table "hoppers_hops", :force => true do |t|
     t.integer "user_id"
     t.integer "hop_id"
+    t.integer "pts"
   end
 
   create_table "hops", :force => true do |t|
@@ -86,6 +107,14 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "target_object_id"
+    t.string   "target_object"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.string   "text"
     t.integer  "sender_id"
@@ -101,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
     t.datetime "file_updated_at"
     t.string   "subject"
     t.datetime "send_at"
+    t.string   "user_name"
   end
 
   create_table "roles", :force => true do |t|
@@ -141,6 +171,9 @@ ActiveRecord::Schema.define(:version => 20130723064533) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "comment"
+    t.boolean  "facebook_shared"
+    t.boolean  "twitter_shared"
+    t.boolean  "google_shared"
   end
 
   add_index "user_hop_tasks", ["hop_task_id"], :name => "index_user_hop_tasks_on_hop_task_id"

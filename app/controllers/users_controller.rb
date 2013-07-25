@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(current_user.id) if !@user
     @hops = @user.games
   end
+
 
 end

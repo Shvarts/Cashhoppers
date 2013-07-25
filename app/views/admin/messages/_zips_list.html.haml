@@ -16,7 +16,7 @@
           = zip.zip
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_find_zip_path(:zip =>zip.zip), id: 'select_id'
+          = link_to 'Search',  admin_messages_find_zip_path(:zip =>zip.zip), id: 'select_id' ,  :data => { 'user-id' => zip.zip }
   -if flash[:id]
     = text_field_tag :input, flash[:id]
   = will_paginate @zips, renderer: BootstrapPagination::Rails

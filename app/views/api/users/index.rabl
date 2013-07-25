@@ -10,4 +10,8 @@ node :avatar do |user|
     user.avatar.url if user.avatar_file_size
 end
 
+node :friends_count do |user|
+    user.friends.count
+end
+
 

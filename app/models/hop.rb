@@ -1,5 +1,4 @@
 class Hop < ActiveRecord::Base
-
   has_and_belongs_to_many :hoppers, :join_table =>"hoppers_hops" , :class_name=>"User"
 
   has_many :hop_tasks, :dependent => :destroy
@@ -16,7 +15,23 @@ class Hop < ActiveRecord::Base
   def assign user
     unless hoppers.include? user
       hoppers << user
+      ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
     end
   end
+
+  def score user
+    hoppers_hops = ActiveRecord::Base.connection.select_all("SELECT pts FROM hoppers_hops WHERE user_id = #{user.id} AND hop_id = #{id} LIMIT 1")
+    if hoppers_hops.length == 0
+      0
+    else
+      hoppers_hops[0]['pts']
+    end
+  end
+
+  def increase_score user, pts
+    current_pts = self.score user
+    ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = #{current_pts + pts} WHERE user_id = #{user.id} AND hop_id = #{id}")
+  end
+
 
 end

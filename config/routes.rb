@@ -3,7 +3,10 @@ CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
 
-  namespace :admin do
+
+
+
+namespace :admin do
 
     get 'pages/index', :as => 'index'
     resources :applications
@@ -25,12 +28,18 @@ CashHoppers::Application.routes.draw do
 
     resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
 
+
     resources :ads
 
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"
     match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
-    match '/hoppers/search_hopper' => "hoppers#search_hopper"
+    get '/hoppers/search_by_name' => 'hoppers#search_by_name'
+    get '/hoppers/search_by_id' => 'hoppers#search_by_id'
+    get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
+    get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
+
+
     match '/messages/message_history' => "messages#message_history"
     match '/messages/show' => "messages#show"
     delete '/messages/destroy' => "messages#destroy"
@@ -50,12 +59,11 @@ CashHoppers::Application.routes.draw do
   end
 
   namespace :api do
-    post 'sessions' => 'sessions#create', :as => 'login'
-    post 'sign_up' => 'sessions#sign_up', :as => 'sign_up'
-    delete 'sessions' => 'sessions#destroy', :as => 'logout'
-    post 'confirm_registration' => 'sessions#confirm_registration'
-
-    post 'sign_in_via_service' => 'sessions#sign_in_via_service'
+    post 'sessions',                       to: 'sessions#create',        as: 'login'
+    post 'sign_up',                        to: 'sessions#sign_up',       as: 'sign_up'
+    delete 'sessions',                     to: 'sessions#destroy',       as: 'logout'
+    post 'confirm_registration',           to: 'sessions#confirm_registration'
+    post 'sign_in_via_service',            to: 'sessions#sign_in_via_service'
 
     get 'ads/get_ads' => 'ads#index'
 
@@ -64,32 +72,46 @@ CashHoppers::Application.routes.draw do
     get 'hops/daily',                      to: 'hops#daily'
     post 'hops/assign',                    to: 'hops#assign'
     get 'hop/get_tasks',                   to: 'hops#get_tasks'
+    get 'hop/get_hop',                     to: 'hops#get_hop_by_id'
+    get 'hop/score',                       to: 'hops#score'
 
     #users hop tasks
     post 'task/submit',                    to: 'user_hop_tasks#create'
     get 'tasks/get_friends_hop_tasks',     to: 'user_hop_tasks#friends_hop_tasks'
+    get 'tasks/get_all_hoppers_hop_tasks', to: 'user_hop_tasks#all_hoppers_hop_tasks'
+    get 'task/get_hop_task',               to: 'user_hop_tasks#get_hop_task_by_id'
+    post 'task/like',                      to: 'user_hop_tasks#like'
+    get 'task/likes_count',                to: 'user_hop_tasks#likes_count'
+    post 'task/comment',                   to: 'user_hop_tasks#comment'
+    get 'task/get_comments',               to: 'user_hop_tasks#comments'
+    post 'task/notify_by_share',           to: 'user_hop_tasks#notify_by_share'
+    get 'task/get_user_hop_task_by_id',    to: 'user_hop_tasks#get_user_hop_task_by_id'
 
-    get 'friends/get_friends', to: 'friends#get_friends'
-    get 'friends/get_requested_friends', to: 'friends#get_requested_friends'
-    get 'friends/get_pending_friends', to: 'friends#get_pending_friends'
-    post 'friends/send_request', to: 'friends#send_request'
-    post 'friends/accept_request', to: 'friends#accept_request'
-    post 'friends/decline_request', to: 'friends#decline_request'
-    post 'friends/cancel_request', to: 'friends#cancel_request'
-    post 'friends/delete_friend', to: 'friends#delete_friend'
+    #friends
+    get 'friends/get_friends',             to: 'friends#get_friends'
+    get 'friends/get_requested_friends',   to: 'friends#get_requested_friends'
+    get 'friends/get_pending_friends',     to: 'friends#get_pending_friends'
+    post 'friends/send_request',           to: 'friends#send_request'
+    post 'friends/accept_request',         to: 'friends#accept_request'
+    post 'friends/decline_request',        to: 'friends#decline_request'
+    post 'friends/cancel_request',         to: 'friends#cancel_request'
+    post 'friends/delete_friend',          to: 'friends#delete_friend'
 
-    get 'users/get_users', to: 'users#index'
-    get 'users/get_my_info', to: 'users#get_my_info'
-    get 'users/get_user_info', to: 'users#get_user_info'
-    post 'users/update_profile', to: 'users#update_profile'
+    #users
+    get 'users/get_users',                 to: 'users#index'
+    get 'users/get_my_info',               to: 'users#get_my_info'
+    get 'users/get_user_info',             to: 'users#get_user_info'
+    post 'users/update_profile',           to: 'users#update_profile'
 
-    post 'tasks/get_events_list', to: 'user_hop_tasks#events_list'
-    post 'tasks/create_task', to: 'user_hop_tasks#create'
+    #events
+    get 'notifications',                   to: 'notifications#get_events_list'
   end
 
   devise_for :users
+
   get 'hop/:id/edit_regular',            to: 'hops#edit_regular',      as: 'edit_regular_hop'
   get 'user/:id',                        to: 'users#profile',          as: 'user'
+
 
   match '/auth/:service/callback' => 'services#add_zip'
   get 'services/add_zip', :to => 'services#add_zip'
@@ -104,4 +126,7 @@ CashHoppers::Application.routes.draw do
   post 'friends/accept_request', to: 'friends#accept_request'
   post 'friends/decline_request', to: 'friends#decline_request'
   post 'friends/delete_friend', to: 'friends#delete_friend'
+
+  post 'messages/create_message', to: 'messages#create_message'
+  get 'messages/message_list', to: 'messages#message_list'
 end

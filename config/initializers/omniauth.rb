@@ -7,5 +7,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   elsif Rails.env.production?
     provider :twitter, 'xUMspgA20dOVm7USc3tqKA', '2pm7XHK3dBcp7nIYO5NpESEtBf3XlAh37lwwMU414'
     provider :facebook, '264599550349996', 'a05b733f8e765f6355d4a261afa876ed'
+    provider :google, '19162999269.apps.googleusercontent.com', 'hAO8HL644LGri21c_0UePNHY'
   end
 end
