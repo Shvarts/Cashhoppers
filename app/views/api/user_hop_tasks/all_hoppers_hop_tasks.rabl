@@ -14,6 +14,10 @@ node :likes_count do |task|
    Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
 end
 
+node :comments_count do |task|
+   Comment.where(commentable_id: task.id).count
+end
+
 node :liked do |task|
    Like.where(target_object_id: task.id, target_object: 'UserHopTask', user_id: @current_user.id).first ? true : false
 end
