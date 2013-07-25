@@ -113,7 +113,9 @@ provider can be 'facebook', 'google' and 'twitter'
         error: {"errors"=>["You aren't friends with 3"], "success"=>false, "status"=>406}
 ===Users
 ====get users list(method: GET)
+parameter query is optional (search by first_name, last_name and user_name)
     url: http://localhost:3000/api/users/get_users.json?api_key=123&authentication_token=HjmvgovE91aIKZNJemh4Da7yzq3A9s&page=1&per_page=3
+    data: {page: 1, per_page: 10, query: 'name', api_key: 123, authentication_token: HjmvgovE91aIKZNJemh4Da7yzq3A9s}
     response:
         {"users"=>[{"id"=>4, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat
         ar"=>nil}, {"id"=>5, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "role"=>"admin", "avat

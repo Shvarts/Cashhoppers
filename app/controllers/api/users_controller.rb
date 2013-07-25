@@ -7,7 +7,11 @@ class Api::UsersController < Api::ApplicationController
   def index
     params[:page] ||= 1
     params[:per_page] ||= 10
-    @users = User.paginate(page: params[:page], per_page: params[:per_page])
+    conditions = []
+    unless params[:query].blank?
+      conditions = ["first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%"]
+    end
+    @users = User.paginate(page: params[:page], per_page: params[:per_page], conditions: conditions  )
     invalid_login_attempt('users not found') if @users.blank?
     respond_to do |format|
       format.json{}
@@ -37,6 +41,8 @@ class Api::UsersController < Api::ApplicationController
       bad_request @current_user.errors, 406
     end
   end
+
+
 
   private
 
