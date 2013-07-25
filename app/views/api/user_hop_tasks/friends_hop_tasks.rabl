@@ -7,7 +7,7 @@ node :hop_id do |task|
 end
 
 node :photo do |task|
-    task.photo.url if task.photo
+    task.photo.url(:small) if task.photo
 end
 
 node :likes_count do |task|

@@ -2,7 +2,7 @@ class UserHopTask < ActiveRecord::Base
   belongs_to :user
   belongs_to :hop_task
   has_many :comments, foreign_key: 'commentable_id'
-  has_attached_file :photo,
+  has_attached_file :photo, :styles => { :small => "150x150>" },
                     :url  => "/images/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension",
                     :default_url => "/images/noavatar.jpeg",
                     :path => ":rails_root/public/images/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension"

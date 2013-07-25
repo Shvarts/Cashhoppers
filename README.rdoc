@@ -190,7 +190,7 @@ assigned: true if user assigned to hop of false if not
     url: http://localhost:3000/api/hop/score.json?api_key=123&authentication_token=xgARx5XV9DULIQRa39V20HPmudnPUg&hop_id=2
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
-        success: {"success"=>true, "likes_count"=>0, "status"=>200}
+        success: {"success"=>true, "score"=>0, "status"=>200}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 ====notify server of share action(method: POST)
 service should be 'twitter', 'facebook', 'google'

@@ -34,7 +34,7 @@ class Api::HopsController < Api::ApplicationController
     respond_to do |format|
       format.json{
         render :json => {success: true,
-                         likes_count: @hop.score(@current_user),
+                         score: @hop.score(@current_user),
                          status: 200
         }
       }
