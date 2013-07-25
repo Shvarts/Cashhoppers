@@ -28,7 +28,6 @@ namespace :admin do
 
     resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
 
-
     resources :ads
 
     match "hoppers/find_hopper"
@@ -96,6 +95,10 @@ namespace :admin do
     post 'friends/decline_request',        to: 'friends#decline_request'
     post 'friends/cancel_request',         to: 'friends#cancel_request'
     post 'friends/delete_friend',          to: 'friends#delete_friend'
+
+    #messages
+    post 'messages/send_message',          to: 'messages#send_message_to_friends'
+    get 'messages/synchronize',   to: 'messages#synchronize_messages'
 
     #users
     get 'users/get_users',                 to: 'users#index'

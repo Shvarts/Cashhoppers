@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724145250) do
+ActiveRecord::Schema.define(:version => 20130725125102) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130724145250) do
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "commentable_id"
-    t.integer  "event_id"
     t.text     "text"
     t.datetime "created_at"
   end
@@ -51,12 +50,26 @@ ActiveRecord::Schema.define(:version => 20130724145250) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "email_alerts", :force => true do |t|
+    t.text     "text"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "schedule_date"
+    t.string   "subject"
+    t.integer  "template_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.integer  "user_id"
     t.string   "event_type"
     t.integer  "comment_id"
     t.integer  "like_id"
-    t.text     "description"
     t.datetime "created_at"
   end
 
@@ -111,26 +124,17 @@ ActiveRecord::Schema.define(:version => 20130724145250) do
     t.integer  "user_id"
     t.integer  "target_object_id"
     t.string   "target_object"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.integer  "sender_id"
-    t.string   "receiver_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.boolean  "email"
-    t.string   "template"
-    t.string   "email_author"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.string   "subject"
-    t.datetime "send_at"
-    t.string   "user_name"
+    t.integer  "receiver_id"
+    t.datetime "schedule_date"
+    t.boolean  "synchronized"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "roles", :force => true do |t|
