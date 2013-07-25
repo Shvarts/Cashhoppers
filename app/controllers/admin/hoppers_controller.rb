@@ -68,10 +68,7 @@ class Admin::HoppersController < Admin::AdminController
 
     if params[:zip]
       @users  = User.where(:zip => params[:zip]).all
-      @id = []
-      for i in @users
-        @id << i
-      end
+
     end
     (params[:zip])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_zip_list')
 
@@ -87,11 +84,7 @@ class Admin::HoppersController < Admin::AdminController
       hop  = Hop.find_by_id(params[:hop])
       @users = hop.hoppers
 
-      @id =[]
-      for i in @users
-       @id << i.id
 
-      end
 
     end
 

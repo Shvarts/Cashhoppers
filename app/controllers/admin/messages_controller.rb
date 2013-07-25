@@ -67,7 +67,7 @@ class Admin::MessagesController < Admin::AdminController
 
   end
 
-  de
+  def show
     @message = Message.find_by_id(params[:id])
     #respond_to do |format|
     #  format.pdf {
