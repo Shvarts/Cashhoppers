@@ -5,5 +5,6 @@ class PagesController < ApplicationController
     @user_hop_tasks = UserHopTask.paginate(
       :page => params[:page], :per_page => 10,
       :order => 'created_at DESC')
+    render :layout=> "home_layout"
   end
 end
