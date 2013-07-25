@@ -85,6 +85,7 @@ namespace :admin do
     post 'task/comment',                   to: 'user_hop_tasks#comment'
     get 'task/get_comments',               to: 'user_hop_tasks#comments'
     post 'task/notify_by_share',           to: 'user_hop_tasks#notify_by_share'
+    get 'task/get_user_hop_task_by_id',    to: 'user_hop_tasks#get_user_hop_task_by_id'
 
     #friends
     get 'friends/get_friends',             to: 'friends#get_friends'

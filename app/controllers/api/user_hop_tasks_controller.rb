@@ -1,7 +1,7 @@
 class Api::UserHopTasksController < Api::ApplicationController
   respond_to :json
   before_filter :load_hop_task, only: [:create, :get_hop_task_by_id]
-  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments, :notify_by_share]
+  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments, :notify_by_share, :get_user_hop_task_by_id]
 
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
@@ -131,6 +131,12 @@ class Api::UserHopTasksController < Api::ApplicationController
       end
     else
       bad_request(['Already shared.'], 406)
+    end
+  end
+
+  def get_user_hop_task_by_id
+    respond_to do |format|
+      format.json{}
     end
   end
 
