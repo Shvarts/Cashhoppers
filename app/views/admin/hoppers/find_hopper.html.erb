@@ -38,7 +38,7 @@
       <tr>
         <td class ="span4">User name</td>
         <td class ="span4"><%= @user.first_name %></td>
-        <td><img src="..." class="img-rounded"><% @user.avatar.url %></td>
+        <td><%= image_tag @user.avatar.url %></td>
 
       </tr>
       <tr>
@@ -96,17 +96,20 @@
       </tr>
     </table>
 
-  <% else %>
-      <h3>Not Found</h3>
 
-  <%end%>
+
+
 
 
 </fieldset>
 
-<%= button_to("Export file to PDF",nil, :class=>"span7 pull-right btn btn-success" ) %>
+<%= button_to("Export file to PDF",  admin_hoppers_find_hopper_path(:id =>@user.id, :format => 'pdf') , :class=>"span7 pull-right btn btn-success" ) %>
 
 <%= button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" ) %>
+
+
+
+  <%end%>
 
 <div class="modal hide fade in" id="myModalname" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header" >
@@ -132,3 +135,5 @@
   <div class="modal-footer">
   </div>
 </div>
+
+
