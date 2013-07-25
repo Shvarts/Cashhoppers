@@ -307,10 +307,17 @@ service should be 'twitter', 'facebook', 'google'
                 "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>nil}]}
 ===Messages
 ====send message to friends(method: POST)
-    url: http://localhost:3000/api/friends/send_message.json
+    url: http://localhost:3000/api/messages/send_message.json
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr","friends":"[1, 3, 4]","text":"hello, friends !!!"}
     response:
         success: {"success"=>true, "info"=>"Message sent successfully.", "errors"=>["Can't find friend with id 3.", "Can't find friend with id 4."], "status"=>200}
         error: {"errors"=>["Bad request parameters."], "success"=>false, "status"=>406}
+====synchronize messages(method: POST)
+    url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o
+    data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"}
+    response:
+        success: {"messages"=>[{"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=
+                 >"2013-07-25T13:42:09Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:30Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_
+                 at"=>"2013-07-25T13:52:41Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_at"=>"2013-07-25T13:59:39Z"}]}
 
 
