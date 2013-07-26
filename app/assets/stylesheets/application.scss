@@ -16,15 +16,66 @@
  *= require wice_grid
  *= require chosen
  */
+@media (max-width: 767px){
 
-body fieldset{
-    margin-top: 20%;
+}
+@media (max-width: 480px){
+
+}
+@media (min-width: 768px) and (max-width: 979px){
+
+}
+@media (min-width: 1200px){
+
 }
 
+
+    body fieldset{
+    margin-top: 20%;
+}
 .container-grid{
      margin-top: 160px;
 }
-
+.custom-pg{
+        min-height: 700px;
+        position: relative;
+}
+.first-page{
+      background-image: url('firstpage.jpg');
+      background-size: cover;
+}
+.gray-page{
+      background-image: url('graypage.jpg');
+      background-size: cover;
+}
+.yellow-page{
+      background-image: url('yellowpage.jpg');
+      background-size: cover;
+}
+.what-page{
+      background-image: url('whatpage.jpg');
+      background-size: cover;
+}
+.business-page{
+     background-image: url('businesspage.jpg');
+     background-size: cover;
+}
+.events-page{
+    background-image: url('eventspage.jpg');
+    background-size: cover;
+}
+.page-divider
+{
+    background: white;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwLjUxNzI0MSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3ODc4NyIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODc4Nzg3IiAvPjxyZWN0IHg9Ii0zNyUiIHk9Ii03NCUiIHdpZHRoPSIxNzQlIiBoZWlnaHQ9IjM0OCUiIGZpbGw9InVybCgjZykiIC8+PC9zdmc+);
+    background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 728, color-stop(51.7241%, #ffffff), color-stop(100%, #878787));
+    background-image: -webkit-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -moz-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -ms-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
+    padding: 10px;
+}
 .header{
   z-index: 100;
   background: #027036;
@@ -41,6 +92,7 @@ body fieldset{
   width: 100%;
   height: 70px;
   top: 0px;
+
   .header-content{
     width: 950px;
     margin: 0 auto;
@@ -61,11 +113,15 @@ body fieldset{
           border-right: 2px solid white;
           padding: 0px 5px 0px 5px;
         }
+        a{
+            color: #f5f5f5;
+        }
         li:last-child{
           border-right: 0px;
         }
       }
     }
+
     .header-right{
       display: table;
       text-align: right;
@@ -90,5 +146,9 @@ body fieldset{
     border-right: 1px solid black;
     border-bottom: 1px solid black;
   }
+
 }
+
+
+
 

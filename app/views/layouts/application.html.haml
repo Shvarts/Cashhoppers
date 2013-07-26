@@ -8,24 +8,7 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     = csrf_meta_tags
   %body
-    .header
-      .header-content
-        .header-left
-          %ul
-            %li
-              ABOUT
-            %li
-              HOW TO PLAY
-            %li
-              PHOTO GALLERY
-            %li
-              BUSINESES
-            %li
-              SHOWS & EVENTS
-        .header-right
-          .button-container
-            %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
-      = image_tag 'logo.png'
+    =render partial: "layouts/header"
     .row-fluid.container-grid
       .span10.offset1
         .page-header
@@ -56,4 +39,3 @@
           .span10
             .well
               = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
-

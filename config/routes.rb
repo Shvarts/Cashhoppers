@@ -2,11 +2,10 @@ require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
+  get 'pages/hoppers_activity'
 
 
-
-
-namespace :admin do
+  namespace :admin do
 
     get 'pages/index', :as => 'index'
     resources :applications

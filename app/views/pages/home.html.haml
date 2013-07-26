@@ -1,52 +1,17 @@
-= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
-%table.table.table-condensed
-  %tr
-    %th
-      User Name
-    %th
-      Hop Name
-    %th
-      task
-    %th
-      created at
-    %th
-      Comment
-    %th
-      Likes
-    %th
-      Photo
-  - @user_hop_tasks.each do |task|
-    %tr
-      %td
-        = link_to task.user.first_name, user_path(task.user) if task.user
-      %td
-        = task.hop_task.hop.name if task.hop_task
-      %td
-        = task.hop_task.text if task.hop_task
-      %td
-        = task.created_at
-      %td
-        = task.comment
-      %td
-        = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
-      %td{style: 'text-align: right'}
-        = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
-    %tr
-      %td{style: 'width: 100%', colspan: 7}
-        Hop Score:
-        Hop Score
-        = task.hop_task.hop.score(current_user) if current_user
-        - task.comments.each do |comment|
-          .well
-            .row_fluid
-              .span1
-                = image_tag comment.user.avatar.url, class: 'img-polaroid', style: 'height: 50px'
-              .span11
-                = comment.user.first_name
-                = comment.user.last_name
-                = comment.created_at
-                %br
-                %b
-                  = comment.text
-
-= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
+.custom-pg.first-page
+.page-divider
+.custom-pg.gray-page
+  %h2{:id=>"gray-page"}
+.page-divider
+.custom-pg.yellow-page
+  %h2{:id=>"yellow-page"}
+.page-divider
+.custom-pg.what-page
+  %h2{:id=>"what-page"}
+.page-divider
+.custom-pg.business-page
+  %h2{:id=>"business-page"}
+.page-divider
+.custom-pg.events-page
+  %h2{:id=>"events-page"}
+.page-divider
