@@ -37,8 +37,8 @@ Friendship.request(admin, friend)
 Friendship.accept(friend, admin)
 
 60.times do |t|
-
   hop = Hop.create(close: false, event: 'new year', daily: false, code: 'ewre', price: 12, jackpot: 34, name: 'hop #1', producer_id: admin.id, time_end: Time.now, time_start: Time.now)
+
 end
 
 5.times do |t|

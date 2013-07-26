@@ -34,6 +34,24 @@ class Api::MessagesController < Api::ApplicationController
     @messages.each do |message|
       message.update_attribute :synchronized, true
     end
+    respond_to do |format|
+      format.json{}
+    end
+  end
+
+  def get_users_messages_thread
+    #SELECT
+    #users.id AS sender_id, users.avatar_file_name AS sender_avatar_file_name, users.first_name AS sender_first_name, users.last_name AS sender_last_name, users.user_name AS sender_user_name,
+    #                                                                                                                                                                         last_message.text AS last_message_text, last_message.id AS last_message_id
+    #FROM users
+    #LEFT JOIN (SELECT messages.* FROM messages WHERE messages.receiver_id = 1 ORDER BY messages.created_at DESC LIMIT 1) AS last_message ON last_message.sender_id = users.id
+    #WHERE users.id IN (SELECT friendships.friend_id FROM friendships WHERE friendships.user_id = 1)
+    #;
+    @friends = @current_user.friends
+    respond_to do |format|
+      format.json{
+      }
+    end
   end
 
 end

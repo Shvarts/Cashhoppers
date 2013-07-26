@@ -312,12 +312,19 @@ service should be 'twitter', 'facebook', 'google'
     response:
         success: {"success"=>true, "info"=>"Message sent successfully.", "errors"=>["Can't find friend with id 3.", "Can't find friend with id 4."], "status"=>200}
         error: {"errors"=>["Bad request parameters."], "success"=>false, "status"=>406}
-====synchronize messages(method: POST)
+====synchronize messages(method: GET)
     url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"}
     response:
         success: {"messages"=>[{"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=
                  >"2013-07-25T13:42:09Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:30Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_
                  at"=>"2013-07-25T13:52:41Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_at"=>"2013-07-25T13:59:39Z"}]}
-
+====friends messages thread(method: GET)
+    url: http://localhost:3000/api/messages/thread.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o
+    data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"}
+    response:
+        success: {"friends"=>[{"friend_id"=>2, "friend_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"friend", "friend_last_name"=
+                 >"friend", "friend_user_name"=>"friend", "last_message_id"=>6, "last_message_text"=>"broosdfdfs", "last_message_created_at"=>"2013-07-25T13:59:39Z"}, {"friend_i
+                 d"=>3, "friend_avatar"=>"/images/avatars/users/3/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"other_user", "friend_last_name"=>"other_user", "fri
+                 end_user_name"=>"other_user", "last_message_id"=>7, "last_message_text"=>"well", "last_message_created_at"=>"2013-07-26T10:34:55Z"}]}
 
