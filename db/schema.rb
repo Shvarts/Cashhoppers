@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725125102) do
+ActiveRecord::Schema.define(:version => 20130726104453) do
 
   create_table "ads", :force => true do |t|
     t.string   "ad_name"
@@ -136,6 +136,19 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  create_table "prizes", :force => true do |t|
+    t.string   "hop_name"
+    t.integer  "jackpot"
+    t.integer  "place"
+    t.integer  "user_id"
+    t.integer  "hop_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "prizes", ["hop_id"], :name => "index_prizes_on_hop_id"
+  add_index "prizes", ["user_id"], :name => "index_prizes_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

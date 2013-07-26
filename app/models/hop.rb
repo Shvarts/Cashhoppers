@@ -1,7 +1,8 @@
 class Hop < ActiveRecord::Base
   has_and_belongs_to_many :hoppers, :join_table =>"hoppers_hops" , :class_name=>"User"
 
-  has_many :hop_tasks, :dependent => :destroy
+  has_many :hop_tasks,  :dependent => :destroy
+  has_many :prizes
   has_many :ads,  :dependent => :destroy
   belongs_to :producer, :class_name => 'User'
   has_attached_file :logo,
@@ -37,5 +38,13 @@ class Hop < ActiveRecord::Base
     ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = #{current_pts + pts} WHERE user_id = #{user.id} AND hop_id = #{id}")
   end
 
+  def self.create_prize(hop, place, prize)
 
+    for i in 0 ...prize.count  do
+      hop.prizes.create!(:jackpot => prize[i.to_s], :place => place[i.to_s], :hop_name => hop.name)
+
+    end
+
+
+  end
 end

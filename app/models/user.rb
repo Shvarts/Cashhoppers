@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :outcoming_messages, :class_name => 'Message' , :foreign_key => :receiver_id
   has_many :hops,  foreign_key: "producer_id"
   has_many :user_hop_tasks
+  has_many :prizes, :dependent => :destroy
   has_many :sponsored_hop_tasks, class_name: 'HopTask'
   has_many :hop_tasks, :foreign_key => :sponsor_id
   has_many :users_roles

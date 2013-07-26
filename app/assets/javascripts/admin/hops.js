@@ -62,3 +62,23 @@ function updateTaskTable(hop_id){
         }
     });
 }
+
+
+
+$(document).ready(function(){
+    var n = 0;
+    $(document).on('click', '#add_winner' , function(){
+
+        if($('#place').val().match(/[1-5]/) && $('#prize').val().match(/[1-9]/) ){
+          $('.winner_section').append('<p><strong>Winner</strong></p>');
+          $(".winner_place").append("<input class = 'span3 input-mini' name ='place["+n+"]'  value ="+$("#place").val()+"></input><input class = 'span4 input-mini' name =prize["+n+"] value ="+$("#prize").val()+"></input>");
+          n= n + 1;
+
+        }
+
+        return false;
+    });
+
+
+
+});

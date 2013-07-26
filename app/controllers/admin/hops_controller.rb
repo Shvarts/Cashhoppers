@@ -52,11 +52,16 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def create
+
+    prize = params[:prize]
+    place = params[:place]
     params[:hop][:producer_id] = current_user.id
     params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
-    if @hop.save
+   if @hop.save
+      Hop.create_prize(@hop, place, prize)
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
+
     else
       if @hop.daily
         render action: 'new_daily'

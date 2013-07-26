@@ -79,6 +79,39 @@
             = f.file_field :logo
             %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload'}
               Remove
-    %tr
-      %td{ colspan: 2}
-        = f.submit 'Submit', class: 'btn btn-info'
+  .row-fluid
+    .span2
+    .span3
+      = f.submit 'Submit', class: 'btn btn-info'
+
+  %br
+  .row-fluid
+    .span2
+    .span3.text-right
+      %b prize place
+    .span4.text-right
+      %b
+        prize
+  .row-fluid.winner_place
+    .span1
+    .span2
+      .winner_section
+
+  .row-fluid
+    .span1
+    .span8
+      .text-center
+        %strong
+          Add Winner
+      %br
+      .inline
+        %b
+          prize place
+        = text_field_tag 'prize place', '', :class => 'input-mini', :id=> 'place', :name => 'text'
+        %b
+          prize
+        = text_field_tag 'prize' , '', :class => 'input-mini', :id => 'prize', :name => 'text'
+        = button_to 'add prize place', '', :class => 'btn input-mini', :id => "add_winner"
+
+
+
