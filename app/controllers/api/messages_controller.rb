@@ -57,7 +57,6 @@ class Api::MessagesController < Api::ApplicationController
   end
 
   def messages_history
-
     params[:page] ||= 1
     params[:per_page] ||= 10
     @friend = User.where(id: params[:friend_id]).first
@@ -69,6 +68,23 @@ class Api::MessagesController < Api::ApplicationController
       end
     else
       bad_request ["Can't find friend with id #{@friend.id}."], 406
+    end
+  end
+
+  def remove_message
+    @message = Message.where(id: params[:message_id], sender_id: @current_user.id).first
+    if @message
+      @message.update_attribute :text, 'Message was removed.'
+      respond_to do |format|
+        format.json{
+          render :json => {success: true,
+                           info: 'Message removed successfully.',
+                           status: 200
+          }
+        }
+      end
+    else
+      bad_request ["Can't find message with id #{params[:message_id]}."], 406
     end
   end
 
