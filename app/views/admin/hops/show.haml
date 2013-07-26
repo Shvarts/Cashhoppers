@@ -193,3 +193,6 @@ need refactoring
         = link_to 'Edit', edit_admin_ad_path(hop_ad)
         = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
 
+.row
+  .span2
+    =link_to 'print to pdf', admin_print_to_pdf_path(:id => @hop, :format => 'pdf'),:method => 'post', :class => 'btn btn-success', :target => '_blank'
