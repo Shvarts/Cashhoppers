@@ -1,13 +1,8 @@
+
 class Admin::MessagesController < Admin::AdminController
 
-  class TestDocument < Prawn::Document
-    def to_pdf
-      text "Hello World!"
-      render
-    end
-  end
 
-
+  include ::PdfWritter
   before_filter :authenticate_user!
 
   def message_history
@@ -73,17 +68,15 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def show
-    output = TestDocument.new.to_pdf
-    #render :text => output = TestDocument.new.to_pdf
     @message = Message.find_by_id(params[:id])
-    respond_to do |format|
-      format.pdf {
-        send_data output, :filename => "hello.pdf", :type => "application/pdf", :disposition => "inline"
-      }
-      format.html {
-        render :text => "<h1>Use .pdf</h1>".html_safe
-      }
-    end
+    #respond_to do |format|
+    #  format.pdf {
+    #    send_data output, :filename => "hello.pdf", :type => "application/pdf", :disposition => "inline"
+    #  }
+    #  format.html {
+    #    render :text => "<h1>Use .pdf</h1>".html_safe
+    #  }
+    #end
     #Prawn::Document.generate('hello.pdf') do |pdf|
     #    pdf.text("Hello Prawn!")
     #

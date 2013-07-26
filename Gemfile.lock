@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/sandal/prawn.git
+  revision: 89ba0ebf7ac3705756330a25ab4c88e4c71e36d8
+  tag: 0.10.2
+  submodules: true
+  specs:
+    prawn (0.10.2)
+      pdf-reader (>= 0.8.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,9 +161,6 @@ GEM
       ruby-rc4
       ttfunk
     polyglot (0.3.3)
-    prawn (0.12.0)
-      pdf-reader (>= 0.9.0)
-      ttfunk (~> 1.0.2)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rabl-rails (0.3.3)
@@ -263,7 +269,7 @@ DEPENDENCIES
   omniauth-google
   omniauth-twitter
   paperclip
-  prawn
+  prawn!
   quiet_assets
   rabl-rails
   rails (= 3.2.11)
