@@ -4,28 +4,26 @@ function progressHandlingFunction(e){
     }
 }
 
-
-//tasks
-
-function newTaskModal(hop_id){
+function loadForm(hop_id, url, target_id){
     $.ajax({
-        url: '/admin/hop_tasks/new?hop_id=' + hop_id,
+        url: url + '?hop_id=' + hop_id,
         data: null,
         type: 'GET',
         error: function(err){
             alert("error");
         },
         success: function(data){
-            $('#new-task-modal').find('.modal-body').html(data);
-            $('#new-task-modal').modal();
+            $('#' + target_id).find('.modal-body').html(data);
+            $('#' + target_id).modal();
         }
     });
 }
 
-function submitTaskForm(hop_id){
-    var formData = new FormData($('#new-task-modal form')[0]);
+function submitForm(hop_id, target_id, list_url, list_id){
+    var my_form = $('#'+target_id+' form');
+    var formData = new FormData(my_form[0]);
     $.ajax({
-        url: '/admin/hop_tasks',
+        url: my_form.attr('action'),
         data: formData,
         xhr: function() {
             var myXhr = $.ajaxSettings.xhr();
@@ -43,86 +41,44 @@ function submitTaskForm(hop_id){
         },
         success: function(data){
             if(data == 'ok'){
-                updateTaskTable(hop_id);
-                $('#new-task-modal').modal('hide');
+                updateTable(list_url, list_id, hop_id);
+                $('#'+target_id).modal('hide');
             } else {
-                $('#new-task-modal').find('.modal-body').html(data);
+                $('#'+target_id).find('.modal-body').html(data);
             }
         }
     });
 }
 
-function updateTaskTable(hop_id){
+function updateTable(list_url, list_id, hop_id){
     $.ajax({
-        url: '/admin/hop_tasks',
+        url: list_url,
         data: {hop_id: hop_id},
         type: 'GET',
         error: function(err){
             alert("error");
         },
         success: function(data){
-            $('#tasksTable').html(data);
+            $('#'+list_id).html(data);
         }
     });
 }
 
-//ads
-
-function newAdModal(hop_id){
-    $.ajax({
-        url: '/admin/ads/new?hop_id=' + hop_id,
-        data: null,
-        type: 'GET',
-        error: function(err){
-            alert("error");
-        },
-        success: function(data){
-            $('#new-ad-modal').find('.modal-body').html(data);
-            $('#new-ad-modal').modal();
-        }
-    });
-}
-
-function submitAdForm(hop_id){
-    var formData = new FormData($('#new-ad-modal form')[0]);
-    $.ajax({
-        url: '/admin/ads',
-        data: formData,
-        xhr: function() {
-            var myXhr = $.ajaxSettings.xhr();
-            if(myXhr.upload){
-                myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
+function removeRecord(url, list_url, list_id, hop_id){
+    if(confirm('Are you sure?')){
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            error: function(err){
+                alert("error");
+            },
+            success: function(data){
+                if(data == 'ok'){
+                    updateTable(list_url, list_id, hop_id);
+                }else{
+                    alert('error');
+                }
             }
-            return myXhr;
-        },
-        type: 'POST',
-        cache: false,
-        contentType: false,
-        processData: false,
-        error: function(err){
-            alert("error");
-        },
-        success: function(data){
-            if(data == 'ok'){
-                updateAdTable(hop_id);
-                $('#new-ad-modal').modal('hide');
-            } else {
-                $('#new-ad-modal').find('.modal-body').html(data);
-            }
-        }
-    });
-}
-
-function updateAdTable(hop_id){
-    $.ajax({
-        url: '/admin/ads/regular_hop_ads',
-        data: {hop_id: hop_id},
-        type: 'GET',
-        error: function(err){
-            alert("error");
-        },
-        success: function(data){
-            $('#adsTable').html(data);
-        }
-    });
+        });
+    }
 }

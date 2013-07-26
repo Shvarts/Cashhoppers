@@ -16,6 +16,7 @@ class Admin::HopTasksController < Admin::AdminController
   def edit
     @hop_task = HopTask.find(params[:id])
     @hop = @hop_task.hop
+    render partial: 'form'
   end
 
 
@@ -29,29 +30,18 @@ class Admin::HopTasksController < Admin::AdminController
     end
   end
 
-
   def update
-
-
     @hop_task = HopTask.find(params[:id])
-
     if @hop_task.update_attributes(params[:hop_task])
-      redirect_to(admin_hop_path(@hop_task.hop), :notice => 'Hop task was successfully updated.')
+      render text: 'ok'
     else
-      render :action => "edit"
+      render partial: 'form'
     end
-
   end
 
-
   def destroy
-
     @hop_task = HopTask.find(params[:id])
-    @hop=@hop_task.hop
     @hop_task.destroy
-
-
-    redirect_to admin_hop_path(@hop)
-
+    render text: 'ok'
   end
 end

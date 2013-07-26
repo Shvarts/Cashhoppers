@@ -29,8 +29,8 @@ CashHoppers::Application.routes.draw do
     resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
 
     #ads
-    resources :ads, only: [:new, :create]
-    get 'ads/regular_hop_ads'
+    resources :ads, only: [:new, :create, :edit, :update, :destroy]
+    get 'ads/list'
 
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"

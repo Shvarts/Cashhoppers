@@ -30,5 +30,7 @@
       %td
         = task.bonus
       %td{style: 'text-align: right'}
-        -#= link_to 'Edit', edit_admin_hop_task_path(hop_task)
-        -#= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
+        %button.btn.btn-info.btn-mini{onclick: 'loadForm(' + @hop.id.to_s + ', "' + edit_admin_hop_task_path(task) + '", "task-modal")'}
+          Edit
+        %button.btn.btn-danger.btn-mini{onclick: 'removeRecord("' + admin_hop_task_path(task) + '", "' + admin_hop_tasks_path + '", "tasksTable", ' + @hop.id.to_s + ')'}
+          Delete

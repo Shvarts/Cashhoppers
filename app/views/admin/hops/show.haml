@@ -93,12 +93,12 @@
     %h4
       Tasks:
   .span6.text-right
-    %button.btn.btn-info{onclick: 'newTaskModal(' + @hop.id.to_s + ')'}
+    %button.btn.btn-info{onclick: 'loadForm(' + @hop.id.to_s + ', "' + new_admin_hop_task_path + '", "task-modal")'}
       New Hop Task
 #tasksTable
   = render partial: 'admin/hop_tasks/tasks'
 
-#new-task-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+#task-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
   .modal-header
     %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
       ×
@@ -136,12 +136,12 @@
     %h4
       Ads:
   .span6.text-right
-    %button.btn.btn-info{onclick: 'newAdModal(' + @hop.id.to_s + ')'}
+    %button.btn.btn-info{onclick: 'loadForm(' + @hop.id.to_s + ', "' + new_admin_ad_path + '", "ad-modal")'}
       New Ad
 #adsTable
-  = render partial: 'admin/ads/regular_hop_ads'
+  = render partial: 'admin/ads/list'
 
-#new-ad-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+#ad-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
   .modal-header
     %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
       ×

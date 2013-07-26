@@ -28,7 +28,9 @@
       %td
         = ad.link
       %td
-        = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 110px; max-width: 300px'
+        = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
       %td{style: 'text-align: right'}
-        -#= link_to 'Edit', edit_admin_hop_task_path(hop_task)
-        -#= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
+        %button.btn.btn-info.btn-mini{onclick: 'loadForm(' + @hop.id.to_s + ', "' + edit_admin_ad_path(ad) + '", "ad-modal")'}
+          Edit
+        %button.btn.btn-danger.btn-mini{onclick: 'removeRecord("' + admin_ad_path(ad) + '", "' + admin_ads_list_path + '", "adsTable", ' + @hop.id.to_s + ')'}
+          Delete

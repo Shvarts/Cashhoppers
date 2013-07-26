@@ -57,5 +57,5 @@
               Remove
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitAdForm(' + @hop.id.to_s + '); return false;'
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitForm(' + @hop.id.to_s + ', "ad-modal", "' + admin_ads_list_path + '", "adsTable" ); return false;'
 
