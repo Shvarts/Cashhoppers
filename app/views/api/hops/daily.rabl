@@ -19,3 +19,7 @@ end
 node :score do |hop|
    hop.score @current_user
 end
+
+node :logo do |hop|
+   hop.logo.url if hop.logo.present?
+end
