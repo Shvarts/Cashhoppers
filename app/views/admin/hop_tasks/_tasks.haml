@@ -13,9 +13,6 @@
     %th
       Bonus point for sharing
     %th
-      - unless @hop.daily
-        Logo?
-    %th
   - @tasks.each do |task|
     %tr
       %td
@@ -32,9 +29,6 @@
         = task.pts
       %td
         = task.bonus
-      %td
-        - unless @hop.daily
-          = image_tag task.hop_picture.url, class: 'img-polaroid', style: 'height: 110px'
       %td{style: 'text-align: right'}
         -#= link_to 'Edit', edit_admin_hop_task_path(hop_task)
         -#= link_to 'Destroy',  [:admin, hop_task], :confirm => 'Are you sure?', :method => :delete
