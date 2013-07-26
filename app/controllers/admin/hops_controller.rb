@@ -37,6 +37,7 @@ class Admin::HopsController < Admin::AdminController
   def show
     @tasks = @hop.hop_tasks
     @hoppers = @hop.hoppers
+    @ads = @hop.ads
   end
 
   def new_regular

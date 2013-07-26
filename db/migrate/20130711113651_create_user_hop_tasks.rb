@@ -3,6 +3,7 @@ class CreateUserHopTasks < ActiveRecord::Migration
     create_table :user_hop_tasks do |t|
       t.references :user
       t.references :hop_task
+      t.has_attached_file :photo
       t.timestamps
     end
     add_index :user_hop_tasks, :user_id

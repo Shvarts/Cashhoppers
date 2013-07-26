@@ -1,0 +1,61 @@
+- if @ad.errors.any?
+  - @ad.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
+= form_for([:admin, @ad]) do |f|
+  = f.hidden_field :hop_id
+  %table.hops-form
+    %tr
+      %td
+        %b
+          Advertizer:
+      %td
+        = current_user.first_name
+        = current_user.last_name
+    %tr
+      %td
+        %b
+          Hop:
+      %td
+        = @hop.name
+    %tr
+      %td
+        %b
+          Type:
+      %td
+        = f.select :ad_type, options_for_select(Ad.types), :class => 'span12'
+    %tr
+      %td
+        %b
+          Price:
+      %td
+        = f.text_field :price, class: 'span12'
+    %tr
+      %td
+        %b
+          AMT/PAID:
+      %td
+        = f.text_field :amt_paid, class: 'span12'
+    %tr
+      %td
+        %b
+          Link:
+      %td
+        = f.text_field :link, class: 'span12'
+    %tr
+      %td
+        %b
+          Picture
+      %td
+        .fileupload.fileupload-new{'data-provides' => 'fileupload'}
+          .fileupload-preview.fileupload-exists.thumbnail{style: 'max-width: 200px; max-height: 150px; line-height: 20px;'}
+            = image_tag @ad.picture.url, style: 'max-width: 200px; max-height: 150px;'
+          %div
+            = f.file_field :picture
+            %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload'}
+              Remove
+    %tr
+      %td{colspan: 2}
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitAdForm(' + @hop.id.to_s + '); return false;'
+

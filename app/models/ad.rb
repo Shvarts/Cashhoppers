@@ -1,33 +1,25 @@
 class Ad < ActiveRecord::Base
   belongs_to :hop
+  belongs_to :advertizer, foreign_key: 'advertizer_id', class_name: 'User'
 
-  attr_accessible :ad_name,
-                  :advert_id,
-                  :link_to_ad,
-                  :ad_name,
-                  :amt,
-                  :hop_ad_picture,
-                  :contact,
-                  :email,
+  attr_accessible :advertizer_id,
                   :hop_id,
-                  :phone,
+                  :ad_type,
                   :price,
-                  :type_add,
-                  :sponsor_id,
-                  :ad_type
+                  :amt_paid,
+                  :link,
+                  :picture
 
-  has_attached_file :hop_ad_picture,
+  has_attached_file :picture,
     :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",
-    :default_url => "/assets/no_ad_picture.jpg",
+    :default_url => "/assets/no_ad_picture.png",
     :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
+  validates :price, :amt_paid, numericality: { only_integer: true }
+  validates_presence_of :ad_type, :link
 
-  validates :ad_name,:contact, length: { minimum: 3, maximum:140 }
-  validates :price, :phone, :amt, numericality: { only_integer: true }
-  validates_presence_of :email, :ad_type, :link_to_ad
-
-  def daily_hop?
-    ad.daily_hop.class == FalseClass
+  def self.types
+    ['type1', 'type2', 'typ23']
   end
 
 end

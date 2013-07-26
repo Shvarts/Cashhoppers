@@ -14,22 +14,18 @@
 ActiveRecord::Schema.define(:version => 20130725125102) do
 
   create_table "ads", :force => true do |t|
-    t.string   "ad_name"
-    t.string   "contact"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "price"
-    t.string   "ad_type"
-    t.string   "link_to_ad"
+    t.integer  "advertizer_id"
     t.integer  "hop_id"
-    t.integer  "sponsor_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.string   "hop_ad_picture_file_name"
-    t.string   "hop_ad_picture_content_type"
-    t.integer  "hop_ad_picture_file_size"
-    t.datetime "hop_ad_picture_updated_at"
-    t.integer  "amt"
+    t.string   "ad_type"
+    t.integer  "price"
+    t.integer  "amt_paid"
+    t.string   "link"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "applications", :force => true do |t|
@@ -86,11 +82,11 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
     t.text     "text"
     t.integer  "sponsor_id"
     t.string   "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.integer  "pts"
     t.integer  "bonus"
-    t.integer  "amt"
+    t.integer  "amt_paid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
@@ -168,12 +164,12 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "comment"
     t.boolean  "facebook_shared"
     t.boolean  "twitter_shared"

@@ -12,7 +12,7 @@
       = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 .row-fluid
   .span4
-    = image_tag @hop.logo.url, class: 'img-polaroid', style: 'width: 400px'
+    = image_tag @hop.logo.url, class: 'img-polaroid', style: 'max-width: 400px; max-height: 400px'
   .span8
     %table.hops-form
       %tr
@@ -130,70 +130,23 @@
       %td
         = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
 
-
-
 %hr
-need refactoring
-%hr
-%h3
-  Create ad
-%br
-= form_tag  admin_ads_path(:hop_id=>@hop.id), :multipart => true do
-  -if flash[:hop_ad_error]
-    %div#error_explanation
-      -flash[:hop_ad_error].each do |i|
-        %ul
-          %li
-            =i
-  = text_field(:ad, :ad_name, :placeholder=>"name")
-  = text_field(:ad,:contact, :placeholder=>"Contact")
-  = email_field(:ad,:email, :placeholder=>"email")
-  = text_field(:ad,:phone, :placeholder=>"phone")
-  = url_field(:ad,:link_to_ad, :placeholder=>"link to ad")
-  = number_field(:ad, :price, :placeholder=>"price")
-  = number_field(:ad, :amt, :placeholder=>"AMT")
-  = file_field(:ad, :hop_ad_picture)
-  %br
-  %div{:class=>"field", :id=>"radio_button" }
-    = radio_button(:ad,:ad_type, "sp", :checked => true )
-    %b
-      SP
-    = radio_button(:ad, :ad_type, "rofl")
-    %b
-      ROFL
-    - if @hop.daily
-      = radio_button(:ad, :ad_type, "ropu")
-      %b
-        ROPU
-  %div{:class=>"actions"}
-    = submit_tag
-%br
-%div{:class=>"actions"}
-  -#= button_to 'Close project', admin_close_path
+.row-fluid
+  .span6
+    %h4
+      Ads:
+  .span6.text-right
+    %button.btn.btn-info{onclick: 'newAdModal(' + @hop.id.to_s + ')'}
+      New Ad
+#adsTable
+  = render partial: 'admin/ads/regular_hop_ads'
 
-  Ads
--@hop.ads.each do |hop_ad|
-  %table{:class=>"table, table-bordered table-condensed"}
-    %tr
-      %td
-        %strong
-          Advert Name:
-      %td
-        %strong>
-          Phone:
-      %td
-        %strong
-          Email:
-      %td
-    %tr
-      %td
-        = hop_ad.ad_name
-      %td
-        = hop_ad.phone
-      %td
-        = hop_ad.email
-      %td
-        = link_to 'Show',  admin_ad_path(hop_ad.id)
-        = link_to 'Edit', edit_admin_ad_path(hop_ad)
-        = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
+#new-ad-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+  .modal-header
+    %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
+      ×
+    %h3#myModalLabel
+      New Ad:
+  .modal-body
+
 
