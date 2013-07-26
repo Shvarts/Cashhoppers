@@ -1,3 +1,10 @@
+.row-fluid
+  .text-right
+    =form_tag({:controller => 'hops', :action => 'import_exel'}, :multipart=>true) do
+      Select an Excel File :
+      = file_field_tag 'excel_file'
+      = submit_tag 'load', class: 'btn btn-primary btn-success'
+
 %h2
   .row-fluid
     .text-left.span8
