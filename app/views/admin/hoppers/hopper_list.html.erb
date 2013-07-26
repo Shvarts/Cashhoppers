@@ -53,7 +53,7 @@
   <%= button_to "Messages to list", admin_messages_message_tool_path({"id"=>@id}) , :class=>"span4 btn btn-success pull-right"  %>
 <% end %>
   <%= button_to("Export file to Exel", nil,  :class=>"span4 btn-success" ) %>
-  <%= button_to("Export file to PDF",  admin_hoppers_hopper_list_path(:id =>@id, :format => 'pdf'),  :class=>"span4 btn-success" ) %>
+  <%= link_to("Export file to PDF",  admin_hoppers_hopper_list_path(:id =>@id, :format => 'pdf'),:target =>'_blank',  :class=>"span4 btn-success" ) %>
 
 
 <div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">

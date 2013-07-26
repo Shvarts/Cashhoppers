@@ -103,7 +103,7 @@
 
 </fieldset>
 
-<%= button_to("Export file to PDF",  admin_hoppers_find_hopper_path(:id =>@user.id, :format => 'pdf') , :class=>"span7 pull-right btn btn-success" ) %>
+<%= link_to("Export file to PDF",  admin_hoppers_find_hopper_path(:id =>@user.id, :format => 'pdf'),:target =>'_blank' , :class=>"span7 pull-right btn btn-success" ) %>
 
 <%= button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" ) %>
 
