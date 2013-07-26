@@ -25,18 +25,6 @@
             AMT:
         %td
           = f.text_field :amt, class: 'span12'
-      %tr
-        %td
-          %b
-            Logo?:
-        %td
-          .fileupload.fileupload-new{'data-provides' => 'fileupload'}
-            .fileupload-preview.fileupload-exists.thumbnail{style: 'max-width: 200px; max-height: 150px; line-height: 20px;'}
-              = image_tag @hop_task.hop_picture.url, style: 'max-width: 200px; max-height: 150px;'
-            %div
-              = f.file_field :hop_picture
-              %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload'}
-                Remove
     %tr
       %td
         %b

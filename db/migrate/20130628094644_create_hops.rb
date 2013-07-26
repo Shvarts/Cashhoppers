@@ -11,6 +11,7 @@ class CreateHops < ActiveRecord::Migration
       t.boolean :daily
       t.boolean :close
       t.string :event
+      t.has_attached_file :logo
 
       t.timestamps
     end

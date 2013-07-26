@@ -4,8 +4,12 @@ class Hop < ActiveRecord::Base
   has_many :hop_tasks, :dependent => :destroy
   has_many :ads,  :dependent => :destroy
   belongs_to :producer, :class_name => 'User'
+  has_attached_file :logo,
+                    :url  => "/images/hop_logos/hops/:id/HOP_LOGO.:extension",
+                    :default_url => "/assets/no_hop_logo.png",
+                    :path => ":rails_root/public/images/hop_logos/hops/:id/HOP_LOGO.:extension"
 
-  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start
+  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?

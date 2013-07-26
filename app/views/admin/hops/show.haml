@@ -10,79 +10,83 @@
       - else
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
       = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-%table.hops-form
-  %tr
-    %td
-      %b
-        Name:
-    %td
-      = @hop.name
-  %tr
-    %td
-      %b
-        Time start:
-    %td
-      = @hop.time_start
-  - unless @hop.daily
-    %tr
-      %td
-        %b
-          Time end:
-      %td
-        = @hop.time_end
-    %tr
-      %td
-        %b
-          Producer:
-      %td
-        - if @hop.producer
-          = @hop.producer.first_name
-          = @hop.producer.last_name
-    %tr
-      %td
-        %b
-          Producer contact:
-      %td
-        - if @hop.producer
-          = @hop.producer.contact
-    %tr
-      %td
-        %b
-          Producer Phone:
-      %td
-        - if @hop.producer
-          = @hop.producer.phone
-    %tr
-      %td
-        %b
-          Producer Email:
-      %td
-        - if @hop.producer
-          = @hop.producer.email
-    %tr
-      %td
-        %b
-          Code:
-      %td
-        = @hop.code
-    %tr
-      %td
-        %b
-          Price:
-      %td
-        = @hop.price
-    %tr
-      %td
-        %b
-          Jackpot:
-      %td
-        = @hop.jackpot
-    %tr
-      %td
-        %b
-          Special event:
-      %td
-        = @hop.event
+.row-fluid
+  .span4
+    = image_tag @hop.logo.url, class: 'img-polaroid', style: 'width: 400px'
+  .span8
+    %table.hops-form
+      %tr
+        %td
+          %b
+            Name:
+        %td
+          = @hop.name
+      %tr
+        %td
+          %b
+            Time start:
+        %td
+          = @hop.time_start
+      - unless @hop.daily
+        %tr
+          %td
+            %b
+              Time end:
+          %td
+            = @hop.time_end
+        %tr
+          %td
+            %b
+              Producer:
+          %td
+            - if @hop.producer
+              = @hop.producer.first_name
+              = @hop.producer.last_name
+        %tr
+          %td
+            %b
+              Producer contact:
+          %td
+            - if @hop.producer
+              = @hop.producer.contact
+        %tr
+          %td
+            %b
+              Producer Phone:
+          %td
+            - if @hop.producer
+              = @hop.producer.phone
+        %tr
+          %td
+            %b
+              Producer Email:
+          %td
+            - if @hop.producer
+              = @hop.producer.email
+        %tr
+          %td
+            %b
+              Code:
+          %td
+            = @hop.code
+        %tr
+          %td
+            %b
+              Price:
+          %td
+            = @hop.price
+        %tr
+          %td
+            %b
+              Jackpot:
+          %td
+            = @hop.jackpot
+        %tr
+          %td
+            %b
+              Special event:
+          %td
+            = @hop.event
 %hr
 .row-fluid
   .span6

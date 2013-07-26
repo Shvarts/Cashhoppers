@@ -86,12 +86,8 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
     t.text     "text"
     t.integer  "sponsor_id"
     t.string   "price"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.string   "hop_picture_file_name"
-    t.string   "hop_picture_content_type"
-    t.integer  "hop_picture_file_size"
-    t.datetime "hop_picture_updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "pts"
     t.integer  "bonus"
     t.integer  "amt"
@@ -116,8 +112,12 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
     t.boolean  "daily"
     t.boolean  "close"
     t.string   "event"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "likes", :force => true do |t|

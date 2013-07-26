@@ -1,7 +1,7 @@
 <h2>Sign in</h2>
 
 <% if flash[:alert]%>
-    <h3 class="alert alert-error"><%= flash[:alert] %></h3>
+    <div class="alert alert-error"><%= flash[:alert] %></div>
 <% end %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
