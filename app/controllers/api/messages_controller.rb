@@ -47,10 +47,28 @@ class Api::MessagesController < Api::ApplicationController
     #LEFT JOIN (SELECT messages.* FROM messages WHERE messages.receiver_id = 1 ORDER BY messages.created_at DESC LIMIT 1) AS last_message ON last_message.sender_id = users.id
     #WHERE users.id IN (SELECT friendships.friend_id FROM friendships WHERE friendships.user_id = 1)
     #;
-    @friends = @current_user.friends
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+    @friends = @current_user.friends.paginate(page: params[:page], per_page: params[:per_page])
     respond_to do |format|
       format.json{
       }
+    end
+  end
+
+  def messages_history
+
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+    @friend = User.where(id: params[:friend_id]).first
+    if Friendship.exists?(@current_user, @friend)
+      @messages = Message.paginate(page: params[:page], per_page: params[:per_page], conditions: {sender_id: [@current_user.id, @friend.id], receiver_id: [@friend.id, @current_user.id]}, order: "created_at ASC")
+
+      respond_to do |format|
+        format.json{}
+      end
+    else
+      bad_request ["Can't find friend with id #{@friend.id}."], 406
     end
   end
 

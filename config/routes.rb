@@ -100,6 +100,7 @@ namespace :admin do
     post 'messages/send_message',          to: 'messages#send_message_to_friends'
     get 'messages/synchronize',            to: 'messages#synchronize_messages'
     get 'messages/thread',                 to: 'messages#get_users_messages_thread'
+    get 'messages/history',                to: 'messages#messages_history'
 
     #users
     get 'users/get_users',                 to: 'users#index'
