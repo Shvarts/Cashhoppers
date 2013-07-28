@@ -106,30 +106,6 @@
       New Hop Task:
   .modal-body
 
-
-%hr
-%h4
-  Hoppers:
-%table.table.table-condensed
-  %tr
-    %th
-      First Name
-    %th
-      Last Name
-    %th
-      User Name
-    %th
-  - @hoppers.each do |user|
-    %tr
-      %td
-        = link_to user.first_name, user_path(:id => user.id)
-      %td
-        = user.last_name
-      %td
-        = user.user_name
-      %td
-        = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
-
 %hr
 .row-fluid
   .span6
@@ -148,5 +124,32 @@
     %h3#myModalLabel
       New Ad:
   .modal-body
+
+
+%hr
+%h4
+  Hoppers:
+- if @hoppers.blank?
+  List has no rows
+- else
+  %table.table.table-condensed
+    %tr
+      %th
+        First Name
+      %th
+        Last Name
+      %th
+        User Name
+      %th
+    - @hoppers.each do |user|
+      %tr
+        %td
+          = link_to user.first_name, user_path(:id => user.id)
+        %td
+          = user.last_name
+        %td
+          = user.user_name
+        %td
+          = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
 
 

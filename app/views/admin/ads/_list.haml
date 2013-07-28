@@ -1,36 +1,42 @@
-%table.table.table-condensed
-  %tr
-    %th
-      Advertizer
-    %th
-      Hop
-    %th
-      Price
-    %th
-      AMT/PAID
-    %th
-      Link
-    %th
-      Picture
-    %th
-  - @ads.each do |ad|
-    %tr
-      %td
-        - if ad.advertizer
-          = ad.advertizer.first_name
-          = ad.advertizer.last_name
-      %td
-        = ad.hop.name
-      %td
-        = ad.price
-      %td
-        = ad.amt_paid
-      %td
-        = ad.link
-      %td
-        = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
-      %td{style: 'text-align: right'}
-        %button.btn.btn-info.btn-mini{onclick: 'loadForm(' + @hop.id.to_s + ', "' + edit_admin_ad_path(ad) + '", "ad-modal")'}
-          Edit
-        %button.btn.btn-danger.btn-mini{onclick: 'removeRecord("' + admin_ad_path(ad) + '", "' + admin_ads_list_path + '", "adsTable", ' + @hop.id.to_s + ')'}
-          Delete
+- Ad.types(@hop).each do |type|
+  %h5
+    = type[0]
+  - if @ads[type[1].to_sym].blank?
+    List has no rows
+  -else
+    %table.table.table-condensed
+      %tr
+        %th
+          Advertizer
+        %th
+          Hop
+        %th
+          Price
+        %th
+          AMT/PAID
+        %th
+          Link
+        %th
+          Picture
+        %th
+      - @ads[type[1].to_sym].each do |ad|
+        %tr
+          %td
+            - if ad.advertizer
+              = ad.advertizer.first_name
+              = ad.advertizer.last_name
+          %td
+            = ad.hop.name
+          %td
+            = ad.price
+          %td
+            = ad.amt_paid
+          %td
+            = ad.link
+          %td
+            = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
+          %td{style: 'text-align: right'}
+            %button.btn.btn-info.btn-mini{onclick: 'loadForm(' + @hop.id.to_s + ', "' + edit_admin_ad_path(ad) + '", "ad-modal")'}
+              Edit
+            %button.btn.btn-danger.btn-mini{onclick: 'removeRecord("' + admin_ad_path(ad) + '", "' + admin_ads_path + '", "adsTable", ' + @hop.id.to_s + ')'}
+              Delete

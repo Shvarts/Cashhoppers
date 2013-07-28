@@ -1,9 +1,11 @@
 class Admin::AdsController < Admin::AdminController
 
-  def list
-    @hop = Hop.find(params[:hop_id])
-    @ads = @hop.ads
-    render partial: 'list'
+  def index
+    @hop = Hop.where(id: params[:hop_id]).first
+    @ads = Ad.ads_for_hop @hop
+    if @hop
+      render partial: 'list'
+    end
   end
 
   def new

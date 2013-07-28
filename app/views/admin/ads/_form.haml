@@ -24,7 +24,7 @@
         %b
           Type:
       %td
-        = f.select :ad_type, options_for_select(Ad.types), :class => 'span12'
+        = f.select :ad_type, options_for_select(Ad.types(@hop), @ad.ad_type), :class => 'span12'
     %tr
       %td
         %b
@@ -57,5 +57,5 @@
               Remove
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitForm(' + @hop.id.to_s + ', "ad-modal", "' + admin_ads_list_path + '", "adsTable" ); return false;'
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitForm(' + @hop.id.to_s + ', "ad-modal", "' + admin_ads_path + '", "adsTable" ); return false;'
 

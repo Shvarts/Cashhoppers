@@ -18,8 +18,23 @@ class Ad < ActiveRecord::Base
   validates :price, :amt_paid, numericality: { only_integer: true }
   validates_presence_of :ad_type, :link
 
-  def self.types
-    ['type1', 'type2', 'typ23']
+  def self.types hop
+    if hop == nil
+      [['RPOU', 'RPOU'], ['ROTATE CH', 'RCH']]
+    elsif hop.daily
+      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL']]
+    else
+      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL'], ['POP - UP ROTATE', 'ROPU']]
+    end
+
+  end
+
+  def self.ads_for_hop hop
+    ads = {}
+    self.types(hop).each do |type|
+      ads[type[1].to_sym] = hop == nil ? where(ad_type: type[1]) : hop.ads.where(ad_type: type[1])
+    end
+    ads
   end
 
 end
