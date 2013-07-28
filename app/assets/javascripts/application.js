@@ -21,13 +21,3 @@
 //= require bootstrap-datetimepicker
 //= require wice_grid
 //= require bootstrap-fileupload.min
-
-function form_data(form){
-    var params = {};
-    form.find("input:checked, input:text, input:hidden, input:password, input:submit, option:selected, textarea")
-        .filter(":enabled")
-        .each(function() {
-            params[ this.name || this.id || this.parentNode.name || this.parentNode.id ] = this.value;
-        });
-    return params;
-}

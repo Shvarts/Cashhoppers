@@ -1,3 +1,19 @@
+= render partial: 'layouts/modal_crud'
+:javascript
+  var tasks_modal;
+  var ads_modal;
+  $(document).ready(function(){
+    tasks_modal = new ModalCRUD({
+      new_path: "#{new_admin_hop_task_path}",
+      index_path: "#{admin_hop_tasks_path}",
+      list_id: 'tasksTable'
+    });
+    ads_modal = new ModalCRUD({
+      new_path: "#{new_admin_ad_path}",
+      index_path: "#{admin_ads_path}",
+      list_id: 'adsTable'
+    });
+  });
 %h2
   .row-fluid
     .text-left.span8
@@ -93,18 +109,10 @@
     %h4
       Tasks:
   .span6.text-right
-    %button.btn.btn-info{onclick: 'loadForm(' + @hop.id.to_s + ', "' + new_admin_hop_task_path + '", "task-modal")'}
+    %button.btn.btn-info{onclick: 'tasks_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create hop task");'}
       New Hop Task
 #tasksTable
   = render partial: 'admin/hop_tasks/tasks'
-
-#task-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
-  .modal-header
-    %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
-      ×
-    %h3#myModalLabel
-      New Hop Task:
-  .modal-body
 
 %hr
 .row-fluid
@@ -112,19 +120,10 @@
     %h4
       Ads:
   .span6.text-right
-    %button.btn.btn-info{onclick: 'loadForm(' + @hop.id.to_s + ', "' + new_admin_ad_path + '", "ad-modal")'}
+    %button.btn.btn-info{onclick: 'ads_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create ad");'}
       New Ad
 #adsTable
   = render partial: 'admin/ads/list'
-
-#ad-modal.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
-  .modal-header
-    %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
-      ×
-    %h3#myModalLabel
-      New Ad:
-  .modal-body
-
 
 %hr
 %h4

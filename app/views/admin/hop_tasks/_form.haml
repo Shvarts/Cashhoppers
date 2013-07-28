@@ -41,4 +41,4 @@
         = f.text_field :bonus, class: 'span12'
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'submitForm(' + @hop_task.hop.id.to_s + ', "task-modal", "' + admin_hop_tasks_path + '", "tasksTable"); return false;'
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'tasks_modal.submitForm({hop_id: ' + @hop_task.hop.id.to_s + '}); return false;'
