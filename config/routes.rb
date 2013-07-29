@@ -28,6 +28,9 @@ CashHoppers::Application.routes.draw do
     #hop_tasks
     resources :hop_tasks
 
+    #prizes
+    resources :prizes
+
     #ads
     resources :ads
 

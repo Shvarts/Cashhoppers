@@ -1,0 +1,27 @@
+- if @prizes.blank?
+  List has no rows
+- else
+  %table.table.table-condensed
+    %tr
+      %th
+        Place
+      %th
+        Cost
+      %th
+        User
+      %th
+    - @prizes.each do |prize|
+      %tr
+        %td
+          = prize.place
+        %td
+          = prize.cost
+        %td
+          - if prize.user
+            = prize.user.first_name
+            = prize.user.last_name
+        %td{style: 'text-align: right'}
+          %button.btn.btn-info.btn-mini{onclick: 'prizes_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit prize", "' + edit_admin_prize_path(prize) + '")'}
+            Edit
+          %button.btn.btn-danger.btn-mini{onclick: 'tasks_modal.removeRecord("' + admin_prize_path(prize) + '", {hop_id: ' + @hop.id.to_s + '})'}
+            Delete

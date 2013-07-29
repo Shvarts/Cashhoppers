@@ -1,0 +1,29 @@
+- if @prize.errors.any?
+  - @prize.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
+= form_for([:admin, @prize]) do |f|
+  = f.hidden_field :hop_id
+  %table.hops-form
+    %tr
+      %td
+        %b
+          Hop:
+      %td
+        = @prize.hop.name
+    %tr
+      %td
+        %b
+          Cost:
+      %td
+        = f.text_field :cost, class: 'span12'
+    %tr
+      %td
+        %b
+          Place:
+      %td
+        = f.number_field :place, class: 'span12'
+    %tr
+      %td{colspan: 2}
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); return false;'

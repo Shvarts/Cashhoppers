@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
                     :default_url => "/images/noavatar.jpeg",
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
   has_many :events
+  has_many :prizes, dependent: :destroy
 
   before_create :create_role
   # Include default devise modules. Others available are:
