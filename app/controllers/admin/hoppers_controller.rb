@@ -83,10 +83,7 @@ class Admin::HoppersController < Admin::AdminController
     if params[:hop]
       hop  = Hop.find_by_id(params[:hop])
       @users = hop.hoppers
-
-
-
-    end
+   end
 
     (params[:hop])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_hop_list')
   end

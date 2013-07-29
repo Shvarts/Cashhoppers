@@ -1,6 +1,7 @@
 class Admin::HopsController < Admin::AdminController
 
   before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
+  include ::PdfWritter
 
   def regular
     @tab = 'hops'
@@ -144,8 +145,15 @@ class Admin::HopsController < Admin::AdminController
     headers['Cache-Control'] = ''
 
     render :layout => false
+  end
 
-
+  def print_to_pdf
+      output = PdfWritter::TestDocument.new.print_hop_pdf(params[:id])
+      respond_to do |format|
+        format.pdf {
+          send_data output, :filename => "Hop.pdf", :type => "application/pdf", :disposition => "inline"
+        }
+      end
 
   end
 

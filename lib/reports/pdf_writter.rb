@@ -57,7 +57,7 @@ module PdfWritter
       table([['user id', 'first name', 'user name', 'email', 'zip']],
              :column_widths => {0 => 80, 1 => 80, 2 => 80, 3 => 180, 4=> 80 }
       )
-          #   :column_widths => {0 => 80, 1 => 180}
+
 
 
       gamers = []
@@ -81,6 +81,27 @@ module PdfWritter
 
 
       table(hoppers, :column_widths => {0 => 80, 1 => 80, 2 => 80, 3 => 180, 4 => 80 })
+
+
+
+      render
+    end
+
+    def print_hop_pdf(hop_id)
+      @hop = Hop.find_by_id(hop_id)
+      @producer = User.find_by_id(@hop.producer_id)
+      text "Hop", :size => 16, :align => :center
+      move_down(5)
+      table([['Id','Hop code', 'Hop name', 'time start', 'time end', 'price', 'jackpot', 'Special event'],
+            [@hop.id,@hop.code, @hop.name,@hop.time_start, @hop.time_end, @hop.price, @hop.jackpot, @hop.event]],
+            :column_widths => {0 => 35, 1 => 60, 2 => 70, 3 => 80, 4 => 80, 5 => 60, 6 => 60, 7=> 80  }
+
+      )
+      move_down(10)
+      table([['Producer id','Producer contact', 'Producer email', 'Producer phone'],
+             [@producer.id, @producer.contact, @producer.email, @producer.phone]],
+            :column_widths => {0 => 80, 1 => 80, 2 => 180, 3 => 80 }
+      )
 
 
 

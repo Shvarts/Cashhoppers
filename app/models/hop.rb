@@ -72,13 +72,13 @@ class Hop < ActiveRecord::Base
       hop_row.upto(hop_items_row ) do |i|
         1.upto(col_size) do |j|
           @new_hop[:name] =  oo.cell(i + 1,j) if oo.cell(i,j) == 'Name' ||  oo.cell(i,j) == 'name'
-          @new_hop[:code] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
+          @new_hop[:code] = oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
           @new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Time start' ||  oo.cell(i,j) == 'time start'
           @new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'Time end' ||  oo.cell(i,j) == 'time end'
           @new_hop[:price] = oo.cell(i + 1,j).to_i   if oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price'
           @new_hop[:producer_id]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Showprod_id' ||  oo.cell(i,j) == 'showprod_id'
           @new_hop[:jackpot]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Jackpot' ||  oo.cell(i,j) == 'jackpot'
-          @new_hop[:event]=  oo.cell(i + 1,j)  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
+          @new_hop[:event]=  oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
         end
       end
 
