@@ -138,23 +138,16 @@ parameter query is optional (search by first_name, last_name and user_name)
         success: {"success"=>true, "message"=>"profile successfully updated."}
         error: {"errors"=>{"password"=>["is too short (minimum is 8 characters)"]}, "success"=>false, "status"=>406}
 
-===Ads(уточнить)
+===Ads
 ====get_ad(method: GET)
-by daily hop id
-    ad type: sp, rofl, ropu
-    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
-    response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
-              2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
-by hop id
-    ad type: sp, rofl
-    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=sp&hop_id=2
-    response: {"ads"=>[{"id"=>1, "ad_name"=>"fhgdtg", "ad_type"=>"sp", "link_to_ad"=>"http://www.2343.com", "hop_id"=>2, "created_at"=>"2013-07-19T16:24:50Z", "updated_at"=>"
-              2013-07-19T16:24:50Z", "hop_ad_picture_updated_at"=>"2013-07-19T16:24:50Z", "ad_picture_url"=>"/images/ad_pictures/ads/1/AD_PICTURE.png?1374251090"}]}
-other ads
-    ad type: log_in, hop_list, gallery, friends, message'}
-    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=log_in
-    response: {"ads"=>[{"id"=>6, "ad_name"=>"adsdfg", "ad_type"=>"log_in", "link_to_ad"=>"http://www.2343.com", "hop_id"=>nil, "created_at"=>"2013-07-19T16:28:00Z", "updated_
-               at"=>"2013-07-19T16:28:00Z", "hop_ad_picture_updated_at"=>nil, "ad_picture_url"=>"/assets/no_ad_picture.jpg"}]}
+#other ad         RPOU(RPOU), RCH(ROTATE CH)
+#daily hop ad     SP(SPONSOR FULL PG), ROFL(FULL PG - ROTATE)
+#regular hop ad   SP(SPONSOR FULL PG), ROFL(FULL PG - ROTATE), ROPU(POP - UP ROTATE)
+    url: http://localhost:3000/api/ads/get_ads.json?api_key=123&authentication_token=7GdoffcF2eYSgXxYWQActdmCYxIqFB&ad_type=SP&hop_id=2
+    response:
+        success: {"ad"=>{"id"=>42, "ad_type"=>"SP", "link"=>"SP regular", "hop_id"=>17, "advertizer_id"=>1, "picture"=>"/assets/no_ad_picture.png"}}
+        error: {"errors"=>["Invalid type."], "success"=>false, "status"=>406}
+               {"errors"=>["Ad not found."], "success"=>false, "status"=>406}
 === Hops
 ====get daily hops (today)(method: GET)
 assigned: true if user assigned to hop of false if not

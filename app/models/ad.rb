@@ -26,7 +26,6 @@ class Ad < ActiveRecord::Base
     else
       [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL'], ['POP - UP ROTATE', 'ROPU']]
     end
-
   end
 
   def self.ads_for_hop hop

@@ -1,18 +1,21 @@
 class Api::AdsController < Api::ApplicationController
 
   def index
+    @hop = Hop.where(:id => params[:hop_id]).first
 
-  #ad_type: sp, rofl, ropu,
-  #ad_type: log_in, hop_list, gallery, friends, message
+    types = []
+    Ad.types(@hop).each do |type|
+      types << type[1]
+    end
 
-    if params[:ad_type].present? && (params[:ad_type] == 'sp' || params[:ad_type] == 'rofl' || params[:ad_type] == 'ropu')
-      @ads = Ad.where(hop_id: params[:hop_id], ad_type: params[:ad_type])
-      bad_request ['Ads not found.'], 406 if @ads.blank?
-    elsif params[:ad_type].present? && (params[:ad_type] == 'log_in' || params[:ad_type] == 'hop_list' || params[:ad_type] == 'gallery' || params[:ad_type] == 'message')
-      @ads = Ad.where(ad_type: params[:ad_type])
-      bad_request ['Ads not found.'], 406 if @ads.blank?
+    if params[:ad_type].present? && @hop && types.include?(params[:ad_type])
+      @ad = Ad.where(hop_id: params[:hop_id], ad_type: params[:ad_type]).order("RAND()").first
+      bad_request ['Ads not found.'], 406 unless @ad
+    elsif params[:ad_type].present? && types.include?(params[:ad_type])
+      @ad = Ad.where(ad_type: params[:ad_type]).order("RAND()").first
+      bad_request ['Ads not found.'], 406 unless @ad
     else
-      bad_request ['Invalid type.'], 406 if @ads.blank?
+      bad_request ['Invalid type.'], 406
     end
   end
 
