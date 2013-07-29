@@ -16,6 +16,10 @@ class Hop < ActiveRecord::Base
   validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: true, unless: :daily?
 
+  def self.get_daily_by_date date
+    Hop.where("time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", date.beginning_of_day.strftime("%d/%m/%Y %H:%M:%S"), date.end_of_day.strftime("%d/%m/%Y %H:%M:%S")).first
+  end
+
   def assign user
     unless hoppers.include? user
       hoppers << user
@@ -37,5 +41,26 @@ class Hop < ActiveRecord::Base
     ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = #{current_pts + pts} WHERE user_id = #{user.id} AND hop_id = #{id}")
   end
 
+  def rank user
+    user_position = ActiveRecord::Base.connection.select_all("
+      SELECT rank FROM
+      (
+        SELECT hoppers_hops.user_id, @rownum := @rownum + 1 AS rank
+        FROM hoppers_hops, (SELECT @rownum := 0) r
+        WHERE hop_id = #{id}
+        ORDER BY hoppers_hops.pts DESC
+      ) selection
+      WHERE user_id = #{user.id};
+    ")
+    if user_position.length > 0
+      user_position = user_position[0]['rank']
+    else
+      user_position = 0
+    end
+  end
+
+  def winner
+    ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1;");
+  end
 
 end

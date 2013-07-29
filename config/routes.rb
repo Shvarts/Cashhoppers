@@ -74,6 +74,7 @@ CashHoppers::Application.routes.draw do
     get 'hop/get_tasks',                   to: 'hops#get_tasks'
     get 'hop/get_hop',                     to: 'hops#get_hop_by_id'
     get 'hop/score',                       to: 'hops#score'
+    get 'hops/yesterdays_winner',          to: 'hops#yesterdays_winner'
 
     #users hop tasks
     post 'task/submit',                    to: 'user_hop_tasks#create'

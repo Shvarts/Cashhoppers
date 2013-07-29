@@ -31,30 +31,41 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def score
-    current_user_position = ActiveRecord::Base.connection.select_all("
-      SELECT rank FROM
-      (
-        SELECT hoppers_hops.user_id, @rownum := @rownum + 1 AS rank
-        FROM hoppers_hops, (SELECT @rownum := 0) r
-        WHERE hop_id = #{@hop.id}
-        ORDER BY hoppers_hops.pts DESC
-      ) selection
-      WHERE user_id = #{@current_user.id};
-    ")
-    if current_user_position.length > 0
-      current_user_position = current_user_position[0]['rank']
-    else
-      current_user_position = 0
-    end
     respond_to do |format|
       format.json{
         render :json => {success: true,
                          score: @hop.score(@current_user),
                          hoppers_count: @hop.hoppers.count,
-                         rank: current_user_position.to_i,
+                         rank: @hop.rank(@current_user),
                          status: 200
         }
       }
+    end
+  end
+
+  def yesterdays_winner
+    hop = Hop.get_daily_by_date DateTime.now - 1.day
+    if hop
+      winner = hop.winner
+      if winner.blank?
+        bad_request(['Missing winner for yesterday\'s hop.'], 406)
+      else
+        winner = winner[0]
+        respond_to do |format|
+          format.json{
+            render :json => {success: true,
+                             winner_id: winner['user_id'],
+                             score: winner['pts'],
+                             hoppers_count: hop.hoppers.count,
+                             rank: 1,
+                             hop_id: hop.id,
+                             status: 200
+            }
+          }
+        end
+      end
+    else
+      bad_request(['Missing yesterday\'s hop.'], 406)
     end
   end
 
