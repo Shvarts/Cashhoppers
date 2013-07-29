@@ -79,7 +79,6 @@ CashHoppers::Application.routes.draw do
     post 'task/submit',                    to: 'user_hop_tasks#create'
     get 'tasks/get_friends_hop_tasks',     to: 'user_hop_tasks#friends_hop_tasks'
     get 'tasks/get_all_hoppers_hop_tasks', to: 'user_hop_tasks#all_hoppers_hop_tasks'
-    get 'task/get_hop_task',               to: 'user_hop_tasks#get_hop_task_by_id'
     post 'task/like',                      to: 'user_hop_tasks#like'
     get 'task/likes_count',                to: 'user_hop_tasks#likes_count'
     post 'task/comment',                   to: 'user_hop_tasks#comment'
