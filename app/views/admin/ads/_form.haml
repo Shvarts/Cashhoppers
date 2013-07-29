@@ -13,18 +13,28 @@
       %td
         = current_user.first_name
         = current_user.last_name
-    %tr
-      %td
-        %b
-          Hop:
-      %td
-        = @hop.name
-    %tr
-      %td
-        %b
-          Type:
-      %td
-        = f.select :ad_type, options_for_select(Ad.types(@hop), @ad.ad_type), :class => 'span12'
+    - if @hop
+      %tr
+        %td
+          %b
+            Hop:
+        %td
+          = @hop.name
+    - if @ad.ad_type
+      %tr
+        %td
+          %b
+            Type:
+        %td
+          = @ad.ad_type
+          = f.hidden_field :ad_type
+    - else
+      %tr
+        %td
+          %b
+            Type:
+        %td
+          = f.select :ad_type, options_for_select(Ad.types(@hop), @ad.ad_type), :class => 'span12'
     %tr
       %td
         %b
@@ -57,5 +67,8 @@
               Remove
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'ads_modal.submitForm({hop_id: ' + @hop.id.to_s + '}); return false;'
+        - if @hop
+          = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'ads_modal.submitForm({hop_id: ' + @hop.id.to_s + '}); return false;'
+        - else
+          = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'ads_modal.submitForm({type: "' + @ad.ad_type + '"}); return false;'
 

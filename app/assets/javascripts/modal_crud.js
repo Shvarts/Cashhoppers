@@ -74,6 +74,7 @@ var ModalCRUD = (function () {
             url: index_path,
             data: params,
             type: 'GET',
+            contentType: 'text',
             error: function(err){
                 alert("error");
             },

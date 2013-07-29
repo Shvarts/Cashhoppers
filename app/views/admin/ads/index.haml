@@ -1,3 +1,54 @@
-%h3
-  Ads:
-= render partial: 'list'
+- unless request.content_type == 'text'
+  = render partial: 'layouts/modal_crud'
+  :javascript
+    var ads_modal;
+    $(document).ready(function(){
+      ads_modal = new ModalCRUD({
+        new_path: "#{new_admin_ad_path}",
+        index_path: "#{admin_ads_path}",
+        list_id: 'adsTable'
+      });
+    });
+  .row-fluid
+    .span12.text-right
+      %button.btn.btn-info{onclick: 'ads_modal.newRecord({ad_type: "' + params[:type] + '"}, "Create ad");'}
+        New Ad
+
+#adsTable
+  = will_paginate @users, renderer: BootstrapPagination::Rails
+  - if @ads.blank?
+    List has no rows
+  -else
+    %table.table.table-condensed
+      %tr
+        %th
+          Advertizer
+        %th
+          Price
+        %th
+          AMT/PAID
+        %th
+          Link
+        %th
+          Picture
+        %th
+      - @ads.each do |ad|
+        %tr
+          %td
+            - if ad.advertizer
+              = ad.advertizer.first_name
+              = ad.advertizer.last_name
+          %td
+            = ad.price
+          %td
+            = ad.amt_paid
+          %td
+            = ad.link
+          %td
+            = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
+          %td{style: 'text-align: right'}
+            %button.btn.btn-info.btn-mini{onclick: 'ads_modal.editRecord({type: "' + ad.ad_type + '"}, "Edit ad", "' + edit_admin_ad_path(ad) + '")'}
+              Edit
+            %button.btn.btn-danger.btn-mini{onclick: 'ads_modal.removeRecord("' + admin_ad_path(ad) + '", {type: "' + ad.ad_type + '"})'}
+              Delete
+  = will_paginate @users, renderer: BootstrapPagination::Rails

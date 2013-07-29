@@ -1,0 +1,6 @@
+%ul.nav.nav-tabs
+  %li{:class => ('active' if params[:type] == 'RPOU')}
+    = link_to 'RPOU', admin_ads_path(type: 'RPOU')
+  %li{:class => ('active' if params[:type] == 'RCH')}
+    = link_to 'ROTATE CH', admin_ads_path(type: 'RCH')
+= yield

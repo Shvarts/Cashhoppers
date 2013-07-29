@@ -3,9 +3,6 @@ class Admin::HopTasksController < Admin::AdminController
   def index
     @hop = Hop.find(params[:hop_id])
     @tasks = @hop.hop_tasks
-    puts  ' ----------------------------------------'
-    puts 'here '
-    puts  ' ----------------------------------------'
     render partial: 'tasks'
   end
 
