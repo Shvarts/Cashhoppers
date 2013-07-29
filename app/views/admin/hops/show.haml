@@ -197,4 +197,5 @@ need refactoring
         = link_to 'Show',  admin_ad_path(hop_ad.id)
         = link_to 'Edit', edit_admin_ad_path(hop_ad)
         = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
-
+%br
+= link_to 'Export to Excel', admin_print_hop_excel_path(:id => @hop.id), :class => 'btn btn-success'

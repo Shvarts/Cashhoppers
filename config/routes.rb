@@ -24,7 +24,8 @@ CashHoppers::Application.routes.draw do
     delete 'hop/:id',                      to: 'hops#destroy',           as: 'hop'
     put 'hop/:id',                         to: 'hops#update',            as: 'hop'
     post 'close_hop/:id',                  to: 'hops#close',             as: 'close_hop'
-    post 'hops/import_exel',               to: 'hops#import_exel',      as: 'import_exel'
+    get 'hops/import_exel',               to: 'hops#import_exel',      as: 'import_exel'
+    get 'hops/print_hop_excel',           to: 'hops#print_hop_excel',      as: 'print_hop_excel'
 
     resources :hop_tasks, only: [:new, :edit, :create, :update, :destroy, :index]
 

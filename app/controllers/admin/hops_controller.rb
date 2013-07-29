@@ -111,26 +111,38 @@ class Admin::HopsController < Admin::AdminController
 
 
   def import_exel
-    Spreadsheet.client_encoding = 'UTF-8'
-
-
-
-    uploaded_io = params[:excel_file]
-
-    File.open(Rails.root.join('public','excel',  uploaded_io.original_filename), 'wb+') do |file|
-      file.write(uploaded_io.read)
-    end
-
-    oo = Excelx.new("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}")
-    if uploaded_io.original_filename.split(".").last == "xls"
-
-      book = Spreadsheet.open(book = Spreadsheet.open("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}"))
-
-
-    end
-    render :text => book
+    #Spreadsheet.client_encoding = 'UTF-8'
+    #
+    #
+    #
+    #uploaded_io = params[:excel_file]
+    #
+    #File.open(Rails.root.join('public','excel',  uploaded_io.original_filename), 'wb+') do |file|
+    #  file.write(uploaded_io.read)
+    #end
+    #
+    #oo = Excelx.new("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}")
+    #if uploaded_io.original_filename.split(".").last == "xls"
+    #
+    #  book = Spreadsheet.open(book = Spreadsheet.open("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}"))
+    #
+    #
+    #end
+    #render :text => book
   end
 
+  def print_hop_excel
+    @hop = Hop.find_by_id(params[:id])
+    @producer = User.find_by_id(@hop.producer_id)
+    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Disposition'] = 'attachment; filename="report.xls"'
+    headers['Cache-Control'] = ''
+
+    render :layout => false
+
+
+
+  end
 
   def sub_layout
     'admin/hops_tabs'

@@ -48,7 +48,7 @@ class Admin::AdsController < Admin::AdminController
 
     @hop_ad=Ad.new(params[:ad])
 
-
+    @hop_ad.sponsor_id = current_user.id
     if @hop_ad.save
 
        if params["hop_id"]
