@@ -5,21 +5,21 @@ class Api::FriendsController < Api::ApplicationController
   def get_friends
     @friends = @current_user.friends
     if @friends.length == 0
-      bad_request ['You have no friends.']
+      bad_request ['You have no friends.'], 406
     end
   end
 
   def get_requested_friends
     @requested_friends = @current_user.requested_friends
     if @requested_friends.length == 0
-      bad_request ['You have no friends.']
+      bad_request ['You have no friends.'], 406
     end
   end
 
   def get_pending_friends
     @pending_friends = @current_user.pending_friends
     if @pending_friends.length == 0
-      bad_request ['You have no friends.']
+      bad_request ['You have no friends.'], 406
     end
   end
 

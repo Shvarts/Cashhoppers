@@ -63,19 +63,19 @@ provider can be 'facebook', 'google' and 'twitter'
     url: http://localhost:3000/api/friends/get_friends.json?api_key=123&authentication_token=6o93YmJyXdYUxDsNUxQq
     response:
         success: {"friends"=>[3, 4, 5]}
-        error: {"errors"=>["You have no friends."], "success"=>false, "status"=>200}
+        error: {"errors"=>["You have no friends."], "success"=>false, "status"=>406}
 ====get requested friends(method: GET)
 (те кто меня приглашает в друзья но я ещё не подтвердил что мы друзья)
     url: http://localhost:3000/api/friends/get_requested_friends.json?api_key=123&authentication_token=8wkSglamnW681aIzyhxEApvBfeGouj
     response:
         success: {"requested_friends"=>[3, 4, 5]}
-        error: {"errors"=>["You have no requested friends."], "success"=>false, "status"=>200}
+        error: {"errors"=>["You have no requested friends."], "success"=>false, "status"=>406}
 ====get pending friends(method: GET)
 (те кого я приглашаю в друзья но они ещё не подтвердили что мы  друзья)
     url:  http://localhost:3000/api/friends/get_pending_friends.json?api_key=123&authentication_token=dciI7a6wizkbaYAicqAJUdJo15S3R3
     response:
         success: {"pending_friends"=>[3, 4, 5]}
-        error: {"errors"=>["You have no pending friends."], "success"=>false, "status"=>200}
+        error: {"errors"=>["You have no pending friends."], "success"=>false, "status"=>406}
 ====send request to friend(method: POST)
 (пригласить в друзья)
     url: http://localhost:3000/api/friends/send_request.json
