@@ -188,11 +188,11 @@ need refactoring
       %td
     %tr
       %td
-        = hop_ad.ad_name
+        = User.find_by_id(hop_ad.sponsor_id).user_name
       %td
-        = hop_ad.phone
+        = User.find_by_id(hop_ad.sponsor_id).phone
       %td
-        = hop_ad.email
+        = User.find_by_id(hop_ad.sponsor_id).email
       %td
         = link_to 'Show',  admin_ad_path(hop_ad.id)
         = link_to 'Edit', edit_admin_ad_path(hop_ad)

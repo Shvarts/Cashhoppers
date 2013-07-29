@@ -22,9 +22,9 @@ class Ad < ActiveRecord::Base
     :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
 
-  validates :ad_name,:contact, length: { minimum: 3, maximum:140 }
-  validates :price, :phone, :amt, numericality: { only_integer: true }
-  validates_presence_of :email, :ad_type, :link_to_ad
+  #validates :ad_name,:contact, length: { minimum: 3, maximum:140 }
+  #validates :price, :phone, :amt, numericality: { only_integer: true }
+  #validates_presence_of :email, :ad_type, :link_to_ad
 
   def daily_hop?
     ad.daily_hop.class == FalseClass

@@ -110,32 +110,37 @@ class Admin::HopsController < Admin::AdminController
   end
 
 
-  def import_exel
-    #Spreadsheet.client_encoding = 'UTF-8'
-    #
-    #
-    #
-    #uploaded_io = params[:excel_file]
-    #
-    #File.open(Rails.root.join('public','excel',  uploaded_io.original_filename), 'wb+') do |file|
-    #  file.write(uploaded_io.read)
-    #end
-    #
-    #oo = Excelx.new("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}")
-    #if uploaded_io.original_filename.split(".").last == "xls"
-    #
-    #  book = Spreadsheet.open(book = Spreadsheet.open("#{Rails.root}/app/public/excel/#{uploaded_io.original_filename}"))
-    #
-    #
-    #end
-    #render :text => book
+  def import_excel
+
+    import_file = params[:excel]
+
+    @new_hop, @hop_items,@hop_ads = Hop.import_from_excel(import_file)
+
+    @hoppers = []
+    @hop = Hop.new(@new_hop)
+    if @hop.save
+      for i in @hop_ads
+        @hop.ads.create!(i)
+      end
+      @tasks = @hop.hop_tasks
+      for i in @hop_items
+        @hop.hop_tasks.create!(i)
+      end
+      render   action:  "show"
+    else
+      render  action: 'new_regular',  notice: "bad excel file"
+    end
+
   end
+
+
+
 
   def print_hop_excel
     @hop = Hop.find_by_id(params[:id])
     @producer = User.find_by_id(@hop.producer_id)
     headers['Content-Type'] = "application/vnd.ms-excel"
-    headers['Content-Disposition'] = 'attachment; filename="report.xls"'
+    headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
     headers['Cache-Control'] = ''
 
     render :layout => false
