@@ -283,9 +283,9 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/task/get_user_hop_task_by_id.json
     data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct","user_hop_task_id":"13"}
     response:
-        success: {"user_hop_task"=>{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-24T15:51:54Z", "comment"=>"new api test", "hop_id"=>1, "photo"=>"/images/user_hop_task
-                 _photos/tasks/13/original/PHOTO.png?1374681114", "likes_count"=>0, "comments_count"=>0, "liked"=>false, "user_first_name"=>"friend", "user_last_name"=>"friend",
-                 "user_user_name"=>"friend", "user_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374665706"}}
+        success: {"user_hop_task"=>{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-24T15:51:54Z", "comment"=>"new api test", "hop_id"=>1, "hop_task_text"=>"Take your pic
+                ture with DEREVO!!!", "photo"=>"/images/user_hop_task_photos/tasks/13/original/PHOTO.png?1374681114", "likes_count"=>0, "comments_count"=>0, "liked"=>false,
+                "user_first_name"=>"friend", "user_last_name"=>"friend", "user_user_name"=>"friend", "user_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374665706"}}
         error: {"errors"=>["Already shared."], "success"=>false, "status"=>406}
                {"errors"=>["User hop task not found."], "success"=>false, "status"=>406}
 ===Notifications
