@@ -31,10 +31,27 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def score
+    current_user_position = ActiveRecord::Base.connection.select_all("
+      SELECT rank FROM
+      (
+        SELECT hoppers_hops.user_id, @rownum := @rownum + 1 AS rank
+        FROM hoppers_hops, (SELECT @rownum := 0) r
+        WHERE hop_id = #{@hop.id}
+        ORDER BY hoppers_hops.pts DESC
+      ) selection
+      WHERE user_id = #{@current_user.id};
+    ")
+    if current_user_position.length > 0
+      current_user_position = current_user_position[0]['rank']
+    else
+      current_user_position = 0
+    end
     respond_to do |format|
       format.json{
         render :json => {success: true,
                          score: @hop.score(@current_user),
+                         hoppers_count: @hop.hoppers.count,
+                         rank: current_user_position.to_i,
                          status: 200
         }
       }
