@@ -1,4 +1,9 @@
-<h3>Current hops </h3>
+
+<% if @hops.first.close == false %>
+  <h3>Current hops </h3>
+<% else %>
+  <h3>Archived hops </h3>
+<% end %>
 
 <table>
   <tr>
