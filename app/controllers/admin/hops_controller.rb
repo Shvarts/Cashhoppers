@@ -143,25 +143,26 @@ class Admin::HopsController < Admin::AdminController
 
 
   def import_excel
+    @hop = Hop.new
+    if params[:excel]
+      import_file = params[:excel]
 
-    import_file = params[:excel]
-
-    @new_hop, @hop_items,@hop_ads = Hop.import_from_excel(import_file)
-
-    @hoppers = []
-    @hop = Hop.new(@new_hop)
-    if @hop.save
-      for i in @hop_ads
-        @hop.ads.create!(i)
+      @new_hop, @hop_items,@hop_ads = Hop.import_from_excel(import_file)
+      @hoppers = []
+      @hop = Hop.new(@new_hop)
+      if @hop.save
+          Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads)
+          @tasks = @hop.hop_tasks
+        render   action:  "show"
+      else
+        render  action: 'new_regular',  notice: "bad excel file"
       end
-      @tasks = @hop.hop_tasks
-      for i in @hop_items
-        @hop.hop_tasks.create!(i)
-      end
-      render   action:  "show"
     else
-      render  action: 'new_regular',  notice: "bad excel file"
+      flash[:error] = 'no selected file'
+      render 'new_regular'
     end
+
+
 
   end
 
