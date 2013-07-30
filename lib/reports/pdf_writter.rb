@@ -3,6 +3,7 @@ module PdfWritter
 
     def to_pdf_hopper(hopper_id)
       @hopper =User.find_by_id(hopper_id)
+      text "Hopper", :size => 16, :align => :center
 
       table([
                     ["User name", "#{@hopper.user_name}"],
@@ -19,11 +20,16 @@ module PdfWritter
             :cell_style => { :inline_format => true } )
 
       move_down(20)
-      dice = "#{Rails.root}/public#{@hopper.avatar.url[0...@hopper.avatar.url.index('?')]}"
-      image dice, :at => [270, 720], :scale => 0.75
 
+          begin
 
-       games = @hopper.games.map do |game|
+            dice = "#{Rails.root}/public#{@hopper.avatar.url[0...@hopper.avatar.url.index('?')]}"
+
+          rescue Exception =>e
+            dice = "#{Rails.root}/public#{@hopper.avatar.url}"
+         end
+          image dice, :at => [270, 700], :scale => 0.75
+          games = @hopper.games.map do |game|
          [
            game.name
 
@@ -53,7 +59,8 @@ module PdfWritter
     end
 
     def to_pdf_hopper_list(hoppers_id)
-
+      text "Hoppers list", :size => 16, :align => :center
+      move_down(20)
       table([['user id', 'first name', 'user name', 'email', 'zip']],
              :column_widths => {0 => 80, 1 => 80, 2 => 80, 3 => 180, 4=> 80 }
       )
