@@ -26,7 +26,7 @@ class Admin::HopsController < Admin::AdminController
                                  :order => 'created_at',
                                  :order_direction => 'desc')
 
-    output = PdfWritter::TestDocument.new.current_hops_to_pdf(Hop.where(:close => false).all)
+    output = PdfWritter::TestDocument.new.hops_to_pdf(Hop.where(:close => false).all)
     respond_to do |format|
       format.html
       format.pdf {
@@ -43,7 +43,7 @@ class Admin::HopsController < Admin::AdminController
                                  :order => 'created_at',
                                  :order_direction => 'desc')
 
-    output = PdfWritter::TestDocument.new.archive_hops_to_pdf(Hop.where(:close => true).all)
+    output = PdfWritter::TestDocument.new.hops_to_pdf(Hop.where(:close => true).all)
     respond_to do |format|
       format.html
       format.pdf {

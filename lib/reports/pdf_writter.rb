@@ -130,7 +130,7 @@ module PdfWritter
       ads = @hop.ads.all.map do |ad|
         [
             ad.ad_type,
-            User.find_by_id(ad.sponsor_id).first_name,
+            ad.sponsor.first_name,
             ad.hop_ad_picture_file_name,
             ad.price,
             ad.amt
@@ -148,17 +148,37 @@ module PdfWritter
       render
     end
 
-    def current_hops_to_pdf(id)
+    def hops_to_pdf(id)
+         if id.first.close == false
+           text "Current hops", :size => 16, :align => :center
+         else
+           text "Archived hops", :size => 16, :align => :center
+         end
+         move_down(10)
+         hops =id.map do |hop|
+           [
+               hop.id,
+               hop.name,
+               hop.time_start,
+               hop.time_end,
+               hop.hoppers.count,
+               hop.hop_tasks.count,
+               hop.ads.count
+           ]
 
-         text "current hops"
+         end
+
+         if !hops.blank?
+           table([['Id', 'Name', 'Time start', 'Time end', "Hoppers", 'Items', 'Ads']],
+                 :column_widths => {0 => 40, 1 => 80, 2 =>90, 3 => 70, 4  => 40, 5  => 40, 6  => 40})
+           table(hops, :column_widths => {0 => 40, 1 => 80, 2 =>90, 3 => 70, 4  => 40, 5  => 40, 6  => 40})
+         end
+
+
       render
     end
 
-    def archive_hops_to_pdf(id)
 
-      text "archived hops"
-      render
-    end
 
 
   end
