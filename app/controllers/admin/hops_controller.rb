@@ -26,7 +26,7 @@ class Admin::HopsController < Admin::AdminController
                                  :order => 'created_at',
                                  :order_direction => 'desc')
     @hops = Hop.where(:close => false).all
-    output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
+
     respond_to do |format|
       format.html
       format.xls{
@@ -36,6 +36,7 @@ class Admin::HopsController < Admin::AdminController
         render 'hops_to_excel', :layout => false
       }
       format.pdf {
+        output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
         send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
       }
     end
@@ -49,7 +50,7 @@ class Admin::HopsController < Admin::AdminController
                                  :order => 'created_at',
                                  :order_direction => 'desc')
     @hops = Hop.where(:close => true).all
-    output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
+
     respond_to do |format|
       format.html
       format.xls{
@@ -60,6 +61,7 @@ class Admin::HopsController < Admin::AdminController
         render 'hops_to_excel', :layout => false
       }
       format.pdf {
+        output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
         send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
       }
     end

@@ -91,7 +91,7 @@ module PdfWritter
       text "Hop", :size => 16, :align => :center
       move_down(5)
       table([['Id','Hop code', 'Hop name', 'time start', 'time end', 'price', 'jackpot', 'Special event'],
-            [@hop.id,@hop.code, @hop.name,@hop.time_start, @hop.time_end, @hop.price, @hop.jackpot, @hop.event]],
+            [@hop.id,@hop.code, @hop.name,@hop.time_start.to_s, @hop.time_end.to_s, @hop.price, @hop.jackpot, @hop.event]],
             :column_widths => {0 => 35, 1 => 60, 2 => 70, 3 => 80, 4 => 80, 5 => 60, 6 => 60, 7=> 80  }
 
       )
@@ -157,8 +157,8 @@ module PdfWritter
            [
                hop.id,
                hop.name,
-               hop.time_start,
-               hop.time_end,
+               hop.time_start.to_s,
+               hop.time_end.to_s,
                hop.hoppers.count,
                hop.hop_tasks.count,
                hop.ads.count

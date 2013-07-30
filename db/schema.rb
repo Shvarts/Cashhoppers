@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20130725125102) do
 
   create_table "hops", :force => true do |t|
     t.string   "name"
-    t.string   "time_start"
-    t.string   "time_end"
+    t.datetime "time_start"
+    t.datetime "time_end"
     t.integer  "producer_id"
     t.string   "code"
     t.string   "price"
