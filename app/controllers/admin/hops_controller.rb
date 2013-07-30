@@ -25,10 +25,16 @@ class Admin::HopsController < Admin::AdminController
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
-
-    output = PdfWritter::TestDocument.new.hops_to_pdf(Hop.where(:close => false).all)
+    @hops = Hop.where(:close => false).all
+    output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
     respond_to do |format|
       format.html
+      format.xls{
+       headers['Content-Type'] = "application/vnd.ms-excel"
+        headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
+        headers['Cache-Control'] = ''
+        render 'hops_to_excel', :layout => false
+      }
       format.pdf {
         send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
       }
@@ -42,10 +48,17 @@ class Admin::HopsController < Admin::AdminController
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
-
-    output = PdfWritter::TestDocument.new.hops_to_pdf(Hop.where(:close => true).all)
+    @hops = Hop.where(:close => true).all
+    output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
     respond_to do |format|
       format.html
+      format.xls{
+        headers['Content-Type'] = "application/vnd.ms-excel"
+        headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
+        headers['Cache-Control'] = ''
+
+        render 'hops_to_excel', :layout => false
+      }
       format.pdf {
         send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
       }
