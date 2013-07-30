@@ -102,11 +102,64 @@ module PdfWritter
              [@producer.id, @producer.contact, @producer.email, @producer.phone]],
             :column_widths => {0 => 80, 1 => 80, 2 => 180, 3 => 80 }
       )
+      move_down(10)
+      text "Hop item", :size => 16, :align => :center
+      move_down(10)
+      items = @hop.hop_tasks.all.map do |task|
+        [
+           task.id,
+           task.text,
+           User.find_by_id(task.sponsor_id).first_name,
+           task.sponsor_id,
+           task.pts,
+           task.bonus,
+           task.price,
+           task.amt
 
+        ]
+
+      end
+      if !items.blank?
+        table([['id', 'text for hop item', 'sponsor', 'sponsor_id', 'PTS', "BNS", 'Price', "AMT paid"]],
+              :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30, 4  => 60, 5  => 60, 6  => 60, 7  => 60 })
+        table(items, :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30,  4  => 60, 5  => 60, 6  => 60, 7  => 60 })
+      end
+      move_down(10)
+      text "Hop ad", :size => 16, :align => :center
+      move_down(10)
+      ads = @hop.ads.all.map do |ad|
+        [
+            ad.ad_type,
+            User.find_by_id(ad.sponsor_id).first_name,
+            ad.hop_ad_picture_file_name,
+            ad.price,
+            ad.amt
+        ]
+
+      end
+
+      if !ads.blank?
+        table([['Position', 'Advertizer', 'Logo', 'Price', "AMT paid"]],
+              :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70, 4  => 70})
+        table(ads, :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70,  4  => 70 })
+      end
 
 
       render
     end
+
+    def current_hops_to_pdf(id)
+
+         text "current hops"
+      render
+    end
+
+    def archive_hops_to_pdf(id)
+
+      text "archived hops"
+      render
+    end
+
 
   end
 

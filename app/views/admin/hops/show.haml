@@ -199,4 +199,4 @@ need refactoring
         = link_to 'Destroy',  admin_ad_path(hop_ad), :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'Export to Excel', admin_print_hop_excel_path(:id => @hop.id), :class => 'btn btn-success'
-= link_to 'Export to Pdf',  admin_print_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post', :class => 'btn btn-success'
+= link_to 'Export to Pdf',  admin_print_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'

@@ -25,6 +25,15 @@ class Admin::HopsController < Admin::AdminController
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
+
+    output = PdfWritter::TestDocument.new.current_hops_to_pdf(Hop.where(:close => false).all)
+    respond_to do |format|
+      format.html
+      format.pdf {
+        send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
+      }
+    end
+
   end
 
   def archived
@@ -33,6 +42,15 @@ class Admin::HopsController < Admin::AdminController
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
+
+    output = PdfWritter::TestDocument.new.archive_hops_to_pdf(Hop.where(:close => true).all)
+    respond_to do |format|
+      format.html
+      format.pdf {
+        send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
+      }
+    end
+
   end
 
   def show
