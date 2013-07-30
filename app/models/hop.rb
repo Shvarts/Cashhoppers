@@ -60,8 +60,37 @@ class Hop < ActiveRecord::Base
     end
   end
 
-  def winner
-    ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1;");
+  def winner place
+    winner = ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1 OFFSET #{ place - 1 };");
+    if winner.blank?
+      nil
+    else
+      winner[0]
+    end
+  end
+
+  def self.find_old
+    find(:all, :conditions => ["((time_end < ? AND daily = 0) OR (time_end < ? AND daily = 1)) AND close = 0", DateTime.now, DateTime.now.beginning_of_day ])
+  end
+
+  def self.close_old_hops
+    @old_hops = Hop.find_old
+    @old_hops.each do |hop|
+      #mark hop as closed
+      hop.update_attribute :close, true
+      hop.prizes.each do |prize|
+        winner = hop.winner prize.place
+        #set prize user
+        prize.update_attribute :user_id, winner['id']
+        #send message to winner
+        message = Message.new(text: "You have won #{prize.place} prize in a hop #{ hop.name }", receiver_id: winner['id'])
+        message.save
+        #notificate hoppers about end of hop
+        hop.hoppers.each do |hopper|
+          Notification.create(user_id: hopper.id, event_type: 'End of hop', prize_id: prize.id)
+        end
+      end
+    end
   end
 
 end

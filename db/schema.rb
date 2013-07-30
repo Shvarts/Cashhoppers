@@ -61,14 +61,6 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "events", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "event_type"
-    t.integer  "comment_id"
-    t.integer  "like_id"
-    t.datetime "created_at"
-  end
-
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -99,8 +91,8 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
 
   create_table "hops", :force => true do |t|
     t.string   "name"
-    t.string   "time_start"
-    t.string   "time_end"
+    t.datetime "time_start"
+    t.datetime "time_end"
     t.integer  "producer_id"
     t.string   "code"
     t.string   "price"
@@ -131,6 +123,15 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
     t.boolean  "synchronized"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "event_type"
+    t.integer  "comment_id"
+    t.integer  "like_id"
+    t.integer  "prize_id"
+    t.datetime "created_at"
   end
 
   create_table "prizes", :force => true do |t|

@@ -46,11 +46,10 @@ class Api::HopsController < Api::ApplicationController
   def yesterdays_winner
     hop = Hop.get_daily_by_date DateTime.now - 1.day
     if hop
-      winner = hop.winner
-      if winner.blank?
+      winner = hop.winner 1
+      if !winner
         bad_request(['Missing winner for yesterday\'s hop.'], 406)
       else
-        winner = winner[0]
         respond_to do |format|
           format.json{
             render :json => {success: true,

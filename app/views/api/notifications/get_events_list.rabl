@@ -2,34 +2,30 @@ collection :@events
 
 attributes :event_type, :created_at
 
-node :comment_text do |event|
-   event.comment.text if event.event_type == 'Comment'
+child :comment do
+    attributes :text, :user_id, :commentable_id => :user_hop_task_id
 end
 
-node :user_id do |event|
-   event.user.id
+child :like do
+    attributes  :user_id, :target_object_id => :user_hop_task_id
 end
 
-node :user_first_name do |event|
-   event.user.first_name
+child :prize do
+    attributes :cost, :place, :user_id, :hop_id
 end
 
-node :user_last_name do |event|
-   event.user.last_name
+child :friend do
+    attributes :id, :last_name, :first_name, :user_name
+    node :avatar do |user|
+        user.avatar.url if user.avatar_file_size
+    end
+
+    node :friends_count do |user|
+        user.friends.count
+    end
 end
 
-node :user_user_name do |event|
-   event.user.user_name
-end
 
-node :user_avatar do |event|
-   event.user.avatar.url
-end
 
-node :user_hop_task_id do |event|
-   if event.event_type == 'Comment'
-      event.comment.commentable_id
-   elsif event.event_type == 'Like'
-      event.like.target_object_id
-   end
-end
+
+

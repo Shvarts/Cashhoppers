@@ -57,6 +57,9 @@ class Admin::HopsController < Admin::AdminController
     params[:hop][:producer_id] = current_user.id
     params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
+    if @hop.daily
+      @hop.time_end = @hop.time_start
+    end
     if @hop.save
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
@@ -79,6 +82,9 @@ class Admin::HopsController < Admin::AdminController
 
   def update
     @hop = Hop.find(params[:id])
+    if @hop.daily
+      @hop.time_end = @hop.time_start
+    end
     if @hop.update_attributes(params[:hop])
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else

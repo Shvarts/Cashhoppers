@@ -6,10 +6,10 @@
       - link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
     - g.column name: 'Price', attribute: 'price'
     - g.column name: 'Jackpot', attribute: 'jackpot'
-    - g.column name: 'Time Start', :attribute => 'time_start' do |hop|
+    - g.column name: 'Time Start', :attribute => 'time_start', filter: false do |hop|
       - hop.time_start.to_s if hop.time_start
     - unless @tab == 'daily_hops'
-      - g.column name: 'Time End', :attribute => 'time_end' do |hop|
+      - g.column name: 'Time End', :attribute => 'time_end', filter: false do |hop|
         - hop.time_end.to_s if hop.time_end
     - if @tab == 'current_hops' || @tab == 'archived_hops'
       - g.column name: 'Type', :attribute => 'daily', custom_filter: [['Daily', true], ['Regular', false]] do |hop|

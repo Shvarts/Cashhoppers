@@ -56,7 +56,7 @@ class Api::UserHopTasksController < Api::ApplicationController
   def like
     unless Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
       @like = Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
-      Event.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
+      Notification.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
       @user_hop_task.hop_task.hop.increase_score @current_user, 1
       respond_to do |format|
         format.json{
@@ -86,7 +86,7 @@ class Api::UserHopTasksController < Api::ApplicationController
   def comment
     comment = @user_hop_task.comments.build(user_id: @current_user.id, text: params[:text])
     if comment.save
-      Event.create(user_id: @user_hop_task.user_id, comment_id: comment.id, event_type: 'Comment')
+      Notification.create(user_id: @user_hop_task.user_id, comment_id: comment.id, event_type: 'Comment')
       respond_to do |format|
         format.json{
           render :json => {success: true,

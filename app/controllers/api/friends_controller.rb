@@ -25,7 +25,7 @@ class Api::FriendsController < Api::ApplicationController
 
   def send_request
     Friendship.request(current_user, @friend)
-    Event.create(user_id: @friend.id, event_type: 'Friend invite')
+    Notification.create(user_id: @friend.id, event_type: 'Friend invite')
     render :json => {success: true,
                      info: 'Friend request sent.',
                      status: 200
@@ -35,7 +35,7 @@ class Api::FriendsController < Api::ApplicationController
   def accept_request
     if @current_user.requested_friends.include?(@friend)
       Friendship.accept(@current_user, @friend)
-      Event.create(user_id: @friend.id, event_type: 'Friend invite accept')
+      Notification.create(user_id: @friend.id, event_type: 'Friend invite accept')
       render :json => {success: true,
                        info: "Friendship with user #{@friend.id} accepted!",
                        status: 200

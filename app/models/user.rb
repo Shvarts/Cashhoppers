@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
                     :default_url => "/images/noavatar.jpeg",
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
-  has_many :events
+  has_many :notifications
   has_many :prizes, dependent: :destroy
 
   before_create :create_role

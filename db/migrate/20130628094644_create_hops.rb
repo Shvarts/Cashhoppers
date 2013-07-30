@@ -2,8 +2,8 @@ class CreateHops < ActiveRecord::Migration
   def change
     create_table :hops do |t|
       t.string :name
-      t.string :time_start
-      t.string :time_end
+      t.datetime :time_start
+      t.datetime :time_end
       t.integer :producer_id
       t.string :code
       t.string :price

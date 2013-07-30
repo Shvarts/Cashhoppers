@@ -293,29 +293,22 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/notifications.json?api_key=123&authentication_token=eIldvK7N5ysng6M7cwyqgS8UXQyf21&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response: {"events"=>[
-                {"event_type"=>"Like", "created_at"=>"2013-07-24T11:45:13Z", "comment_text"=>nil, "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>"CashH
-                oppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
 
-                {"event_type"=>"Comment", "created_at"=>"2013-07-24T11:45:15Z", "comment_text"=>"hello its cnt ", "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>
-                "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
+              {"event_type"=>"Friend invite", "created_at"=>"2013-07-31T14:19:11Z", "comment"=>nil, "like"=>nil, "prize"=>nil, "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend",
+              "avatar"=>nil, "friends_count"=>1}},
 
-                {"event_type"=>"Comment", "created_at"=>"2013-07-24T11:49:16Z", "comment_text"=>"hello its cnt ", "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>
-                "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
+              {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil, "prize"=>{"cost"=>22, "place"=>1, "user_id"=>2, "hop_id"=>20}, "friend"=>nil},
 
-                {"event_type"=>"Comment", "created_at"=>"2013-07-24T11:52:17Z", "comment_text"=>"hello its cnt ", "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>
-                "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
+              {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil, "prize"=>{"cost"=>12, "place"=>2, "user_id"=>3, "hop_id"=>20}, "friend"=>nil},
 
-                {"event_type"=>"Comment", "created_at"=>"2013-07-24T12:17:29Z", "comment_text"=>"hello its cnt ", "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>
-                "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
+              {"event_type"=>"Comment", "created_at"=>"2013-07-30T10:43:15Z", "comment"=>{"text"=>"hello its comment.", "user_id"=>2}, "like"=>nil, "prize"=>nil, "friend"=>nil},
 
-                {"event_type"=>"Comment", "created_at"=>"2013-07-24T12:18:59Z", "comment_text"=>"hello its cnt", "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>"
-                CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>1},
+              {"event_type"=>"Like", "created_at"=>"2013-07-30T10:43:14Z", "comment"=>nil, "like"=>{"user_id"=>2}, "prize"=>nil, "friend"=>nil},
 
-                {"event_type"=>"Friend invite", "created_at"=>"2013-07-24T12:41:41Z", "comment_text"=>nil, "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>"CashHo
-                ppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>nil},
+              {"event_type"=>"Friend invite accept", "created_at"=>"2013-07-29T14:19:12Z", "comment"=>nil, "like"=>nil, "prize"=>nil, "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend", "avatar"=>nil
+              , "friends_count"=>1}}
 
-                {"event_type"=>"Friend invite accept", "created_at"=>"2013-07-24T12:44:19Z", "comment_text"=>nil, "user_id"=>1, "user_first_name"=>"admin", "user_last_name"=>
-                "CashHoppers", "user_user_name"=>"admin", "user_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.png?1374665706", "user_hop_task_id"=>nil}]}
+              ]}
 ===Messages
 ====send message to friends(method: POST)
     url: http://localhost:3000/api/messages/send_message.json
