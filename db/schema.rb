@@ -131,16 +131,15 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
     t.integer  "comment_id"
     t.integer  "like_id"
     t.integer  "prize_id"
+    t.integer  "friend_id"
     t.datetime "created_at"
   end
 
   create_table "prizes", :force => true do |t|
-    t.integer  "cost"
-    t.integer  "place"
-    t.integer  "user_id"
-    t.integer  "hop_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "cost"
+    t.integer "place"
+    t.integer "user_id"
+    t.integer "hop_id"
   end
 
   add_index "prizes", ["hop_id"], :name => "index_prizes_on_hop_id"

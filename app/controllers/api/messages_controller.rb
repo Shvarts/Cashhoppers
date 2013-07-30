@@ -67,7 +67,7 @@ class Api::MessagesController < Api::ApplicationController
         format.json{}
       end
     else
-      bad_request ["Can't find friend with id #{@friend.id}."], 406
+      bad_request ["Can't find friend with id #{params[:friend_id]}."], 406
     end
   end
 
