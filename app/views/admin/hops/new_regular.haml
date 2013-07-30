@@ -1,5 +1,7 @@
 .row-fluid
   .text-right
+    .alert-error
+      = flash[:bad_file] if flash[:bad_file]
     =form_tag({:controller => 'hops', :action => 'import_excel'}, :multipart=>true, :method => 'post') do
       Select an Excel File :
       = file_field_tag 'excel'

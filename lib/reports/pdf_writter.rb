@@ -128,7 +128,7 @@ module PdfWritter
       ads = @hop.ads.all.map do |ad|
         [
             ad.ad_type,
-            ad.sponsor.first_name,
+            User.find_by_id(ad.sponsor_id).first_name,
             ad.hop_ad_picture_file_name,
             ad.price,
             ad.amt

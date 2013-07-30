@@ -144,12 +144,18 @@ class Admin::HopsController < Admin::AdminController
 
   def import_excel
     @hop = Hop.new
-    if params[:excel]
+    begin
       import_file = params[:excel]
 
       @new_hop, @hop_items,@hop_ads = Hop.import_from_excel(import_file)
       @hoppers = []
       @hop = Hop.new(@new_hop)
+
+   rescue Exception =>e
+      flash[:bad_file] = "Bad file format"
+      render 'new_regular'
+    else
+
       if @hop.save
           Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads)
           @tasks = @hop.hop_tasks
@@ -157,19 +163,11 @@ class Admin::HopsController < Admin::AdminController
       else
         render  action: 'new_regular',  notice: "bad excel file"
       end
-    else
-      flash[:error] = 'no selected file'
-      render 'new_regular'
+
     end
+ end
 
-
-
-  end
-
-
-
-
-  def print_hop_excel
+ def print_hop_excel
     @hop = Hop.find_by_id(params[:id])
     @producer = User.find_by_id(@hop.producer_id)
     headers['Content-Type'] = "application/vnd.ms-excel"
