@@ -46,15 +46,26 @@
   <% end %>
 
 </fieldset>
+<br />
 
 <% if !@users.blank? %>
-  <%= button_to "Email to list", admin_messages_email_tool_path({"id"=>@id}),:class=>"span4 btn btn-success pull-right"  %>
- <br />
-  <%= button_to "Messages to list", admin_messages_message_tool_path({"id"=>@id}) , :class=>"span4 btn btn-success pull-right"  %>
+  <div class = "row-fluid">
+    <div class = "span6 text-left">
+      <%= button_to "Email to list", admin_messages_email_tool_path({"id"=>@id}),:class=>"btn btn-success"  %>
+    </div>
+    <div class = "span6 text-right">
+      <%= link_to("Export file to PDF",  admin_hoppers_hopper_list_path(:id =>@id, :format => 'pdf'),:target=>"_blank",  :class=>"btn btn-success" ) %>
+    </div>
+  </div>
+  <div class = 'row-fluid'>
+    <div class = "span6 text-left">
+      <%= button_to "Messages to list", admin_messages_message_tool_path({"id"=>@id}) , :class=>"btn btn-success"  %>
+    </div>
+    <div class = "span6 text-right">
+      <%= button_to("Export file to Exel", admin_hoppers_hopper_list_path(:id =>@id, :format => 'xls'),   :class=>"btn btn-success" ) %>
+    </div>
+  <end>
 <% end %>
-  <%= button_to("Export file to Exel", nil,  :class=>"span4 btn-success" ) %>
-  <%= button_to("Export file to PDF",  admin_hoppers_hopper_list_path(:id =>@id, :format => 'pdf'),  :class=>"span4 btn-success" ) %>
-
 
 <div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header" >

@@ -52,7 +52,7 @@ module PdfWritter
       render
     end
 
-    def to_pdf_hopper_list(hoppers_id)
+    def to_pdf_hopper_list(gamers)
 
       table([['user id', 'first name', 'user name', 'email', 'zip']],
              :column_widths => {0 => 80, 1 => 80, 2 => 80, 3 => 180, 4=> 80 }
@@ -60,10 +60,8 @@ module PdfWritter
 
 
 
-      gamers = []
-      for i in hoppers_id
-        gamers << User.find_by_id(i)
-      end
+
+
 
 
 

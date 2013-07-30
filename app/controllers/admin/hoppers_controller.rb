@@ -19,8 +19,20 @@ class Admin::HoppersController < Admin::AdminController
 
 
    if  params[:id]
-     output = PdfWritter::TestDocument.new.to_pdf_hopper_list(params[:id])
+     @gamers = []
+     for i in params[:id]
+       @gamers  << User.find_by_id(i)
+     end
+
+     output = PdfWritter::TestDocument.new.to_pdf_hopper_list(@gamers)
      respond_to do |format|
+       format.xls{
+         headers['Content-Type'] = "application/vnd.ms-excel"
+         headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
+         headers['Cache-Control'] = ''
+
+         render 'hop_list_to_excel', :layout => false
+       }
        format.pdf {
          send_data output, :filename => "HopperList.pdf", :type => "application/pdf", :disposition => "inline"
        }
@@ -87,4 +99,6 @@ class Admin::HoppersController < Admin::AdminController
 
     (params[:hop])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_hop_list')
   end
+
+
 end
