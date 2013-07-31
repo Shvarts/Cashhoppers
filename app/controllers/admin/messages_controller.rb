@@ -67,15 +67,21 @@ class Admin::MessagesController < Admin::AdminController
     render partial: 'users_list'
   end
 
-  #def message_history
-  #  @tab = 'message_tool'
-  #  @messages = Message.where(:email=>false)
-  #end
-  #
-  #def email_history
-  #  @tab = 'email_tool'
-  #  @emails=Message.find_all_by_email(true)
-  #end
+  def message_history
+    params[:page] ||= 1
+    params[:per_page] ||= 20
+    @tab = 'message_history'
+    @messages_grid = initialize_grid(Message, include: [:receiver], per_page: params[:per_page], :conditions => {sender_id: nil},
+                                 :order => 'created_at',
+                                 :order_direction => 'desc')
+  end
+
+  def destroy_message
+    @message = Message.find_by_id(params[:id])
+    @message.destroy
+    redirect_to admin_messages_message_history_path, notice:"Message was succesfully removed."
+  end
+
   #
   #def create_email
   #     receiver_id = Message.users_from_hop(params[:hopId])  if params[:hopId]
@@ -108,58 +114,6 @@ class Admin::MessagesController < Admin::AdminController
   #  render partial: 'users_list' if params[:page] || params[:query]|| params[:id_user]
   #
   #  (params[:id])? (@arr, @arr_id = Message.external_id(params[:id])) : (@arr = @arr_id = [])
-  #
-  #end
-  #
-  #def message_tool
-  # @tab = 'message_tool'
-  #
-  # conditions = Message.conditions_for_users(params[:query])
-  # @message= Message.new
-  # @users = User.paginate(page: params[:page], per_page:9, conditions: conditions )
-  #
-  # render partial: 'users_list' if params[:page] || params[:query]
-  #
-  # (params[:id])? (@arr, @arr_id = Message.external_id(params[:id])) : (@arr = @arr_id = [])
-  #
-  #
-  #
-  #end
-  #
-  #def show
-  #  @message = Message.find_by_id(params[:id])
-  #end
-  #
-  #def destroy
-  #  @message = Message.find_by_id(params[:id])
-  #  email = @message.email
-  #  @message.destroy
-  #
-  #  (email)? (redirect_to admin_messages_email_history_path):(redirect_to admin_messages_message_history_path)
-  #
-  #end
-  #
-  #
-  #
-  #def find_hop
-  #
-  #  conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
-  #  @hops = Hop.paginate(page: params[:page], per_page:9, conditions:  conditions)
-  #  render :partial=> 'hops_list'
-  #
-  #
-  #
-  #
-  #end
-  #
-  #
-  #def find_zip
-  #
-  # conditions = ["zip LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
-  #  @zips = User.group(:zip).select(:zip)
-  #  @zips = @zips.paginate(:page => 1, :per_page => 9,  conditions:  conditions )
-  #
-  #  render :partial=> 'zips_list'
   #
   #end
 

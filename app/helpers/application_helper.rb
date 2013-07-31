@@ -1,9 +1,9 @@
 module ApplicationHelper
 
-  def current_user_name
+  def full_user_name user
     name = ''
-    name += current_user.first_name + ' ' if current_user.first_name
-    name += current_user.last_name if current_user.last_name
+    name += user.first_name + ' ' if user.first_name
+    name += user.last_name if user.last_name
     name
   end
 

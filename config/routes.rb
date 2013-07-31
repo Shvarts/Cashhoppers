@@ -55,6 +55,7 @@ CashHoppers::Application.routes.draw do
     get 'messages/users_list'
     get 'messages/email_history'
     get 'messages/message_history'
+    delete 'messages/destroy_message'
 
   end
 

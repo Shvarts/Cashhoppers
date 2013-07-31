@@ -1,32 +1,13 @@
--#<h2>Messages list</h2>
--#<table class="table">
--#  <tr>
--#    <td>Message from</td>
--#    <td>Receiver email</td>
--#    <td>Send on</td>
--#    <td></td>
--#  </tr>
--#    <% if !@messages.blank? %>
--#      <% for i in @messages do %>
--#          <tr>
--#            <td><%= i.email_author %></td>
--#            <td><%= i.receiver.email  if i.receiver%></td>
--#            <td><%= i.send_at %></td>
--#            <td>
--#              <%= link_to 'show', admin_messages_show_path(:id=>i.id) %>
--#              <%= link_to 'Destroy', admin_messages_destroy_path(:id => i.id), :method => 'delete', :data=> { confirm: 'Are you sure?' } %>
--#
--#
--#            </td>
--#          </tr>
--#      <% end %>
--#     <% else %>
--#        <tr>
--#        <h1>Not Found</h1>
--#        </tr>
--#     <% end %>
--#
--#
--#</table>
--#
--#<%= link_to "Back", admin_messages_message_tool_path %>
+.grid
+  = grid(@messages_grid, upper_pagination_panel: true) do |g|
+    - g.blank_slate content_tag(:div, 'No records found')
+    - g.column name: 'Text', attribute: 'text'
+    - g.column name: 'Receiver', attribute: 'user_name', model: User do |message|
+      - link_to(full_user_name(message.receiver), user_path(message.receiver)) if  message.receiver
+    - g.column name: 'Created at', attribute: 'created_at', filter: false
+    - g.column name: 'Schedule date', attribute: 'schedule_date', filter: false
+    - g.column name: 'Synchronized', attribute: 'synchronized'
+    - g.column do |message|
+      - link_to('Remove', admin_messages_destroy_message_path(id: message.id), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+
+
