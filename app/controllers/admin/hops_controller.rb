@@ -121,6 +121,17 @@ class Admin::HopsController < Admin::AdminController
     'admin/hops_tabs'
   end
 
+  def print_hop_to_pdf
+     output = PdfWritter::TestDocument.new.print_hop_pdf(params[:id])
+      respond_to do |format|
+        format.pdf {
+          send_data output, :filename => "Hop.pdf", :type => "application/pdf", :disposition => "inline"
+        }
+   end
+
+
+  end
+
   private
 
   def init_hop
@@ -131,5 +142,7 @@ class Admin::HopsController < Admin::AdminController
       @tab = 'hops'
     end
   end
+
+
 
 end

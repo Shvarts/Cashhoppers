@@ -24,6 +24,7 @@ CashHoppers::Application.routes.draw do
     delete 'hop/:id',                      to: 'hops#destroy',           as: 'hop'
     put 'hop/:id',                         to: 'hops#update',            as: 'hop'
     post 'close_hop/:id',                  to: 'hops#close',             as: 'close_hop'
+    post 'hops/print_hop_to_pdf',               to: 'hops#print_hop_to_pdf',      as: 'print_hop_to_pdf'
 
     #hop_tasks
     resources :hop_tasks
