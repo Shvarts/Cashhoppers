@@ -146,6 +146,36 @@ class Admin::HopsController < Admin::AdminController
 
   end
 
+
+  def import_from_excel
+
+      @hop = Hop.new
+      begin
+        import_file = params[:excel]
+
+        @new_hop, @hop_items,@hop_ads, @winners = Hop.import_from_excel(import_file)
+        @hoppers = []
+        @hop = Hop.new(@new_hop)
+
+      rescue Exception =>e
+        flash[:bad_file] = "Bad file format #{e}"
+        redirect_to 'regular'
+      else
+
+        if @hop.save
+          Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
+          @tasks = @hop.hop_tasks
+
+           redirect_to   admin_hop_path(@hop)
+        else
+          render  action: 'regular',  notice: "bad excel file"
+        end
+
+
+    end
+
+  end
+
   private
 
   def init_hop

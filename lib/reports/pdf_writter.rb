@@ -24,7 +24,7 @@ module PdfWritter
           begin
             dice = ''
             if @hopper.avatar_file_size
-              dice = "#{Rails.root}/public#{@hopper.avatar.url}"
+              dice = "#{@hopper.avatar.path}"
             else
               dice = "#{Rails.root}/app/assets/images/no_avatar.png"
             end
