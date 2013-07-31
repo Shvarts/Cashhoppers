@@ -4,4 +4,7 @@
   .span12.text-right
     -unless @hops_grid.blank?
       = link_to("Export file to PDF", admin_print_hop_list_to_pdf_path(:format => 'pdf', :id => 'current'),:method => 'post',:target=>"_blank",  :class=>"btn btn-success" )
+  .span12.text-left
+    -unless @hops_grid.blank?
+      = link_to("Export file to Excel", admin_print_hops_to_excel_path(:format => 'xls', :id => 'current'),:method => 'post',  :class=>"btn btn-success" )
 
