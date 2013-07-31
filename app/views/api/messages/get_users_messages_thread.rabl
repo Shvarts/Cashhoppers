@@ -21,7 +21,7 @@ node :friend_user_name do |friend|
 end
 
 node :last_message_id do |friend|
-   @message = Message.where(sender_id: friend.id, receiver_id: @current_user.id).last
+   @message = Message.where(sender_id: [friend.id, @current_user.id], receiver_id: [@current_user.id, friend.id]).last
    @message ? @message.id : nil
 end
 
