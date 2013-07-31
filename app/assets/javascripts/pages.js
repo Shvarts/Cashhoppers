@@ -1,6 +1,5 @@
-
 $(document).ready(function(){
-	$('a[href^="#"]').bind('click.smoothscroll',function (e){
+	$('a.navigation[href^="#"]').bind('click.smoothscroll',function (e){
 		e.preventDefault();
 		var target = this.hash,
 		$target = $(target);
@@ -10,7 +9,11 @@ $(document).ready(function(){
 			window.location.hash = target
 		});
 	});
+
+
+  $('.carousel').carousel();
 });
+
 
 
 

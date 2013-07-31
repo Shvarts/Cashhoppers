@@ -17,6 +17,7 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
+//= require twitter/bootstrap/bootstrap-carousel
 //= require bootstrap-datetimepicker
 //= require wice_grid
 //= require bootstrap-fileupload.min

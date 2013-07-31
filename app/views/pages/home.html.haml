@@ -32,12 +32,52 @@
 .page-divider
 .custom-pg.gray-page
   %h2{:id=>"gray-page"}
+  %br
+    %br
+  .span4
+  %table
+    %tr
+      %td
+        %b WHAT IS CASHHOPERS ALL ABOUT
+    %tr
+      %td
+        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
+	    :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+    %tr
+      %td
+        %p sadafsafasfasf
 .page-divider
 .custom-pg.yellow-page
   %h2{:id=>"yellow-page"}
+  %br
+    %br
+  .span4
+  %table
+    %tr
+      %td
+        %b HOW TO PLAY
+    %tr
+      %td
+        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
+        :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+    %tr
+      %td
+        %p sadafsafasfasfas
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
+  .span12
+    .carousel.slide#myCarousel
+      .carousel-inner
+        .center
+        .active-item
+          =image_tag("logo.png")
+        .item
+          =image_tag("facebook.png")
+        .item
+          =image_tag("rails.png")
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
 .custom-pg.business-page
   %h2{:id=>"business-page"}
