@@ -4,14 +4,7 @@ class Admin::HoppersController < Admin::AdminController
   def find_hopper
 
     @tab = 'find_hoppers'
-    if  params[:id]
-    output = PdfWritter::TestDocument.new.to_pdf_hopper(params[:id])
-    respond_to do |format|
-      format.pdf {
-        send_data output, :filename => "Hopper.pdf", :type => "application/pdf", :disposition => "inline"
-      }
-      end
-    end
+
   end
 
   def hopper_list
@@ -89,5 +82,17 @@ class Admin::HoppersController < Admin::AdminController
     end
 
     (params[:hop])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_hop_list')
+  end
+
+  def hopper_to_pdf
+    if  params[:id]
+      output = PdfWritter::TestDocument.new.to_pdf_hopper(params[:id])
+      respond_to do |format|
+        format.pdf {
+          send_data output, :filename => "Hopper.pdf", :type => "application/pdf", :disposition => "inline"
+        }
+      end
+    end
+
   end
 end

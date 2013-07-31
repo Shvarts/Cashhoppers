@@ -35,25 +35,38 @@ module PdfWritter
 
           ]
        end
-      games =  @hopper.games
+       bounding_box([340,700], :width => 200, :height => 200) do
+         table([
+                ["Hops played"]
+            ],:column_widths => {0 => 100})
 
-      table([
-               ["Hops played", "Hops won"]
+         unless @hopper.games.blank?
+            games = @hopper.games.map do |i|
+              [
+                  i.name
+              ]
+            end
+            table(games, :column_widths => {0 => 100})
 
+         end
 
+         end
+      bounding_box([440,700], :width => 200, :height => 200) do
+         table([
+                ["Hops won"]
+            ],:column_widths => {0 => 100})
 
-          ], :column_widths => {0 => 120, 1 => 120})
+         unless @hopper.prizes.blank?
+            prizes = @hopper.prizes.map do |i|
+              [
+                  Hop.find_by_id(i.hop_id).name
+              ]
+            end
+            table(prizes, :column_widths => {0 => 100})
 
+         end
 
-
-      #bounding_box([120,471], :width => 200, :height => 200) do
-      #   table([
-      #          ["Hops won"]
-      #
-      #
-      #
-      #      ],:column_widths => {0 => 120})
-      #   end
+      end
 
       render
     end

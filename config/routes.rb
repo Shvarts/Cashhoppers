@@ -41,6 +41,7 @@ CashHoppers::Application.routes.draw do
     get '/hoppers/search_by_id' => 'hoppers#search_by_id'
     get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
     get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
+    post '/hoppers/hopper_to_pdf' => 'hoppers#hopper_to_pdf'
 
 
     match '/messages/message_history' => "messages#message_history"

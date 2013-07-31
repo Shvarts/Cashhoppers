@@ -16,22 +16,36 @@
 
 <fieldset >
 
-  <table class="pull-right" >
+  <% if !@user.blank? %>
 
-    <tr>
-      <td class ="span4">Hops played  </td>
-      <td class ="span4">Hops won</td>
+      <table class="pull-right" >
+        <tr>
+          <td class ="span4">Hops played  </td>
 
-    </tr>
-    <tr>
-      <td ><%= text_area_tag(:text, nil, :rows=>"5") %></td>
-      <td> <%= text_area_tag(:text, nil, :rows=>"5") %></td>
-    </tr>
+        </tr>
+        <% unless @user.games.blank?%>
+          <% for i in @user.games %>
+          <tr>
+            <td> <%= i.name %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <table class="pull-right" >
 
-  </table>
+        <tr>
+          <td class ="span4">Hops won</td>
+        </tr>
+        <% unless @user.prizes.blank?%>
+            <% for i in @user.games %>
+                <tr>
+                  <td> <%= Hop.find_by_id( i.hop_id).name %></td>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
 
 
-<% if !@user.blank? %>
 
   <table>
 
@@ -103,7 +117,7 @@
 
 </fieldset>
 
-<%= link_to("Export file to PDF",  admin_hoppers_find_hopper_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>"span7 pull-right btn btn-success" ) %>
+<%= link_to("Export file to PDF",  admin_hoppers_hopper_to_pdf_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>"span7 pull-right btn btn-success" ) %>
 
 <%= button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" ) %>
 
