@@ -104,11 +104,22 @@ class Admin::HoppersController < Admin::AdminController
 
     respond_to do |format|
       format.xls{
-        #headers['Content-Type'] = "application/vnd.ms-excel"
-        #headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
-        #headers['Cache-Control'] = ''
 
-        render 'hop_list_to_excel', :layout => false
+          clients = Spreadsheet::Workbook.new
+          list = clients.create_worksheet :name => 'List of cliets'
+          list.row(1).push "Hoppers list"
+          list.row(3).concat %w{Id User_name First_name Last_name Zip Email}
+          @gamers.each_with_index { |client, i|
+            list.row(i+4).push client.id,client.user_name,client.first_name,client.last_name,client.zip,client.email
+          }
+          header_format = Spreadsheet::Format.new :color =>:green, :size => 10
+          list.row(1).default_format = header_format
+          #output to blob object
+          blob = StringIO.new("")
+          clients.write blob
+          #respond with blob object as a file
+          send_data blob.string, :type => 'xls', :filename =>'Hoppers_list.xls'
+
       }
     end
   end
