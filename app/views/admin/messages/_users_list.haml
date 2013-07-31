@@ -18,9 +18,11 @@
           = user.id
         %td
           = user.user_name
-
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_email_tool_path(:id_user =>user.id), id: 'select_id', name: 'btn', :data => { 'user-id' => user.id }
-
-  = text_field_tag :input, flash[:id]
+          - if params[:selected_users].include?(user.id.to_s)
+            %button.btn.btn-mini
+              Add
+          - else
+            %button.btn.btn-mini.btn-success{onclick: "select_user( this, '#{user.id}', '#{user.first_name}')"}
+              Add
   = will_paginate @users, renderer: BootstrapPagination::Rails

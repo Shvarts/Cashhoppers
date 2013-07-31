@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
                     :default_url => "/assets/no_avatar.png",
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
   has_many :notifications
-  has_many :prizes, dependent: :destroy
+  has_many :prizes, dependent: :delete_all
 
   before_create :create_role
   # Include default devise modules. Others available are:
@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
+  def self.zip_codes
+    ActiveRecord::Base.connection.select_all("SELECT DISTINCT users.zip FROM users;");
   end
 
   private

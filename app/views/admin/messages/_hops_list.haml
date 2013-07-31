@@ -4,7 +4,7 @@
       = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
     .span5.text-right.row
       = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
-      = link_to 'Search',  admin_messages_find_hop_path, class: 'btn span4', id: 'search_button'
+      = link_to 'Search',  '#', class: 'btn span4', id: 'search_button'
   %table.table.table-condensed
     %tr
       %th
@@ -22,9 +22,11 @@
           = hop.name
         %td
           = hop.daily
-
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_messages_find_hop_path(:id_hop =>hop.id), id: 'select_id',  :data => { 'user-id' => hop.id }
-  -if flash[:id]
-    = text_field_tag :input, flash[:id]
+          - if @selected_hops.include?(hop.id.to_s)
+            %button.btn.btn-mini
+              Add
+          - else
+            %button.btn.btn-mini.btn-success{onclick: "select_hop( this, '#{hop.id}', '#{hop.name}')"}
+              Add
   = will_paginate @hops, renderer: BootstrapPagination::Rails
