@@ -170,4 +170,6 @@
 
 %br
 = link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
+%br
+= link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
 

@@ -130,21 +130,69 @@ class Admin::HopsController < Admin::AdminController
       end
   end
   def print_hop_list_to_pdf
-
-     (params[:id] == 'current')? @hops = Hop.where(:close => false).all : @hops = Hop.where(:close => true  ).all
-
-
-
+    (params[:id] == 'current')? @hops = Hop.where(:close => false).all : @hops = Hop.where(:close => true  ).all
     respond_to do |format|
       format.pdf {
         output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
         send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
       }
     end
-
-
-
   end
+
+  def print_hop_to_excel
+    @hop = Hop.find_by_id(params[:id])
+    respond_to do |format|
+      format.xls{
+        last_col = 0
+        clients = Spreadsheet::Workbook.new
+        list = clients.create_worksheet :name => ' Hop'
+        list.row(1).push "Hop"
+        list.row(3).concat ['Id', 'Name', 'Code', 'Time start', 'Time end','Jackpot', 'Special event']
+        [@hop].each_with_index { |hop, i|
+          list.row(i+4).push hop.id,hop.name,hop.code,hop.time_start.to_s,hop.time_end.to_s,hop.jackpot,hop.event
+        }
+        list.row(6).concat ['Producer_id', 'Producer contact', 'Producer email', 'Producer phone']
+        [@hop.producer].each_with_index { |hop, i|
+          list.row(i+7).push hop.id, hop.contact,"#{hop.first_name.to_s + ' ' +hop.last_name.to_s}",hop.email, hop.phone
+        }
+
+        list.row(9).push "Winner"
+        list.row(11).concat %w{Place Prize}
+        @hop.prizes.each_with_index { |winner, i|
+          list.row(i+12).push winner.place, winner.cost
+          last_col =  last_col + i
+        }
+
+        list.row(last_col+13).push 'Items'
+       list.row(last_col+15).concat ['Id', 'Text for hop item', 'Sponsor', 'Spponsor_id', 'PTS', ' BNS', 'Price', 'AMT paid']
+        z = last_col+16
+        @hop.hop_tasks.each_with_index { |item, i|
+          list.row(i+z).push item.id, item.text,"#{ item.sponsor.first_name + ' ' + item.sponsor.last_name}", item.sponsor_id, item.pts, item.price, item.amt_paid
+          last_col =  last_col + i
+        }
+
+        list.row(last_col+17).push 'Ad'
+        list.row(last_col+19).concat ['Position', 'Advertizer', 'Logo', 'Price', 'AMT paid']
+        z = last_col+20
+        @hop.ads.each_with_index { |ad, i|
+          list.row(i+z).push ad.ad_type,"#{ ad.advertizer.first_name + ' ' + ad.advertizer.last_name}", ad.picture_file_name, ad.price, ad.amt_paid
+          last_col =  last_col + i
+        }
+
+
+        header_format = Spreadsheet::Format.new :color =>:green, :size => 10
+        list.row(1).default_format = header_format
+        #output to blob object
+        blob = StringIO.new("")
+        clients.write blob
+        #respond with blob object as a file
+        send_data blob.string, :type => 'xls', :filename =>'Hop.xls'
+
+      }
+    end
+  end
+
+
 
   private
 
