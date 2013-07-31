@@ -27,6 +27,7 @@ CashHoppers::Application.routes.draw do
     post 'hops/print_hop_to_pdf',          to: 'hops#print_hop_to_pdf',      as: 'print_hop_to_pdf'
     post 'hops/print_hop_list_to_pdf',     to: 'hops#print_hop_list_to_pdf',      as: 'print_hop_list_to_pdf'
     post 'hops/print_hop_to_excel',     to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
+    post 'hops/print_hops_to_excel',     to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
 
     #hop_tasks
     resources :hop_tasks

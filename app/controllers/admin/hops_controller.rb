@@ -192,7 +192,34 @@ class Admin::HopsController < Admin::AdminController
     end
   end
 
+  def print_hops_to_excel
 
+    (params[:id] == 'current')? @hops = Hop.where(:close => false).all : @hops = Hop.where(:close => true  ).all
+
+
+    respond_to do |format|
+      format.xls{
+
+          clients = Spreadsheet::Workbook.new
+          list = clients.create_worksheet :name => 'Hop List'
+         (@hops.first.close)?  (list.row(1).push " Archived hops") : (list.row(1).push " Current hops")
+
+          list.row(3).concat ['Id', 'Name', 'Time start', 'Time end', 'Registered hoppers', 'Items', "Ads"]
+          @hops.each_with_index { |hop, i|
+            list.row(i+4).push hop.id,hop.name,hop.time_start.to_s,hop.time_end.to_s, hop.hoppers.count, hop.hop_tasks.count, hop.ads.count
+          }
+          header_format = Spreadsheet::Format.new :color =>:green, :size => 10
+          list.row(1).default_format = header_format
+          #output to blob object
+          blob = StringIO.new("")
+          clients.write blob
+          #respond with blob object as a file
+          send_data blob.string, :type => 'xls', :filename =>'HopList.xls'
+
+       }
+    end
+
+  end
 
   private
 
