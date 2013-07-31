@@ -116,7 +116,12 @@ var ModalCRUD = (function () {
     //pagination
     this.setAjaxPagination = function(name, exception_field_id){
         $('#modal-crud-window .pagination a').click(function(){
-            var params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
+            if(exception_field_id == 'hops_ids_'){
+                var params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
+            }
+            if(exception_field_id == 'users_ids_'){
+                var params = {selected_users: $('.chzn-select#' + exception_field_id).val() };
+            }
             loadPartial($(this).attr('href'), params, name);
             return false;
         });

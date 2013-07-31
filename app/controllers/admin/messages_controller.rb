@@ -20,7 +20,13 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def message_create
-    redirect_to admin_message_tool_path
+    #"hops_ids"=>["6", "5"],
+    #"zip_codes"=>["88000", "8801"],
+    #"users_ids"=>["5"],
+    #"message"=>{"sender_id"=>"", "text"=>""},
+    params[:zip_codes] = [] unless params[:zip_codes].present?
+    @users = User.where(["zip IN (?)", params[:zip_codes].join(', ')])
+    render text: @users.map{|user| 'name: ' + user.first_name.to_s + ' zip:' + user.zip.to_s + '<br>'}
   end
 
   def hops_list
