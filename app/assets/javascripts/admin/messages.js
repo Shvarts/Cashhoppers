@@ -17,7 +17,7 @@ $(document).ready(function(){
         if($('.chzn-select#users_ids_').val() != null){
             params.selected_users = $('.chzn-select#users_ids_').val();
         }
-        hops_modal.loadPartial('/admin/messages/users_list', params, 'Select Users');
+        users_modal.loadPartial('/admin/messages/users_list', params, 'Select Users');
     });
 
     $('#users_ids__chzn .chzn-results').css('display', 'none');

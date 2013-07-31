@@ -23,6 +23,6 @@
             %button.btn.btn-mini
               Add
           - else
-            %button.btn.btn-mini.btn-success{onclick: "select_user( this, '#{user.id}', '#{user.name}')"}
+            %button.btn.btn-mini.btn-success{onclick: "select_user( this, '#{user.id}', '#{user.first_name}')"}
               Add
   = will_paginate @users, renderer: BootstrapPagination::Rails
