@@ -42,22 +42,14 @@ CashHoppers::Application.routes.draw do
     get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
     get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
 
-
-    match '/messages/message_history' => "messages#message_history"
-    match '/messages/show' => "messages#show"
-    delete '/messages/destroy' => "messages#destroy"
-    post '/messages/create_email' => "messages#create_email"
-    post '/messages/create_message' => "messages#create_message"
-    match '/messages/email_history' => "messages#email_history"
-    match '/messages/send_email' => "messages#send_email"
-    get '/messages/close_grid' => "messages#close_grid"
-    match '/messages/wice_grid' => "messages#wice_grid"
-    match '/messages/find_users' => "messages#find_users"
-    match '/messages/email_tool' => "messages#email_tool"
-    match '/messages/message_tool' => "messages#message_tool"
-    match '/messages/find_hop' => "messages#find_hop"
-    match '/messages/find_zip' => "messages#find_zip"
-    match '/messages/text_tool' => "messages#text_tool"
+    #messages
+    get 'messages/email_tool'
+    get 'messages/message_tool'
+    post 'messages/message_create'
+    get 'messages/hops_list'
+    get 'messages/users_list'
+    get 'messages/email_history'
+    get 'messages/message_history'
 
   end
 

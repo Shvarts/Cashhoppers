@@ -25,11 +25,13 @@ class Hop < ActiveRecord::Base
     unless hoppers.include? user
       hoppers << user
       ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
+      ActiveRecord::Base.connection.close
     end
   end
 
   def score user
     hoppers_hops = ActiveRecord::Base.connection.select_all("SELECT pts FROM hoppers_hops WHERE user_id = #{user.id} AND hop_id = #{id} LIMIT 1")
+    ActiveRecord::Base.connection.close
     if hoppers_hops.length == 0
       0
     else
@@ -40,6 +42,7 @@ class Hop < ActiveRecord::Base
   def increase_score user, pts
     current_pts = self.score user
     ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = #{current_pts + pts} WHERE user_id = #{user.id} AND hop_id = #{id}")
+    ActiveRecord::Base.connection.close
   end
 
   def rank user
@@ -53,6 +56,7 @@ class Hop < ActiveRecord::Base
       ) selection
       WHERE user_id = #{user.id};
     ")
+    ActiveRecord::Base.connection.close
     if user_position.length > 0
       user_position = user_position[0]['rank']
     else
@@ -61,7 +65,8 @@ class Hop < ActiveRecord::Base
   end
 
   def winner place
-    winner = ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1 OFFSET #{ place - 1 };");
+    winner = ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1 OFFSET #{ place - 1 };")
+    ActiveRecord::Base.connection.close
     if winner.blank?
       nil
     else

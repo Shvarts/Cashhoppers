@@ -3,7 +3,9 @@
     = link_to 'Email Tool', admin_messages_email_tool_path
   %li{:class => ('active' if @tab == 'message_tool')}
     = link_to 'Message Tool', admin_messages_message_tool_path
-  %li
-    = link_to 'Text Tool', '#'
+  %li{:class => ('active' if @tab == 'email_history')}
+    = link_to 'Email History', admin_messages_email_history_path
+  %li{:class => ('active' if @tab == 'message_history')}
+    = link_to 'Message History', admin_messages_message_history_path
 = yield
 

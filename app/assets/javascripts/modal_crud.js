@@ -1,9 +1,10 @@
-var ModalCRUD = (function () {
+var ModalCRUD = (function (exception_field_id) {
 
     var modal_crud = function (init_data) {
         this.new_path = init_data.new_path;
         this.index_path = init_data.index_path;
         this.list_id = init_data.list_id;
+        exception_field_id = init_data.exception_field_id;
     };
 
     var progressHandlingFunction = function(e){
@@ -23,6 +24,7 @@ var ModalCRUD = (function () {
             success: function(data){
                 $('#modal-crud-window').find('.modal-body').html(data);
                 $('#modal-crud-window').find('#modal-crud-label').html(name);
+                setAjaxPagination(name);
                 $('#modal-crud-window').modal();
             }
         });
@@ -104,6 +106,44 @@ var ModalCRUD = (function () {
             });
         }
     };
+
+    //pagination
+    function setAjaxPagination(name){
+        $('#modal-crud-window .pagination a').click(function(){
+            console.log('-----------------------------------------');
+            console.log(exception_field_id);
+            console.log($('.chzn-select#' + exception_field_id));
+            console.log($('.chzn-select#' + exception_field_id).val());
+
+            console.log('-----------------------------------------');
+            var params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
+            loadPartial($(this).attr('href'), params, name);
+            return false;
+        });
+
+//        $('#' + block_id + ' #search_button').click(function(){
+//            $.ajax({
+//                url: $(this).attr('href'),
+//                dataType: 'text',
+//                data: {query: $('#' + block_id + ' #search_field').val()},
+//                type: 'GET',
+//                beforeSend: function () {
+//                    //start spinner
+//                },
+//                complete: function(){
+//                    //stop_spinner
+//                },
+//                error: function(err){
+//                    alert("error");
+//                },
+//                success: function(data){
+//                    $('#' + block_id).html(data);
+//                    setAjaxPagination(block_id);
+//                }
+//            });
+//            return false;
+//        });
+    }
 
     // prototype
     modal_crud.prototype = {

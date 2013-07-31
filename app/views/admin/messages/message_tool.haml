@@ -1,0 +1,45 @@
+= render partial: 'layouts/modal_crud'
+:javascript
+  var hops_modal;
+  var users_modal;
+  $(document).ready(function(){
+    hops_modal = new ModalCRUD({
+      exception_field_id: 'hops_ids_'
+    });
+    users_modal = new ModalCRUD({
+      exception_field_id: 'users_ids_'
+    });
+  });
+.row-fluid
+  .span3
+    Filters:
+  .span3
+    Hops:
+    %br
+    = select_tag 'hops_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Hops"}
+  .span3
+    Zip codes:
+    %br
+    = select_tag 'zip_codes[]', options_for_select(User.zip_codes.map!{ |item| [item['zip'], item['zip']]}), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Zip Codes"}
+  .span3
+    Users:
+    %br
+    = select_tag 'users_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+= form_for @message, url: admin_messages_message_create_path do |f|
+  .row-fluid
+    .span3
+      Send from:
+      %br
+      = f.select :sender_id, [['CashHoppers', ''], [current_user_name, '']], {}, {class: 'span12' }
+      %br
+      Schedule:
+      %br
+      %input{ type: 'checkbox'}
+    .span9
+      Content:
+      = f.text_area :text, class: 'span12', rows: 4
+  .row-fluid
+    .span3
+      %button.btn.btn-success
+        Send
+    .span3
