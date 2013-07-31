@@ -168,4 +168,6 @@
         %td
           = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
 
+%br
+= link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
 
