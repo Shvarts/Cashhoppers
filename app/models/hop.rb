@@ -136,8 +136,8 @@ class Hop < ActiveRecord::Base
       hop_row.upto(hop_winner_row ) do |i|
         1.upto(col_size) do |j|
           new_hop[:name] =  oo.cell(i + 1,j) if oo.cell(i,j) == 'Name' ||  oo.cell(i,j) == 'name'
-          new_hop[:daily] = false
-          new_hop[:close] = false
+          new_hop[:daily] = 0
+          new_hop[:close] = 0
           new_hop[:code] = oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
           new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Time start' ||  oo.cell(i,j) == 'time start'
           new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'Time end' ||  oo.cell(i,j) == 'time end'
