@@ -1,1 +1,5 @@
 = render partial: 'hops_list'
+.row-fluid
+  .span12.text-right
+    -unless @hops_grid.blank?
+      = link_to("Export file to PDF", admin_print_hop_list_to_pdf_path(:format => 'pdf'),:method => 'post',:target=>"_blank",  :class=>"btn btn-success" )

@@ -23,4 +23,5 @@
     - unless @tab == 'archived_hops'
       - g.column do |hop|
         - link_to('Close', admin_close_hop_path(hop), method: :post, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+    %br
 

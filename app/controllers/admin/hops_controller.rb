@@ -127,7 +127,21 @@ class Admin::HopsController < Admin::AdminController
         format.pdf {
           send_data output, :filename => "Hop.pdf", :type => "application/pdf", :disposition => "inline"
         }
-   end
+      end
+  end
+  def print_hop_list_to_pdf
+
+     (params[:id] == 'current')? @hops = Hop.where(:close => false).all : @hops = Hop.where(:close => true  ).all
+
+
+
+    respond_to do |format|
+      format.pdf {
+        output = PdfWritter::TestDocument.new.hops_to_pdf(@hops)
+        send_data output, :filename => "Current_hops.pdf", :type => "application/pdf", :disposition => "inline"
+      }
+    end
+
 
 
   end

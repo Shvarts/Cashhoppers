@@ -118,6 +118,25 @@ module PdfWritter
               :column_widths => {0 => 80, 1 => 80, 2 => 180, 3 => 80 }
         )
       end
+
+      unless @hop.prizes.blank?
+        move_down(10)
+        text "Prizes", :size => 16, :align => :center
+        move_down(10)
+        prizes = @hop.prizes.map do |i|
+          [
+              i.place,
+              i.cost
+          ]
+
+        end
+        table([['Place', 'Prize']],
+              :column_widths => {0 => 60, 1 => 80})
+        table(prizes, :column_widths => {0 => 60, 1 => 80 })
+
+      end
+
+
       move_down(10)
       text "Hop item", :size => 16, :align => :center
       move_down(10)
@@ -156,15 +175,38 @@ module PdfWritter
           ]
         end
 
-
-
-
         table([['Position', 'Advertizer', 'Logo', 'Price', "AMT paid"]],
               :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70, 4  => 70})
         table(ads, :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70,  4  => 70 })
       end
+     render
+    end
 
+    def hops_to_pdf(id)
+      if id.first.close == false
+        text "Current hops", :size => 16, :align => :center
+      else
+        text "Archived hops", :size => 16, :align => :center
+      end
+      move_down(10)
+      hops =id.map do |hop|
+        [
+            hop.id,
+            hop.name,
+            hop.time_start.to_s,
+            hop.time_end.to_s,
+            hop.hoppers.count,
+            hop.hop_tasks.count,
+            hop.ads.count
+        ]
 
+      end
+
+      if !hops.blank?
+        table([['Id', 'Name', 'Time start', 'Time end', "Hoppers", 'Items', 'Ads']],
+              :column_widths => {0 => 40, 1 => 80, 2 =>90, 3 => 70, 4  => 40, 5  => 40, 6  => 40})
+        table(hops, :column_widths => {0 => 40, 1 => 80, 2 =>90, 3 => 70, 4  => 40, 5  => 40, 6  => 40})
+      end
       render
     end
 
