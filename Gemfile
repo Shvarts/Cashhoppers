@@ -24,7 +24,11 @@ gem 'bootstrap-datetimepicker-rails'
 gem 'will_paginate-bootstrap'
 gem 'rufus-scheduler'
 gem 'chosen-rails'
-gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
+gem 'prawn' #, :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
+
+gem 'to_xls'
+gem 'roo'
+gem "spreadsheet"
 
 group :development, :test do
   gem 'therubyracer', :platform => :ruby
