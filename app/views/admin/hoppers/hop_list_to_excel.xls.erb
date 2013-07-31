@@ -1,0 +1,24 @@
+<h3>Hoppers</h3>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>First name</td>
+    <td>Last name</td>
+    <td>User name</td>
+    <td>email</td>
+    <td>zip</td>
+  </tr>
+ <% for user in @gamers do %>
+  <tr>
+    <td><%= user.id%></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.user_name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.zip %></td>
+
+  </tr>
+ <% end %>
+</table>
+

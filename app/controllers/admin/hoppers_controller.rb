@@ -90,4 +90,24 @@ class Admin::HoppersController < Admin::AdminController
 
     (params[:hop])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_hop_list')
   end
+
+  def export_to_excel
+    @gamers = []
+    for i in params[:id]
+      @gamers  << User.find_by_id(i)
+    end
+
+
+    respond_to do |format|
+      format.xls{
+        #headers['Content-Type'] = "application/vnd.ms-excel"
+        #headers['Content-Disposition'] = 'attachment; filename="hop.xls"'
+        #headers['Cache-Control'] = ''
+
+        render 'hop_list_to_excel', :layout => false
+      }
+
+    end
+
+  end
 end
