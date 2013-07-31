@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
-                    :default_url => "/images/noavatar.jpeg",
+                    :default_url => "/assets/no_avatar.png",
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
   has_many :notifications
   has_many :prizes, dependent: :destroy

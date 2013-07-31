@@ -22,11 +22,15 @@ module PdfWritter
       move_down(20)
 
           begin
-
-            dice = "#{Rails.root}/public#{@hopper.avatar.url[0...@hopper.avatar.url.index('?')]}"
-
-          rescue Exception =>e
-            dice = "#{Rails.root}/public#{@hopper.avatar.url}"
+            dice = ''
+            if @hopper.avatar_file_size
+              dice = "#{Rails.root}/public#{@hopper.avatar.url}"
+            else
+              dice = "#{Rails.root}/app/assets/images/no_avatar.png"
+            end
+          #
+          #rescue Exception =>e
+          #  dice = "#{Rails.root}/public#{@hopper.avatar.url}"
          end
           image dice, :at => [270, 700], :scale => 0.75
           games = @hopper.games.map do |game|
