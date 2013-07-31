@@ -20,13 +20,34 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def message_create
-    #"hops_ids"=>["6", "5"],
-    #"zip_codes"=>["88000", "8801"],
-    #"users_ids"=>["5"],
-    #"message"=>{"sender_id"=>"", "text"=>""},
-    params[:zip_codes] = [] unless params[:zip_codes].present?
-    @users = User.where(["zip IN (#{params[:zip_codes].join(', ')})"])
-    render text: @users.map{|user| 'name: ' + user.first_name.to_s + ' zip:' + user.zip.to_s + '<br>'}
+
+    params[:zip_codes] = [-1] unless params[:zip_codes].present?
+    params[:users_ids] = [-1] unless params[:users_ids].present?
+    params[:hops_ids] = [-1] unless params[:hops_ids].present?
+
+    @users = User.find_by_sql("
+      SELECT users.* FROM users LEFT JOIN hoppers_hops ON hoppers_hops.user_id = users.id
+      WHERE users.id IN (#{params[:users_ids].join(', ')}) OR users.zip IN (#{params[:zip_codes].join(', ')}) OR hoppers_hops.hop_id IN (#{params[:hops_ids].join(', ')});
+    ")
+
+    @message = nil
+    @users.each do |user|
+      message_data = params[:message]
+      message_data[:receiver_id] = user.id
+      message_data[:synchronized] = 0
+      message = Message.new(message_data)
+      unless message.save
+        @message = message
+        break;
+      end
+    end
+
+    if @message
+      render action: 'message_tool'
+    else
+      redirect_to admin_messages_message_tool_path , notice: 'Messages was successfully sended.'
+    end
+
   end
 
   def hops_list

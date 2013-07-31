@@ -1,3 +1,8 @@
+- if @message.errors.any?
+  - @message.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
 = render partial: 'layouts/modal_crud'
 :javascript
   var hops_modal;
