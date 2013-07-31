@@ -42,3 +42,12 @@ node :user_avatar do |task|
    task.user.avatar.url
 end
 
+node :likers do |task|
+   task.likes.map do |like|
+    name = ''
+    name += like.user.first_name + ' ' if like.user.first_name
+    name += like.user.last_name if like.user.last_name
+    name
+   end
+end
+
