@@ -220,28 +220,34 @@ service should be 'twitter', 'facebook', 'google'
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_phot
-                    os/tasks/7/original/PHOTO.jpg?1374562222", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"},
+                    {"id" => 1, "user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1",
+                    "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/7/original/PHOTO.jpg?1374562222", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
 
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2", "hop_id"=>3, "ph
-                    oto"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"},
+                    {"id" => 1, "user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2",
+                    "hop_id"=>3, "photo"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
 
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"friend task #3", "hop_id"=>2, "photo"=>"/images/user_hop
-                    _task_photos/tasks/9/original/PHOTO.jpg?1374562225", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"}
+                    {"id" => 1, "user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"friend task #3",
+                    "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"}
                  ]}
 ====get all hoppers hop tasks(method: GET)
     url: http://localhost:3000/api/tasks/get_all_hoppers_hop_tasks.json?api_key=123&authentication_token=6cmdqJrrc1AXwiIOvu4mHSoLqK5BQa&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:52:27Z", "comment"=>"other_user task #3", "hop_id"=>2, "photo"=>"/images/user_hop_task_
-                    photos/tasks/12/original/PHOTO.jpg?1374562347", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"},
+                    {"id" => 1, "user_id"=>3, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:52:27Z", "comment"=>"other_user task #3",
+                    "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/12/original/PHOTO.jpg?1374562347", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
 
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:52:26Z", "comment"=>"other_user task #2", "hop_id
-                    "=>3, "photo"=>"/images/user_hop_task_photos/tasks/11/original/PHOTO.jpg?1374562346", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"},
+                    {"id" => 1, "user_id"=>3, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:52:26Z", "comment"=>"other_user task #2",
+                    "hop_id"=>3, "photo"=>"/images/user_hop_task_photos/tasks/11/original/PHOTO.jpg?1374562346", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
 
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:52:25Z", "comment"=>"other_user task #1", "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks
-                    /10/original/PHOTO.jpg?1374562345", "likes_count"=>1, "liked"=>true, "hop_task_text"=>"Take your picture with ...!"}
+                    {"id" => 1, "user_id"=>3, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:52:25Z", "comment"=>"other_user task #1",
+                    "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/10/original/PHOTO.jpg?1374562345", "likes_count"=>1,
+                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"}
                  ]}
 ====like user hop task(method: POST)
     url: http://localhost:3000/api/task/like.json
@@ -268,25 +274,27 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/task/get_comments.json?api_key=123&authentication_token=bVJ8YJZeJrLZJIV7MsEHgYiJ3tQnNl&user_hop_task_id=15
     data: {"api_key":"123","authentication_token":"e1Hi5MJX3V0sReb2UmpHgRdfQlXKg7","user_hop_task_id":"15"}
     response:
-        success: {"comments"=>[{"user_id"=>1, "text"=>"hello its comment", "created_at"=>"2013-07-23T15:12:16Z"}, {"user_id"=>1, "text"=>"hello its comment #0", "created_at"=>"2
-                 013-07-23T15:36:17Z"}, {"user_id"=>1, "text"=>"hello its comment #1", "created_at"=>"2013-07-23T15:36:18Z"}, {"user_id"=>1, "text"=>"hello its comment #2", "cre
-                 ated_at"=>"2013-07-23T15:36:19Z"}, {"user_id"=>1, "text"=>"hello its comment #3", "created_at"=>"2013-07-23T15:36:20Z"}, {"user_id"=>1, "text"=>"hello its comme
-                 nt #4", "created_at"=>"2013-07-23T15:36:21Z"}, {"user_id"=>1, "text"=>"hello its comment #5", "created_at"=>"2013-07-23T15:36:22Z"}, {"user_id"=>1, "text"=>"hel
-                 lo its comment #6", "created_at"=>"2013-07-23T15:36:23Z"}, {"user_id"=>1, "text"=>"hello its comment #7", "created_at"=>"2013-07-23T15:36:24Z"}, {"user_id"=>1,
-                 "text"=>"hello its comment #8", "created_at"=>"2013-07-23T15:36:25Z"}, {"user_id"=>1, "text"=>"hello its comment #9", "created_at"=>"2013-07-23T15:36:27Z"}, {"u
-                 ser_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:43:09Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:57:30
-                 Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:58:03Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T
-                 15:58:34Z"}, {"user_id"=>1, "text"=>"hello its comment ", "created_at"=>"2013-07-23T15:58:57Z"}]}
+        success: {"comments"=>[
+                    {"user_id"=>1, "text"=>"hello its comment", "created_at"=>"2013-07-23T15:12:16Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #0", "created_at"=>"2013-07-23T15:36:17Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #1", "created_at"=>"2013-07-23T15:36:18Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #2", "created_at"=>"2013-07-23T15:36:19Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #3", "created_at"=>"2013-07-23T15:36:20Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #4", "created_at"=>"2013-07-23T15:36:21Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #5", "created_at"=>"2013-07-23T15:36:22Z", "time_ago"=>"about 2 hours"},
+                    {"user_id"=>1, "text"=>"hello its comment #6", "created_at"=>"2013-07-23T15:36:23Z", "time_ago"=>"about 2 hours"}
+                  ]}
         error: {"errors"=>["User hop task has no comments."], "success"=>false, "status"=>406}
                {"errors"=>["User hop task not found."], "success"=>false, "status"=>406}
 ====get user hop task by id(method: GET)
     url: http://localhost:3000/api/task/get_user_hop_task_by_id.json
     data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct","user_hop_task_id":"13"}
     response:
-        success: {"user_hop_task"=>{"user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-24T15:51:54Z", "comment"=>"new api test", "hop_id"=>1, "hop_task_text"=>"Take your pic
-                ture with DEREVO!!!", "photo"=>"/images/user_hop_task_photos/tasks/13/original/PHOTO.png?1374681114", "likes_count"=>0, "comments_count"=>0, "liked"=>false,
-                "user_first_name"=>"friend", "user_last_name"=>"friend", "user_user_name"=>"friend", "user_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374665706",
-                "likers"=>["admin CashHoppers", "friend friend"]}}
+        success: {"user_hop_task"=>{
+                    "user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-24T15:51:54Z", "comment"=>"new api test", "hop_id"=>1, "hop_task_text"=>"Take your pic
+                    ture with DEREVO!!!", "photo"=>"/images/user_hop_task_photos/tasks/13/original/PHOTO.png?1374681114", "likes_count"=>0, "comments_count"=>0,
+                    "liked"=>false, "user_first_name"=>"friend", "user_last_name"=>"friend", "user_user_name"=>"friend", "user_avatar"=>"/images/avatars/users/2
+                    /original/USER_AVATAR.png?1374665706", "likers"=>["admin CashHoppers", "friend friend"], "time_ago"=>"about 2 hours"}}
         error: {"errors"=>["Already shared."], "success"=>false, "status"=>406}
                {"errors"=>["User hop task not found."], "success"=>false, "status"=>406}
 ===Notifications
@@ -294,23 +302,27 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/notifications.json?api_key=123&authentication_token=eIldvK7N5ysng6M7cwyqgS8UXQyf21&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response: {"events"=>[
+                  {"event_type"=>"Friend invite", "created_at"=>"2013-07-31T14:19:11Z", "comment"=>nil, "like"=>nil, "prize"=>nil,
+                  "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend", "avatar"=>nil, "friends_count"=>1, "time_ago"=>"about 2 hours"}},
 
-              {"event_type"=>"Friend invite", "created_at"=>"2013-07-31T14:19:11Z", "comment"=>nil, "like"=>nil, "prize"=>nil, "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend",
-              "avatar"=>nil, "friends_count"=>1}},
+                  {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil,
+                  "prize"=>{"cost"=>22, "place"=>1, "user_id"=>2, "hop_id"=>20}, "friend"=>nil, "time_ago"=>"about 2 hours"},
 
-              {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil, "prize"=>{"cost"=>22, "place"=>1, "user_id"=>2, "hop_id"=>20}, "friend"=>nil},
+                  {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil,
+                  "prize"=>{"cost"=>12, "place"=>2, "user_id"=>3, "hop_id"=>20}, "friend"=>nil, "time_ago"=>"about 2 hours"},
 
-              {"event_type"=>"End of hop", "created_at"=>"2013-07-30T11:09:40Z", "comment"=>nil, "like"=>nil, "prize"=>{"cost"=>12, "place"=>2, "user_id"=>3, "hop_id"=>20}, "friend"=>nil},
+                  {"event_type"=>"Comment", "created_at"=>"2013-07-30T10:43:15Z", "comment"=>{"text"=>"hello its comment.", "user_id"=>2},
+                  "like"=>nil, "prize"=>nil, "friend"=>nil, "time_ago"=>"about 2 hours"},
 
-              {"event_type"=>"Comment", "created_at"=>"2013-07-30T10:43:15Z", "comment"=>{"text"=>"hello its comment.", "user_id"=>2}, "like"=>nil, "prize"=>nil, "friend"=>nil},
+                  {"event_type"=>"Like", "created_at"=>"2013-07-30T10:43:14Z", "comment"=>nil, "like"=>{"user_id"=>2},
+                  "prize"=>nil, "friend"=>nil, "time_ago"=>"about 2 hours"},
 
-              {"event_type"=>"Like", "created_at"=>"2013-07-30T10:43:14Z", "comment"=>nil, "like"=>{"user_id"=>2}, "prize"=>nil, "friend"=>nil},
-
-              {"event_type"=>"Friend invite accept", "created_at"=>"2013-07-29T14:19:12Z", "comment"=>nil, "like"=>nil, "prize"=>nil, "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend", "avatar"=>nil
-              , "friends_count"=>1}}
-
+                  {"event_type"=>"Friend invite accept", "created_at"=>"2013-07-29T14:19:12Z", "comment"=>nil, "like"=>nil,
+                  "prize"=>nil, "friend"=>{"id"=>2, "last_name"=>"friend", "first_name"=>"friend", "user_name"=>"friend", "avatar"=>nil
+                  , "time_ago"=>"about 2 hours", "friends_count"=>1}}
               ]}
 ===Messages
+if sender_id is nil that means sender is administrator
 ====send message to friends(method: POST)
     url: http://localhost:3000/api/messages/send_message.json
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr","friends":"[1, 3, 4]","text":"hello, friends !!!"}
@@ -321,23 +333,32 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"}
     response:
-        success: {"messages"=>[{"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=
-                 >"2013-07-25T13:42:09Z"}, {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:30Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_
-                 at"=>"2013-07-25T13:52:41Z"}, {"sender_id"=>2, "text"=>"broosdfdfs", "created_at"=>"2013-07-25T13:59:39Z"}]}
+        success: {"messages"=>[
+                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z", "time_ago"=>"about 17 hours"},
+                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:09Z", "time_ago"=>"about 17 hours"},
+                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:30Z", "time_ago"=>"about 17 hours"},
+                    {"sender_id"=>2, "text"=>"broosdfdfs",         "created_at"=>"2013-07-25T13:52:41Z", "time_ago"=>"about 17 hours"},
+                    {"sender_id"=>2, "text"=>"broosdfdfs",         "created_at"=>"2013-07-25T13:59:39Z", "time_ago"=>"about 17 hours"}
+                  ]}
 ====friends messages thread(method: GET)
     url: http://localhost:3000/api/messages/thread.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o&page=1&per_page=10
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr", page: 1, per_page: 10}
     response:
-        success: {"friends"=>[{"friend_id"=>2, "friend_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"friend", "friend_last_name"=
-                 >"friend", "friend_user_name"=>"friend", "last_message_id"=>6, "last_message_text"=>"broosdfdfs", "last_message_created_at"=>"2013-07-25T13:59:39Z"}, {"friend_i
-                 d"=>3, "friend_avatar"=>"/images/avatars/users/3/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"other_user", "friend_last_name"=>"other_user", "fri
-                 end_user_name"=>"other_user", "last_message_id"=>7, "last_message_text"=>"well", "last_message_created_at"=>"2013-07-26T10:34:55Z"}]}
+        success: {"friends"=>[
+                    {"friend_id"=>2, "friend_avatar"=>"/images/avatars/users/2/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"friend", "friend_last_name"=>
+                    "friend", "friend_user_name"=>"friend", "last_message_id"=>6, "last_message_text"=>"broosdfdfs", "last_message_created_at"=>"2013-07-25T13:59:39Z", "time_ago"=>"about 17 hours"},
+
+                    {"friend_id"=>3, "friend_avatar"=>"/images/avatars/users/3/original/USER_AVATAR.png?1374757321", "friend_first_name"=>"other_user", "friend_last_name"=>"other_user", "fri
+                    end_user_name"=>"other_user", "last_message_id"=>7, "last_message_text"=>"well", "last_message_created_at"=>"2013-07-26T10:34:55Z", "time_ago"=>"about 17 hours"}
+                 ]}
 ====friend messages history(method: GET)
     url: http://localhost:3000/api/messages/history.json?api_key=123&authentication_token=B2YAcshUuwBaNwOXaqj5hH8NkbjHGB&friend_id=2&page=1&per_page=2
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr", page: 1, per_page: 10}
     response:
-        success: {"messages"=>[{"id"=>1, "sender_id"=>1, "receiver_id"=>2, "text"=>"hello friend", "created_at"=>"2013-07-25T13:09:05Z"}, {"id"=>2, "sender_id"=>2, "receiver_id"
-                 =>1, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z"}]}
+        success: {"messages"=>[
+                    {"id"=>1, "sender_id"=>1, "receiver_id"=>2, "text"=>"hello friend", "created_at"=>"2013-07-25T13:09:05Z", "time_ago"=>"about 17 hours"},
+                    {"id"=>2, "sender_id"=>2, "receiver_id"=>1, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z", "time_ago"=>"about 17 hours"}
+                 ]}
         error: {"errors"=>["Can't find friend with id 1."], "success"=>false, "status"=>406}
 ====remove message(method: DELETE)
     url: http://localhost:3000/api/messages/remove_message.json

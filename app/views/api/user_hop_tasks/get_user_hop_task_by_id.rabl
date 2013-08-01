@@ -51,3 +51,7 @@ node :likers do |task|
    end
 end
 
+node :time_ago do |task|
+    time_ago_in_words(task.created_at)
+end
+

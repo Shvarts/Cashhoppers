@@ -25,6 +25,10 @@ child :friend do
     end
 end
 
+node :time_ago do |event|
+    time_ago_in_words(event.created_at)
+end
+
 
 
 

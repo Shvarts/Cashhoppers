@@ -29,6 +29,10 @@ node :last_message_text do |friend|
    @message.text if @message
 end
 
+node :time_ago do |message|
+    time_ago_in_words(@message.created_at) if @message
+end
+
 node :last_message_created_at do |friend|
    @message.created_at if @message
 end
