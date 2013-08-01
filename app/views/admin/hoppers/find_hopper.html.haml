@@ -1,0 +1,14 @@
+= render partial: 'layouts/modal_crud'
+:javascript
+  var users_modal;
+
+  $(document).ready(function(){
+    users_modal = new ModalCRUD({
+
+    });
+  });
+.row-fluid
+  .span12.text-right
+    %br
+    = submit_tag("Find hopper", :class=>"btn btn-success", :onclick=>'search_user()' )
+#container

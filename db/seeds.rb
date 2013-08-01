@@ -58,16 +58,7 @@ Application.create(:name => 'dev key', :api_key => '123')
 
 puts 'Create hops...'
 
-20.times do |i|
-  hop_name = "Hop ##{i}"
-  hop = Hop.create( name: hop_name, time_start: Time.now, time_end: Time.now + 1.month, producer_id: 2, code: 123, price: 10,
-                    jackpot: 10, daily: false, close: false, event: 'new year', logo: File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
-  10.times do |j|
-    hop_task_name = "Hop task ##{j} for hop #{hop_name}"
-    hop_task = HopTask.create(text: 'Take your picture with DEREVO!!!', sponsor_id: admin.id, price: 10, pts: 15, bonus: 30, amt_paid: 10)
-    hop.hop_tasks << hop_task
-  end
-end
+
 
 10.times do |i|
   @hop = Hop.new(:name => "hop # #{i}", :time_start => DateTime.now,:time_end => DateTime.now, :price => 123, :code =>153, :event => "New year", :jackpot => 45, :daily => false, :producer_id => 9)

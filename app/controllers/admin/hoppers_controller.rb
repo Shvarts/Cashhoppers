@@ -30,58 +30,78 @@ class Admin::HoppersController < Admin::AdminController
     'admin/hoppers_tabs'
   end
 
-   def search_by_id
-     conditions = 0
-     conditions = ["id LIKE ? OR id LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+   def search_by_name
+    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
      @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
-
-     @user  = User.find_by_id(params[:id])   if params[:id]
-    (params[:id])?  (render 'admin/hoppers/find_hopper') : (render :partial=> 'users_id_list')
-
-
+     render :partial=> 'users_list'
    end
 
-  def search_by_name
+  def search_user
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @users = User.paginate page: params[:page], per_page: params[:per_page]
+    render :partial=> 'users_list'
+  end
 
-    conditions = 0
-    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
-    @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
-   @user  = User.find_by_id(params[:name])   if params[:name]
-    (params[:name])?  (render 'admin/hoppers/find_hopper') : (render :partial=> 'users_name_list')
 
+
+  def search_hop_list
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @hops = Hop.paginate page: params[:page], per_page: params[:per_page]
+     render partial: 'users_hop_list'
+  end
+
+  def search_zip_list
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @zips = User.group(:zip).select(:zip).paginate page: params[:page], per_page: params[:per_page]
+     render partial: 'users_zip_list'
+  end
+
+
+
+  def select_user
+    @user = User.find_by_id(params[:id])
+    render :partial => 'hopper_info'
+  end
+
+
+  def select_hop
+    @users = Hop.find_by_id(params[:id]).hoppers.all
+    render :partial => 'generate_hop_list'
 
   end
 
+  def select_zip
+    @users = User.where(:zip => params[:zip]).all
+    render :partial => 'generate_hop_list'
+
+  end
+
+
   def search_by_zip
 
-    conditions = []
-    conditions = ["zip LIKE ? OR zip LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+
+    conditions = ["zip LIKE ? OR zip LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
     @zips = User.group(:zip).select(:zip)
     @zips = @zips.paginate(:page => 1, :per_page => 9,  conditions:  conditions )
 
-    if params[:zip]
-      @users  = User.where(:zip => params[:zip]).all
 
-    end
-    (params[:zip])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_zip_list')
+    render :partial=> 'users_zip_list'
 
 
   end
 
   def search_by_hop
 
-    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
     @hops = Hop.paginate(page: params[:page], per_page:9, conditions:  conditions)
 
-    if params[:hop]
-      hop  = Hop.find_by_id(params[:hop])
-      @users = hop.hoppers
 
 
+    render :partial=> 'users_hop_list'
 
-    end
-
-    (params[:hop])?  (render 'admin/hoppers/hopper_list') : (render :partial=> 'users_hop_list')
   end
 
   def hopper_to_pdf

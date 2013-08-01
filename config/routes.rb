@@ -42,10 +42,18 @@ CashHoppers::Application.routes.draw do
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"
     match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
-    get '/hoppers/search_by_name' => 'hoppers#search_by_name'
-    get '/hoppers/search_by_id' => 'hoppers#search_by_id'
-    get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
-    get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
+    get '/hoppers/search_user'
+    get '/hoppers/search_hop_list'
+    get '/hoppers/search_zip_list'
+
+    post '/hoppers/select_user'
+    post '/hoppers/select_hop'
+    post '/hoppers/select_zip'
+    post '/hoppers/list_by_zip'
+    post '/hoppers/list_by_hop'
+    post '/hoppers/search_by_name' => 'hoppers#search_by_name'
+    post '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
+    post '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
     post '/hoppers/hopper_to_pdf' => 'hoppers#hopper_to_pdf'
     get '/hoppers/export_to_excel' => 'hoppers#export_to_excel'
 

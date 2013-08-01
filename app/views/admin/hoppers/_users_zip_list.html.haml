@@ -4,7 +4,7 @@
       = will_paginate @zips, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
     .span5.text-right.row
       = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
-      = link_to 'Search',  admin_hoppers_search_by_zip_path, class: 'btn span4', id: 'search_button'
+      = link_to 'Search',  '', class: 'btn span4', id: 'search_zip'
   %table.table.table-condensed
     %tr
       %th
@@ -16,5 +16,6 @@
           = zip.zip
 
         %td{style: 'text-align: right'}
-          = link_to 'Search',  admin_hoppers_search_by_zip_path(:zip => zip.zip), id: 'select_id'
+          %button.btn.btn-mini.btn-success{:onclick => "select('#{admin_hoppers_select_zip_path(:zip =>zip.zip)}')"}
+            Select
   = will_paginate @zips, renderer: BootstrapPagination::Rails
