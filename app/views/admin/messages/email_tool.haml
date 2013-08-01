@@ -1,109 +1,55 @@
-email_tool
--#<h1>Send emails</h1>
--#<br />
--#
--#<%= form_for @message, :url=>admin_messages_create_email_path do |e| %>
--#
--#    <% if @message.errors.any? %>
--#        <div id="error_explanation">
--#          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this hop_task from being saved:</h2>
--#
--#          <ul>
--#            <% @message.errors.full_messages.each do |msg| %>
--#                <li><%= msg %></li>
--#            <% end %>
--#          </ul>
--#        </div>
--#    <% end %>
--#
--#<table>
--#  <tr>
--#    <td class ="span4">Filters</td>
--#    <td class ="span4">Hop</td>
--#    <td class ="span4">Zip code</td>
--#    <td class ="span4">User id</td>
--#  </tr>
--#  <tr>
--#    <td></td>
--#    <td><%= select_tag 'hopId[]', nil ,:class=>"input-large chzn-select", :id=>'find_hop', :multiple=>"multiple", data: {placeholder: "choose by hop"} %></td>
--#    <td><%= select_tag 'zipId[]', nil , :class=>"input-large chzn-select", :id=>'find_zip' ,:multiple=>"multiple", data: {placeholder: "choose by zip"} %></td>
--#    <td><%= select_tag 'userId[]', options_for_select(@arr, @arr_id) , :class=>"input-large chzn-select" , :id=>'find_user', :multiple=>"multiple", data: {placeholder: "choose by user"} %></td>
--#  </tr>
--#
--#
--#</table>
--#<br />
--#<br />
--#<br />
--#    <%= hidden_field_tag :email , true %>
--#
--#<table>
--#  <tr>
--#    select template should be here
--#    <td><%= e.text_field :subject, :class=>"input-xlarge", :placeholder=>"SUBJECT LINE" %></td>
--#  </tr>
--#  <tr>
--#    <td><%= e.select :email_author, ['HOPMASTER@CashHoppers.com',current_user.email],:class=>"input-medium",  :placeholder=>"SEND FROM" %></td>
--#    <td></td>
--#  </tr>
--#  <tr>
--#    <td><%= e.file_field :file, :class=>"input-medium",  :placeholder=>"ATTACHE FILE" %></td>
--#    <td></td>
--#  </tr>
--#  <tr>
--#    <td></td>
--#    <td><%= e.text_area :text, :class=>"input-xlarge",  :placeholder=>"CONTENT", :rows=>"10" %></td>
--#  </tr>
--#  <tr>
--#
--#    <td><%= e.submit "SEND", :class=>"input-medium btn btn-success" %></td>
--#    <td></td>
--#  </tr>
--#</table>
--#<% end %>
--#
--#<div class="pull-right"><%= link_to  "Email history", admin_messages_email_history_path%></div>
--#
--#<%= link_to "Find hopper", admin_hoppers_find_hopper_path %>|
--#<%= link_to "Hopper list", admin_hoppers_hopper_list_path %>
--#
--#
--#<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
--#  <div class="modal-header" >
--#
--#  </div>
--#  <div class="modal-body">
--#    <div id="myModal" class="example cursor">
--#      <%= render partial: "users_list" %>
--#    </div>
--#  </div>
--#  <div class="modal-footer">
--#
--#  </div>
--#</div>
--#
--#
--#<div class="modal hide fade in" id="myModalzip" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
--#  <div class="modal-header" >
--# </div>
--#  <div class="modal-body">
--#    <div id="myModalzip" class="example cursor">
--#
--#    </div>
--#  </div>
--#  <div class="modal-footer">
--#
--#  </div>
--#</div>
--#
--#<div class="modal hide fade in" id="myModalhop" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
--#  <div class="modal-header" >
--# </div>
--#  <div class="modal-body">
--#    <div id="myModalhop" class="example cursor">
--#
--#    </div>
--#  </div>
--#  <div class="modal-footer">
--# </div>
--#</div>
+- if @email.errors.any?
+  - @email.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
+= render partial: 'layouts/modal_crud'
+:javascript
+  var hops_modal;
+  var users_modal;
+
+  $(document).ready(function(){
+    hops_modal = new ModalCRUD({
+      exception_field_id: 'hops_ids_'
+    });
+    users_modal = new ModalCRUD({
+      exception_field_id: 'users_ids_'
+    });
+  });
+= form_for @email, url: admin_messages_message_create_path do |f|
+  .row-fluid
+    .span3
+      Filters:
+    .span3
+      Hops:
+      %br
+      = select_tag 'hops_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Hops"}
+    .span3
+      Zip codes:
+      %br
+      = select_tag 'zip_codes[]', options_for_select(User.zip_codes.map!{ |item| [item['zip'], item['zip']]}), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Zip Codes"}
+    .span3
+      Users:
+      %br
+      = select_tag 'users_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+  .row-fluid
+    .span3
+      Template(temp):
+      %br
+      = f.text_field :template_id, class: 'span12'
+      %br
+      Send from:
+      %br
+      = f.select :sender_id, [['CashHoppers', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
+      %br
+      File:
+      %br
+      = f.file_field :file
+    .span9
+      Content:
+      = f.text_area :text, class: 'span12', rows: 4
+  .row-fluid
+    .span3
+      %button.btn.btn-success
+        Send
+    .span3

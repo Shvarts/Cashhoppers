@@ -63,7 +63,7 @@ class Api::MessagesController < Api::ApplicationController
       )
 
       ORDER BY messages.created_at DESC
-      LIMIT #{params[:per_page]} OFFSET #{params[:page] - 1};"
+      LIMIT #{params[:per_page]} OFFSET #{params[:page].to_i - 1};"
     )
     ActiveRecord::Base.connection.close
 

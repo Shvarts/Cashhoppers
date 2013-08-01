@@ -4,6 +4,7 @@ class Admin::MessagesController < Admin::AdminController
 
   def email_tool
     @tab = 'email_tool'
+    @email = EmailAlert.new
   end
 
   def message_tool
