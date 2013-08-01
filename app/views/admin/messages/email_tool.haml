@@ -16,7 +16,7 @@
       exception_field_id: 'users_ids_'
     });
   });
-= form_for @email, url: admin_messages_message_create_path do |f|
+= form_for @email, url: admin_messages_email_create_path do |f|
   .row-fluid
     .span3
       Filters:
@@ -32,6 +32,7 @@
       Users:
       %br
       = select_tag 'users_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+  %br
   .row-fluid
     .span3
       Template(temp):
@@ -44,8 +45,11 @@
       %br
       File:
       %br
-      = f.file_field :file
+      = file_field_tag :file
     .span9
+      Subject:
+      = f.text_field :subject, class: 'span12'
+      %br
       Content:
       = f.text_area :text, class: 'span12', rows: 4
   .row-fluid

@@ -61,6 +61,7 @@ CashHoppers::Application.routes.draw do
     get 'messages/email_tool'
     get 'messages/message_tool'
     post 'messages/message_create'
+    post 'messages/email_create'
     get 'messages/hops_list'
     get 'messages/users_list'
     get 'messages/email_history'
