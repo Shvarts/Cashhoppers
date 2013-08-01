@@ -17,7 +17,7 @@ function search_zip(){
 
 }
 
-function select_user(url){
+function select(url){
     $.ajax({
         url: url,
         data: {},
@@ -26,39 +26,41 @@ function select_user(url){
             alert("error");
         },
         success: function(data){
-            $('#hopper_info').html(data);
+            $('#container').html(data);
 
             $('#modal-crud-window').modal('hide');
         }
     });
 }
-function select_hop(url){
+
+function search_by(url){
     $.ajax({
         url: url,
-        data: {},
+        data: {params: $('#search_field').val() },
         type: 'POST',
         error: function(err){
             alert("error");
         },
         success: function(data){
-            $('#hopper_list').html(data);
-
-            $('#modal-crud-window').modal('hide');
+            $('.modal-body').html(data);
         }
     });
 }
-function select_zip(url){
-    $.ajax({
-        url: url,
-        data: {},
-        type: 'POST',
-        error: function(err){
-            alert("error");
-        },
-        success: function(data){
-            $('#hopper_list').html(data);
 
-            $('#modal-crud-window').modal('hide');
-        }
-    });
+
+$(document).ready(
+
+    search('/admin/hoppers/search_by_hop', '#search_hop'),
+    search('/admin/hoppers/search_by_zip', '#search_zip'),
+    search('/admin/hoppers/search_by_name', '#search_name')
+
+
+)
+
+function search(url, button){
+
+    $(document).on('click', button , function(){
+        search_by(url);
+        return false;
+   })
 }

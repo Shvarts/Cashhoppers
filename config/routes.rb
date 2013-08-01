@@ -51,9 +51,9 @@ CashHoppers::Application.routes.draw do
     post '/hoppers/select_zip'
     post '/hoppers/list_by_zip'
     post '/hoppers/list_by_hop'
-    get '/hoppers/search_by_id' => 'hoppers#search_by_id'
-    get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
-    get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
+    post '/hoppers/search_by_name' => 'hoppers#search_by_name'
+    post '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
+    post '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
     post '/hoppers/hopper_to_pdf' => 'hoppers#hopper_to_pdf'
     get '/hoppers/export_to_excel' => 'hoppers#export_to_excel'
 

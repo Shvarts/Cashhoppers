@@ -1,11 +1,10 @@
 #hops_list
   .row-fluid
     .span7
-      = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+      = will_paginate @hops, renderer: BootstrapPagination::Rails
     .span5.text-right.row
       = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
-      %button.btn.text_right{:onclick => "select_hop('#{admin_hoppers_select_hop_path()}')"}
-        Select
+      = link_to 'Search', '', class: 'btn span4', id: 'search_hop'
   %table.table.table-condensed
     %tr
       %th
@@ -21,6 +20,6 @@
           = hop.name
 
         %td{style: 'text-align: right'}
-          %button.btn.btn-mini.btn-success{:onclick => "select_hop('#{admin_hoppers_select_hop_path(:id =>hop.id)}')"}
+          %button.btn.btn-mini.btn-success{:onclick => "select('#{admin_hoppers_select_hop_path(:id =>hop.id)}')"}
             Select
   = will_paginate @hops, renderer: BootstrapPagination::Rails
