@@ -1,0 +1,25 @@
+= will_paginate @users, renderer: BootstrapPagination::Rails
+-#= text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+-#= link_to 'Search',  admin_hoppers_search_by_name_path, class: 'btn span4', id: 'search_button'
+%table.table.table-condensed
+  %tr
+    %th
+      Id
+    %th
+      user Name
+    %th
+      first_name
+    %th
+  - @users.each do |user|
+    %tr
+      %td
+        = user.id
+      %td
+        = user.user_name
+      %td
+        = user.first_name
+
+      %td{style: 'text-align: right'}
+        %button.btn.btn-mini.btn-success{:onclick => "select_user('#{admin_hoppers_select_user_path(:id =>user.id)}')"}
+          Select
+= will_paginate @users, renderer: BootstrapPagination::Rails

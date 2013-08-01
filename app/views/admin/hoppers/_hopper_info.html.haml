@@ -1,0 +1,94 @@
+%br
+.row-fluid
+  .span5
+    %table
+      %tr
+        %td
+          %b User name
+        %td
+          = @user.first_name
+      %tr
+        %td
+          %b User id
+        %td
+          =@user.id
+      %tr
+        %td
+          %b Password
+        .td
+          = @user.password
+      %tr
+        %td
+          %b Name
+        %td
+          = @user.user_name
+      %tr
+        %td
+          %b Zip
+        %td
+          = @user.zip
+      %tr
+        %td
+          %b Email
+        %td
+          = @user.email
+      %tr
+        %td
+          %b Phone
+        %td
+          = @user.phone
+      %tr
+        %td
+          %b Facebook id
+        %td
+          = @user.facebook
+      %tr
+        %td
+          %b Twitter id
+        %td
+          = @user.twitter
+      %tr
+        %td
+          %b Player since
+        %td
+          = @user.created_at
+    .text-center
+      %br
+      = button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9   btn-success span10"
+      = button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9  btn-success"
+      = submit_tag("send text to user",  :class=>"span9   btn-success" )
+
+  .span3
+    .span12
+      = image_tag @user.avatar.url
+  .span2
+    %table
+      .tr
+        .td
+          %b Hops played
+          %br
+      -unless @user.games.blank?
+        -for i in @user.games
+          .tr
+            .td
+              = i.name
+  .span2
+    %table
+      %tr
+        %td
+          %b Hops won
+          %br
+        -unless @user.prizes.blank?
+          -for i in @user.games
+            %tr
+              %td
+                = Hop.find_by_id( i.hop_id).name
+.row-fluid
+  .span8
+  .span4.text-center
+    = link_to("Export file to PDF",  admin_hoppers_hopper_to_pdf_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>" span12  btn btn-success" )
+%br
+.row-fluid
+  .span8
+  .span4.text-center
+    = button_to("Print user file",nil, :class=>"span12 btn btn-success" )

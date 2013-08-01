@@ -41,15 +41,16 @@ class Admin::HoppersController < Admin::AdminController
 
    end
 
-  def search_by_name
+  def search_user
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @users = User.paginate page: params[:page], per_page: params[:per_page]
+    render :partial=> 'users_list'
+  end
 
-    conditions = 0
-    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
-    @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
-   @user  = User.find_by_id(params[:name])   if params[:name]
-    (params[:name])?  (render 'admin/hoppers/find_hopper') : (render :partial=> 'users_name_list')
-
-
+  def select_user
+    @user = User.find_by_id(params[:id])
+    render :partial => 'hopper_info'
   end
 
   def search_by_zip

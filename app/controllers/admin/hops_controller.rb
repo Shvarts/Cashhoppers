@@ -147,35 +147,34 @@ class Admin::HopsController < Admin::AdminController
         clients = Spreadsheet::Workbook.new
         list = clients.create_worksheet :name => ' Hop'
         list.row(1).push "Hop"
-        list.row(3).concat ['Id', 'Name', 'Code', 'Time start', 'Time end','Jackpot', 'Special event']
+        list.row(3).concat ['Id', 'Name', 'Code', 'Time start', 'Time end','Jackpot', 'Special event', 'Price','Showprod id', 'Showprod  contact','Showprod name', 'Showprod  email', 'Showprod  phone' ]
         [@hop].each_with_index { |hop, i|
-          list.row(i+4).push hop.id,hop.name,hop.code,hop.time_start.to_s,hop.time_end.to_s,hop.jackpot,hop.event
-        }
-        list.row(6).concat ['Producer_id', 'Producer contact', 'Producer email', 'Producer phone']
-        [@hop.producer].each_with_index { |hop, i|
-          list.row(i+7).push hop.id, hop.contact,"#{hop.first_name.to_s + ' ' +hop.last_name.to_s}",hop.email, hop.phone
+          list.row(i+4).push hop.id,hop.name,hop.code,hop.time_start.to_s,hop.time_end.to_s,hop.jackpot,
+                             hop.event,hop.price,hop.producer.id, hop.producer.contact,"#{hop.producer.first_name.to_s + ' ' +hop.producer.last_name.to_s}",
+                             hop.producer.email, hop.producer.phone
         }
 
-        list.row(9).push "Winner"
-        list.row(11).concat %w{Place Prize}
+
+        list.row(6).push "Winner"
+        list.row(8).concat %w{Place Prize}
         @hop.prizes.each_with_index { |winner, i|
-          list.row(i+12).push winner.place, winner.cost
+          list.row(i+9).push winner.place, winner.cost
           last_col =  last_col + i
         }
 
-        list.row(last_col+13).push 'Items'
-       list.row(last_col+15).concat ['Id', 'Text for hop item', 'Sponsor', 'Spponsor_id', 'PTS', ' BNS', 'Price', 'AMT paid']
-        z = last_col+16
+        list.row(last_col+10).push 'Items'
+       list.row(last_col+12).concat ['Id', 'Hop item description', 'Sponsor', 'Sponsor_id', 'PTS', ' Bonus', 'Price', 'Amt paid']
+        z = last_col+13
         @hop.hop_tasks.each_with_index { |item, i|
-          list.row(i+z).push item.id, item.text,"#{ item.sponsor.first_name + ' ' + item.sponsor.last_name}", item.sponsor_id, item.pts, item.price, item.amt_paid
+          list.row(i+z).push item.id, item.text,"#{ item.sponsor.first_name + ' ' + item.sponsor.last_name}", item.sponsor_id, item.pts,item.bonus, item.price, item.amt_paid
           last_col =  last_col + i
         }
 
-        list.row(last_col+17).push 'Ad'
-        list.row(last_col+19).concat ['Position', 'Advertizer', 'Logo', 'Price', 'AMT paid']
-        z = last_col+20
+        list.row(last_col+14).push 'Ad'
+        list.row(last_col+16).concat ['Position', 'Advertizer', 'Advertizer id', 'Logo', 'Price', 'Amt paid', 'Link to ad']
+        z = last_col+17
         @hop.ads.each_with_index { |ad, i|
-          list.row(i+z).push ad.ad_type,"#{ ad.advertizer.first_name + ' ' + ad.advertizer.last_name}", ad.picture_file_name, ad.price, ad.amt_paid
+          list.row(i+z).push ad.ad_type,"#{ ad.advertizer.first_name + ' ' + ad.advertizer.last_name}", ad.advertizer.id, ad.picture_file_name, ad.price, ad.amt_paid, ad.link
           last_col =  last_col + i
         }
 
@@ -243,7 +242,7 @@ class Admin::HopsController < Admin::AdminController
 
            redirect_to   admin_hop_path(@hop)
         else
-          render  action: 'regular',  notice: "bad excel file"
+          redirect_to  action: 'regular'
         end
 
 

@@ -1,0 +1,125 @@
+= render partial: 'layouts/modal_crud'
+:javascript
+  var users_modal;
+
+  $(document).ready(function(){
+    users_modal = new ModalCRUD({
+
+    });
+  });
+.row-fluid
+  .span12.text-right
+    %br
+    = submit_tag("Find hopper", :class=>"btn btn-success", :onclick=>'search_user()' )
+#hopper_info
+
+
+-#%fieldset
+-#
+-#  -unless @user.blank?
+-#    %table
+-#      .tr
+-#        .td
+-#          Hops played
+-#      -unless @user.games.blank?
+-#        -for i in @user.games
+-#          .tr
+-#            .td
+-#              = i.name
+-#    %table
+-#      %tr
+-#        %td
+-#          Hops won
+-#        -unless @user.prizes.blank?
+-#          -for i in @user.games
+-#            %tr
+-#              %td
+-#                = Hop.find_by_id( i.hop_id).name
+-#    %table
+-#      %tr
+-#        %td
+-#          User name
+-#        %td
+-#          = @user.first_name
+-#        %td
+-#          = image_tag @user.avatar.url
+-#      %tr
+-#        %td
+-#          User id
+-#        %td
+-#          =@user.id
+-#      %tr
+-#        %td
+-#          Password
+-#        .td
+-#          = @user.password
+-#      %tr
+-#        %td
+-#          Name
+-#        %td
+-#          = @user.user_name
+-#      %tr
+-#        %td
+-#          Zip
+-#        %td
+-#          = @user.zip
+-#      %tr
+-#        %td
+-#          Email
+-#        %td
+-#          = @user.email
+-#      %tr
+-#        %td
+-#          Phone
+-#        %td
+-#          = @user.user_name
+-#      %tr
+-#        %td
+-#          Facebook id
+-#        %td
+-#          = @user.user_name
+-#      %tr
+-#        %td
+-#          Twitter id
+-#        %td
+-#          = @user.user_name
+-#      %tr
+-#        %td
+-#          Player since
+-#        %td
+-#
+-#    = button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9 pull-right  btn-success span10"
+-#    = button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9 pull-right  btn-success"
+-#    = submit_tag("send text to user", :class=>"span9 pull-right  btn-success" )
+-#
+-#
+-#    = link_to("Export file to PDF",  admin_hoppers_hopper_to_pdf_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>"span7 pull-right btn btn-success" )
+-#
+-#    = button_to("Print user file",nil, :class=>"span7 pull-right btn btn-success" )
+-#
+-#modal hide fade in" id="myModalname" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+-#  <div class="modal-header" >
+-#  </div>
+-#  <div class="modal-body">
+-#    <div id="myModalname" class="example cursor">
+-#
+-#    </div>
+-#  </div>
+-#  <div class="modal-footer">
+-#
+-#  </div>
+-#</div>
+-#
+-#<div class="modal hide fade in" id="myModalid" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="myModalLabel" aria-hidden="true">
+-#  <div class="modal-header" >
+-#  </div>
+-#  <div class="modal-body">
+-#    <div id="myModalid" class="example cursor">
+-#
+-#    </div>
+-#  </div>
+-#  <div class="modal-footer">
+-#  </div>
+-#</div>
+
+

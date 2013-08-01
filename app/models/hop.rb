@@ -142,7 +142,7 @@ class Hop < ActiveRecord::Base
           new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Time start' ||  oo.cell(i,j) == 'time start'
           new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'Time end' ||  oo.cell(i,j) == 'time end'
           new_hop[:price] = oo.cell(i + 1,j).to_i   if oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price'
-          new_hop[:producer_id]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Showprod_id' ||  oo.cell(i,j) == 'showprod_id'
+          new_hop[:producer_id]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Showprod id' ||  oo.cell(i,j) == 'showprod id'
           new_hop[:jackpot]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Jackpot' ||  oo.cell(i,j) == 'jackpot'
           new_hop[:event]=  oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
 

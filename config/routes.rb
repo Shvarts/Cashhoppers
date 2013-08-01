@@ -42,7 +42,8 @@ CashHoppers::Application.routes.draw do
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"
     match '/hoppers/search_hoppers' => "hoppers#search_hoppers"
-    get '/hoppers/search_by_name' => 'hoppers#search_by_name'
+    get '/hoppers/search_user'
+    post '/hoppers/select_user'
     get '/hoppers/search_by_id' => 'hoppers#search_by_id'
     get '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
     get '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
