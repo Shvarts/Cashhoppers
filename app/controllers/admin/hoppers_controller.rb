@@ -2,14 +2,11 @@ class Admin::HoppersController < Admin::AdminController
   include ::PdfWritter
 
   def find_hopper
-
     @tab = 'find_hoppers'
-
   end
 
   def hopper_list
    @tab = 'generate_hoppers_list'
-
 
    if  params[:id]
      output = PdfWritter::TestDocument.new.to_pdf_hopper_list(params[:id])
@@ -19,22 +16,17 @@ class Admin::HoppersController < Admin::AdminController
        }
      end
    end
-
-
   end
-
-
-
 
   def sub_layout
     'admin/hoppers_tabs'
   end
 
-   def search_by_name
+  def search_by_name
     conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
-     @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
-     render :partial=> 'users_list'
-   end
+    @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
+    render :partial=> 'users_list'
+  end
 
   def search_user
     params[:page] ||= 1
@@ -42,8 +34,6 @@ class Admin::HoppersController < Admin::AdminController
     @users = User.paginate page: params[:page], per_page: params[:per_page]
     render :partial=> 'users_list'
   end
-
-
 
   def search_hop_list
     params[:page] ||= 1
@@ -59,49 +49,33 @@ class Admin::HoppersController < Admin::AdminController
      render partial: 'users_zip_list'
   end
 
-
-
   def select_user
     @user = User.find_by_id(params[:id])
     render :partial => 'hopper_info'
   end
 
-
   def select_hop
     @users = Hop.find_by_id(params[:id]).hoppers.all
     render :partial => 'generate_hop_list'
-
   end
 
   def select_zip
     @users = User.where(:zip => params[:zip]).all
     render :partial => 'generate_hop_list'
-
   end
 
 
   def search_by_zip
-
-
     conditions = ["zip LIKE ? OR zip LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
     @zips = User.group(:zip).select(:zip)
     @zips = @zips.paginate(:page => 1, :per_page => 9,  conditions:  conditions )
-
-
     render :partial=> 'users_zip_list'
-
-
   end
 
   def search_by_hop
-
     conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
     @hops = Hop.paginate(page: params[:page], per_page:9, conditions:  conditions)
-
-
-
     render :partial=> 'users_hop_list'
-
   end
 
   def hopper_to_pdf
@@ -120,7 +94,6 @@ class Admin::HoppersController < Admin::AdminController
     for i in params[:id]
       @gamers  << User.find_by_id(i)
     end
-
 
     respond_to do |format|
       format.xls{

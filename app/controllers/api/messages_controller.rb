@@ -91,7 +91,7 @@ class Api::MessagesController < Api::ApplicationController
   def remove_message
     @message = Message.where(id: params[:message_id], sender_id: @current_user.id).first
     if @message
-      @message.update_attribute :text, 'Message was removed.'
+      @message.delete
       respond_to do |format|
         format.json{
           render :json => {success: true,
