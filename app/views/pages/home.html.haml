@@ -1,34 +1,13 @@
--#= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
--#%table.table.table-condensed
--#  %tr
--#    %th
--#      User Name
--#    %th
--#      Hop Name
--#    %th
--#      task
--#    %th
--#      created at
--#    %th
--#      Comment
--#    %th
--#      Photo
--#  - @user_hop_tasks.each do |task|
--#    %tr
--#      %td
--#        = link_to task.user.first_name, user_path(task.user) if task.user
--#      %td
--#        = task.hop_task.hop.name if task.hop_task
--#      %td
--#        = task.hop_task.text if task.hop_task
--#      %td
--#        = task.created_at
--#      %td
--#        = task.comment
--#      %td{style: 'text-align: right'}
--#        = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px' if task.photo.exists?
-= will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
 .custom-pg.first-page
+  .span5
+  .phone
+    .carousel.slide#myCarousel
+      .carousel-inner
+        - @user_hop_tasks.each do |task|
+          .item
+            =image_tag task.photo.url, :style => 'height:100%' if task.photo.exists?
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
 .custom-pg.gray-page
   %h2{:id=>"gray-page"}
@@ -66,18 +45,6 @@
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
-  .span12
-    .carousel.slide#myCarousel
-      .carousel-inner
-        .center
-        .active-item
-          =image_tag("logo.png")
-        .item
-          =image_tag("facebook.png")
-        .item
-          =image_tag("rails.png")
-      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
 .custom-pg.business-page
   %h2{:id=>"business-page"}
