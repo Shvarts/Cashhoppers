@@ -33,7 +33,14 @@
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
       = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 .row-fluid
+  .span12
+    -if @exp
+      -for i in @exp
+        -#i.each do |e|
+        =i
+.row-fluid
   .span4
+
     = image_tag @hop.logo.url, class: 'img-polaroid', style: 'max-width: 400px; max-height: 400px'
   .span8
     %table.hops-form
@@ -167,9 +174,11 @@
           = user.user_name
         %td
           = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
-
 %br
-= link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
-%br
-= link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
+.row-fluid
+  .span2.text-right
+    = link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
+  .span10
+    .text-right
+      = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
 

@@ -39,6 +39,7 @@ class Admin::HopsController < Admin::AdminController
     @hoppers = @hop.hoppers
     @ads = Ad.ads_for_hop @hop
     @prizes = @hop.prizes
+    @exp = params[:exp]
   end
 
   def new_regular
@@ -162,16 +163,16 @@ class Admin::HopsController < Admin::AdminController
           last_col =  last_col + i
         }
 
-        list.row(last_col+10).push 'Items'
-       list.row(last_col+12).concat ['Id', 'Hop item description', 'Sponsor', 'Sponsor_id', 'PTS', ' Bonus', 'Price', 'Amt paid']
+        list.row(last_col+10).push 'Hop item'
+       list.row(last_col+12).concat ['Id', 'Hop item description', 'Sponsor', 'Sponsor id', 'PTS', 'Bonus', 'Price', 'Amt paid']
         z = last_col+13
         @hop.hop_tasks.each_with_index { |item, i|
-          list.row(i+z).push item.id, item.text,"#{ item.sponsor.first_name + ' ' + item.sponsor.last_name}", item.sponsor_id, item.pts,item.bonus, item.price, item.amt_paid
+          list.row(i+z).push item.id, item.text,"#{ item.sponsor.first_name + ' ' + item.sponsor.last_name}", item.sponsor_id, item.pts,item.bonus.to_i, item.price, item.amt_paid
           last_col =  last_col + i
         }
 
-        list.row(last_col+14).push 'Ad'
-        list.row(last_col+16).concat ['Position', 'Advertizer', 'Advertizer id', 'Logo', 'Price', 'Amt paid', 'Link to ad']
+        list.row(last_col+14).push 'Hop ad'
+        list.row(last_col+16).concat ['Position', 'Advertiser', 'Advertiser id', 'Logo', 'Price', 'Amt paid', 'Link to ad']
         z = last_col+17
         @hop.ads.each_with_index { |ad, i|
           list.row(i+z).push ad.ad_type,"#{ ad.advertizer.first_name + ' ' + ad.advertizer.last_name}", ad.advertizer.id, ad.picture_file_name, ad.price, ad.amt_paid, ad.link
@@ -232,21 +233,23 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.new(@new_hop)
 
       rescue Exception =>e
-        flash[:bad_file] = "Bad file format #{e}"
+
         redirect_to 'regular'
       else
 
         if @hop.save
-          Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
-          @tasks = @hop.hop_tasks
+          @exp = Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
 
-           redirect_to   admin_hop_path(@hop)
+
+          redirect_to   admin_hop_path(:id =>@hop, :exp=> @exp )
         else
-          redirect_to  action: 'regular'
+
+         redirect_to  action: 'regular'
         end
 
 
-    end
+      end
+
 
   end
 

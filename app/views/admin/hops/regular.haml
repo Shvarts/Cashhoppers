@@ -1,11 +1,11 @@
 .row-fluid
   .text-right
-    .alert-error
-      = flash[:bad_file] if flash[:bad_file]
+    .align-error
+
     =form_tag({:controller => 'hops', :action => 'import_from_excel'}, :multipart=>true, :method => 'post') do
       Select an Excel File :
       = file_field_tag 'excel'
-      = submit_tag 'load', class: 'btn btn-primary btn-success'
+      = submit_tag 'load', class: 'btn btn-primary btn-success', :id => 'load'
 
 .text-right
   = link_to 'New regular hop', admin_new_regular_hop_path, class: 'btn btn-info'
