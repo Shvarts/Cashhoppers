@@ -15,19 +15,19 @@ end
 
 User.destroy_all
 admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin')
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:admin)]
 
 friend = User.new(:email => 'friend@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'friend',
-                  :last_name => 'friend', :zip => 88000, :user_name => 'friend')
+                  :last_name => 'friend', :zip => 88000, :user_name => 'friend', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 friend.skip_confirmation!
 friend.save
 friend.roles = [Role.find_by_name(:user)]
 
 other_user = User.new(:email => 'other_user@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'other_user',
-                  :last_name => 'other_user', :zip => 88000, :user_name => 'other_user')
+                  :last_name => 'other_user', :zip => 88000, :user_name => 'other_user', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 other_user.skip_confirmation!
 other_user.save
 other_user.roles = [Role.find_by_name(:user)]
@@ -37,7 +37,7 @@ Friendship.accept(friend, admin)
 
 5.times do |t|
   user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                  :last_name => 'CashHoppers', :zip => 8800 + t, :user_name => 'admin')
+                  :last_name => 'CashHoppers', :zip => 8800 + t, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
   user.skip_confirmation!
   user.save
   user.roles = [Role.find_by_name(:admin)]
@@ -45,11 +45,12 @@ end
 
 10.times do |t|
   user = User.new(:email => "user_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => "user_#{t}",
-                  :last_name => "user_#{t}", :zip => 88000, :user_name => 'user')
+                  :last_name => "user_#{t}", :zip => 88000, :user_name => 'user', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
   user.skip_confirmation!
   user.save
   user.roles = [Role.find_by_name(:user)]
 end
+
 
 puts 'Create applications...'
 
@@ -74,9 +75,9 @@ end
   if  @hop.save
 
     5.times do |t|
-     @hop.hoppers.create!(:email => "gamers#{t}#{i}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                    :last_name => 'CashHoppers', :zip => 880 + t+ i, :user_name => 'admin',
-                    :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
+      @hop.hoppers.create!(:email => "gamers#{t}#{i}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                           :last_name => 'CashHoppers', :zip => 880 + t+ i, :user_name => 'admin',
+                           :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 
       puts '______________________________________________________________________________print______________________________'
 

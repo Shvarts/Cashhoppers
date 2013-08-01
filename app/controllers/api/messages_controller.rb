@@ -40,16 +40,33 @@ class Api::MessagesController < Api::ApplicationController
   end
 
   def get_users_messages_thread
-    #SELECT
-    #users.id AS sender_id, users.avatar_file_name AS sender_avatar_file_name, users.first_name AS sender_first_name, users.last_name AS sender_last_name, users.user_name AS sender_user_name,
-    #                                                                                                                                                                         last_message.text AS last_message_text, last_message.id AS last_message_id
-    #FROM users
-    #LEFT JOIN (SELECT messages.* FROM messages WHERE messages.receiver_id = 1 ORDER BY messages.created_at DESC LIMIT 1) AS last_message ON last_message.sender_id = users.id
-    #WHERE users.id IN (SELECT friendships.friend_id FROM friendships WHERE friendships.user_id = 1)
-    #;
     params[:page] ||= 1
     params[:per_page] ||= 10
-    @friends = @current_user.friends.paginate(page: params[:page], per_page: params[:per_page])
+
+    @messages = ActiveRecord::Base.connection.select_all(
+      "SELECT messages.id, messages.text, messages.created_at, messages.sender_id, messages.receiver_id,
+        IF(sender.id = #{@current_user.id}, receiver.id, sender.id) AS friend_id,
+        IF(sender.id = #{@current_user.id}, receiver.first_name, sender.first_name) AS friend_first_name,
+        IF(sender.id = #{@current_user.id}, receiver.last_name, sender.last_name) AS friend_last_name,
+        IF(sender.id = #{@current_user.id}, receiver.user_name, sender.user_name) AS friend_user_name,
+        IF(sender.id = #{@current_user.id}, receiver.avatar_file_name, sender.avatar_file_name) AS friend_avatar_file_name
+
+      FROM messages
+      LEFT JOIN users AS sender ON  messages.sender_id = sender.id
+      LEFT JOIN users AS receiver ON  messages.receiver_id = receiver.id
+
+      WHERE messages.created_at IN (
+        SELECT last_message.max_val FROM(
+          SELECT MAX( messages.created_at ) AS max_val, IF( messages.sender_id = #{@current_user.id}, messages.receiver_id, messages.sender_id ) AS friend
+          FROM messages WHERE messages.receiver_id = #{@current_user.id} OR messages.sender_id = #{@current_user.id} GROUP BY friend
+        ) AS last_message
+      )
+
+      ORDER BY messages.created_at DESC
+      LIMIT #{params[:per_page]} OFFSET #{params[:page] - 1};"
+    )
+    ActiveRecord::Base.connection.close
+
     respond_to do |format|
       format.json{
       }
