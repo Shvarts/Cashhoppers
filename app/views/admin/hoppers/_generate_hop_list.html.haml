@@ -1,0 +1,49 @@
+%br
+.row-fluid
+  .span12
+    %table
+      %tr
+        %td.span1
+          %b User id
+        %td.span1
+          %b First name
+        %td.span1
+          %b Last name
+        %td.span1
+          %b User name
+        %td.span1
+          %b Email
+        %td.span1
+          %b ZIP
+      -id = []
+      - for i in @users
+        -id << i.id
+        %tr
+          %td.span1
+            =i.id
+          %td.span1
+            = i.first_name
+          %td.span1
+            = i.last_name
+          %td.span1
+            =i.user_name
+          %td.span1
+            =i.email
+          %td.span1
+            =i.zip
+%br
+.row-fluid
+  .span2
+    = button_to "Email to list", admin_messages_email_tool_path({"id"=>id}),:class=>"btn btn-success"
+    = button_to "Messages to list", admin_messages_message_tool_path({"id"=>id}) , :class=>"btn btn-success "
+  .span10.text-right
+    = link_to("Export file to Excel", admin_hoppers_export_to_excel_path(:id => id, :format => 'xls'),  :class=>" btn btn-success" )
+    %br
+    %br
+    = link_to("Export file to PDF",  admin_hoppers_hopper_list_path(:id =>id, :format => 'pdf'),:method => 'post',  :target => '_blank', :class=>"btn btn-success" )
+
+
+
+
+
+

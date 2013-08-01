@@ -48,10 +48,42 @@ class Admin::HoppersController < Admin::AdminController
     render :partial=> 'users_list'
   end
 
+
+
+  def search_hop_list
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @hops = Hop.paginate page: params[:page], per_page: params[:per_page]
+     render partial: 'users_hop_list'
+  end
+
+  def search_zip_list
+    params[:page] ||= 1
+    params[:per_page] ||= 7
+    @zips = User.group(:zip).select(:zip).paginate page: params[:page], per_page: params[:per_page]
+     render partial: 'users_zip_list'
+  end
+
+
+
   def select_user
     @user = User.find_by_id(params[:id])
     render :partial => 'hopper_info'
   end
+
+
+  def select_hop
+    @users = Hop.find_by_id(params[:id]).hoppers.all
+    render :partial => 'generate_hop_list'
+
+  end
+
+  def select_zip
+    @users = User.where(:zip => params[:zip]).all
+    render :partial => 'generate_hop_list'
+
+  end
+
 
   def search_by_zip
 

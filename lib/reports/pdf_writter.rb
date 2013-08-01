@@ -4,7 +4,7 @@ module PdfWritter
     def to_pdf_hopper(hopper_id)
       @hopper =User.find_by_id(hopper_id)
       text "Hopper", :size => 16, :align => :center
-
+      move_down(20)
       table([
                     ["User name", "#{@hopper.user_name}"],
                     ['User id', "#{@hopper.id}"],
@@ -15,12 +15,15 @@ module PdfWritter
                     ['Contact', "#{@hopper.contact}"],
                     ['Facebook id', "#{@hopper.facebook}"],
                     ['Twitter id', "#{@hopper.twitter}"],
-                    ['Google+ id', "#{@hopper.google}"]],
+                    ['Google+ id', "#{@hopper.google}"],
+                    ['Player since', "#{@hopper.created_at}"]
+            ],
             :column_widths => {0 => 80, 1 => 180},
             :cell_style => { :inline_format => true } )
 
-      move_down(20)
-
+        move_down(20)
+        text 'Avatar'
+        move_down(10)
           begin
             dice = ''
             if @hopper.avatar_file_size
@@ -32,14 +35,14 @@ module PdfWritter
           #rescue Exception =>e
           #  dice = "#{Rails.root}/public#{@hopper.avatar.url}"
          end
-          image dice, :at => [270, 700], :scale => 0.75
+          image dice,  :scale => 0.75
           games = @hopper.games.map do |game|
          [
            game.name
 
           ]
        end
-       bounding_box([340,700], :width => 200, :height => 200) do
+       bounding_box([340,680], :width => 200, :height => 200) do
          table([
                 ["Hops played"]
             ],:column_widths => {0 => 100})
@@ -55,7 +58,7 @@ module PdfWritter
          end
 
          end
-      bounding_box([440,700], :width => 200, :height => 200) do
+      bounding_box([440,680], :width => 200, :height => 200) do
          table([
                 ["Hops won"]
             ],:column_widths => {0 => 100})
