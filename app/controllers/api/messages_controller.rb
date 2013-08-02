@@ -43,7 +43,6 @@ class Api::MessagesController < Api::ApplicationController
     params[:page] ||= 1
     params[:per_page] ||= 10
     @messages = Message.thread @current_user, params[:page], params[:per_page]
-
     respond_to do |format|
       format.json{
       }

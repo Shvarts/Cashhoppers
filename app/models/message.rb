@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
   def self.thread user, page = nil, per_page = nil
     pagination = ""
     if page && per_page
-      pagination = "LIMIT #{page} OFFSET #{per_page.to_i - 1}"
+      pagination = "LIMIT #{per_page} OFFSET #{page.to_i - 1}"
     end
     thread = ActiveRecord::Base.connection.select_all(
       "SELECT messages.id, messages.text, messages.created_at, messages.sender_id, messages.receiver_id,
