@@ -13,6 +13,7 @@ class Friendship < ActiveRecord::Base
   # Record a pending friend request.
   def self.request(user, friend)
     unless user == friend or Friendship.exists?(user, friend)
+      Notification.create(user_id: friend.id, friend_id: user.id, event_type: 'Friend invite')
       transaction do
         create(:user => user, :friend => friend, :status => 'pending')
         create(:user => friend, :friend => user, :status => 'requested')
@@ -22,6 +23,7 @@ class Friendship < ActiveRecord::Base
 
   # Accept a friend request.
   def self.accept(user, friend)
+    Notification.create(user_id: friend.id, friend_id: user.id, event_type: 'Friend invite accept')
     transaction do
       accepted_at = Time.now
       accept_one_side(user, friend, accepted_at)
