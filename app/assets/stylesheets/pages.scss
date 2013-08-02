@@ -1,0 +1,465 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body, head, header{
+    height: 100%;
+    width: 100%;
+}
+    body fieldset{
+    margin-top: 20%;
+}
+.container-grid{
+    margin-top: 0px;
+}
+.custom-pg{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    b{
+        font-family: 'MS Sans Serif', Geneva, sans-serif;
+        font-size: 0.1em;
+        text-align: center;
+        text-shadow: 0.01em 0.01em 0.05em gray;
+        vertical-align: middle;
+        color: gray;
+        font-size: 30px;
+        max-width: 550px;
+    }
+    p{
+        align: center;
+        font-family: 'MS Sans Serif', Geneva, sans-serif;
+        font-size: 0.1em;
+        text-align: center;
+        text-shadow: 0.01em 0.01em 0.05em gray;
+        vertical-align: middle;
+        color: gray;
+        font-size: 15px;
+    }
+}
+table#video{
+    margin:0 27%;
+    width: 700px;
+    height: 600px;
+    text-align: center;
+
+    tr{
+    width: 100%;
+    td{
+    padding:10px 10px;
+    }
+  }
+}
+embed{
+    width: 550px;
+    height: 300px;
+}
+
+.first-page{
+  margin-top: 69px;
+  background-image: url('firstpage.jpg');
+  .phone{
+    position: relative;
+    left: 50%;
+    width: xxx;
+    margin-left: -460px;
+    top: 33%;
+    height: yyy;
+    margin-top: -yyy;
+    width: 915px;
+    height: 425px;
+    background-image: url('phone.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.carousel.slide{
+  margin-left:14.1%;
+  padding-top: 25px;
+  width: 658px;
+  position: center;
+  height: 370px;
+  .carousel-inner{
+    height: 100%;
+    width: 100%;
+    .item{
+      width:  100%;
+      height: 100%;
+    }
+  }
+}
+}
+a.carousel-control.left{
+    margin-top: 2%;
+}
+a.carousel-control.right{
+    margin-top: 2%;
+}
+.social-links{
+    margin: 0 42%;
+    width: 500px;
+    height: 18px;
+}
+.sign-up{
+    margin: 0 42%;
+}
+.gray-page{
+      background-color: #E9EEF4;
+}
+.yellow-page{
+      background-color: #FAEBD6;
+}
+.what-page{
+      background-color: #FFFFFF;
+}
+.business-page{
+      background-color: #FFFFFF;
+}
+.events-page{
+      background-color: #FFFFFF;
+}
+.page-divider
+{
+    margin: top;
+    background: white;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwLjUxNzI0MSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3ODc4NyIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODc4Nzg3IiAvPjxyZWN0IHg9Ii0zNyUiIHk9Ii03NCUiIHdpZHRoPSIxNzQlIiBoZWlnaHQ9IjM0OCUiIGZpbGw9InVybCgjZykiIC8+PC9zdmc+);
+    background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 728, color-stop(51.7241%, #ffffff), color-stop(100%, #878787));
+    background-image: -webkit-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -moz-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -ms-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
+    padding: 1%;
+}
+
+@media(min-width:100px)and(max-width: 399px){
+html,body,head,header{
+width: 100%;
+height: 100%;
+}
+   .custom-pg{
+    width: 100%;
+    height: 100%;
+    }
+    .first-page{
+    margin-top:90px;
+    }
+    .page-divider{
+    width: 100%;
+    }
+  .header{
+  position: fixed;
+  max-height: 50%;
+  width: 100%;
+  margin: 0 auto;
+  top: 0px;
+
+  .header-content{
+    margin: 0 auto;
+    height: 50px;
+    .header-left{
+      max-height: 140px;
+      width: 100%;
+      display: table;
+      ul{
+        padding-top:5px;
+        padding-left: 20px;
+        text-align: left;
+        position: center;
+        width: 100%;
+        display: table-cell;
+        li{
+          padding-left: 10px;
+          display: inline;
+          font-size: 10px;
+          font-weight: bolder;
+        }
+          li:last-child{
+          border-right: none;
+          }
+        }
+    }
+    .header-right{
+      display: table;
+      text-align: right;
+      height: 70px;
+      width: 150px;
+      float: left;
+      .button-container{
+        padding-left: 70px;
+        vertical-align: middle;
+        display: table-cell;
+        input{
+          font-size: 12px;
+          font-weight: bolder;
+          width: 180px;
+        }
+      }
+    }
+  }
+}
+}
+@media(min-width:400px)and(max-width: 599px){
+html,body,head,header{
+width: 100%;
+height: 100%;
+}
+   .custom-pg{
+    width: 100%;
+    height: 100%;
+    }
+.first-page{
+  margin-top: 69px;
+  background-image: url('firstpage.jpg');
+  .phone{
+    position: relative;
+    left: 50%;
+    width: xxx;
+    margin-left: -170px;
+
+    height: yyy;
+    width: 70%;
+    height: 50%;
+    background-image: url('phone.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.carousel.slide{
+  margin-left:14.2%;
+  padding-top: 13px;
+  width: 72%;
+  position: center;
+  height: 89%;
+  .carousel-inner{
+    height: 100%;
+    width: 101%;
+    .item{
+      width:  100%;
+      height: 100%;
+    }
+  }
+}
+}
+table#video{
+    margin-left: -6%;
+    width: 450px;
+    height: 150px;
+    text-align: center;
+
+    tr{
+    width: 100%;
+    td{
+    padding:10px 10px;
+    }
+  }
+}
+embed{
+    width: 350px;
+    height: 150px;
+}
+
+    .page-divider{
+    width: 100%;
+    }
+  .header{
+  position: fixed;
+  max-height: 50%;
+  width: 100%;
+  margin: 0 auto;
+  top: 0px;
+
+  .header-content{
+    margin: 0 auto;
+    height: 50px;
+    .header-left{
+      max-height: 140px;
+      width: 100%;
+      display: table;
+      ul{
+        padding-top:5px;
+        padding-left:20px;
+        text-align: left;
+        position: center;
+        width: 100%;
+        display: table-cell;
+        li{
+          float:left;
+          display: inline;
+          font-size: 10px;
+          font-weight: bolder;
+        }
+          li:last-child{
+          border-right: none;
+          }
+        }
+    }
+    .header-right{
+      display: table;
+      text-align: right;
+      height: 70px;
+      width: 330px;
+      float: left;
+      .button-container{
+        float: right;
+        padding-right: 0px;
+        vertical-align: middle;
+        display: table-cell;
+        input{
+          font-size: 12px;
+          font-weight: bolder;
+          width: 270px;
+        }
+      }
+    }
+  }
+}
+}
+@media(min-width:600px)and(max-width: 950px){
+
+
+table#video{
+    margin:0 12%;
+    width: 700px;
+    height: 600px;
+    text-align: center;
+}
+embed{
+    width: 550px;
+    height: 300px;
+}
+.first-page{
+  margin-top: 69px;
+  background-image: url('firstpage.jpg');
+  .phone{
+    position: relative;
+    left: 50%;
+    width: xxx;
+    margin-left: -330px;
+    top: 35%;
+    height: yyy;
+    margin-top: -yyy;
+    width: 650px;
+    height: 300px;
+}
+.carousel.slide{
+  margin-left:14.2%;
+  padding-top: 19px;
+  width: 72%;
+  position: center;
+  height: 87%;
+  .carousel-inner{
+    height: 100%;
+    width: 101%;
+  }
+}
+}
+  .header{
+  .header-content{
+    margin: 0 auto;
+    height: 50px;
+    .header-left{
+      max-height: 140px;
+      width: 100%;
+      display: table;
+      ul{
+        padding-top:5px;
+        padding-left: 50px;
+        float: left;
+        text-align: left;
+        width: 100%;
+        display: table-cell;
+        li{
+          display: inline;
+          font-size: 12px;
+          font-weight: bolder;
+        }
+          li:last-child{
+          border-right: none;
+          }
+        }
+    }
+    .header-right{
+      .button-container{
+        float: right;
+        padding-left: 0px;
+        padding-right:250px;
+        vertical-align: middle;
+        display: table-cell;
+
+      }
+    }
+  }
+}
+}
+@media(min-width:951px)and(max-width: 1400px){
+.first-page{
+  margin-top: 69px;
+  background-image: url('firstpage.jpg');
+  .phone{
+    position: relative;
+    left: 50%;
+    width: xxx;
+    margin-left: -400px;
+    top: 33%;
+    height: yyy;
+    margin-top: -yyy;
+    width: 800px;
+    height: 375px;
+}
+.carousel.slide{
+  margin-left:14.3%;
+  padding-top: 13px;
+  width: 71%;
+  position: center;
+  height: 93%;
+  .carousel-inner{
+    height: 100%;
+    width: 101%;
+    .item{
+      width:  100%;
+      height: 100%;
+    }
+  }
+}
+}
+table#video{
+    margin:0 21%;
+    width: 700px;
+    height: 600px;
+    text-align: center;
+}
+embed{
+    width: 550px;
+    height: 300px;
+}
+  .header{
+  .header-content{
+    margin: 0 auto;
+    height: 50px;
+    align: center;
+    .header-left{
+      max-height: 140px;
+      width: 100%;
+      display: table;
+
+    }
+    .header-right{
+      .button-container{
+        float: right;
+        padding-right:250px;
+        vertical-align: middle;
+        display: table-cell;
+        input{
+          font-size: 12px;
+          font-weight: bolder;
+          width: 270px;
+        }
+      }
+    }
+  }
+ }
+}
+
+
