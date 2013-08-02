@@ -30,8 +30,7 @@
         %b WHAT IS CASHHOPERS ALL ABOUT
     %tr
       %td
-        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
-	    :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+        = video_tag ["video/media.mp4"], :size => "500x400", :controls => true,:type=>"video/mp4", :autobuffer => true
     %tr
       %td
         %p sadafsafasfasf
@@ -46,11 +45,10 @@
         %b HOW TO PLAY
     %tr
       %td
-        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
-        :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+        = video_tag ["video/media.mp4"], :size => "500x400", :controls => true,:type=>"video/mp4", :autobuffer => true
     %tr
       %td
-        %p sadafsafasfasfas
+        %p
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
