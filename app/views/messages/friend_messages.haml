@@ -1,21 +1,32 @@
 = stylesheet_link_tag 'speech_bubbles', media: :all
+:javascript
+  function synchronize_messages(friend_id){
+  //    $('body').append($('#last_sync_date').val());
+      $.ajax({
+          url: '/messages/synchronize',
+          data: {last_sync_date: $('#last_sync_date').val(),
+                 friend_id: friend_id},
+          type: 'POST',
+          error: function(err){
+          },
+          success: function(data){
+              $('#last_sync_date').remove();
+              $('#messages').append(data);
+              $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+          }
+      });
+  }
+  $(document).ready(function(){
+      setInterval("synchronize_messages(#{@friend.id})", 5000);
+  });
 %h3{style: 'color: darkgreen'}
   = full_user_name(@friend)
-- @messages.each do |message|
+#messages
+  = render partial: 'messages'
+%hr
   .row
-    - if message.sender_id == current_user.id
-      .span10
-        .triangle-border.right{style: 'border-color: red'}
-          = message.text
-          = message.sender_id
-      .span2
-        %a.thumbnail
-          = image_tag current_user.avatar.url, style: 'width: 70px'
-    - else
-      .span2
-        %a.thumbnail
-          = image_tag @friend.avatar.url, style: 'width: 70px'
-      .span10
-        .triangle-border.left
-          = message.text
-          = message.sender_id
+    .span8
+      %textarea#new_message.triangle-border.right{style: 'border-color: yellow; width: 100%'}
+    .span4.text-right
+      %button.btn.btn-large.btn-success{style: 'margin-top: 15px;', onclick: 'send_message(' + @friend.id.to_s + ')'}
+        Send

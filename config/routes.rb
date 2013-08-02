@@ -147,4 +147,6 @@ CashHoppers::Application.routes.draw do
 
   get 'messages/friends_list'
   get 'messages/friend_messages'
+  post 'messages/synchronize'
+  post 'messages/send_message'
 end
