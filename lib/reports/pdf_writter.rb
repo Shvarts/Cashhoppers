@@ -203,8 +203,8 @@ module PdfWritter
             hop.time_start.to_s,
             hop.time_end.to_s,
             hop.hoppers.count,
-            hop.hop_tasks.count,
-            hop.ads.count
+            hop.hop_tasks.sum(:amt_paid),
+            hop.ads.sum(:amt_paid)
         ]
 
       end

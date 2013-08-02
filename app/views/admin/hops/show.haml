@@ -33,11 +33,19 @@
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
       = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 .row-fluid
-  .span12
+  .span12.text-error
     -if @exp
-      -for i in @exp
-        -#i.each do |e|
-        =i
+      -@exp.flatten!
+      - for i in  @exp.first
+        %br
+        %b
+          = i.first
+          .offset3
+            -for e in i[1]
+              %b
+                =e
+                %br
+%br
 .row-fluid
   .span4
 

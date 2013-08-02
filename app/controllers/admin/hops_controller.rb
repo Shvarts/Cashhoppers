@@ -206,7 +206,7 @@ class Admin::HopsController < Admin::AdminController
 
           list.row(3).concat ['Id', 'Name', 'Time start', 'Time end', 'Registered hoppers', 'Items', "Ads"]
           @hops.each_with_index { |hop, i|
-            list.row(i+4).push hop.id,hop.name,hop.time_start.to_s,hop.time_end.to_s, hop.hoppers.count, hop.hop_tasks.count, hop.ads.count
+            list.row(i+4).push hop.id,hop.name,hop.time_start.to_s,hop.time_end.to_s, hop.hoppers.count, hop.hop_tasks.sum(:amt_paid), hop.ads.sum(:amt_paid)
           }
           header_format = Spreadsheet::Format.new :color =>:green, :size => 10
           list.row(1).default_format = header_format
@@ -238,7 +238,9 @@ class Admin::HopsController < Admin::AdminController
       else
 
         if @hop.save
-          @exp = Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
+          @exp = []
+          @exp << @hop.errors.messages unless @hop.errors.messages.blank?
+          @exp << Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
 
 
           redirect_to   admin_hop_path(:id =>@hop, :exp=> @exp )
@@ -249,6 +251,9 @@ class Admin::HopsController < Admin::AdminController
 
 
       end
+
+
+
 
 
   end
