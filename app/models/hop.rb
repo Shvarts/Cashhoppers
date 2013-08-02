@@ -214,19 +214,29 @@ class Hop < ActiveRecord::Base
 
   def self.save_items_and_add_from_excel(hop, items, ads, winners)
 
-    begin
+
+      @exp = []
       for i in ads
-        hop.ads.create!(i)
+        ad = hop.ads.new(i)
+        @exp << ad.errors.messages  unless ad.save
       end
       for i in items
-        hop.hop_tasks.create!(i)
+        item = hop.hop_tasks.new(i)
+        @exp << item.errors.messages   unless item.save
+
       end
       for i in winners
-        hop.prizes.create!(i)
-      end
-    rescue Exception => e
+        winner = hop.prizes.new(i)
+        @exp << winner.errors.messages   unless winner.save
 
-    end
+
+      end
+
+
+
+
+
+    @exp
   end
 
 

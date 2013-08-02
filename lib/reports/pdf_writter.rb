@@ -105,46 +105,47 @@ module PdfWritter
     end
 
     def print_hop_pdf(hop_id)
-      @hop = Hop.find_by_id(hop_id)
-      @producer = User.find_by_id(@hop.producer_id)
-      text "Hop", :size => 16, :align => :center
-      move_down(5)
-      table([['Id','Hop code', 'Hop name', 'time start', 'time end', 'price', 'jackpot', 'Special event'],
-             [@hop.id,@hop.code, @hop.name,@hop.time_start.to_s, @hop.time_end.to_s, @hop.price, @hop.jackpot, @hop.event]],
-            :column_widths => {0 => 35, 1 => 60, 2 => 70, 3 => 80, 4 => 80, 5 => 60, 6 => 60, 7=> 80  }
+      begin
+        @hop = Hop.find_by_id(hop_id)
+        @producer = User.find_by_id(@hop.producer_id)
+        text "Hop", :size => 16, :align => :center
+        move_down(5)
+        table([['Id','Hop code', 'Hop name', 'time start', 'time end', 'price', 'jackpot', 'Special event'],
+              [@hop.id,@hop.code, @hop.name,@hop.time_start.to_s, @hop.time_end.to_s, @hop.price, @hop.jackpot, @hop.event]],
+              :column_widths => {0 => 35, 1 => 60, 2 => 70, 3 => 80, 4 => 80, 5 => 60, 6 => 60, 7=> 80  }
 
-      )
-      move_down(10)
-      if  @producer
-        table([['Producer id','Producer contact', 'Producer email', 'Producer phone'],
-               [@producer.id, @producer.contact, @producer.email, @producer.phone]],
-              :column_widths => {0 => 80, 1 => 80, 2 => 180, 3 => 80 }
         )
-      end
+        move_down(10)
+        if  @producer
+          table([['Producer id','Producer contact', 'Producer email', 'Producer phone'],
+                 [@producer.id, @producer.contact, @producer.email, @producer.phone]],
+                :column_widths => {0 => 80, 1 => 80, 2 => 180, 3 => 80 }
+          )
+        end
 
-      unless @hop.prizes.blank?
-        move_down(10)
-        text "Prizes", :size => 16, :align => :center
-        move_down(10)
-        prizes = @hop.prizes.map do |i|
-          [
+        unless @hop.prizes.blank?
+          move_down(10)
+          text "Prizes", :size => 16, :align => :center
+          move_down(10)
+          prizes = @hop.prizes.map do |i|
+            [
               i.place,
               i.cost
-          ]
+            ]
 
-        end
-        table([['Place', 'Prize']],
+          end
+          table([['Place', 'Prize']],
               :column_widths => {0 => 60, 1 => 80})
-        table(prizes, :column_widths => {0 => 60, 1 => 80 })
+          table(prizes, :column_widths => {0 => 60, 1 => 80 })
 
-      end
+          end
 
 
-      move_down(10)
-      text "Hop item", :size => 16, :align => :center
-      move_down(10)
-      items = @hop.hop_tasks.all.map do |task|
-        [
+        move_down(10)
+        text "Hop item", :size => 16, :align => :center
+        move_down(10)
+        items = @hop.hop_tasks.all.map do |task|
+          [
             task.id,
             task.text,
             User.find_by_id(task.sponsor_id).first_name,
@@ -154,35 +155,38 @@ module PdfWritter
             task.price,
             task.amt_paid
 
-        ]
-
-      end
-      if !items.blank?
-        table([['id', 'text for hop item', 'sponsor', 'sponsor_id', 'PTS', "BNS", 'Price', "AMT paid"]],
-              :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30, 4  => 60, 5  => 60, 6  => 60, 7  => 60 })
-        table(items, :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30,  4  => 60, 5  => 60, 6  => 60, 7  => 60 })
-      end
-      move_down(10)
-      text "Hop ad", :size => 16, :align => :center
-      move_down(10)
-
-      if !@hop.ads.blank?
-
-         ads = @hop.ads.all.map do |ad|
-          [
-            ad.ad_type,
-            User.find_by_id(ad.advertizer_id).first_name,
-            ad.picture_file_name,
-            ad.price,
-            ad.amt_paid
           ]
-        end
 
-        table([['Position', 'Advertizer', 'Logo', 'Price', "AMT paid"]],
-              :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70, 4  => 70})
-        table(ads, :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70,  4  => 70 })
+         end
+        if !items.blank?
+          table([['id', 'text for hop item', 'sponsor', 'sponsor_id', 'PTS', "BNS", 'Price', "AMT paid"]],
+              :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30, 4  => 60, 5  => 60, 6  => 60, 7  => 60 })
+          table(items, :column_widths => {0 => 20, 1 => 180, 2 => 60, 3 => 30,  4  => 60, 5  => 60, 6  => 60, 7  => 60 })
+        end
+        move_down(10)
+        text "Hop ad", :size => 16, :align => :center
+        move_down(10)
+
+        if !@hop.ads.blank?
+
+           ads = @hop.ads.all.map do |ad|
+            [
+              ad.ad_type,
+              User.find_by_id(ad.advertizer_id).first_name,
+              ad.picture_file_name,
+              ad.price,
+              ad.amt_paid
+            ]
+           end
+
+          table([['Position', 'Advertiser', 'Logo', 'Price', "AMT paid"]],
+                :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70, 4  => 70})
+          table(ads, :column_widths => {0 => 60, 1 => 180, 2 =>90, 3 => 70,  4  => 70 })
+        end
+      rescue Exception => e
+          text "#{e}"
       end
-     render
+      render
     end
 
     def hops_to_pdf(id)
@@ -199,8 +203,8 @@ module PdfWritter
             hop.time_start.to_s,
             hop.time_end.to_s,
             hop.hoppers.count,
-            hop.hop_tasks.count,
-            hop.ads.count
+            hop.hop_tasks.sum(:amt_paid),
+            hop.ads.sum(:amt_paid)
         ]
 
       end

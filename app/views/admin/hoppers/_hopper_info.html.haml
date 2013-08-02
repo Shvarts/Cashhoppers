@@ -1,5 +1,5 @@
 %br
-.row-fluid
+.row-fluid.print
   .span5
     %table
       %tr
@@ -52,11 +52,11 @@
           %b Player since
         %td
           = @user.created_at
-    .text-center
+    .text-center.non-print
       %br
-      = button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9   btn-success span10"
-      = button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9  btn-success"
-      = submit_tag("send text to user",  :class=>"span9   btn-success" )
+      = button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9   btn-success span10 non-print"
+      = button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9  btn-success non-print"
+      = submit_tag("send text to user",  :class=>"span9   btn-success non-print" )
 
   .span3
     .span12
@@ -83,12 +83,12 @@
             %tr
               %td
                 = Hop.find_by_id( i.hop_id).name
-.row-fluid
+.row-fluid.non-print
   .span8
   .span4.text-center
-    = link_to("Export file to PDF",  admin_hoppers_hopper_to_pdf_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>" span12  btn btn-success" )
+    = link_to("Export file to PDF",  admin_hoppers_hopper_to_pdf_path(:id =>@user.id, :format => 'pdf'),:method => 'post',:target => '_blank' , :class=>" span12  btn btn-success non-print" )
 %br
-.row-fluid
+.row-fluid.non-print
   .span8
   .span4.text-center
-    = button_to("Print user file",nil, :class=>"span12 btn btn-success" )
+    = link_to("Print user file",'#', :onclick=>"window.print(); return false;", :class=>"span12 btn btn-success non-print" )

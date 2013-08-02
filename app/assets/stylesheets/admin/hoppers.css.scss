@@ -1,0 +1,14 @@
+@media print { /* Стиль для печати */
+  .header {
+    display:none ;
+  }
+  .non-print{
+    display:none ;
+  }
+  .page-header{
+    display: none;
+  }
+  image{
+    display: none;
+  }
+}
