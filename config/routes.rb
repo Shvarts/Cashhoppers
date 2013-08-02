@@ -131,7 +131,6 @@ CashHoppers::Application.routes.draw do
   get 'hop/:id/edit_regular',            to: 'hops#edit_regular',      as: 'edit_regular_hop'
   get 'user/:id',                        to: 'users#profile',          as: 'user'
 
-
   match '/auth/:service/callback' => 'services#add_zip'
   get 'services/add_zip', :to => 'services#add_zip'
  
@@ -146,6 +145,6 @@ CashHoppers::Application.routes.draw do
   post 'friends/decline_request', to: 'friends#decline_request'
   post 'friends/delete_friend', to: 'friends#delete_friend'
 
-  post 'messages/create_message', to: 'messages#create_message'
-  get 'messages/message_list', to: 'messages#message_list'
+  get 'messages/friends_list'
+  get 'messages/friend_messages'
 end

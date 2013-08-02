@@ -1,24 +1,21 @@
 class MessagesController < ApplicationController
 
- def message_list
-   @messages = Message.includes(:sender).where(:receiver_id => current_user.id).inject([]){|arr, msg| arr << [msg.sender.user_name, msg.text]}
-   @mymessages = Message.includes(:sender).where(:sender_id => current_user.id).inject([]){|arr, msg| arr << [msg.receiver.user_name, msg.text]}
- end
+  def friends_list
+    @messages = Message.thread current_user
+  end
 
-  def create_message
-    user = current_user.friends.find(params[:message][:receiver_id] )
-    if user
-      params[:message][:sender_id] = current_user.id
-      @message = Message.new(params[:message])
-      if @message.save
-       redirect_to messages_message_list_path
-      else
-        flash[:error] = "Text can't be blank"
-        redirect_to messages_message_list_path
-      end
+  def friend_messages
+    @friend = User.where(id: params[:friend_id]).first
+    if @friend && Friendship.exists?(current_user, @friend)
+      params[:page] ||= 1
+      params[:per_page] ||= 15
+      @messages = Message.paginate(page: params[:page],
+                                   per_page: params[:per_page],
+                                   conditions: {sender_id: [current_user.id, @friend.id], receiver_id: [@friend.id, current_user.id]},
+                                   order: "created_at DESC")
+      .reverse
     else
-      flash[:error] = "not found #{params[:message][:receiver_id]} in your friends"
-      redirect_to messages_message_list_path
+      redirect_to messages_friends_list_path, flash: { error: 'Can\'t find user by id or you are not friends.'}
     end
   end
 

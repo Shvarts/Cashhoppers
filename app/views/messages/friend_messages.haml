@@ -1,0 +1,21 @@
+= stylesheet_link_tag 'speech_bubbles', media: :all
+%h3{style: 'color: darkgreen'}
+  = full_user_name(@friend)
+- @messages.each do |message|
+  .row
+    - if message.sender_id == current_user.id
+      .span10
+        .triangle-border.right{style: 'border-color: red'}
+          = message.text
+          = message.sender_id
+      .span2
+        %a.thumbnail
+          = image_tag current_user.avatar.url, style: 'width: 70px'
+    - else
+      .span2
+        %a.thumbnail
+          = image_tag @friend.avatar.url, style: 'width: 70px'
+      .span10
+        .triangle-border.left
+          = message.text
+          = message.sender_id
