@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       redirect_to user_path(current_user.id)
       flash[:notice] = flash[:notice]
     end
-
+    @user_hop_tasks = UserHopTask.limit(10).order("created_at DESC")
     render :layout=> "home_layout"
   end
 
@@ -14,6 +14,5 @@ class PagesController < ApplicationController
     @user_hop_tasks = UserHopTask.paginate(
       :page => params[:page], :per_page => 10,
       :order => 'created_at DESC')
-
   end
 end

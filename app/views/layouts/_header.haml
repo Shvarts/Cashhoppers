@@ -3,16 +3,17 @@
     .header-left
       %ul
         %li
-          %a{:href=>"#gray-page"} ABOUT
+          %a.navigation{:href=>"#gray-page"} ABOUT
         %li
-          %a{:href=>"#yellow-page"} HOW TO PLAY
+          %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
         %li
-          %a{:href=>"#what-page"} PHOTO GALLERY
+          %a.navigation{:href=>"#what-page"} PHOTO GALLERY
         %li
-          %a{:href=>"#business-page"} BUSINESSES
+          %a.navigation{:href=>"#business-page"} BUSINESSES
         %li
-          %a{:href=>"#events-page"} SHOWS & EVENTS
+          %a.navigation{:href=>"#events-page"} SHOWS & EVENTS
     .header-right
       .button-container
-        %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
-  = image_tag 'logo.png'
+        .span1
+          %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
+  //*= image_tag 'logo.png'

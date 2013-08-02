@@ -1,10 +1,56 @@
 .custom-pg.first-page
+  .span5
+  .phone
+    .carousel.slide#myCarousel
+      .carousel-inner
+        - @user_hop_tasks.each do |task|
+          .item
+            =image_tag task.photo.url, :style => 'height:100%' if task.photo.exists?
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+    %br
+      .social-links
+        %a{href: '/auth/facebook', class: 'services'}
+          =image_tag('facebook.png', :style=>'height:50px')
+        %a{href: '/auth/twitter', class: 'services'}
+          =image_tag('twitter.png', :style=>'height:50px')
+        %a{href: '/auth/google', class: 'services'}
+          =image_tag('google.png', :style=>'height:38px')
+    %br
+      .sign-up
+        = link_to 'Login', new_user_registration_path, class: 'btn btn-link'
+        = link_to 'Sigh Up', new_user_session_path, class: 'btn btn-link'
 .page-divider
 .custom-pg.gray-page
   %h2{:id=>"gray-page"}
+  %br
+  %table
+    %tr
+      %td
+        %b WHAT IS CASHHOPERS ALL ABOUT
+    %tr
+      %td
+        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
+	    :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+    %tr
+      %td
+        %p sadafsafasfasf
 .page-divider
 .custom-pg.yellow-page
   %h2{:id=>"yellow-page"}
+  %br
+    %br
+  %table
+    %tr
+      %td
+        %b HOW TO PLAY
+    %tr
+      %td
+        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
+        :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
+    %tr
+      %td
+        %p sadafsafasfasfas
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
