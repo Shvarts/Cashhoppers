@@ -3,24 +3,7 @@ class Api::SessionsController < Api::ApplicationController
   skip_before_filter :api_authentikate_user
   before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration]
 
-  respond_to :json
-
   def sign_up
-    #
-    #if params[:base64avatar] && params[:avatar_content_type] && params[:avatar_original_filename]
-    #  decoded_data = Base64.decode64(params[:base64avatar])
-    #
-    #  data = StringIO.new(decoded_data)
-    #  data.class_eval do
-    #    attr_accessor :content_type, :original_filename
-    #  end
-    #
-    #  data.content_type = params[:avatar_content_type]
-    #  data.original_filename = File.basename(params[:avatar_original_filename])
-    #
-    #  params[:avatar] = data
-    #end
-
     user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip],
                     :password => params[:password], :password_confirmation => params[:password], :avatar => params[:avatar])
 

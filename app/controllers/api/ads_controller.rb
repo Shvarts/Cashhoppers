@@ -17,6 +17,11 @@ class Api::AdsController < Api::ApplicationController
     else
       bad_request ['Invalid type.'], 406
     end
+
+    respond_to do |f|
+      f.json{}
+    end
+
   end
 
 end

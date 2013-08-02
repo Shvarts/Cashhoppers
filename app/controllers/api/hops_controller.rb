@@ -9,6 +9,9 @@ class Api::HopsController < Api::ApplicationController
                               FROM hops LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id WHERE hops.daily = 0 ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
                               LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i};")
     bad_request(['Hops not found.'], 406) if @hops.blank?
+    respond_to do |f|
+      f.json{}
+    end
   end
 
   def daily
@@ -18,10 +21,16 @@ class Api::HopsController < Api::ApplicationController
     if @hops.blank?
       bad_request(['Hops not found.'], 406) if @hops.blank?
     end
+    respond_to do |f|
+      f.json{}
+    end
   end
 
   def get_tasks
     @hop_tasks = @hop.hop_tasks
+    respond_to do |f|
+      f.json{}
+    end
   end
 
   def get_hop_by_id

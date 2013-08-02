@@ -7,6 +7,11 @@ class Api::FriendsController < Api::ApplicationController
     if @friends.length == 0
       bad_request ['You have no friends.'], 406
     end
+
+    respond_to do |f|
+      f.json{}
+    end
+
   end
 
   def get_requested_friends
@@ -14,6 +19,11 @@ class Api::FriendsController < Api::ApplicationController
     if @requested_friends.length == 0
       bad_request ['You have no friends.'], 406
     end
+
+    respond_to do |f|
+      f.json{}
+    end
+
   end
 
   def get_pending_friends
@@ -21,6 +31,11 @@ class Api::FriendsController < Api::ApplicationController
     if @pending_friends.length == 0
       bad_request ['You have no friends.'], 406
     end
+
+    respond_to do |f|
+      f.json{}
+    end
+
   end
 
   def send_request
