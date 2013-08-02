@@ -14,7 +14,7 @@ class Api::HopsController < Api::ApplicationController
   def daily
     @hops = Hop.paginate(:page => params[:page],
                          per_page: params[:per_page],
-                         conditions: ["time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", DateTime.now.beginning_of_day.strftime("%d/%m/%Y %H:%M:%S"), DateTime.now.end_of_day.strftime("%d/%m/%Y %H:%M:%S")])
+                         conditions: ["time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", DateTime.now.beginning_of_day, DateTime.now.end_of_day])
     if @hops.blank?
       bad_request(['Hops not found.'], 406) if @hops.blank?
     end
