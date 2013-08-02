@@ -5,4 +5,4 @@
 # Mime::Type.register_alias "text/html", :iphone
 # Mime::Type.register_alias "application/pdf", :pdf
 Mime::Type.register "application/vnd.ms-excel", :xls
-Mime::Type.register "text/x-json", :json
+Mime::Type.register "application/json", :json
