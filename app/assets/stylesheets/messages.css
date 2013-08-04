@@ -1,3 +1,90 @@
-.triangle-border.right:before {
-    border-color:transparent orange !important;
+.thought-meta{
+    color: gray;
+    text-align: center;
+}
+
+.oval-thought-border {
+    position: relative;
+    padding: 15px 5px;
+    margin: 30px 50px;
+    border: 4px solid #c81e2b;
+    text-align: center;
+    color: #333;
+    /* css3 */
+    /*
+     NOTES:
+     -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
+     -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+     Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+     */
+    -webkit-border-top-left-radius: 240px 140px;
+    -webkit-border-top-right-radius: 240px 140px;
+    -webkit-border-bottom-right-radius: 240px 140px;
+    -webkit-border-bottom-left-radius: 240px 140px;
+    -moz-border-radius: 240px / 140px;
+    border-radius: 240px / 140px;
+}
+
+/* creates the larger circle */
+.oval-thought-border:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border: 4px solid red;
+    /* css3 */
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    background-color: white;
+}
+
+ /*creates the smaller circle */
+.oval-thought-border:after {
+    content:"";
+    position:absolute;
+    z-index:10;
+    width:25px;
+    height:25px;
+    border: 4px solid #c81e2b;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    border-radius:25px;
+    display:block;
+    background-color: white;
+}
+
+.oval-thought-border.left{
+    border-color: #00cc2b;
+}
+
+.oval-thought-border.left:after{
+    border-color: #00cc2b;
+    top: -45px;
+    left: 240px;
+}
+
+.oval-thought-border.left:before{
+    border-color: #00cc2b;
+    top: -35px;
+    left: 150px;
+}
+
+.oval-thought-border.right{
+    border-color: #ffaf24;
+}
+
+.oval-thought-border.right:after{
+    border-color: #ffaf24;
+    top: -45px;
+    right: 240px;
+}
+
+.oval-thought-border.right:before{
+    border-color: #ffaf24;
+    top: -35px;
+    right: 150px;
 }

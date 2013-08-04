@@ -1,21 +1,15 @@
 - @messages.each do |message|
   .row
     - if message.sender_id == current_user.id
-      .span11
-        .triangle-border.right{style: 'border-color: orange'}
-          .span{style: 'color: gray'}
-            = time_ago_in_words(message['created_at']) + ' ago'
-          %b
-            = message.text
-      .span1.text-right
-        = image_tag current_user.avatar.url, style: 'width: 70px', class: 'img-polaroid'
+      .thought-meta
+        = time_ago_in_words(message['created_at']) + " ago. You: "
+      .oval-thought-border.left
+        %b
+          = message.text
     - else
-      .span1
-        = image_tag @friend.avatar.url, style: 'width: 70px', class: 'img-polaroid'
-      .span11
-        .triangle-border.left
-          .span{style: 'color: gray'}
-            = time_ago_in_words(message['created_at']) + ' ago'
-          %b
-            = message.text
+      .thought-meta
+        = time_ago_in_words(message['created_at']) + " ago. #{full_user_name(@friend)}: "
+      .oval-thought-border.right
+        %b
+          = message.text
 = hidden_field_tag :last_sync_date, @last_sync_date

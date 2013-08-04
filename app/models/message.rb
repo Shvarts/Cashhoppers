@@ -7,6 +7,8 @@ class Message < ActiveRecord::Base
 
   validates :text, presence: true
 
+  after_create :push_to_thread
+
   def self.thread user, page = nil, per_page = nil
     pagination = ""
     if page && per_page
@@ -36,6 +38,10 @@ class Message < ActiveRecord::Base
     )
     ActiveRecord::Base.connection.close
     thread
+  end
+
+  def push_to_thread
+    CashHoppers::Application::MY_GLOBAL_ARRAY << self
   end
 
 end

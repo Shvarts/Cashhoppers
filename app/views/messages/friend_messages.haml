@@ -1,26 +1,31 @@
-= stylesheet_link_tag 'speech_bubbles', media: :all
 :javascript
-  function synchronize_messages(friend_id){
-  //    $('body').append($('#last_sync_date').val());
+  function synchronize_messages(friend_id, friend_first_name, friend_last_name){
       $.ajax({
           url: '/messages/synchronize',
           data: {last_sync_date: $('#last_sync_date').val(),
-                 friend_id: friend_id},
+                 friend_id: friend_id,
+                 friend_first_name: friend_first_name,
+                 friend_last_name: friend_last_name
+                 },
           type: 'POST',
           error: function(err){
           },
           success: function(data){
               $('#last_sync_date').remove();
               $('#messages').append(data);
-              $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+              $("#messages").animate({ scrollTop: $(document).height() }, 1000);
           }
       });
   }
   $(document).ready(function(){
-      setInterval("synchronize_messages(#{@friend.id})", 5000);
+      setInterval("synchronize_messages('#{@friend.id}', '#{@friend.first_name}', '#{@friend.last_name}')", 5000);
   });
-%h3{style: 'color: darkgreen'}
-  = full_user_name(@friend)
+.row-fluid
+  .span1
+    = image_tag @friend.avatar.url, style: 'width: 70px', class: 'img-polaroid'
+  .span11
+    %h4{style: 'color: darkgreen'}
+      = link_to full_user_name(@friend), user_path(@friend)
 #messages
   = render partial: 'messages'
 %hr
