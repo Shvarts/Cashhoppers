@@ -23,22 +23,62 @@
         %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
-.custom-pg.gray-page
-  %h2{:id=>"gray-page"}
-<<<<<<< HEAD
-  %br
+.custom-pg.gray-page{style: ' display: table'}
+  %div{style: 'width:100%; height:100%; display: table-cell; vertical-align:middle; border: 4px double red'}
+    %div{style: 'width: 915px; height: 350px;  margin: 0 auto; border: 4px double red'}
+      %h2{:id=>"gray-page"}
+
+      .row-fluid
+        .span2
+
+        .span8.video
+          = video_tag ["video/media.mp4"],   :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true
+          %br
+          %br
+            CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes
+            There a Daily HOPs where you can complete against other Hoppers from around the globe. Or you can join
+            private HOPs played at trade shows, fairs, weddings receptions, school fundraisers, and more!
+          %br
+            %b
+              Download the
+              =link_to 'FREE CASHHOPPERS APP', '#'
+              today and start HOPPING!
+        .span2
+
 
 .page-divider
-.custom-pg.yellow-page
-  %h2{:id=>"yellow-page"}
-  %br
-    %br
+.custom-pg.yellow-page{style: ' display: table'}
+  %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
+    %div{style: 'width: 915px; height: 70%;  margin: 0 auto; border: 4px double red'}
+      %h2{:id=>"yellow-page"}
+      .row-fluid
+        .span2
 
-=======
-.page-divider
-.custom-pg.yellow-page
-  %h2{:id=>"yellow-page"}
->>>>>>> template_refactoring
+        .span8.video
+
+          = video_tag ["video/media.mp4"],  :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
+          %br
+          %br
+            %ul
+              %li
+                Download the
+                = link_to 'FREE app.', '#'
+              %li
+                Find the HOP you want to play(enter the password if it's a private HOP).
+              %li
+                Start taking pictures on the list (Remember, you have to be visible in every picture to be eligible.)
+              %li
+                Add an optional comment and share your picture on Facebook.
+              %li
+                Wait to see if you've won!
+            It's that easy!
+          %br
+            =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success span5'
+            =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success span5'
+
+        .span2
+
+
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
@@ -60,11 +100,6 @@
                     .span3
                       .thumbnail
                         =image_tag(n,  :width => '100%', :height=> '100%')
-          -#      .span6
-          -#        .thumbnail
-          -#          =image_tag('facebook.png', :style => 'height:50%', :width => '50%')
-          -#  .item
-          -#    = image_tag('google.png',:style => 'height:100%', :width => '100%' )
           %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
@@ -134,4 +169,28 @@
 .page-divider
 .custom-pg.page-last
   %h2
+    .row-fluid
+      .span3
+
+      .span3.text-left
+        WANT TO LEARN MORE ?
+        %br
+        %br
+          Contact CashHoppers for more information:
+        %br
+          = link_to 'CashHoppersMaster.com', ''
+      .span3.text-center
+        %b
+          WE'RE SOCIAL.
+        TO KEEP IN-THE-KNOW
+        AND SEE WHAT OTHERS
+        ARE DOING, JOIN US.
+        %br
+          =image_tag 'facebook.png', :width => '50px', :height => '50px'
+          =image_tag 'twitter.png', :width => '50px', :height => '50px'
+          =image_tag 'google.png', :width => '40px', :height => '40px'
+
+
+      .span3
+
 .page-divider
