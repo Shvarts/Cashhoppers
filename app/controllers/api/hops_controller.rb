@@ -51,22 +51,23 @@ class Api::HopsController < Api::ApplicationController
   def yesterdays_winner
     hop = Hop.get_daily_by_date DateTime.now - 1.day
     if hop
-      winner = hop.winner 1
-      if !winner
-        bad_request(['Missing winner for yesterday\'s hop.'], 406)
-      else
+      prize = hop.prizes.order("place ASC").first
+      if prize && prize.user_id
         respond_to do |format|
           format.json{
             render :json => {success: true,
-                             winner_id: winner['user_id'],
-                             score: winner['pts'],
+                             winner_id: prize.user_id,
+                             score: prize.pts,
                              hoppers_count: hop.hoppers.count,
-                             rank: 1,
+                             rank: prize.place,
                              hop_id: hop.id,
+                             cost: prize.cost,
                              status: 200
             }
           }
         end
+      else
+        bad_request(['Missing winner for yesterday\'s hop.'], 406)
       end
     else
       bad_request(['Missing yesterday\'s hop.'], 406)

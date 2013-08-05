@@ -197,7 +197,7 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/hops/yesterdays_winner.json?api_key=123&authentication_token=G6ajYbKhqOaZCQc69mHn4uYGl03w96
     data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct"}
     response:
-        success: {"success"=>true, "winner_id"=>2, "score"=>222, "hoppers_count"=>3, "rank"=>1, "hop_id"=>22, "status"=>200}
+        success: {"success"=>true, "winner_id"=>2, "score"=>222, "hoppers_count"=>3, "rank"=>1, "hop_id"=>22, "cost"=>23, "status"=>200}
         error: {"errors"=>["Missing yesterday's hop."], "success"=>false, "status"=>406}
                {"errors"=>["Missing winner for yesterday's hop."], "success"=>false, "status"=>406}
 ===Hop Tasks

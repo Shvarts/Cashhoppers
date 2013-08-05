@@ -18,7 +18,7 @@ class Hop < ActiveRecord::Base
   validates :price, numericality: true, unless: :daily?
 
   def self.get_daily_by_date date
-    Hop.where("time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", date.beginning_of_day.strftime("%d/%m/%Y %H:%M:%S"), date.end_of_day.strftime("%d/%m/%Y %H:%M:%S")).first
+    Hop.where("time_start BETWEEN ? AND ? AND daily = 1", date.beginning_of_day, date.end_of_day).first
   end
 
   def assign user
@@ -75,7 +75,7 @@ class Hop < ActiveRecord::Base
   end
 
   def self.find_old
-    find(:all, :conditions => ["((time_end < ? AND daily = 0) OR (time_end < ? AND daily = 1)) AND close = 0", DateTime.now, DateTime.now.beginning_of_day ])
+    find(:all, :conditions => ["((time_end < ? AND daily = 0) OR (time_start < ? AND daily = 1)) AND close = 0", DateTime.now, DateTime.now.beginning_of_day ])
   end
 
   def self.close_old_hops
@@ -87,6 +87,7 @@ class Hop < ActiveRecord::Base
         winner = hop.winner prize.place
         #set prize user
         prize.update_attribute :user_id, winner['id']
+        prize.update_attribute :pts, winner['pts']
         #send message to winner
         message = Message.new(text: "You have won #{prize.place} prize in a hop #{ hop.name }", receiver_id: winner['id'])
         message.save
@@ -213,8 +214,6 @@ class Hop < ActiveRecord::Base
   end
 
   def self.save_items_and_add_from_excel(hop, items, ads, winners)
-
-
       @exp = []
       for i in ads
         ad = hop.ads.new(i)
@@ -228,14 +227,7 @@ class Hop < ActiveRecord::Base
       for i in winners
         winner = hop.prizes.new(i)
         @exp << winner.errors.messages   unless winner.save
-
-
       end
-
-
-
-
-
     @exp
   end
 
