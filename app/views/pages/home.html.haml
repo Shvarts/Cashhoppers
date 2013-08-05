@@ -24,40 +24,106 @@
 .custom-pg.gray-page
   %h2{:id=>"gray-page"}
   %br
-  %table#video
-    %tr
-      %td
-        %b WHAT IS CASHHOPERS ALL ABOUT
-    %tr
-      %td
-        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
-	    :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
-    %tr
-      %td
-        %p sadafsafasfasf
+
 .page-divider
 .custom-pg.yellow-page
   %h2{:id=>"yellow-page"}
   %br
     %br
-  %table#video
-    %tr
-      %td
-        %b HOW TO PLAY
-    %tr
-      %td
-        %embed{:src=>"Wildlife.mpg", :type=>"MIME",
-        :pluginspage=>"http://www.macromedia.com/go/getflashplayer"}
-    %tr
-      %td
-        %p sadafsafasfasfas
+
 .page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
+  .row-fluid
+    .span2
+
+    .span8.text-center.page-3
+      %p.top AT THE HOP
+      %br
+        %p See what other Hoppers are taking pictures of and pick your favorites!
+      %br
+      .row-fluid
+        .carousel.slide#carousel2
+          .carousel-inner
+            -#- @user_hop_tasks.each do |task|
+            -#  .item
+            -#    =image_tag task.photo.url, :style => 'height:100%' if task.photo.exists?
+            -arr = ['btn_login_twitter.png','facebook.png','facebook.png']
+
+            .active.item
+              .thumbnails
+                .span6
+                  .thumbnail
+                    =image_tag('btn_login_twitter.png', :style => 'height:100%', :width => '50%')
+                .span6
+                  .thumbnail
+                    =image_tag('facebook.png', :style => 'height:100%', :width => '50%')
+            .item
+              = image_tag('google.png',:style => 'height:100%', :width => '100%' )
+          %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
+          %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
+    .span2
+
 .page-divider
 .custom-pg.business-page
-  %h2{:id=>"business-page"}
+  .row-fluid#business
+    %h2{:id=>"business-page"}
+    .span2
+
+    .span8.text-center.page-3
+      %p.top-2
+        CASHHOPPERS FOR BUSINESS
+      %br
+      %br
+      %br
+      .row-fluid
+        .span6.text-left
+          .p
+            The CASHHOPPERS game is a great tool to add to your marketing
+            and advertising mix. SPONSOR a HOP item, and drive players to your
+            booth, building or web site. ADVERTISE within the app and reach
+            players with promotional opportunities, product discounts or brand
+            messages. You can also create private HOPs - for your customers
+            only - to highlight new products, grand openings, or any other
+            big news that will have your customer base HOPPIN!
+            %br
+            %br
+              Find out how to use CASHHOPPERS to your bussiness's advantage.
+            %br
+            %br
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
+            %br
+              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success span6'
+        .span6.text-left
+          = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
+
+
+    .span2
+
 .page-divider
 .custom-pg.events-page
   %h2{:id=>"events-page"}
+  .row-fluid
+    .span2
+
+    .span8.text-center.page-3
+      %p.top
+        CASHHOPPERS FOR TRADE SHOWS & EVENTS
+      %br
+      .row-fluid
+        .span6.text-left
+          = image_tag 'home_event.png', :class => 'event-img',  :width=>"70%" ,:height=>"20%"
+        .span6.text-left
+          Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
+          has been proven to engage show visitors more, increase traffic at participating booth, initiate
+          customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
+          %br
+            Find out how you can use CASHHOPPERS at your next trade show or event
+          %br
+            = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
+          %br
+            = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success span6'
+
+    .span2
+
 .page-divider
