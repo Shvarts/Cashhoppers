@@ -7,6 +7,8 @@ class PagesController < ApplicationController
       flash[:notice] = flash[:notice]
     end
     @user_hop_tasks = UserHopTask.limit(10).order("created_at DESC")
+    puts '------------------------------------------------------'
+    puts @user_hop_tasks.inspect
     render :layout=> "home_layout"
   end
 
