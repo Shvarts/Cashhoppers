@@ -11,6 +11,16 @@
       = hidden_field_tag :name, @name, class: 'span12'
   .control-group
     .control-label
+      First Name:
+      = @first_name
+      = hidden_field_tag :first_name, @first_name, class: 'span12'
+  .control-group
+    .control-label
+      Last Name:
+      = @last_name
+      = hidden_field_tag :last_name, @last_name, class: 'span12'
+  .control-group
+    .control-label
       UID:
       = @uid
       = hidden_field_tag :uid, @uid, class: 'span12'
@@ -19,13 +29,30 @@
       Provider:
       = @provider
       = hidden_field_tag :provider, @provider, class: 'span12'
-  .control-group
-    - if @service == 'twitter'
+  - if @service == 'twitter'
+    .control-group
       .control-label
         = label_tag :email, 'Put your email:'
       .controls
         = email_field_tag :email, '', class: 'span12'
-    - else
+    .control-group
+      .control-label
+        Link:
+        = @twitter_link
+        = hidden_field_tag :twitter_link, @twitter_link, class: 'span12'
+  - elsif @service == 'facebook'
+    .control-group
+      .control-label
+        E-mail:
+        = @email
+        = hidden_field_tag :email, @email, class: 'span12'
+    .control-group
+      .control-label
+        Link:
+        = @facebook_link
+        = hidden_field_tag :facebook_link, @facebook_link, class: 'span12'
+  - elsif @service == 'google'
+    .control-group
       .control-label
         E-mail:
         = @email

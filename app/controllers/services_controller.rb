@@ -19,19 +19,29 @@ class ServicesController < ApplicationController
     if omniauth && params[:service]
       service_route = params[:service]
       @service = service_route
+      @facebook_link
+      @twitter_link
       if service_route == 'facebook'
         omniauth['extra']['raw_info']['email'] ? @email =  omniauth['extra']['raw_info']['email'] : @email = ''
         omniauth['extra']['raw_info']['name'] ? @name =  omniauth['extra']['raw_info']['name'] : @name = ''
         omniauth['extra']['raw_info']['id'] ?  @uid =  omniauth['extra']['raw_info']['id'] : @uid = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
+        @first_name = omniauth['extra']['raw_info']['first_name'] || ''
+        @last_name = omniauth['extra']['raw_info']['last_name'] || ''
+        @facebook_link = omniauth['extra']['raw_info']['link'] || ''
       elsif service_route == 'twitter'
         @email = ''
-        omniauth['extra']['raw_info']['name'] ? @name =  omniauth['extra']['raw_info']['name'] : @name = ''
+        @name = omniauth['info']['nickname'] || ''
+        @first_name = omniauth['info']['nickname'] || ''
+        @last_name = omniauth['info']['nickname'] || ''
+        @twitter_link = omniauth['info']['urls']['Twitter'] || ''
         omniauth['uid'] ?  @uid =  omniauth['uid'] : @uid = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
       elsif service_route == 'google'
         omniauth['info']['email'] ? @email =  omniauth['extra']['email'] : @email = ''
         omniauth['info']['name'] ? @name =  omniauth['info']['name'] : @name = ''
+        @first_name = omniauth['info']['name'] || ''
+        @last_name = omniauth['info']['name'] || ''
         omniauth['info']['uid'] ?  @uid =  omniauth['info']['uid'] : @uid = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
       else
@@ -49,6 +59,8 @@ class ServicesController < ApplicationController
           auth = Service.find_by_provider_and_uid(@provider, @uid)
           if !auth
             current_user.services.create(:provider => @provider, :uid => @uid, :uname => @name, :uemail => @email)
+            current_user.update_attribute(:facebook, @facebook_link) if @facebook_link
+            current_user.update_attribute(:twitter, @twitter_link) if @twitter_link
             flash[:notice] = 'Sign in via ' + @provider.capitalize + ' has been added to your account.'
             redirect_to services_path
           else
@@ -72,11 +84,21 @@ class ServicesController < ApplicationController
       existinguser = User.find_by_email(params[:email])
       if existinguser
         existinguser.services.create(:provider => params[:provider], :uid => params[:uid], :uname => params[:name], :uemail => params[:email])
+        existinguser.update_attribute(:facebook, params[:facebook_link]) if params[:facebook_link].present?
+        existinguser.update_attribute(:twitter, params[:twitter_link]) if params[:twitter_link].present?
         flash[:notice] = 'Sign in via ' + params[:provider].capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!'
         sign_in_and_redirect(:user, existinguser)
       else
         params[:name] = params[:name][0, 39] if params[:name].length > 39
-        user = User.new :email => params[:email], :password => SecureRandom.hex(10), :user_name => params[:name], :zip => params[:zip]
+        user = User.new(:email => params[:email],
+                        :password => SecureRandom.hex(10),
+                        :user_name => params[:name],
+                        :zip => params[:zip],
+                        :first_name => params[:first_name],
+                        :last_name => params[:last_name],
+                        :facebook => params[:facebook_link],
+                        :twitter => params[:twitter_link]
+        )
         user.services.build(:provider => params[:provider], :uid => params[:uid], :uname => params[:name], :uemail => params[:email])
         user.skip_confirmation!
         user.save!

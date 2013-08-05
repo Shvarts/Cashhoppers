@@ -93,7 +93,7 @@
       %br
       %br
     %td
-      = @user.twitter
+      = link_to @user.twitter, @user.twitter if @user.twitter
       %br
       %br
   %tr
@@ -103,7 +103,7 @@
       %br
       %br
     %td
-      = @user.facebook
+      = link_to @user.facebook, @user.facebook if @user.facebook
       %br
       %br
   %tr
@@ -113,7 +113,7 @@
       %br
       %br
     %td
-      = @user.google
+      = link_to @user.google, @user.google if @user.google
       %br
       %br
 -if @user == current_user
