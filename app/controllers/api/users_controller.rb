@@ -41,7 +41,7 @@ class Api::UsersController < Api::ApplicationController
   private
 
   def find_user
-    unless params[:user_id] && @user = User.where(params[:user_id]).first
+    unless params[:user_id] && @user = User.where(id: params[:user_id]).first
       bad_request ['User not found.'], 406
     end
   end
