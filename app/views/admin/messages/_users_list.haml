@@ -12,12 +12,16 @@
       %th
         User Name
       %th
+        Email
+      %th
     - @users.each do |user|
       %tr
         %td
           = user.id
         %td
           = user.user_name
+        %td
+          = user.email
         %td{style: 'text-align: right'}
           - if params[:selected_users].include?(user.id.to_s)
             %button.btn.btn-mini

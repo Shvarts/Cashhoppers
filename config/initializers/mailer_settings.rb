@@ -1,10 +1,11 @@
-if %w(test development).include?(Rails.env)
-  ActionMailer::Base.delivery_method = :test
-  ActionMailer::Base.sendmail_settings = {:location => '/usr/bin/fake_sendmail.sh'}
-else
+#if %w(test development).include?(Rails.env)
+#  ActionMailer::Base.delivery_method = :test
+#  ActionMailer::Base.sendmail_settings = {:location => '/usr/bin/fake_sendmail.sh'}
+#else
+#  ActionMailer::Base.delivery_method = :smtp
+#
+#end
   ActionMailer::Base.delivery_method = :smtp
-
-end
 
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
@@ -14,7 +15,7 @@ end
       :port => 587,
       :authentication => "plain",
       :domain               => 'gmail.com',
-      :user_name            => 'viktor.danch@gmail.com',
-      :password             => 'secret',
+      :user_name            => 'misha.skubenich@gmail.com',
+      :password             => 'wolverine',
       :enable_starttls_auto => true
   }

@@ -69,21 +69,27 @@ class Admin::MessagesController < Admin::AdminController
       SELECT users.* FROM users LEFT JOIN hoppers_hops ON hoppers_hops.user_id = users.id
       WHERE users.id IN (#{params[:users_ids].join(', ')}) OR users.zip IN (#{params[:zip_codes].join(', ')}) OR hoppers_hops.hop_id IN (#{params[:hops_ids].join(', ')});
     ")
-
     @email = nil
+    @messages = []
     @users.each do |user|
       message_data = params[:email_alert]
       message_data[:receiver_id] = user.id
       message = EmailAlert.new(message_data)
-      unless message.save
+      @messages << message
+      unless message.valid?
         @email = message
-        break;
+        break
       end
     end
 
-    if @email
+    @email = EmailAlert.new if @users.blank?
+    if @email || @users.blank?
+      flash[:error] = 'Receivers not selected.'
       render action: 'email_tool'
     else
+      @messages.each{|m| m.save}
+
+      UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file]).deliver
       redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
     end
 

@@ -1,4 +1,4 @@
-- if @email.errors.any?
+- if @email && @email.errors.any?
   - @email.errors.full_messages.each do |msg|
     .alert.alert-error
       %button.close{type: :button, 'data-dismiss' => 'alert'}
@@ -16,7 +16,7 @@
       exception_field_id: 'users_ids_'
     });
   });
-= form_for @email, url: admin_messages_email_create_path do |f|
+= form_for(@email, url: admin_messages_email_create_path, html: {:multipart => true}) do |f|
   .row-fluid
     .span3
       Filters:
