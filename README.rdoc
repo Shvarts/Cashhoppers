@@ -171,7 +171,8 @@ assigned: true if user assigned to hop of false if not
     url: http://localhost:3000/api/hop/get_tasks.json?api_key=123&authentication_token=IWJiYu6xXzt1X0zGewFAL6O4oJJVFO&hop_id=1
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
-        success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs", "hop_id"=>1, "completed"=>false}]}
+        success: {"hop_tasks"=>[{"id"=>1, "price"=>"34", "amt"=>34, "bonus"=>343, "pts"=>343, "sponsor_id"=>1, "text"=>"tester #dgs",
+                  "hop_id"=>1, "completed"=>false, "logo"=>"/images/hop_task_logos/hop_tasks/205/Task_LOGO.png?1375717339"}]}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 ====get hop by id(method: GET)
     url: http://localhost:3000/api/hop/get_hop.json?api_key=123&authentication_token=0lPy1JnFy3BQVUOR3kxZ1hDMk4Z18Z&hop_id=2
@@ -213,7 +214,7 @@ service should be 'twitter', 'facebook', 'google'
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_task_id: 1}
     response:
         success: {"hop_task"=>{"id"=>2, "price"=>"34", "amt"=>34, "bonus"=>23, "pts"=>34, "sponsor_id"=>1, "text"=>"admin hop task #1", "hop_id"=>4, "picture"=>nil, "completed"=
-                 >true}}
+                 >true, "logo"=>nil}}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
 ====get friends hop tasks(method: GET)
     url: http://localhost:3000/api/tasks/get_friends_hop_tasks.json?api_key=123&authentication_token=wsATs6e59ht17UpDzlwVHexyg9Zr4z&page=1&per_page=3
