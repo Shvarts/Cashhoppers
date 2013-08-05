@@ -4,7 +4,7 @@ class Api::MessagesController < Api::ApplicationController
     if params[:text].present? && params[:friends].present? && params[:friends].kind_of?(Array)
       errors = []
       params[:friends].each do |friend_id|
-        @friend = User.find(friend_id)
+        @friend = User.where(id: friend_id).first
         if @friend && Friendship.exists?(@current_user, @friend)
           message = Message.new(text: params[:text], sender_id: @current_user.id, receiver_id: @friend.id, synchronized: false )
           unless message.save
@@ -34,19 +34,15 @@ class Api::MessagesController < Api::ApplicationController
     @messages.each do |message|
       message.update_attribute :synchronized, true
     end
-    respond_to do |format|
-      format.json{}
-    end
+    render 'synchronize_messages', content_type: 'application/json'
   end
 
   def get_users_messages_thread
     params[:page] ||= 1
     params[:per_page] ||= 10
     @messages = Message.thread @current_user, params[:page], params[:per_page]
-    respond_to do |format|
-      format.json{
-      }
-    end
+
+    render 'get_users_messages_thread', content_type: 'application/json'
   end
 
   def messages_history
@@ -56,9 +52,7 @@ class Api::MessagesController < Api::ApplicationController
     if Friendship.exists?(@current_user, @friend)
       @messages = Message.paginate(page: params[:page], per_page: params[:per_page], conditions: {sender_id: [@current_user.id, @friend.id], receiver_id: [@friend.id, @current_user.id]}, order: "created_at ASC")
 
-      respond_to do |format|
-        format.json{}
-      end
+      render 'messages_history', content_type: 'application/json'
     else
       bad_request ["Can't find friend with id #{params[:friend_id]}."], 406
     end

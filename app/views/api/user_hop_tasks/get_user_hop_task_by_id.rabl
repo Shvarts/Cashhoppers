@@ -27,26 +27,28 @@ node :liked do |task|
 end
 
 node :user_first_name do |task|
-   task.user.first_name
+   task.user.first_name if task.user
 end
 
 node :user_last_name do |task|
-   task.user.last_name
+   task.user.last_name if task.user
 end
 
 node :user_user_name do |task|
-   task.user.user_name
+   task.user.user_name if task.user
 end
 
 node :user_avatar do |task|
-   task.user.avatar.url
+   task.user.avatar.url if task.user
 end
 
 node :likers do |task|
    task.likes.map do |like|
     name = ''
-    name += like.user.first_name + ' ' if like.user.first_name
-    name += like.user.last_name if like.user.last_name
+    if task.user
+        name += like.user.first_name + ' ' if like.user.first_name
+        name += like.user.last_name if like.user.last_name
+    end
     name
    end
 end

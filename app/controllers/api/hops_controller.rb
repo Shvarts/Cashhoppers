@@ -8,9 +8,10 @@ class Api::HopsController < Api::ApplicationController
     @hops =  Hop.find_by_sql("SELECT hops.*, IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) AS isnull
                               FROM hops LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id WHERE hops.daily = 0 ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
                               LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i};")
-    bad_request(['Hops not found.'], 406) if @hops.blank?
-    respond_to do |f|
-      f.json{}
+    if @hops.blank?
+      bad_request(['Hops not found.'], 406)
+    else
+      render 'regular', content_type: 'application/json'
     end
   end
 
@@ -19,24 +20,19 @@ class Api::HopsController < Api::ApplicationController
                          per_page: params[:per_page],
                          conditions: ["time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", DateTime.now.beginning_of_day, DateTime.now.end_of_day])
     if @hops.blank?
-      bad_request(['Hops not found.'], 406) if @hops.blank?
-    end
-    respond_to do |f|
-      f.json{}
+      bad_request(['Hops not found.'], 406)
+    else
+      render 'daily', content_type: 'application/json'
     end
   end
 
   def get_tasks
     @hop_tasks = @hop.hop_tasks
-    respond_to do |f|
-      f.json{}
-    end
+    render 'get_tasks', content_type: 'application/json'
   end
 
   def get_hop_by_id
-    respond_to do |format|
-      format.json{}
-    end
+    render 'get_hop_by_id', content_type: 'application/json'
   end
 
   def score

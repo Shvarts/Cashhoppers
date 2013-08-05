@@ -6,7 +6,7 @@ class Api::UserHopTasksController < Api::ApplicationController
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
       bad_request(['Hop task already comleted.'], 406)
-    else
+    elsif @hop_task && @hop_task.hop
       hop_task_data = {}
       hop_task_data[:user_id] = @current_user.id
       hop_task_data[:hop_task_id] = params[:hop_task_id]
@@ -31,9 +31,7 @@ class Api::UserHopTasksController < Api::ApplicationController
     params[:per_page] ||= 10
     @tasks = UserHopTask.find_by_sql("SELECT * FROM user_hop_tasks WHERE user_hop_tasks.user_id IN (SELECT friendships.friend_id FROM friendships
                                       WHERE friendships.user_id = #{@current_user.id}) LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i}")
-    respond_to do |format|
-      format.json{}
-    end
+    render 'friends_hop_tasks', content_type: 'application/json'
   end
 
   def all_hoppers_hop_tasks
@@ -42,31 +40,31 @@ class Api::UserHopTasksController < Api::ApplicationController
     @tasks = UserHopTask.paginate(page: params[:page],
                                   per_page: params[:per_page],
                                   order: 'created_at DESC')
-    respond_to do |format|
-      format.json{}
-    end
+    render 'all_hoppers_hop_tasks', content_type: 'application/json'
   end
 
   def get_hop_task_by_id
-    respond_to do |format|
-      format.json{}
-    end
+    render 'get_hop_task_by_id', content_type: 'application/json'
   end
 
   def like
     unless Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
       @like = Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
       Notification.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
-      @user_hop_task.hop_task.hop.increase_score @current_user, 1
-      respond_to do |format|
-        format.json{
-          render :json => {success: true,
-                           info: "Like Successfully!",
-                           likes_count: Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).count ,
-                           user_hop_task_id: @user_hop_task.id,
-                           status: 200
+      unless @user_hop_task.hop
+        @user_hop_task.hop_task.hop.increase_score @current_user, 1
+        respond_to do |format|
+          format.json{
+            render :json => {success: true,
+                             info: "Like Successfully!",
+                             likes_count: Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).count ,
+                             user_hop_task_id: @user_hop_task.id,
+                             status: 200
+            }
           }
-        }
+        end
+      else
+        bad_request(['Task without hop.'], 406)
       end
     else
       bad_request(['Already liked.'], 406)
@@ -105,10 +103,7 @@ class Api::UserHopTasksController < Api::ApplicationController
     @comments = @user_hop_task.comments
     bad_request(['User hop task has no comments.'], 406) if @comments.blank?
 
-    respond_to do |f|
-      f.json{}
-    end
-
+    render 'comments', content_type: 'application/json'
   end
 
   def notify_by_share
@@ -140,9 +135,7 @@ class Api::UserHopTasksController < Api::ApplicationController
   end
 
   def get_user_hop_task_by_id
-    respond_to do |format|
-      format.json{}
-    end
+    render 'get_user_hop_task_by_id', content_type: 'application/json'
   end
 
   private

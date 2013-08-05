@@ -4,9 +4,6 @@ class Api::NotificationsController < Api::ApplicationController
                                    page:       params[:page],
                                    per_page:   params[:per_page],
                                    order:      'created_at DESC')
-
-    respond_to do |format|
-      format.json{}
-    end
+    render 'get_events_list', content_type: 'application/json'
   end
 end

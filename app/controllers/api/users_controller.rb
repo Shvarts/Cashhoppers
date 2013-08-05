@@ -13,22 +13,18 @@ class Api::UsersController < Api::ApplicationController
     end
     @users = User.paginate(page: params[:page], per_page: params[:per_page], conditions: conditions  )
     invalid_login_attempt('users not found') if @users.blank?
-    respond_to do |format|
-      format.json{}
-    end
+
+    render 'index', content_type: 'application/json'
   end
 
   def get_my_info
     @user = @current_user
-    respond_to do |format|
-      format.json{}
-    end
+
+    render 'get_my_info', content_type: 'application/json'
   end
 
   def get_user_info
-    respond_to do |format|
-      format.json{}
-    end
+    render 'get_user_info', content_type: 'application/json' unless @user
   end
 
   def update_profile
@@ -45,8 +41,8 @@ class Api::UsersController < Api::ApplicationController
   private
 
   def find_user
-    unless params[:user_id] && @user = User.find(params[:user_id])
-      invalid_login_attempt('user not found')
+    unless params[:user_id] && @user = User.where(params[:user_id]).first
+      bad_request ['User not found.'], 406
     end
   end
 
