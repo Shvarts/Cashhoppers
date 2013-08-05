@@ -1,5 +1,4 @@
 class Api::UsersController < Api::ApplicationController
-  respond_to :json
 
   before_filter :find_user, only: [:get_user_info]
   before_filter :filter_attributes, only: [:update_profile]
@@ -19,12 +18,13 @@ class Api::UsersController < Api::ApplicationController
 
   def get_my_info
     @user = @current_user
-
-    render 'get_my_info', content_type: 'application/json'
+    render 'get_my_info', :content_type => 'application/json'
   end
 
   def get_user_info
-    render 'get_user_info', content_type: 'application/json' unless @user
+    if @user
+      render 'get_user_info', content_type: 'application/json'
+    end
   end
 
   def update_profile
