@@ -101,9 +101,11 @@ class Api::UserHopTasksController < Api::ApplicationController
 
   def comments
     @comments = @user_hop_task.comments
-    bad_request(['User hop task has no comments.'], 406) if @comments.blank?
-
-    render 'comments', content_type: 'application/json'
+    if @comments.blank?
+      bad_request(['User hop task has no comments.'], 406)
+    else
+      render 'comments', content_type: 'application/json'
+    end
   end
 
   def notify_by_share
