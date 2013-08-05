@@ -61,12 +61,12 @@ embed{
   background-image: url('firstpage.jpg');
   .phone{
     position: relative;
-    left: 50%;
+    margin: auto auto;
     width: xxx;
-    margin-left: -460px;
-    top: 33%;
+
+
     height: yyy;
-    margin-top: -yyy;
+
     width: 915px;
     height: 425px;
     background-image: url('phone.png');
@@ -115,6 +115,9 @@ a.carousel-control.right{
 }
 .business-page{
       background-color: #FFFFFF;
+      .row-fluid#business{
+
+      }
 }
 .events-page{
       background-color: #FFFFFF;
@@ -393,73 +396,20 @@ embed{
   }
 }
 }
-@media(min-width:951px)and(max-width: 1400px){
-.first-page{
-  margin-top: 69px;
-  background-image: url('firstpage.jpg');
-  .phone{
-    position: relative;
-    left: 50%;
-    width: xxx;
-    margin-left: -400px;
-    top: 33%;
-    height: yyy;
-    margin-top: -yyy;
-    width: 800px;
-    height: 375px;
-}
-.carousel.slide{
-  margin-left:14.3%;
-  padding-top: 13px;
-  width: 71%;
-  position: center;
-  height: 93%;
-  .carousel-inner{
-    height: 100%;
-    width: 101%;
-    .item{
-      width:  100%;
-      height: 100%;
-    }
-  }
-}
-}
-table#video{
-    margin:0 21%;
-    width: 700px;
-    height: 600px;
-    text-align: center;
-}
-embed{
-    width: 550px;
-    height: 300px;
-}
-  .header{
-  .header-content{
-    margin: 0 auto;
-    height: 50px;
-    align: center;
-    .header-left{
-      max-height: 140px;
-      width: 100%;
-      display: table;
 
-    }
-    .header-right{
-      .button-container{
-        float: right;
-        padding-right:250px;
-        vertical-align: middle;
-        display: table-cell;
-        input{
-          font-size: 12px;
-          font-weight: bolder;
-          width: 270px;
-        }
-      }
-    }
-  }
- }
+.page-3{
+
+ margin: 10% ;
 }
 
+p.top{
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 220%;
+}
 
+p.top-2{
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 300%;
+  font-wedght: 200;
+
+}
