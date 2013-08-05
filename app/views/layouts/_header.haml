@@ -1,19 +1,21 @@
 .header
-  .header-content
-    .header-left
-      %ul
-        %li
-          %a.navigation{:href=>"#gray-page"} ABOUT
-        %li
-          %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
-        %li
-          %a.navigation{:href=>"#what-page"} PHOTO GALLERY
-        %li
-          %a.navigation{:href=>"#business-page"} BUSINESSES
-        %li
-          %a.navigation{:href=>"#events-page"} SHOWS & EVENTS
-    .header-right
-      .button-container
-        .span1
-          %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
-  //*= image_tag 'logo.png'
+  .row-fluid
+    .header-content
+      .span6
+        .header-left
+          %ul
+            %li
+              %a.navigation{:href=>"#gray-page"} ABOUT
+            %li
+              %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
+            %li
+              %a.navigation{:href=>"#what-page"} PHOTO GALLERY
+            %li
+              %a.navigation{:href=>"#business-page"} BUSINESSES
+            %li
+              %a.navigation{:href=>"#events-page"} SHOWS & EVENTS
+      .span4
+        .header-right
+          .button-container
+            %input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
+      //*= image_tag 'logo.png'
