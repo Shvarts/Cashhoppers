@@ -5,6 +5,10 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
   validates_presence_of :user_id, :friend_id
 
+  def self.friends?(user, friend)
+    not find_by_user_id_and_friend_id_and_status(user, friend, 'accepted').nil?
+  end
+
   # Return true if the users are (possibly pending) friends.
   def self.exists?(user, friend)
     not find_by_user_id_and_friend_id(user, friend).nil?

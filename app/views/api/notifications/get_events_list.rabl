@@ -42,6 +42,9 @@ child :friend do
     node :avatar do |user|
         user.avatar.url if user.avatar_file_size
     end
+    node :are_we_friends do |user|
+        Friendship.friends?(@current_user, user)
+    end
 end
 
 node :time_ago do |event|

@@ -314,7 +314,8 @@ service should be 'twitter', 'facebook', 'google'
                             "first_name"=>"friend",
                             "user_name"=>"friend",
                             "avatar"=>"/images/avatars/users/20/original/USER_AVATAR.png?1375357711",
-                            "friends_count"=>1
+                            "friends_count"=>1,
+                            "are_we_friends"=>true
                        },
                        "time_ago"=>"about 1 month"
                   },
@@ -411,6 +412,7 @@ service should be 'twitter', 'facebook', 'google'
                             "first_name"=>"friend",
                             "user_name"=>"friend",
                             "avatar"=>nil,
+                            "are_we_friends"=>true
                         },
                         "time_ago"=>"about 2 hours",
                   }
