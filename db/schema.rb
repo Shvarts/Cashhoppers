@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729135747) do
+ActiveRecord::Schema.define(:version => 20130805102958) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -77,8 +77,12 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
     t.integer  "pts"
     t.integer  "bonus"
     t.integer  "amt_paid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
@@ -207,10 +211,10 @@ ActiveRecord::Schema.define(:version => 20130729135747) do
     t.string   "authentication_token"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "user_name"
     t.string   "contact"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
