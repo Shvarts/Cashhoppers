@@ -51,7 +51,7 @@ class Api::UserHopTasksController < Api::ApplicationController
     unless Like.where(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id).first
       @like = Like.create(target_object_id: @user_hop_task.id, target_object: 'UserHopTask', user_id: @current_user.id)
       Notification.create(user_id: @user_hop_task.user_id, like_id: @like.id, event_type: 'Like')
-      unless @user_hop_task.hop
+      unless @user_hop_task.hop_task.hop
         @user_hop_task.hop_task.hop.increase_score @current_user, 1
         respond_to do |format|
           format.json{
