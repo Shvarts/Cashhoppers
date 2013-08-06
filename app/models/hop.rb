@@ -65,7 +65,7 @@ class Hop < ActiveRecord::Base
   end
 
   def winner place
-    winner = ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts DESC LIMIT 1 OFFSET #{ place - 1 };")
+    winner = ActiveRecord::Base.connection.select_all("SELECT hoppers_hops.* FROM hoppers_hops WHERE hop_id = #{id} ORDER BY pts, RAND() DESC LIMIT 1 OFFSET #{ place - 1 };")
     ActiveRecord::Base.connection.close
     if winner.blank?
       nil
