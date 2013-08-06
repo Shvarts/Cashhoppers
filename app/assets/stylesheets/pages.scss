@@ -220,7 +220,7 @@ a.carousel-control.right{
 }
 @media(min-width:400px)and(max-width: 599px){
 
- html,body,head,header{
+  html,body,head,header{
     padding-left: 0px !important;
     padding-right: 0px !important;
     width: 100%;
@@ -230,15 +230,15 @@ a.carousel-control.right{
       .divas1{
         display: table-cell;
         vertical-align: middle;
-          .divas2{
+        .divas2{
             width: 415px;
             height: 200px;
             margin: 0 auto;
-              .phone{
-                width: 415px;
-                height: 200px;
+            .phone{
+              width: 415px;
+              height: 200px;
               }
-          }
+        }
       }
     }
    .custom-pg{
@@ -264,9 +264,17 @@ a.carousel-control.right{
        }
      }
    }
-        width: 100%;
-        margin:  auto;
-        height: 70px;
+
+  .header{
+     position: fixed;
+     max-height: 50%;
+     width: 100%;
+     margin: 0 auto;
+     top: 0px;
+
+      .header-content{
+        margin: 0 auto;
+        height: 50px;
         .header-left{
           max-height: 140px;
           max-width: 500px;
@@ -306,7 +314,9 @@ a.carousel-control.right{
           }
         }
       }
-    }
+  }
+
+
 
 
   //.top-sign{
@@ -322,22 +332,37 @@ a.carousel-control.right{
     width: 410px;
   }
   .thumbnail img{
-    width: 50px;
+    width: 100px;
     height: 100%;
   }
   .business{
-    width:300px;
+
+    width:70%;
     border: 1px;
     text-align: justify;
     float: left;
     padding: 5% 5%;
    }
   .span6 img{
-    width: 100px;
+    width:20%;
     height: 200px;
-    vspace: 20%;
-    float: left;
+    /*vspace: 20%;*/
+    /*float: left;*/
   }
+  #carousel2 .carousel-inner{
+      width: 100%;
+      a{
+       margin-top: 20%;
+      }
+      img{
+        width: 20%;
+
+      }
+  }
+  #carousel2 a{
+     margin-top: -20%;
+  }
+
 
   .video .top-sign{
     width: 390px;
@@ -350,13 +375,6 @@ a.carousel-control.right{
     width: 450px;
     height: 200px;
   }
-
-  //.gallery{
-  //  width: 20px;
-  //}
-
-
-
    .buttonone{
         float: left;
         width:150px;
@@ -370,6 +388,8 @@ a.carousel-control.right{
    .handimage{
         width: 200px;
         float:right;
+   }
+   }
    }
 
 @media(min-width:600px)and(max-width: 950px){
