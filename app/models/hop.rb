@@ -16,6 +16,7 @@ class Hop < ActiveRecord::Base
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
   validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: true, unless: :daily?
+  validate :only_one_daily_hop_per_day
 
   def self.get_daily_by_date date
     Hop.where("time_start BETWEEN ? AND ? AND daily = 1", date.beginning_of_day, date.end_of_day).first
@@ -231,7 +232,12 @@ class Hop < ActiveRecord::Base
     @exp
   end
 
+  private
 
-
+  def only_one_daily_hop_per_day
+    if Hop.get_daily_by_date self.time_start
+      errors.add(:start_date, "Can be only one daily hop per day.")
+    end
+  end
 
 end
