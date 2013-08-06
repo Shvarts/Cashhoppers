@@ -342,6 +342,10 @@ html,body,head,header{
     }
   }
 }
+@font-face{
+  url: 'fonts/5429331.ttf';
+  font-family: 'topfont';
+}
 
 
 
@@ -353,20 +357,35 @@ html,body,head,header{
   margin: 10% ;
 }
 
-p.top{
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 220%;
+.top{
+  font-family:'Century Gothic',verdana,arial,helvetica,sans-serif ;
+
+  font-size: 70%;
+}
+.last-list{
+  font-family:'Century Gothic',verdana,arial,helvetica,sans-serif ;
+  line-height: 1.7;
+  text-align: center;
+  font-size: 160%;
+  opacity: 0.7;
+
 }
 
-p.top-2{
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 100%;
-  font-wedght: 200;
+.top-sign{
+  font-family: 'topfont', sans-serif ;
+  text-align: center;
+  font-size: 200%;
+  opacity: 0.7;
 
 }
-.video{
-  //margin: 20%;
-  //min-height: 180px;
-  //min-width: 200px;
+.weight{
+  font-weight: bold ;
 
+}
+.center{
+  text-align: center;
+}
+.links{
+  color: dodgerblue;
+  text-align: center;
 }
