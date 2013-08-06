@@ -20,6 +20,12 @@
       list_id: 'prizesTable'
     });
   });
+- if @hop.hop_tasks.count == 0
+  .alert.alert-error
+    Hop must have at least one task!
+- if @hop.prizes.count == 0
+  .alert.alert-error
+    Hop must have at least one prize place!
 %h2
   .row-fluid
     .text-left.span8

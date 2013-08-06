@@ -6,7 +6,13 @@ class Api::HopsController < Api::ApplicationController
     params[:page] ||= 1
     params[:per_page] ||= 10
     @hops =  Hop.find_by_sql("SELECT hops.*, IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) AS isnull
-                              FROM hops LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id WHERE hops.daily = 0 ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
+                              FROM hops
+                              LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id
+                              LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
+                              LEFT JOIN prizes ON prizes.hop_id = hops.id
+                              WHERE hops.daily = 0 AND close = 0 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
+                              GROUP BY hops.id
+                              ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
                               LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i};")
     if @hops.blank?
       bad_request(['Hops not found.'], 406)
@@ -16,11 +22,16 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def daily
-    @hops = Hop.paginate(:page => params[:page],
-                         per_page: params[:per_page],
-                         conditions: ["time_start BETWEEN ? AND ? AND daily = 1 AND close = 0", DateTime.now.beginning_of_day, DateTime.now.end_of_day])
-    if @hops.blank?
-      bad_request(['Hops not found.'], 406)
+    @daily_hop = Hop.find_by_sql(["SELECT hops.*
+                                FROM hops
+                                LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
+                                LEFT JOIN prizes ON prizes.hop_id = hops.id
+                                WHERE hops.daily = 1 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
+                                    AND time_start BETWEEN ? AND ? AND close = 0
+                                GROUP BY hops.id
+                                LIMIT 1;", DateTime.now.beginning_of_day, DateTime.now.end_of_day]).first
+    if @daily_hop == nil
+      bad_request(['Daily hop not found.'], 406)
     else
       render 'daily', content_type: 'application/json'
     end
@@ -77,7 +88,7 @@ class Api::HopsController < Api::ApplicationController
   private
 
   def load_hop
-    @hop = Hop.where(:id => params[:hop_id]).first
+    @hop = Hop.where(:id => params[:hop_id]).first   #.includes(:hop_task).where("hop_tasks.id IS NOT NULL")
     bad_request(['Hop not found.'], 406) unless @hop
   end
 

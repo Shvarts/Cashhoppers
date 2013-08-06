@@ -1,6 +1,8 @@
 .grid
   = grid(@hops_grid, upper_pagination_panel: true) do |g|
     - g.blank_slate content_tag(:div, 'No records found')
+    - g.column name: '', attribute: 'id', filter: false do |hop|
+      - raw "<i #{((hop.hop_tasks.count == 0 || hop.prizes.count == 0 ) ? 'class="icon-warning-sign" style="color: red"' : '')}></i>"
     - g.column name: 'Name', attribute: 'name'
     - g.column name: 'Producer', attribute: 'user_name', model: User do |hop|
       - link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
