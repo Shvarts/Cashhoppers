@@ -279,6 +279,58 @@ html,body,head,header{
         }
       }
     }
+
+
+  //.top-sign{
+  //
+  //
+  //  font-size: 12px;
+  //  opacity: 0.5;
+  //
+  //}
+  .video-text{
+    text-align: justify;
+    padding: 2%;
+    width: 410px;
+  }
+  .thumbnail img{
+    width: 50px;
+    height: 100%;
+  }
+  .business{
+    width:300px;
+    border: 1px;
+    text-align: justify;
+    float: left;
+    padding: 5% 5%;
+   }
+  .span6 img{
+    width: 100px;
+    height: 200px;
+    vspace: 20%;
+    float: left;
+  }
+
+  .video .top-sign{
+    width: 390px;
+    font-size: 20px;
+    text-align: center;
+
+    padding-left: 5%;
+  }
+ video{
+    width: 450px;
+    height: 200px;
+  }
+  .inline{
+    display: inline;
+  }
+  .gallery{
+    width: 20px;
+  }
+
+
+
   }
 }
 @media(min-width:600px)and(max-width: 950px){
@@ -376,6 +428,7 @@ html,body,head,header{
   text-align: center;
   font-size: 200%;
   opacity: 0.7;
+  line-height: 1.2;
 
 }
 .weight{

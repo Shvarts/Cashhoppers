@@ -42,14 +42,15 @@
             = video_tag ["video/media.mp4"],   :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true
           %br
           %br
-            CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes
-            There a Daily HOPs where you can complete against other Hoppers from around the globe. Or you can join
-            private HOPs played at trade shows, fairs, weddings receptions, school fundraisers, and more!
-          %br
-            .weight
-              Download the
-              =link_to 'FREE CASHHOPPERS APP', '#'
-              today and start HOPPING!
+            .video-text
+              CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes
+              There a Daily HOPs where you can complete against other Hoppers from around the globe. Or you can join
+              private HOPs played at trade shows, fairs, weddings receptions, school fundraisers, and more!
+              %br
+                .weight
+                  Download the
+                  =link_to 'FREE CASHHOPPERS APP', '#'
+                  today and start HOPPING!
         .span2
 
 
@@ -60,15 +61,13 @@
       %h2{:id=>"yellow-page"}
       .row-fluid
         .span2
-
         .span8.video
           .top-sign
             HOW TO
             %span.weight PLAY
-          %br
+          .video-text
             = video_tag ["video/media.mp4"],  :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
-          %br
-          %br
+          .video-text
             %ul
               %li
                 Download the
@@ -83,9 +82,8 @@
               %li
                 Wait to see if you've won!
             It's that easy!
-          %br
-            =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success span5'
-            =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success span5'
+          =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
+          =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
 
         .span2
 
@@ -102,16 +100,16 @@
       %br
         %p See what other Hoppers are taking pictures of and pick your favorites!
       %br
-      .row-fluid
+      .row
         .carousel.slide#carousel2
           .carousel-inner
             - for i in @pac
               .item
-                .thumbnails
+                .thumbnails.inline
                   - for n in i
-                    .span3
-                      .thumbnail
-                        =image_tag(n,  :width => '100%', :height=> '100%')
+                    .span3.inline
+                      .thumbnail.gallery
+                        =image_tag(n,  :width => '100%', :height=> '100%', :style => "display: inline")
           %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
@@ -129,11 +127,9 @@
         FOR
         %span.weight BUSINESS
       %br
-      %br
-      %br
       .row-fluid
         .span6.text-left
-          .p
+          .business
             The CASHHOPPERS game is a great tool to add to your marketing
             and advertising mix. SPONSOR a HOP item, and drive players to your
             booth, building or web site. ADVERTISE within the app and reach
@@ -146,11 +142,12 @@
               Find out how to use CASHHOPPERS to your bussiness's advantage.
             %br
             %br
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
             %br
-              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success span6'
-        .span6.text-left
-          = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
+              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
+        .span6.text-left.right
+          .img-hand
+            = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
 
 
     .span2
@@ -174,15 +171,16 @@
         .span6.text-left
           = image_tag 'home_event.png', :class => 'event-img',  :width=>"70%" ,:height=>"20%"
         .span6.text-left
-          Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
-          has been proven to engage show visitors more, increase traffic at participating booth, initiate
-          customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
-          %br
-            Find out how you can use CASHHOPPERS at your next trade show or event
-          %br
-            = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
-          %br
-            = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success span6'
+          .text
+            Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
+            has been proven to engage show visitors more, increase traffic at participating booth, initiate
+            customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
+            %br
+              Find out how you can use CASHHOPPERS at your next trade show or event
+            %br
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
+            %br
+              = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success '
 
     .span2
 
@@ -190,7 +188,7 @@
 .custom-pg.page-last{style: ' display: table'}
   %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
     %div{style: 'width: 915px; height: 70%;  margin: 0 auto'}
-      .row-fluid
+      .row-fluid.video-text
         .span1
 
         .span5
@@ -204,6 +202,8 @@
 
             %span.weight
               = link_to 'CashHoppersMaster.com', ''
+          %br
+          %br
         .span4
           .top-sign
             WE'RE SOCIAL.
@@ -212,8 +212,7 @@
               TO KEEP IN-THE-KNOW
               AND SEE WHAT OTHERS
               ARE DOING, JOIN US.
-          %br
-            .center
+            .center.video
               =image_tag 'facebook.png', :width => '50px', :height => '50px'
               =image_tag 'twitter.png', :width => '50px', :height => '50px'
               =image_tag 'google.png', :width => '40px', :height => '40px'
