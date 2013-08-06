@@ -11,9 +11,11 @@ class Api::UsersController < Api::ApplicationController
       conditions = ["first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%"]
     end
     @users = User.paginate(page: params[:page], per_page: params[:per_page], conditions: conditions  )
-    invalid_login_attempt('users not found') if @users.blank?
-
-    render 'index', content_type: 'application/json'
+    if @users.blank?
+      bad_request ['Users not found.'], 406
+    else
+      render 'index', content_type: 'application/json'
+    end
   end
 
   def get_my_info

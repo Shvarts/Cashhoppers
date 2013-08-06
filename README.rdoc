@@ -428,16 +428,66 @@ if sender_id is nil that means sender is administrator
         success: {"success"=>true, "info"=>"Message sent successfully.", "errors"=>["Can't find friend with id 3.", "Can't find friend with id 4."], "status"=>200}
         error: {"errors"=>["Bad request parameters."], "success"=>false, "status"=>406}
 ====synchronize messages(method: GET)
+=====first synchronization - return all unsynchronized messages from last login)
     url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o
-    data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"}
+    data: { api_key: "123",
+            authentication_token: "1mS4qJw3qMZXJRyFoHR0TdKRqNavgr"
+          }
     response:
-        success: {"messages"=>[
-                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:41:32Z", "time_ago"=>"about 17 hours"},
-                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:09Z", "time_ago"=>"about 17 hours"},
-                    {"sender_id"=>2, "text"=>"hello, friends !!!", "created_at"=>"2013-07-25T13:42:30Z", "time_ago"=>"about 17 hours"},
-                    {"sender_id"=>2, "text"=>"broosdfdfs",         "created_at"=>"2013-07-25T13:52:41Z", "time_ago"=>"about 17 hours"},
-                    {"sender_id"=>2, "text"=>"broosdfdfs",         "created_at"=>"2013-07-25T13:59:39Z", "time_ago"=>"about 17 hours"}
-                  ]}
+        success: {
+                  "success"=>true,
+                  "last_sync_time"=>"2013-08-06T13:15:36+03:00",
+                  "messages"=>[
+                    {"sender_id"=>19,
+                     "receiver_id"=>20,
+                     "text"=>"message 3",
+                     "created_at"=>"2013-08-06T10:15:35Z",
+                     "time_ago"=>"less than a minute"
+                    }
+                  ],
+                  "status"=>200
+                  }
+=====synchronize friend messages
+    url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=jek2OE2J7xtUQnPrN1fo4INeF7rXW8&last_sync_time=URI.encode(2013-08-06T13:15:33+03:00)&friend_id=20
+    data: { api_key: "123",
+            authentication_token: "1mS4qJw3qMZXJRyFoHR0TdKRqNavgr",
+            last_sync_time: URI.encode(2013-08-06T13:15:33+03:00,
+            friend_id: 20
+          }
+    response:
+        success: {
+                  "success"=>true,
+                  "last_sync_time"=>"2013-08-06T13:15:36+03:00",
+                  "messages"=>[
+                    {"sender_id"=>19,
+                     "receiver_id"=>20,
+                     "text"=>"message 3",
+                     "created_at"=>"2013-08-06T10:15:35Z",
+                     "time_ago"=>"less than a minute"
+                    }
+                  ],
+                  "status"=>200
+                  }
+=====synchronize all friend messages
+    url: http://localhost:3000/api/messages/synchronize.json?api_key=123&authentication_token=jek2OE2J7xtUQnPrN1fo4INeF7rXW8&last_sync_time=URI.encode(2013-08-06T13:15:33+03:00)
+    data: { api_key: "123",
+            authentication_token: "1mS4qJw3qMZXJRyFoHR0TdKRqNavgr",
+            last_sync_time: URI.encode(2013-08-06T13:15:33+03:00
+          }
+    response:
+        success: {
+                  "success"=>true,
+                  "last_sync_time"=>"2013-08-06T13:15:36+03:00",
+                  "messages"=>[
+                    {"sender_id"=>19,
+                     "receiver_id"=>20,
+                     "text"=>"message 3",
+                     "created_at"=>"2013-08-06T10:15:35Z",
+                     "time_ago"=>"less than a minute"
+                    }
+                  ],
+                  "status"=>200
+                  }
 ====friends messages thread(method: GET)
     url: http://localhost:3000/api/messages/thread.json?api_key=123&authentication_token=c7kdQEDbb4xdDe7YqLxJm7O9j0Uf0o&page=1&per_page=10
     data: {"api_key":"123","authentication_token":"1mS4qJw3qMZXJRyFoHR0TdKRqNavgr", page: 1, per_page: 10}

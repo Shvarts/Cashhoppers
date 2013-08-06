@@ -1,3 +1,5 @@
+include ActionView::Helpers::DateHelper
+
 class Message < ActiveRecord::Base
 
   belongs_to :sender, :class_name => 'User'
@@ -8,6 +10,7 @@ class Message < ActiveRecord::Base
   validates :text, presence: true
 
   after_create :push_to_thread
+  before_create :set_synchronized
 
   def self.thread user, page = nil, per_page = nil
     pagination = ""
@@ -41,7 +44,23 @@ class Message < ActiveRecord::Base
   end
 
   def push_to_thread
-    CashHoppers::Application::MY_GLOBAL_ARRAY << self
+    CashHoppers::Application::MESSAGES << self
+  end
+
+  def to_json
+    {
+      sender_id:   sender_id,
+      receiver_id: receiver_id,
+      text:        text,
+      created_at:  created_at,
+      time_ago:    time_ago_in_words(created_at)
+    }
+  end
+
+  private
+
+  def set_synchronized
+    self.synchronized = 0
   end
 
 end

@@ -41,7 +41,7 @@ class Api::SessionsController < Api::ApplicationController
       session = create_session @user
       render :json => {:success=>true,
                        :info => "Logged in",
-                       :data => {authentication_token: session.auth_token, email: @user.email},
+                       :data => {authentication_token: session[:auth_token], email: @user.email},
                        :status => 200
       }
     else
@@ -50,10 +50,11 @@ class Api::SessionsController < Api::ApplicationController
   end
 
   def destroy
-    remove_expired_sessions   #sorry
-    session = Session.where(:auth_token => params[:authentication_token]).first
+    session = CashHoppers::Application::SESSIONS.select{|session|
+      session if session[:auth_token] == params[:authentication_token]
+    }.first
     if session
-      session.destroy
+      destroy_session session
       render :json => { :success => true,  :info => "Logged out", :status => 200 }
     else
       bad_request ['invalid login or password'], 401
@@ -67,7 +68,7 @@ class Api::SessionsController < Api::ApplicationController
       session = create_session auth.user
       render :json => {success: true,
                        info: 'Signed in successfully via ' + params[:provider].capitalize,
-                       data: {authentication_token: session.auth_token, email: auth.user},
+                       data: {authentication_token: session[:auth_token], email: auth.user},
                        status: 200
       }
     else
@@ -78,7 +79,7 @@ class Api::SessionsController < Api::ApplicationController
           session = create_session existinguser
           render :json => {success: true,
                            info: 'Sign in via ' + params[:provider].capitalize + '. ' + params[:provider].capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!',
-                           data: {authentication_token: session.auth_token, :user => existinguser},
+                           data: {authentication_token: session[:auth_token], :user => existinguser},
                            status: 200
           }
         else
@@ -94,16 +95,16 @@ class Api::SessionsController < Api::ApplicationController
             session = create_session user
             render :json => {success: true,
                              info: 'Your account has been created via ' + params[:provider].capitalize,
-                             data: {authentication_token: session.auth_token, :user => user},
+                             data: {authentication_token: session[:auth_token], :user => user},
                              status: 200
             }
           else
-            session.destroy
+            destroy_session session
             bad_request user.errors, 406
           end
         end
       else
-        session.destroy
+        destroy_session session
         bad_request ["Email can't be blank."], 401
       end
     end
@@ -111,15 +112,17 @@ class Api::SessionsController < Api::ApplicationController
 
   private
 
-  def remove_expired_sessions
-    Session.where("updated_at < ?", Time.now - 1.week).each do |session|
-      session.destroy
-    end
-  end
-
   def create_session user
     range = [*'0'..'9', *'a'..'z', *'A'..'Z']
-    Session.create(user_id: user.id, auth_token: Array.new(30){range.sample}.join)
+    session = {user_id: user.id, auth_token: Array.new(30){range.sample}.join, updated_at: Time.now}
+    CashHoppers::Application::SESSIONS << session
+    CashHoppers::Application::USERS << user
+    session
+  end
+
+  def destroy_session session
+    CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
+    CashHoppers::Application::SESSIONS.delete session
   end
 
 end

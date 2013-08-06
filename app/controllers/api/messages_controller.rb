@@ -30,11 +30,39 @@ class Api::MessagesController < Api::ApplicationController
   end
 
   def synchronize_messages
-    @messages = Message.where(receiver_id: @current_user.id, synchronized: false)
+    if params[:last_sync_time].present? && params[:friend_id].present?
+      sync_time = Time.parse(URI.decode(params[:last_sync_time]))
+      ids = [@current_user.id, params[:friend_id].to_i]
+      @messages = CashHoppers::Application::MESSAGES.select{|message|
+        message if (message.created_at > sync_time &&
+          ids.include?(message.sender_id)&&
+          ids.include?(message.receiver_id)
+        )
+      }
+    elsif params[:last_sync_time].present?
+      sync_time = Time.parse(URI.decode(params[:last_sync_time]))
+      @messages = CashHoppers::Application::MESSAGES.select{|message|
+        message if (message.created_at > sync_time && (message.sender_id == @current_user.id || message.receiver_id == @current_user.id))
+      }
+    else
+      ids = [@current_user.id, params[:friend_id].to_i]
+      @messages = Message.where(receiver_id: ids, sender_id: ids, synchronized: 0)
+    end
+
+    @last_sync_time = Time.now
     @messages.each do |message|
       message.update_attribute :synchronized, true
     end
-    render 'synchronize_messages', content_type: 'application/json'
+    respond_to do |format|
+      format.json{
+        render :json => {success: true,
+                         last_sync_time: @last_sync_time,
+                         messages: @messages.map{|m| m.to_json},
+                         status: 200
+        }
+      }
+    end
+
   end
 
   def get_users_messages_thread

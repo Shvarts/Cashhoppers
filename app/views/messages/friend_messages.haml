@@ -13,7 +13,8 @@
           success: function(data){
               $('#last_sync_date').remove();
               $('#messages').append(data);
-              $("#messages").animate({ scrollTop: $(document).height() }, 1000);
+              var height = $("#messages")[0].scrollHeight;
+              $("#messages").animate({ scrollTop: height }, 1000);
           }
       });
   }
@@ -26,7 +27,7 @@
   .span11
     %h4{style: 'color: darkgreen'}
       = link_to full_user_name(@friend), user_path(@friend)
-#messages
+#messages{style: 'height: 400px; overflow: auto '}
   = render partial: 'messages'
 %hr
   .row

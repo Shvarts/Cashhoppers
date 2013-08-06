@@ -11,7 +11,11 @@ end
 
 module CashHoppers
   class Application < Rails::Application
-    MY_GLOBAL_ARRAY = []
+    MESSAGES = []
+
+    APPLICATIONS = []
+    SESSIONS = []
+    USERS = []
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

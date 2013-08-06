@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     @friend = User.new(id: params[:friend_id], first_name: params[:friend_first_name], last_name: params[:friend_last_name])
     sync_time = DateTime.strptime(params[:last_sync_date], '%Y-%m-%d %H:%M:%S %z')
     ids = [current_user.id, @friend.id]
-    @messages = CashHoppers::Application::MY_GLOBAL_ARRAY.select{|message|
+    @messages = CashHoppers::Application::MESSAGES.select{|message|
       message if (message.created_at > sync_time &&
           ids.include?(message.sender_id)&&
           ids.include?(message.receiver_id)
