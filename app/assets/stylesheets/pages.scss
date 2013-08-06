@@ -322,12 +322,10 @@ html,body,head,header{
     width: 450px;
     height: 200px;
   }
-  .inline{
-    display: inline;
-  }
-  .gallery{
-    width: 20px;
-  }
+
+  //.gallery{
+  //  width: 20px;
+  //}
 
 
 
@@ -441,4 +439,7 @@ html,body,head,header{
 .links{
   color: dodgerblue;
   text-align: center;
+}
+.inline{
+  display: inline;
 }

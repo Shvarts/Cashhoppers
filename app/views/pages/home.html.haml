@@ -65,6 +65,7 @@
           .top-sign
             HOW TO
             %span.weight PLAY
+          %br
           .video-text
             = video_tag ["video/media.mp4"],  :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
           .video-text
@@ -81,7 +82,8 @@
                 Add an optional comment and share your picture on Facebook.
               %li
                 Wait to see if you've won!
-            It's that easy!
+            It's that easy !
+          %br
           =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
           =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
 
@@ -100,18 +102,15 @@
       %br
         %p See what other Hoppers are taking pictures of and pick your favorites!
       %br
-      .row
-        .carousel.slide#carousel2
-          .carousel-inner
-            - for i in @pac
-              .item
-                .thumbnails.inline
-                  - for n in i
-                    .span3.inline
-                      .thumbnail.gallery
-                        =image_tag(n,  :width => '100%', :height=> '100%', :style => "display: inline")
-          %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
-          %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
+      .carousel.slide#carousel2{style:'min-width: 400px'}
+        .carousel-inner
+          - for i in @pac
+            .item
+              - for n in i
+                .inline
+                  =image_tag(n,  :width => '20%', :style => "display: inline")
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
 
 .page-divider
