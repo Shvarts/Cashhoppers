@@ -9,7 +9,7 @@
     = csrf_meta_tags
   %body
     %div{style: 'position: fixed; width: 250px; height: 500px; margin-top: 100px; z-index: 100000'}
-      = render partial: 'layouts/sidebar'
+      -#= render partial: 'layouts/sidebar'
       = yield :sidebar
       = controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
     = render partial:  "layouts/header"

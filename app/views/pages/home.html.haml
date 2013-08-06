@@ -23,12 +23,72 @@
         %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
-.custom-pg.gray-page
-  %h2{:id=>"gray-page"}
+
+.custom-pg.gray-page{style: ' display: table'}
+  %div{style: 'width:100%; height:100%; display: table-cell; vertical-align:middle'}
+    %div{style: 'width: 915px; height: 60%;  margin: 0 auto'}
+      %h2{:id=>"gray-page"}
+
+      .row-fluid
+        .span2
+
+        .span8.video
+          .top-sign
+            WHAT IS
+            = succeed "HOPERS" do
+              %span.weight CASH
+            ALL ABOUT ?
+          %br
+          %br
+            = video_tag ["video/media.mp4"],   :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true
+          %br
+          %br
+            .video-text
+              CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes
+              There a Daily HOPs where you can complete against other Hoppers from around the globe. Or you can join
+              private HOPs played at trade shows, fairs, weddings receptions, school fundraisers, and more!
+              %br
+                .weight
+                  Download the
+                  =link_to 'FREE CASHHOPPERS APP', '#'
+                  today and start HOPPING!
+        .span2
+
 
 .page-divider
-.custom-pg.yellow-page
-  %h2{:id=>"yellow-page"}
+.custom-pg.yellow-page{style: ' display: table'}
+  %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
+    %div{style: 'width: 915px; height: 70%;  margin: 0 auto'}
+      %h2{:id=>"yellow-page"}
+      .row-fluid
+        .span2
+        .span8.video
+          .top-sign
+            HOW TO
+            %span.weight PLAY
+          %br
+          .video-text
+            = video_tag ["video/media.mp4"],  :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
+          .video-text
+            %ul
+              %li
+                Download the
+                %span.weight
+                  = link_to 'FREE app.', '#'
+              %li
+                Find the HOP you want to play(enter the password if it's a private HOP).
+              %li
+                Start taking pictures on the list (Remember, you have to be visible in every picture to be eligible.)
+              %li
+                Add an optional comment and share your picture on Facebook.
+              %li
+                Wait to see if you've won!
+            It's that easy !
+          %br
+          =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
+          =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
+
+        .span2
 
 .page-divider
 .custom-pg.what-page
@@ -37,27 +97,20 @@
     .span2
 
     .span8.text-center.page-3
-      %p.top AT THE HOP
+      .top-sign
+        AT THE HOP
       %br
         %p See what other Hoppers are taking pictures of and pick your favorites!
       %br
-      .row-fluid
-        .carousel.slide#carousel2
-          .carousel-inner
-            - for i in @pac
-              .item
-                .thumbnails
-                  - for n in i
-                    .span3
-                      .thumbnail
-                        =image_tag(n,  :width => '100%', :height=> '100%')
-          -#      .span6
-          -#        .thumbnail
-          -#          =image_tag('facebook.png', :style => 'height:50%', :width => '50%')
-          -#  .item
-          -#    = image_tag('google.png',:style => 'height:100%', :width => '100%' )
-          %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
-          %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
+      .carousel.slide#carousel2{style:'min-width: 400px'}
+        .carousel-inner
+          - for i in @pac
+            .item
+              - for n in i
+                .inline
+                  =image_tag(n,  :width => '20%', :style => "display: inline")
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
 
 .page-divider
@@ -67,14 +120,15 @@
     .span2
 
     .span8.text-center.page-3
-      %p.top-2
-        CASHHOPPERS FOR BUSINESS
-      %br
-      %br
+      .top-sign
+        = succeed "HOPERS" do
+          %span.weight CASH
+        FOR
+        %span.weight BUSINESS
       %br
       .row-fluid
         .span6.text-left
-          .p
+          .business
             The CASHHOPPERS game is a great tool to add to your marketing
             and advertising mix. SPONSOR a HOP item, and drive players to your
             booth, building or web site. ADVERTISE within the app and reach
@@ -87,11 +141,12 @@
               Find out how to use CASHHOPPERS to your bussiness's advantage.
             %br
             %br
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
             %br
-              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success span6'
-        .span6.text-left
-          = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
+              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
+        .span6.text-left.right
+          .img-hand
+            = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
 
 
     .span2
@@ -103,26 +158,104 @@
     .span2
 
     .span8.text-center.page-3
-      %p.top
-        CASHHOPPERS FOR TRADE SHOWS & EVENTS
+      .top-sign
+        = succeed "HOPERS" do
+          %span.weight CASH
+        FOR TRADE
+        %span.weight SHOWS
+        &
+        %span.weight EVENTS
       %br
       .row-fluid
         .span6.text-left
           = image_tag 'home_event.png', :class => 'event-img',  :width=>"70%" ,:height=>"20%"
         .span6.text-left
-          Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
-          has been proven to engage show visitors more, increase traffic at participating booth, initiate
-          customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
-          %br
-            Find out how you can use CASHHOPPERS at your next trade show or event
-          %br
-            = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
-          %br
-            = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success span6'
+          .text
+            Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
+            has been proven to engage show visitors more, increase traffic at participating booth, initiate
+            customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
+            %br
+              Find out how you can use CASHHOPPERS at your next trade show or event
+            %br
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
+            %br
+              = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success '
 
     .span2
 
 .page-divider
-.custom-pg.page-last
-  %h2
+.custom-pg.page-last{style: ' display: table'}
+  %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
+    %div{style: 'width: 915px; height: 70%;  margin: 0 auto'}
+      .row-fluid.video-text
+        .span1
+
+        .span5
+          .top-sign
+            WANT TO
+            %span.weight LEARN
+            MORE ?
+          %br
+          %br
+            Contact CashHoppers for more information:
+
+            %span.weight
+              = link_to 'CashHoppersMaster.com', ''
+          %br
+          %br
+        .span4
+          .top-sign
+            WE'RE SOCIAL.
+          %br
+            .last-list
+              TO KEEP IN-THE-KNOW
+              AND SEE WHAT OTHERS
+              ARE DOING, JOIN US.
+            .center.video
+              =image_tag 'facebook.png', :width => '50px', :height => '50px'
+              =image_tag 'twitter.png', :width => '50px', :height => '50px'
+              =image_tag 'google.png', :width => '40px', :height => '40px'
+
+
+        .span2
+
 .page-divider
+%br
+%br
+  %ul.bottom-menu
+    %li
+      = link_to 'HOME', '#'
+    %li
+      = link_to 'ABOUT'
+    %li
+      = link_to 'HOW TO PLAY'
+    %li
+      = link_to 'GALLERY'
+    %li
+      = link_to 'BUSINESS'
+    %li
+      = link_to 'TRADE SHOWS'
+    %li
+      = link_to 'CONTACT'
+    %li
+      = link_to 'TERMS'
+    %li
+      = link_to 'DOWNLOAD APP'
+  %ul.bottom-menu
+    %li
+      = link_to 'LOGIN'
+    %li
+      = link_to 'BUSINESS SIGN UP'
+    %li
+      = link_to 'TRADE SHOW SIGN UP'
+    %li
+      = link_to 'ADVERTISE'
+    %li
+      = link_to 'FACEBOOK'
+    %li
+      = link_to 'TWITTER'
+    %li
+      = link_to 'GOOGLE+'
+
+
+

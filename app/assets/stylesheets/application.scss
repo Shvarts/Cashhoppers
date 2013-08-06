@@ -87,3 +87,15 @@
     border-bottom: 1px solid black;
   }
 }
+
+.bottom-menu{
+  text-align: center;
+  li{
+    display: inline;
+    border-left: 2px solid #00ced1;
+    padding-left: 2px;
+  }
+  li:first-child{
+    border-left: 0px;
+  }
+}
