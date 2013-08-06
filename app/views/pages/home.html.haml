@@ -1,6 +1,6 @@
-.custom-pg.first-page
-  .row-fluid
-    .span12
+.custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(1..4)}.jpg"}); display: table;"}
+  .divas1
+    .divas2
       .social-links
         %a{href: '/auth/facebook', class: 'services'}
           =image_tag('facebook.png', :style=>'height:50px')
@@ -8,20 +8,18 @@
           =image_tag('twitter.png', :style=>'height:50px')
         %a{href: '/auth/google', class: 'services'}
           =image_tag('google.png', :style=>'height:38px')
-
-      .sign-up
-        = link_to 'Login', new_user_registration_path, class: 'btn btn-link'
-        = link_to 'Sigh Up', new_user_session_path, class: 'btn btn-link'
-  .row-fluid
-    .span8
-    .phone
-      .carousel.slide#myCarousel
-        .carousel-inner
-          - @user_hop_tasks.each do |task|
-            .item
-              =image_tag task.photo.url, :style => 'height:100%'
-        %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-        %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+        .sign-up
+          = link_to 'Login', new_user_registration_path, class: 'btn btn-link'
+          = link_to 'Sigh Up', new_user_session_path, class: 'btn btn-link'
+      .row-fluid
+      .phone
+        .carousel.slide#myCarousel
+          .carousel-inner
+            - @user_hop_tasks.each do |task|
+              .item
+                =image_tag task.photo.url, :style => 'height:100%'
+          %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+          %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
 
 .custom-pg.gray-page{style: ' display: table'}
@@ -90,12 +88,10 @@
 
         .span2
 
-.page-divider
 .custom-pg.what-page
   %h2{:id=>"what-page"}
   .row-fluid
     .span2
-
     .span8.text-center.page-3
       .top-sign
         AT THE HOP
@@ -111,8 +107,8 @@
                   =image_tag(n,  :width => '20%', :style => "display: inline")
         %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
-    .span2
 
+    .span2
 .page-divider
 .custom-pg.business-page
   .row-fluid#business
@@ -141,11 +137,14 @@
               Find out how to use CASHHOPPERS to your bussiness's advantage.
             %br
             %br
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
+
+            .buttonone
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
             %br
-              = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
-        .span6.text-left.right
-          .img-hand
+              .buttontwo
+                = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success span6'
+        .span6.text-left
+          .handimage
             = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
 
 
@@ -156,7 +155,6 @@
   %h2{:id=>"events-page"}
   .row-fluid
     .span2
-
     .span8.text-center.page-3
       .top-sign
         = succeed "HOPERS" do
