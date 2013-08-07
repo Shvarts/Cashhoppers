@@ -5,11 +5,16 @@ class Admin::MessagesController < Admin::AdminController
   def email_tool
     @tab = 'email_tool'
     @email = EmailAlert.new
+    (params[:id])? @users =[params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] :  @users =[[],[]]
+#    render :text => @users
   end
 
   def message_tool
     @tab = 'message_tool'
+    @users = params[:name] if params[:name]
     @message = Message.new
+    (params[:id])? @users = [params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] : @users =[[],[]]
+
   end
 
   def email_history
@@ -85,6 +90,7 @@ class Admin::MessagesController < Admin::AdminController
     @email = EmailAlert.new if @users.blank?
     if @email || @users.blank?
       flash[:error] = 'Receivers not selected.'
+      @users = [[],[]]
       render action: 'email_tool'
     else
       @messages.each{|m| m.save}

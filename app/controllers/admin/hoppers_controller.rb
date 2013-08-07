@@ -56,11 +56,14 @@ class Admin::HoppersController < Admin::AdminController
 
   def select_hop
     @users = Hop.find_by_id(params[:id]).hoppers.all
+
+    @id_array = @users.map{|user| user.id }
     render :partial => 'generate_hop_list'
   end
 
   def select_zip
     @users = User.where(:zip => params[:zip]).all
+    @id_array = @users.map{|user| user.id }
     render :partial => 'generate_hop_list'
   end
 

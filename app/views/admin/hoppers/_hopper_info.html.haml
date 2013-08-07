@@ -54,8 +54,8 @@
           = @user.created_at
     .text-center.non-print
       %br
-      = button_to "Send email to user", admin_messages_email_tool_path({:id=>@user.id}), :class=>"span9   btn-success span10 non-print"
-      = button_to "Send app massege to user", admin_messages_message_tool_path({:id=>@user.id}), :class=>"span9  btn-success non-print"
+      = link_to "Send email to user", admin_messages_email_tool_path({:id=>[@user.id]}), :class=>"span9   btn-success span10 non-print"
+      = link_to "Send app massege to user", admin_messages_message_tool_path({:id=>[@user.id]}), :class=>"span9  btn-success non-print"
       = submit_tag("send text to user",  :class=>"span9   btn-success non-print" )
 
   .span3
