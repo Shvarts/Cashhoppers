@@ -90,7 +90,7 @@ class Admin::MessagesController < Admin::AdminController
     @email = EmailAlert.new if @users.blank?
     if @email || @users.blank?
       flash[:error] = 'Receivers not selected.'
-      @users = [[],[]]
+     @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
       render action: 'email_tool'
     else
       @messages.each{|m| m.save}
