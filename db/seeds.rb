@@ -9,7 +9,7 @@
 puts 'Create roles...'
 
 Role.destroy_all
-[:admin, :user].each do |role|
+[:admin, :user,:sponsor,:producer,:advertiser  ].each do |role|
   Role.create(:name => role)
 end
 
@@ -59,20 +59,3 @@ Application.create(:name => 'dev key', :api_key => '123')
 puts 'Create hops...'
 
 
-
-10.times do |i|
-  @hop = Hop.new(:name => "hop # #{i}", :time_start => DateTime.now,:time_end => DateTime.now, :price => 123, :code =>153, :event => "New year", :jackpot => 45, :daily => false, :producer_id => 9)
-  puts @hop.save
-  if  @hop.save
-
-    5.times do |t|
-      @hop.hoppers.create!(:email => "gamers#{t}#{i}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                           :last_name => 'CashHoppers', :zip => 880 + t+ i, :user_name => 'admin',
-                           :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
-
-      puts '______________________________________________________________________________print______________________________'
-
-    end
-  end
-
-end
