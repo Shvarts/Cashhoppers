@@ -20,6 +20,25 @@ admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:admin)]
 
+
+admin = User.new(:email => 'sponsor@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
+admin.skip_confirmation!
+admin.save
+admin.roles = [Role.find_by_name(:sponsor)]
+
+admin = User.new(:email => 'advertiser@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
+admin.skip_confirmation!
+admin.save
+admin.roles = [Role.find_by_name(:advertiser)]
+
+admin = User.new(:email => 'producer@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
+admin.skip_confirmation!
+admin.save
+admin.roles = [Role.find_by_name(:producer)]
+
 friend = User.new(:email => 'friend@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'friend',
                   :last_name => 'friend', :zip => 88000, :user_name => 'friend', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 friend.skip_confirmation!

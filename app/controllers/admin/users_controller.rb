@@ -13,6 +13,6 @@ class Admin::UsersController < ApplicationController
       render :text => "error"
     end
 
-    puts "________________ #{params}___________________________________________________"
+
   end
 end
