@@ -64,26 +64,3 @@ function search(url, button){
         return false;
    })
 }
-
-//function printContents(id)
-//{
-//    debugger ;
-//    var contents = $(".print").html();
-//
-//    if ($("#printDiv").length == 0)
-//    {
-//        var printDiv = null;
-//        printDiv = document.createElement('div');
-//        printDiv.setAttribute('id','printDiv');
-//        printDiv.setAttribute('class','printable');
-//        $(printDiv).appendTo('body');
-//    }
-//
-//    $("#printDiv").html(contents);
-//
-//    window.print();
-//
-//    $("#printDiv").remove();
-//
-//
-//}

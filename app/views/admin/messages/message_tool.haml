@@ -10,10 +10,13 @@
 
   $(document).ready(function(){
     hops_modal = new ModalCRUD({
-      exception_field_id: 'hops_ids_'
+      index_path: "#{admin_messages_hops_list_path}",
+      exception_field_id: 'hops_ids_',
+      title: 'Find Hops:'
     });
     users_modal = new ModalCRUD({
-      exception_field_id: 'users_ids_'
+      exception_field_id: 'users_ids_',
+      title: 'Find Users:'
     });
   });
 = form_for @message, url: admin_messages_message_create_path do |f|

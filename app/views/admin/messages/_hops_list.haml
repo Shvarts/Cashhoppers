@@ -1,10 +1,11 @@
 #hops_list
   .row-fluid
-    .span7
-      = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
-    .span5.text-right.row
-      = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
-      = link_to 'Search',  '#', class: 'btn span4', id: 'search_button'
+    .span10
+      = text_field_tag :input, params[:query], class: 'span12', id: 'hop_query'
+    .span2.text-right.row
+      %button.btn.span12{onclick: 'search_hop();'}
+        Search
+  = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
   %table.table.table-condensed
     %tr
       %th
