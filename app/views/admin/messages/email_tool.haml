@@ -31,7 +31,8 @@
     .span3
       Users:
       %br
-      = select_tag 'users_ids[]', "", :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+
+      = select_tag 'users_ids[]', options_for_select(@users[0],@users[1]), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
   %br
   .row-fluid
     .span3
