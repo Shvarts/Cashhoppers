@@ -1,5 +1,5 @@
 class Admin::PrizesController < ApplicationController
-
+  load_and_authorize_resource
   def index
     @hop = Hop.find(params[:hop_id])
     @prizes = @hop.prizes

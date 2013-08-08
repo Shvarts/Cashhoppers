@@ -1,4 +1,5 @@
-.text-right
-  = link_to 'New daily hop', admin_new_daily_hop_path, class: 'btn btn-info'
+- if User.producer?(current_user) || User.admin?(current_user)
+  .text-right
+    = link_to 'New daily hop', admin_new_daily_hop_path, class: 'btn btn-info'
 %br
 = render partial: 'hops_list'

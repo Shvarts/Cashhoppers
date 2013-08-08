@@ -33,7 +33,8 @@
         %td
           = task.bonus
         %td{style: 'text-align: right'}
-          %button.btn.btn-info.btn-mini{onclick: 'tasks_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit hop task", "' + edit_admin_hop_task_path(task) + '")'}
-            Edit
-          %button.btn.btn-danger.btn-mini{onclick: 'tasks_modal.removeRecord("' + admin_hop_task_path(task) + '", {hop_id: ' + @hop.id.to_s + '})'}
-            Delete
+          -if User.producer?(current_user) || User.admin?(current_user)|| User.sponsor?(current_user)
+            %button.btn.btn-info.btn-mini{onclick: 'tasks_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit hop task", "' + edit_admin_hop_task_path(task) + '")'}
+              Edit
+            %button.btn.btn-danger.btn-mini{onclick: 'tasks_modal.removeRecord("' + admin_hop_task_path(task) + '", {hop_id: ' + @hop.id.to_s + '})'}
+              Delete

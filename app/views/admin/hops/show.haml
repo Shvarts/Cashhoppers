@@ -32,12 +32,13 @@
       Hop:
       = @hop.name
     .text-right.span4
-      = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-success')
       - if @hop.daily
         = link_to 'Back', admin_daily_hops_path, class: 'btn btn-info'
       - else
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
-      = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+      - if User.producer?(current_user) || User.admin?(current_user)
+        = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-success')
+        = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 .row-fluid
   .span12.text-error
     -if @exp
@@ -136,8 +137,9 @@
     %h4
       Prizes:
   .span6.text-right
-    %button.btn.btn-success{onclick: 'prizes_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create prize");'}
-      New Prize
+    - if User.producer?(current_user) || User.admin?(current_user)
+      %button.btn.btn-success{onclick: 'prizes_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create prize");'}
+        New Prize
 #prizesTable
   = render partial: 'admin/prizes/list'
 
@@ -147,8 +149,9 @@
     %h4
       Tasks:
   .span6.text-right
-    %button.btn.btn-success{onclick: 'tasks_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create hop task");'}
-      New Hop Task
+    - if User.producer?(current_user) || User.admin?(current_user) || User.sponsor?(current_user)
+      %button.btn.btn-success{onclick: 'tasks_modal.newRecord({hop_id: ' + @hop.id.to_s + '}, "Create hop task");'}
+        New Hop Task
 #tasksTable
   = render partial: 'admin/hop_tasks/tasks'
 
