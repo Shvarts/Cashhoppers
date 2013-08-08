@@ -1,17 +1,21 @@
-.custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(1..4)}.jpg"}); display: table;"}
+.custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(1..4)}.jpg"}); display: table; position: relative;"}
+  .social-links#social1{style: "position: absolute; right:0; top:0"}
+    = link_to 'Login', new_user_session_path, class: 'btn btn-link'
+    |
+    = link_to 'Sigh Up', new_user_registration_path, class: 'btn btn-link'
+    %a{href: '/auth/facebook', class: 'services'}
+      =image_tag('facebook.png', :style=>'height:50px')
+    %a{href: '/auth/twitter', class: 'services'}
+      =image_tag('twitter.png', :style=>'height:50px')
+    %a{href: '/auth/google', class: 'services'}
+      =image_tag('google.png', :style=>'height:38px')
   .divas1
+    .top-sign#firsttop-sign
+      IT PAYS TO GET AROUND
+      %br
+        %p The photo-scavenger game that pays tou cash
+      %br
     .divas2
-      .social-links
-        %a{href: '/auth/facebook', class: 'services'}
-          =image_tag('facebook.png', :style=>'height:50px')
-        %a{href: '/auth/twitter', class: 'services'}
-          =image_tag('twitter.png', :style=>'height:50px')
-        %a{href: '/auth/google', class: 'services'}
-          =image_tag('google.png', :style=>'height:38px')
-        .sign-up
-          = link_to 'Login', new_user_registration_path, class: 'btn btn-link'
-          = link_to 'Sigh Up', new_user_session_path, class: 'btn btn-link'
-      .row-fluid
       .phone
         .carousel.slide#myCarousel
           .carousel-inner
@@ -21,24 +25,22 @@
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
-
 .custom-pg.gray-page{style: ' display: table'}
-  %div{style: 'width:100%; height:100%; display: table-cell; vertical-align:middle'}
-    %div{style: 'width: 915px; height: 60%;  margin: 0 auto'}
+  .divas1
+    .divas2
       %h2{:id=>"gray-page"}
-
       .row-fluid
         .span2
-
         .span8.video
           .top-sign
             WHAT IS
-            = succeed "HOPERS" do
+            = succeed "HOPPERS" do
               %span.weight CASH
             ALL ABOUT ?
           %br
           %br
-            = video_tag ["video/media.mp4"],   :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true
+          .video-text#thevideo
+            = video_tag ["video/media.mp4"],   :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true
           %br
           %br
             .video-text
@@ -51,12 +53,10 @@
                   =link_to 'FREE CASHHOPPERS APP', '#'
                   today and start HOPPING!
         .span2
-
-
 .page-divider
 .custom-pg.yellow-page{style: ' display: table'}
-  %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
-    %div{style: 'width: 915px; height: 70%;  margin: 0 auto'}
+  .divas1
+    .divas2
       %h2{:id=>"yellow-page"}
       .row-fluid
         .span2
@@ -65,8 +65,8 @@
             HOW TO
             %span.weight PLAY
           %br
-          .video-text
-            = video_tag ["video/media.mp4"],  :width => '100%', :height=> '100%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
+          .video-text#thevideo
+            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
           .video-text
             %ul
               %li
@@ -82,74 +82,74 @@
               %li
                 Wait to see if you've won!
             It's that easy !
-          %br
-          =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
-          =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
+            %br
+              =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
+              =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
 
         .span2
-
+.page-divider
 .custom-pg.what-page
-  %h2{:id=>"what-page"}
-  .row-fluid
-    .span2
-    .span8.text-center.page-3
-      .top-sign
-        AT THE HOP
-      %br
-        %p See what other Hoppers are taking pictures of and pick your favorites!
-      %br
-      .carousel.slide#carousel2{style:'min-width: 400px'}
-        .carousel-inner
-          - for i in @pac
-            .item
-              - for n in i
-                .inline
-                  =image_tag(n,  :width => '20%', :style => "display: inline")
-        %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
-        %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
+  .divas1
+    .divas2
+      %h2{:id=>"what-page"}
+      .row-fluid
+        .span2
+        .span8.text-center.page-3
+          .top-sign
+            AT THE HOP
+          %br
+            %p See what other Hoppers are taking pictures of and pick your favorites!
+          %br
+          .carousel.slide#carousel2{:style=>'min-width: 100px'}
+            .carousel-inner
+              - for i in @pac
+                .item
+                  - for n in i
+                    .inline
+                      =image_tag(n,  :width => '20%', :style => "display: inline")
+            %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
+            %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
 
-    .span2
+        .span2
 .page-divider
 .custom-pg.business-page
-  .row-fluid#business
-    %h2{:id=>"business-page"}
-    .span2
+  .divas1
+    .divas2
+      .row-fluid#business
+        %h2{:id=>"business-page"}
+        .span2
 
-    .span8.text-center.page-3
-      .top-sign
-        = succeed "HOPERS" do
-          %span.weight CASH
-        FOR
-        %span.weight BUSINESS
-      %br
-      .row-fluid
-        .span6.text-left
-          .business
-            The CASHHOPPERS game is a great tool to add to your marketing
-            and advertising mix. SPONSOR a HOP item, and drive players to your
-            booth, building or web site. ADVERTISE within the app and reach
-            players with promotional opportunities, product discounts or brand
-            messages. You can also create private HOPs - for your customers
-            only - to highlight new products, grand openings, or any other
-            big news that will have your customer base HOPPIN!
-            %br
-            %br
-              Find out how to use CASHHOPPERS to your bussiness's advantage.
-            %br
-            %br
+        .span8.text-center.page-3
+          .top-sign
+            = succeed "HOPERS" do
+              %span.weight CASH
+            FOR
+            %span.weight BUSINESS
+          %br
+          .row-fluid
+            .span6.text-left
+              .business
+                The CASHHOPPERS game is a great tool to add to your marketing
+                and advertising mix. SPONSOR a HOP item, and drive players to your
+                booth, building or web site. ADVERTISE within the app and reach
+                players with promotional opportunities, product discounts or brand
+                messages. You can also create private HOPs - for your customers
+                only - to highlight new products, grand openings, or any other
+                big news that will have your customer base HOPPIN!
+                %br
+                %br
+                  Find out how to use CASHHOPPERS to your bussiness's advantage.
+                %br
+                %br
 
-            .buttonone
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning span6'
-            %br
-              .buttontwo
-                = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success span6'
-        .span6.text-left
-          .handimage
-            = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%"
+                = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
+                %br
+                %br
 
-
-    .span2
-
+                = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
+            .span6.text-left
+              = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%", :id=>"business"
+        .span2
 .page-divider
 .custom-pg.events-page
   %h2{:id=>"events-page"}
@@ -166,7 +166,7 @@
       %br
       .row-fluid
         .span6.text-left
-          = image_tag 'home_event.png', :class => 'event-img',  :width=>"70%" ,:height=>"20%"
+          = image_tag 'home_event.png', :class => 'event-img',  :width=>"50%" ,:height=>"20%"
         .span6.text-left
           .text
             Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
@@ -175,17 +175,17 @@
             %br
               Find out how you can use CASHHOPPERS at your next trade show or event
             %br
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning '
+              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
             %br
-              = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success '
+              = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success'
 
     .span2
 
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
-  %div{style: 'width: 100%; height: 100%;  display: table-cell; vertical-align: middle'}
-    %div{style: 'width: 915px; height: 70%;  margin: 0 auto'}
-      .row-fluid.video-text
+  .divas1
+    .divas2
+      .row-fluid.video-text#last-page
         .span1
 
         .span5
@@ -210,13 +210,14 @@
               AND SEE WHAT OTHERS
               ARE DOING, JOIN US.
             .center.video
-              =image_tag 'facebook.png', :width => '50px', :height => '50px'
-              =image_tag 'twitter.png', :width => '50px', :height => '50px'
-              =image_tag 'google.png', :width => '40px', :height => '40px'
-
-
+              .social-links
+                %a{href: '/auth/facebook', class: 'services'}
+                  =image_tag('facebook.png', :style=>'height:50px')
+                %a{href: '/auth/twitter', class: 'services'}
+                  =image_tag('twitter.png', :style=>'height:50px')
+                %a{href: '/auth/google', class: 'services'}
+                  =image_tag('google.png', :style=>'height:38px')
         .span2
-
 .page-divider
 %br
 %br
