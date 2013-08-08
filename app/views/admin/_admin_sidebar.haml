@@ -9,4 +9,6 @@
     = link_to 'Hops', admin_regular_hops_path
   %li
     = link_to 'Ads', admin_ads_path
+  %li
+    = link_to 'Manege Users', admin_users_index_path if can? :manage, :all
 

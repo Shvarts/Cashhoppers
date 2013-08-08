@@ -1,13 +1,13 @@
 .row-fluid
   .text-right
     .align-error
-
-    =form_tag({:controller => 'hops', :action => 'import_from_excel'}, :multipart=>true, :method => 'post') do
-      Select an Excel File :
-      = file_field_tag 'excel'
-      = submit_tag 'load', class: 'btn btn-primary btn-success', :id => 'load'
-
-.text-right
-  = link_to 'New regular hop', admin_new_regular_hop_path, class: 'btn btn-info'
+    - if User.producer?(current_user) || User.admin?(current_user)
+      =form_tag({:controller => 'hops', :action => 'import_from_excel'}, :multipart=>true, :method => 'post') do
+        Select an Excel File :
+        = file_field_tag 'excel'
+        = submit_tag 'load', class: 'btn btn-primary btn-success', :id => 'load'
+- if User.producer?(current_user) || User.admin?(current_user)
+  .text-right
+    = link_to 'New regular hop', admin_new_regular_hop_path, class: 'btn btn-info'
 %br
 = render partial: 'hops_list'

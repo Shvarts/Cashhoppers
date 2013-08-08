@@ -54,6 +54,22 @@ class User < ActiveRecord::Base
     ActiveRecord::Base.connection.select_all("SELECT DISTINCT users.zip FROM users;");
   end
 
+  def self.admin?(user)
+    user.role? :admin
+  end
+
+ def self.producer?(user)
+   user.role? :producer
+  end
+
+  def self.sponsor?(user)
+    user.role? :sponsor
+  end
+
+  def self.advertiser?(user)
+    user.role? :advertiser
+  end
+
   private
 
   def create_role

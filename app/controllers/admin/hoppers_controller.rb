@@ -1,5 +1,6 @@
 class Admin::HoppersController < Admin::AdminController
   include ::PdfWritter
+  load_and_authorize_resource
 
   def find_hopper
     @tab = 'find_hoppers'

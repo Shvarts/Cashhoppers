@@ -171,13 +171,6 @@ ActiveRecord::Schema.define(:version => 20130805151315) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
@@ -212,10 +205,10 @@ ActiveRecord::Schema.define(:version => 20130805151315) do
     t.string   "authentication_token"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "user_name"
     t.string   "contact"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

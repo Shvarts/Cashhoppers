@@ -1,5 +1,5 @@
 class Admin::HopsController < Admin::AdminController
-
+ load_and_authorize_resource
   before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
 
   def regular

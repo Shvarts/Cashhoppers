@@ -1,6 +1,12 @@
 require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
+
+
+
+
+
+
   root :to => 'pages#home'
   get 'pages/hoppers_activity'
 
@@ -8,6 +14,14 @@ CashHoppers::Application.routes.draw do
   namespace :admin do
 
     get 'pages/index', :as => 'index'
+
+    get "users/index"
+    post "users/change_user_role"
+
+    get "manage_users/manage_users"
+    get "manage_users/create_producer"
+    get "manage_users/create_sponsor"
+    get "manage_users/create_advertiser"
     resources :applications
 
     #hops

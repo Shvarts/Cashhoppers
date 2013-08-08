@@ -1,5 +1,5 @@
 class Admin::AdsController < Admin::AdminController
-
+  load_and_authorize_resource
   def index
     @hop = Hop.where(id: params[:hop_id]).first
     if @hop

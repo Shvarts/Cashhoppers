@@ -2,7 +2,7 @@
   %li
     = link_to 'Home', root_path
   %li
-    = link_to 'Admin Page', admin_index_path if can? :manage, :all
+    = link_to 'Admin Page', admin_index_path if current_user && ! current_user.role?('user')
   %li
     = link_to 'My Services', services_path
   %li
@@ -11,6 +11,7 @@
     = link_to 'Messages', messages_friends_list_path
   %li
     = link_to 'Hoppers activity (temp)', pages_hoppers_activity_path
+
 
 - if current_user
   %ul.nav.nav-tabs.nav-stacked.non-print
