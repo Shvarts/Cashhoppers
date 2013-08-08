@@ -104,18 +104,25 @@ class Admin::MessagesController < Admin::AdminController
   def hops_list
     params[:page] ||= 1
     params[:per_page] ||= 7
-    @hops = Hop.paginate page: params[:page], per_page: params[:per_page]
+
+    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    @hops = Hop.paginate page: params[:page], per_page: params[:per_page],  conditions:  conditions
     @selected_hops = params[:selected_hops].present? ? params[:selected_hops] : []
     params[:selected_hops] = nil
     render partial: 'hops_list'
   end
 
+
+
   def users_list
     params[:page] ||= 1
     params[:per_page] ||= 7
-    @users = User.paginate page: params[:page], per_page: params[:per_page]
+    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+
+    @users = User.paginate( page: params[:page], per_page: params[:per_page], conditions: conditions )
     params[:selected_users] = [] unless params[:selected_users].present?
     render partial: 'users_list'
+    #render :text =>  @users.count
   end
 
   def destroy_message

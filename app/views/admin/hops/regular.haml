@@ -1,6 +1,7 @@
 .row-fluid
   .text-right
-    .align-error
+    .align-error.text-center{:style=>"color:'red'"}
+      = @error if @error
     - if User.producer?(current_user) || User.admin?(current_user)
       =form_tag({:controller => 'hops', :action => 'import_from_excel'}, :multipart=>true, :method => 'post') do
         Select an Excel File :

@@ -1,5 +1,5 @@
 $(function(){
-
+    $('.align-error').css('color', 'red')
     $('#load').click(function(e){
         var myRe = /\.xls$/;
 

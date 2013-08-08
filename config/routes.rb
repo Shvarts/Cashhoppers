@@ -18,10 +18,7 @@ CashHoppers::Application.routes.draw do
     get "users/index"
     post "users/change_user_role"
 
-    get "manage_users/manage_users"
-    get "manage_users/create_producer"
-    get "manage_users/create_sponsor"
-    get "manage_users/create_advertiser"
+
     resources :applications
 
     #hops
@@ -81,6 +78,7 @@ CashHoppers::Application.routes.draw do
     get 'messages/email_history'
     get 'messages/message_history'
     delete 'messages/destroy_message'
+
 
   end
 
