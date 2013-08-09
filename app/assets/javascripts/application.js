@@ -22,3 +22,23 @@
 //= require bootstrap-datetimepicker
 //= require wice_grid
 //= require bootstrap-fileupload.min
+
+$(document).ready(function(){
+    buttonselect();
+})
+
+
+function buttonselect(){
+
+    var useragent = navigator.userAgent.toLowerCase();
+
+
+    if( useragent.match("ios")){
+        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-app-store.png' width = '65%'</a>")
+
+    }
+    else if(useragent.match("android") ) {
+        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-google-play.jpg' width = '65%'</a>")
+
+    }
+}
