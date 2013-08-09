@@ -15,10 +15,14 @@ class Ability
       can :read, :all
     elsif user.role? :sponsor
       can :manage, HopTask
+      can :regular, Hop
+      can :daily, Hop
       can :manage, Ad
       can :read, :all
     elsif user.role? :advertiser
       can :manage, Ad
+      can :regular, Hop
+      can :daily, Hop
       can :read, :all
     else
      can :read, :all

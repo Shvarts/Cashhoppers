@@ -27,7 +27,9 @@ class Admin::HopTasksController < Admin::AdminController
     if @hop_task.save
       render text: 'ok'
     else
+      @hop_task.logo = nil
       render partial: 'form'
+
     end
   end
 

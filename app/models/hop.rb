@@ -235,7 +235,7 @@ class Hop < ActiveRecord::Base
   private
 
   def only_one_daily_hop_per_day
-    if Hop.get_daily_by_date self.time_start
+    if daily && Hop.get_daily_by_date(self.time_start)
       errors.add(:start_date, "Can be only one daily hop per day.")
     end
   end
