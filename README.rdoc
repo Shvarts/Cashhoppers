@@ -496,16 +496,16 @@ if sender_id is nil that means sender is administrator
                      {"last_message_text":"newest message","last_message_id":81,"last_message_created_at":"2013-10-01T13:05:07Z",
                      "last_message_sender_id":19,"last_message_receiver_id":20,"friend_id":20,"friend_first_name":"friend",
                      "friend_last_name":"friend","friend_user_name":"friend","friend_avatar_file_name":"/images/avatars/users/20/original/USER_AVATAR.png",
-                     "time_ago":"about 1 month"},
+                     "time_ago":"about 1 month", "friendship_status"=>"requested"},
 
                      {"last_message_text":"last message from user 5(1)","last_message_id":8,"last_message_created_at":"2013-09-03T09:58:26Z",
                      "last_message_sender_id":15,"last_message_receiver_id":19,"friend_id":null,"friend_first_name":null,
                      "friend_last_name":null,"friend_user_name":null,"friend_avatar_file_name":"/assets/no_avatar.png",
-                     "time_ago":"about 1 month"},
+                     "time_ago":"about 1 month", "friendship_status"=>"requested"},
 
                      {"last_message_text":"last message from admin (2)","last_message_id":2,"last_message_created_at":"2013-09-02T12:21:03Z",
                      "last_message_sender_id":null,"last_message_receiver_id":19,"friend_id":null,"friend_first_name":null,"friend_last_name":null,
-                     "friend_user_name":null,"friend_avatar_file_name":"/assets/no_avatar.png", "time_ago":"about 1 month"}
+                     "friend_user_name":null,"friend_avatar_file_name":"/assets/no_avatar.png", "time_ago":"about 1 month", "friendship_status"=>"requested"}
                    ]}
 ====friend messages history(method: GET)
     url: http://localhost:3000/api/messages/history.json?api_key=123&authentication_token=B2YAcshUuwBaNwOXaqj5hH8NkbjHGB&friend_id=2&page=1&per_page=2
