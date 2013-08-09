@@ -21,7 +21,12 @@ Headers:
 ===Session
 ====sign_in(method POST)
     url: http://localhost:3000/api/sessions
-    data: {"api_key":"123","email":"admin@cashhoppers.com","password":"qwerty11"}
+    data: {"api_key":"123",
+           "email":"admin@cashhoppers.com",
+           "password":"qwerty11",
+           device: 'IOS',
+           device_token: 'sdsd'
+          }
     response:
         success: {"success"=>true, "info"=>"Logged in", "data"=>{"authentication_token"=>"nYXd4049if7qCcgAdJgt2DbkIFcZTM", "email"=>"admin@cashhoppers.com"}, "status"=>200}
         error: {"errors"=>["Bad api key"], "success"=>false, "status"=>401}

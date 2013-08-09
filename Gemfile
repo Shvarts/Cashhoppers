@@ -30,6 +30,8 @@ gem 'to_xls'
 gem 'roo'
 gem "spreadsheet"
 
+gem 'grocer'
+
 group :development, :test do
   gem 'therubyracer', :platform => :ruby
   gem 'rspec-rails', '~> 2.0'
