@@ -101,11 +101,11 @@
           %br
           .carousel.slide#carousel2{:style=>'min-width: 100px'}
             .carousel-inner
-              - for i in @pac
+              - @tasks_pack.each do |pack|
                 .item
-                  - for n in i
+                  - pack.each do |task|
                     .inline
-                      =image_tag(n,  :width => '20%', :style => "display: inline")
+                      = image_tag( task.photo.url ,  :width => '20%', :style => "display: inline")
             %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
             %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
         .span2

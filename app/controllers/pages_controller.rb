@@ -3,36 +3,19 @@ class PagesController < ApplicationController
 
   def home
 
-    #@tasks =  UserHopTask.all.order("created_at DESC")
-    collection = ['btn_login_twitter.png','facebook.png','google.png','logo.png' ]
-    @pac =[]
-    n= 0
-    for i in collection
-      n = n+1
-      if n+1 >   collection.length
-        @pac << [i , collection[0],  collection[1], collection[2]]
-
-      elsif n+2 > collection.length
-        @pac << [i , collection[n], collection[0],collection[1] ]
-
-      elsif n+3 > collection.length
-        @pac << [i , collection[n], collection[n+1],collection[0] ]
-
-      else
-        @pac << [i ,collection[n], collection[n +1],collection[n+2]]
-      end
-    end
-
-
-    @tasks
-
     if  flash[:notice]== "You updated your account successfully."
       redirect_to user_path(current_user.id)
       flash[:notice] = flash[:notice]
     end
-    @user_hop_tasks = UserHopTask.limit(10).order("created_at DESC")
-    puts '------------------------------------------------------'
-    puts @user_hop_tasks.inspect
+
+    tasks_count = 5
+    @user_hop_tasks = UserHopTask.limit(tasks_count).order("created_at DESC")
+    doublicate_tasks = @user_hop_tasks + @user_hop_tasks
+    @tasks_pack = []
+    tasks_count.times do |i|
+      @tasks_pack << doublicate_tasks[i..(i+4)]
+    end
+
     render :layout=> "home_layout"
   end
 
