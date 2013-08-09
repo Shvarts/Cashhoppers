@@ -12,16 +12,14 @@
   .divas1
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
-      %br
-        %p The photo-scavenger game that pays tou cash
-      %br
+      %p The photo-scavenger game that pays tou cash
     .divas2
       .phone
         .carousel.slide#myCarousel
           .carousel-inner
             - @user_hop_tasks.each do |task|
               .item
-                =image_tag task.photo.url, :style => 'height:100%'
+                =image_tag task.photo.url, :style => 'height:100%; width:100%'
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
@@ -66,7 +64,7 @@
             %span.weight PLAY
           %br
           .video-text#thevideo
-            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
+            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true
           .video-text
             %ul
               %li
@@ -100,12 +98,15 @@
             %p See what other Hoppers are taking pictures of and pick your favorites!
           %br
           .carousel.slide#carousel2{:style=>'min-width: 100px'}
+
             .carousel-inner
-              - @tasks_pack.each do |pack|
-                .item
-                  - pack.each do |task|
-                    .inline
-                      = image_tag( task.photo.url ,  :width => '20%', :style => "display: inline")
+              - unless @tasks_pack.blank?
+                - @tasks_pack.each do |pack|
+                  .item
+                    - unless pack.blank?
+                      - pack.each do |task|
+                        .inline
+                          = image_tag( task.photo.url ,  :width => '20%', :style => "display: inline")
             %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
             %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
         .span2
