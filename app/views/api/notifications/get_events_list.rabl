@@ -12,6 +12,10 @@ child :comment do
         node :avatar do |user|
             user.avatar.url if user.avatar_file_size
         end
+        node :friendship_status do |user|
+            friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user)
+            friendship.status if friendship
+        end
     end
 end
 
@@ -24,6 +28,10 @@ child :like do
         node :avatar do |user|
             user.avatar.url if user.avatar_file_size
         end
+        node :friendship_status do |user|
+            friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user)
+            friendship.status if friendship
+        end
     end
 end
 
@@ -34,6 +42,10 @@ child :prize do
         node :avatar do |user|
             user.avatar.url if user.avatar_file_size
         end
+        node :friendship_status do |user|
+            friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user)
+            friendship.status if friendship
+        end
     end
 end
 
@@ -42,8 +54,9 @@ child :friend do
     node :avatar do |user|
         user.avatar.url if user.avatar_file_size
     end
-    node :are_we_friends do |user|
-        Friendship.friends?(@current_user, user)
+    node :friendship_status do |user|
+        friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user)
+        friendship.status if friendship
     end
 end
 
