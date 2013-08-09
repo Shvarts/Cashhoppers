@@ -14,4 +14,9 @@ node :friends_count do |user|
     user.friends.count
 end
 
+node :friendship_status do |user|
+    friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user.id)
+    friendship.status if friendship
+end
+
 
