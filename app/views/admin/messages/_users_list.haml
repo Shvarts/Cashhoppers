@@ -1,10 +1,10 @@
 #users_list
   .row-fluid
     .span7
-      = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+      = will_paginate @users, renderer: BootstrapPagination::Rails
     .span5.text-right.row
-      = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
-      = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_button'
+      = text_field_tag :text, '',  class: 'span7', id: 'search_field' #:input, ,', id: 'search_field'
+      = link_to 'Search',  admin_messages_email_tool_path, class: 'btn span4', id: 'search_user'
   %table.table.table-condensed
     %tr
       %th

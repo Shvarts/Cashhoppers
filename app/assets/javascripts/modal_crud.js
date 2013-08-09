@@ -5,7 +5,7 @@ var ModalCRUD = (function () {
     this.index_path = '';
     this.list_id = '';
 
-    this.modal_crud = function (init_data) {  alert(init_data.index_path);
+    this.modal_crud = function (init_data) {
         this.new_path = init_data.new_path;
         this.index_path = init_data.index_path;
         this.list_id = init_data.list_id;

@@ -6,7 +6,7 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.role? :admin
-     can :manage, :all
+      can :manage, :all
     elsif user.role? :producer
       can :manage, Hop
       can :manage, Prize
@@ -15,10 +15,14 @@ class Ability
       can :read, :all
     elsif user.role? :sponsor
       can :manage, HopTask
+      can :regular, Hop
+      can :daily, Hop
       can :manage, Ad
       can :read, :all
     elsif user.role? :advertiser
       can :manage, Ad
+      can :regular, Hop
+      can :daily, Hop
       can :read, :all
     else
      can :read, :all

@@ -1,9 +1,9 @@
 #hops_list
   .row-fluid
     .span10
-      = text_field_tag :input, params[:query], class: 'span12', id: 'hop_query'
+      = text_field_tag :input, params[:query], class: 'span12', id: 'search_field'
     .span2.text-right.row
-      %button.btn.span12{onclick: 'search_hop();'}
+      %button.btn.span12{onclick: 'search_hop();', :id =>'search_hop'}
         Search
   = will_paginate @hops, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
   %table.table.table-condensed
@@ -15,9 +15,11 @@
       %th
         Daily
       %th
+
     - @hops.each do |hop|
       %tr
         %td
+
           = hop.id
         %td
           = hop.name
@@ -30,4 +32,7 @@
           - else
             %button.btn.btn-mini.btn-success{onclick: "select_hop( this, '#{hop.id}', '#{hop.name}')"}
               Add
+  .text-center
+    %h3
+      = 'Not found' if @hops.blank?
   = will_paginate @hops, renderer: BootstrapPagination::Rails

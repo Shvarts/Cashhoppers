@@ -8,6 +8,7 @@ class Admin::HopsController < Admin::AdminController
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
                                  :order => 'created_at',
                                  :order_direction => 'desc')
+    @error = params[:error] if params[:error]
   end
 
   def daily
@@ -234,7 +235,7 @@ class Admin::HopsController < Admin::AdminController
 
       rescue Exception =>e
 
-        redirect_to 'regular'
+        redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
 
         if @hop.save

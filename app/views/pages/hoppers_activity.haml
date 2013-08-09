@@ -20,7 +20,7 @@
       %td
         = link_to task.user.first_name, user_path(task.user) if task.user
       %td
-        = task.hop_task.hop.name if task.hop_task
+        = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
       %td
         = task.hop_task.text if task.hop_task
       %td
@@ -35,7 +35,7 @@
       %td{style: 'width: 100%', colspan: 7}
         Hop Score:
         Hop Score
-        = task.hop_task.hop.score(current_user) if current_user
+        = task.hop_task.hop.score(current_user) if current_user && task.hop_task && task.hop_task.hop
         - task.comments.each do |comment|
           .well
             .row_fluid

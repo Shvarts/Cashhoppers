@@ -74,7 +74,7 @@ html, body, head, header{
         }
       }
     }
-}
+  }
     .carousel.slide{
       margin-left:13.1%;
       padding-top: 25px;
@@ -212,10 +212,10 @@ a.carousel-control.right{
               font-size: 10px;
               font-weight: bolder;
             }
-              li:last-child{
-              border-right: none;
-              }
-            }
+             li:last-child{
+                border-right: none;
+             }
+          }
         }
         .header-right{
           display: table;
@@ -309,13 +309,20 @@ a.carousel-control.right{
         display: table-cell;
         vertical-align: middle;
         .divas2{
+          width: 415px;
+          height: 200px;
+          margin: 0 auto;
+          .phone{
             width: 415px;
             height: 200px;
+
             margin: 0 auto;
             .phone{
               width: 415px;
               height: 200px;
             }
+
+          }
         }
       }
     }
@@ -541,6 +548,7 @@ a.carousel-control.right{
              li:last-child{
              border-right: none;
              }
+
           }
         }
         .header-right{

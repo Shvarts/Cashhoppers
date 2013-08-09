@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    search('/admin/messages/hops_list', '#search_hop')
+    search('/admin/messages/users_list', '#search_user')
 
     $('.chzn-select').chosen();
 
@@ -35,15 +37,40 @@ function select_user(btn, value, title){
     $('#users_ids_').trigger("liszt:updated");
 }
 
-function search_hop(){
-    var exception_field_id = hops_modal.exception_field_id;
-    var params = {};
-    params.query = $('#query').val();
-    if(exception_field_id == 'hops_ids_'){
-        params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
-    }
-    if(exception_field_id == 'users_ids_'){
-        params = {selected_users: $('.chzn-select#' + exception_field_id).val() };
-    }
-    hops_modal.loadPartial(hops_modal.index_path, params, 'Select Hops:');
+//function search_hop(){
+//    alert('click') ;
+//
+////    var exception_field_id = hops_modal.exception_field_id;
+////    var params = {};
+////    params.query = $('#query').val();
+////    if(exception_field_id == 'hops_ids_'){
+////        params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
+////    }
+////    if(exception_field_id == 'users_ids_'){
+////        params = {selected_users: $('.chzn-select#' + exception_field_id).val() };
+////    }
+////    hops_modal.loadPartial(hops_modal.index_path, params, 'Select Hops:');
+//}
+
+function search(url, button){
+
+    $(document).on('click', button , function(){
+        search_by(url);
+        return false;
+    })
+}
+
+function search_by(url){
+//    $.ajax({
+//        url: url,
+//        data: {query1: $('#search_field').val() },
+//        type: 'get',
+//        error: function(err){
+//            alert("error");
+//        },
+//        success: function(data){
+//            $('.modal-body').html(data);
+//        }
+//    });
+    hops_modal.loadPartial(url, {query1: $('#search_field').val() }, 'Select:');
 }

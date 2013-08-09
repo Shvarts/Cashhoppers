@@ -23,6 +23,8 @@ class Api::UserHopTasksController < Api::ApplicationController
       else
         bad_request(@task.errors.to_json, 406)
       end
+    else
+      bad_request(['Can\'t find hop by id.'], 406)
     end
   end
 

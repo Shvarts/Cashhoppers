@@ -5,20 +5,17 @@
         .header-left
           %ul
             %li
-              %a.navigation{:href=>"#gray-page"} ABOUT
+              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
             %li
-              %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
+              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
             %li
-              %a.navigation{:href=>"#what-page"} PHOTO GALLERY
+              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
             %li
-              %a.navigation{:href=>"#business-page"} BUSINESSES
+              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
             %li
-              %a.navigation{:href=>"#events-page"} SHOWS & EVENTS
+              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
       .span4
         .header-right
-          .button-containere
+          .button-container
             =link_to 'DOWNLOAD THE APP', "", :class=>"btn btn-large btn-warning"
             -#%input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
-
-
-      -#= image_tag 'logo.png'
