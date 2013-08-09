@@ -61,15 +61,16 @@ function search(url, button){
 }
 
 function search_by(url){
-    $.ajax({
-        url: url,
-        data: {query: $('#search_field').val() },
-        type: 'get',
-        error: function(err){
-            alert("error");
-        },
-        success: function(data){
-            $('.modal-body').html(data);
-        }
-    });
+//    $.ajax({
+//        url: url,
+//        data: {query1: $('#search_field').val() },
+//        type: 'get',
+//        error: function(err){
+//            alert("error");
+//        },
+//        success: function(data){
+//            $('.modal-body').html(data);
+//        }
+//    });
+    hops_modal.loadPartial(url, {query1: $('#search_field').val() }, 'Select:');
 }

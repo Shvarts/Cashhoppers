@@ -105,7 +105,7 @@ class Admin::MessagesController < Admin::AdminController
     params[:page] ||= 1
     params[:per_page] ||= 7
 
-    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:query1]}%", "%#{params[:query1]}%"]
     @hops = Hop.paginate page: params[:page], per_page: params[:per_page],  conditions:  conditions
     @selected_hops = params[:selected_hops].present? ? params[:selected_hops] : []
     params[:selected_hops] = nil
@@ -117,7 +117,7 @@ class Admin::MessagesController < Admin::AdminController
   def users_list
     params[:page] ||= 1
     params[:per_page] ||= 7
-    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:query1]}%", "%#{params[:query1]}%"]
 
     @users = User.paginate( page: params[:page], per_page: params[:per_page], conditions: conditions )
     params[:selected_users] = [] unless params[:selected_users].present?
