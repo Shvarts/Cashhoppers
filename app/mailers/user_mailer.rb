@@ -9,9 +9,7 @@ class UserMailer < ActionMailer::Base
 
   def email_alert(recipients, message, attachment)
     @message = message
-    if attachment
-      attachments[attachment.original_filename] = attachment.read
-    end
+    attachments['image.jpg'] = attachment.read  if  attachment
     mail(:to => recipients, :from => 'sender@gmail.com', :subject => @message.subject)
   end
 

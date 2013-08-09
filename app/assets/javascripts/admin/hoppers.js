@@ -36,7 +36,7 @@ function select(url){
 function search_by(url){
     $.ajax({
         url: url,
-        data: {params: $('#search_field').val() },
+        data: {qwery: $('#search_field').val() },
         type: 'POST',
         error: function(err){
             alert("error");
