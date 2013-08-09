@@ -85,7 +85,6 @@
             %br
               =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
               =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
-
         .span2
 .page-divider
 .custom-pg.what-page
@@ -109,7 +108,6 @@
                       =image_tag(n,  :width => '20%', :style => "display: inline")
             %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
             %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
-
         .span2
 .page-divider
 .custom-pg.business-page
@@ -118,10 +116,9 @@
       .row-fluid#business
         %h2{:id=>"business-page"}
         .span2
-
         .span8.text-center.page-3
           .top-sign
-            = succeed "HOPERS" do
+            = succeed "HOPPERS" do
               %span.weight CASH
             FOR
             %span.weight BUSINESS
@@ -141,11 +138,9 @@
                   Find out how to use CASHHOPPERS to your bussiness's advantage.
                 %br
                 %br
-
                 = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
                 %br
                 %br
-
                 = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
             .span6.text-left
               = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%", :id=>"business"
@@ -157,7 +152,7 @@
     .span2
     .span8.text-center.page-3
       .top-sign
-        = succeed "HOPERS" do
+        = succeed "HOPPERS" do
           %span.weight CASH
         FOR TRADE
         %span.weight SHOWS
@@ -178,16 +173,13 @@
               = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
             %br
               = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success'
-
     .span2
-
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
   .divas1
     .divas2
       .row-fluid.video-text#last-page
         .span1
-
         .span5
           .top-sign
             WANT TO
@@ -196,7 +188,6 @@
           %br
           %br
             Contact CashHoppers for more information:
-
             %span.weight
               = link_to 'CashHoppersMaster.com', ''
           %br
@@ -259,7 +250,7 @@
     %li
       = link_to 'Home', root_path
     %li
-      = link_to 'Admin Page', admin_index_path if can? :manage, :all
+      = link_to 'Admin Page', admin_index_path if current_user && !current_user.role?('user')
     %li
       = link_to 'My Services', services_path
     %li
@@ -271,6 +262,3 @@
     - if current_user
       %li
         = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link'
-
-
-
