@@ -38,7 +38,7 @@
     .span3
       Template(temp):
       %br
-      = f.text_field :template_id, class: 'span12'
+      = f.select :template_id, [['Template 1', 1],['Template 2', 2],['Template 3', 3]], {}, {class: 'span12' }
       %br
       Send from:
       %br
