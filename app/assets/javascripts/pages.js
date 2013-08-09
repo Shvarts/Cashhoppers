@@ -14,7 +14,16 @@ $(document).ready(function(){
         interval: 4000
     })
 });
-
+//$('.button-container').device_detector({
+//    var useragent = navigator.userAgent.toLowerCase();
+//
+//    if( useragent.match("iphone") )
+//       alert('iphone');
+//    else if( useragent.match("ipod") )
+//       alert('ipod');
+//    else if( useragent.match("android") )
+//       alert('android');
+//});
 
 
 

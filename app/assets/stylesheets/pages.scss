@@ -48,6 +48,7 @@ html, body, head, header{
   }
 #firsttop-sign{
     color: white;
+    height:10%;
 }
 .first-page{
   margin-top: 69px;
@@ -58,16 +59,16 @@ html, body, head, header{
       display: table-cell;
       vertical-align: middle;
       .divas2{
-        width: 915px;
+        width: 880px;
         height: 350px;
         margin: 0 auto;
         .phone{
             vertical-align: middle;
             display: table-cell;
             position: relative;
-            width: 915px;
+            width: 880px;
             height: 350px;
-            background-image: url('phone.jpg');
+            background-image: url('phone.png');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -76,9 +77,9 @@ html, body, head, header{
     }
   }
     .carousel.slide{
-      margin-left:14.1%;
+      margin-left:12.1%;
       padding-top: 25px;
-      width: 658px;
+      width: 650px;
       position: center;
       height: 370px;
       .carousel-inner{
@@ -140,7 +141,7 @@ a.carousel-control.right{
     background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
     background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
     padding: 1%;
-}
+  }
 }
 @media(min-width:100px)and(max-width: 399px){
  html,body,head,header{

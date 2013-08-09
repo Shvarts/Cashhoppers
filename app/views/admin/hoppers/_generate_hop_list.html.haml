@@ -38,8 +38,8 @@
   %br
   .row-fluid
     .span2
-      = button_to "Email to list", admin_messages_email_tool_path({"id"=>id}),:class=>"btn btn-success"
-      = button_to "Messages to list", admin_messages_message_tool_path({"id"=>id}) , :class=>"btn btn-success "
+      = link_to "Email to list", admin_messages_email_tool_path({"id"=>id}),:class=>"btn btn-success"
+      = link_to "Messages to list", admin_messages_message_tool_path({"id"=>id}) , :class=>"btn btn-success "
     .span10.text-right
       = link_to("Export file to Excel", admin_hoppers_export_to_excel_path(:id => id, :format => 'xls'),  :class=>" btn btn-success" )
       %br
