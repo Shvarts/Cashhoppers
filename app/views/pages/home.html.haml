@@ -12,16 +12,14 @@
   .divas1
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
-      %br
-        %p The photo-scavenger game that pays tou cash
-      %br
+      %p The photo-scavenger game that pays tou cash
     .divas2
       .phone
         .carousel.slide#myCarousel
           .carousel-inner
             - @user_hop_tasks.each do |task|
               .item
-                =image_tag task.photo.url, :style => 'height:100%'
+                =image_tag task.photo.url, :style => 'height:100%; width:100%'
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
@@ -66,7 +64,7 @@
             %span.weight PLAY
           %br
           .video-text#thevideo
-            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true, :style=>'vertical-align: middle'
+            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true
           .video-text
             %ul
               %li
@@ -109,7 +107,6 @@
                       =image_tag(n,  :width => '20%', :style => "display: inline")
             %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
             %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
-
         .span2
 .page-divider
 .custom-pg.business-page
@@ -118,7 +115,6 @@
       .row-fluid#business
         %h2{:id=>"business-page"}
         .span2
-
         .span8.text-center.page-3
           .top-sign
             = succeed "HOPERS" do
@@ -141,11 +137,9 @@
                   Find out how to use CASHHOPPERS to your bussiness's advantage.
                 %br
                 %br
-
                 = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
                 %br
                 %br
-
                 = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
             .span6.text-left
               = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%", :id=>"business"
@@ -178,9 +172,7 @@
               = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
             %br
               = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success'
-
     .span2
-
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
   .divas1

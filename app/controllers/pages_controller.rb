@@ -3,8 +3,7 @@ class PagesController < ApplicationController
 
   def home
 
-    #@tasks =  UserHopTask.all.order("created_at DESC")
-    collection = ['btn_login_twitter.png','facebook.png','google.png','logo.png' ]
+    collection = UserHopTask.all.map{|item| item.photo.url}#['btn_login_twitter.png','facebook.png','google.png','logo.png' ]
     @pac =[]
     n= 0
     for i in collection
