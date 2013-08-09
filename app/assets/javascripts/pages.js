@@ -15,6 +15,7 @@ buttonselect();
         interval: 4000
     })
 });
+
 //function buttonselect(){
 // var uagent = navigator.userAgent.toLowerCase();
 //    alert(uagent);
@@ -32,6 +33,16 @@ buttonselect();
 //   }
 //};
 
+//$('.button-container').device_detector({
+//    var useragent = navigator.userAgent.toLowerCase();
+//
+//    if( useragent.match("iphone") )
+//       alert('iphone');
+//    else if( useragent.match("ipod") )
+//       alert('ipod');
+//    else if( useragent.match("android") )
+//       alert('android');
+//});
 
 
 
