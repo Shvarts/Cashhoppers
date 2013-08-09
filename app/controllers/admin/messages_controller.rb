@@ -1,12 +1,12 @@
 class Admin::MessagesController < Admin::AdminController
-  load_and_authorize_resource
+ # load_and_authorize_resource
   before_filter :authenticate_user!
 
   def email_tool
     @tab = 'email_tool'
     @email = EmailAlert.new
     (params[:id])? @users =[params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] :  @users =[[],[]]
-#    render :text => @users
+
   end
 
   def message_tool

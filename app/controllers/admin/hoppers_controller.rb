@@ -1,6 +1,6 @@
 class Admin::HoppersController < Admin::AdminController
   include ::PdfWritter
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
   def find_hopper
     @tab = 'find_hoppers'
@@ -24,7 +24,7 @@ class Admin::HoppersController < Admin::AdminController
   end
 
   def search_by_name
-    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
+    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:qwery]}%", "%#{params[:qwery]}%"]
     @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
     render :partial=> 'users_list'
   end
@@ -70,14 +70,14 @@ class Admin::HoppersController < Admin::AdminController
 
 
   def search_by_zip
-    conditions = ["zip LIKE ? OR zip LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
+    conditions = ["zip LIKE ? OR zip LIKE ?", "%#{params[:qwery]}%", "%#{params[:qwery]}%"]
     @zips = User.group(:zip).select(:zip)
     @zips = @zips.paginate(:page => 1, :per_page => 9,  conditions:  conditions )
     render :partial=> 'users_zip_list'
   end
 
   def search_by_hop
-    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:params]}%", "%#{params[:params]}%"]
+    conditions = ["name LIKE ? OR name LIKE ?", "%#{params[:qwery]}%", "%#{params[:qwery]}%"]
     @hops = Hop.paginate(page: params[:page], per_page:9, conditions:  conditions)
     render :partial=> 'users_hop_list'
   end
