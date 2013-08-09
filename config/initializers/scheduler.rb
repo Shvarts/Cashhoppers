@@ -7,7 +7,7 @@ scheduler.every("15m") do
 end
 
 scheduler.every("5m") do
-  CashHoppers::Application::MESSAGES.delete_if{|message| massage.created_at < (Time.now - 5.minutes) }
+  CashHoppers::Application::MESSAGES.delete_if{|message| message.created_at < (Time.now - 5.minutes) }
 end
 
 scheduler.every("1h") do

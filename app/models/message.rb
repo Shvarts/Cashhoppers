@@ -47,13 +47,21 @@ class Message < ActiveRecord::Base
     CashHoppers::Application::MESSAGES << self
   end
 
-  def to_json
+  def to_json current_user
+    friendship = nil
+    if sender_id == current_user.id
+      friendship = Friendship.find_by_user_id_and_friend_id(current_user.id, receiver_id)
+    else
+      friendship = Friendship.find_by_user_id_and_friend_id(current_user.id, sender_id)
+    end
+
     {
       sender_id:   sender_id,
       receiver_id: receiver_id,
       text:        text,
       created_at:  created_at,
-      time_ago:    time_ago_in_words(created_at)
+      time_ago:    time_ago_in_words(created_at),
+      friendship_status: friendship.status
     }
   end
 

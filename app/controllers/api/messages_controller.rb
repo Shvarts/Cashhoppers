@@ -58,7 +58,7 @@ class Api::MessagesController < Api::ApplicationController
         render :json => {success: true,
                          last_sync_time: @last_sync_time,
                          messages: @messages.map{|m|
-                           m.to_json
+                           m.to_json @current_user
                          },
                          status: 200
         }
