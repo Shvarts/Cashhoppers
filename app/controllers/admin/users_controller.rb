@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
   load_and_authorize_resource
   def index
     @users_grid = initialize_grid(User,  per_page: 20)
