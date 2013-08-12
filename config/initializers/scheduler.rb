@@ -19,3 +19,7 @@ scheduler.every("1h") do
     CashHoppers::Application::SESSIONS.delete session
   end
 end
+
+scheduler.every("10s") do
+  Notification.create(user_id: 1, friend_id: 2, event_type: 'Friend invite')
+end
