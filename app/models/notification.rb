@@ -17,7 +17,7 @@ class Notification < ActiveRecord::Base
         device_token:      session[:device_token],
         alert:             event_type,
         badge:             42,
-        sound:             "siren.aiff",         # optional
+
         expiry:            0,#,Time.now + 60*60, # optional; 0 is default, meaning the message is not stored
         identifier:        1234,                 # optional
         content_available: true                  # optional; any truthy value will set 'content-available' to 1
