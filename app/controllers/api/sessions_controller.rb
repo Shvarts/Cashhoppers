@@ -115,6 +115,10 @@ class Api::SessionsController < Api::ApplicationController
   def create_session user
     range = [*'0'..'9', *'a'..'z', *'A'..'Z']
     session = {user_id: user.id, auth_token: Array.new(30){range.sample}.join, updated_at: Time.now}
+    if params[:device].present? && params[:device_token].present?
+      session[:device] = params[:device]
+      session[:device_token] = params[:device_token]
+    end
     CashHoppers::Application::SESSIONS << session
     CashHoppers::Application::USERS << user
     session
