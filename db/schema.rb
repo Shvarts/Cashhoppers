@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809141506) do
+ActiveRecord::Schema.define(:version => 20130813114937) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(:version => 20130809141506) do
     t.string   "api_key"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "asks", :force => true do |t|
+    t.string   "ask"
+    t.text     "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -59,6 +66,13 @@ ActiveRecord::Schema.define(:version => 20130809141506) do
     t.datetime "file_updated_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "faqs", :force => true do |t|
+    t.string   "ask"
+    t.text     "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "friendships", :force => true do |t|
@@ -171,15 +185,6 @@ ActiveRecord::Schema.define(:version => 20130809141506) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "device_token"
-    t.string   "device"
-  end
-
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
@@ -214,10 +219,10 @@ ActiveRecord::Schema.define(:version => 20130809141506) do
     t.string   "authentication_token"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "user_name"
     t.string   "contact"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

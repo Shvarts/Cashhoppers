@@ -1,0 +1,10 @@
+%h1 Listing asks
+
+
+- @asks.each do |ask|
+  -@ask = ask
+  = render partial: 'form'
+
+%br
+
+= link_to 'New Ask', new_admin_ask_path

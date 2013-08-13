@@ -7,11 +7,15 @@ CashHoppers::Application.routes.draw do
 
 
 
+
+
+
   root :to => 'pages#home'
   get 'pages/hoppers_activity'
 
 
   namespace :admin do
+    resources :asks
 
     get 'pages/index', :as => 'index'
 
