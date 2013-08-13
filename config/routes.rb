@@ -1,15 +1,6 @@
 require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
-
-
-
-
-
-
-
-
-
   root :to => 'pages#home'
   get 'pages/hoppers_activity'
 
@@ -51,8 +42,8 @@ CashHoppers::Application.routes.draw do
     #prizes
     resources :prizes
 
-    #ads
-    resources :ads
+      #ads
+      resources :ads
 
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"

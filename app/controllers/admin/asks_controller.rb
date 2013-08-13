@@ -1,51 +1,46 @@
 class  Admin::AsksController < Admin::AdminController
 
-   def index
-    @asks = Ask.all
-    @ask = Ask.new
 
-  end
+    def index
+        @asks = Ask.paginate(page: params[:page], per_page:15 )
+        if request.content_type == 'text'
+          render partial: 'list'
+        end
+    end
 
-   def show
-    @ask = Ask.find_by_id(params[:id])
-  end
+    def new
+        @ask = Ask.new
+      render partial: 'form'
+    end
 
- def new
-    @ask = Ask.new
-    #render :text =>params
- end
-
-  def edit
-    @ask = Ask.find(params[:id])
-  end
-
-  def create
-    @ask = Ask.new(params[:ask])
-
+    def create
+      @ask = Ask.new(params[:ask])
       if @ask.save
-        redirect_to admin_asks_path, notice: 'Ask was successfully created.'
-     else
-        render action: "new"
-      end
-
-  end
-
-  def update
-    @ask = Ask.find(params[:id])
-
-      if @ask.update_attributes(params[:ask])
-        redirect_to admin_asks_path, notice: 'Ask was successfully updated.'
+        render text: 'ok'
       else
-         render action: "edit"
+        render partial: 'form'
       end
+    end
 
-  end
+    def edit
+      @ask = Ask.find(params[:id])
+     render partial: 'form'
+    end
 
-  def destroy
-    @ask = Ask.find(params[:id])
-    @ask.destroy
+    def update
+      @ask = Ask.find(params[:id])
+      if @ask.update_attributes(params[:ask])
+        render text: 'ok'
+      else
+        render partial: 'form'
+      end
+    end
 
-      redirect_to admin_asks_url
-  end
+    def destroy
+      @ask = Ask.find(params[:id])
+      @ask.destroy
+      render text: 'ok'
+    end
+
 
 end

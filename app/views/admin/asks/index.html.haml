@@ -1,10 +1,18 @@
-%h1 Listing asks
+- unless request.content_type == 'text'
+  = render partial: 'layouts/modal_crud'
+  :javascript
+    var asks_modal;
+    $(document).ready(function(){
+      asks_modal = new ModalCRUD({
+        new_path: "#{new_admin_ask_path}",
+        index_path: "#{admin_asks_path}",
+        list_id: 'asksTable'
+      });
+    });
+  .row-fluid
+    .span12.text-right
+      %button.btn.btn-info{onclick: 'asks_modal.newRecord({jhj: "hj"}, "Create ask");'}
+        New Ask
 
-
-- @asks.each do |ask|
-  -@ask = ask
-  = render partial: 'form'
-
-%br
-
-= link_to 'New Ask', new_admin_ask_path
+#asksTable
+  = render partial: 'list'
