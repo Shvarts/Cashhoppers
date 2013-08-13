@@ -89,10 +89,22 @@
   .button-container.text-right a img{
     width: 50%;
     height: auto;
+    margin-left:5% ;
+    margin-right:0% ;
+  }
+  .btn-group{
+    margin-left:10%;
+
+    margin-top: 1% ;
+    margin-botton: 1%;
+  }
+  .btn-group a.btn{
+    width: 100%;
   }
 
-
 }
+
+
 
 .bottom-menu{
   text-align: center;
@@ -104,10 +116,16 @@
   li:first-child{
     border-left: 0px;
   }
+
 }
 @media(min-width:100px)and(max-width: 600px){
+  .btn-group{
+
+    margin-top: 3%;
+  }
 
   .button-container.text-right a img{
+    margin-right:-10px% ;
     width: 40%;
    height: auto;
   }
