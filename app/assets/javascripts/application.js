@@ -25,6 +25,9 @@
 
 $(document).ready(function(){
     buttonselect();
+    page_size();
+    $('.gallery-2').css('width','78%')
+
 })
 
 
@@ -33,12 +36,20 @@ function buttonselect(){
     var useragent = navigator.userAgent.toLowerCase();
 
 
-    if( useragent.match("ios")){
-        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-app-store.png' width = '65%'</a>")
+    if( useragent.match("iphone")){
+        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-app-store.png' ></a>")
 
     }
     else if(useragent.match("android") ) {
-        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-google-play.jpg' width = '65%'</a>")
+        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-google-play.jpg'></a>")
 
     }
+}
+
+function page_size(){
+
+//    $('.header-container').css('height', $('html').css('height')*0.2);
+//    $('.custom-pg').css('min-height',parseInt($('html').css('height').replace(/px/,""))-parseInt($('.header').css('height').replace(/px/,"")) +'px');
+
+
 }

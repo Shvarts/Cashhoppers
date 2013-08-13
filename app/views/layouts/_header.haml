@@ -14,8 +14,10 @@
               %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
             %li
               %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+
+
       .span4
         .header-right
-          .button-container
-            =link_to 'DOWNLOAD THE APP', "", :class=>"btn btn-large btn-warning"
-            -#%input.btn.btn-large.btn-warning{value: 'DOWNLOAD THE APP', type: :button}
+          .button-container.text-right
+            %a{href: '#' , class: 'services'}
+              =image_tag('/assets/button-app-store.png')
