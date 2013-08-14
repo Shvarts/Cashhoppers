@@ -3,26 +3,26 @@
     .header-content
       .span12
         .header-left
-        .btn-group
-          %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %i.icon-align-justify
-            %span.caret
-          %ul.dropdown-menu.menu
-            %li
-              = link_to 'HOME', root_path, :class => 'navigation'
+          .btn-group.collapse-search
+            %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.icon-align-justify
+              %span.caret
+            %ul.dropdown-menu.menu
+              %li
+                = link_to 'HOME', root_path, :class => 'navigation'
 
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
-            %li
-              = link_to 'My Services', services_path, :class => 'navigation'
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+              %li
+                = link_to 'My Services', services_path, :class => 'navigation'
         .header-right
           .button-container.text-right
             .btn-group

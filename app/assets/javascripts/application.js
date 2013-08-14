@@ -29,6 +29,7 @@ $(document).ready(function(){
     $('.gallery-2').css('width','78%')
     dropdown();
     service_menu();
+    $(".collapse").collapse()
 
 })
 
@@ -59,6 +60,8 @@ function dropdown(){
     $('.btn-group ul').hide();
 
     $(' .btn-group> ul >li> a').css('color', 'black');
+    $('.btn-group.collapse-search ul').width( $('html').width()) ;
+    $('.btn-group.collapse-search ul').css('background-color','green');
     $('.btn-group .btn').click(function(){
         $('.btn-group ul.menu').toggle() ;
         menu_hide();
