@@ -57,4 +57,11 @@
     .span3
       %button.btn.btn-success
         Send
+    .span9
+
+-if !@users.flatten.blank?
+  .row-fluid
     .span3
+      =button_to 'Back to Hopper_info',  admin_hoppers_find_hopper_path(),  class: 'btn btn-success'
+    .span3
+      =button_to 'Back to Hopper_info',  admin_hoppers_hopper_list_path(),  class: 'btn btn-success'

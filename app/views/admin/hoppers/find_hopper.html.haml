@@ -11,4 +11,7 @@
   .span12.text-right
     %br
     = submit_tag("Find hopper", :class=>"btn btn-success", :onclick=>'search_user()' )
+
 #container
+  -if @user
+    =render partial: 'hopper_info'
