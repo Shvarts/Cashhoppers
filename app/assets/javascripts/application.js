@@ -29,7 +29,8 @@ $(document).ready(function(){
     $('.gallery-2').css('width','78%')
     dropdown();
     service_menu();
-    $(".collapse").collapse()
+    $(".collapse").collapse();
+    menu_hide();
 
 })
 
@@ -65,16 +66,27 @@ function dropdown(){
     $('.btn-group .btn').click(function(){
         $('.btn-group ul.menu').toggle() ;
         menu_hide();
+        menu_show();
         return false;
    })
 
 }
 function menu_hide(){
-    $(' .btn-group> ul >li> a').click(function(){
-        $('.btn-group ul').hide();
+    $('.nav-collapse.collapse ul >li> a.navigation').click(function(){
+        $('ul.nav').hide();
 
     })
 
+}
+function menu_show(){
+    alert('text');
+    $('.btn.btn-navbar').click(function(){
+        alert('text');
+    $('.nav-collapse.collapse ul >li> a.navigation').click(function(){
+        $('ul.nav').show();
+
+    })
+    })
 }
 function service_menu(){
 

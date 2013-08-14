@@ -87,9 +87,9 @@
     border-bottom: 1px solid black;
   }
   .button-container.text-right a img{
-    width: 50%;
+    width: 20%;
     height: auto;
-    margin-left:5% ;
+    //margin-left:5% ;
     margin-right:0% ;
   }
   .btn-group{
@@ -117,7 +117,10 @@
   font-weight: bold ;
 
 }
+input.btn.btn-large.btn-warning.small{
 
+  display: none;
+}
 
 .bottom-menu{
   text-align: center;
@@ -130,6 +133,7 @@
     border-left: 0px;
   }
 
+
 }
 @media(min-width:100px)and(max-width: 600px){
   .btn-group{
@@ -141,6 +145,62 @@
     margin-right:-10px% ;
     width: 40%;
    height: auto;
+  }
+
+
+}
+@media(min-width:100px)and(max-width: 990px){
+  .navbar.navbar-inverse.navbar-fixed-top{
+    position: fixed;
+    top:0;
+
+  }
+  .navbar-inner{
+
+
+    width: 95%;
+  }
+  button.btn.btn-navbar{
+   float: left;
+
+
+
+
+  }
+
+  input.btn.btn-large.btn-warning.small{
+    float: right;
+    height: 30px;
+    width:30% ;
+    display: block;
+    font-size: 65%;
+    padding-right: 5%;
+  }
+  input.btn.btn-large.btn-warning.large{
+    display: none;
+  }
+}
+@media(min-width:100px)and(max-width: 200px){
+  input.btn.btn-large.btn-warning.small{
+    height: 15px;
+    width:50% ;
+    font-size: 65%;
+  }
+
+}
+@media(min-width:201px)and(max-width:400px){
+  input.btn.btn-large.btn-warning.small{
+    height:  30px;
+    width:30% ;
+    font-size: 65%;
+  }
+
+}
+@media(min-width:401px)and(max-width:600px){
+  input.btn.btn-large.btn-warning.small{
+    height: 30px;
+    width:30% ;
+   font-size: 65%;
   }
 
 }

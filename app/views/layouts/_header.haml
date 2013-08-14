@@ -1,37 +1,87 @@
 .header
   .row-fluid
     .header-content
-      .span12
-        .header-left
-          .btn-group.collapse-search
-            %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %i.icon-align-justify
-              %span.caret
-            %ul.dropdown-menu.menu
-              %li
-                = link_to 'HOME', root_path, :class => 'navigation'
+-#<<<<<<< HEAD
+-#      .span12
+-#        .header-left
+-#          .btn-group.collapse-search
+-#            %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+-#              %i.icon-align-justify
+-#              %span.caret
+-#            %ul.dropdown-menu.menu
+-#              %li
+-#                = link_to 'HOME', root_path, :class => 'navigation'
+-#
+-#              %li
+-#                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+-#              %li
+-#                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+-#              %li
+-#                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+-#              %li
+-#                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+-#              %li
+-#                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+-#              %li
+-#                = link_to 'My Services', services_path, :class => 'navigation'
+-#        .header-right
+-#          .button-container.text-right
+-#            .btn-group
+-#              %a.dropdown-toggle{"data-toggle" => "dropdown" }
+-#                =image_tag('/assets/button-app-store.png')
+-#              %ul.dropdown-menu.button
+-#                %li
+-#                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"}
+-#                    =image_tag('/assets/button-app-store.png')
+-#                %li
+-#                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"}
+-#                    =image_tag('/assets/button-app-store.png')
+-#=======
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
+      %a.dropdown-toggle{"data-toggle" => "dropdown" }
+        %input.btn.btn-large.btn-warning.small{value: 'DOWNLOAD THE APP', type: :button}
+      %ul.dropdown-menu.button
+        %li
+          %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"}
+            =image_tag('/assets/button-app-store.png')
+        %li
+          %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"}
+            =image_tag('/assets/button-app-store.png')
+
+
+      .nav-collapse.collapse
+        %ul.nav
+          %li
+            %a.brand{:href => "/"} Home
+          %li
+            %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+          %li
+            %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+          %li
+            %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+          %li.active
+            %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+          %li
+            %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENT
+          %li
+            = link_to 'My Services', services_path, :class => 'navigation'  
+          %li.divider-vertical
+          %li
+            %a.dropdown-toggle{"data-toggle" => "dropdown" }
+              %input.btn.btn-large.btn-warning.large{value: 'DOWNLOAD THE APP', type: :button}
+            %ul.dropdown-menu.button
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"}
+                  =image_tag('/assets/button-app-store.png')
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
-              %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
-              %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
-              %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
-              %li
-                = link_to 'My Services', services_path, :class => 'navigation'
-        .header-right
-          .button-container.text-right
-            .btn-group
-              %a.dropdown-toggle{"data-toggle" => "dropdown" }
-                =image_tag('/assets/button-app-store.png')
-              %ul.dropdown-menu.button
-                %li
-                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"}
-                    =image_tag('/assets/button-app-store.png')
-                %li
-                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"}
-                    =image_tag('/assets/button-app-store.png')
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"}
+                  =image_tag('/assets/button-app-store.png')
+
+
