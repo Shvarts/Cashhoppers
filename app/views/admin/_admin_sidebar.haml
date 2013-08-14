@@ -11,4 +11,5 @@
     = link_to 'Ads', admin_ads_path
   %li
     = link_to 'Manege Users', admin_users_index_path if can? :manage, :all
-
+  %li
+    =link_to 'FAQ', admin_asks_path

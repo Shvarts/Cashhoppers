@@ -25,6 +25,7 @@ var ModalCRUD = (function () {
             data: params,
             type: 'GET',
             error: function(err){
+                alert(url);
                 alert("error");
             },
             success: function(data){

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Ask:
+  = @ask.ask
+%p
+  %b Answer:
+  = @ask.answer
+
+= link_to 'Edit', edit_admin_ask_path(@ask)
+\|
+= link_to 'Back', admin_asks_path
