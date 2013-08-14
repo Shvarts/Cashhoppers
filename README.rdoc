@@ -225,7 +225,12 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/hop/prizes.json?t=e&api_key=123&authentication_token=7vfLciBRmg1Lb8OKRvirS1o9lyNc9f&hop_id=1
     data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct",hop_id: 1}
     response:
-        success: {"prizes"=>[{"place"=>1, "cost"=>123}, {"place"=>2, "cost"=>23}]}
+        success: {
+                    "prizes"=>[
+                        {"place"=>1, "cost"=>123, "title"=>"1st Place"},
+                        {"place"=>2, "cost"=>23, "title"=>"1st Place"}
+                    ]
+                 }
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
 ===Hop Tasks
 ====submit users hop task(automatikally assign you to hop)(method: POST)

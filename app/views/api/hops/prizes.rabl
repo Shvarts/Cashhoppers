@@ -1,3 +1,6 @@
 collection :@prizes
-attributes   :place,
-             :cost
+attributes :cost, :place
+
+node :title do |prize|
+   prize.place.ordinalize + ' Place'
+end
