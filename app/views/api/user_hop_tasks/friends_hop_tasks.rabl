@@ -10,8 +10,12 @@ node :hop_id do |task|
     task.hop_task.hop.id if (task.hop_task && task.hop_task.hop)
 end
 
-node :photo do |task|
+node :small_photo do |task|
     task.photo.url(:small) if task.photo
+end
+
+node :photo do |task|
+    task.photo.url(:original) if task.photo
 end
 
 node :likes_count do |task|
