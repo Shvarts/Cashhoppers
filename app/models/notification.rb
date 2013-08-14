@@ -17,9 +17,27 @@ class Notification < ActiveRecord::Base
     }.first
 
     if session && session[:device] == 'IOS'
+
+      text = ""
+      case event_type
+        when "Friend invite"
+          text = "#{friend.first_name if friend} would like to be your friend."
+        when "Friend invite accept"
+          text = "#{friend.first_name if friend} accepted your invite to be friends."
+        when "End of hop"
+          hop = Hop.where(id: prize.hop_id).first
+          text = "Hop #{hop ? hop.name : ''} was ended."
+        when "Comment"
+          text = "#{comment.user.first_name if( comment && comment.user)} commented your photo."
+        when "Like"
+          text = "#{like.user.first_name if(like && like.user)} liked your photo."
+      end
+
+      text = event_type if text == ""
+
       notification = Grocer::Notification.new(
         device_token:      session[:device_token],
-        alert:             event_type
+        alert:             text
         #badge:             42,
         #
         #expiry:            0,#,Time.now + 60*60, # optional; 0 is default, meaning the message is not stored
