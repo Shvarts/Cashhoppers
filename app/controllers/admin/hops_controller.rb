@@ -235,7 +235,7 @@ class Admin::HopsController < Admin::AdminController
 
       rescue Exception =>e
 
-        redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
+        redirect_to admin_regular_hops_path({:error =>"bad data syntax in file #{e}" })
       else
 
         if @hop.save
