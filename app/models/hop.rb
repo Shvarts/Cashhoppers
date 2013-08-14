@@ -24,7 +24,7 @@ class Hop < ActiveRecord::Base
 
   def assign user
     unless hoppers.include? user
-      hoppers << user
+      hoppers << User.find(user.id)
       ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
       ActiveRecord::Base.connection.close
     end
@@ -86,15 +86,17 @@ class Hop < ActiveRecord::Base
       hop.update_attribute :close, true
       hop.prizes.each do |prize|
         winner = hop.winner prize.place
-        #set prize user
-        prize.update_attribute :user_id, winner['id']
-        prize.update_attribute :pts, winner['pts']
-        #send message to winner
-        message = Message.new(text: "You have won #{prize.place} prize in a hop #{ hop.name }", receiver_id: winner['id'])
-        message.save
-        #notificate hoppers about end of hop
-        hop.hoppers.each do |hopper|
-          Notification.create(user_id: hopper.id, event_type: 'End of hop', prize_id: prize.id)
+        if winner
+          #set prize user
+          prize.update_attribute :user_id, winner['id']
+          prize.update_attribute :pts, winner['pts']
+          #send message to winner
+          message = Message.new(text: "You have won #{prize.place} prize in a hop #{ hop.name }", receiver_id: winner['id'])
+          message.save
+          #notificate hoppers about end of hop
+          hop.hoppers.each do |hopper|
+            Notification.create(user_id: hopper.id, event_type: 'End of hop', prize_id: prize.id)
+          end
         end
       end
     end

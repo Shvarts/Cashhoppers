@@ -68,10 +68,13 @@ class Api::HopsController < Api::ApplicationController
           format.json{
             render :json => {success: true,
                              winner_id: prize.user_id,
+                             winners_first_name: prize.user.first_name,
+                             winners_last_name: prize.user.last_name,
                              score: prize.pts,
                              hoppers_count: hop.hoppers.count,
                              rank: prize.place,
                              hop_id: hop.id,
+                             hop_name: hop.name,
                              cost: prize.cost,
                              status: 200
             }
