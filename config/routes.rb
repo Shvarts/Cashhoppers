@@ -33,8 +33,8 @@ CashHoppers::Application.routes.draw do
     post 'hops/print_hop_to_pdf',          to: 'hops#print_hop_to_pdf',      as: 'print_hop_to_pdf'
     post 'hops/print_hop_list_to_pdf',     to: 'hops#print_hop_list_to_pdf',      as: 'print_hop_list_to_pdf'
     post 'hops/import_from_excel',         to: 'hops#import_from_excel',      as: 'import_from_excel'
-    post 'hops/print_hop_to_excel',     to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
-    post 'hops/print_hops_to_excel',     to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
+    post 'hops/print_hop_to_excel',        to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
+    post 'hops/print_hops_to_excel',       to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
 
     #hop_tasks
     resources :hop_tasks
@@ -42,8 +42,8 @@ CashHoppers::Application.routes.draw do
     #prizes
     resources :prizes
 
-      #ads
-      resources :ads
+    #ads
+    resources :ads
 
     match "hoppers/find_hopper"
     match "hoppers/hopper_list"
@@ -94,6 +94,7 @@ CashHoppers::Application.routes.draw do
     get 'hop/get_hop',                     to: 'hops#get_hop_by_id'
     get 'hop/score',                       to: 'hops#score'
     get 'hops/yesterdays_winner',          to: 'hops#yesterdays_winner'
+    get 'hop/prizes',                      to: 'hops#prizes'
     get 'task/get_hop_task',               to: 'user_hop_tasks#get_hop_task_by_id'
 
     #users hop tasks

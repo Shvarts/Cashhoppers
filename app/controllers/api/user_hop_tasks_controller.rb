@@ -5,7 +5,7 @@ class Api::UserHopTasksController < Api::ApplicationController
 
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
-      bad_request(['Hop task already comleted.'], 406)
+      bad_request(['Hop task already comleted.'], 200)
     elsif @hop_task && @hop_task.hop
       hop_task_data = {}
       hop_task_data[:user_id] = @current_user.id
