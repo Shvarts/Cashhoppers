@@ -1,0 +1,23 @@
+= will_paginate @asks, renderer: BootstrapPagination::Rails
+- if @asks.blank?
+  List has no rows
+-else
+  %table.table.table-condensed
+    %tr
+      %th
+        Ask
+      %th
+        Answer
+      - @asks.each do |ask|
+        %tr
+          %td
+            = ask.ask
+          %td
+            = ask.answer
+          %td
+          %td{style: 'text-align: right'}
+            %button.btn.btn-info.btn-mini{onclick: 'asks_modal.editRecord({}, "Edit ask", "' + edit_admin_ask_path(ask) + '")'}
+              Edit
+            %button.btn.btn-danger.btn-mini{onclick: 'asks_modal.removeRecord("' + admin_ask_path(ask) + '", {})'}
+              Delete
+= will_paginate @asks, renderer: BootstrapPagination::Rails

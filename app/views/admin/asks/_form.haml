@@ -1,0 +1,26 @@
+- if @ask.errors.any?
+  - @ask.errors.full_messages.each do |msg|
+    .alert.alert-error
+      %button.close{type: :button, 'data-dismiss' => 'alert'}
+      = msg
+= form_for([:admin, @ask]) do |f|
+
+  %table.hops-form
+    %tr
+      %td
+        %b
+          Ask:
+      %td
+        %b
+          = f.text_field :ask, class: 'span12'
+    %tr
+      %td
+        %b
+          Answer:
+      %td
+        %b
+          = f.text_area :answer,:rows=>4, class: 'span12'
+    %tr
+      %td{colspan: 2}
+        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'asks_modal.submitForm({}); return false;'
+
