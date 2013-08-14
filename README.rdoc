@@ -229,34 +229,44 @@ service should be 'twitter', 'facebook', 'google'
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:50:22Z", "comment"=>"friend task #1",
-                    "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/7/original/PHOTO.jpg?1374562222", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
-
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:50:23Z", "comment"=>"friend task #2",
-                    "hop_id"=>3, "photo"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpg?1374562223", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
-
-                    {"id" => 1, "user_id"=>2, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:50:25Z", "comment"=>"friend task #3",
-                    "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/9/original/PHOTO.jpg?1374562225", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"}
+                    {
+                        "id" => 1,
+                        "user_id"=>2,
+                        "hop_task_id"=>2,
+                        "created_at"=>"2013-07-23T06:50:22Z",
+                        "comment"=>"friend task #1",
+                        "hop_id"=>4,
+                        "photo"=>"/images/user_hop_task_photos/tasks/7/original/PHOTO.jpg?1374562222",
+                        "small_photo"=>"/images/user_hop_task_photos/tasks/1/small/PHOTO.png?1376476324",
+                        "likes_count"=>1,
+                        "liked"=>true,
+                        "hop_task_text"=>"Take your picture with ...!",
+                        "time_ago"=>"about 2 hours",
+                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                    },
+                    ...
                  ]}
 ====get all hoppers hop tasks(method: GET)
     url: http://localhost:3000/api/tasks/get_all_hoppers_hop_tasks.json?api_key=123&authentication_token=6cmdqJrrc1AXwiIOvu4mHSoLqK5BQa&page=1&per_page=3
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, page: 1, per_page: 5}
     response:
         success: {"tasks"=>[
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>4, "created_at"=>"2013-07-23T06:52:27Z", "comment"=>"other_user task #3",
-                    "hop_id"=>2, "photo"=>"/images/user_hop_task_photos/tasks/12/original/PHOTO.jpg?1374562347", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
-
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>3, "created_at"=>"2013-07-23T06:52:26Z", "comment"=>"other_user task #2",
-                    "hop_id"=>3, "photo"=>"/images/user_hop_task_photos/tasks/11/original/PHOTO.jpg?1374562346", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"},
-
-                    {"id" => 1, "user_id"=>3, "hop_task_id"=>2, "created_at"=>"2013-07-23T06:52:25Z", "comment"=>"other_user task #1",
-                    "hop_id"=>4, "photo"=>"/images/user_hop_task_photos/tasks/10/original/PHOTO.jpg?1374562345", "likes_count"=>1,
-                    "liked"=>true, "hop_task_text"=>"Take your picture with ...!", "time_ago"=>"about 2 hours"}
+                    {
+                        "id" => 1,
+                        "user_id"=>2,
+                        "hop_task_id"=>2,
+                        "created_at"=>"2013-07-23T06:50:22Z",
+                        "comment"=>"friend task #1",
+                        "hop_id"=>4,
+                        "photo"=>"/images/user_hop_task_photos/tasks/7/original/PHOTO.jpg?1374562222",
+                        "small_photo"=>"/images/user_hop_task_photos/tasks/1/small/PHOTO.png?1376476324",
+                        "likes_count"=>1,
+                        "liked"=>true,
+                        "hop_task_text"=>"Take your picture with ...!",
+                        "time_ago"=>"about 2 hours" ,
+                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                    },
+                    ...
                  ]}
 ====like user hop task(method: POST)
     url: http://localhost:3000/api/task/like.json

@@ -34,4 +34,15 @@ node :time_ago do |task|
     time_ago_in_words(task.created_at)
 end
 
+node :likers do |task|
+   task.likes.map do |like|
+    name = ''
+    if task.user
+        name += like.user.first_name + ' ' if like.user.first_name
+        name += like.user.last_name if like.user.last_name
+    end
+    name
+   end
+end
+
 
