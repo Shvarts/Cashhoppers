@@ -16,7 +16,7 @@
         %p The photo-scavenger game that pays tou cash
     .divas2
       .phone
-        .carousel.slide#myCarousel
+        .carousel.slide
           .carousel-inner
             - @user_hop_tasks.each do |task|
               .item
@@ -38,10 +38,9 @@
             ALL ABOUT ?
           %br
           %br
-          .video-text#thevideo
-            = video_tag ["video/media.mp4"],   :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true
-          %br
-          %br
+          .video-container
+            = video_tag ["video/media.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true
+          .text-center
             .video-text
               CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes
               There a Daily HOPs where you can complete against other Hoppers from around the globe. Or you can join
@@ -64,8 +63,8 @@
             HOW TO
             %span.weight PLAY
           %br
-          .video-text#thevideo
-            = video_tag ["video/media.mp4"],  :width => '80%', :height=> '80%' , :controls => true,:type=>"video/mp4", :autobuffer => true
+          .video-container
+            = video_tag ["video/media.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true
           .video-text
             %ul
               %li
@@ -83,34 +82,33 @@
             It's that easy !
             %br
               =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
+            %br
               =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
         .span2
 .page-divider
 .custom-pg.what-page
-  .divas1
-    .divas2
-      %h2{:id=>"what-page"}
-      .row-fluid
-        .span2
-        .span8.text-center.page-3
-          .top-sign
-            AT THE HOP
-          %br
-            %p See what other Hoppers are taking pictures of and pick your favorites!
-          %br
-          .carousel.slide#carousel2{:style=>'min-width: 100px'}
+  %h2{:id=>"what-page"}
+  .row-fluid
+    .span2
+    .span8.text-center.gallery
+      .top-sign
+        AT THE HOP
+      %br
+        %p See what other Hoppers are taking pictures of and pick your favorites!
+      %br
+      .carousel.slide.gallery-2
 
-            .carousel-inner
-              - unless @tasks_pack.blank?
-                - @tasks_pack.each do |pack|
-                  .item
-                    - unless pack.blank?
-                      - pack.each do |task|
-                        .inline
-                          = image_tag( task.photo.url ,  :width => '20%', :style => "display: inline")
-            %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
-            %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
-        .span2
+        .carousel-inner
+          - unless @tasks_pack.blank?
+            - @tasks_pack.each do |pack|
+              .item
+                - unless pack.blank?
+                  - pack.each do |task|
+                    .inline
+                      = image_tag( task.photo.url , :style => "display: inline")
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
+    .span2
 .page-divider
 .custom-pg.business-page
   .divas1
@@ -125,7 +123,7 @@
             FOR
             %span.weight BUSINESS
           %br
-          .row-fluid
+          .row-fluid.business-block
             .span6.text-left
               .business
                 The CASHHOPPERS game is a great tool to add to your marketing
@@ -145,7 +143,7 @@
                 %br
                 = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
             .span6.text-left
-              = image_tag 'home_business.png', :class => 'business-img',:width=>"70%" ,:height=>"70%", :id=>"business"
+              = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img"
         .span2
 .page-divider
 .custom-pg.events-page
@@ -163,9 +161,9 @@
       %br
       .row-fluid
         .span6.text-left
-          = image_tag 'home_event.png', :class => 'event-img',  :width=>"50%" ,:height=>"20%"
+          = image_tag 'home_event.png', :class => 'event-img', :id => "event-img"
         .span6.text-left
-          .text
+          .text.text-event
             Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
             has been proven to engage show visitors more, increase traffic at participating booth, initiate
             customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
@@ -180,7 +178,7 @@
 .custom-pg.page-last{style: ' display: table'}
   .divas1
     .divas2
-      .row-fluid.video-text#last-page
+      .row-fluid#last-page
         .span1
         .span5
           .top-sign
@@ -202,7 +200,7 @@
               TO KEEP IN-THE-KNOW
               AND SEE WHAT OTHERS
               ARE DOING, JOIN US.
-            .center.video
+            .center.text-center
               .social-links
                 %a{href: '/auth/facebook', class: 'services'}
                   =image_tag('facebook.png', :style=>'height:50px')
@@ -250,11 +248,7 @@
       = link_to 'GOOGLE+'
   %ul.bottom-menu
     %li
-      = link_to 'Home', root_path
-    %li
       = link_to 'Admin Page', admin_index_path if current_user && !current_user.role?('user')
-    %li
-      = link_to 'My Services', services_path
     %li
       = link_to 'Friends', friends_path
     %li
