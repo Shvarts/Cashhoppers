@@ -16,7 +16,7 @@ class Notification < ActiveRecord::Base
       session if session[:user_id] == user_id
     }.first
 
-    if session[:device] == 'IOS'
+    if session && session[:device] == 'IOS'
       notification = Grocer::Notification.new(
         device_token:      session[:device_token],
         alert:             event_type
