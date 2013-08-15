@@ -16,7 +16,7 @@
     });
     prizes_modal = new ModalCRUD({
       new_path: "#{new_admin_prize_path}",
-      index_path: "#{admin_prizes_path}",
+      index_path: "#{admin_prizes_path({:hop_id=> @hop.id})}",
       list_id: 'prizesTable'
     });
   });
@@ -53,7 +53,7 @@
                 =e
                 %br
 %br
-%h1
+
 
 
 .row-fluid
@@ -184,6 +184,10 @@
       %th
         User Name
       %th
+        Avatar
+      %th
+        Prizes
+      %th
     - @hoppers.each do |user|
       %tr
         %td
@@ -193,7 +197,12 @@
         %td
           = user.user_name
         %td
+
           = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
+        %td
+          -id = (user.prizes.first)?  user.prizes.first.id : 0
+          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
+                               :user_id => user.id, :onchange => "change_user_prize(this);"
 %br
 .row-fluid
   .span2.text-right

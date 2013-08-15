@@ -13,7 +13,11 @@ class Admin::UsersController < Admin::AdminController
     else
       render :text => "error"
     end
-
+  end
+  def tasks_photo
+    @hop = params[:hop_id]
+    @hop_task_id = Hop.find_by_id( @hop).hop_tasks.map{|item| item.id}
+    @photos  = UserHopTask.where(:user_id => params[:user_id], :hop_task_id =>@hop_task_id )
 
   end
 end

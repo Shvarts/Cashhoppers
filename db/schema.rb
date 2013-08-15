@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815112154) do
+ActiveRecord::Schema.define(:version => 20130815141517) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20130815112154) do
 
   create_table "prizes", :force => true do |t|
     t.string  "cost"
-    t.integer "place"
+    t.string  "place"
     t.integer "user_id"
     t.integer "hop_id"
     t.integer "pts"

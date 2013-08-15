@@ -47,11 +47,14 @@ var ModalCRUD = (function () {
         loadPartial(edit_path, params, name);
     };
 
+
     this.submitForm = function(params){
         var index_path = this.index_path;
         var list_id = this.list_id;
         var my_form = $('#modal-crud-window form');
         var formData = new FormData(my_form[0]);
+
+        var modal_crud = this;
         $.ajax({
             url: my_form.attr('action'),
             data: formData,
@@ -71,7 +74,7 @@ var ModalCRUD = (function () {
             },
             success: function(data){
                 if(data == 'ok'){
-                    updateTable(params, index_path, list_id);
+                    modal_crud.updateTable(params);
                     $('#modal-crud-window').modal('hide');
                 } else {
                     $('#modal-crud-window').find('.modal-body').html(data);
@@ -80,7 +83,9 @@ var ModalCRUD = (function () {
         });
     };
 
-    this.updateTable = function(params, index_path, list_id){
+    this.updateTable = function(params){
+        var index_path = this.index_path;
+        var list_id = this.list_id;
         $.ajax({
             url: index_path,
             data: params,
@@ -98,6 +103,7 @@ var ModalCRUD = (function () {
     this.removeRecord = function(url, params){
         var index_path = this.index_path;
         var list_id = this.list_id;
+        var modal_crud = this;
         if(confirm('Are you sure?')){
             $.ajax({
                 url: url,
@@ -107,7 +113,7 @@ var ModalCRUD = (function () {
                 },
                 success: function(data){
                     if(data == 'ok'){
-                        updateTable(params, index_path, list_id);
+                        modal_crud.updateTable(params);
                     }else{
                         alert('error');
                     }
@@ -115,7 +121,50 @@ var ModalCRUD = (function () {
             });
         }
     };
+   this.rejectRecord= function(url, params){
+        var index_path = this.index_path;
+        var list_id = this.list_id;
+       var modal_crud = this;
+        if(confirm('Are you sure?')){
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                error: function(err){
+                    alert("error");
+                },
+                success: function(data){
+                    if(data == 'ok'){
+                        modal_crud.updateTable(params);
 
+                    }else{
+                        alert('error');
+                    }
+                }
+            });
+        }
+    };
+   this.rundomeaRecord = function(url, params){
+        var index_path = this.index_path;
+        var list_id = this.list_id;
+       var modal_crud = this;
+        if(confirm('Are you sure?')){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                error: function(err){
+                    alert("error");
+                },
+                success: function(data){
+                    if(data == 'ok'){
+                        modal_crud.updateTable(params);
+                    }else{
+                        alert('error');
+                    }
+                }
+            });
+        }
+    };
+//
     //pagination
     this.setAjaxPagination = function(name, exception_field_id){
         $('#modal-crud-window .pagination a').click(function(){
@@ -156,10 +205,13 @@ var ModalCRUD = (function () {
     // prototype
     modal_crud.prototype = {
         constructor:    modal_crud,
+       rejectRecord:    rejectRecord,
         loadPartial:    loadPartial,
+        rundomeaRecord: rundomeaRecord,
         newRecord:      newRecord,
         editRecord:     editRecord,
         submitForm:     submitForm,
+        updateTable:    updateTable,
         removeRecord:   removeRecord,
         setAjaxPagination: setAjaxPagination
     };

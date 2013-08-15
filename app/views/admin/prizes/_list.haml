@@ -4,6 +4,8 @@
   %table.table.table-condensed
     %tr
       %th
+        Style
+      %th
         Place
       %th
         Cost
@@ -13,16 +15,24 @@
     - @prizes.each do |prize|
       %tr
         %td
+          = prize.prize_type
+        %td
           = prize.place
         %td
           = prize.cost
         %td
           - if prize.user
-            = prize.user.first_name
-            = prize.user.last_name
+            = link_to "#{  prize.user.first_name}  #{ prize.user.last_name} ",  admin_users_tasks_photo_path({:user_id =>prize.user.id, :hop_id => prize.hop.id})
         %td{style: 'text-align: right'}
           -if User.producer?(current_user) || User.admin?(current_user)
+            -if  !prize.prize_type
+              %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '})'}
+                Randomly
+              %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.rejectRecord("' + admin_prize_path(prize, {:prize => {:user_id => nil}}) + '", {hop_id: ' + @hop.id.to_s + '})'}
+                Reject
+              %button.btn.btn-success.btn-mini
+                Accept
             %button.btn.btn-info.btn-mini{onclick: 'prizes_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit prize", "' + edit_admin_prize_path(prize) + '")'}
               Edit
-            %button.btn.btn-danger.btn-mini{onclick: 'tasks_modal.removeRecord("' + admin_prize_path(prize) + '", {hop_id: ' + @hop.id.to_s + '})'}
+            %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.removeRecord("' + admin_prize_path(prize) + '", {hop_id: ' + @hop.id.to_s + '})'}
               Delete

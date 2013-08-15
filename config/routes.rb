@@ -1,4 +1,4 @@
-require 'will_paginate/array'
+  require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
@@ -12,7 +12,7 @@ CashHoppers::Application.routes.draw do
 
     get "users/index"
     post "users/change_user_role"
-
+    get "users/tasks_photo"
 
     resources :applications
 
@@ -42,6 +42,7 @@ CashHoppers::Application.routes.draw do
     #prizes
     resources :prizes
 
+    post 'prizes/random_user' ,             to: 'prizes#random_user' , as: 'random_user'
     #ads
     resources :ads
 

@@ -1,0 +1,19 @@
+.row-fluid
+  .span12
+    %table
+      %tr
+        %td
+          Hop task text
+        %td
+          Hop task logo
+        %td
+          Photo
+      -for i in @photos
+        %tr
+          %td
+            = HopTask.find_by_id(i.hop_task_id).text
+          %td
+            = HopTask.find_by_id(i.hop_task_id).logo
+          %td
+            = i.photo
+= link_to "Back", admin_hop_path(@hop)
