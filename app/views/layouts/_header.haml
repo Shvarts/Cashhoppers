@@ -40,7 +40,7 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .navbar-inner
     .container
-      %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+      %button.btn.btn-navbar#my-btn{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
@@ -56,7 +56,7 @@
             =image_tag('/assets/button-app-store.png')
 
 
-      .nav-collapse.collapse
+      .nav-collapse.collapse.collapsed{:style=>'height: 0px'}
         %ul.nav
           %li
             %a.brand{:href => "/"} Home
@@ -71,7 +71,7 @@
           %li
             %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENT
           %li
-            = link_to 'My Services', services_path, :class => 'navigation'  
+            = link_to 'My Services', services_path, :class => 'navigation'
           %li.divider-vertical
           %li
             %a.dropdown-toggle{"data-toggle" => "dropdown" }
