@@ -21,9 +21,15 @@
     %tr
       %td
         %b
-          Place:
+          Special place:
+      %td
+        =  radio_button(:prize, :prize_type, "special")
+    %tr
+      %td
+        %b
+          Place № /title :
       %td
         = f.number_field :place, class: 'span12'
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); return false;'
+        = link_to 'Submit', '#', class: 'btn btn-info create-prize', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); return false;'

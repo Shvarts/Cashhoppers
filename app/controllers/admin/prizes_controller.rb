@@ -26,6 +26,7 @@ class Admin::PrizesController < ApplicationController
     else
       render partial: 'form'
     end
+
   end
 
   def update
