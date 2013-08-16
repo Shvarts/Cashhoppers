@@ -17,6 +17,7 @@
  *= require chosen
  */
 .header{
+  width: 100%;
   z-index: 100;
   background: #027036;
   background: -moz-linear-gradient(top, #009242, #027036); /* Firefox 3.6+ */
@@ -34,12 +35,12 @@
   top: 0px;
 
   .header-content{
-    width: 100%;
+    padding: 0% 0%;
     margin:  auto;
     height: auto;
     .header-left{
       max-height: 140px;
-      max-width: 500px;
+      max-width: 800px;
       float: left;
       display: table;
       ul{
@@ -51,7 +52,7 @@
           font-size: 12px;
           font-weight: bolder;
           color: white;
-       //   border-right: 2px solid white;
+          border-right: 2px solid white;
           padding: 0px 5px 0px 5px;
         }
         a{
@@ -59,22 +60,6 @@
           li:last-child{
           border-right: 0px;
           }
-        }
-      }
-    }
-    .header-right{
-      padding-top: -15px;
-      display: table;
-      height: 70px;
-      width: 275px;
-      float: right;
-      .button-container{
-        vertical-align: middle;
-        display: table-cell;
-        input{
-          font-size: 12px;
-          font-weight: bolder;
-          width: 270px;
         }
       }
     }
@@ -86,25 +71,22 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
   }
-  .button-container.text-right a img{
-    width: 20%;
+  .button-container.text-right .btn-group> a img{
+    width: 100%;
     height: auto;
-    //margin-left:5% ;
+
+    margin-left:0% ;
+
     margin-right:0% ;
   }
-  .btn-group{
-    margin-left:10%;
-
-    margin-top: 1% ;
-    margin-botton: 1%;
-  }
-  .btn-group a.btn{
-    width: 100%;
-  }
-
-
 
 }
+.row-fluid .header-left.span6{
+  width:80%;
+  margin: 3px;
+
+}
+
 .top-sign{
   font-family: 'topfont', sans-serif ;
   text-align: center;
@@ -113,12 +95,23 @@
   line-height: 1.2;
   font-weight: 200;
 }
+
 .weight{
   font-weight: bold ;
 
 }
-input.btn.btn-large.btn-warning.small{
 
+.row-fluid .header-right.span6{
+  width:15%;
+
+}
+.row-fluid .header-right.span6 .btn-group>a img{
+  width:160px;
+  margin: 5% 3%;
+}
+
+
+.btn-group.link{
   display: none;
 }
 
@@ -133,74 +126,81 @@ input.btn.btn-large.btn-warning.small{
     border-left: 0px;
   }
 
+  .dropdown-menu.button{
+    left: -30%;
 
-}
-@media(min-width:100px)and(max-width: 600px){
-  .btn-group{
-
-    margin-top: 3%;
+  }
+  .header{
+  width: 80%;
   }
 
-  .button-container.text-right a img{
-    margin-right:-10px% ;
-    width: 40%;
-   height: auto;
+}
+
+
+
+
+@media(min-width:100px)and(max-width: 900px){
+
+  .btn-group.link{
+    display: block;
   }
 
 
-}
-@media(min-width:100px)and(max-width: 990px){
+  .button-container.text-right .btn-group ul li a img{
+    width:100%;
+
+  }
+
   .navbar.navbar-inverse.navbar-fixed-top{
     position: fixed;
     top:0;
 
   }
   .navbar-inner{
-
-
     width: 95%;
   }
-  button.btn.btn-navbar{
-   float: left;
 
 
 
 
+
+
+  //.header .header-content .header-left .button-container.text-right> .btn-group>a >img{
+  //  width: 200px;
+  //
+  //}
+  .row-fluid .header-right.span6{
+    width:30%;
+    display:inline;
+  }
+  .row-fluid .header-left.span6{
+    width:60%;
+    display:inline;
   }
 
-  input.btn.btn-large.btn-warning.small{
-    float: right;
-    height: 30px;
-    width:30% ;
-    display: block;
-    font-size: 65%;
-    padding-right: 5%;
-  }
-  input.btn.btn-large.btn-warning.large{
+.menu-full-screen{
     display: none;
   }
-}
-@media(min-width:100px)and(max-width: 200px){
-  input.btn.btn-large.btn-warning.small{
-    height: 15px;
-    width:50% ;
-    font-size: 65%;
+
+  .row-fluid .header-right.span6 .btn-group>a img{
+    width:100px;
   }
 
-}
-@media(min-width:201px)and(max-width:400px){
-  input.btn.btn-large.btn-warning.small{
-    height:  30px;
-    width:30% ;
-    font-size: 65%;
+  .dropdown-menu.button{
+    left: -25%;
+    min-width: 150px;
+    width: 200px;
   }
 
-}
-@media(min-width:401px)and(max-width:600px){
-  input.btn.btn-large.btn-warning.small{
-    height: 30px;
-    width:30% ;
-   font-size: 65%;
+  .header .header-content .header-left ul{
+    padding:0% 0%;
+    li {
+      border: none;
+      padding:0% 0%;
+
+    }
   }
+
+
 
 }

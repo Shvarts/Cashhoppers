@@ -1,6 +1,6 @@
 class Api::HopsController < Api::ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index, :daily, :assign, :get_tasks]
-  before_filter :load_hop, only: [:assign, :get_tasks, :get_hop_by_id, :score]
+  before_filter :load_hop, only: [:assign, :get_tasks, :get_hop_by_id, :score, :prizes]
 
   def regular
     params[:page] ||= 1
@@ -68,10 +68,13 @@ class Api::HopsController < Api::ApplicationController
           format.json{
             render :json => {success: true,
                              winner_id: prize.user_id,
+                             winners_first_name: prize.user.first_name,
+                             winners_last_name: prize.user.last_name,
                              score: prize.pts,
                              hoppers_count: hop.hoppers.count,
                              rank: prize.place,
                              hop_id: hop.id,
+                             hop_name: hop.name,
                              cost: prize.cost,
                              status: 200
             }
@@ -83,6 +86,11 @@ class Api::HopsController < Api::ApplicationController
     else
       bad_request(['Missing yesterday\'s hop.'], 406)
     end
+  end
+
+  def prizes
+    @prizes = @hop.prizes
+    render 'prizes', content_type: 'application/json'
   end
 
   private

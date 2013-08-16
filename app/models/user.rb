@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :prizes, dependent: :delete_all
 
+  has_one :user_settings
+
   before_create :create_role
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -72,8 +74,9 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_role
+  def init_user
     self.roles << Role.find_by_name(:user)
+    user.user_settings = UserSettings.create()
   end
 
 end

@@ -10,8 +10,12 @@ node :hop_id do |task|
     task.hop_task.hop.id if (task.hop_task && task.hop_task.hop)
 end
 
-node :photo do |task|
+node :small_photo do |task|
     task.photo.url(:small) if task.photo
+end
+
+node :photo do |task|
+    task.photo.url(:original) if task.photo
 end
 
 node :likes_count do |task|
@@ -28,5 +32,16 @@ end
 
 node :time_ago do |task|
     time_ago_in_words(task.created_at)
+end
+
+node :likers do |task|
+   task.likes.map do |like|
+    name = ''
+    if task.user
+        name += like.user.first_name + ' ' if like.user.first_name
+        name += like.user.last_name if like.user.last_name
+    end
+    name
+   end
 end
 

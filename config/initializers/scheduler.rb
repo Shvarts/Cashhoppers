@@ -3,7 +3,7 @@ require 'rufus/scheduler'
 scheduler = Rufus::Scheduler.start_new
 
 scheduler.every("15m") do
-  Hop.close_old_hops
+  #Hop.close_old_hops
 end
 
 scheduler.every("5m") do
@@ -18,8 +18,4 @@ scheduler.every("1w") do
     CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
     CashHoppers::Application::SESSIONS.delete session
   end
-end
-
-scheduler.every("10s") do
-  Notification.create(user_id: 1, friend_id: 2, event_type: 'Friend invite')
 end

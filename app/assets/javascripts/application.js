@@ -33,7 +33,8 @@ $(document).ready(function(){
 
     menu_hide();
     dropdown();
-    $('.nav-collapse.collapsed.collapse').hide();
+    service_menu();
+
 
 
 });
@@ -59,58 +60,46 @@ function page_size(){
 
 
 }
+
+
 function dropdown(){
 
+    $('.btn-group ul.menu').hide();
+    $(' .btn-group> ul >li> a').css('color', 'black');
+    $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'green');
+    $(' .btn-group> ul.dropdown-menu.menu').width($('html').width());
+    $('.button-container.text-right .btn-group ul').width('100%')
 
-    $('button.btn.btn-navbar').one('click',function(){
-        $('.nav-collapse.collapsed.collapse').show();
-
-        hide_dropbox();
-        $('.nav-collapse.collapse').addClass('in');
-
-
-       if($('.nav-collapse.in.collapse').height()==0){
-
-
-
-       }
+    $(' .btn-group').css('max-height', '200px');
+    $('.btn-group .btn').click(function(){
+        $('.btn-group ul.menu').toggle() ;
+        menu_hide();
+        return false;
 
    })
 
 }
+
+
 function menu_hide(){
 
-    $('.nav-collapse.collapse ul >li> a.navigation').click(function(){
-        hide_dropbox();
+    $('.dropdown-menu.menu li a').click(function(){
+        $('.btn-group ul.menu').hide();
 
     })
 
 }
 
-function hide_dropbox(){
-    $('.nav-collapse.collapse').height('0px') ;
-    $('button.btn.btn-navbar').addClass('collapsed');
-
-    $('.nav-collapse.collapse').removeClass('in');
 
 
+function service_menu(){
+
+  $('.header-right .button-container.text-right .btn-group>a img').click(function(){
+      $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
+
+          $('ul.dropdown-menu.button').toggle() ;
+          menu_hide();
+          return false;
+  })
 }
-//function menu_show(){
-//    alert('text');
-//    $('.btn.btn-navbar').click(function(){
-//        alert('text');
-//    $('.nav-collapse.collapse ul >li> a.navigation').click(function(){
-//        $('ul.nav').show();
-//
-//    })
-//    })
-//}
-//function service_menu(){
-//
-//  $('.button-container.text-right .btn-group a.dropdown-toggle').click(function(){
-//
-//          $('.btn-group ul.button ').toggle() ;
-//          menu_hide();
-//          return false;
-//  })
-//}
+

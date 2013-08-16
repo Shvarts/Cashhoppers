@@ -35,11 +35,11 @@ html, body, head, header{
 
   .first-page{
     width: 100%;
-    margin-top: 69px;
+    margin-top: 15px;
     display: table;
       .divas1{
         width: 100%;
-        height: 80%;
+        height: 90%;
         display: table-cell;
         vertical-align: middle;
         .divas2{
@@ -96,6 +96,13 @@ html, body, head, header{
   a.carousel-control.right{
       margin-top: 2%;
   }
+  #social1{
+
+    position: absolute;
+    right:0;
+    top:10%;
+
+  }
   .social-links{
       display: inline;
       width: 100%;
@@ -107,6 +114,10 @@ html, body, head, header{
       a{
           color: white;
       }
+  }
+
+  #firsttop-sign{
+    margin: 5%;
   }
 
   .gray-page{
@@ -246,7 +257,7 @@ html,body,head,header{
 
 
                 width:300px;
-                height: 130px;
+                height: 140px;
               }
           }
       }
@@ -274,12 +285,12 @@ html,body,head,header{
    }
 
   .business-page{
-    padding: 2% 2%;
+   // padding: 2% 2%;
     height: 200% ;
     background-color: #FFFFFF;
   }
   .events-page{
-    padding: 1% 2%;
+   // padding: 1% 2%;
     height:140% ;
     background-color: #FFFFFF;
   }
@@ -308,16 +319,8 @@ html,body,head,header{
   .top-sign, #firsttop-sign{
     font-size: 130%;
   }
-    #social1{
 
-      position: absolute;
-      margin-top: 20%;
-
-      bottom: 15px; /* Положение от нижнего края */
-      right: 15px;
-
-    }
-    #firsttop-sign{
+   #firsttop-sign{
       margin: 0% 5%;
       margin-top: 10%;
       margin-bottom: 5%;
@@ -335,7 +338,7 @@ html,body,head,header{
     .first-page{
       display: table;
       .divas1{
-        width: 100%;
+        width: 110%;
         height: 20%;
         display: table-cell;
         vertical-align: middle;
@@ -346,7 +349,7 @@ html,body,head,header{
           margin: 0 auto;
           .phone{
             width: 380px;
-            height: 160px;
+            height: 180px;
           }
         }
       }
@@ -363,12 +366,12 @@ html,body,head,header{
     }
 
     .business-page{
-      padding: 2% 2%;
+     // padding: 2% 2%;
       height: 250% ;
 
     }
     .events-page{
-      padding: 1% 2%;
+     // padding: 1% 2%;
       height:200% ;
 
     }
@@ -394,14 +397,15 @@ html,body,head,header{
       height:auto;
       float: left;
     }
-    #social1{
 
-      margin-top: 100px ;
-      //padding-right: 15%;
+    #social1{
+      top: 5%;
 
     }
+
+
     #firsttop-sign{
-      margin: 10% ;
+      //margin: 10% ;
     }
   }
 }
@@ -442,14 +446,14 @@ html,body,head,header{
       }
     }
 
-    #business-img{
+   #business-img{
 
       width: 30%;
       height: 50%;
       padding: 0% 20% ;
 
     }
-    #event-img{
+   #event-img{
       padding: 2% 2%;
       width: 30%;
       height:40%;
@@ -457,18 +461,18 @@ html,body,head,header{
     }
 
     .business-page{
-      padding: 2% 2%;
+
       height: 130% ;
 
     }
+    .business{
+      padding: 5%;
+    }
 
-    #social1{
-      border: 4px double white;
-      margin: 5% ;
-      //padding-right: 15%;
+
+   #social1{
+      top: 5%;
 
     }
-    #firsttop-sign{
-      margin: 5% 5%;
-    }
+
 }}
