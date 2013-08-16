@@ -96,10 +96,15 @@ html, body, head, header{
   a.carousel-control.right{
       margin-top: 2%;
   }
+  #social1{
+
+    position: absolute;
+    right:0;
+    top:10%;
+
+  }
   .social-links{
       display: inline;
-      position: absolute;
-      right:0; top:0;
       width: 100%;
       text-align: right;
       height: 18px;
@@ -288,16 +293,8 @@ html,body,head,header{
   .top-sign, #firsttop-sign{
     font-size: 130%;
   }
-    #social1{
 
-      position: absolute;
-      margin-top: 20%;
-
-      bottom: 15px; /* Положение от нижнего края */
-      right: 15px;
-
-    }
-    #firsttop-sign{
+   #firsttop-sign{
       margin: 0% 5%;
       margin-top: 10%;
       margin-bottom: 5%;
@@ -374,12 +371,13 @@ html,body,head,header{
       height:auto;
       float: left;
     }
-    #social1{
 
-      margin-top: 100px ;
-      //padding-right: 15%;
+    #social1{
+      top: 5%;
 
     }
+
+
     #firsttop-sign{
       margin: 10% ;
     }
@@ -446,10 +444,8 @@ html,body,head,header{
     }
 
 
-    #social1{
-      border: 4px double white;
-      margin: 5% ;
-      //padding-right: 15%;
+   #social1{
+      top: 5%;
 
     }
     #firsttop-sign{
