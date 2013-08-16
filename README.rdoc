@@ -542,3 +542,17 @@ if sender_id is nil that means sender is administrator
     response:
         success: {"success"=>true, "info"=>"Message removed successfully.", "status"=>200}
         error: {"errors"=>["Can't find message with id 30."], "success"=>false, "status"=>406}
+
+=== Settings
+==== set(method: POST)
+    url: http://localhost:3000/api/settings/set.json
+    data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW","user_settings":"{:friend_invite=>true, :friend_invite_accept=>false,
+          :end_of_hop=>false, :comment=>true, :like=>false}"}
+    response:
+        success: {"success"=>true, "info"=>"Settings succesfully updated.", "status"=>200}
+        success: {"success"=>false, "info"=>"Error.", "status"=>406}
+==== get(method: GET)
+    url: http://localhost:3000/api/settings/get.json
+    data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW"}
+    response:
+        success: {"friend_invite"=>true, "friend_invite_accept"=>false, "end_of_hop"=>false, "comment"=>true, "like"=>false}

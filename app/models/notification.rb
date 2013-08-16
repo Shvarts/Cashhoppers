@@ -6,10 +6,41 @@ class Notification < ActiveRecord::Base
   belongs_to :friend, class_name: 'User', foreign_key: :friend_id
 
   attr_accessible :comment_id, :like_id, :event_type, :user_id, :prize_id, :friend_id
-
+  validate :is_enabled
   before_create :push
 
   private
+
+  def is_enabled
+    if user && user.user_settings
+      case event_type
+        when "Friend invite"
+          if user.user_settings.friend_invite
+            errors.add(:id, "disabled.")
+          end
+        when "Friend invite accept"
+          if user.user_settings.friend_invite_accept
+            errors.add(:id, "disabled.")
+          end
+        when "End of hop"
+          if user.user_settings.end_of_hop
+            errors.add(:id, "disabled.")
+          end
+        when "Comment"
+          if user.user_settings.comment
+            errors.add(:id, "disabled.")
+          end
+        when "Like"
+          if user.user_settings.like
+            errors.add(:id, "disabled.")
+          end
+      end
+    end
+
+    if user && user.user_settings
+      errors.add(:start_date, "Can be only one daily hop per day.")
+    end
+  end
 
   def push
     session = CashHoppers::Application::SESSIONS.select{|session|
