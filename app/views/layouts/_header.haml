@@ -1,29 +1,65 @@
 .header
   .row-fluid
     .header-content
-      .span12
-        .header-left
-        .btn-group
-          %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %i.icon-align-justify
-            %span.caret
-          %ul.dropdown-menu.menu
-            %li
-              = link_to 'HOME', root_path, :class => 'navigation'
+      .span12.controls-row
+        .header-left.span6
+          .menu-full-screen
+            %ul
+              %li
+                = link_to 'HOME', root_path, :class => 'navigation'
 
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
-            %li
-              %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
-            %li
-              = link_to 'My Services', services_path, :class => 'navigation'
-        .header-right
+              %li
+                %a.navigation{:href=>"#gray-page"} ABOUT
+              %li
+                %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
+              %li
+                %a.navigation{:href=>"#what-page"} PHOTO GALLERY
+              %li
+                %a.navigation{:href=>"#business-page"} BUSINESSES
+              %li
+                %a.navigation{:href=>"#events-page"} SHOWS & EVENTS
+              %li
+                = link_to 'My Services', services_path, :class => 'navigation'
+              - if current_user
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+                %br
+              - else
+                = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-link'
+                = link_to 'Sigh In', new_user_session_path, class: 'btn btn-link'
+
+          .btn-group.link
+            -#button.btn.btn-navbar#my-btn{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+            %button.btn.dropdown-toggle.btn-navbar.btn-success{"data-toggle" => "dropdown", :href => "#"}
+              %span.icon-bar{:style => 'color: black'}menu
+              %span.icon-bar
+              %span.icon-bar
+            %ul.dropdown-menu.menu
+              %li
+                = link_to 'HOME', root_path, :class => 'navigation'
+
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+              %li
+                = link_to 'My Services', services_path, :class => 'navigation'
+
+              - if current_user
+                %li
+                  = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link navigation'
+              - else
+                %li
+                  = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-link navigation'
+                %li
+                  = link_to 'Sigh In', new_user_session_path, class: 'btn btn-link navigation'
+
+        .header-right.span6
           .button-container.text-right
             .btn-group
               %a.dropdown-toggle{"data-toggle" => "dropdown" }
