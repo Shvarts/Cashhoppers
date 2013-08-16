@@ -116,6 +116,10 @@ html, body, head, header{
       }
   }
 
+  #firsttop-sign{
+    margin: 5%;
+  }
+
   .gray-page{
     height: 100% ;
         background-color: #E9EEF4;
@@ -231,7 +235,7 @@ html,body,head,header{
 
 
                 width:300px;
-                height: 130px;
+                height: 140px;
               }
           }
       }
@@ -312,7 +316,7 @@ html,body,head,header{
     .first-page{
       display: table;
       .divas1{
-        width: 100%;
+        width: 110%;
         height: 20%;
         display: table-cell;
         vertical-align: middle;
@@ -323,7 +327,7 @@ html,body,head,header{
           margin: 0 auto;
           .phone{
             width: 380px;
-            height: 160px;
+            height: 180px;
           }
         }
       }
@@ -379,7 +383,7 @@ html,body,head,header{
 
 
     #firsttop-sign{
-      margin: 10% ;
+      //margin: 10% ;
     }
   }
 }
@@ -448,7 +452,5 @@ html,body,head,header{
       top: 5%;
 
     }
-    #firsttop-sign{
-      margin: 5% 5%;
-    }
+
 }}
