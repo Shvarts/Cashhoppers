@@ -4,7 +4,7 @@
   %table.table.table-condensed
     %tr
       %th
-        Style
+        Type
       %th
         Place
       %th
@@ -25,7 +25,7 @@
             = link_to "#{  prize.user.first_name}  #{ prize.user.last_name} ",  admin_users_tasks_photo_path({:user_id =>prize.user.id, :hop_id => prize.hop.id})
         %td{style: 'text-align: right'}
           -if User.producer?(current_user) || User.admin?(current_user)
-            -if  !prize.prize_type
+            -if  (!prize.prize_type || prize.prize_type == 'random' )&& prize.hop.hop_end
               %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '})'}
                 Randomly
               %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.rejectRecord("' + admin_prize_path(prize, {:prize => {:user_id => nil}}) + '", {hop_id: ' + @hop.id.to_s + '})'}

@@ -43,4 +43,11 @@ function change_user_prize(sender){
 
 }
 
+function place_hide(){
 
+    $('.place-field').hide();
+}
+function place_non_hide(){
+
+    $('.place-field').show();
+}

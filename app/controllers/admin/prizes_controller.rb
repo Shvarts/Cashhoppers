@@ -36,6 +36,8 @@ class Admin::PrizesController < ApplicationController
 
 
   def create
+
+    params[:prize][:place]= 'random' if params[:prize][:prize_type] == 'random'
     @prize = Prize.new(params[:prize])
     if @prize.save
       render text: 'ok'
@@ -46,7 +48,7 @@ class Admin::PrizesController < ApplicationController
   end
 
   def update
-    puts "--------------------------#{params}----------------------------------------"
+
     params[:id]= params[:prize_id] if params[:prize_id]
     @prize = Prize.find(params[:id])
     if @prize.update_attributes(params[:prize])

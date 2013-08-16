@@ -75,6 +75,10 @@ class Hop < ActiveRecord::Base
     end
   end
 
+  def hop_end
+    self.time_end < DateTime.now
+  end
+
   def self.find_old
     find(:all, :conditions => ["((time_end < ? AND daily = 0) OR (time_start < ? AND daily = 1)) AND close = 0", DateTime.now, DateTime.now.beginning_of_day ])
   end
