@@ -199,6 +199,28 @@ html, body, head, header{
     width: 60%;
     height: 65%
   }
+  .trade{
+    width: 60%;
+    height: 200%;
+    float: right;
+  }
+  .trade-list{
+    background-size:60% auto;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-image: url('trade_show.jpg');  ;
+  }
+  .trade-list a img.link-back{
+    width:10%;
+  }
+  .red{
+    color: red;
+  }
+  img.business-info{
+    margin: 40% auto;
+    width: 100%;
+  }
+
 }
 
 @media(min-width:100px)and(max-width: 399px){

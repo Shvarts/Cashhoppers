@@ -4,10 +4,14 @@ class Admin::HoppersController < Admin::AdminController
 
   def find_hopper
     @tab = 'find_hoppers'
+
+    @user = User.find_by_id(session[:last_hopper])  if session[:last_hopper]
   end
 
   def hopper_list
    @tab = 'generate_hoppers_list'
+   @id_array = session[:last_hoppers]  if session[:last_hoppers]
+   @users = session[:last_hoppers].map{|id| User.find_by_id(id)}  if session[:last_hoppers]
 
    if  params[:id]
      output = PdfWritter::TestDocument.new.to_pdf_hopper_list(params[:id])
@@ -52,20 +56,27 @@ class Admin::HoppersController < Admin::AdminController
 
   def select_user
     @user = User.find_by_id(params[:id])
+    session[:last_hopper]= params[:id]
     render :partial => 'hopper_info'
+
   end
 
   def select_hop
     @users = Hop.find_by_id(params[:id]).hoppers.all
 
     @id_array = @users.map{|user| user.id }
+    #session[:last_hoppers]= @id_array
     render :partial => 'generate_hop_list'
   end
 
   def select_zip
     @users = User.where(:zip => params[:zip]).all
+
     @id_array = @users.map{|user| user.id }
+
+    session[:last_hoppers]= @id_array
     render :partial => 'generate_hop_list'
+    #render :text => @id_array
   end
 
 

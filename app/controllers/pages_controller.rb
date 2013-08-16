@@ -23,4 +23,16 @@ class PagesController < ApplicationController
       :page => params[:page], :per_page => 10,
       :order => 'created_at DESC')
   end
+
+    def trade_show
+  end
+
+  def terms
+
+  end
+
+  def business_level
+
+  end
+
 end

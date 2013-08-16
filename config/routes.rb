@@ -7,6 +7,9 @@ CashHoppers::Application.routes.draw do
 
   root :to => 'pages#home'
   get 'pages/hoppers_activity'
+  get 'pages/business_level'
+  get 'pages/terms'
+  get 'pages/trade_show'
 
 
   namespace :admin do

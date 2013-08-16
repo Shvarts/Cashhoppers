@@ -108,13 +108,15 @@ class Hop < ActiveRecord::Base
 
   def self.import_from_excel(import_file)
     Spreadsheet.client_encoding = 'UTF-8'
-
+    Dir.mkdir("public/excel")    unless Dir.exist?("public/excel")
     File.open(Rails.root.join('public','excel', import_file.original_filename), 'wb+') do |file|
       file.write(import_file.read)
     end
 
     if import_file.original_filename.split(".").last == "xls"
       oo = Roo::Excel.new("#{Rails.root}/public/excel/#{import_file.original_filename}")
+      File.delete("#{Rails.root}/public/excel/#{import_file.original_filename}")
+      Dir.delete("public/excel")    if Dir.exist?("public/excel")
       oo.default_sheet = oo.sheets.first
       new_hop = {}
       hop_items = []
