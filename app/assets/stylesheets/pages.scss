@@ -35,11 +35,11 @@ html, body, head, header{
 
   .first-page{
     width: 100%;
-    margin-top: 69px;
+    margin-top: 15px;
     display: table;
       .divas1{
         width: 100%;
-        height: 80%;
+        height: 90%;
         display: table-cell;
         vertical-align: middle;
         .divas2{
@@ -98,6 +98,8 @@ html, body, head, header{
   }
   .social-links{
       display: inline;
+      position: absolute;
+      right:0; top:0;
       width: 100%;
       text-align: right;
       height: 18px;
@@ -252,12 +254,12 @@ html,body,head,header{
    }
 
   .business-page{
-    padding: 2% 2%;
+   // padding: 2% 2%;
     height: 200% ;
     background-color: #FFFFFF;
   }
   .events-page{
-    padding: 1% 2%;
+   // padding: 1% 2%;
     height:140% ;
     background-color: #FFFFFF;
   }
@@ -341,12 +343,12 @@ html,body,head,header{
     }
 
     .business-page{
-      padding: 2% 2%;
+     // padding: 2% 2%;
       height: 250% ;
 
     }
     .events-page{
-      padding: 1% 2%;
+     // padding: 1% 2%;
       height:200% ;
 
     }
@@ -420,14 +422,14 @@ html,body,head,header{
       }
     }
 
-    #business-img{
+   #business-img{
 
       width: 30%;
       height: 50%;
       padding: 0% 20% ;
 
     }
-    #event-img{
+   #event-img{
       padding: 2% 2%;
       width: 30%;
       height:40%;
@@ -435,10 +437,14 @@ html,body,head,header{
     }
 
     .business-page{
-      padding: 2% 2%;
+
       height: 130% ;
 
     }
+    .business{
+      padding: 5%;
+    }
+
 
     #social1{
       border: 4px double white;
@@ -450,97 +456,3 @@ html,body,head,header{
       margin: 5% 5%;
     }
 }}
-//    .header{
-//      .header-content{
-//        margin: 0 auto;
-//        height: 50px;
-//        .header-left{
-//          max-height: 140px;
-//          width: 100%;
-//          display: table;
-//          ul{
-//            padding-top:5px;
-//            float: left;
-//            text-align: left;
-//            width: 100%;
-//            display: table-cell;
-//            li{
-//              display: inline;
-//              font-size: 12px;
-//              font-weight: bolder;
-//            }
-//             li:last-child{
-//             border-right: none;
-//             }
-//
-//          }
-//        }
-//        .header-right{
-//          .button-container{
-//            float: right;
-//            padding-left: 0px;
-//            padding-right:0px;
-//            vertical-align: middle;
-//            display: table-cell;
-//
-//          }
-//        }
-//      }
-//    }
-//    .page-3{
-//     margin: 10% ;
-//    }
-//    p.top{
-//      font-family: "Arial Black", Gadget, sans-serif;
-//      font-size: 220%;
-//    }
-//    p.top-2{
-//      font-family: "Arial Black", Gadget, sans-serif;
-//      font-size: 300%;
-//      font-wedght: 200;
-//    }
-//    .button-container img{
-//      width: 50%;
-//      height: 30%;
-//
-//    }
-//  }
-//}
-//@font-face{
-//  url: 'fonts/5429331.ttf';
-//  font-family: 'topfont';
-//}
-//.top{
-//  font-family:'Century Gothic',verdana,arial,helvetica,sans-serif ;
-//  font-size: 70%;
-//}
-//.last-list{
-//  font-family:'Century Gothic',verdana,arial,helvetica,sans-serif ;
-//  line-height: 1.7;
-//  text-align: center;
-//  font-size: 160%;
-//  opacity: 0.7;
-//}
-//.top-sign{
-//  font-family: 'topfont', sans-serif ;
-//  text-align: center;
-//  font-size: 200%;
-//  opacity: 0.7;
-//  line-height: 1.2;
-//}
-//.weight{
-//  font-weight: bold ;
-//}
-//.center{
-//  text-align: center;
-//}
-//.links{
-//  color: dodgerblue;
-//  text-align: center;
-//}
-//.inline{
-//  display: inline;
-//}
-//#last-page{
-//    margin-top: 8%;
-//}

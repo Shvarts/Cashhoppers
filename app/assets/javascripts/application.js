@@ -55,12 +55,16 @@ function page_size(){
 
 
 }
+
+
 function dropdown(){
     $('.btn-group ul').hide();
 
     $(' .btn-group> ul >li> a').css('color', 'black');
     $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'green');
     $(' .btn-group> ul.dropdown-menu.menu').width($('html').width());
+    $('.button-container.text-right .btn-group ul').width('100%')
+
     $(' .btn-group').css('max-height', '200px');
     $('.btn-group .btn').click(function(){
         $('.btn-group ul.menu').toggle() ;
@@ -80,7 +84,8 @@ function menu_hide(){
 function service_menu(){
 
   $('.button-container.text-right .btn-group>a img').click(function(){
-         alert('click');
+      $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
+
           $('ul.dropdown-menu.button').toggle() ;
           menu_hide();
           return false;

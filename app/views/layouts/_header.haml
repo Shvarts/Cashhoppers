@@ -49,15 +49,14 @@
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
               %li
                 = link_to 'My Services', services_path, :class => 'navigation'
-
-              - if current_user
+              -if current_user
                 %li
-                  = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link navigation'
-              - else
+                  = link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => 'navigation'
+              -else
                 %li
-                  = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-link navigation'
+                  = link_to 'Sign Up', new_user_registration_path, :class => 'navigation'
                 %li
-                  = link_to 'Sigh In', new_user_session_path, class: 'btn btn-link navigation'
+                  = link_to 'Sign In', new_user_session_path, :class => 'navigation'
 
         .header-right.span6
           .button-container.text-right
