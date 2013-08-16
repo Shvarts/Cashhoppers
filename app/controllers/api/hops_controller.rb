@@ -90,6 +90,7 @@ class Api::HopsController < Api::ApplicationController
 
   def prizes
     @prizes = @hop.prizes
+    render 'prizes', content_type: 'application/json'
   end
 
   private

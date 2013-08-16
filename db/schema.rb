@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20130815141517) do
+
+#ActiveRecord::Schema.define(:version => 20130815083712) do
+
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -203,6 +207,15 @@ ActiveRecord::Schema.define(:version => 20130815141517) do
 
   add_index "user_hop_tasks", ["hop_task_id"], :name => "index_user_hop_tasks_on_hop_task_id"
   add_index "user_hop_tasks", ["user_id"], :name => "index_user_hop_tasks_on_user_id"
+
+  create_table "user_settings", :force => true do |t|
+    t.boolean "friend_invite"
+    t.boolean "friend_invite_accept"
+    t.boolean "end_of_hop"
+    t.boolean "comment"
+    t.boolean "like"
+    t.integer "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

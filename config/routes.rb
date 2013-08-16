@@ -1,6 +1,10 @@
   require 'will_paginate/array'
 CashHoppers::Application.routes.draw do
 
+  get "settings/get"
+
+  get "settings/set"
+
   root :to => 'pages#home'
   get 'pages/hoppers_activity'
 
@@ -134,6 +138,11 @@ CashHoppers::Application.routes.draw do
 
     #events
     get 'notifications',                   to: 'notifications#get_events_list'
+
+    #settings
+    post 'settings/set',      to: 'settings#set'
+    get 'settings/get',      to: 'settings#get'
+
   end
 
   devise_for :users
