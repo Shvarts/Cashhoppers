@@ -39,8 +39,6 @@ function change_user_prize(sender){
             prizes_modal.updateTable({});
         }
     });
-
-
 }
 
 function place_hide(){
@@ -50,4 +48,28 @@ function place_hide(){
 function place_non_hide(){
 
     $('.place-field').show();
+}
+
+function accept_hopper(hop_id, prize_id, user_id){
+    alert('text');
+    $.ajax({
+        url: "/admin/prizes/accept_user",
+        data: {hop_id: hop_id,  prize_id: prize_id, user_id: user_id },
+        type: 'POST',
+        beforeSend: function () {
+        },
+        complete: function(){
+        },
+        error: function(err){
+            alert("error");
+        },
+        success: function(data){
+
+            $('.accept_user').html("<div class = 'alert alert-success'>Email was successfully delivered</div>");
+            $('td.buttons-section .btn')
+        }
+
+
+
+    });
 }

@@ -1,8 +1,48 @@
-%h1
-  Template_2
+= image_tag attachments['logo_1.jpg'].url
+%h3{style: 'color: green;'}
+  CONGRATULATIONS!
+%p
+  Your cashhopper skills have paid off-you have won
+%br
+  %b
+    =@place
+%br
+In the
+%br
+  %b
+    =@hop
+%br
+%br
+Please respond to
+%span{style: 'color: green'}
+  HOPMASTER@CASHHOPPERS.com
+and let us know how you would like to receive your prize -
+%br
+%br
+%span{style: 'color: green'}
+  By PayPal
+\- give us your PayPal email address
+%br
+%span{style: 'color: green'}
+  By check
+\- give us your mailing address
+
+%br
+%br
+
 = @message.text
-%br
 %b
-  picture
-%br
-= image_tag  attachments['image.jpg'].url
+%p
+  %b
+    Thank you for being a CASHHOPPER and keep hoppin'!
+.row-fluid
+  .span3
+    = image_tag attachments['logo_2.jpg'].url , :style => 'align: right;'
+  .span4
+    The HOPMASTER
+    %br
+    HOPMASTER@CASHHOPPERS.com
+%p
+  = link_to "PLEASE 'LIKE' US ON  FACEBOOK!", '#' # :href => 'https://www.facebook.com/CashHoppers?ref=hl'
+  %br
+  = link_to "CLICK HERE!",  '#'#:href => 'https://www.facebook.com/CashHoppers?ref=hl'

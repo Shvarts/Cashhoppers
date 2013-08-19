@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130815141517) do
-
-#ActiveRecord::Schema.define(:version => 20130815083712) do
-
+ActiveRecord::Schema.define(:version => 20130819115216) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -164,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20130815141517) do
     t.integer "hop_id"
     t.integer "pts"
     t.string  "prize_type"
+    t.boolean "accept"
   end
 
   add_index "prizes", ["hop_id"], :name => "index_prizes_on_hop_id"

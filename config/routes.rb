@@ -50,6 +50,7 @@ CashHoppers::Application.routes.draw do
     resources :prizes
 
     post 'prizes/random_user' ,             to: 'prizes#random_user' , as: 'random_user'
+    post 'prizes/accept_user' ,             to: 'prizes#accept_user' , as: 'accept_user'
     #ads
     resources :ads
 

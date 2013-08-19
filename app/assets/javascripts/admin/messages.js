@@ -74,3 +74,22 @@ function search_by(url){
 //    });
     hops_modal.loadPartial(url, {query1: $('#search_field').val() }, 'Select:');
 }
+
+function winner_hop(select){
+    if($(select).val()==1  ){
+        $('.new-hop').html('');
+        $('.hop-winner').html('');
+        $('.subject-container').show();
+    }
+   else if($(select).val()==2){
+     $('.hop-winner').html("PRIZE PLACE: <input name = 'prize_place' value = ''  placeholder='put prize place'></input><br  /><br  />NAME OF HOP: <input name = 'hop_name' value = '' placeholder='put hop name' ></input>");
+     $('.new-hop').html('');
+     $('.subject-container').hide();
+   }
+   else if($(select).val()==3){
+     $('.new-hop').html("HOP NAME: <input name = 'hop_name' value = '' placeholder='put hop name' ></input><br  />")
+     $('.subject-container').show();
+     $('.hop-winner').html('');
+   }
+}
+

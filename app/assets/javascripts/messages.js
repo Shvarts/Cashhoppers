@@ -10,3 +10,4 @@ function send_message(friend_id){
         }
     });
 }
+
