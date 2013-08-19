@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     doublicate_tasks = @user_hop_tasks + @user_hop_tasks
     @tasks_pack = []
     tasks_count.times do |i|
-      @tasks_pack << doublicate_tasks[i..(i+4)]
+      @tasks_pack << doublicate_tasks[i..(i+3)]
     end
 
     render :layout=> "home_layout"

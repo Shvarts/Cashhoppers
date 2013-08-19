@@ -210,7 +210,8 @@
   .span10
     .text-right
       = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
-
--for i in UserHopTask.all
-  =  i.photo_file_name
-=UserHopTask.all.count
+%br
+.row-fluid
+  .span3
+    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+  .span9

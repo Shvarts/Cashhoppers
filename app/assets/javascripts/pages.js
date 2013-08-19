@@ -12,7 +12,7 @@ $(document).ready(function(){
 //    document.write("User-agent header sent: " + navigator.userAgent);
 
     $('.carousel').carousel({
-        interval: 4000
+        interval: 40000000
     })
 
 //

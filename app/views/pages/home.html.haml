@@ -16,7 +16,7 @@
         %p The photo-scavenger game that pays tou cash
     .divas2
       .phone
-        .carousel.slide
+        .carousel.slide#myCarousel
           .carousel-inner
             - @user_hop_tasks.each do |task|
               .item
@@ -96,7 +96,7 @@
       %br
         %p See what other Hoppers are taking pictures of and pick your favorites!
       %br
-      .carousel.slide.gallery-2
+      .carousel.slide.gallery-2#carousel2
 
         .carousel-inner
           - unless @tasks_pack.blank?
@@ -104,8 +104,8 @@
               .item
                 - unless pack.blank?
                   - pack.each do |task|
-                    .inline
-                      = image_tag( task.photo.url , :style => "display: inline")
+                    .inline{:width => '20%', style:'display: inline'}
+                      = image_tag( task.photo.url , :style => "display: inline", :width => '20%')
         %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
