@@ -2,18 +2,18 @@
   .span12
     %table
       %tr
-        %td
+        %td.span4
           Hop task text
-        %td
+        %td.span4
           Hop task logo
-        %td
+        %td.span4.text-center
           Photo
       -for i in @photos
         %tr
           %td
             = HopTask.find_by_id(i.hop_task_id).text
           %td
-            = HopTask.find_by_id(i.hop_task_id).logo
-          %td
-            = i.photo
-= link_to "Back", admin_hop_path(@hop)
+            = image_tag HopTask.find_by_id(i.hop_task_id).logo, :size => "260x200"
+          %td.text-right
+            = image_tag i.photo
+= link_to "Back", admin_hop_path(@hop), :size => "260x200"

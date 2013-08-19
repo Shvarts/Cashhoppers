@@ -198,7 +198,6 @@
         %td
           = user.user_name
         %td
-
           = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
         %td
           -id = (user.prizes.first)?  user.prizes.first.id : 0
@@ -212,3 +211,6 @@
     .text-right
       = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
 
+-for i in UserHopTask.all
+  =  i.photo_file_name
+=UserHopTask.all.count
