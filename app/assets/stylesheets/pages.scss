@@ -420,6 +420,12 @@ html,body,head,header{
     width: 100%;
     height: 25px
   }
+  img.phone-button{
+
+    margin-top: 5%;
+    width: 100%;
+
+  }
 
   }
 }
@@ -482,8 +488,9 @@ html,body,head,header{
         left: 2px;
       }
     }
-    #carousel2 a{
-      margin-top: 2%;
+    .carousel.slide#carousel2 a.carousel-control{
+      margin-top: -6%;
+
     }
 
     .business-page{
@@ -527,7 +534,8 @@ html,body,head,header{
 
 
     #firsttop-sign{
-      //margin: 10% ;
+      display: block;
+      margin-bottom: 10% ;
     }
 
     .trade-list{
@@ -542,6 +550,7 @@ html,body,head,header{
         display: block;
       }
     }
+
   }
 }
 

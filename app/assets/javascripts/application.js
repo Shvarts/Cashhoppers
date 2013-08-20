@@ -43,11 +43,12 @@ $(document).ready(function(){
 function buttonselect(){
 
     var useragent = navigator.userAgent.toLowerCase();
+
     if( useragent.match("iphone")){
-        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-app-store.png' ></a>")
+        $(".button-container").html("<a href='http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com'><img src = '/assets/button-app-store.png' class = 'phone-button'></a>")
     }
     else if(useragent.match("android") ) {
-        $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-google-play.jpg'></a>")
+        $(".button-container").html("<a href='https://play.google.com/store'><img src = '/assets/button-google-play.jpg' class = 'phone-button'></a>")
     }
 
 }

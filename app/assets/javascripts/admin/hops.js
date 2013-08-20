@@ -67,6 +67,7 @@ function accept_hopper(hop_id, prize_id, user_id){
 
             $('.accept_user').html("<div class = 'alert alert-success'>Email was successfully delivered</div>");
             $('td.buttons-section .btn')
+            prizes_modal.updateTable({});
         }
 
 
