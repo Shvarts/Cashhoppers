@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_filter :authenticate_user!
+  layout "home_layout", :only => [:trade_show, :terms, :business_level ]
 
   def home
     if  flash[:notice]== "You updated your account successfully."
@@ -24,7 +25,8 @@ class PagesController < ApplicationController
       :order => 'created_at DESC')
   end
 
-    def trade_show
+  def trade_show
+
   end
 
   def terms

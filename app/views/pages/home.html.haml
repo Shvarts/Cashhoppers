@@ -1,8 +1,5 @@
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.jpg"}); display: table; position: relative;"}
   .social-links#social1
-    = link_to 'Login', new_user_session_path, class: 'btn btn-link'
-    |
-    = link_to 'Sigh Up', new_user_registration_path, class: 'btn btn-link'
     %a{href: '/auth/facebook', class: 'services'}
       =image_tag('facebook.png', :style=>'height:50px')
     %a{href: '/auth/twitter', class: 'services'}
@@ -81,9 +78,8 @@
                 Wait to see if you've won!
             It's that easy !
             %br
-              =link_to 'TOUR A DAILY HOP', '#', :class => 'btn btn-success '
             %br
-              =link_to 'TOUR A TRADE SHOW HOP', '#', :class => 'btn btn-success '
+            =link_to 'TOUR A TRADE SHOW HOP',  pages_trade_show_path, :class => 'btn btn-success '
         .span2
 .page-divider
 .custom-pg.what-page
@@ -138,10 +134,10 @@
                   Find out how to use CASHHOPPERS to your bussiness's advantage.
                 %br
                 %br
-                = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
+                = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning'
                 %br
                 %br
-                = link_to 'SIGN ME UP', new_user_registration_path,:class => 'btn  btn-success '
+                = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success '
             .span6.text-left
               = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img"
         .span2
@@ -170,9 +166,9 @@
             %br
               Find out how you can use CASHHOPPERS at your next trade show or event
             %br
-              = link_to 'LEARN MORE', '#',:class => 'btn btn-warning'
+              = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning'
             %br
-              = link_to 'SET AN APPOINTMENT', '#',:class => 'btn  btn-success'
+              = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn  btn-success'
     .span2
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
@@ -188,6 +184,11 @@
           %br
           %br
             Contact CashHoppers for more information:
+            %br
+            %br
+            (317) 572-8002
+            %br
+            %br
             %span.weight
               = link_to 'CashHoppersMaster.com', ''
           %br
@@ -216,45 +217,18 @@
     %li
       = link_to 'HOME', '#'
     %li
-      = link_to 'ABOUT'
+      %a.navigation{:href=>"#gray-page"} ABOUT
     %li
-      = link_to 'HOW TO PLAY'
+      %a.navigation{:href=>"#yellow-page"} HOW TO PLAY
     %li
-      = link_to 'GALLERY'
+      %a.navigation{:href=>"#what-page"} GALLERY
     %li
       = link_to 'BUSINESS',  pages_business_level_path
     %li
       = link_to 'TRADE SHOWS', pages_trade_show_path
     %li
-      = link_to 'CONTACT'
+      %a.navigation{:href=>"#last-page"} CONTACT
     %li
       = link_to 'TERMS', pages_terms_path
-    %li
-      = link_to 'DOWNLOAD APP'
-  %ul.bottom-menu
-    %li
-      = link_to 'LOGIN'
-    %li
-      = link_to 'BUSINESS SIGN UP'
-    %li
-      = link_to 'TRADE SHOW SIGN UP'
-    %li
-      = link_to 'ADVERTISE'
-    %li
-      = link_to 'FACEBOOK'
-    %li
-      = link_to 'TWITTER'
-    %li
-      = link_to 'GOOGLE+'
-  %ul.bottom-menu
-    %li
-      = link_to 'Admin Page', admin_index_path if current_user && !current_user.role?('user')
-    %li
-      = link_to 'Friends', friends_path
-    %li
-      = link_to 'Messages', messages_friends_list_path
-    %li
-      = link_to 'Hoppers activity (temp)', pages_hoppers_activity_path
-    - if current_user
-      %li
-        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+
+

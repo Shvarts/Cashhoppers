@@ -14,9 +14,9 @@ html, body, head, header{
     background-size: cover;
 
   }
-    //#carousel2 a{
-    //   margin-top: -13%;
-    //}
+  #last-page .span5{
+    padding: 2%;
+  }
   #firsttop-sign p, #firsttop-sign{
      line-height: 1.5;
      text-align: center;
@@ -63,9 +63,7 @@ html, body, head, header{
       }
     }
   .carousel.slide#myCarousel{
-
-
-    margin: 0% 0%;
+  margin: 0% 0%;
     padding: 0% 0%;
     position: absolute;
     display: block;
@@ -236,7 +234,10 @@ html, body, head, header{
     background-size:60% auto;
     background-position: right center;
     background-repeat: no-repeat;
-    background-image: url('trade_show.jpg');  ;
+    background-image: url('trade_show.jpg');
+    .trade_img{
+      display: none;
+    }
   }
   .trade-list a img.link-back{
     width:10%;
@@ -247,6 +248,15 @@ html, body, head, header{
   img.business-info{
     margin: 40% auto;
     width: 100%;
+  }
+  .top-sign.page-text{
+    margin-top: 10%;
+  }
+  .page-text{
+
+
+    padding:5%;
+
   }
 
 }
@@ -401,6 +411,18 @@ html,body,head,header{
       margin-top: 10%;
       margin-bottom: 5%;
     }
+  .trade-list{
+    background-size:60% auto;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-image: none;
+    .span5.text-left.page-text{
+      width: 100%
+    }
+    .trade_img{
+      display: block;
+    }
+  }
 
   }
 }
@@ -477,6 +499,7 @@ html,body,head,header{
       height:200% ;
 
     }
+
     .what-page{
       height:200% ;
     }
@@ -508,6 +531,19 @@ html,body,head,header{
 
     #firsttop-sign{
       //margin: 10% ;
+    }
+
+    .trade-list{
+      background-size:60% auto;
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-image: none;
+      .span5.text-left.page-text{
+        width: 100%
+      }
+      .trade_img{
+        display: block;
+      }
     }
   }
 }
@@ -617,6 +653,18 @@ html,body,head,header{
    #social1{
       top: 5%;
 
+    }
+    .trade-list{
+      background-size:60% auto;
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-image: none;
+      .span5.text-left.page-text{
+        width: 100%
+      }
+      .trade_img{
+        display: block;
+      }
     }
 
 }}
