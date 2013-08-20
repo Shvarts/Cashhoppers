@@ -1,4 +1,3 @@
-
 .header
   .row-fluid
     .header-content
@@ -64,12 +63,12 @@
           .button-container.text-right
             .btn-group
               %a.dropdown-toggle{"data-toggle" => "dropdown" }
-                =image_tag('/assets/button-app-store.png')
+                =image_tag('/assets/button-download.jpg')
               %ul.dropdown-menu.button
                 %li
-                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"}
+                  %a.navigation{:href=>"http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com", :target => '_blank'}
                     =image_tag('/assets/button-app-store.png')
                 %li
-                  %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"}
-                    =image_tag('/assets/button-app-store.png')
+                  %a.navigation{:href=>"https://play.google.com/store", :target => '_blank'}
+                    =image_tag('/assets/button-google-play.jpg')
 

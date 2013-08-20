@@ -25,13 +25,13 @@
 
 $(document).ready(function(){
     buttonselect();
-    page_size();
+
     $('.gallery-2').css('width','78%')
 
 
     $(".collapse").collapse();
 
-    menu_hide();
+
     dropdown();
     service_menu();
 
@@ -43,16 +43,13 @@ $(document).ready(function(){
 function buttonselect(){
 
     var useragent = navigator.userAgent.toLowerCase();
-
-
     if( useragent.match("iphone")){
         $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-app-store.png' ></a>")
-
     }
     else if(useragent.match("android") ) {
         $(".button-container").html("<a href='/users/sign_in'><img src = '/assets/button-google-play.jpg'></a>")
-
     }
+
 }
 
 function page_size(){
@@ -82,24 +79,39 @@ function dropdown(){
 
 
 function menu_hide(){
-
-    $('.dropdown-menu.menu li a').click(function(){
+   $('.dropdown-menu.menu li a').click(function(){
         $('.btn-group ul.menu').hide();
+     })
 
-    })
+}
+function button_menu_hide(){
+   $('.dropdown-menu.button li a').click(function(){
+
+        $('.btn-group ul').hide();
+     })
 
 }
 
 
 
 function service_menu(){
-
+    button_menu_hide();
   $('.header-right .button-container.text-right .btn-group>a img').click(function(){
       $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
+         $('ul.dropdown-menu.button').toggle() ;
 
-          $('ul.dropdown-menu.button').toggle() ;
-          menu_hide();
+
           return false;
   })
+// $('.header-right .button-container.text-right a img').click(function(){
+//     alert('text');
+//      $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
+//     alert('text2');
+//         $('ul.dropdown-menu.button').toggle() ;
+//
+//          menu_hide();
+//          return false;
+//  })
+
 }
 
