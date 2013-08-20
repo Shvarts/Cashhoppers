@@ -20,7 +20,7 @@
           .carousel-inner
             - @user_hop_tasks.each do |task|
               .item
-                =image_tag task.photo.url, :style => 'height:100%; width:100%'
+                =image_tag task.photo.url
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
