@@ -111,15 +111,7 @@ function service_menu(){
 
           return false;
   })
-// $('.header-right .button-container.text-right a img').click(function(){
-//     alert('text');
-//      $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
-//     alert('text2');
-//         $('ul.dropdown-menu.button').toggle() ;
-//
-//          menu_hide();
-//          return false;
-//  })
+
 
 }
 

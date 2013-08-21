@@ -7,5 +7,9 @@ class UsersController < ApplicationController
     @hops = @user.games
   end
 
+  def index
+
+  end
+
 
 end

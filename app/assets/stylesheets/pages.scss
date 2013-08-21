@@ -414,6 +414,7 @@ html,body,head,header{
     }
     .trade_img{
       display: block;
+
     }
 
   }
@@ -426,6 +427,11 @@ html,body,head,header{
 
     margin-top: 5%;
     width: 100%;
+
+  }
+  img.business-info{
+    height: 200px;
+
 
   }
 
@@ -551,6 +557,11 @@ html,body,head,header{
       .trade_img{
         display: block;
       }
+    }
+    img.business-info{
+      height: 250px;
+
+
     }
 
   }
