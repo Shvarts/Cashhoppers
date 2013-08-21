@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
 
   has_one :user_settings
 
-  before_create :create_role
+  before_create :before_create
+  after_create :after_create
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -74,9 +75,13 @@ class User < ActiveRecord::Base
 
   private
 
-  def init_user
+  def before_create
+    frog_legs = 0
+  end
+
+  def after_create
     self.roles << Role.find_by_name(:user)
-    user.user_settings = UserSettings.create()
+    user_settings = UserSettings.create()
   end
 
 end

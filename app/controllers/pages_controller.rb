@@ -3,9 +3,15 @@ class PagesController < ApplicationController
   layout "home_layout", :only => [:trade_show, :terms, :business_level ]
 
   def home
+
+
+
     if  flash[:notice]== "You updated your account successfully."
       redirect_to user_path(current_user.id)
       flash[:notice] = flash[:notice]
+    #elsif flash[:notice]== "Signed in successfully."
+    #  flash[:notice] = flash[:notice]
+     #render users_index_path
     end
 
     tasks_count = 5
@@ -16,7 +22,7 @@ class PagesController < ApplicationController
       @tasks_pack << doublicate_tasks[i..(i+3)]
     end
 
-    render :layout=> "home_layout"
+    redirect_to users_index_path, :layout=> "home_layout"
   end
 
   def hoppers_activity

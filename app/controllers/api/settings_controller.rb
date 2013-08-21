@@ -10,7 +10,8 @@ class Api::SettingsController < Api::ApplicationController
       friend_invite_accept: settings.friend_invite_accept,
       end_of_hop: settings.end_of_hop,
       comment: settings.comment,
-      like: settings.like
+      like: settings.like,
+      ad_enable: settings.ad_enable
     }
   end
 
@@ -30,5 +31,4 @@ class Api::SettingsController < Api::ApplicationController
 
   end
 
-  #render 'get_events_list', content_type: 'application/json'
 end
