@@ -50,7 +50,7 @@ html, body, head, header{
           .phone{
 
               vertical-align: middle;
-              display: table-cell;
+              display: block;
               position: relative;
               width: 870px;
               height: 400px;
@@ -68,10 +68,10 @@ html, body, head, header{
     position: absolute;
     display: block;
     height: 370px;
-    top: 22px;
-    right: 130px;
+    top: 23px;
+    right: 135px;
     height: 344px;
-    width: 613px;
+    width: 617px;
     background-color:gainsboro;
     .carousel-inner{
 
