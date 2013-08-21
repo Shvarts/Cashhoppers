@@ -1,6 +1,6 @@
 class UserSettings < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :friend_invite, :friend_invite_accept, :end_of_hop, :comment, :like
+  attr_accessible :friend_invite, :friend_invite_accept, :end_of_hop, :comment, :like, :ad_enable
   before_save :init_settings
 
   private
@@ -11,6 +11,7 @@ class UserSettings < ActiveRecord::Base
     end_of_hop = 1
     comment = 1
     like = 1
+    ad_enable = 1
   end
 
 end
