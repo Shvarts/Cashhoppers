@@ -144,8 +144,11 @@ CashHoppers::Application.routes.draw do
     get 'notifications',                   to: 'notifications#get_events_list'
 
     #settings
-    post 'settings/set',      to: 'settings#set'
-    get 'settings/get',      to: 'settings#get'
+    post 'settings/set',                   to: 'settings#set'
+    get 'settings/get',                    to: 'settings#get'
+
+    #payment
+    get 'payment/get_frog_legs_count',     to: 'payment#get_frog_legs_count'
 
   end
 
