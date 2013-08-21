@@ -201,7 +201,7 @@
           = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
         %td
           -id = (user.prizes.first)?  user.prizes.first.id : 0
-          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => false).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
+          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => nil).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
                                  :user_id => user.id, :onchange => "change_user_prize(this);"
 %br
 .row-fluid

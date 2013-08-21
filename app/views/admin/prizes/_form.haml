@@ -24,9 +24,9 @@
           Special place:
       %td
         Place
-        =radio_button(:prize, :prize_type, "", :checked => true,:onclick => 'place_non_hide();')
+        =radio_button(:prize, :prize_type, "", :checked => true,:onclick => 'place_prize();')
         Special prize
-        =  radio_button(:prize, :prize_type, "special", :onclick => 'place_non_hide();')
+        =  radio_button(:prize, :prize_type, "special", :onclick => 'special_prize();')
         Random prize
         =  radio_button(:prize, :prize_type, "random", :onclick => 'place_hide();')
 
@@ -35,7 +35,7 @@
         %b
           Place № /title :
       %td
-        = f.text_field :place, class: 'span12 place-field'
+        = f.number_field :place, class: 'span12 place-field'
     %tr
       %td{colspan: 2}
         = link_to 'Submit', '#', class: 'btn btn-info create-prize', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); return false;'

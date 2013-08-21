@@ -72,6 +72,9 @@ class User < ActiveRecord::Base
   def self.advertiser?(user)
     user.role? :advertiser
   end
+  def self.user?(user)
+    user.role? :user
+  end
 
   private
 

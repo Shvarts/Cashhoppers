@@ -40,7 +40,7 @@ html, body, head, header{
       .divas1{
         width: 100%;
         height: 90%;
-        display: table-cell;
+        display:block;
         vertical-align: middle;
         .divas2{
 
@@ -50,7 +50,7 @@ html, body, head, header{
           .phone{
 
               vertical-align: middle;
-              display: table-cell;
+              display: block;
               position: relative;
               width: 870px;
               height: 400px;
@@ -68,10 +68,10 @@ html, body, head, header{
     position: absolute;
     display: block;
     height: 370px;
-    top: 22px;
-    right: 130px;
+    top: 23px;
+    right: 135px;
     height: 344px;
-    width: 613px;
+    width: 617px;
     background-color:gainsboro;
     .carousel-inner{
 
@@ -251,9 +251,11 @@ html, body, head, header{
   }
   .top-sign.page-text{
     margin-top: 10%;
+
   }
   .page-text{
     padding:5%;
+
   }
   img.download{
     margin-top: 5%;
@@ -412,6 +414,7 @@ html,body,head,header{
     }
     .trade_img{
       display: block;
+
     }
 
   }
@@ -424,6 +427,11 @@ html,body,head,header{
 
     margin-top: 5%;
     width: 100%;
+
+  }
+  img.business-info{
+    height: 200px;
+
 
   }
 
@@ -549,6 +557,11 @@ html,body,head,header{
       .trade_img{
         display: block;
       }
+    }
+    img.business-info{
+      height: 250px;
+
+
     }
 
   }

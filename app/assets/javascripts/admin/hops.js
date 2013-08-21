@@ -45,9 +45,15 @@ function place_hide(){
 
     $('.place-field').hide();
 }
-function place_non_hide(){
+function special_prize(){
 
     $('.place-field').show();
+    $('.place-field').attr('type','text');
+}
+function place_prize(){
+
+    $('.place-field').show();
+    $('.place-field').attr('type','number');
 }
 
 function accept_hopper(hop_id, prize_id, user_id){

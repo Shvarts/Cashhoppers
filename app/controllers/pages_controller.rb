@@ -3,10 +3,6 @@ class PagesController < ApplicationController
   layout "home_layout", :only => [:trade_show, :terms, :business_level ]
 
   def home
-    if  flash[:notice]== "You updated your account successfully."
-      redirect_to user_path(current_user.id)
-      flash[:notice] = flash[:notice]
-    end
 
     tasks_count = 5
     @user_hop_tasks = UserHopTask.limit(tasks_count).order("created_at DESC")
@@ -16,7 +12,20 @@ class PagesController < ApplicationController
       @tasks_pack << doublicate_tasks[i..(i+3)]
     end
 
-    render :layout=> "home_layout"
+    if  flash[:notice]== "You updated your account successfully."
+      redirect_to user_path(current_user.id)
+      flash[:notice] = flash[:notice]
+    elsif flash[:notice]== "Signed in successfully." || flash[:notice]== 'Your account was successfully confirmed. You are now signed in.'
+      flash[:notice] = flash[:notice]
+      if ! User.user?(current_user)
+        redirect_to admin_index_path, :layout=> "home_layout"
+      else
+        redirect_to users_index_path, :layout=> "home_layout"
+      end
+    else
+      render :layout=> "home_layout"
+    end
+
   end
 
   def hoppers_activity
