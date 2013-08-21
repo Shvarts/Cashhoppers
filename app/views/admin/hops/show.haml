@@ -173,6 +173,7 @@
 %hr
 %h4
   Hoppers:
+
 - if @hoppers.blank?
   List has no rows
 - else
@@ -192,7 +193,8 @@
     - @hoppers.each do |user|
       %tr
         %td
-          = link_to user.first_name, user_path(:id => user.id)
+          = link_to "#{  user.first_name}  #{user.last_name} ",  admin_users_tasks_photo_path({:user_id =>user.id, :hop_id =>@hop.id})
+
         %td
           = user.last_name
         %td

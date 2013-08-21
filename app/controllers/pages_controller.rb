@@ -16,12 +16,8 @@ class PagesController < ApplicationController
       redirect_to user_path(current_user.id)
       flash[:notice] = flash[:notice]
     elsif flash[:notice]== "Signed in successfully." || flash[:notice]== 'Your account was successfully confirmed. You are now signed in.'
-      flash[:notice] = flash[:notice]
-      if ! User.user?(current_user)
-        redirect_to admin_index_path, :layout=> "home_layout"
-      else
-        redirect_to users_index_path, :layout=> "home_layout"
-      end
+        flash[:notice] = flash[:notice]
+        redirect_to user_path(current_user.id), :layout=> "admin_sidebar"
     else
       render :layout=> "home_layout"
     end

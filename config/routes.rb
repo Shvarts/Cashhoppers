@@ -17,7 +17,7 @@ CashHoppers::Application.routes.draw do
 
     get 'pages/index', :as => 'index'
 
-    get "users/index"
+
     post "users/change_user_role"
     get "users/tasks_photo"
 
@@ -136,6 +136,7 @@ CashHoppers::Application.routes.draw do
     delete 'messages/remove_message',      to: 'messages#remove_message'
 
     #users
+    get "users/index"
     get 'users/get_users',                 to: 'users#index'
     get 'users/get_my_info',               to: 'users#get_my_info'
     get 'users/get_user_info',             to: 'users#get_user_info'

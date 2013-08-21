@@ -22,7 +22,7 @@
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#last-page": root_path}"} CONTACT US
 
               - if current_user
-                = link_to 'My page', users_index_path, class: 'btn btn-link'
+                = link_to 'My page', user_path(current_user.id), class: 'btn btn-link'
                 = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-link'
                 %br
               - else
