@@ -6,10 +6,11 @@
   %li
     = link_to 'Hoppers',  admin_hoppers_find_hopper_path if can? :manage, :all
   %li
-    = link_to 'Hops', admin_regular_hops_path
+    = link_to 'Hops', admin_regular_hops_path if !User.user?(current_user)
   %li
-    = link_to 'Ads', admin_ads_path
+    = link_to 'Ads', admin_ads_path if !User.user?(current_user)
+
   %li
     = link_to 'Manege Users', admin_users_index_path if can? :manage, :all
   %li
-    =link_to 'FAQ', admin_asks_path
+    =link_to 'FAQ', admin_asks_path if can? :manage, :all
