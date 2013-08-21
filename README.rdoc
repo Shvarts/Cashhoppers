@@ -62,7 +62,15 @@ provider can be 'facebook', 'google' and 'twitter'
     response:
         success: {"success"=>true, "info"=>"Confirmation successfully.", "data"=>{"email"=>"misha.skubenich@gmail.com"}, "status"=>200}
         error: {"errors"=>{"errors"=>["Bad confirmation token"]}, "success"=>false, "status"=>406}
-
+====check user service existing(method: GET)
+    url: http://localhost:3000/api/sessions/service_exist.json?api_key=123&provider=facebook&uid=sd
+    data: {
+            api_key: "123",
+            provider: 'facebook||twitter||google'
+            uid: 2332424
+          }
+    response:
+        success: {"user_exist"=>false}
 ===Friends
 ====get friends(method: GET)
     url: http://localhost:3000/api/friends/get_friends.json?api_key=123&authentication_token=6o93YmJyXdYUxDsNUxQq

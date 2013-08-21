@@ -1,7 +1,7 @@
 class Api::SessionsController < Api::ApplicationController
 
   skip_before_filter :api_authentikate_user
-  before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration]
+  before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration, :service_exist]
 
   def sign_up
     user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip],
@@ -107,6 +107,17 @@ class Api::SessionsController < Api::ApplicationController
         destroy_session session
         bad_request ["Email can't be blank."], 401
       end
+    end
+  end
+
+  def service_exist
+    if params[:provider] && params[:uid]
+      auth = Service.find_by_provider_and_uid(params[:provider], params[:uid])
+      render :json => {
+        user_exist: (auth)? true : false
+      }
+    else
+      bad_request ['Bad params.'], 200
     end
   end
 

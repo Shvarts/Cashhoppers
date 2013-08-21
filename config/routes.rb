@@ -92,6 +92,7 @@ CashHoppers::Application.routes.draw do
     delete 'sessions',                     to: 'sessions#destroy',       as: 'logout'
     post 'confirm_registration',           to: 'sessions#confirm_registration'
     post 'sign_in_via_service',            to: 'sessions#sign_in_via_service'
+    get 'sessions/service_exist',          to: 'sessions#service_exist'
 
     get 'ads/get_ads' => 'ads#index'
 
