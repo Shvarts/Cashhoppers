@@ -555,7 +555,14 @@ if sender_id is nil that means sender is administrator
     url: http://localhost:3000/api/settings/get.json
     data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW"}
     response:
-        success: {"friend_invite"=>true, "friend_invite_accept"=>false, "end_of_hop"=>false, "comment"=>true, "like"=>false}
+        success: {
+                    "friend_invite"=>true,
+                    "friend_invite_accept"=>false,
+                    "end_of_hop"=>false,
+                    "comment"=>true,
+                    "like"=>false,
+                    "ad_enable"=>false
+                 }
 
 ===Payment
 ====get balance(method: GET)
@@ -563,3 +570,17 @@ if sender_id is nil that means sender is administrator
     data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW"}
     response:
         success: {"frog_legs_count"=>0}
+====update balance(method: POST)
+    url: http://localhost:3000/api/payment/refill_your_account.json
+    data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW","frog_legs_count":"20"}
+    response:
+        success: {"message"=>"Successfully updated your balance."}
+        error: {"errors"=>["Bad params."], "success"=>false, "status"=>406}
+====disable ads(method: POST)
+cost 20 frog legs (need refactor)
+    url: http://localhost:3000/api/payment/disable_ads.json
+    data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW"}
+    response:
+        success: {"message"=>"Succesfully disabled ads."}
+        error: {"errors"=>["Already disabled ads."], "success"=>false, "status"=>406}
+        error: {"errors"=>["You dont have enough many."], "success"=>false, "status"=>406}

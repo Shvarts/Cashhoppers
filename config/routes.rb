@@ -149,6 +149,8 @@ CashHoppers::Application.routes.draw do
 
     #payment
     get 'payment/get_frog_legs_count',     to: 'payment#get_frog_legs_count'
+    post 'payment/refill_your_account',    to: 'payment#refill_your_account'
+    post 'payment/disable_ads',            to: 'payment#disable_ads'
 
   end
 
