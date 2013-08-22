@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821081346) do
+ActiveRecord::Schema.define(:version => 20130822142731) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -68,13 +68,6 @@ ActiveRecord::Schema.define(:version => 20130821081346) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "faqs", :force => true do |t|
-    t.string   "ask"
-    t.text     "answer"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -113,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20130821081346) do
     t.datetime "time_end"
     t.integer  "producer_id"
     t.string   "code"
-    t.string   "price"
+    t.integer  "price"
     t.integer  "jackpot"
     t.boolean  "daily"
     t.boolean  "close"

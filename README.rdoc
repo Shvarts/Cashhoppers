@@ -248,6 +248,8 @@ service should be 'twitter', 'facebook', 'google'
         success: {"success"=>true, "info"=>"Task create!", "status"=>200}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
                {"errors"=>["Hop task already comleted."], "success"=>false, "status"=>406}
+               {"errors"=>["Hop is paid."], "success"=>false, "status"=>200}
+               {"errors"=>["Can\'t find hop by hop task."], "success"=>false, "status"=>200}
 ====get hop task by id(method: GET)
     url: http://localhost:3000/api/task/get_hop_task.json?api_key=123&authentication_token=VAdHZlkp4v9iupjTvfEnrI3SWgXYM5&hop_task_id=2
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_task_id: 1}
@@ -592,3 +594,10 @@ cost 20 frog legs (need refactor)
         success: {"message"=>"Succesfully disabled ads."}
         error: {"errors"=>["Already disabled ads."], "success"=>false, "status"=>406}
         error: {"errors"=>["You dont have enough many."], "success"=>false, "status"=>406}
+====buy hop(method: POST)
+    url: http://localhost:3000/api/payment/buy_hop.json
+    data: {"api_key":"123","authentication_token":"w39DhgIgCnZ1eBnyGr5rzGHfNXoJTW", hop_id: 4}
+    response:
+        success: {"message"=>"Succesfully paid hop."}
+        error: {"errors"=>["Already paid hop."], "success"=>false, "status"=>406}
+               {"errors"=>["You dont have enough many."], "success"=>false, "status"=>406}

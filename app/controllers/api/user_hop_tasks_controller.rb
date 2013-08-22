@@ -6,7 +6,11 @@ class Api::UserHopTasksController < Api::ApplicationController
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
       bad_request(['Hop task already comleted.'], 200)
-    elsif @hop_task && @hop_task.hop
+    elsif !@hop_task || !@hop_task.hop
+      bad_request(['Can\'t find hop by hop task.'], 406)
+    elsif !@hop_task.hop.free? && !@hop_task.hop.assigned?(@current_user)
+      bad_request(['Hop is paid.'], 406)
+    elsif @hop_task && @hop_task.hop && (@hop_task.hop.free? || @hop_task.hop.assigned?(@current_user))
       hop_task_data = {}
       hop_task_data[:user_id] = @current_user.id
       hop_task_data[:hop_task_id] = params[:hop_task_id]
@@ -14,7 +18,10 @@ class Api::UserHopTasksController < Api::ApplicationController
       hop_task_data[:comment] = params[:comment]
       @task = UserHopTask.new(hop_task_data)
       if @task.save
-        @hop_task.hop.assign @current_user
+        if(@hop_task.hop.free? && !@hop_task.hop.assigned?(@current_user))
+          @hop_task.hop.assign @current_user
+        end
+
         @hop_task.hop.increase_score @current_user, @hop_task.pts
         render :json => {success: true,
                          info: "Task create!",

@@ -15,7 +15,7 @@ class Hop < ActiveRecord::Base
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
   validates :jackpot, numericality: { only_integer: true }, unless: :daily?
-  validates :price, numericality: true, unless: :daily?
+  validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
 
   def self.get_daily_by_date date
@@ -28,6 +28,10 @@ class Hop < ActiveRecord::Base
       ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
       ActiveRecord::Base.connection.close
     end
+  end
+
+  def assigned? user
+    hoppers.include? User.find(user.id)
   end
 
   def score user
@@ -104,6 +108,10 @@ class Hop < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def free?
+    price.blank?
   end
 
   def self.import_from_excel(import_file)

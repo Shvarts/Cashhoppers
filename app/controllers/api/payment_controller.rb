@@ -36,4 +36,29 @@ class Api::PaymentController < Api::ApplicationController
     end
   end
 
+  def buy_hop
+    unless @current_user.user_settings
+      @current_user.user_settings = UserSettings.create
+    end
+
+    @hop = Hop.where(id: params[:hop_id]).first
+
+    if @hop
+      if @hop.assigned?(@current_user)
+        bad_request ['Already paid hop.'], 406
+      elsif User.find(@current_user.id).frog_legs < @hop.price
+        bad_request ['You dont have enough many.'], 406
+      else
+        @hop.assign @current_user
+        @current_user.update_attribute :frog_legs, (User.find(@current_user.id).frog_legs - @hop.price)
+        render :json => {
+          message: 'Succesfully paid hop.'
+        }
+      end
+    else
+      bad_request ['Can\'t find hop by id.'], 406
+    end
+  end
+
+
 end
