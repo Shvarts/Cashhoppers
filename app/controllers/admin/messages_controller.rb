@@ -6,7 +6,16 @@ class Admin::MessagesController < Admin::AdminController
     @tab = 'email_tool'
     @email = EmailAlert.new
     (params[:id])? @users =[params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] :  @users =[[],[]]
-
+    ( params[:prize_id])? (flash[:winner] = 2 ):(flash[:winner] = 1)
+    if params[:prize_id]
+      @prize = Prize.find_by_id(params[:prize_id])
+      @hop_name = @prize.hop.name
+    else
+      @prize = Prize.new
+      @prize.place=''
+      @hop_name = ''
+    end
+    puts("-------------------------------------#{@prize.place}---------------")
   end
 
   def message_tool
@@ -66,7 +75,7 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def email_create
-    #render :text=> params[:prize_place], [:hop_name]
+
     params[:zip_codes] = [-1] unless params[:zip_codes].present?
     params[:users_ids] = [-1] unless params[:users_ids].present?
     params[:hops_ids] = [-1] unless params[:hops_ids].present?
@@ -74,7 +83,10 @@ class Admin::MessagesController < Admin::AdminController
     if params[:prize_place]
       template_data[:prize_place] = params[:prize_place]
       template_data[:hop_name] = params[:hop_name]
-      params[:email_alert][:subject] = ' CONGRATULATIONS HOPPER!'
+      begin
+        Prize.where(place: params[:prize_place],:hop_id => Hop.find_by_name(params[:hop_name]).id).first.update_attributes(:accept => true) if  !params[:prize_place].blank?
+      rescue Exception => e
+      end
     elsif params[:hop_name]
       template_data[:hop_name] = params[:hop_name]
 
@@ -103,15 +115,18 @@ class Admin::MessagesController < Admin::AdminController
       flash[:error] = 'Receivers not selected.'
       @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
       render action: 'email_tool'
-    elsif  template_data[:hop_name] && !Hop.find_by_name( template_data[:hop_name])
+    elsif  !template_data[:hop_name].blank? && !Hop.find_by_name( template_data[:hop_name])
+
       flash[:error] = 'same field was blank or Hop not exist'
       @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
+      @prize = Prize.new
+      @prize.place=''
+      @hop_name = ''
       render action: 'email_tool'
     else
       @messages.each{|m| m.save}
-
-      UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
-      redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
+       UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
+        redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
     end
 
   end

@@ -3,14 +3,17 @@
   CONGRATULATIONS!
 %p
   Your cashhopper skills have paid off-you have won
-%br
-  %b
-    =@place
-%br
-In the
-%br
+.text-center{style: 'text-align: center'}
+  %br
+  In the Hop:
   %b
     =@hop
+%br
+.text-center{style: 'text-align: center'}
+  Your place:
+  %br
+    %b
+      =@place
 %br
 %br
 Please respond to
@@ -35,13 +38,14 @@ and let us know how you would like to receive your prize -
 %p
   %b
     Thank you for being a CASHHOPPER and keep hoppin'!
-.row-fluid
-  .span3
-    = image_tag attachments['logo_2.jpg'].url , :style => 'align: right;'
-  .span4
-    The HOPMASTER
-    %br
-    HOPMASTER@CASHHOPPERS.com
+.div
+  = image_tag attachments['logo_2.jpg'].url , :style => 'align: right;'
+.span4{style: 'text-align: left'}
+
+  The HOPMASTER
+  %br
+  %br
+  HOPMASTER@CASHHOPPERS.com
 %p
   = link_to "PLEASE 'LIKE' US ON  FACEBOOK!", '#' # :href => 'https://www.facebook.com/CashHoppers?ref=hl'
   %br

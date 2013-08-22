@@ -19,7 +19,7 @@
               %li
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#last-page": root_path}"} CONTACT US
+                %a.navigation{:href=>admin_ask_path(1)} FAQ
 
               - if current_user
                 = link_to 'My page', user_path(current_user.id), class: 'btn btn-link'

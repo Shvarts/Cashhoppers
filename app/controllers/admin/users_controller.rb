@@ -5,8 +5,9 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def change_user_role
-    user = User.find(params[:user_id])
-    role = Role.find(params[:new_role_id])
+    puts "----------------------------------------------#{params}----------------------------"
+    user = User.find_by_id(params[:user_id])
+    role = Role.find_by_id(params[:new_role_id])
     if user && role
       user.roles = [role]
       render :text => "Succesfully changed "+user.email + " role to " + role.name

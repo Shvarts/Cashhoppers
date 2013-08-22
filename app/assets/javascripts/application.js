@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+    // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -19,6 +19,7 @@
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
 //= require twitter/bootstrap/bootstrap-carousel
+
 //= require bootstrap-datetimepicker
 //= require wice_grid
 //= require bootstrap-fileupload.min
@@ -56,7 +57,7 @@ function buttonselect(){
 function default_hide_dropdown(){
        $('html').click(function(){
 
-               $('.btn-group ul').hide();
+               $('.btn-group ul').hide('slow');
            }
    )
 }
@@ -85,7 +86,7 @@ function dropdown(){
 
 function menu_hide(){
    $('.dropdown-menu.menu li a').click(function(){
-        $('.btn-group ul.menu').hide();
+        $('.btn-group ul.menu').hide('slow');
 
      })
 
@@ -93,7 +94,7 @@ function menu_hide(){
 function button_menu_hide(){
    $('.dropdown-menu.button li a').click(function(){
 
-        $('.btn-group ul').hide();
+        $('.btn-group ul').hide('slow');
 
 
      })

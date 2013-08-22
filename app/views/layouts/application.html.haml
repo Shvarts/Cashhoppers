@@ -36,7 +36,7 @@
             = render partial: 'layouts/sidebar'
             = render partial: 'layouts/admin_sidebar' if current_user
             = yield :sidebar
-            = controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
+            -#= controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
           .span10
             = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
 

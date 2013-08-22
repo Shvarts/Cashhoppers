@@ -7,7 +7,7 @@
         -g.column name:'User name', attribute: 'user_name'
         -g.column name:'First name', attribute: 'first_name'
         -g.column name:'Last name', attribute: 'last_name'
-        -g.column name:'Email', attribute: 'email'
+        -g.column name:'Email', attribute: 'id'
         - g.column  name: 'Role', class: 'role' do |user|
           - select_tag :role, options_for_select(Role.all.map{ |u| [u.name, u.id] }, user.roles.first.id),
                      :user_id => user.id, :onchange => "change_user_role(this);"

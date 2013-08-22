@@ -20,6 +20,7 @@ CashHoppers::Application.routes.draw do
 
     post "users/change_user_role"
     get "users/tasks_photo"
+    get "users/index"
 
     resources :applications
 
@@ -42,6 +43,7 @@ CashHoppers::Application.routes.draw do
     post 'hops/import_from_excel',         to: 'hops#import_from_excel',      as: 'import_from_excel'
     post 'hops/print_hop_to_excel',        to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
     post 'hops/print_hops_to_excel',       to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
+    get 'hops/render_hoppers',            to: 'hops#render_hoppers',           as: 'render_hoppers'
 
     #hop_tasks
     resources :hop_tasks

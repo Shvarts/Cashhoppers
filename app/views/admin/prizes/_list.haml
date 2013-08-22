@@ -8,7 +8,7 @@
       %th
         Place
       %th
-        Cost
+        Prize
       %th
         User
       %th
@@ -27,13 +27,13 @@
         %td.buttons-section{style: 'text-align: right'}
           -if (User.producer?(current_user) || User.admin?(current_user)) && !prize.accept
             -if  (prize.prize_type == '' || prize.prize_type == 'random' )&& prize.hop.hop_end
-              %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '})'}
+              %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
                 Randomly
-              %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.rejectRecord("' + admin_prize_path(prize, {:prize => {:user_id => nil}}) + '", {hop_id: ' + @hop.id.to_s + '})'}
-                Reject
-              -if prize.user
-                %button.btn.btn-success.btn-mini{onclick: 'accept_hopper( ' + @hop.id.to_s + ','+prize.id.to_s+','+ prize.user.id.to_s+')'}
-                  Accept
+            %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.rejectRecord("' + admin_prize_path(prize, {:prize => {:user_id => nil}}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
+              Reject
+            -if prize.user
+              =link_to ' Accept', admin_messages_email_tool_path({:id => [prize.user.id], :prize_id => prize.id}), :class=>"btn btn-success btn-mini" #{onclick: 'accept_hopper( ' + @hop.id.to_s + ','+prize.id.to_s+','+ prize.user.id.to_s+')'}
+
             %button.btn.btn-info.btn-mini{onclick: 'prizes_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit prize", "' + edit_admin_prize_path(prize) + '")'}
               Edit
             %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.removeRecord("' + admin_prize_path(prize) + '", {hop_id: ' + @hop.id.to_s + '})'}
