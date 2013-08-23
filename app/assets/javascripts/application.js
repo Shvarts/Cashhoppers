@@ -77,6 +77,7 @@ function dropdown(){
     $('.btn-group .btn').click(function(){
         $('.btn-group ul.menu').toggle('slow') ;
         menu_hide();
+
         return false;
 
    })
@@ -104,8 +105,9 @@ function button_menu_hide(){
 
 
 function service_menu(){
+
     button_menu_hide();
-  $('.header-right .button-container.text-right .btn-group>a img').click(function(){
+  $('.header-right .button-container.text-right .btn-group>a img, #download_app').click(function(){
       $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
          $('ul.dropdown-menu.button').toggle('slow') ;
 
@@ -115,4 +117,3 @@ function service_menu(){
 
 
 }
-

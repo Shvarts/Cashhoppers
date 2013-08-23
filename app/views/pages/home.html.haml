@@ -1,4 +1,5 @@
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.jpg"}); display: table; position: relative;"}
+  %h2{:id=>"first-page"}
   .social-links#social1
     %a{href: '/auth/facebook', class: 'services'}
       =image_tag('facebook.png', :style=>'height:50px')
@@ -48,7 +49,7 @@
               %br
                 .weight
                   Download the
-                  =link_to 'FREE CASHHOPPERS APP', '#'
+                  =link_to 'FREE CASHHOPPERS APP', '#', :id => 'download_app'
                   today and start HOPPING!
         .span2
 .page-divider
@@ -70,7 +71,7 @@
               %li
                 Download the
                 %span.weight
-                  = link_to 'FREE app.', '#'
+                  = link_to 'FREE app.', '#', :id=>'download_app'
               %li
                 Find the HOP you want to play(enter the password if it's a private HOP).
               %li
@@ -198,7 +199,7 @@
             %br
             %br
             %span.weight
-              CashHoppersMaster.com
+              HopMaster@CASHHOPPERS.com
           %br
           %br
         .span4

@@ -6,7 +6,8 @@
           .menu-full-screen
             %ul
               %li
-                = link_to 'HOME', root_path, :class => 'navigation'
+                -#= link_to 'HOME', root_path, :class => 'navigation'
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#first-page": root_path}"} HOME
 
               %li
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
@@ -51,6 +52,8 @@
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
               %li
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#last-page": root_path}"} CONTACT US
+              %li
+                %a.navigation{:href=> pages_faq_path } FAQ
               -if current_user
                 %li
                   = link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => 'navigation'
