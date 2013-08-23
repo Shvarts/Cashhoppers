@@ -11,9 +11,9 @@
       - @asks.each do |ask|
         %tr
           %td
-            = ask.ask
+            = text_area_tag :text,  ask.ask, :width => '100%'
           %td
-            = ask.answer
+            = text_area_tag :text,  ask.answer, :width => '100%'
           %td
           %td{style: 'text-align: right'}
             %button.btn.btn-info.btn-mini{onclick: 'asks_modal.editRecord({}, "Edit ask", "' + edit_admin_ask_path(ask) + '")'}

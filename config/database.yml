@@ -28,7 +28,7 @@ test:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: remeta
+  password: '12345'
   host: 127.0.0.1
 
 
@@ -39,5 +39,5 @@ production:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: remeta
+  password: '12345'
   host: 127.0.0.1

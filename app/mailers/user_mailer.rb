@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
     @message = message
     if !template_data.blank?
       @place = template_data[:prize_place] if template_data[:prize_place]
-      @hop = template_data[:hop_name]
+      @hop = Hop.find_by_name(template_data[:hop_name])
       unless template_data[:prize_place]
         @hop = Hop.find_by_name(template_data[:hop_name])
 

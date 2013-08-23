@@ -8,7 +8,7 @@
       =image_tag('google.png', :style=>'height:38px')
   .divas1
     -if  flash[:notice]
-      .alert.alert-error{ style: 'margin: 5% 5%;'}
+      .alert.alert-success{ style: 'margin: 5% 5%;'}
         = flash[:notice]
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
@@ -110,40 +110,41 @@
     .span2
 .page-divider
 .custom-pg.business-page
-  .divas1
-    .divas2
-      .row-fluid#business
-        %h2{:id=>"business-page"}
-        .span2
-        .span8.text-center.page-3
-          .top-sign
-            = succeed "HOPPERS" do
-              %span.weight CASH
-            FOR
-            %span.weight BUSINESS
-          %br
-          .row-fluid.business-block
-            .span6.text-left
-              .business
-                The CASHHOPPERS game is a great tool to add to your marketing
-                and advertising mix. SPONSOR a HOP item, and drive players to your
-                booth, building or web site. ADVERTISE within the app and reach
-                players with promotional opportunities, product discounts or brand
-                messages. You can also create private HOPs - for your customers
-                only - to highlight new products, grand openings, or any other
-                big news that will have your customer base HOPPIN!
-                %br
-                %br
-                  Find out how to use CASHHOPPERS to your bussiness's advantage.
-                %br
-                %br
-                = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning'
-                %br
-                %br
-                = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success '
-            .span6.text-left
-              = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img"
-        .span2
+  %h2{:id=>"business-page"}
+  .row-fluid#business
+    .span2
+    .span8.text-center.page-3
+      .top-sign
+        = succeed "HOPPERS" do
+          %span.weight CASH
+        FOR
+        %span.weight BUSINESS
+      %br
+      .row-fluid.business-block
+        .span6.text-left
+          .business
+            The CASHHOPPERS game is a great tool to add to your marketing
+            and advertising mix. SPONSOR a HOP item, and drive players to your
+            booth, building or web site. ADVERTISE within the app and reach
+            players with promotional opportunities, product discounts or brand
+            messages. You can also create private HOPs - for your customers
+            only - to highlight new products, grand openings, or any other
+            big news that will have your customer base HOPPIN!
+            %br
+            %br
+              Find out how to use CASHHOPPERS to your bussiness's advantage.
+            %br
+            .two-buttons
+
+              %ul
+                %li
+                  = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning business-button'
+
+                %li
+                  = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button'
+        .span6.text-left
+          = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img"
+    .span2
 .page-divider
 .custom-pg.events-page
   %h2{:id=>"events-page"}
@@ -169,9 +170,13 @@
             %br
               Find out how you can use CASHHOPPERS at your next trade show or event
             %br
-              = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning'
-            %br
-              = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn  btn-success'
+            .two-buttons
+              %ul
+                %li
+                  = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning business-button'
+                %li
+
+                  = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn  btn-success business-button mini-button'
     .span2
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
@@ -193,7 +198,7 @@
             %br
             %br
             %span.weight
-              = link_to 'CashHoppersMaster.com', ''
+              CashHoppersMaster.com
           %br
           %br
         .span4

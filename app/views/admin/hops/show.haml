@@ -3,11 +3,17 @@
   var tasks_modal;
   var ads_modal;
   var prizes_modal;
+  var hoppers_modal;
+
   $(document).ready(function(){
     tasks_modal = new ModalCRUD({
       new_path: "#{new_admin_hop_task_path}",
       index_path: "#{admin_hop_tasks_path}",
       list_id: 'tasksTable'
+    });
+    hoppers_modal = new ModalCRUD({
+      index_path: "#{admin_hop_tasks_path}",
+      list_id: 'hoppersTable'
     });
     ads_modal = new ModalCRUD({
       new_path: "#{new_admin_ad_path}",
@@ -68,6 +74,7 @@
             Name:
         %td
           = @hop.name
+
       %tr
         %td
           %b
@@ -173,36 +180,15 @@
 %hr
 %h4
   Hoppers:
+-#= UserHopTask.create(:hop_task_id => @hop.hop_tasks.first.id, :user_id => 50, :photo =>current_user.avatar, :comment=>'comment'  )
+-#=@hop.hoppers << User.find_by_id(50)
 - if @hoppers.blank?
   List has no rows
 - else
-  %table.table.table-condensed
-    %tr
-      %th
-        First Name
-      %th
-        Last Name
-      %th
-        User Name
-      %th
-        Avatar
-      %th
-        Prizes
-      %th
-    - @hoppers.each do |user|
-      %tr
-        %td
-          = link_to user.first_name, user_path(:id => user.id)
-        %td
-          = user.last_name
-        %td
-          = user.user_name
-        %td
-          = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
-        %td
-          -id = (user.prizes.first)?  user.prizes.first.id : 0
-          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => nil).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
-                                 :user_id => user.id, :onchange => "change_user_prize(this);"
+  #hoppersTable
+    = render partial: 'hopper_list'
+
+
 %br
 .row-fluid
   .span2.text-right

@@ -1,12 +1,36 @@
-%p#notice= notice
 
-%p
-  %b Ask:
-  = @ask.ask
-%p
-  %b Answer:
-  = @ask.answer
+%link{'href' => "css/bootstrap.min.css", 'rel' => 'stylesheet', 'type' => 'text/css'}/
+%link{'href' => "css/bootstrap-responsive.min.css", 'rel' => 'stylesheet', 'type' => 'text/css'}/
+:css
+  h3{
 
-= link_to 'Edit', edit_admin_ask_path(@ask)
-\|
-= link_to 'Back', admin_asks_path
+  }
+.row-fluid{style: 'margin-top: 5%'}
+  .span12.text-center
+    -for i in @asks
+      %h3
+        =i.ask
+      .text
+        = i.answer
+
+<div class="accordion-group">
+<div class="accordion-heading">
+<a class="accordion-toggle collapsed" href="#viewpage" data-parent="#accordion-demo" data-toggle="collapse">
+
+Test Your Page
+
+</a></div><div id="viewpage" class="accordion-body in collapse" style="height: 0px;"><div class="accordion-inner"><form id="viewpage"><p>
+
+Naturally, the last thing you'll want to do is test your
+page with the accordion wizard. Once you've confirmed that
+it's working as expected, release it on the world. Your
+users will definitely appreciate the feedback and guidance
+it gives to multi-step and complex tasks on your web site.
+
+</p></form></div>
+<!--/.accordion-inner -->
+</div>
+<!-- /#viewpage -->
+</div>
+<!-- /.accordion-group -->
+</div>

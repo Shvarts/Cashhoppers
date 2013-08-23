@@ -4,7 +4,7 @@ function change_user_role(sender){
     }
     $.ajax({
         url: "change_user_role",
-        data: { user_id: $(sender).attr('user_id'), prize: $(sender).val()},
+        data: { user_id: $(sender).attr('user_id'), new_role_id: $(sender).val()},
         type: 'POST',
         beforeSend: function () {
         },
@@ -14,7 +14,7 @@ function change_user_role(sender){
             alert("error");
         },
         success: function(data){
-            //alert(data);
+            alert(data);
         }
     });
 

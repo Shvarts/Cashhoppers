@@ -11,15 +11,17 @@ CashHoppers::Application.routes.draw do
   get 'pages/terms'
   get 'pages/trade_show'
   get 'users/index'
+  get 'pages/faq'
 
   namespace :admin do
     resources :asks
 
     get 'pages/index', :as => 'index'
 
-    get "users/index"
+
     post "users/change_user_role"
     get "users/tasks_photo"
+    get "users/index"
 
     resources :applications
 
@@ -42,6 +44,7 @@ CashHoppers::Application.routes.draw do
     post 'hops/import_from_excel',         to: 'hops#import_from_excel',      as: 'import_from_excel'
     post 'hops/print_hop_to_excel',        to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
     post 'hops/print_hops_to_excel',       to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
+    get 'hops/render_hoppers',            to: 'hops#render_hoppers',           as: 'render_hoppers'
 
     #hop_tasks
     resources :hop_tasks
@@ -139,6 +142,7 @@ CashHoppers::Application.routes.draw do
     delete 'messages/remove_message',      to: 'messages#remove_message'
 
     #users
+    get "users/index"
     get 'users/get_users',                 to: 'users#index'
     get 'users/get_my_info',               to: 'users#get_my_info'
     get 'users/get_user_info',             to: 'users#get_user_info'

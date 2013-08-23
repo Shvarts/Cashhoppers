@@ -1,5 +1,5 @@
 class  Admin::AsksController < Admin::AdminController
-
+  layout 'home_layout', only: :show
 
     def index
         @asks = Ask.paginate(page: params[:page], per_page:15 )
@@ -41,6 +41,8 @@ class  Admin::AsksController < Admin::AdminController
       @ask.destroy
       render text: 'ok'
     end
+
+
 
 
 end

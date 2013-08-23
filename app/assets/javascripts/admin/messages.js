@@ -23,6 +23,7 @@ $(document).ready(function(){
     });
 
     $('#users_ids__chzn .chzn-results').css('display', 'none');
+    winner_hop($('.template-select'));
 });
 
 function select_hop(btn, value, title){
@@ -37,20 +38,7 @@ function select_user(btn, value, title){
     $('#users_ids_').trigger("liszt:updated");
 }
 
-//function search_hop(){
-//    alert('click') ;
-//
-////    var exception_field_id = hops_modal.exception_field_id;
-////    var params = {};
-////    params.query = $('#query').val();
-////    if(exception_field_id == 'hops_ids_'){
-////        params = {selected_hops: $('.chzn-select#' + exception_field_id).val() };
-////    }
-////    if(exception_field_id == 'users_ids_'){
-////        params = {selected_users: $('.chzn-select#' + exception_field_id).val() };
-////    }
-////    hops_modal.loadPartial(hops_modal.index_path, params, 'Select Hops:');
-//}
+
 
 function search(url, button){
 
@@ -61,35 +49,29 @@ function search(url, button){
 }
 
 function search_by(url){
-//    $.ajax({
-//        url: url,
-//        data: {query1: $('#search_field').val() },
-//        type: 'get',
-//        error: function(err){
-//            alert("error");
-//        },
-//        success: function(data){
-//            $('.modal-body').html(data);
-//        }
-//    });
+
     hops_modal.loadPartial(url, {query1: $('#search_field').val() }, 'Select:');
 }
 
+
+
 function winner_hop(select){
-    if($(select).val()==1  ){
-        $('.new-hop').html('');
-        $('.hop-winner').html('');
-        $('.subject-container').show();
+
+    if($(select).val()==1){
+        $('.new-hop').hide();
+        $('.hop-winner').hide();
+        $('.subject').val('')
     }
-   else if($(select).val()==2){
-     $('.hop-winner').html("PRIZE PLACE: <input name = 'prize_place' value = ''  placeholder='put prize place'></input><br  /><br  />NAME OF HOP: <input name = 'hop_name' value = '' placeholder='put hop name' ></input>");
-     $('.new-hop').html('');
-     $('.subject-container').hide();
+   else if($(select).val()==2  ){
+     $('.subject').val('CONGRATULATIONS HOPPER!')
+     $('.hop-winner').show();
+     $('.new-hop').show();
+
    }
    else if($(select).val()==3){
-     $('.new-hop').html("HOP NAME: <input name = 'hop_name' value = '' placeholder='put hop name' ></input><br  />")
-     $('.subject-container').show();
-     $('.hop-winner').html('');
+     $('.new-hop').show();
+        $('.subject').val('')
+     $('.hop-winner').hide();
    }
 }
 

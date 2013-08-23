@@ -74,6 +74,13 @@ class Admin::HopsController < Admin::AdminController
 
   end
 
+ def render_hoppers
+   @hop = Hop.find_by_id(params[:hop_id])
+   @hoppers = @hop.hoppers
+
+   render partial: 'hopper_list'
+ end
+
   def edit_regular
 
   end
@@ -90,7 +97,7 @@ class Admin::HopsController < Admin::AdminController
     if @hop.update_attributes(params[:hop])
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
-      if hop.daily
+      if @hop.daily
         render action: 'edit_daily'
       else
         render action: 'edit_regular'

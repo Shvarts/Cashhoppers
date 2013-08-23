@@ -4,6 +4,10 @@
       %button.close{type: :button, 'data-dismiss' => 'alert'}
       = msg
 = render partial: 'layouts/modal_crud'
+- if !flash[:winner].blank?
+  :javascript
+    $('.new-hop').html('123');
+    $('.subject-container').css('display', 'none');
 :javascript
   var hops_modal;
   var users_modal;
@@ -39,18 +43,30 @@
     .span3
       Template(temp):
       %br
-      = f.select :template_id, [['General Email', 1],[' Winners Email', 2],['New HOP email', 3]], {}, {class: 'span12',:onchange => "winner_hop(this);"}
+
+
+      = f.select :template_id, options_for_select([['General Email', 1],[' Winners Email', 2],['New HOP email', 3]], flash[:winner]), {}, {class: 'span12 template-select',:onchange => "winner_hop(this);"}
       %br
       Send from:
       %br
+
       = f.select :sender_id, [['CashHoppers', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
       %br
       File:
       %br
       = file_field_tag :file
     .span9
-      .new-hop
-      .hop-winner
+
+      .new-hop{:style=>'display: none'}
+        NAME OF HOP:
+        %input{ :name => 'hop_name', :value => @hop_name, :placeholder=>'put hop name'}
+      %br
+      %br
+      .hop-winner{:style=>'display:none'}
+        PRIZE PLACE:
+        %input{ name:'prize_place', :value => @prize.place, :placeholder=>'put prize place'}
+
+
       .subject-container
         Subject:
         = f.text_field :subject, class: 'span12 subject'

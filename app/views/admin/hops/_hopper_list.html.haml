@@ -1,0 +1,32 @@
+%table.table.table-condensed
+  %tr
+    %th
+      First Name
+    %th
+      Last Name
+    %th
+      User Name
+    %th
+      Avatar
+    %th
+      Prizes
+    %th
+  - if !@hoppers.blank?
+    - @hoppers.each do |user|
+      %tr
+        %td
+          = link_to "#{  user.first_name}  #{user.last_name} ",  admin_users_tasks_photo_path({:user_id =>user.id, :hop_id =>@hop.id})
+
+        %td
+          = user.last_name
+        %td
+          = user.user_name
+        %td
+          -if @hop.daily?
+            = image_tag UserHopTask.where(:hop_task_id =>@hop.hop_tasks.first.id, :user_id => user.id ).first.photo.url
+          -else
+            = image_tag user.avatar.url, class: 'img-polaroid', style: 'height: 110px'
+        %td
+          -id = (user.prizes.first)?  user.prizes.first.id : 0
+          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => nil).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
+                                 :user_id => user.id, :onchange => "change_user_prize(this); update_hoppers("+ @hop.id.to_s+");"

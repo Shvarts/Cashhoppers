@@ -37,6 +37,8 @@ function change_user_prize(sender){
         },
         success: function(data){
             prizes_modal.updateTable({});
+
+
         }
     });
 }
@@ -56,27 +58,18 @@ function place_prize(){
     $('.place-field').attr('type','number');
 }
 
-function accept_hopper(hop_id, prize_id, user_id){
-    alert('text');
+
+function update_hoppers(id){
     $.ajax({
-        url: "/admin/prizes/accept_user",
-        data: {hop_id: hop_id,  prize_id: prize_id, user_id: user_id },
-        type: 'POST',
-        beforeSend: function () {
-        },
-        complete: function(){
-        },
+        url: '/admin/hops/render_hoppers',
+        data:{hop_id: id},
+        type: 'GET',
+        contentType: 'text',
         error: function(err){
             alert("error");
         },
         success: function(data){
-
-            $('.accept_user').html("<div class = 'alert alert-success'>Email was successfully delivered</div>");
-            $('td.buttons-section .btn')
-            prizes_modal.updateTable({});
+            $('#hoppersTable').html(data);
         }
-
-
-
     });
-}
+};

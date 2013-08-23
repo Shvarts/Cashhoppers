@@ -114,6 +114,7 @@ var ModalCRUD = (function () {
                 success: function(data){
                     if(data == 'ok'){
                         modal_crud.updateTable(params);
+
                     }else{
                         alert('error');
                     }
@@ -157,6 +158,7 @@ var ModalCRUD = (function () {
                 success: function(data){
                     if(data == 'ok'){
                         modal_crud.updateTable(params);
+
                     }else{
                         alert('error');
                     }
