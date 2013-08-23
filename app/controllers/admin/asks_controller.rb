@@ -42,11 +42,7 @@ class  Admin::AsksController < Admin::AdminController
       render text: 'ok'
     end
 
-    def show
 
-      @asks = Ask.all
-
-    end
 
 
 end

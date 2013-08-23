@@ -11,6 +11,7 @@ CashHoppers::Application.routes.draw do
   get 'pages/terms'
   get 'pages/trade_show'
   get 'users/index'
+  get 'pages/faq'
 
   namespace :admin do
     resources :asks

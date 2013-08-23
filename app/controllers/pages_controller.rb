@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout "home_layout", :only => [:trade_show, :terms, :business_level ]
+  layout "home_layout", :only => [:trade_show, :terms, :business_level, :faq ]
 
   def home
 
@@ -40,6 +40,10 @@ class PagesController < ApplicationController
 
   def business_level
 
+  end
+
+  def faq
+    @asks = Ask.all
   end
 
 end

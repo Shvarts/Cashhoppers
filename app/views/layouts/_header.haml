@@ -19,7 +19,7 @@
               %li
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
               %li
-                %a.navigation{:href=>admin_ask_path(1)} FAQ
+                %a.navigation{:href=> pages_faq_path } FAQ
 
               - if current_user
                 = link_to 'My page', user_path(current_user.id), class: 'btn btn-link'
