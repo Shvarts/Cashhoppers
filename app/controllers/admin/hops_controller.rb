@@ -238,9 +238,10 @@ class Admin::HopsController < Admin::AdminController
 
         @new_hop, @hop_items,@hop_ads, @winners = Hop.import_from_excel(import_file)
         @hoppers = []
-        @hop = Hop.new(@new_hop)
+        @hop = Hop.create!(@new_hop)
 
       rescue Exception =>e
+
 
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
@@ -249,7 +250,7 @@ class Admin::HopsController < Admin::AdminController
           @exp = []
           @exp << @hop.errors.messages unless @hop.errors.messages.blank?
           @exp << Hop.save_items_and_add_from_excel(@hop, @hop_items, @hop_ads, @winners)
-
+          puts @hop.errors.messages
 
           redirect_to   admin_hop_path(:id =>@hop, :exp=> @exp )
         else

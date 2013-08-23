@@ -14,7 +14,7 @@ class Hop < ActiveRecord::Base
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
-  validates :jackpot, numericality: { only_integer: true }, unless: :daily?
+  #validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
 
@@ -123,8 +123,7 @@ class Hop < ActiveRecord::Base
 
     if import_file.original_filename.split(".").last == "xls"
       oo = Roo::Excel.new("#{Rails.root}/public/excel/#{import_file.original_filename}")
-      File.delete("#{Rails.root}/public/excel/#{import_file.original_filename}")
-      Dir.delete("public/excel")    if Dir.exist?("public/excel")
+
       oo.default_sheet = oo.sheets.first
       new_hop = {}
       hop_items = []
@@ -151,21 +150,24 @@ class Hop < ActiveRecord::Base
         end
       end
 
+
+
       hop_row.upto(hop_winner_row ) do |i|
         1.upto(col_size) do |j|
           new_hop[:name] =  oo.cell(i + 1,j) if oo.cell(i,j) == 'Name' ||  oo.cell(i,j) == 'name'
           new_hop[:daily] = 0
           new_hop[:close] = 0
-          new_hop[:code] = oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
+          new_hop[:code] = oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
           new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Time start' ||  oo.cell(i,j) == 'time start'
           new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'Time end' ||  oo.cell(i,j) == 'time end'
-          new_hop[:price] = oo.cell(i + 1,j).to_i   if oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price'
+          new_hop[:price] = oo.cell(i + 1,j).to_s   if oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price'
           new_hop[:producer_id]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Showprod id' ||  oo.cell(i,j) == 'showprod id'
-          new_hop[:jackpot]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Jackpot' ||  oo.cell(i,j) == 'jackpot'
+          new_hop[:jackpot]=  oo.cell(i + 1,j).to_s if oo.cell(i,j) == 'Jackpot' ||  oo.cell(i,j) == 'jackpot'
           new_hop[:event]=  oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
 
         end
       end
+
 
 
       hop_winners = []
@@ -176,8 +178,9 @@ class Hop < ActiveRecord::Base
             (i+1).upto(hop_items_row-1 ) do |c|
               hop_winner[c] = {}
               1.upto(col_size) do |j|
-                hop_winner[c][:place] = oo.cell(c, j)  if (oo.cell(i,j) == "Place" ||  oo.cell(i,j) == "place") &&  !oo.cell(c, j).nil?
-                hop_winner[c][:cost] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Prize' ||  oo.cell(i,j) == 'prize') &&  !oo.cell(c, j).nil?
+                hop_winner[c][:place] = oo.cell(c, j).to_s  if (oo.cell(i,j) == "Place" ||  oo.cell(i,j) == "place") &&  !oo.cell(c, j).nil?
+                hop_winner[c][:cost] = oo.cell(c,j).to_s  if (oo.cell(i,j) == 'Prize' ||  oo.cell(i,j) == 'prize') &&  !oo.cell(c, j).nil?
+                hop_winner[c][:prize_type] = oo.cell(c,j).to_s  if (oo.cell(i,j) == 'Prize type' ||  oo.cell(i,j) == 'prize type') &&  !oo.cell(c, j).nil?
 
               end
               hop_winners <<  hop_winner[c] if !oo.cell(c, j).nil?
@@ -185,6 +188,7 @@ class Hop < ActiveRecord::Base
           end
         end
       end
+
 
       hop_items_row.upto(hop_ad_row -1) do |i|
         1.upto(col_size) do |j|
@@ -194,8 +198,8 @@ class Hop < ActiveRecord::Base
               1.upto(col_size) do |j|
                 hop_item[c][:text] = oo.cell(c, j)  if (oo.cell(i,j) == "Hop item description" ||  oo.cell(i,j) == "hop item description") &&  !oo.cell(c, j).nil?
                 hop_item[c][:sponsor_id] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Sponsor id' ||  oo.cell(i,j) == 'sponsor id') &&  !oo.cell(c, j).nil?
-                hop_item[c][:pts] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'PTS' ||  oo.cell(i,j) == 'pts')  &&  !oo.cell(c, j).nil?
-                hop_item[c][:bonus] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Bonus' ||  oo.cell(i,j) == 'bonus')  &&  !oo.cell(c, j).nil?
+                hop_item[c][:pts] = oo.cell(c,j).to_i if (oo.cell(i,j) == 'PTS' ||  oo.cell(i,j) == 'pts')  &&  !oo.cell(c, j).nil?
+                hop_item[c][:bonus] = oo.cell(c,j).to_i   if (oo.cell(i,j) == 'Bonus' ||  oo.cell(i,j) == 'bonus')  &&  !oo.cell(c, j).nil?
                 hop_item[c][:price] = oo.cell( c,j).to_i  if (oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price')  &&  !oo.cell(c, j).nil?
                 hop_item[c][:amt_paid]=  oo.cell(c,j).to_i if (oo.cell(i,j) == 'Amt paid' ||  oo.cell(i,j) == 'amt paid') &&  !oo.cell(c, j).nil?
               end

@@ -3,6 +3,6 @@ class Prize < ActiveRecord::Base
   belongs_to :hop
   belongs_to :user
   has_one :notification
-  validates :place, numericality: { only_integer: true }, if: "prize_type.nil?"
+  #validates :place, numericality: { only_integer: true }, if: "prize_type.nil?"
   validates_presence_of :cost
 end
