@@ -75,7 +75,7 @@ function dropdown(){
     });
     $(' .btn-group').css('max-height', '200px');
     $('.btn-group .btn').click(function(){
-        $('.btn-group ul.menu').toggle() ;
+        $('.btn-group ul.menu').toggle('slow') ;
         menu_hide();
         return false;
 
@@ -107,7 +107,7 @@ function service_menu(){
     button_menu_hide();
   $('.header-right .button-container.text-right .btn-group>a img').click(function(){
       $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
-         $('ul.dropdown-menu.button').toggle() ;
+         $('ul.dropdown-menu.button').toggle('slow') ;
 
 
           return false;

@@ -31,7 +31,7 @@
               %button.close{type: :button, 'data-dismiss' => 'alert'}
                 &times;
               = flash[:notice]
-        .row-fluid
+        .row-fluid{:style=>'padding-left: 5%'}
           .span2
             = render partial: 'layouts/sidebar'
             = render partial: 'layouts/admin_sidebar' if current_user

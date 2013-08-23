@@ -17,6 +17,10 @@
  *= require wice_grid
  *= require chosen
  */
+
+ body{
+   padding-left: 0px !important;
+ }
 .header{
   width: 100%;
   z-index: 100;
@@ -138,9 +142,6 @@
 
 
 }
-
-
-
 
 @media(min-width:100px)and(max-width: 900px){
 

@@ -185,6 +185,16 @@ html, body, head, header{
       padding: 1%;
   }
 
+  .two-buttons{
+      ul{
+
+        li{
+          margin-top: 5%;
+          list-style-type: none;
+        }
+      }
+    }
+
   .top-sign{
     font-family: 'topfont', sans-serif ;
     text-align: center;
@@ -268,6 +278,7 @@ html, body, head, header{
      width: 40%;
   }
 
+
   }
 
 @media(min-width:100px)and(max-width: 399px){
@@ -281,6 +292,18 @@ html,body,head,header{
 
     .page-divider{
     width: 98%;
+    }
+    .two-buttons{
+      ul{
+
+        li{
+          display: inline;
+          .mini-button{
+            width:40%;
+          }
+        }
+
+      }
     }
     .first-page{
      width: 100%;
@@ -433,6 +456,9 @@ html,body,head,header{
   }
   .span1.side-border{
     display: none;
+  }
+  .business-button{
+    width: 30%;
   }
 
   }
