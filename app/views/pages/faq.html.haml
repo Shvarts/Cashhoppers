@@ -1,20 +1,22 @@
+
 .row-fluid{style: 'margin-top: 10%'}
-  .span1
+  .span1{ style: 'height: 0%'}
   .span10
     .top-sign
       FAQ section
 %br
 -for i in @asks do
   .row-fluid
-    .span1
+    .span1.side-border
     .span10
       .accordion-group{style: 'margin: 0% 5%'}
         .accordion-heading
-          %a.accordion-toggle.collapsed{"data-parent" => "#accordion-demo", "data-toggle" => "collapse", :href => "##{i.id}"}
+          %a.accordion-toggle.collapsed{:style=>"word-wrap: break-word", "data-parent" => "#accordion-demo", "data-toggle" => "collapse", :href => "##{i.id}"}
             = i.ask
         .accordion-body.in.collapse{:style => "height: 0px;", :id => "#{i.id}"}
           .accordion-inner
-            %form#viewpage
-              %p
+            %form{:id => "#{i.id}"}
+              %p{:style => 'word-wrap: break-word '}
                 = i.answer
-    .span1
+
+    .span1#side-border
