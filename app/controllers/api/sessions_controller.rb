@@ -121,6 +121,18 @@ class Api::SessionsController < Api::ApplicationController
     end
   end
 
+  def set_android_registration_id
+    if params[:registration_id].present?
+      @session[:device] = 'Android'
+      @session[:device_token] = params[:registration_id]
+      render :json => {
+        message: 'Push notifications enabled.'
+      }
+    else
+      bad_request ['Bad params.'], 406
+    end
+  end
+
   private
 
   def create_session user

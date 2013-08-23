@@ -87,12 +87,14 @@ CashHoppers::Application.routes.draw do
   end
 
   namespace :api do
+    #session
     post 'sessions',                       to: 'sessions#create',        as: 'login'
     post 'sign_up',                        to: 'sessions#sign_up',       as: 'sign_up'
     delete 'sessions',                     to: 'sessions#destroy',       as: 'logout'
     post 'confirm_registration',           to: 'sessions#confirm_registration'
     post 'sign_in_via_service',            to: 'sessions#sign_in_via_service'
     get 'sessions/service_exist',          to: 'sessions#service_exist'
+    post 'sessions/set_android_registration_id', to: 'sessions#set_android_registration_id'
 
     get 'ads/get_ads' => 'ads#index'
 
