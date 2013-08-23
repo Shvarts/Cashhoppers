@@ -24,3 +24,11 @@ node :logo do |hop|
    hop.logo.url if hop.logo.present?
 end
 
+node :purchased do |hop|
+    if hop.free?
+        nil
+    else
+        hop.assigned? @current_user
+    end
+end
+

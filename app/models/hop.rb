@@ -111,7 +111,7 @@ class Hop < ActiveRecord::Base
   end
 
   def free?
-    price.blank?
+    price.blank? || price == 0
   end
 
   def self.import_from_excel(import_file)
