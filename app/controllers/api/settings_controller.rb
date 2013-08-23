@@ -7,12 +7,15 @@ class Api::SettingsController < Api::ApplicationController
     end
     settings = user.user_settings
     render json: {
-      friend_invite: settings.friend_invite,
+      friend_invite:        settings.friend_invite,
       friend_invite_accept: settings.friend_invite_accept,
-      end_of_hop: settings.end_of_hop,
-      comment: settings.comment,
-      like: settings.like,
-      ad_enable: settings.ad_enable
+      end_of_hop:           settings.end_of_hop,
+      comment:              settings.comment,
+      like:                 settings.like,
+      ad_enable:            settings.ad_enable,
+      message:              settings.message,
+      new_hop:              settings.new_hop,
+      hop_about_to_end:     settings.hop_about_to_end
     }
   end
 
@@ -21,7 +24,7 @@ class Api::SettingsController < Api::ApplicationController
     unless user.user_settings
       user.user_settings = UserSettings.create()
     end
-
+    params[:ad_enable] = nil
     if user.user_settings.update_attributes params[:user_settings]
       render :json => {:success=>true,
                        :info => 'Settings succesfully updated.',

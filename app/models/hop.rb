@@ -123,8 +123,8 @@ class Hop < ActiveRecord::Base
 
     if import_file.original_filename.split(".").last == "xls"
       oo = Roo::Excel.new("#{Rails.root}/public/excel/#{import_file.original_filename}")
-      File.delete("#{Rails.root}/public/excel/#{import_file.original_filename}")
-      Dir.delete("public/excel")    if Dir.exist?("public/excel")
+      #File.delete("#{Rails.root}/public/excel/#{import_file.original_filename}")
+      #Dir.delete("public/excel")    if Dir.exist?("public/excel")
       oo.default_sheet = oo.sheets.first
       new_hop = {}
       hop_items = []

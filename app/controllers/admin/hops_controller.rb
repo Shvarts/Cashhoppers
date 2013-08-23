@@ -241,7 +241,6 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.new(@new_hop)
 
       rescue Exception =>e
-
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
 

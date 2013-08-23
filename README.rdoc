@@ -588,6 +588,9 @@ if sender_id is nil that means sender is administrator
                     "comment"=>true,
                     "like"=>false,
                     "ad_enable"=>false
+                    message => true
+                    new_hop => false
+                    hop_about_to_end => true
                  }
 
 ===Payment

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822142731) do
+ActiveRecord::Schema.define(:version => 20130823150533) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -180,13 +180,6 @@ ActiveRecord::Schema.define(:version => 20130822142731) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "auth_token"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
@@ -213,6 +206,9 @@ ActiveRecord::Schema.define(:version => 20130822142731) do
     t.boolean "like"
     t.integer "user_id"
     t.boolean "ad_enable"
+    t.boolean "message"
+    t.boolean "new_hop"
+    t.boolean "hop_about_to_end"
   end
 
   create_table "users", :force => true do |t|
