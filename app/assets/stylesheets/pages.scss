@@ -167,7 +167,6 @@ html, body, head, header{
     background-color: #FFFFFF;
   }
   .page-last{
-
       min-height: 50%;
       background-color: #E8FBDB;
   }
@@ -281,7 +280,7 @@ html,body,head,header{
     }
 
     .page-divider{
-    width: 100%;
+    width: 98%;
     }
     .first-page{
      width: 100%;
@@ -360,8 +359,7 @@ html,body,head,header{
 
     }
   }
-   a.btn
-  {
+   a.btn{
     font-size: 60%;
    }
 
@@ -374,6 +372,9 @@ html,body,head,header{
    // padding: 1% 2%;
    // height:140% ;
     background-color: #FFFFFF;
+  }
+  .page-last{
+    min-height: 50%;
   }
 
   .business, .text-event{
@@ -424,15 +425,14 @@ html,body,head,header{
     height: 25px
   }
   img.phone-button{
-
     margin-top: 5%;
     width: 100%;
-
   }
   img.business-info{
     height: 200px;
-
-
+  }
+  .span1.side-border{
+    display: none;
   }
 
   }
@@ -515,6 +515,9 @@ html,body,head,header{
     .what-page{
       min-height:90% ;
     }
+    .page-last{
+      min-height:60%;
+    }
 
     .business, .text-event{
       text-align: justify;
@@ -557,6 +560,9 @@ html,body,head,header{
     }
     img.business-info{
       height: 250px;
+    }
+    .span1.side-border{
+        display: none;
     }
 
   }
@@ -660,9 +666,7 @@ html,body,head,header{
     .page-last{
       min-height: 60%;
     }
-   .side-border{
-    display: none;
-   }
+
    #social1{
       top: 5%;
    }
@@ -684,6 +688,10 @@ html,body,head,header{
     }
    .business-button{
        width: 40%;
+   }
+   .span1.side-border{
+       display: none;
+
    }
 
 }}
