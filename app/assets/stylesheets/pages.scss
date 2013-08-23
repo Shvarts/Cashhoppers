@@ -265,7 +265,9 @@ html, body, head, header{
   ul.dropdown-menu.button a img{
     width:100%;
   }
-
+  .business-button{
+     width: 40%;
+  }
 
   }
 
@@ -435,7 +437,7 @@ html,body,head,header{
 
   }
 }
-@media(min-width:400px)and(max-width: 599px){
+@media(min-width:400px)and(max-width: 757px){
 
   html,body,head,header{
     padding-left: 0px !important;
@@ -520,22 +522,19 @@ html,body,head,header{
 
     }
     #business-img{
-
-      width: 50%;
+      width: 40%;
       height: auto;
       padding: 0% 20% ;
-
     }
     #event-img{
       padding: 2% 2%;
-      width: 30%;
+      width: 40%;
       height:auto;
       float: left;
     }
 
     #social1{
       top: 5%;
-
     }
 
 
@@ -558,14 +557,12 @@ html,body,head,header{
     }
     img.business-info{
       height: 250px;
-
-
     }
 
   }
 }
 
-@media(min-width:600px)and(max-width: 950px){
+@media(min-width:768px)and(max-width: 950px){
   html,body,head,header{
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -593,8 +590,6 @@ html,body,head,header{
       }
     }
     .carousel.slide#myCarousel{
-
-
       margin: 0% 0%;
       padding: 0% 0%;
       position: absolute;
@@ -628,7 +623,6 @@ html,body,head,header{
       }
     }
 
-
     #carousel2 a{
       margin-top: 2%;
     }
@@ -644,33 +638,34 @@ html,body,head,header{
     }
 
    #business-img{
-
-      width: 30%;
-      height: 50%;
+      width: 100%;
+      height: auto;
       padding: 0% 20% ;
-
     }
    #event-img{
       padding: 2% 2%;
-      width: 30%;
-      height:40%;
+      width: 100%;
+      height: auto;
       float: left;
     }
-
     .business-page{
-
-      height: 130% ;
-
+      min-height: 90% ;
+    }
+    .what-page{
+      min-height: 90%;
     }
     .business{
       padding: 5%;
     }
-
-
+    .page-last{
+      min-height: 60%;
+    }
+   .side-border{
+    display: none;
+   }
    #social1{
       top: 5%;
-
-    }
+   }
     .trade-list{
       background-size:60% auto;
       background-position: right center;
@@ -687,5 +682,8 @@ html,body,head,header{
       margin-top:0%;
       width: 100%;
     }
+   .business-button{
+       width: 40%;
+   }
 
 }}
