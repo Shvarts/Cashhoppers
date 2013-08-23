@@ -7,7 +7,7 @@ html, body, head, header{
 
   .custom-pg{
     width: 100%;
-    height: 90%;
+    min-height: 95%;
     padding-top: 3%;
     background-repeat: no-repeat;
     background-position: center;
@@ -147,28 +147,28 @@ html, body, head, header{
   }
 
   .gray-page{
-    height: 100% ;
+    min-height: 90%;
         background-color: #E9EEF4;
   }
   .yellow-page{
-    height: 100% ;
+    min-height: 90%;
         background-color: #FAEBD6;
   }
   .what-page{
-    height: 100% ;
+    min-height: 90%;
         background-color: #FFFFFF;
   }
   .business-page{
-    height: 100% ;
+    min-height: 90%;
         background-color: #FFFFFF;
   }
   .events-page{
-    height: 100% ;
+    min-height: 90%;
     background-color: #FFFFFF;
   }
   .page-last{
 
-      height: 50%;
+      min-height: 50%;
       background-color: #E8FBDB;
   }
 
@@ -275,7 +275,7 @@ html,body,head,header{
     padding-right: 0px !important;
    .custom-pg{
     width: 100%;
-    height: 100%;
+    min-height: 90%;
     }
 
     .page-divider{
@@ -283,13 +283,13 @@ html,body,head,header{
     }
     .first-page{
      width: 100%;
+     min-height: 90%;
      display: table;
       .divas1{
         width: 100%;
         display: table-cell;
         vertical-align: middle;
           .divas2{
-
             padding: 0% 5%;
             width:90%;;
             height: 20%;
@@ -306,7 +306,6 @@ html,body,head,header{
     }
 
   .carousel.slide#myCarousel{
-
 
     margin: 0% 0%;
     padding: 0% 0%;
@@ -366,24 +365,23 @@ html,body,head,header{
 
   .business-page{
    // padding: 2% 2%;
-    height: 200% ;
+    min-height: 90%;
     background-color: #FFFFFF;
   }
   .events-page{
    // padding: 1% 2%;
-    height:140% ;
+   // height:140% ;
     background-color: #FFFFFF;
   }
-  .page-divider{
-    width: 98%;
-  }
+
   .business, .text-event{
     text-align: justify;
     padding: 0% 5%;
 
   }
   #business-img{
-    width: 50%;
+    max-width: 50%;
+    max-height: 50%;
     height: auto;
     padding: 0% 20% ;
 
@@ -443,7 +441,7 @@ html,body,head,header{
     padding-left: 0px !important;
     padding-right: 0px !important;
     width: 100%;
-    height: 150%;
+    height: 100%;
     .first-page{
       display: table;
       .divas1{
@@ -503,17 +501,17 @@ html,body,head,header{
 
     .business-page{
      // padding: 2% 2%;
-      height: 250% ;
+      min-height: 90% ;
 
     }
     .events-page{
      // padding: 1% 2%;
-      height:200% ;
+      min-height:90% ;
 
     }
 
     .what-page{
-      height:200% ;
+      min-height:90% ;
     }
 
     .business, .text-event{
