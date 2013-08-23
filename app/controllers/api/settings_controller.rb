@@ -1,10 +1,11 @@
 class Api::SettingsController < Api::ApplicationController
 
   def get
-    unless @current_user.user_settings
-      @current_user.user_settings = UserSettings.create()
+    user = User.where(id: @current_user.id).first
+    unless user.user_settings
+      user.user_settings = UserSettings.create()
     end
-    settings = @current_user.user_settings
+    settings = user.user_settings
     render json: {
       friend_invite: settings.friend_invite,
       friend_invite_accept: settings.friend_invite_accept,
@@ -16,11 +17,12 @@ class Api::SettingsController < Api::ApplicationController
   end
 
   def set
-    unless @current_user.user_settings
-      @current_user.user_settings = UserSettings.create()
+    user = User.where(id: @current_user.id).first
+    unless user.user_settings
+      user.user_settings = UserSettings.create()
     end
 
-    if @current_user.user_settings.update_attributes params[:user_settings]
+    if user.user_settings.update_attributes params[:user_settings]
       render :json => {:success=>true,
                        :info => 'Settings succesfully updated.',
                        :status => 200

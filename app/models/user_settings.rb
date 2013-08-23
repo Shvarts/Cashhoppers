@@ -1,17 +1,17 @@
 class UserSettings < ActiveRecord::Base
   belongs_to :user
   attr_accessible :friend_invite, :friend_invite_accept, :end_of_hop, :comment, :like, :ad_enable
-  before_save :init_settings
+  before_create :init_settings
 
   private
 
   def init_settings
-    friend_invite = 1
-    friend_invite_accept = 1
-    end_of_hop = 1
-    comment = 1
-    like = 1
-    ad_enable = 1
+    self.friend_invite = true
+    self.friend_invite_accept = true
+    self.end_of_hop = true
+    self.comment = true
+    self.like = true
+    self.ad_enable = true
   end
 
 end
