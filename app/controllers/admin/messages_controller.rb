@@ -89,13 +89,13 @@ class Admin::MessagesController < Admin::AdminController
       end
     elsif params[:hop_name]
       template_data[:hop_name] = params[:hop_name]
-
     end
 
     @users = User.find_by_sql("
       SELECT users.* FROM users LEFT JOIN hoppers_hops ON hoppers_hops.user_id = users.id
-      WHERE users.id IN (#{params[:users_ids].join(', ')}) OR users.zip IN (#{params[:zip_codes].join(', ')}) OR hoppers_hops.hop_id IN (#{params[:hops_ids].join(', ')});
+      WHERE users.id IN (#{params[:users_ids].join(', ')}) OR users.zip IN (#{params[:zip_codes].join(', ')}) OR hoppers_hops.hop_id IN (#{params[:hops_ids].join(', ')}) GROUP BY users.id;
     ")
+
     @email = nil
     @messages = []
     @users.each do |user|

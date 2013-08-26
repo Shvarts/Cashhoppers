@@ -116,13 +116,18 @@ class Hop < ActiveRecord::Base
 
   def self.import_from_excel(import_file)
     Spreadsheet.client_encoding = 'UTF-8'
-    Dir.mkdir("public/excel")    unless Dir.exist?("public/excel")
-    File.open(Rails.root.join('public','excel', import_file.original_filename), 'wb+') do |file|
-      file.write(import_file.read)
-    end
 
-    if import_file.original_filename.split(".").last == "xls"
-      oo = Roo::Excel.new("#{Rails.root}/public/excel/#{import_file.original_filename}")
+
+
+    temp = Tempfile.new([import_file.original_filename, '.xls' ])
+    temp.binmode
+    temp.write(import_file.read)
+    temp.close
+
+
+
+      oo = Roo::Excel.new("#{temp.path}")
+
 
       oo.default_sheet = oo.sheets.first
       new_hop = {}
@@ -184,6 +189,7 @@ class Hop < ActiveRecord::Base
 
               end
               hop_winners <<  hop_winner[c] if !oo.cell(c, j).nil?
+
             end
           end
         end
@@ -212,12 +218,14 @@ class Hop < ActiveRecord::Base
 
       hop_ad = {}
       hop_ads = []
+
       hop_ad_row.upto(row_size) do |i|
         1.upto(col_size) do |j|
           if oo.cell(i,j) == 'Position' ||  oo.cell(i,j) == 'position'
             (i+1).upto(row_size ) do |c|
               hop_ad[c] = {}
               1.upto(col_size) do |j|
+
                 hop_ad[c][:ad_type] = oo.cell(c, j)  if (oo.cell(i,j) == 'Position' ||  oo.cell(i,j) == 'position') &&  !oo.cell(c, j).nil?
                 hop_ad[c][:text] = oo.cell(c, j)  if (oo.cell(i,j) == "Hop item description" ||  oo.cell(i,j) == "hop item description") &&  !oo.cell(c, j).nil?
                 hop_ad[c][:advertizer_id] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Advertiser id' ||  oo.cell(i,j) == 'advertiser id') &&  !oo.cell(c, j).nil?
@@ -226,11 +234,13 @@ class Hop < ActiveRecord::Base
                 hop_ad[c][:link]=  oo.cell(c,j) if (oo.cell(i,j) == 'Link to ad' ||  oo.cell(i,j) == 'link to ad') &&  !oo.cell(c, j).nil?
               end
               hop_ads <<  hop_ad[c] if !oo.cell(c, j).nil?
+
             end
           end
         end
       end
-    end
+
+
     return new_hop, hop_items, hop_ads, hop_winners
   end
 
