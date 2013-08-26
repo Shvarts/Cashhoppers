@@ -37,7 +37,6 @@ $(document).ready(function(){
     service_menu();
     default_hide_dropdown();
 
-
 });
 
 
@@ -65,16 +64,15 @@ function default_hide_dropdown(){
 
 function dropdown(){
 
+
     $('.btn-group ul.menu').hide();
     $(' .btn-group> ul >li> a').css('color', 'black');
     $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'green');
     $(' .btn-group> ul.dropdown-menu.menu').width($('html').width());
     $('.button-container.text-right .btn-group ul').width('100%')
-    $('.btn-group ul.menu').click(function(e){
-        e.stopPropagation();
-    });
+
     $(' .btn-group').css('max-height', '200px');
-    $('.btn-group .btn').click(function(){
+    $('.btn-group .btn.dropdown-toggle.btn-navbar.btn-success').click(function(){
         $('.btn-group ul.menu').toggle('slow') ;
         menu_hide();
 
@@ -107,8 +105,9 @@ function button_menu_hide(){
 function service_menu(){
 
     button_menu_hide();
-  $('.header-right .button-container.text-right .btn-group>a img, #download_app').click(function(){
+  $('.header-right .button-container.text-right .btn-group input.btn-warning, #download_app').click(function(){
       $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
+
          $('ul.dropdown-menu.button').toggle('slow') ;
 
 

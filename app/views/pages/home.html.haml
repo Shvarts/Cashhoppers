@@ -1,4 +1,4 @@
-.custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.jpg"}); display: table; position: relative;"}
+.custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.jpg"});  position: relative;"}
   %h2{:id=>"first-page"}
   .social-links#social1
     %a{href: '/auth/facebook', class: 'services'}
@@ -9,7 +9,7 @@
       =image_tag('google.png', :style=>'height:38px')
   .divas1
     -if  flash[:notice]
-      .alert.alert-success{ style: 'margin: 5% 5%;'}
+      .alert.alert-success.text-center{ style: 'margin: 5% 5%; opacity: 0.5'}
         = flash[:notice]
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
@@ -25,7 +25,7 @@
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 .page-divider
-.custom-pg.gray-page{style: 'display: table'}
+.custom-pg.gray-page
   .divas1
     .divas2
       %h2{:id=>"gray-page"}
@@ -53,7 +53,7 @@
                   today and start HOPPING!
         .span2
 .page-divider
-.custom-pg.yellow-page{style: ' display: table'}
+.custom-pg.yellow-page
   .divas1
     .divas2
       %h2{:id=>"yellow-page"}

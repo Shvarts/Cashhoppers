@@ -66,8 +66,10 @@
         .header-right.span6
           .button-container.text-right
             .btn-group
-              %a.dropdown-toggle{"data-toggle" => "dropdown" }
-                =image_tag('/assets/button-download.jpg')
+              =button_to "DOWNLOAD", '#', :class =>"btn btn-warning", :style =>"data-toggle: dropdown"
+
+              -#%a.dropdown-toggle{"data-toggle" => "dropdown" }
+              -#  =image_tag('/assets/button-download.jpg')
               %ul.dropdown-menu.button#dropdown
                 %li
                   %a.navigation{:href=>"http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com", :target => '_blank'}

@@ -13,6 +13,7 @@ html, body, head, header{
     background-position: center;
     background-size: cover;
 
+
   }
   #last-page .span5{
     padding: 2%;
@@ -24,19 +25,20 @@ html, body, head, header{
      height:10%;
   }
  #firsttop-sign{
+
       font-size: 200%;
+      margin:2% ;
  }
  #firsttop-sign p{
       font-size: 50%;
  }
-  #firsttop-sign{
-    margin:2% ;
-  }
+
 
   .first-page{
+
     width: 100%;
     margin-top: 15px;
-    display: table;
+
       .divas1{
         width: 100%;
         height: 90%;
@@ -123,9 +125,9 @@ html, body, head, header{
 
   #social1{
 
-    position: absolute;
-    right:0;
-    top:10%;
+
+  float: right;
+    margin-bottom: 30px;
 
   }
   .social-links{
@@ -147,23 +149,23 @@ html, body, head, header{
   }
 
   .gray-page{
-    min-height: 90%;
+
         background-color: #E9EEF4;
   }
   .yellow-page{
-    min-height: 90%;
+
         background-color: #FAEBD6;
   }
   .what-page{
-    min-height: 90%;
+
         background-color: #FFFFFF;
   }
   .business-page{
-    min-height: 90%;
+
         background-color: #FFFFFF;
   }
   .events-page{
-    min-height: 90%;
+
     background-color: #FFFFFF;
   }
   .page-last{
@@ -308,10 +310,10 @@ html,body,head,header{
     .first-page{
      width: 100%;
      min-height: 90%;
-     display: table;
+
       .divas1{
         width: 100%;
-        display: table-cell;
+        display: block;
         vertical-align: middle;
           .divas2{
             padding: 0% 5%;
@@ -471,11 +473,11 @@ html,body,head,header{
     width: 100%;
     height: 100%;
     .first-page{
-      display: table;
+
       .divas1{
-        width: 110%;
-        height: 20%;
-        display: table-cell;
+        width: 100%;
+        height: 90%;
+        display: block;
         vertical-align: middle;
         .divas2{
 
@@ -602,11 +604,11 @@ html,body,head,header{
     height: 100%;
 
     .first-page{
-      display: table;
+
       .divas1{
         width: 100%;
         height: 100%;
-        display: table-cell;
+        display: block;
         vertical-align: middle;
         .divas2{
 
