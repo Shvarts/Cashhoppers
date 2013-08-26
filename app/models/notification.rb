@@ -19,11 +19,6 @@ class Notification < ActiveRecord::Base
             puts '====fi'
             errors.add(:id, "disabled.")
           end
-        when "Friend invite accept"
-          unless user.user_settings.friend_invite_accept
-            puts '====fia'
-            errors.add(:id, "disabled.")
-          end
         when "End of hop"
           unless user.user_settings.end_of_hop
             puts '====eoh'

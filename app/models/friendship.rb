@@ -27,7 +27,6 @@ class Friendship < ActiveRecord::Base
 
   # Accept a friend request.
   def self.accept(user, friend)
-    Notification.create(user_id: friend.id, friend_id: user.id, event_type: 'Friend invite accept')
     transaction do
       accepted_at = Time.now
       accept_one_side(user, friend, accepted_at)
