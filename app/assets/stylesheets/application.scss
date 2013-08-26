@@ -76,12 +76,21 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
   }
-  .button-container.text-right .btn-group> a img{
-    width: 200%;
-    //height: auto;
+  //.button-container.text-right .btn-group> a img{
+  //  width: 200%;
+  //  //height: auto;
+  //  margin-top: 5%;
+  //  margin-left:0% ;
+  //margin-right:0% ;   ('form').css('margin','0% 0%')
+  //}
+  form{
+    margin: 0% 0%;
+  }
+  .header-right .button-container.text-right .btn-group input.btn-warning{
     margin-top: 5%;
     margin-left:0% ;
-   margin-right:0% ;
+    margin-right:0% ;
+    margin-bottom:0% ;
   }
 
 }
@@ -108,10 +117,10 @@
   width:15%;
 
 }
-.row-fluid .header-right.span6 .btn-group>a img{
-  width:160px;
-  margin: 5% 3%;
-}
+//.row-fluid .header-right.span6 .btn-group>a img{
+//  width:160px;
+//  margin: 5% 3%;
+//}
 
 .btn-group.link{
   display: none;
@@ -163,14 +172,14 @@
   .navbar-inner{
     width: 95%;
   }
-  .button-container.text-right .btn-group> a img{
-    width: 200%;
-    height: 25px;
-
-    margin-top: 5%;
-    margin-left:0% ;
-    margin-right:0% ;
-  }
+  //.button-container.text-right .btn-group> a img{
+  //  width: 200%;
+  //  height: 25px;
+  //
+  //  margin-top: 5%;
+  //  margin-left:0% ;
+  //  margin-right:0% ;
+  //}
 
 
   .row-fluid .header-right.span6{
