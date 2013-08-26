@@ -93,7 +93,7 @@ class Notification < ActiveRecord::Base
             'message' => text
           }
         }
-        response = RestClient.post(url, request, headers)
+        response = RestClient.post(url, request.to_json, headers)
         response_hash = YAML.load(response)
         AndroidLog.create text: response_hash
       end
