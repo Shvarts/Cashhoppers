@@ -583,7 +583,6 @@ if sender_id is nil that means sender is administrator
     response:
         success: {
                     "friend_invite"=>true,
-                    "end_of_hop"=>false,
                     "comment"=>true,
                     "like"=>false,
                     "ad_enable"=>false

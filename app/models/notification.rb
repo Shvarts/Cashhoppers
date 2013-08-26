@@ -19,11 +19,6 @@ class Notification < ActiveRecord::Base
             puts '====fi'
             errors.add(:id, "disabled.")
           end
-        when "End of hop"
-          unless user.user_settings.end_of_hop
-            puts '====eoh'
-            errors.add(:id, "disabled.")
-          end
         when "Comment"
           unless user.user_settings.comment
             puts '====comment'

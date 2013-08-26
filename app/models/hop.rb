@@ -101,10 +101,6 @@ class Hop < ActiveRecord::Base
           #send message to winner
           message = Message.new(text: "You have won #{prize.place} prize in a hop #{ hop.name }", receiver_id: winner['id'])
           message.save
-          #notificate hoppers about end of hop
-          hop.hoppers.each do |hopper|
-            Notification.create(user_id: hopper.id, event_type: 'End of hop', prize_id: prize.id)
-          end
         end
       end
     end
