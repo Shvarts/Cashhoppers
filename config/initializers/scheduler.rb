@@ -16,7 +16,7 @@ scheduler.every("1w") do
   end
 end
 
-scheduler.every("10s") do
+scheduler.every("1h") do
   Hop.notificate_about_end
   puts '-------------------------------'
 end
