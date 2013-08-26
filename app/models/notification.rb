@@ -88,11 +88,14 @@ class Notification < ActiveRecord::Base
           'Content-Type'=> "application/json"
         }
         request = {
-          'registration_ids' => ["APA91bEkPHgqTGT_gArNyV7FkKusvuYh0s37B7l8L06bOzc0eIuts8_Gn6V4Pa4ooos87CZrqsXgjKXI4oQDAnB59auSqt40K0O8yqKB8SKILZQOrNYjDvg5cceLCn6ZnPi62-EmYix2Rx2pnzdVzaqVmup1FH_1yz7SSTuUAfU1qmWXvFSk1r4"],
-          'message' => 'Hello from Uzhgorod!!!'
+          'registration_ids' => [session[:device_token]],
+          data: {
+            'message' => text
+          }
         }
         response = RestClient.post(url, request, headers)
-        #response_hash = YAML.load(response)
+        response_hash = YAML.load(response)
+        AndroidLog.create text: response_hash
       end
     end
   end

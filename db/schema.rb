@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823150533) do
+ActiveRecord::Schema.define(:version => 20130826104433) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(:version => 20130823150533) do
     t.datetime "picture_updated_at"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "android_logs", :force => true do |t|
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "applications", :force => true do |t|

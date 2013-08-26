@@ -1,5 +1,5 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -28,7 +28,7 @@ test:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: '12345'
+  password: remeta
   host: 127.0.0.1
 
 
@@ -39,5 +39,5 @@ production:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: '12345'
+  password: remeta
   host: 127.0.0.1

@@ -1,2 +1,10 @@
 %h1
   Welcome to Cashhopper
+
+- AndroidLog.order('created_at DESC').limit(100).each do |log|
+  (
+  = log.created_at
+  )
+  = log.text
+  %hr
+
