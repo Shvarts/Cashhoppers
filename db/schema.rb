@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826104433) do
+ActiveRecord::Schema.define(:version => 20130826142435) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -121,8 +121,9 @@ ActiveRecord::Schema.define(:version => 20130826104433) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.boolean  "notificated_about_end"
   end
 
   create_table "likes", :force => true do |t|
@@ -150,6 +151,8 @@ ActiveRecord::Schema.define(:version => 20130826104433) do
     t.integer  "prize_id"
     t.integer  "friend_id"
     t.datetime "created_at"
+    t.integer  "message_id"
+    t.integer  "hop_id"
   end
 
   create_table "prizes", :force => true do |t|
@@ -206,15 +209,12 @@ ActiveRecord::Schema.define(:version => 20130826104433) do
 
   create_table "user_settings", :force => true do |t|
     t.boolean "friend_invite"
-    t.boolean "friend_invite_accept"
-    t.boolean "end_of_hop"
-    t.boolean "comment"
-    t.boolean "like"
     t.integer "user_id"
     t.boolean "ad_enable"
     t.boolean "message"
     t.boolean "new_hop"
     t.boolean "hop_about_to_end"
+    t.boolean "comment_or_like"
   end
 
   create_table "users", :force => true do |t|

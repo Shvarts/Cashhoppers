@@ -60,8 +60,16 @@ child :friend do
     end
 end
 
+child :message do
+    attributes :text
+end
+
+child :hop do
+    attributes :name, :time_start, :time_end, :price, :daily, :event
+end
+
 node :time_ago do |event|
-    time_ago_in_words(event.created_at)
+    time_ago_in_words(event.created_at) + ' ago'
 end
 
 

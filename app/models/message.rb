@@ -4,6 +4,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :sender, :class_name => 'User'
   belongs_to :receiver, :class_name => 'User'
+  has_many :notifications
 
   attr_accessible :receiver_id, :sender_id, :schedule_date, :synchronized, :text
 
@@ -45,6 +46,7 @@ class Message < ActiveRecord::Base
 
   def push_to_thread
     CashHoppers::Application::MESSAGES << self
+    Notification.create(user_id: receiver.id, friend_id: sender.id, event_type: 'Message', message_id: id)
   end
 
   def to_json current_user

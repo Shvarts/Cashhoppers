@@ -9,14 +9,28 @@ class Hop < ActiveRecord::Base
                     :default_url => "/assets/no_hop_logo.png",
                     :path => ":rails_root/public/images/hop_logos/hops/:id/HOP_LOGO.:extension"
   has_many :prizes
+  has_many :notifications
 
-  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo
+  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
   #validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
+
+  before_create :init_hop
+  after_create :push_to_thread
+
+  def push_to_thread
+    User.all.each do |user|
+      Notification.create(user_id: user.id, friend_id: nil, event_type: 'New hop', hop_id: id)
+    end
+  end
+
+  def init_hop
+    self.notificated_about_end = 0
+  end
 
   def self.get_daily_by_date date
     Hop.where("time_start BETWEEN ? AND ? AND daily = 1", date.beginning_of_day, date.end_of_day).first
@@ -247,6 +261,23 @@ class Hop < ActiveRecord::Base
         @exp << winner.errors.messages   unless winner.save
       end
     @exp
+  end
+
+  def self.notificate_about_end
+    @hops = Hop.where(['time_end < ? AND notificated_about_end != 0', Time.now + 1.day])
+    @hops.each do |hop|
+      hop.hoppers.each do |user|
+        if hop.completed? user
+          Notification.create(user_id: user.id, friend_id: nil, event_type: 'Hop about to end', hop_id: hop.id)
+        end
+      end
+      hop.update_attribute :notificated_about_end, true
+    end
+  end
+
+  def completed? user
+    return true
+    #TODO refactor
   end
 
   private

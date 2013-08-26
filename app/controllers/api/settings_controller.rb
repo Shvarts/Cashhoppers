@@ -8,13 +8,10 @@ class Api::SettingsController < Api::ApplicationController
     settings = user.user_settings
     render json: {
       friend_invite:        settings.friend_invite,
-      friend_invite_accept: settings.friend_invite_accept,
-      end_of_hop:           settings.end_of_hop,
-      comment:              settings.comment,
-      like:                 settings.like,
+
+      comment_or_like:      settings.comment_or_like,
       ad_enable:            settings.ad_enable,
       message:              settings.message,
-      new_hop:              settings.new_hop,
       hop_about_to_end:     settings.hop_about_to_end
     }
   end
@@ -37,3 +34,4 @@ class Api::SettingsController < Api::ApplicationController
   end
 
 end
+

@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
   def after_create
     self.roles << Role.find_by_name(:user)
-    user_settings = UserSettings.create()
+    user_settings = UserSettings.create(user_id: id)
   end
 
 end

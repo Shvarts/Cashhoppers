@@ -2,13 +2,6 @@ require 'rufus/scheduler'
 
 scheduler = Rufus::Scheduler.start_new
 
-
-#scheduler.every("15m") do
-#  Hop.close_old_hops
-#end
-
-
-
 scheduler.every("5m") do
   CashHoppers::Application::MESSAGES.delete_if{|message| message.created_at < (Time.now - 5.minutes) }
 end
@@ -21,4 +14,8 @@ scheduler.every("1w") do
     CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
     CashHoppers::Application::SESSIONS.delete session
   end
+end
+
+scheduler.every("10s") do
+  Hop.notificate_about_end
 end

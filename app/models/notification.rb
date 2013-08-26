@@ -3,9 +3,11 @@ class Notification < ActiveRecord::Base
   belongs_to :comment
   belongs_to :user
   belongs_to :prize
+  belongs_to :message
+  belongs_to :hop
   belongs_to :friend, class_name: 'User', foreign_key: :friend_id
 
-  attr_accessible :comment_id, :like_id, :event_type, :user_id, :prize_id, :friend_id
+  attr_accessible :comment_id, :like_id, :event_type, :user_id, :prize_id, :friend_id, :message_id, :hop_id
   validate :is_enabled
   before_create :push
 
@@ -16,24 +18,29 @@ class Notification < ActiveRecord::Base
       case event_type
         when "Friend invite"
           unless user.user_settings.friend_invite
-            puts '====fi'
             errors.add(:id, "disabled.")
           end
         when "Comment"
-          unless user.user_settings.comment
-            puts '====comment'
+          unless user.user_settings.comment_or_like
             errors.add(:id, "disabled.")
           end
         when "Like"
-          unless user.user_settings.like
-            puts '====like'
+          unless user.user_settings.comment_or_like
+            errors.add(:id, "disabled.")
+          end
+        when "Message"
+          unless user.user_settings.message
+            errors.add(:id, "disabled.")
+          end
+        when "New hop"
+          unless user.user_settings.new_hop
+            errors.add(:id, "disabled.")
+          end
+        when "Hop about to end"
+          unless user.user_settings.hop_about_to_end
             errors.add(:id, "disabled.")
           end
       end
-      puts '===='
-      puts errors.inspect
-      puts '===='
-
     end
   end
 
@@ -46,15 +53,14 @@ class Notification < ActiveRecord::Base
     case event_type
       when "Friend invite"
         text = "#{friend.first_name if friend} would like to be your friend."
-      when "Friend invite accept"
-        text = "#{friend.first_name if friend} accepted your invite to be friends."
-      when "End of hop"
-        hop = Hop.where(id: prize.hop_id).first
-        text = "Hop #{hop ? hop.name : ''} was ended."
       when "Comment"
         text = "#{comment.user.first_name if( comment && comment.user)} commented your photo."
       when "Like"
         text = "#{like.user.first_name if(like && like.user)} liked your photo."
+      when "Message"
+        text = "#{message.sender.first_name if(message && message.sender)}: #{ message.text if message}"
+      when "New hop"
+        text = "Hop '#{hop.name if hop}' created."
     end
 
     text = event_type if text == ""
