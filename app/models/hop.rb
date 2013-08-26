@@ -270,10 +270,12 @@ class Hop < ActiveRecord::Base
   end
 
   def self.notificate_about_end
-    @hops = Hop.where(['time_end < ? AND notificated_about_end != 0', Time.now + 1.day])
+    @hops = Hop.where(['time_end < ? AND notificated_about_end = 0', Time.now + 1.day])
+    puts @hops.count
+    puts '-------------------------------'
     @hops.each do |hop|
       hop.hoppers.each do |user|
-        if hop.completed? user
+        if !hop.completed? user
           Notification.create(user_id: user.id, friend_id: nil, event_type: 'Hop about to end', hop_id: hop.id)
         end
       end
@@ -282,8 +284,14 @@ class Hop < ActiveRecord::Base
   end
 
   def completed? user
-    return true
-    #TODO refactor
+    completed = true
+    self.hop_tasks.each do |task|
+      user_hop_tasks = UserHopTask.where(hop_task_id: task.id, user_id: user.id)
+      if user_hop_tasks.count == 0
+        completed = false
+      end
+    end
+    completed
   end
 
   private

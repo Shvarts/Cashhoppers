@@ -18,4 +18,5 @@ end
 
 scheduler.every("10s") do
   Hop.notificate_about_end
+  puts '-------------------------------'
 end
