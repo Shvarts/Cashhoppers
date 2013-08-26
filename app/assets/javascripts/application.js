@@ -37,9 +37,6 @@ $(document).ready(function(){
     service_menu();
     default_hide_dropdown();
 
-
-
-
 });
 
 
