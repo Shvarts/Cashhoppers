@@ -265,6 +265,19 @@ class Admin::HopsController < Admin::AdminController
 
   end
 
+ def hop_photos
+
+
+   @hop=Hop.find_by_id(params[:hop_id])
+   @ads = @hop.ads.all
+   @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten!
+
+
+   render :layout => 'home_layout'
+
+
+ end
+
   private
 
   def init_hop

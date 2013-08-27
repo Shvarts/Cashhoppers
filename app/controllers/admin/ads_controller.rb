@@ -29,7 +29,7 @@ class Admin::AdsController < Admin::AdminController
   def create
     @hop = Hop.where(id: params[:ad][:hop_id]).first
     @ad = Ad.new(params[:ad])
-    @ad.advertizer = current_user
+
     if @ad.save
       render text: 'ok'
     else

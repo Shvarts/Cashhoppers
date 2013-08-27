@@ -16,6 +16,11 @@ $(function(){
         }
 
     })
+    $('.carousel').carousel({
+        interval: 4000
+
+    })
+
 
 
 })
@@ -42,6 +47,7 @@ function change_user_prize(sender){
         }
     });
 }
+
 
 function place_hide(){
 
@@ -73,3 +79,9 @@ function update_hoppers(id){
         }
     });
 };
+
+function center_carousel(){
+$('#hopPhotos .carousel-inner .active.item img').each(function() {
+    $(this).css('margin-top', ($(this).parent().height() - $(this).height())/2 + 'px' ) ;
+});
+}

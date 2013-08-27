@@ -15,6 +15,14 @@
     %tr
       %td
         %b
+          Producer:
+      %td
+        = f.select :producer_id, User.all.collect {|user| [user.email, user.id]},{ include_blank: true }, class: ''
+
+
+    %tr
+      %td
+        %b
           Time start:
       %td
         #datetimepicker1.input-append.date

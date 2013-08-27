@@ -180,8 +180,8 @@
 %hr
 %h4
   Hoppers:
--#= UserHopTask.create(:hop_task_id => @hop.hop_tasks.first.id, :user_id => 50, :photo =>current_user.avatar, :comment=>'comment'  )
--#=@hop.hoppers << User.find_by_id(50)
+-#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[1].id, :user_id => current_user.id, :photo =>current_user.avatar, :comment=>'comment'  )
+-#=@hop.hoppers << User.find_by_id(current_user.id)
 - if @hoppers.blank?
   List has no rows
 - else
