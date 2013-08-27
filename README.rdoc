@@ -149,7 +149,7 @@ parameter query is optional (search by first_name, last_name and user_name)
 ====get my info(method: GET)
     url: http://localhost:3000/api/users/get_my_info.json?api_key=123&authentication_token=DKZbipTUhaNEGn7lL37w8MRQk30Qt4
     response: {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
-              il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
+              il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil, "ad_enable"=>true}}
 ====get user info(method: GET)
     url: http://localhost:3000/api/users/get_user_info.json?api_key=123&authentication_token=vtqviY0AGvo2lJbK62rXCZ6mrcJKFs&user_id=3
          {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n

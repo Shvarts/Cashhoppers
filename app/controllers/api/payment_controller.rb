@@ -18,17 +18,21 @@ class Api::PaymentController < Api::ApplicationController
   end
 
   def disable_ads
-    unless @current_user.user_settings
-      @current_user.user_settings = UserSettings.create
+    user = User.find(@current_user.id)
+    unless user.user_settings
+      user.user_settings = UserSettings.create
+    end
+    if user.frog_legs == nil
+      user.update_attribute :frog_legs, 0
     end
 
-    if !@current_user.user_settings.ad_enable
+    if !user.user_settings.ad_enable
       bad_request ['Already disabled ads.'], 406
-    elsif @current_user.frog_legs < 20
+    elsif user.frog_legs < 20
       bad_request ['You dont have enough many.'], 406
     else
-      @current_user.user_settings.update_attribute :ad_enable, 0
-      @current_user.update_attribute :frog_legs, @current_user.frog_legs - 20 #need refactor
+      user.user_settings.update_attribute :ad_enable, 0
+      user.update_attribute :frog_legs, user.frog_legs - 20 #need refactor
       message = 'Succesfully disabled ads.'
       render :json => {
         message: message

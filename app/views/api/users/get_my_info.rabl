@@ -14,4 +14,8 @@ node :friends_count do |user|
     user.friends.count
 end
 
+node :ad_enable do |user|
+    user.user_settings.ad_enable if user.user_settings
+end
+
 
