@@ -191,13 +191,12 @@
 
 %br
 .row-fluid
-  .span2.text-right
+  .span2.text-left
     = link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
+    %br
+    %br
+    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
   .span10
     .text-right
       = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
-%br
-.row-fluid
-  .span3
-    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-  .span9
+

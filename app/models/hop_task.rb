@@ -13,9 +13,9 @@ class HopTask < ActiveRecord::Base
                     :path => ":rails_root/public/images/hop_task_logos/hop_tasks/:id/Task_LOGO.:extension"
 
 
-  validates :bonus, :pts, numericality: { only_integer: true }
+  #validates :bonus, :pts, numericality: { only_integer: true }
   validates :text, length: { minimum: 5, maximum:140 }
-  validates :price, :amt_paid,  numericality: { only_integer: true }, if: :not_daily?
+
   validates :sponsor_id,  :presence => true
 
   def not_daily?

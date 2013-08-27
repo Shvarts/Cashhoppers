@@ -23,7 +23,7 @@ class Admin::HopTasksController < Admin::AdminController
 
   def create
     @hop_task = HopTask.new(params[:hop_task])
-    @hop_task.sponsor = current_user
+    #@hop_task.sponsor = current_user
     if @hop_task.save
       render text: 'ok'
     else

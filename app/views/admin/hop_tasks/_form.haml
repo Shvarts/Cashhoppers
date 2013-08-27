@@ -34,6 +34,12 @@
     %tr
       %td
         %b
+          Sponsor:
+      %td
+        = f.select :sponsor_id, User.all.collect {|user| [user.email, user.id]},{ include_blank: true }, class: 'span12'
+    %tr
+      %td
+        %b
           Bonus point
           %br
           for sharing:
