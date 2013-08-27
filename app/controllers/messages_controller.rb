@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
       params[:per_page] ||= 15
       @messages = Message.paginate(page: params[:page],
                                    per_page: params[:per_page],
-                                   conditions: {sender_id: [current_user.id, @friend.id], receiver_id: [@friend.id, current_user.id]},
+                                   conditions: {sended: true, sender_id: [current_user.id, @friend.id], receiver_id: [@friend.id, current_user.id]},
                                    order: "created_at ASC")
       @last_sync_date = Time.now
     else

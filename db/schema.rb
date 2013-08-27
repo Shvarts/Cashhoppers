@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826142435) do
+ActiveRecord::Schema.define(:version => 20130827065907) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -72,13 +72,6 @@ ActiveRecord::Schema.define(:version => 20130826142435) do
     t.datetime "file_updated_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-  end
-
-  create_table "faqs", :force => true do |t|
-    t.string   "ask"
-    t.text     "answer"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "friendships", :force => true do |t|
@@ -148,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20130826142435) do
     t.boolean  "synchronized"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "sended"
   end
 
   create_table "notifications", :force => true do |t|

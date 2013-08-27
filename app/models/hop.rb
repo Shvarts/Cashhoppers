@@ -272,7 +272,6 @@ class Hop < ActiveRecord::Base
   def self.notificate_about_end
     @hops = Hop.where(['time_end < ? AND notificated_about_end = 0', Time.now + 1.day])
     puts @hops.count
-    puts '-------------------------------'
     @hops.each do |hop|
       hop.hoppers.each do |user|
         if !hop.completed? user
