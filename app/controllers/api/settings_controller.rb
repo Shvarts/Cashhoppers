@@ -9,7 +9,7 @@ class Api::SettingsController < Api::ApplicationController
     render json: {
       friend_invite:        settings.friend_invite,
       comment_or_like:      settings.comment_or_like,
-      ad_enable:            settings.ad_enable,
+      new_hop:              settings.new_hop,
       message:              settings.message,
       hop_about_to_end:     settings.hop_about_to_end
     }
