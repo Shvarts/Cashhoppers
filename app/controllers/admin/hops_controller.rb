@@ -63,6 +63,9 @@ class Admin::HopsController < Admin::AdminController
       @hop.time_end = @hop.time_start
     end
     if @hop.save
+      if @hop.jackpot
+        Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1st', :user_id=>'', :prize_type=>'place', :accept=>nil)
+      end
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
       if @hop.daily
@@ -95,6 +98,25 @@ class Admin::HopsController < Admin::AdminController
       @hop.time_end = @hop.time_start
     end
     if @hop.update_attributes(params[:hop])
+      puts '--------------------------------------------------------------------'
+      puts params
+      puts '--------------------------------------------------------------------'
+      for i in params[:hop]
+        puts '---------------------------1111111111-----------------------------------------'
+        puts i.inspect
+        puts '--------------------------------------------------------------------'
+        if i.include?('jackpot')
+          puts '---------------------------2222222-----------------------------------------'
+
+          prize = Prize.where(:hop_id => @hop.id, :place=>'1st').first
+          puts params[:hop][:jackpot].inspect
+          if prize
+            prize.update_attributes(:cost => params[:hop][:jackpot])
+          else
+            Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1st', :user_id=>'', :prize_type=>'place', :accept=>nil)
+         end
+        end
+      end
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
       if @hop.daily
