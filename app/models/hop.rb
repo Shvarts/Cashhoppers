@@ -11,7 +11,7 @@ class Hop < ActiveRecord::Base
   has_many :prizes
   has_many :notifications
 
-  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
+  attr_accessible :close, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?

@@ -40,7 +40,8 @@
           %br
           %br
           .video-container
-            = video_tag ["video/media.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true
+
+            = video_tag ["video/media.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true,  'webkit-playsinline'=>''
           .text-center
             .video-text
               CASHHOPPERS is a photo scavenger hunt contest you play on your cell phone for CASH and other prizes

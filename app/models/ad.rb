@@ -8,7 +8,8 @@ class Ad < ActiveRecord::Base
                   :price,
                   :amt_paid,
                   :link,
-                  :picture
+                  :picture,
+                  :creator_id
 
   has_attached_file :picture,
     :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",

@@ -17,7 +17,7 @@
         %b
           Producer:
       %td
-        = f.select :producer_id, User.all.collect {|user| [user.email, user.id]},{ include_blank: true }, class: ''
+        = f.select :producer_id,  options_for_select( User.all.map {|user| [user.email, user.id]},current_user.id), class: ''
 
 
     %tr

@@ -52,7 +52,7 @@
         %b
           Advertiser:
       %td
-        = f.select :advertizer_id, User.all.collect {|user| [user.email, user.id]},{ include_blank: true }, class: 'span12'
+        = f.select :advertizer_id,  options_for_select( User.all.map {|user| [user.email, user.id]},current_user.id), :class => 'span12'
     %tr
       %td
         %b

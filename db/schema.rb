@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826142435) do
+ActiveRecord::Schema.define(:version => 20130828104905) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130826142435) do
     t.datetime "picture_updated_at"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.integer  "creator_id"
   end
 
   create_table "android_logs", :force => true do |t|
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20130826142435) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "creator_id"
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"
@@ -131,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20130826142435) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
     t.boolean  "notificated_about_end"
+    t.integer  "creator_id"
   end
 
   create_table "likes", :force => true do |t|

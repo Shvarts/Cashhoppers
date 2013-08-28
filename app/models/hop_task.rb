@@ -4,7 +4,7 @@ class HopTask < ActiveRecord::Base
   belongs_to :sponsor, class_name: 'User', foreign_key: :sponsor_id
 
 
-  attr_accessible :price, :amt_paid, :bonus, :pts, :sponsor_id, :text, :hop_id, :logo, :logo_file_name
+  attr_accessible :price, :amt_paid,:creator_id, :bonus, :pts, :sponsor_id, :text, :hop_id, :logo, :logo_file_name
 
 
   has_attached_file :logo,

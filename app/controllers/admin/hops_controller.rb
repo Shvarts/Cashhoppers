@@ -56,7 +56,7 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def create
-    params[:hop][:producer_id] = current_user.id
+    params[:hop][:creator_id] = current_user.id
     params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
     if @hop.daily
@@ -80,7 +80,7 @@ class Admin::HopsController < Admin::AdminController
  def render_hoppers
    @hop = Hop.find_by_id(params[:hop_id])
    @hoppers = @hop.hoppers
-  puts "------------------------#{params}----------------------------------------"
+
    render partial: 'hopper_list'
  end
 

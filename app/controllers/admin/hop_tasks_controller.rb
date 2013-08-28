@@ -9,6 +9,7 @@ class Admin::HopTasksController < Admin::AdminController
 
   def new
     @hop = Hop.find(params[:hop_id])
+
     @hop_task = @hop.hop_tasks.build
     render partial: 'form'
   end
@@ -23,7 +24,7 @@ class Admin::HopTasksController < Admin::AdminController
 
   def create
     @hop_task = HopTask.new(params[:hop_task])
-    #@hop_task.sponsor = current_user
+    params[:hop_task][:creator_id] = current_user.id
     if @hop_task.save
       render text: 'ok'
     else

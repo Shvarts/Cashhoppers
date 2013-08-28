@@ -28,6 +28,7 @@ class Admin::AdsController < Admin::AdminController
 
   def create
     @hop = Hop.where(id: params[:ad][:hop_id]).first
+    params[:ad][:creator_id]= current_user.id
     @ad = Ad.new(params[:ad])
 
     if @ad.save
