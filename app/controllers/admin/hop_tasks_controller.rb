@@ -1,5 +1,5 @@
 class Admin::HopTasksController < Admin::AdminController
-  load_and_authorize_resource
+  authorize_resource
 
   def index
     @hop = Hop.find(params[:hop_id])

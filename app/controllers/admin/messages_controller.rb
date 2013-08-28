@@ -1,5 +1,5 @@
 class Admin::MessagesController < Admin::AdminController
- # load_and_authorize_resource
+  authorize_resource
   before_filter :authenticate_user!
 
   def email_tool
@@ -114,6 +114,10 @@ class Admin::MessagesController < Admin::AdminController
     if  @users.blank?
       flash[:error] = 'Receivers not selected.'
       @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
+      @prize = Prize.new
+      @prize.place=''
+      @hop_name = ''
+
       render action: 'email_tool'
     elsif  !template_data[:hop_name].blank? && !Hop.find_by_name( template_data[:hop_name])
 

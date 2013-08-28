@@ -12,20 +12,34 @@ class Ability
       can :manage, Prize
       can :manage, HopTask
       can :manage, Ad
-      can :read, :all
+      can :hop_photos, Hop
+      can :show, Hop
+      can :regular, Hop
+      can :daily, Hop
     elsif user.role? :sponsor
       can :manage, HopTask
       can :regular, Hop
       can :daily, Hop
       can :manage, Ad
-      can :read, :all
+      can :hop_photos, Hop
+      can :show, Hop
+      can :regular, Hop
+      can :daily, Hop
     elsif user.role? :advertiser
       can :manage, Ad
       can :regular, Hop
       can :daily, Hop
-      can :read, :all
+      can :hop_photos, Hop
+      can :show, Hop
+      can :regular, Hop
+      can :daily, Hop
     else
-     can :read, :all
+
+     can :hop_photos, Hop
+     can :show, Hop
+     can :regular, Hop
+     can :daily, Hop
+
     end
     #
     # The first argument to `can` is the action you are giving the user 

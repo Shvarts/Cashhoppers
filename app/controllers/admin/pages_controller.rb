@@ -1,8 +1,6 @@
 class Admin::PagesController < Admin::AdminController
   def index
 
-    #link6.save
-
   end
 
   def hoppers_list

@@ -1,5 +1,5 @@
 class Admin::PrizesController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
   def index
     @hop = Hop.find(params[:hop_id])
     @prizes = @hop.prizes
@@ -7,11 +7,17 @@ class Admin::PrizesController < ApplicationController
   end
 
   def random_user
-    @prize = Prize.find_by_id(params[:id])
-    hop = @prize.hop
+    @prize = Prize.find_by_id(params[:prize_id])
+
+    puts @prize.inspect
+    puts params
+
+
+    puts hop = @prize.hop
 
     hoppers_id = hop.hoppers.map{|hopper| hopper.id} - hop.prizes.map{|prize| prize.user_id}.compact!
     winner_id =  hoppers_id[rand(hoppers_id.length)]
+
     if @prize.update_attributes(:user_id => winner_id)
       render text: 'ok'
     else

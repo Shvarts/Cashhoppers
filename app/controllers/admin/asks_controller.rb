@@ -1,6 +1,6 @@
 class  Admin::AsksController < Admin::AdminController
   layout 'home_layout', only: :show
-
+  authorize_resource
     def index
         @asks = Ask.paginate(page: params[:page], per_page:15 )
         if request.content_type == 'text'

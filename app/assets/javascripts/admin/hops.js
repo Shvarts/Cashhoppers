@@ -30,7 +30,7 @@ function change_user_prize(sender){
         return;
     }
     $.ajax({
-        url: "/admin/prizes/update",
+        url: "/admin/prizes/"+$(sender).val()+"",
         data: { prize: { user_id:$(sender).attr('user_id')}, prize_id: $(sender).val()},
         type: 'PUT',
         beforeSend: function () {
@@ -66,6 +66,7 @@ function place_prize(){
 
 
 function update_hoppers(id){
+    alert('text');
     $.ajax({
         url: '/admin/hops/render_hoppers',
         data:{hop_id: id},

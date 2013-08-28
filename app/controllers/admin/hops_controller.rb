@@ -1,5 +1,5 @@
 class Admin::HopsController < Admin::AdminController
- load_and_authorize_resource
+  authorize_resource
   before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
 
   def regular
@@ -11,7 +11,7 @@ class Admin::HopsController < Admin::AdminController
     @error = params[:error] if params[:error]
   end
 
-  def daily
+    def daily
     @tab = 'daily_hops'
     conditions = {daily: true, close: false}
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
@@ -80,7 +80,7 @@ class Admin::HopsController < Admin::AdminController
  def render_hoppers
    @hop = Hop.find_by_id(params[:hop_id])
    @hoppers = @hop.hoppers
-
+  puts "------------------------#{params}----------------------------------------"
    render partial: 'hopper_list'
  end
 
