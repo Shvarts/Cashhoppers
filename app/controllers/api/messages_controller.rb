@@ -80,7 +80,7 @@ class Api::MessagesController < Api::ApplicationController
     params[:per_page] ||= 10
     @friend = User.where(id: params[:friend_id]).first
     if Friendship.exists?(@current_user, @friend)
-      @messages = Message.paginate(page: params[:page], per_page: params[:per_page], conditions: {sendet: true, sender_id: [@current_user.id, @friend.id], receiver_id: [@friend.id, @current_user.id]}, order: "created_at ASC")
+      @messages = Message.paginate(page: params[:page], per_page: params[:per_page], conditions: {sended: true, sender_id: [@current_user.id, @friend.id], receiver_id: [@friend.id, @current_user.id]}, order: "created_at ASC")
 
       render 'messages_history', content_type: 'application/json'
     else
