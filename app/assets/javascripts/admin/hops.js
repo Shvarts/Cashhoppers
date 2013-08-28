@@ -66,7 +66,7 @@ function place_prize(){
 
 
 function update_hoppers(id){
-    alert('text');
+
     $.ajax({
         url: '/admin/hops/render_hoppers',
         data:{hop_id: id},

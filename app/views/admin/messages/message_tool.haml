@@ -21,10 +21,12 @@
   });
 = form_for @message, url: admin_messages_message_create_path do |f|
   .row-fluid
+
     .span3
       Filters:
     .span3
       Hops:
+
       %br
       = select_tag 'hops_ids[]','', :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Hops"}
     .span3
@@ -45,6 +47,7 @@
       %br
       %input{ type: 'checkbox'}
     .span9
+
       Content:
       = f.text_area :text, class: 'span12', rows: 4
   .row-fluid

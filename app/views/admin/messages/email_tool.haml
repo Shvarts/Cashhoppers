@@ -42,6 +42,7 @@
   .row-fluid
     .span3
       Template(temp):
+      =hidden_field_tag(:hop_id, @prize.hop.id) unless @prize.hop.blank?
       %br
 
 

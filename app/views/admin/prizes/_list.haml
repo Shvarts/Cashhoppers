@@ -10,6 +10,8 @@
       %th
         Prize
       %th
+        accept
+      %th
         User
       %th
     - @prizes.each do |prize|
@@ -20,6 +22,8 @@
           = prize.place
         %td
           = prize.cost
+        %td
+          = prize.accept.inspect
         %td
 
           - if prize.user

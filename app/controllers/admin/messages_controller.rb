@@ -15,7 +15,7 @@ class Admin::MessagesController < Admin::AdminController
       @prize.place=''
       @hop_name = ''
     end
-    puts("-------------------------------------#{@prize.place}---------------")
+
   end
 
   def message_tool
@@ -84,7 +84,7 @@ class Admin::MessagesController < Admin::AdminController
       template_data[:prize_place] = params[:prize_place]
       template_data[:hop_name] = params[:hop_name]
       begin
-        Prize.where(place: params[:prize_place],:hop_id => Hop.find_by_name(params[:hop_name]).id).first.update_attributes(:accept => true) if  !params[:prize_place].blank?
+        Prize.where(place: params[:prize_place],:hop_id => params[:hop_id]).first.update_attributes(:accept => true) if  !params[:prize_place].blank?
       rescue Exception => e
       end
     elsif params[:hop_name]
@@ -130,6 +130,7 @@ class Admin::MessagesController < Admin::AdminController
     else
       @messages.each{|m| m.save}
        UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
+
         redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
     end
 
