@@ -34,6 +34,12 @@
     %tr
       %td
         %b
+          Sponsor:
+      %td
+        = f.select :sponsor_id,  options_for_select( User.all.map {|user| [user.email, user.id]},current_user.id), class: 'span12'
+    %tr
+      %td
+        %b
           Bonus point
           %br
           for sharing:

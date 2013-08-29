@@ -1,5 +1,5 @@
 class Admin::HopsController < Admin::AdminController
- load_and_authorize_resource
+  authorize_resource
   before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
 
   def regular
@@ -11,7 +11,7 @@ class Admin::HopsController < Admin::AdminController
     @error = params[:error] if params[:error]
   end
 
-  def daily
+    def daily
     @tab = 'daily_hops'
     conditions = {daily: true, close: false}
     @hops_grid = initialize_grid(Hop, include: [:producer], per_page: 20, :conditions => conditions,
@@ -56,13 +56,16 @@ class Admin::HopsController < Admin::AdminController
   end
 
   def create
-    params[:hop][:producer_id] = current_user.id
+    params[:hop][:creator_id] = current_user.id
     params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
     if @hop.daily
       @hop.time_end = @hop.time_start
     end
     if @hop.save
+      if @hop.jackpot
+        Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1st', :user_id=>'', :prize_type=>'place', :accept=>nil)
+      end
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
       if @hop.daily
@@ -95,6 +98,22 @@ class Admin::HopsController < Admin::AdminController
       @hop.time_end = @hop.time_start
     end
     if @hop.update_attributes(params[:hop])
+
+
+      for i in params[:hop]
+
+        if i.include?('jackpot')
+
+
+          prize = Prize.where(:hop_id => @hop.id, :place=>'1st').first
+          puts params[:hop][:jackpot].inspect
+          if prize
+            prize.update_attributes(:cost => params[:hop][:jackpot])
+          else
+            Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1st', :user_id=>'', :prize_type=>'place', :accept=>nil)
+         end
+        end
+      end
       redirect_to [:admin, @hop ], notice: 'Hop was successfully updated.'
     else
       if @hop.daily
@@ -241,6 +260,11 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.create!(@new_hop)
 
       rescue Exception =>e
+        puts '---------------------------2222222-----------------------------------------'
+        puts "----------------#{e.message}---------------"
+        puts '---------------------------2222222-----------------------------------------'
+
+
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
 
@@ -264,6 +288,19 @@ class Admin::HopsController < Admin::AdminController
 
 
   end
+
+ def hop_photos
+
+
+   @hop=Hop.find_by_id(params[:hop_id])
+   @ads = @hop.ads.all
+   @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten!
+
+
+   render :layout => 'home_layout'
+
+
+ end
 
   private
 

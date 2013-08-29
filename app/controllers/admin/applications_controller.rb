@@ -1,5 +1,5 @@
 class Admin::ApplicationsController < Admin::AdminController
-  load_and_authorize_resource
+  authorize_resource
   # GET /admin/applications
   # GET /admin/applications.json
   def index

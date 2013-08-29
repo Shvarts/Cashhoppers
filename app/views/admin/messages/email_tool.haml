@@ -42,6 +42,7 @@
   .row-fluid
     .span3
       Template(temp):
+      =hidden_field_tag(:hop_id, @prize.hop.id) unless @prize.hop.blank?
       %br
 
 
@@ -50,7 +51,7 @@
       Send from:
       %br
 
-      = f.select :sender_id, [['CashHoppers', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
+      = f.select :sender_id, [['CashHopper', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
       %br
       File:
       %br
@@ -84,4 +85,4 @@
     .span3
       =button_to 'Back to Hopper_info',  admin_hoppers_find_hopper_path(),  class: 'btn btn-success'
     .span3
-      =button_to 'Back to Hopper_info',  admin_hoppers_hopper_list_path(),  class: 'btn btn-success'
+      =button_to 'Back to Generate hopper list',  admin_hoppers_hopper_list_path(),  class: 'btn btn-success'

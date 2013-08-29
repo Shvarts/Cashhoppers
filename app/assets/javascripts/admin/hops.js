@@ -1,7 +1,7 @@
 $(function(){
     $('.align-error').css('color', 'red')
     $('#load').click(function(e){
-        var myRe = /\.xls$/;
+        var myRe = /\.xlsx$/;
 
         var val = myRe.exec($('#excel').val());
 
@@ -16,6 +16,11 @@ $(function(){
         }
 
     })
+    $('.carousel').carousel({
+        interval: 4000
+
+    })
+
 
 
 })
@@ -25,7 +30,7 @@ function change_user_prize(sender){
         return;
     }
     $.ajax({
-        url: "/admin/prizes/update",
+        url: "/admin/prizes/"+$(sender).val()+"",
         data: { prize: { user_id:$(sender).attr('user_id')}, prize_id: $(sender).val()},
         type: 'PUT',
         beforeSend: function () {
@@ -42,6 +47,7 @@ function change_user_prize(sender){
         }
     });
 }
+
 
 function place_hide(){
 
@@ -60,6 +66,7 @@ function place_prize(){
 
 
 function update_hoppers(id){
+
     $.ajax({
         url: '/admin/hops/render_hoppers',
         data:{hop_id: id},
@@ -73,3 +80,9 @@ function update_hoppers(id){
         }
     });
 };
+
+function center_carousel(){
+$('#hopPhotos .carousel-inner .active.item img').each(function() {
+    $(this).css('margin-top', ($(this).parent().height() - $(this).height())/2 + 'px' ) ;
+});
+}

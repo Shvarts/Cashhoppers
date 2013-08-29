@@ -87,7 +87,7 @@
     margin: 0% 0%;
   }
   .header-right .button-container.text-right .btn-group input.btn-warning{
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left:0% ;
     margin-right:0% ;
     margin-bottom:0% ;
@@ -137,8 +137,9 @@
     border-left: 0px;
   }
 
-  .dropdown-menu.button{
+  .dropdown-menu.button#dropdown{
     left: -30%;
+
 
   }
   .header{
@@ -172,14 +173,6 @@
   .navbar-inner{
     width: 95%;
   }
-  //.button-container.text-right .btn-group> a img{
-  //  width: 200%;
-  //  height: 25px;
-  //
-  //  margin-top: 5%;
-  //  margin-left:0% ;
-  //  margin-right:0% ;
-  //}
 
 
   .row-fluid .header-right.span6{
@@ -217,6 +210,10 @@
 
     margin-top: 5%;
     width: 80%;
+
+  }
+  #download-button{
+    margin-top: 3%;
 
   }
 

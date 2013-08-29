@@ -6,13 +6,6 @@
 = form_for([:admin, @ad]) do |f|
   = f.hidden_field :hop_id
   %table.hops-form
-    %tr
-      %td
-        %b
-          Advertizer:
-      %td
-        = current_user.first_name
-        = current_user.last_name
     - if @hop
       %tr
         %td
@@ -53,10 +46,17 @@
           Link:
       %td
         = f.text_field :link, class: 'span12'
+
     %tr
       %td
         %b
-          Picture
+          Advertiser:
+      %td
+        = f.select :advertizer_id,  options_for_select( User.all.map {|user| [user.email, user.id]},current_user.id), :class => 'span12'
+    %tr
+      %td
+        %b
+          Add file:
       %td
         .fileupload.fileupload-new{'data-provides' => 'fileupload'}
           .fileupload-preview.fileupload-exists.thumbnail{style: 'max-width: 200px; max-height: 150px; line-height: 20px;'}

@@ -15,6 +15,14 @@
     %tr
       %td
         %b
+          Producer:
+      %td
+        = f.select :producer_id,  options_for_select( User.all.map {|user| [user.email, user.id]},current_user.id), class: ''
+
+
+    %tr
+      %td
+        %b
           Time start:
       %td
         #datetimepicker1.input-append.date

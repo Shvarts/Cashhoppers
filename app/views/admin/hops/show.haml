@@ -45,19 +45,7 @@
       - if User.producer?(current_user) || User.admin?(current_user)
         = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-success')
         = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-.row-fluid
-  .span12.text-error
-    -if @exp
-      -@exp.flatten!
-      - for i in  @exp.first
-        %br
-        %b
-          = i.first
-          .offset3
-            -for e in i[1]
-              %b
-                =e
-                %br
+
 %br
 
 
@@ -134,7 +122,10 @@
             %b
               Jackpot:
           %td
-            = @hop.jackpot
+            -if @hop.jackpot.to_s.match(/[a-zA-Z]/).nil?
+              = number_to_currency(@hop.jackpot )
+            -else
+              =@hop.jackpot
         %tr
           %td
             %b
@@ -180,8 +171,8 @@
 %hr
 %h4
   Hoppers:
--#= UserHopTask.create(:hop_task_id => @hop.hop_tasks.first.id, :user_id => 50, :photo =>current_user.avatar, :comment=>'comment'  )
--#=@hop.hoppers << User.find_by_id(50)
+-#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[1].id, :user_id => current_user.id, :photo =>current_user.avatar, :comment=>'comment'  )
+-#=@hop.hoppers << User.find_by_id(current_user.id)
 - if @hoppers.blank?
   List has no rows
 - else
@@ -191,13 +182,12 @@
 
 %br
 .row-fluid
-  .span2.text-right
+  .span2.text-left
     = link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
+    %br
+    %br
+    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
   .span10
     .text-right
       = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
-%br
-.row-fluid
-  .span3
-    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-  .span9
+

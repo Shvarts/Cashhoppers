@@ -45,6 +45,7 @@ CashHoppers::Application.routes.draw do
     post 'hops/print_hop_to_excel',        to: 'hops#print_hop_to_excel',      as: 'print_hop_to_excel'
     post 'hops/print_hops_to_excel',       to: 'hops#print_hops_to_excel',      as: 'print_hops_to_excel'
     get 'hops/render_hoppers',            to: 'hops#render_hoppers',           as: 'render_hoppers'
+    get 'hops/hop_photos',                to: 'hops#hop_photos',               as: 'hop_photos'
 
     #hop_tasks
     resources :hop_tasks

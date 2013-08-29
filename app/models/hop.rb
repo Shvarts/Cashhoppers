@@ -11,7 +11,7 @@ class Hop < ActiveRecord::Base
   has_many :prizes
   has_many :notifications
 
-  attr_accessible :close, :event, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
+  attr_accessible :close, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
@@ -127,14 +127,14 @@ class Hop < ActiveRecord::Base
   def self.import_from_excel(import_file)
     Spreadsheet.client_encoding = 'UTF-8'
 
-    temp = Tempfile.new([import_file.original_filename, '.xls' ])
+    temp = Tempfile.new([import_file.original_filename, '.xlsx' ])
     temp.binmode
     temp.write(import_file.read)
     temp.close
 
 
+      oo = Roo::Excelx.new("#{temp.path}")
 
-      oo = Roo::Excel.new("#{temp.path}")
 
       oo.default_sheet = oo.sheets.first
       new_hop = {}
@@ -148,34 +148,33 @@ class Hop < ActiveRecord::Base
       row_size = oo.last_row
       col_size = oo.last_column
       1.upto(row_size ) do |i|
-        if oo.cell(i,1) == 'Hop' || oo.cell(i,1) == 'hop'
+        if oo.cell(i,1) == 'HOP DETAILS'
           hop_row = i
         end
-        if oo.cell(i,1) == 'Hop item' || oo.cell(i,1) == 'hop item'
+        if oo.cell(i,1) == 'HOP ITEMS'
           hop_items_row = i
         end
-        if oo.cell(i,1) == 'Hop ad' || oo.cell(i,1) == 'hop ad'
+        if oo.cell(i,1) == 'HOP ADS'
           hop_ad_row = i
         end
-        if oo.cell(i,1) == 'Winner' || oo.cell(i,1) == 'winner'
+        if oo.cell(i,1) == 'PRIZES'
           hop_winner_row = i
         end
       end
 
-
-
       hop_row.upto(hop_winner_row ) do |i|
         1.upto(col_size) do |j|
-          new_hop[:name] =  oo.cell(i + 1,j) if oo.cell(i,j) == 'Name' ||  oo.cell(i,j) == 'name'
+          new_hop[:name] =  oo.cell(i + 1,j) if oo.cell(i,j) == 'HOP NAME'
           new_hop[:daily] = 0
           new_hop[:close] = 0
-          new_hop[:code] = oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Code' ||  oo.cell(i,j) == 'code'
-          new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'Time start' ||  oo.cell(i,j) == 'time start'
-          new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'Time end' ||  oo.cell(i,j) == 'time end'
-          new_hop[:price] = oo.cell(i + 1,j).to_s   if oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price'
-          new_hop[:producer_id]=  oo.cell(i + 1,j).to_i  if oo.cell(i,j) == 'Showprod id' ||  oo.cell(i,j) == 'showprod id'
-          new_hop[:jackpot]=  oo.cell(i + 1,j).to_s if oo.cell(i,j) == 'Jackpot' ||  oo.cell(i,j) == 'jackpot'
-          new_hop[:event]=  oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
+          new_hop[:code] = oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'PASSWORD'
+          new_hop[:producer_id]=  User.find_by_email(oo.cell(i + 1,j)).id  if oo.cell(i,j) == 'PRODUCER  EMAIL'
+          new_hop[:price] = oo.cell(i + 1,j).to_s   if oo.cell(i,j) == 'PRICE OF HOP'
+          new_hop[:time_start] = oo.cell(i + 1,j)  if oo.cell(i,j) == 'START DAY/TIME'
+          new_hop[:time_end] = oo.cell(i + 1,j)   if oo.cell(i,j) == 'END DAY/TIME'
+
+           new_hop[:jackpot]=  oo.cell(i + 1,j).to_s if oo.cell(i,j) == 'JACKPOT'
+          #new_hop[:event]=  oo.cell(i + 1,j).to_s  if oo.cell(i,j) == 'Special event' ||  oo.cell(i,j) == 'Special event'
 
         end
       end
@@ -190,9 +189,9 @@ class Hop < ActiveRecord::Base
             (i+1).upto(hop_items_row-1 ) do |c|
               hop_winner[c] = {}
               1.upto(col_size) do |j|
-                hop_winner[c][:place] = oo.cell(c, j).to_s  if (oo.cell(i,j) == "Place" ||  oo.cell(i,j) == "place") &&  !oo.cell(c, j).nil?
-                hop_winner[c][:cost] = oo.cell(c,j).to_s  if (oo.cell(i,j) == 'Prize' ||  oo.cell(i,j) == 'prize') &&  !oo.cell(c, j).nil?
-                hop_winner[c][:prize_type] = oo.cell(c,j).to_s  if (oo.cell(i,j) == 'Prize type' ||  oo.cell(i,j) == 'prize type') &&  !oo.cell(c, j).nil?
+                hop_winner[c][:place] = oo.cell(c, j).to_s     if (oo.cell(i,j) == "Place" ||  oo.cell(i,j) == "place") &&  !oo.cell(c, j).nil?
+                hop_winner[c][:cost] = oo.cell(c,j).to_s       if (oo.cell(i,j) == 'Prize' ||  oo.cell(i,j) == 'prize') &&  !oo.cell(c, j).nil?
+               hop_winner[c][:prize_type] = oo.cell(c,j).to_s  if (oo.cell(i,j) == 'Prize type' ||  oo.cell(i,j) == 'prize type') &&  !oo.cell(c, j).nil?
 
               end
               hop_winners <<  hop_winner[c] if !oo.cell(c, j).nil?
@@ -205,16 +204,17 @@ class Hop < ActiveRecord::Base
 
       hop_items_row.upto(hop_ad_row -1) do |i|
         1.upto(col_size) do |j|
-          if oo.cell(i,j) == 'Hop item description' ||  oo.cell(i,j) == 'hop item description'
+          if oo.cell(i,j) == 'TASK DESCRIPTION'
             (i+1).upto(hop_ad_row-1 ) do |c|
               hop_item[c] = {}
               1.upto(col_size) do |j|
-                hop_item[c][:text] = oo.cell(c, j)  if (oo.cell(i,j) == "Hop item description" ||  oo.cell(i,j) == "hop item description") &&  !oo.cell(c, j).nil?
-                hop_item[c][:sponsor_id] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Sponsor id' ||  oo.cell(i,j) == 'sponsor id') &&  !oo.cell(c, j).nil?
-                hop_item[c][:pts] = oo.cell(c,j).to_i if (oo.cell(i,j) == 'PTS' ||  oo.cell(i,j) == 'pts')  &&  !oo.cell(c, j).nil?
-                hop_item[c][:bonus] = oo.cell(c,j).to_i   if (oo.cell(i,j) == 'Bonus' ||  oo.cell(i,j) == 'bonus')  &&  !oo.cell(c, j).nil?
-                hop_item[c][:price] = oo.cell( c,j).to_i  if (oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price')  &&  !oo.cell(c, j).nil?
-                hop_item[c][:amt_paid]=  oo.cell(c,j).to_i if (oo.cell(i,j) == 'Amt paid' ||  oo.cell(i,j) == 'amt paid') &&  !oo.cell(c, j).nil?
+                hop_item[c][:text] = oo.cell(c, j)             if oo.cell(i,j) == "TASK DESCRIPTION"  &&  !oo.cell(c, j).nil?
+
+                hop_item[c][:sponsor_id] = User.find_by_email(oo.cell(c,j)).id  if oo.cell(i,j) == 'SPONSOR EMAIL' &&  !oo.cell(c, j).nil?
+                hop_item[c][:pts] = oo.cell(c,j).to_i          if oo.cell(i,j) == 'POINTS'  &&  !oo.cell(c, j).nil?
+                hop_item[c][:bonus] = oo.cell(c,j).to_i        if oo.cell(i,j) == 'SHARING BONUS'  &&  !oo.cell(c, j).nil?
+                hop_item[c][:price] = oo.cell( c,j).to_i       if oo.cell(i,j) == 'PRICE'  &&  !oo.cell(c, j).nil?
+                hop_item[c][:amt_paid]=  oo.cell(c,j).to_i     if oo.cell(i,j) == 'PAID'  &&  !oo.cell(c, j).nil?
               end
               hop_items <<  hop_item[c] if !oo.cell(c, j).nil?
             end
@@ -228,17 +228,16 @@ class Hop < ActiveRecord::Base
 
       hop_ad_row.upto(row_size) do |i|
         1.upto(col_size) do |j|
-          if oo.cell(i,j) == 'Position' ||  oo.cell(i,j) == 'position'
+          if oo.cell(i,j) == 'POSITION'
             (i+1).upto(row_size ) do |c|
               hop_ad[c] = {}
               1.upto(col_size) do |j|
 
-                hop_ad[c][:ad_type] = oo.cell(c, j)  if (oo.cell(i,j) == 'Position' ||  oo.cell(i,j) == 'position') &&  !oo.cell(c, j).nil?
-                hop_ad[c][:text] = oo.cell(c, j)  if (oo.cell(i,j) == "Hop item description" ||  oo.cell(i,j) == "hop item description") &&  !oo.cell(c, j).nil?
-                hop_ad[c][:advertizer_id] = oo.cell(c,j).to_i  if (oo.cell(i,j) == 'Advertiser id' ||  oo.cell(i,j) == 'advertiser id') &&  !oo.cell(c, j).nil?
-                hop_ad[c][:price] = oo.cell( c,j).to_i  if (oo.cell(i,j) == 'Price' ||  oo.cell(i,j) == 'price')  &&  !oo.cell(c, j).nil?
-                hop_ad[c][:amt_paid]=  oo.cell(c,j).to_i if (oo.cell(i,j) == 'Amt paid' ||  oo.cell(i,j) == 'amt paid') &&  !oo.cell(c, j).nil?
-                hop_ad[c][:link]=  oo.cell(c,j) if (oo.cell(i,j) == 'Link to ad' ||  oo.cell(i,j) == 'link to ad') &&  !oo.cell(c, j).nil?
+                hop_ad[c][:ad_type] = oo.cell(c, j)       if oo.cell(i,j) == 'POSITION'  &&  !oo.cell(c, j).nil?
+                hop_ad[c][:advertizer_id] = User.find_by_email(oo.cell(c,j)).id  if oo.cell(i,j) == 'ADVERTISER  EMAIL' &&  !oo.cell(c, j).nil?
+                hop_ad[c][:price] = oo.cell( c,j).to_i    if oo.cell(i,j) == 'PRICE'  &&  !oo.cell(c, j).nil?
+                hop_ad[c][:amt_paid]=  oo.cell(c,j).to_i  if oo.cell(i,j) == 'PAID'  &&  !oo.cell(c, j).nil?
+                hop_ad[c][:link]=  oo.cell(c,j)           if oo.cell(i,j) == 'AD HYPERLINK' &&  !oo.cell(c, j).nil?
               end
               hop_ads <<  hop_ad[c] if !oo.cell(c, j).nil?
 
@@ -246,7 +245,6 @@ class Hop < ActiveRecord::Base
           end
         end
       end
-
 
     return new_hop, hop_items, hop_ads, hop_winners
   end

@@ -49,6 +49,11 @@ class User < ActiveRecord::Base
   validates :email, :zip, :presence => true
   validates :zip, numericality: {only_integer: true}
 
+
+
+
+
+
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
   end

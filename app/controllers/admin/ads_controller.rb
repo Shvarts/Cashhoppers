@@ -1,5 +1,5 @@
 class Admin::AdsController < Admin::AdminController
-  load_and_authorize_resource
+  authorize_resource
   def index
     @hop = Hop.where(id: params[:hop_id]).first
     if @hop
@@ -28,8 +28,9 @@ class Admin::AdsController < Admin::AdminController
 
   def create
     @hop = Hop.where(id: params[:ad][:hop_id]).first
+    params[:ad][:creator_id]= current_user.id
     @ad = Ad.new(params[:ad])
-    @ad.advertizer = current_user
+
     if @ad.save
       render text: 'ok'
     else
@@ -44,13 +45,16 @@ class Admin::AdsController < Admin::AdminController
   end
 
   def update
+
     @ad = Ad.find(params[:id])
     @hop = @ad.hop
-    if @ad.update_attributes(params[:ad])
-      render text: 'ok'
-    else
-      render partial: 'form'
-    end
+    #if User.admin?(current_user) || current_user.id == @ad.advertizer_id
+      if @ad.update_attributes(params[:ad])
+        render text: 'ok'
+      else
+        render partial: 'form'
+      end
+
   end
 
   def destroy

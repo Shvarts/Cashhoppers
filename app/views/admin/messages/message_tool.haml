@@ -21,10 +21,12 @@
   });
 = form_for @message, url: admin_messages_message_create_path do |f|
   .row-fluid
+
     .span3
       Filters:
     .span3
       Hops:
+
       %br
       = select_tag 'hops_ids[]','', :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Hops"}
     .span3
@@ -39,7 +41,7 @@
     .span3
       Send from:
       %br
-      = f.select :sender_id, [['CashHoppers', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
+      = f.select :sender_id, [['CashHopper', ''], [full_user_name(current_user), '']], {}, {class: 'span12' }
       %br
       Schedule:
       %br
@@ -54,6 +56,7 @@
                 });
             });
     .span9
+
       Content:
       = f.text_area :text, class: 'span12', rows: 4
   .row-fluid
@@ -66,4 +69,4 @@
     .span3
       =button_to 'Back to Hopper_info',  admin_hoppers_find_hopper_path(), class: 'btn btn-success'
     .span3
-      =button_to 'Back to Hopper_info',  admin_hoppers_hopper_list_path(),  class: 'btn btn-success'
+      =button_to 'Back to Generate hopper list',  admin_hoppers_hopper_list_path(),  class: 'btn btn-success'

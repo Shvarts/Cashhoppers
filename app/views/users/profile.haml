@@ -130,6 +130,8 @@
     %th
       Type
     %th
+      Hop photos:
+    %th
   - @hops.each do |hop|
     %tr
       %td
@@ -138,6 +140,8 @@
         = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
       %td
         =  hop.daily ? 'Daily': 'Regular'
+      %td
+        =  link_to 'Hop photos',admin_hop_photos_path({:hop_id =>hop.id })
 
 
 

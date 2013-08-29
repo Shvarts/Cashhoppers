@@ -15,11 +15,19 @@
     - @prizes.each do |prize|
       %tr
         %td
+
           = prize.prize_type
         %td
-          = prize.place
+          -if prize.place.to_s.match(/[a-zA-Z]/).nil?
+            = prize.place.to_i
+          -else
+            = prize.place
         %td
-          = prize.cost
+          -if prize.cost.to_s.match(/[a-zA-Z]/).nil?
+            = number_to_currency(prize.cost )
+          -else
+            =prize.cost
+
         %td
 
           - if prize.user
@@ -27,7 +35,7 @@
         %td.buttons-section{style: 'text-align: right'}
           -if (User.producer?(current_user) || User.admin?(current_user)) && !prize.accept
             -if  (prize.prize_type == 'place' || prize.prize_type == 'random' )&& prize.hop.hop_end
-              %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
+              %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:prize_id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
                 Randomly
             %button.btn.btn-danger.btn-mini{onclick: 'prizes_modal.rejectRecord("' + admin_prize_path(prize, {:prize => {:user_id => nil}}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
               Reject

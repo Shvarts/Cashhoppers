@@ -1,5 +1,5 @@
 class Admin::MessagesController < Admin::AdminController
- # load_and_authorize_resource
+  authorize_resource
   before_filter :authenticate_user!
 
   def email_tool
@@ -95,7 +95,7 @@ class Admin::MessagesController < Admin::AdminController
       template_data[:prize_place] = params[:prize_place]
       template_data[:hop_name] = params[:hop_name]
       begin
-        Prize.where(place: params[:prize_place],:hop_id => Hop.find_by_name(params[:hop_name]).id).first.update_attributes(:accept => true) if  !params[:prize_place].blank?
+        Prize.where(place: params[:prize_place],:hop_id => params[:hop_id]).first.update_attributes(:accept => true) if  !params[:prize_place].blank?
       rescue Exception => e
       end
     elsif params[:hop_name]
@@ -125,6 +125,10 @@ class Admin::MessagesController < Admin::AdminController
     if  @users.blank?
       flash[:error] = 'Receivers not selected.'
       @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
+      @prize = Prize.new
+      @prize.place=''
+      @hop_name = ''
+
       render action: 'email_tool'
     elsif  !template_data[:hop_name].blank? && !Hop.find_by_name( template_data[:hop_name])
 
@@ -137,6 +141,7 @@ class Admin::MessagesController < Admin::AdminController
     else
       @messages.each{|m| m.save}
        UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
+
         redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
     end
 
