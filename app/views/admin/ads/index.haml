@@ -47,8 +47,13 @@
           %td
             = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
           %td{style: 'text-align: right'}
-            %button.btn.btn-info.btn-mini{onclick: 'ads_modal.editRecord({type: "' + ad.ad_type + '"}, "Edit ad", "' + edit_admin_ad_path(ad) + '")'}
-              Edit
-            %button.btn.btn-danger.btn-mini{onclick: 'ads_modal.removeRecord("' + admin_ad_path(ad) + '", {type: "' + ad.ad_type + '"})'}
-              Delete
+
+
+
+            -if (!User.user?(current_user)) && User.can_edit?(current_user,ad.creator_id)
+
+              %button.btn.btn-info.btn-mini{onclick: 'ads_modal.editRecord({type: "' + ad.ad_type + '"}, "Edit ad", "' + edit_admin_ad_path(ad) + '")'}
+                Edit
+              %button.btn.btn-danger.btn-mini{onclick: 'ads_modal.removeRecord("' + admin_ad_path(ad) + '", {type: "' + ad.ad_type + '"})'}
+                Delete
   = will_paginate @users, renderer: BootstrapPagination::Rails

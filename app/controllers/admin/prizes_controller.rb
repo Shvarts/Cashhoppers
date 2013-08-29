@@ -56,9 +56,10 @@ class Admin::PrizesController < ApplicationController
 
   def update
 
+
     params[:id]= params[:prize_id] if params[:prize_id]
     @prize = Prize.find(params[:id])
-    if params[:prize][:creator_id]== current_user.id && @prize.update_attributes(params[:prize])
+    if @prize.update_attributes(params[:prize])
       render text: 'ok'
     else
       render partial: 'form'

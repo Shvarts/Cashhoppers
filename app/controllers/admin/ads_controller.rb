@@ -29,9 +29,17 @@ class Admin::AdsController < Admin::AdminController
   def create
     @hop = Hop.where(id: params[:ad][:hop_id]).first
     params[:ad][:creator_id]= current_user.id
+    puts "_________________________________________________________________________"
+    puts "_________________________#{params[:ad]}_____________________________________"
+    puts "_________________________________________________________________________"
     @ad = Ad.new(params[:ad])
 
     if @ad.save
+      puts "_________________________________________________________________________"
+      puts "_________________________#{ current_user.id}_____________________________________"
+      puts "_________________________#{ @ad.inspect}_____________________________________"
+      puts "_________________________________________________________________________"
+
       render text: 'ok'
     else
       render partial: 'form'
@@ -47,20 +55,28 @@ class Admin::AdsController < Admin::AdminController
   def update
 
     @ad = Ad.find(params[:id])
-    @hop = @ad.hop
-    #if User.admin?(current_user) || current_user.id == @ad.advertizer_id
-      if @ad.update_attributes(params[:ad])
-        render text: 'ok'
-      else
-        render partial: 'form'
-      end
-
+    if User.can_edit?(current_user, @ad.creator_id)
+      @hop = @ad.hop
+      #if User.admin?(current_user) || current_user.id == @ad.advertizer_id
+        if @ad.update_attributes(params[:ad])
+          render text: 'ok'
+        else
+          render partial: 'form'
+        end
+    else
+      @ad.errors.messages[:access]=["Can not edit this task "] if @ad.errors.messages.blank?
+      render partial: 'form'
+    end
   end
 
   def destroy
     @ad = Ad.find(params[:id])
-    @ad.destroy
-    render text: 'ok'
+    if User.can_edit?(current_user, @ad.creator_id)
+      @ad.destroy
+      render text: 'ok'
+    else
+      render text: 'ok'
+    end
   end
 
   def sub_layout

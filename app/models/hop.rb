@@ -14,7 +14,7 @@ class Hop < ActiveRecord::Base
   attr_accessible :close, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
   validates_presence_of :time_start, :name
-  validates_presence_of :time_end, :jackpot,  :producer_id, unless: :daily?
+  validates_presence_of :time_end,  :producer_id, unless: :daily?
   #validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
@@ -30,7 +30,9 @@ class Hop < ActiveRecord::Base
 
   def init_hop
     self.notificated_about_end = 0
+    self.jackpot = 0 unless self.jackpot
   end
+
 
   def self.get_daily_by_date date
     Hop.where("time_start BETWEEN ? AND ? AND daily = 1", date.beginning_of_day, date.end_of_day).first
@@ -291,12 +293,15 @@ class Hop < ActiveRecord::Base
     completed
   end
 
-  private
 
+  private
   def only_one_daily_hop_per_day
-    if daily && Hop.get_daily_by_date(self.time_start)
+    daily_hop =  Hop.get_daily_by_date(self.time_start)
+    if daily && daily_hop && daily_hop.id != self.id
       errors.add(:start_date, "Can be only one daily hop per day.")
     end
   end
+
+
 
 end

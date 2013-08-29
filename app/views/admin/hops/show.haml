@@ -42,7 +42,7 @@
         = link_to 'Back', admin_daily_hops_path, class: 'btn btn-info'
       - else
         = link_to 'Back', admin_regular_hops_path, class: 'btn btn-info'
-      - if User.producer?(current_user) || User.admin?(current_user)
+      - if (User.producer?(current_user) || User.admin?(current_user)) && User.can_edit?(current_user,@hop.creator_id)
         = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-success')
         = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 
@@ -169,10 +169,13 @@
   = render partial: 'admin/ads/list'
 
 %hr
+-#=  @hop.creator_id
+-#= current_user.id
+-#= User.can_edit?(current_user, @hop.creator_id)
 %h4
   Hoppers:
--#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[1].id, :user_id => current_user.id, :photo =>current_user.avatar, :comment=>'comment'  )
--#=@hop.hoppers << User.find_by_id(current_user.id)
+-#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[1].id, :user_id => 55, :photo =>current_user.avatar, :comment=>'comment'  )
+-#=@hop.hoppers << User.find_by_id(55)
 - if @hoppers.blank?
   List has no rows
 - else
@@ -186,7 +189,8 @@
     = link_to 'Export to Pdf',  admin_print_hop_to_pdf_path(:id => @hop.id,  :format => 'pdf'),:method => 'post',:target=>"_blank", :class => 'btn btn-success'
     %br
     %br
-    = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+      -if User.can_edit?(current_user,@hop.creator_id)
+        = link_to('Close', admin_close_hop_path(@hop), method: :post, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
   .span10
     .text-right
       = link_to 'Export to Excel',  admin_print_hop_to_excel_path(:id => @hop.id, :format => 'xls' ),:method => 'post', :class => 'btn btn-success'
