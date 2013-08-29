@@ -80,6 +80,9 @@ class User < ActiveRecord::Base
   def self.user?(user)
     user.role? :user
   end
+ def self.can_edit?(user,id)
+   user.id == id || (user.role? :admin)
+  end
 
   private
 

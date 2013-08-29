@@ -78,6 +78,7 @@ class Admin::HopsController < Admin::AdminController
   end
 
  def render_hoppers
+
    @hop = Hop.find_by_id(params[:hop_id])
    @hoppers = @hop.hoppers
 
@@ -97,7 +98,7 @@ class Admin::HopsController < Admin::AdminController
     if @hop.daily
       @hop.time_end = @hop.time_start
     end
-    if @hop.update_attributes(params[:hop])
+    if User.can_edit?(current_user, @hop.creator_id) && @hop.update_attributes(params[:hop])
 
 
       for i in params[:hop]
@@ -119,6 +120,9 @@ class Admin::HopsController < Admin::AdminController
       if @hop.daily
         render action: 'edit_daily'
       else
+
+        @hop.errors.messages[:access]=["Can not edit this hop "] if @hop.errors.messages.blank?
+
         render action: 'edit_regular'
       end
     end
@@ -127,9 +131,13 @@ class Admin::HopsController < Admin::AdminController
   def destroy
     @hop = Hop.find(params[:id])
     daily_hop = @hop.daily
-    @hop.destroy
-    if daily_hop
-      redirect_to admin_daily_hops_path
+    if  User.can_edit?(current_user, @hop.creator_id)
+      @hop.destroy
+      if daily_hop
+        redirect_to admin_daily_hops_path
+      else
+        redirect_to admin_regular_hops_path
+      end
     else
       redirect_to admin_regular_hops_path
     end
@@ -137,10 +145,15 @@ class Admin::HopsController < Admin::AdminController
 
   def close
     @hop = Hop.find(params[:id])
-    if @hop.update_attributes( close: 1)
-        flash[:notice] = 'Hop was successfully closed.'
+    if User.can_edit?(current_user, @hop.creator_id)
+     if @hop.update_attributes( close: 1)
+       flash[:notice] = 'Hop was successfully closed.'
+      else
+          flash[:error] = 'Error update hop'
+      end
     else
-        flash[:error] = 'Error update hop.'
+      flash[:error] = 'Have not access '
+
     end
     redirect_to :back
   end
@@ -260,9 +273,9 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.create!(@new_hop)
 
       rescue Exception =>e
-        puts '---------------------------2222222-----------------------------------------'
-        puts "----------------#{e.message}---------------"
-        puts '---------------------------2222222-----------------------------------------'
+        #puts '---------------------------2222222-----------------------------------------'
+        #puts "----------------#{e.message}---------------"
+        #puts '---------------------------2222222-----------------------------------------'
 
 
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })

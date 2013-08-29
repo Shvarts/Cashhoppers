@@ -28,7 +28,9 @@ $(function(){
 function change_user_prize(sender){
     if(!confirm("Are you sure you want to change user role ?")){
         return;
+
     }
+
     $.ajax({
         url: "/admin/prizes/"+$(sender).val()+"",
         data: { prize: { user_id:$(sender).attr('user_id')}, prize_id: $(sender).val()},
