@@ -63,6 +63,7 @@ module CashHoppers
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    config.action_mailer.default_url_options = { :host => "http://perechin.net:3000" }
     # generators configuration
     config.generators do |g|
       g.test_framework :rspec, :fixture => true

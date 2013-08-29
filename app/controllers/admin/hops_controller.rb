@@ -98,15 +98,12 @@ class Admin::HopsController < Admin::AdminController
       @hop.time_end = @hop.time_start
     end
     if @hop.update_attributes(params[:hop])
-      puts '--------------------------------------------------------------------'
-      puts params
-      puts '--------------------------------------------------------------------'
+
+
       for i in params[:hop]
-        puts '---------------------------1111111111-----------------------------------------'
-        puts i.inspect
-        puts '--------------------------------------------------------------------'
+
         if i.include?('jackpot')
-          puts '---------------------------2222222-----------------------------------------'
+
 
           prize = Prize.where(:hop_id => @hop.id, :place=>'1st').first
           puts params[:hop][:jackpot].inspect
@@ -263,6 +260,11 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.create!(@new_hop)
 
       rescue Exception =>e
+        puts '---------------------------2222222-----------------------------------------'
+        puts "----------------#{e.message}---------------"
+        puts '---------------------------2222222-----------------------------------------'
+
+
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
 

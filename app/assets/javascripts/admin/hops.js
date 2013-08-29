@@ -1,7 +1,7 @@
 $(function(){
     $('.align-error').css('color', 'red')
     $('#load').click(function(e){
-        var myRe = /\.xls$/;
+        var myRe = /\.xlsx$/;
 
         var val = myRe.exec($('#excel').val());
 

@@ -45,19 +45,7 @@
       - if User.producer?(current_user) || User.admin?(current_user)
         = link_to('Edit', admin_edit_regular_hop_path(@hop), class: 'btn btn-success')
         = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-.row-fluid
-  .span12.text-error
-    -if @exp
-      -@exp.flatten!
-      - for i in  @exp.first
-        %br
-        %b
-          = i.first
-          .offset3
-            -for e in i[1]
-              %b
-                =e
-                %br
+
 %br
 
 
@@ -134,7 +122,10 @@
             %b
               Jackpot:
           %td
-            = @hop.jackpot
+            -if @hop.jackpot.to_s.match(/[a-zA-Z]/).nil?
+              = number_to_currency(@hop.jackpot )
+            -else
+              =@hop.jackpot
         %tr
           %td
             %b

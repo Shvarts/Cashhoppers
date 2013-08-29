@@ -15,6 +15,7 @@
       :port => 587,
       :authentication => "plain",
       :domain               => 'gmail.com',
+      :host              => 'http://perechin.net:3000',
       :user_name            => 'misha.skubenich@gmail.com',
       :password             => 'wolverine',
       :enable_starttls_auto => true

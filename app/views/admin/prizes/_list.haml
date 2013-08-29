@@ -10,20 +10,24 @@
       %th
         Prize
       %th
-        accept
-      %th
         User
       %th
     - @prizes.each do |prize|
       %tr
         %td
+
           = prize.prize_type
         %td
-          = prize.place
+          -if prize.place.to_s.match(/[a-zA-Z]/).nil?
+            = prize.place.to_i
+          -else
+            = prize.place
         %td
-          = prize.cost
-        %td
-          = prize.accept.inspect
+          -if prize.cost.to_s.match(/[a-zA-Z]/).nil?
+            = number_to_currency(prize.cost )
+          -else
+            =prize.cost
+
         %td
 
           - if prize.user
