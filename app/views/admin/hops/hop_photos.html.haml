@@ -1,20 +1,21 @@
-.divas1{:style => 'display: table; width: 100%; height: 100%; margin-top: 5%;'}
-  .divas2{:style => 'display: table-cell; width: 20%; height: 20%; position: relative'}
-    .carousel.slide#hopPhotos
-      .carousel-inner.text-center{style: 'width: 600px; height: 600px;  margin:0% auto;'}
-        .item.active{:style=> '  height: 100%;'}
-          =image_tag @hop_task_photo.first.photo.url, style: 'max-width: 600px; max-height: 600px'
 
-        - @hop_task_photo.each do |task|
-          .item{:style=> ' height: 100%;'}
-            =image_tag task.photo.url, style: 'max-width: 600px; max-height: 600px'
 
-        %a.carousel-control.left{"data-slide" => "prev", :href => "#hopPhotos"} ‹
-        %a.carousel-control.right{"data-slide" => "next", :href => "#hopPhotos"} ›
-    .row-fluid.banner
-      .span5.text-right
-        = image_tag @hop.logo.url, style: 'max-width: 400px; max-height: 400px'
-      .span7{:style => 'color: green; font-size: 200%; line-height: 1.5;'}
-        =@hop.name
-        %br
-        =@hop.time_start
+.carousel.slide#hopPhotos
+  .carousel-inner.text-center{style: 'width: 100%; height: 100%;  margin:0% auto;'}
+    .item.active{:style=> '  height: 100%;'}
+      =image_tag @hop_task_photo.first.photo.url, style: 'max-width: 600px; height: 600px'
+
+    - @hop_task_photo.each do |task|
+      .item{:style=> ' height: 100%;'}
+
+        =image_tag task.photo.url, style: 'max-width: 600px; height: 600px'
+
+    %a.carousel-control.left{"data-slide" => "prev", :href => "#hopPhotos"} ‹
+    %a.carousel-control.right{"data-slide" => "next", :href => "#hopPhotos"} ›
+.row-fluid.banner
+  .span5.text-right
+    = image_tag @hop.logo.url, style: 'max-width: 400px; max-height: 400px'
+  .span7{:style => 'color: green; font-size: 200%; line-height: 1.5;'}
+    =@hop.name
+    %br
+    =@hop.time_start
