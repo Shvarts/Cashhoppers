@@ -9,7 +9,7 @@ class Hop < ActiveRecord::Base
                     :default_url => "/assets/no_hop_logo.png",
                     :path => ":rails_root/public/images/hop_logos/hops/:id/HOP_LOGO.:extension"
   has_many :prizes
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   attr_accessible :close, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
