@@ -55,7 +55,7 @@
         display: table-cell;
         li{
           display: inline;
-          font-size: 16px;
+          font-size: 12px;
           font-weight: bolder;
           color: white;
           border-right: 2px solid white;
@@ -65,7 +65,7 @@
           color: #f5f5f5;
           li:last-child{
           border-right: 0px;
-            font-size: 16px;
+            font-size: 12px;
           }
         }
       }
@@ -131,7 +131,7 @@
 .bottom-menu{
   text-align: center;
   li{
-    font-size: 20px;
+    font-size: 12px;
     margin-top: 10%;
     display: inline;
     border-left: 2px solid #00ced1;
@@ -226,36 +226,3 @@
 
 }
 
-@media(min-width:900px)and(max-width: 1050px){
-  .header{
-    .header-content{
-      .header-left{
-        padding-left: 1%;
-        ul{
-          li{
-
-            font-size: 12px;
-          }
-        }
-
-      }
-    }
-  }
-}
-@media(min-width:1030px)and(max-width: 1500px){
-  .header{
-    .header-content{
-      .header-left{
-        padding-left: 3%;
-        ul{
-           li{
-             font-size: 16px;
-           }
-          >a{
-            font-size: 16px;
-          }
-        }
-      }
-    }
-  }
-}
