@@ -20,7 +20,7 @@ class Api::SettingsController < Api::ApplicationController
     unless user.user_settings
       user.user_settings = UserSettings.create()
     end
-    params[:user_settings][:ad_enable] = nil
+    params[:user_settings][:ad_enable] = nil if params[:user_settings]
     if user.user_settings.update_attributes params[:user_settings]
       render :json => {:success=>true,
                        :info => 'Settings succesfully updated.',
