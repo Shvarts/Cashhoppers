@@ -66,7 +66,7 @@ class Api::UsersController < Api::ApplicationController
       @attributes[:contact] = params[:contact]
     end
     unless params[:phone].blank?
-      @attributes[:phone] = params[:phone]
+      @attributes[:phone] = params[:phone].to_s
     end
     unless params[:bio].blank?
       @attributes[:bio] = params[:bio]
