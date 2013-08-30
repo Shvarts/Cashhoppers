@@ -19,7 +19,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def get_my_info
-    @user = @current_user
+    @user = User.find(@current_user.id)
     render 'get_my_info', :content_type => 'application/json'
   end
 
