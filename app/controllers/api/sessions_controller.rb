@@ -14,7 +14,7 @@ class Api::SessionsController < Api::ApplicationController
                        :status => 200
       }
     else
-      bad_request user.errors.full_messages, 406
+      bad_request user.errors.full_messages, 200
     end
   end
 
