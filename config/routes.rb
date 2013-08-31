@@ -99,6 +99,7 @@ CashHoppers::Application.routes.draw do
     post 'sign_in_via_service',            to: 'sessions#sign_in_via_service'
     get 'sessions/service_exist',          to: 'sessions#service_exist'
     post 'sessions/set_android_registration_id', to: 'sessions#set_android_registration_id'
+    post 'sessions/reset_password',        to: 'sessions#reset_password'
 
     get 'ads/get_ads' => 'ads#index'
 
