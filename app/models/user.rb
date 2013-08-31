@@ -46,13 +46,8 @@ class User < ActiveRecord::Base
          :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
          :bio, :twitter, :facebook, :google, :avatar_file_name, :id
 
-  validates :email, :zip, :presence => true
-  validates :zip, numericality: {only_integer: true}
-
-
-
-
-
+  validates :zip, :presence => true
+  validates :zip, numericality: {only_integer: true, allow_blank: true}
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
