@@ -291,7 +291,8 @@ service should be 'twitter', 'facebook', 'google'
                         "liked"=>true,
                         "hop_task_text"=>"Take your picture with ...!",
                         "time_ago"=>"about 2 hours",
-                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                        "likers"=>["admin CashHoppers", "firstname lastname"],
+                        "comments_count"=>1
                     },
                     ...
                  ]}
@@ -313,7 +314,8 @@ service should be 'twitter', 'facebook', 'google'
                         "liked"=>true,
                         "hop_task_text"=>"Take your picture with ...!",
                         "time_ago"=>"about 2 hours" ,
-                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                        "likers"=>["admin CashHoppers", "firstname lastname"],
+                        "comments_count"=>1
                     },
                     ...
                  ]}
