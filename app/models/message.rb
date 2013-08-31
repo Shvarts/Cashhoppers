@@ -78,17 +78,17 @@ class Message < ActiveRecord::Base
     end
   end
 
+  def set_synchronized
+    self.synchronized = 0
+    self.sended = true if self.sended == nil
+  end
+
   private
 
   def schedule_date_in_future
     if self.schedule_date && self.schedule_date < Time.now + 5.minutes
       self.errors.add :schedule_date, 'Should be in future'
     end
-  end
-
-  def set_synchronized
-    self.synchronized = 0
-    self.sended = true if self.sended == nil
   end
 
 end
