@@ -55,7 +55,7 @@ provider can be 'facebook', 'google' and 'twitter'
                    tar_file_size"=>36303, "avatar_updated_at"=>"2013-07-19T12:19:42Z", "bio"=>nil, "contact"=>nil, "created_at"=>"2013-07-19T12:19:42Z", "email"=>"misha.skubenich@
                    gmail.com", "facebook"=>nil, "first_name"=>"myFirstName", "google"=>nil, "id"=>71, "last_name"=>"MyLastName", "phone"=>nil, "twitter"=>nil, "updated_at"=>"2013-
                    07-19T12:19:42Z", "user_name"=>"username", "zip"=>12321}}, "status"=>200}
-          error: {"errors"=>{"email"=>["has already been taken"]}, "success"=>false, "status"=>406}
+          error: {"errors"=>["Email is invalid", "Password is too short (minimum is 8 characters)", "Zip can't be blank", "Zip is not a number"], "success"=>false, "status"=>406}
 ===confirm_registration(method:POST)
     url: http://localhost:3000/api/confirm_registration.json
     data: {"api_key":"123","confirmation_token":"rwee"}
