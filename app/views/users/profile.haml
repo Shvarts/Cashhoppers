@@ -2,10 +2,8 @@
   = @user.first_name
 %br
 %br
-
-
-%p.translaterpull-right
-  = image_tag @user.avatar.url, :style => 'max-height: 350px; float: right;'
+%p.pull-right
+  = image_tag @user.avatar.url, :style => 'max-height: 350px;'
 %table
   %tr
     %td.span5
