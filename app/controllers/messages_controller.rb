@@ -1,10 +1,13 @@
 class MessagesController < ApplicationController
 
   def friends_list
-    @messages = Message.thread current_user
+    @messages = current_user.friends.all
+    @friends = Message.thread current_user
+
   end
 
   def friend_messages
+    puts"----------------#{params}-----------"
     @friend = User.where(id: params[:friend_id]).first
     if @friend && Friendship.exists?(current_user, @friend)
       params[:page] ||= 1

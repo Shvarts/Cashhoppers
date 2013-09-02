@@ -10,6 +10,6 @@
       .thought-meta
         = time_ago_in_words(message['created_at']) + " ago. #{full_user_name(@friend)}: "
       .oval-thought-border.right
-        %b
+        %b#message-text
           = message.text
 = hidden_field_tag :last_sync_date, @last_sync_date
