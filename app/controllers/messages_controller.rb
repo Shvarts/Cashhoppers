@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
   def friends_list
     @messages = current_user.friends.all
-    @friends = Message.thread current_user
+
 
   end
 
