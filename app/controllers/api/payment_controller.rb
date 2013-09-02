@@ -1,8 +1,9 @@
 class Api::PaymentController < Api::ApplicationController
 
   def get_frog_legs_count
+    @user = User.find(@current_user.id)
     render :json => {
-      frog_legs_count: @current_user.frog_legs
+      frog_legs_count: @user.frog_legs
     }
   end
 
