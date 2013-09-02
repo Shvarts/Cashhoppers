@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
   has_and_belongs_to_many :games, :join_table => "hoppers_hops" , :class_name=>"Hop"
-  has_many :incoming_messages, :class_name =>  'Message' ,  :foreign_key => :sender_id
-  has_many :outcoming_messages, :class_name => 'Message' , :foreign_key => :receiver_id
+  has_many :incoming_messages, :class_name =>  'Message' ,  :foreign_key => :sender_id, conditions: ['sended = 1']
+  has_many :outcoming_messages, :class_name => 'Message' , :foreign_key => :receiver_id, conditions: ['sended = 1']
   has_many :hops,  foreign_key: "producer_id"
   has_many :user_hop_tasks
   has_many :sponsored_hop_tasks, class_name: 'HopTask'
@@ -46,13 +46,8 @@ class User < ActiveRecord::Base
          :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
          :bio, :twitter, :facebook, :google, :avatar_file_name, :id
 
-  validates :email, :zip, :presence => true
-  validates :zip, numericality: {only_integer: true}
-
-
-
-
-
+  validates :zip, :presence => true
+  validates :zip, numericality: {only_integer: true, allow_blank: true}
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)

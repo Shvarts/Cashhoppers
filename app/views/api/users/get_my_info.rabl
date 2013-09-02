@@ -1,6 +1,6 @@
 object :@user
 
-attributes:id, :last_name, :first_name, :user_name, :zip, :contact, :phone, :bio, :twitter, :facebook, :google, :email
+attributes:id, :last_name, :first_name, :user_name, :zip, :contact, :bio, :twitter, :facebook, :google, :email
 
 node :role do |user|
 	user.roles.first.name
@@ -12,6 +12,14 @@ end
 
 node :friends_count do |user|
     user.friends.count
+end
+
+node :ad_enable do |user|
+    user.user_settings.ad_enable if user.user_settings
+end
+
+node :phone do |user|
+    user.phone.to_s if user.phone
 end
 
 

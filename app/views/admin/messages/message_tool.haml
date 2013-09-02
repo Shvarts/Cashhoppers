@@ -36,7 +36,7 @@
     .span3
       Users:
       %br
-      = select_tag 'users_ids[]', options_for_select(@users[0],@users[1]), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+      = select_tag 'users_ids[]', options_for_select(@users), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
   .row-fluid
     .span3
       Send from:
@@ -45,7 +45,16 @@
       %br
       Schedule:
       %br
-      %input{ type: 'checkbox'}
+      #datetimepicker1.input-append.date
+        = f.text_field :schedule_date, 'data-format' => 'dd/MM/yyyy hh:mm:ss', 'type' => 'text'
+        %span.add-on
+          %i{ 'data-time-icon' => 'icon-time', 'data-date-icon' => 'icon-calendar'}
+          :javascript
+            $(function(){
+                $('#datetimepicker1').datetimepicker({
+                    language: 'pt-BR'
+                });
+            });
     .span9
 
       Content:

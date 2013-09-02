@@ -13,7 +13,6 @@ class UserSettings < ActiveRecord::Base
 
   def init_settings
     self.ad_enable = true
-
     self.friend_invite = true
     self.message = true
     self.new_hop = true

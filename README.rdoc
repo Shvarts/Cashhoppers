@@ -55,7 +55,7 @@ provider can be 'facebook', 'google' and 'twitter'
                    tar_file_size"=>36303, "avatar_updated_at"=>"2013-07-19T12:19:42Z", "bio"=>nil, "contact"=>nil, "created_at"=>"2013-07-19T12:19:42Z", "email"=>"misha.skubenich@
                    gmail.com", "facebook"=>nil, "first_name"=>"myFirstName", "google"=>nil, "id"=>71, "last_name"=>"MyLastName", "phone"=>nil, "twitter"=>nil, "updated_at"=>"2013-
                    07-19T12:19:42Z", "user_name"=>"username", "zip"=>12321}}, "status"=>200}
-          error: {"errors"=>{"email"=>["has already been taken"]}, "success"=>false, "status"=>406}
+          error: {"errors"=>["Email is invalid", "Password is too short (minimum is 8 characters)", "Zip can't be blank", "Zip is not a number"], "success"=>false, "status"=>406}
 ===confirm_registration(method:POST)
     url: http://localhost:3000/api/confirm_registration.json
     data: {"api_key":"123","confirmation_token":"rwee"}
@@ -81,6 +81,16 @@ provider can be 'facebook', 'google' and 'twitter'
     response:
         success: {"message"=>"Push notifications enabled."}
         error: {"message"=>"Bad params."}
+====reset_password(method: POST)
+    url: http://localhost:3000/api/sessions/reset_password.json
+    data: {
+            "api_key":"123",
+            "email":"admin@cashhoppers.com"
+          }
+    response:
+        success: {"message"=>"Confirmation instructions sended. Please check your email."}
+        error: {"errors"=>["Cant find user by email."], "success"=>false, "status"=>406}
+
 ===Friends
 ====get friends(method: GET)
     url: http://localhost:3000/api/friends/get_friends.json?api_key=123&authentication_token=6o93YmJyXdYUxDsNUxQq
@@ -149,7 +159,7 @@ parameter query is optional (search by first_name, last_name and user_name)
 ====get my info(method: GET)
     url: http://localhost:3000/api/users/get_my_info.json?api_key=123&authentication_token=DKZbipTUhaNEGn7lL37w8MRQk30Qt4
     response: {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
-              il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil}}
+              il, "facebook"=>nil, "google"=>nil, "email"=>"admin@cashhoppers.com", "role"=>"admin", "avatar"=>nil, "ad_enable"=>true}}
 ====get user info(method: GET)
     url: http://localhost:3000/api/users/get_user_info.json?api_key=123&authentication_token=vtqviY0AGvo2lJbK62rXCZ6mrcJKFs&user_id=3
          {"user"=>{"id"=>1, "last_name"=>"CashHoppers", "first_name"=>"admin", "user_name"=>"admin", "zip"=>88000, "contact"=>nil, "phone"=>nil, "bio"=>nil, "twitter"=>n
@@ -291,7 +301,8 @@ service should be 'twitter', 'facebook', 'google'
                         "liked"=>true,
                         "hop_task_text"=>"Take your picture with ...!",
                         "time_ago"=>"about 2 hours",
-                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                        "likers"=>["admin CashHoppers", "firstname lastname"],
+                        "comments_count"=>1
                     },
                     ...
                  ]}
@@ -313,7 +324,8 @@ service should be 'twitter', 'facebook', 'google'
                         "liked"=>true,
                         "hop_task_text"=>"Take your picture with ...!",
                         "time_ago"=>"about 2 hours" ,
-                        "likers"=>["admin CashHoppers", "firstname lastname"]
+                        "likers"=>["admin CashHoppers", "firstname lastname"],
+                        "comments_count"=>1
                     },
                     ...
                  ]}

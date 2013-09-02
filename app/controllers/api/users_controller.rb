@@ -19,7 +19,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def get_my_info
-    @user = @current_user
+    @user = User.find(@current_user.id)
     render 'get_my_info', :content_type => 'application/json'
   end
 
@@ -66,7 +66,7 @@ class Api::UsersController < Api::ApplicationController
       @attributes[:contact] = params[:contact]
     end
     unless params[:phone].blank?
-      @attributes[:phone] = params[:phone]
+      @attributes[:phone] = params[:phone].to_s
     end
     unless params[:bio].blank?
       @attributes[:bio] = params[:bio]

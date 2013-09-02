@@ -1,7 +1,7 @@
 class Api::SessionsController < Api::ApplicationController
 
   skip_before_filter :api_authentikate_user
-  before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration, :service_exist]
+  before_filter :api_authentikate_user, except: [:create, :sign_in_via_service, :sign_up, :confirm_registration, :service_exist, :reset_password]
 
   def sign_up
     user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :user_name => params[:user_name], :zip => params[:zip],
@@ -14,7 +14,7 @@ class Api::SessionsController < Api::ApplicationController
                        :status => 200
       }
     else
-      bad_request user.errors, 406
+      bad_request user.errors.full_messages, 200
     end
   end
 
@@ -130,6 +130,18 @@ class Api::SessionsController < Api::ApplicationController
       }
     else
       bad_request ['Bad params.'], 406
+    end
+  end
+
+  def reset_password
+    @user = User.find_by_email(params[:email])
+    if @user.present?
+      @user.send_reset_password_instructions
+      render :json => {
+        message: 'Confirmation instructions sended. Please check your email.'
+      }
+    else
+      bad_request ['Cant find user by email.'], 406
     end
   end
 

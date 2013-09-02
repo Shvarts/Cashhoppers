@@ -15,15 +15,12 @@ class Admin::MessagesController < Admin::AdminController
       @prize.place=''
       @hop_name = ''
     end
-
   end
 
   def message_tool
     @tab = 'message_tool'
-    @users = params[:name] if params[:name]
     @message = Message.new
-    (params[:id])? @users = [params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] : @users =[[],[]]
-
+    (params[:id].present?)? @users = [params[:id].map{|id| [User.find_by_id(id).user_name, id]}, params[:id]] : @users = []
   end
 
   def email_history
@@ -45,6 +42,9 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def message_create
+    if params[:message][:schedule_date].present?
+      params[:message][:sended] = false
+    end
     params[:zip_codes] = [-1] unless params[:zip_codes].present?
     params[:users_ids] = [-1] unless params[:users_ids].present?
     params[:hops_ids] = [-1] unless params[:hops_ids].present?
@@ -75,6 +75,17 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def email_create
+
+    (params[:id])? @users =[params[:id].map{|id| [User.find_by_id(id).user_name,id]}, params[:id]] :  @users =[[],[]]
+    ( params[:prize_id])? (flash[:winner] = 2 ):(flash[:winner] = 1)
+    if params[:prize_id]
+      @prize = Prize.find_by_id(params[:prize_id])
+      @hop_name = @prize.hop.name
+    else
+      @prize = Prize.new
+      @prize.place=''
+      @hop_name = ''
+    end
 
     params[:zip_codes] = [-1] unless params[:zip_codes].present?
     params[:users_ids] = [-1] unless params[:users_ids].present?

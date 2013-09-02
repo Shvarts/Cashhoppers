@@ -52,5 +52,5 @@ node :friendship_status do |message|
     else
         friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, message['sender_id'])
     end
-    friendship.status
+    friendship.status if friendship
 end

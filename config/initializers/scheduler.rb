@@ -18,5 +18,8 @@ end
 
 scheduler.every("1h") do
   Hop.notificate_about_end
-  puts '-------------------------------'
+end
+
+scheduler.every("30m") do
+  Message.send_scheduled
 end

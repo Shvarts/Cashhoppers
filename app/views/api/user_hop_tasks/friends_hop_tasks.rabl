@@ -45,3 +45,6 @@ node :likers do |task|
    end
 end
 
+node :comments_count do |task|
+   Comment.where(commentable_id: task.id).count
+end

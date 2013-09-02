@@ -6,9 +6,10 @@ class Message < ActiveRecord::Base
   belongs_to :receiver, :class_name => 'User'
   has_many :notifications
 
-  attr_accessible :receiver_id, :sender_id, :schedule_date, :synchronized, :text
+  attr_accessible :receiver_id, :sender_id, :schedule_date, :synchronized, :text, :sended
 
   validates :text, presence: true
+  validate :schedule_date_in_future
 
   after_create :push_to_thread
   before_create :set_synchronized
@@ -45,8 +46,10 @@ class Message < ActiveRecord::Base
   end
 
   def push_to_thread
-    CashHoppers::Application::MESSAGES << self
-    Notification.create(user_id: receiver.id, friend_id: sender.id, event_type: 'Message', message_id: id)
+    if self.sended
+      CashHoppers::Application::MESSAGES << self
+      Notification.create(user_id: self.receiver.id, friend_id: (self.sender.id if self.sender), event_type: 'Message', message_id: self.id)
+    end
   end
 
   def to_json current_user
@@ -67,10 +70,25 @@ class Message < ActiveRecord::Base
     }
   end
 
-  private
+  def self.send_scheduled
+    where(['schedule_date < ? AND sended = 0', Time.now]).each do |message|
+      message.update_attribute :sended, true
+      message.push_to_thread
+      message.set_synchronized
+    end
+  end
 
   def set_synchronized
     self.synchronized = 0
+    self.sended = true if self.sended == nil
+  end
+
+  private
+
+  def schedule_date_in_future
+    if self.schedule_date && self.schedule_date < Time.now + 5.minutes
+      self.errors.add :schedule_date, 'Should be in future'
+    end
   end
 
 end
