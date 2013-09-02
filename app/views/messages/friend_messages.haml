@@ -34,5 +34,5 @@
     .span8
       %textarea#new_message.triangle-border.right{style: 'border-color: yellow; width: 100%'}
     .span4.text-right
-      %button.btn.btn-large.btn-success{style: 'margin-top: 15px;', onclick: "send_message(" + @friend.id.to_s + "); $('#new_message').val();"}
+      %button.btn.btn-large.btn-success{style: 'margin-top: 15px;', onclick: "send_message(" + @friend.id.to_s + "); $('#new_message').val('');"}
         Send

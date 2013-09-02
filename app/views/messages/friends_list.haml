@@ -1,19 +1,24 @@
 - @messages.each do |message|
-  .well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message['friend_id'])}'"}
+
+  -#= message.outcoming_messages.first.sender_id
+  .well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message.id)}'"}
     .row-fluid
       .span1
-        - user = User.new(id: message['friend_id'], avatar_file_name: message['friend_avatar_file_name'])
+        - user = User.new(id: message.id, avatar_file_name: message.avatar_file_name)
         %a.thumbnail
           = image_tag user.avatar.url, style: 'width: 70px'
       .span10
-        = message['friend_first_name']
+        = message.first_name
         = ' '
-        = message['friend_last_name']
+        = message.last_name
         .span{style: 'color: gray'}
           = time_ago_in_words(message['created_at']) + ' ago'
         %br
         %h4
-          = message['text']
+          -if !message.incoming_messages.blank? &&  !message.incoming_messages.where(sender_id: message.id).blank?
+            =message.incoming_messages.where(sender_id: message.id).last.text
+
+
       .span1
     %div{style: 'position: absolute; right: 30px; top: 42%'}
       %i.icon-chevron-right{style: 'font-size: 45px; color: darkgreen '}
