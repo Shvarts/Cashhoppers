@@ -131,7 +131,7 @@
 .bottom-menu{
   text-align: center;
   li{
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 10%;
     display: inline;
     border-left: 2px solid #00ced1;
@@ -162,6 +162,10 @@
 
   .btn-group.link{
     display: block;
+  }
+
+  .span12.controls-row .header-left.span6{
+   padding: 0 0;
   }
 
 
@@ -205,6 +209,7 @@
 
   .header .header-content .header-left ul{
     padding:0% 0%;
+    left: -1px;
     li {
       border: none;
       padding:0% 0%;
@@ -226,3 +231,30 @@
 
 }
 
+@media(min-width:900px)and(max-width: 1050px){
+  .header{
+    .header-content{
+      .header-left{
+        padding-left: 1%;
+        ul{
+          li{
+
+
+          }
+        }
+
+      }
+    }
+  }
+}
+@media(min-width:1030px)and(max-width: 1500px){
+  .header{
+    .header-content{
+      .header-left{
+        padding-left: 3%;
+
+
+      }
+    }
+  }
+}
