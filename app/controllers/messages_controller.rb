@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
   def friends_list
     @messages = current_user.friends.all
-    @friends = Message.thread current_user
+
 
   end
 
@@ -32,7 +32,11 @@ class MessagesController < ApplicationController
           ids.include?(message.receiver_id)
       )}
     @last_sync_date = Time.now
-    render partial: 'messages'
+    if @messages.blank?
+      render :text=> 'no messages'
+    else
+      render partial: 'messages'
+    end
   end
 
   def send_message

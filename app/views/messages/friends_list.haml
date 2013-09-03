@@ -1,6 +1,6 @@
 - @messages.each do |message|
 
-  -#= message.outcoming_messages.first.sender_id
+
   .well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message.id)}'"}
     .row-fluid
       .span1
@@ -12,7 +12,10 @@
         = ' '
         = message.last_name
         .span{style: 'color: gray'}
-          = time_ago_in_words(message['created_at']) + ' ago'
+          -if !message.incoming_messages.blank? &&  !message.incoming_messages.where(sender_id: message.id).blank?
+
+
+            = time_ago_in_words(message.incoming_messages.where(sender_id: message.id).last.created_at) + ' ago'
         %br
         %h4
           -if !message.incoming_messages.blank? &&  !message.incoming_messages.where(sender_id: message.id).blank?

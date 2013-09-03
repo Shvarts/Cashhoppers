@@ -11,10 +11,13 @@
           error: function(err){
           },
           success: function(data){
-              $('#last_sync_date').remove();
-              $('#messages').append(data);
-              var height = $("#messages")[0].scrollHeight;
-              $("#messages").animate({ scrollTop: height }, 1000);
+              if(data != 'no messages'){
+                console.log(data);
+                $('#last_sync_date').remove();
+                $('#messages').append(data);
+                var height = $("#messages")[0].scrollHeight;
+                $("#messages").animate({ scrollTop: height }, 1000);
+              };
           }
       });
   }
@@ -30,9 +33,10 @@
 #messages{style: 'height: 400px; overflow: auto '}
   = render partial: 'messages'
 %hr
-  .row
-    .span8
-      %textarea#new_message.triangle-border.right{style: 'border-color: yellow; width: 100%'}
+  .row-fluid
+    .span1
+    .span7
+      %textarea#new_message.triangle-border.right{style: 'border-color: green; width: 100%', :placeholder=> 'put your message here'}
     .span4.text-right
       %button.btn.btn-large.btn-success{style: 'margin-top: 15px;', onclick: "send_message(" + @friend.id.to_s + "); $('#new_message').val('');"}
         Send

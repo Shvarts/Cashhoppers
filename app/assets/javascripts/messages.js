@@ -1,4 +1,5 @@
 function send_message(friend_id){
+
     $.ajax({
         url: '/messages/send_message',
         data: {text: $('#new_message').val(),
@@ -7,6 +8,7 @@ function send_message(friend_id){
         error: function(err){
         },
         success: function(data){
+
         }
     });
 }
