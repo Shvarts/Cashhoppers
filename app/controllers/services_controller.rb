@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create, :add_zip]
+  skip_before_filter :authenticate_user!, :only => [:create, :add_zip]
 
   def index
     # get all authentication services assigned to the current user
