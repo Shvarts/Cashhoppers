@@ -38,8 +38,15 @@ class Api::UserHopTasksController < Api::ApplicationController
   def friends_hop_tasks
     params[:page] ||= 1
     params[:per_page] ||= 10
-    @tasks = UserHopTask.find_by_sql("SELECT * FROM user_hop_tasks WHERE user_hop_tasks.user_id IN (SELECT friendships.friend_id FROM friendships
-                                      WHERE friendships.user_id = #{@current_user.id}) ORDER BY user_hop_tasks.created_at DESC LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i}")
+    @tasks = UserHopTask.find_by_sql("
+      SELECT * FROM user_hop_tasks
+      WHERE user_hop_tasks.user_id IN (SELECT friendships.friend_id
+                                       FROM friendships
+                                       WHERE friendships.user_id = #{@current_user.id} AND friendships.status = 'accepted')
+      ORDER BY user_hop_tasks.created_at DESC
+      LIMIT #{params[:per_page].to_i}
+      OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i}
+    ")
     render 'friends_hop_tasks', content_type: 'application/json'
   end
 
