@@ -80,6 +80,16 @@ class ServicesController < ApplicationController
   
 
   def create
+    @email = params[:email]
+    @service = params[:service]
+    @name = params[:name]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    @uid = params[:uid]
+    @provider = params[:provider]
+    @twitter_link = params[:twitter_link]
+    @facebook_link = params[:facebook_link]
+    @zip = params[:zip]
     if params[:email] != '' && params[:zip] != ''
       existinguser = User.find_by_email(params[:email])
       if existinguser
@@ -109,7 +119,7 @@ class ServicesController < ApplicationController
       end
     else
       flash[:error] =  params[:provider].capitalize + ' can not be used to sign-up on CommunityGuides as no valid email address and zip code has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add ' + params[:provider] + ' from your profile.'
-      redirect_to new_user_session_path
+      render 'add_zip'
     end
   end
 
