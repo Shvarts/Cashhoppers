@@ -4,7 +4,7 @@ $(document).ready(function(){
 		var target = this.hash,
 		$target = $(target);
 		$('html, body').stop().animate({
-			'scrollTop': $target.offset().top - $('.span12.controls-row').height()
+			'scrollTop': $target.offset().top - $('.span12.controls-row').height() - 40
 		}, 900, 'swing', function () {
 			window.location.hash = target
 		});

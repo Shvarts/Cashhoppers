@@ -8,9 +8,9 @@
     %a{href: '/auth/google', class: 'services'}
       =image_tag('gp_icon.png', :style=>'height:53px')
   .divas1
-    -if  flash[:notice]
-      .alert.alert-success.text-center{ style: 'margin: 5% 5%; opacity: 0.5'}
-        = flash[:notice]
+    -#-if  flash[:notice]
+    -#  .alert.alert-success.text-center{ style: 'margin: 5% 5%; opacity: 0.5'}
+    -#    = flash[:notice]
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
       %br
@@ -127,7 +127,9 @@
         %span.weight BUSINESS
       %br
       .row-fluid.business-block
-        .span6.text-left
+        .span12.text-left
+          = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img", :style=>'max-height: 600px; max-width: 400px; float: right; '
+
           .business
             The CASHHOPPERS game is a great tool to add to your marketing
             and advertising mix. SPONSOR a HOP item, and drive players to your
@@ -141,15 +143,14 @@
               Find out how to use CASHHOPPERS to your bussiness's advantage.
             %br
             .two-buttons
-
               %ul
                 %li
                   = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning business-button'
 
                 %li
                   = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button'
-        .span6.text-left
-          = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img", :style=>'max-height: 600px; max-width: 400px'
+
+
     .span2
 .page-divider
 .custom-pg.events-page
