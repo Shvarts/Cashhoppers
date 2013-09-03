@@ -9,8 +9,11 @@ class ServicesController < ApplicationController
   def destroy
     # remove an authentication service linked to the current user
     @service = current_user.services.find(params[:id])
-    @service.destroy
-
+    if current_user.services.length > 1
+      @service.destroy
+    else
+      flash[:error] = 'Can\'t destroy last service.'
+    end
     redirect_to services_path
   end
 
