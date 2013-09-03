@@ -1,6 +1,6 @@
 - @messages.each do |message|
 
-  -#= message.outcoming_messages.first.sender_id
+
   .well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message.id)}'"}
     .row-fluid
       .span1
