@@ -6,6 +6,7 @@ html, body, head, header{
     width: 100%;
 
   .custom-pg{
+
     width: 100%;
     min-height: 95%;
     padding-top: 3%;
@@ -27,7 +28,7 @@ html, body, head, header{
  #firsttop-sign{
 
       font-size: 200%;
-      margin:2% ;
+      margin:0% ;
  }
  #firsttop-sign p{
       font-size: 50%;
@@ -35,6 +36,7 @@ html, body, head, header{
 
 
   .first-page{
+
 
     width: 100%;
     margin-top: 15px;
@@ -47,7 +49,7 @@ html, body, head, header{
         .divas2{
 
           width: 860px;
-          height: 380px;
+          //height: 380px;
           margin: 0 auto;
           .phone{
 
@@ -189,7 +191,7 @@ html, body, head, header{
 
   .two-buttons{
       ul{
-
+        margin-left: 0;
         li{
           margin-top: 5%;
           list-style-type: none;
@@ -274,14 +276,21 @@ html, body, head, header{
   }
 
   ul.dropdown-menu.button a img{
+    border: none;
+
     width:100%;
   }
   .business-button{
-     width: 40%;
+      width: 150px;;
+  }
+  #business-img{
+    margin: 0;
+  }
+  .business{
+    margin-top: 8%;
   }
 
-
-  }
+}
 
 @media(min-width:100px)and(max-width: 399px){
 html,body,head,header{
@@ -410,8 +419,11 @@ html,body,head,header{
     text-align: justify;
     padding: 0% 5%;
 
+
   }
-  #business-img{
+   #business-img{
+
+    margin-left: 25px;
     max-width: 50%;
     max-height: 50%;
     height: auto;
@@ -461,6 +473,7 @@ html,body,head,header{
     width: 100%;
   }
   img.business-info{
+
     height: 200px;
   }
   .span1.side-border{
@@ -562,7 +575,7 @@ html,body,head,header{
     #business-img{
       width: 40%;
       height: auto;
-      padding: 0% 20% ;
+      padding: 0% 0% ;
     }
     #event-img{
       padding: 2% 2%;
@@ -680,9 +693,10 @@ html,body,head,header{
     }
 
    #business-img{
-      width: 100%;
+      margin-left: 10px;
+      width: 50%;
       height: auto;
-      padding: 0% 20% ;
+      padding: 0% 0% ;
     }
    #event-img{
       padding: 2% 2%;
