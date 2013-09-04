@@ -68,7 +68,7 @@
           font-weight: bolder;
           color: white;
           border-right: 2px solid white;
-          padding: 0px 5px 0px 5px;
+          padding: 0px 5px 0px 7px;
           border-left: 0px;
         }
 
@@ -100,10 +100,11 @@
     margin: 0% 0%;
   }
   .header-right .button-container.text-right .btn-group input.btn-warning{
+    font-weight: bolder;
     margin-top: 5%;
     margin-left:0% ;
     margin-right:0% ;
-    margin-bottom:0% ;
+    margin-bottom:3% ;
   }
 
 }
@@ -139,6 +140,10 @@
   display: none;
 }
 
+ul.dropdown-menu.button a img{
+  border: none;
+}
+
 .bottom-menu{
   text-align: center;
   li{
@@ -154,7 +159,8 @@
   }
 
   .dropdown-menu.button#dropdown{
-    left: -30%;
+    left: -2%;
+
 
 
   }
@@ -181,6 +187,7 @@
 
 
   .button-container.text-right .btn-group ul li a img{
+
     width:100%;
 
   }
@@ -200,7 +207,7 @@
     display:inline;
   }
   .row-fluid .header-left.span6{
-    width:60%;
+    width:40%;
     display:inline;
   }
 
@@ -213,7 +220,7 @@
   }
 
   .dropdown-menu.button{
-    left: -25%;
+    left: -2%;
     min-width: 150px;
     width: 200px;
   }
@@ -235,6 +242,7 @@
   }
   #download-button{
     margin-top: 1%;
+
 
   }
 
