@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create, :add_zip]
+  skip_before_filter :authenticate_user!, :only => [:create, :add_zip]
 
   def index
     # get all authentication services assigned to the current user
@@ -9,8 +9,11 @@ class ServicesController < ApplicationController
   def destroy
     # remove an authentication service linked to the current user
     @service = current_user.services.find(params[:id])
-    @service.destroy
-
+    if current_user.services.length > 1
+      @service.destroy
+    else
+      flash[:error] = 'Can\'t destroy last service.'
+    end
     redirect_to services_path
   end
 
