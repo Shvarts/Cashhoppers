@@ -8,7 +8,13 @@ child :comment do
         comment.commentable_id
     end
     child :user do
-        attributes :id, :last_name, :first_name, :user_name
+        attributes :id, :user_name
+        node :first_name do |user|
+            user.first_name || ''
+        end
+        node :last_name do |user|
+            user.last_name || ''
+        end
         node :avatar do |user|
             user.avatar.url if user.avatar_file_size
         end
