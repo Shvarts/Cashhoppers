@@ -1,12 +1,12 @@
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.jpg"});  position: relative;"}
   %h2{:id=>"first-page"}
   .social-links#social1
-    %a{href: '/auth/facebook', class: 'services'}
-      =image_tag('facebook_icon.png', :style=>'height:50px')
+    %a{href: '/auth/facebook', class: 'services facebook', :style=>''}
+      =image_tag('f.png', :style=>'height:70px')
     %a{href: '/auth/twitter', class: 'services'}
-      =image_tag('twitter_icon.png', :style=>'height:50px')
+      =image_tag('t.png', :style=>'height:70px')
     %a{href: '/auth/google', class: 'services'}
-      =image_tag('gp_icon.png', :style=>'height:53px; width: 63px;')
+      =image_tag('g.2.png', :style=>'height: 70px; width: 70px;')
   .divas1
     -#-if  flash[:notice]
     -#  .alert.alert-success.text-center{ style: 'margin: 5% 5%; opacity: 0.5'}
@@ -27,7 +27,10 @@
                 =image_tag task.photo.url
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+
+
 .page-divider
+%h2{:id=>"about"}
 .custom-pg.gray-page
   .divas1
     .divas2
@@ -56,7 +59,10 @@
                   =link_to 'FREE CASHHOPPERS APP', '#', :class => 'download_app'
                   today and start HOPPING!
         .span2
+
+
 .page-divider
+%h2{:id=>"how_to_play"}
 .custom-pg.yellow-page
   .divas1
     .divas2
@@ -89,7 +95,10 @@
             %br
             =link_to 'TOUR A TRADE SHOW HOP',  pages_trade_show_path, :class => 'btn btn-success '
         .span2
+
+
 .page-divider
+%h2{:id=>"gallery"}
 .custom-pg.what-page
   %h2{:id=>"what-page"}
   .row-fluid
@@ -114,7 +123,10 @@
         %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2
+
+
 .page-divider
+%h2{:id=>"business"}
 .custom-pg.business-page
   %h2{:id=>"business-page"}
   .row-fluid#business
@@ -152,7 +164,10 @@
 
 
     .span2
+
+
 .page-divider
+%h2{:id=>"trade_event"}
 .custom-pg.events-page
   %h2{:id=>"events-page"}
   .row-fluid
@@ -185,6 +200,8 @@
 
                   = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn  btn-success business-button mini-button'
     .span2
+
+
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
   .divas1
@@ -219,11 +236,11 @@
             .center.text-center
               .social-links
                 %a{href: '/auth/facebook', class: 'services'}
-                  =image_tag('facebook_icon.png', :style=>'height:50px')
+                  =image_tag('f.png', :style=>'height:50px')
                 %a{href: '/auth/twitter', class: 'services'}
-                  =image_tag('twitter_icon.png', :style=>'height:50px')
+                  =image_tag('t.png', :style=>'height:50px')
                 %a{href: '/auth/google', class: 'services'}
-                  =image_tag('gp_icon.png', :style=>'height:53px')
+                  =image_tag('g.2.png', :style=>'height:50px')
 .span2
 .page-divider
 %br

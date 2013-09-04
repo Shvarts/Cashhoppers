@@ -10,15 +10,15 @@
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#first-page": root_path}"} HOME
 
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#gray-page"}"} ABOUT
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#about"}"} ABOUT
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path + "#how_to_play"}"} HOW TO PLAY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"}  PHOTO GALLERY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path + "#gallery"}"}  PHOTO GALLERY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path + '#business'}"} BUSINESSES
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path + '#trade_event'}"} SHOWS & EVENTS
               %li
                 %a.navigation{:href=> pages_faq_path } FAQ
               - if current_user
@@ -45,15 +45,15 @@
 
 
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#about"}"} ABOUT
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path + "#how_to_play"}"} HOW TO PLAY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path + "#gallery"}"} PHOTO GALLERY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path + '#business'}"} BUSINESSES
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path + '#trade_event'}"} SHOWS & EVENTS
               %li
                 %a.navigation{:href=> pages_faq_path } FAQ
               -if current_user

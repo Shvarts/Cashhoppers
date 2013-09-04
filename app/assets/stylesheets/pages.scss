@@ -125,6 +125,9 @@ html, body, head, header{
 
   }
 
+  a.services{
+    text-decoration: none;
+  }
   #social1{
 
 
@@ -422,12 +425,12 @@ html,body,head,header{
 
   }
    #business-img{
-
+    padding: 0 0;
     margin-left: 25px;
-    max-width: 50%;
+    width: 155px;
     max-height: 50%;
     height: auto;
-    padding: 0% 20% ;
+
 
   }
   #event-img{
