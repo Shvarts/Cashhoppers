@@ -55,32 +55,32 @@
                   = link_to 'Sign Up', new_user_registration_path, :class => 'navigation'
                 %li
                   = link_to 'Sign In', new_user_session_path, :class => 'navigation'
-        .left-div
-          .header-right.span6
-            .button-container.text-right
-              .btn-group
-                =button_to "DOWNLOAD THE APP", '#', :class =>"btn btn-warning", :style =>"data-toggle: dropdown", :id=> 'download-button'
 
-                -#%a.dropdown-toggle{"data-toggle" => "dropdown" }
-                -#  =image_tag('/assets/button-download.jpg')
-                %ul.dropdown-menu.button#dropdown
-                  %li
-                    %a.navigation{:href=>"http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com", :target => '_blank'}
-                      =image_tag('/assets/button-app-store.png')
-                  %li
-                    %a.navigation{:href=>"https://play.google.com/store", :target => '_blank'}
-                      =image_tag('/assets/button-google-play.png')
+        .header-right.span4{:style=> 'padding: 0; margin: 0'}
+          .button-container.text-center
+            .btn-group
+              =button_to "DOWNLOAD THE APP", '#', :class =>"btn btn-warning", :style =>"data-toggle: dropdown", :id=> 'download-button'
 
-          .span2.sign-menu.header-left
-            - if current_user
-              %ul
+              -#%a.dropdown-toggle{"data-toggle" => "dropdown" }
+              -#  =image_tag('/assets/button-download.jpg')
+              %ul.dropdown-menu.button#dropdown
                 %li
-                  = link_to 'My page', user_path(current_user.id), class: ' btn-link navigation '
-                %li{:style=> 'border: 0px;'}
-                  = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn-link navigation'
-            - else
-              %ul
+                  %a.navigation{:href=>"http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com", :target => '_blank'}
+                    =image_tag('/assets/button-app-store.png')
                 %li
-                  = link_to 'Sign Up', new_user_registration_path, class: ' btn-link navigation'
-                %li{:style=> 'border: 0px;'}
-                  = link_to 'Sigh In', new_user_session_path, class: ' btn-link navigation'
+                  %a.navigation{:href=>"https://play.google.com/store", :target => '_blank'}
+                    =image_tag('/assets/button-google-play.png')
+
+        .span2.sign-menu.header-left.text-right
+          - if current_user
+            %ul
+              %li
+                = link_to 'My page', user_path(current_user.id), class: ' btn-link navigation '
+              %li{:style=> 'border: 0px;'}
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn-link navigation'
+          - else
+            %ul
+              %li
+                = link_to 'Sign Up', new_user_registration_path, class: ' btn-link navigation'
+              %li{:style=> 'border: 0px;'}
+                = link_to 'Sigh In', new_user_session_path, class: ' btn-link navigation'
