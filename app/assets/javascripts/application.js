@@ -1,4 +1,4 @@
-    // This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -24,10 +24,10 @@
 //= require wice_grid
 //= require bootstrap-fileupload.min
 
-$(document).ready(function(){
+$(document).ready(function () {
     buttonselect();
 
-    $('.gallery-2').css('width','78%')
+    $('.gallery-2').css('width', '78%')
 
 
     $(".collapse").collapse();
@@ -40,96 +40,106 @@ $(document).ready(function(){
 });
 
 
-function buttonselect(){
+function buttonselect() {
 
     var useragent = navigator.userAgent.toLowerCase();
 
-    if( useragent.match("iphone") ){
+    if (useragent.match("iphone")) {
         $(".button-container").html("<a href='http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com'><img src = '/assets/button-app-store.png' class = 'phone-button'></a>");
         $('.download_app').attr('href', 'http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com');
     }
-    else if(useragent.match("android") ) {
+    else if (useragent.match("android")) {
         $(".button-container").html("<a href='https://play.google.com/store'><img src = '/assets/button-google-play.jpg' class = 'phone-button'></a>");
         $('.download_app').attr('href', 'https://play.google.com/store');
     }
-    else{
-    $('.download_app').click(function(){
-        $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
-        $('.button-container.text-right .btn-group ul ').css('left', '-2%');
-
-        $('ul.dropdown-menu.button').toggle('slow') ;
+    else {
+        $('.download_app').click(function () {
+            $('.dropdown-menu.button#dropdown ').css('background-color', 'rgb(51, 51, 51)');
 
 
-        return false;
-    })
+            $('ul.dropdown-menu.button').toggle('slow');
+
+
+            return false;
+        })
+
+    }
 
 }
 
+function default_hide_dropdown() {
+    $('html').click(function () {
+
+            $('.btn-group ul').hide('slow');
+        }
+    )
 }
 
-function default_hide_dropdown(){
-       $('html').click(function(){
 
-               $('.btn-group ul').hide('slow');
-           }
-   )
-}
-
-
-function dropdown(){
+function dropdown() {
 
 
     $('.btn-group ul.menu').hide();
-    $(' .btn-group> ul >li> a').css('color', 'black');
-    $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'green');
+    $(' .btn-group> ul >li> a').css('color', 'white');
+    $(' .btn-group> ul >li> a').css('font-weight', 'bold');
+    $(' .btn-group> ul >li>a').css('padding', '9px 15px');
+    $(' .btn-group> ul >li >a').css('border-bottom', '1px solid black');
+    $(' .btn-group> ul >li >a').css('border-top', '1px solid #363F43');
+    $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'rgb(51, 51, 51)');
     $(' .btn-group> ul.dropdown-menu.menu').width($('html').width());
-    $('.button-container.text-right .btn-group ul').width('100%')
 
-    $(' .btn-group').css('max-height', '200px');
-    $('.btn-group .btn.dropdown-toggle.btn-navbar.btn-success').click(function(){
-        $('.btn-group ul.menu').toggle('slow') ;
+    if ($('html').height() < 400) {
+
+        $(' .btn-group> ul.dropdown-menu.menu').height(($('html').height() - 35) + 'px');
+    }
+
+
+//    $(' .btn-group').css();
+    $('.btn-group .btn.dropdown-toggle.btn-navbar.btn-success').click(function () {
+        $('.btn-group ul.menu').toggle('slow');
+//        $(' .header ').css('position', 'relative');
         menu_hide();
+
 
         return false;
 
-   })
+    })
+
 
 }
 
 
-function menu_hide(){
-   $('.dropdown-menu.menu li a').click(function(){
+function menu_hide() {
+    $('.dropdown-menu.menu li a').click(function () {
         $('.btn-group ul.menu').hide('slow');
-
-     })
+//       $(' .header ').css('position', 'fixed');
+    })
 
 }
-function button_menu_hide(){
-   $('.dropdown-menu.button li a').click(function(){
+function button_menu_hide() {
+    $('.dropdown-menu.button li a').click(function () {
 
         $('.btn-group ul').hide('slow');
 
 
-     })
+    })
 
 }
 
 
-
-function service_menu(){
-
+function service_menu() {
 
 
     button_menu_hide();
-  $('.header-right .button-container.text-right .btn-group input.btn-warning').click(function(){
-      $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
-      $('.button-container.text-right .btn-group ul ').css('left', '-2%');
-
-         $('ul.dropdown-menu.button').toggle('slow') ;
+    $('#download-button').click(function () {
+        $('.dropdown-menu.button#dropdown').css('background-color', 'rgb(51, 51, 51)');
 
 
-          return false;
-  })
+        $('ul.dropdown-menu.button').toggle('slow');
+
+
+        return false;
+    })
 
 
 }

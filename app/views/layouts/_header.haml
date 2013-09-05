@@ -10,34 +10,23 @@
                 %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#first-page": root_path}"} HOME
 
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#gray-page"}"} ABOUT
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#about"}"} ABOUT
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path + "#how_to_play"}"} HOW TO PLAY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"}  PHOTO GALLERY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path + "#gallery"}"}  PHOTO GALLERY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path + '#business'}"} BUSINESSES
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
-              %li
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path + '#trade_event'}"} SHOWS & EVENTS
+              %li.last
                 %a.navigation{:href=> pages_faq_path } FAQ
-              - if current_user
-                %li
-                  = link_to 'My page', user_path(current_user.id), class: ' btn-link navigation'
-                %li{:style=> 'border: 0px;'}
-                  = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn-link navigation'
-              - else
-                %li
-                  = link_to 'Sign Up', new_user_registration_path, class: ' btn-link navigation'
-                %li{:style=> 'border: 0px;'}
-                  = link_to 'Sigh In', new_user_session_path, class: ' btn-link navigation'
+
 
           .btn-group.link
             -#button.btn.btn-navbar#my-btn{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
             %button.btn.dropdown-toggle.btn-navbar.btn-success{"data-toggle" => "dropdown", :href => "#"}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
+              =image_tag('/assets/home_settings_icon.png')
             %ul.dropdown-menu.menu
               %li
                 -#= link_to 'HOME', "#first-page", :class => 'navigation'
@@ -45,15 +34,15 @@
 
 
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path}"} ABOUT
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#gray-page": root_path + "#about"}"} ABOUT
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path}"} HOW TO PLAY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#yellow-page": root_path + "#how_to_play"}"} HOW TO PLAY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path}"} PHOTO GALLERY
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#what-page": root_path + "#gallery"}"} PHOTO GALLERY
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path}"} BUSINESSES
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#business-page": root_path + '#business'}"} BUSINESSES
               %li
-                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path}"} SHOWS & EVENTS
+                %a.navigation{:href=>"#{(controller_path == "pages" && params[:action] == "home")?"#events-page": root_path + '#trade_event'}"} SHOWS & EVENTS
               %li
                 %a.navigation{:href=> pages_faq_path } FAQ
               -if current_user
@@ -67,8 +56,8 @@
                 %li
                   = link_to 'Sign In', new_user_session_path, :class => 'navigation'
 
-        .header-right.span6
-          .button-container.text-right
+        .header-right.span4{:style=> 'padding: 0; margin: 0'}
+          .button-container.text-center
             .btn-group
               =button_to "DOWNLOAD THE APP", '#', :class =>"btn btn-warning", :style =>"data-toggle: dropdown", :id=> 'download-button'
 
@@ -82,3 +71,16 @@
                   %a.navigation{:href=>"https://play.google.com/store", :target => '_blank'}
                     =image_tag('/assets/button-google-play.png')
 
+        .span2.sign-menu.header-left.text-right
+          - if current_user
+            %ul
+              %li
+                = link_to 'My page', user_path(current_user.id), class: ' btn-link navigation '
+              %li{:style=> 'border: 0px;'}
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn-link navigation'
+          - else
+            %ul
+              %li
+                = link_to 'Sign Up', new_user_registration_path, class: ' btn-link navigation'
+              %li{:style=> 'border: 0px;'}
+                = link_to 'Sigh In', new_user_session_path, class: ' btn-link navigation'
