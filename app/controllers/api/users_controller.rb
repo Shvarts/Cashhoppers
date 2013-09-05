@@ -24,6 +24,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def get_user_info
+    @user = User.find(@current_user.id)
     if @user
       render 'get_user_info', content_type: 'application/json'
     end

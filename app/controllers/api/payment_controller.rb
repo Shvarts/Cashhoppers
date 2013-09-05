@@ -2,6 +2,9 @@ class Api::PaymentController < Api::ApplicationController
 
   def get_frog_legs_count
     @user = User.find(@current_user.id)
+    unless @user.frog_legs
+      @user.update_attribute :frog_legs, 0
+    end
     render :json => {
       frog_legs_count: @user.frog_legs
     }
