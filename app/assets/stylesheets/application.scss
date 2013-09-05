@@ -197,6 +197,10 @@ ul.dropdown-menu.menu{
 
 }
 
+.dropdown-menu.button#dropdown{
+  left: -1%;
+}
+
 @media(min-width:900px)and(max-width: 1180px){
 
   .header{
@@ -221,9 +225,9 @@ ul.dropdown-menu.menu{
 }
 
 @media(min-width:100px)and(max-width: 1080px){
-  //.header-right span4{
-  //  display: none;
-  //}
+  .dropdown-menu.button#dropdown{
+    left: -8%;
+  }
   .row-fluid .header-left.span6{
     min-width: 0 ;
 

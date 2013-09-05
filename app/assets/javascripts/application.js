@@ -54,8 +54,8 @@ function buttonselect() {
     }
     else {
         $('.download_app').click(function () {
-            $('.button-container.text-right .btn-group ul ').css('background-color', 'green');
-            $('.button-container.text-right .btn-group ul ').css('left', '-2%');
+            $('.dropdown-menu.button#dropdown ').css('background-color', 'rgb(51, 51, 51)');
+
 
             $('ul.dropdown-menu.button').toggle('slow');
 
@@ -131,9 +131,9 @@ function service_menu() {
 
 
     button_menu_hide();
-    $('.header-right .button-container.text-right .btn-group input.btn-warning').click(function () {
-        $('.button-container.text-right .btn-group ul ').css('background-color', 'rgb(51, 51, 51)');
-        $('.button-container.text-right .btn-group ul ').css('left', '-2%');
+    $('#download-button').click(function () {
+        $('.dropdown-menu.button#dropdown').css('background-color', 'rgb(51, 51, 51)');
+
 
         $('ul.dropdown-menu.button').toggle('slow');
 
