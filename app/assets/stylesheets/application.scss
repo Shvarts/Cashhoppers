@@ -201,28 +201,7 @@ ul.dropdown-menu.menu{
   left: -1%;
 }
 
-@media(min-width:900px)and(max-width: 1180px){
 
-  .header{
-    .header-content{
-      .header-right.span4{
-
-        width: 200px;
-      }
-
-      .header-left{
-        padding-left: 1%;
-        ul{
-          li{
-
-
-          }
-        }
-
-      }
-    }
-  }
-}
 
 @media(min-width:100px)and(max-width: 1080px){
   .dropdown-menu.button#dropdown{
@@ -337,20 +316,29 @@ ul.dropdown-menu.menu{
 
 }
 
+@media(min-width:900px)and(max-width: 1250px){
 
-//@media(min-width:1150px)and(max-width: 1100px){
-//  .button-container.text-center{
-//    display: none;
-//  }
-//  .header{
-//    .header-content{
-//
-//
-//      .header-left{
-//        padding-left: 1%;
-//
-//
-//      }
-//    }
-//  }
-//}
+  .header{
+
+    .header-content{
+      .span12.controls-row{
+        .header-right.span4{
+
+          width: 250px;
+
+        }
+      }
+      .header-left{
+        padding-left: 1%;
+        ul{
+          li{
+
+
+          }
+        }
+
+      }
+    }
+  }
+
+}
