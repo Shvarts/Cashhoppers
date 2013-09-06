@@ -15,14 +15,14 @@ class HopTask < ActiveRecord::Base
 
   #validates :bonus, :pts, numericality: { only_integer: true }
   validates :text, length: { minimum: 5, maximum:140 }
-
   validates :sponsor_id,  :presence => true
+  validate :only_one_task_for_daily_hop
 
-  def not_daily?
-    if self.hop
-      !self.hop.daily
-    else
-      false
+  private
+
+  def only_one_task_for_daily_hop
+    if self.hop.daily && !self.hop.hop_tasks.blank?
+      errors.add(:id, "Can be only one task for daily_hop.")
     end
   end
 
