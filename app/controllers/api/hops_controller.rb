@@ -70,6 +70,7 @@ class Api::HopsController < Api::ApplicationController
                              winner_id: prize.user_id,
                              winners_first_name: prize.user.first_name,
                              winners_last_name: prize.user.last_name,
+                             winners_avatar: prize.user.avatar.url,
                              score: prize.pts,
                              hoppers_count: hop.hoppers.count,
                              rank: prize.place,

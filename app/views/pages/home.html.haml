@@ -19,15 +19,10 @@
       .phone
         .carousel.slide#myCarousel
           .carousel-inner
-            .item.active
-              =image_tag @user_hop_tasks.first.photo.url
-
             - @user_hop_tasks.each do |task|
-              .item
-                =image_tag task.photo.url
+              .item{class: "#{(task.id == @user_hop_tasks.first.id) ? 'active' : ''}", style: "background-image: url(#{task.photo.url})"}
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
-
 
 .page-divider
 %h2{:id=>"about"}
@@ -115,11 +110,11 @@
           - unless @tasks_pack.blank?
 
             - @tasks_pack.each do |pack|
-              .item{style: ' height: 200px; '}
+              .item{style: 'height: 200px;', class: "#{(pack == @tasks_pack.first) ? 'active' : ''}"}
                 - unless pack.blank?
                   - pack.each do |task|
                     .inline{:width => '20%', style:'display: inline;'}
-                      = image_tag( task.photo.url , :style => "display: inline; height: 200px ", :width => '20%')
+                      = image_tag( task.photo.url , :style => "display: inline; height: 200px;")
         %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel2"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#carousel2"} ›
     .span2

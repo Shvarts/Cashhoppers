@@ -12,6 +12,8 @@ class UserHopTask < ActiveRecord::Base
 
   before_create :init_values
 
+  private
+
   def init_values
     self.facebook_shared = 0
     self.twitter_shared = 0

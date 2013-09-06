@@ -266,6 +266,7 @@ service should be 'twitter', 'facebook', 'google'
                     "winners_first_name"=>"admin",
                     "winners_last_name"=>"CashHoppers",
                     "hop_name"=>"yesterday daily hop",
+                    "winners_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.jpeg?1378453598"
                  }
         error: {"errors"=>["Missing yesterday's hop."], "success"=>false, "status"=>406}
                {"errors"=>["Missing winner for yesterday's hop."], "success"=>false, "status"=>406}
@@ -485,7 +486,8 @@ service should be 'twitter', 'facebook', 'google'
                             "time_end"=>"2013-08-28T17:28:32Z",
                             "price"=>nil,
                             "daily"=>false,
-                            "event"=>"new_year"
+                            "event"=>"new_year",
+                            "logo"=>"/images/hop_logos/hops/11/HOP_LOGO.png?1378473255"
                         },
                         "time_ago" => "10 minutes ago"
                   },

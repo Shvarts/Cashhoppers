@@ -297,8 +297,8 @@ class Hop < ActiveRecord::Base
     completed
   end
 
-
   private
+
   def only_one_daily_hop_per_day
     if !self.time_start.nil?
       daily_hop =  Hop.get_daily_by_date(self.time_start)
@@ -307,7 +307,5 @@ class Hop < ActiveRecord::Base
       end
     end
   end
-
-
 
 end

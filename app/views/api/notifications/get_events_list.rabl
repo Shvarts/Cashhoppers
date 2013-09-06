@@ -72,6 +72,9 @@ end
 
 child :hop do
     attributes :name, :time_start, :time_end, :price, :daily, :event
+    node :logo do |hop|
+       hop.logo.url if hop.logo.present?
+    end
 end
 
 node :time_ago do |event|
