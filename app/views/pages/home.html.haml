@@ -19,15 +19,10 @@
       .phone
         .carousel.slide#myCarousel
           .carousel-inner
-            .item.active
-              =image_tag @user_hop_tasks.first.photo.url
-
             - @user_hop_tasks.each do |task|
-              .item
-                =image_tag task.photo.url
+              .item{class: "#{(task.id == @user_hop_tasks.first.id) ? 'active' : ''}", style: "background-image: url(#{task.photo.url})"}
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
-
 
 .page-divider
 %h2{:id=>"about"}

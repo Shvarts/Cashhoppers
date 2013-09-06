@@ -15,7 +15,7 @@ development:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: manofsteel
+  password: remeta
   host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: manofsteel
+  password: remeta
   host: 127.0.0.1
 
 
@@ -39,5 +39,5 @@ production:
   database: CashHoppersDB
   pool: 5
   username: root
-  password: manofsteel
+  password: remeta
   host: 127.0.0.1
