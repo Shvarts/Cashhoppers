@@ -9,13 +9,7 @@ class Hop < ActiveRecord::Base
                     :default_url => "/assets/no_hop_logo.png",
                     :path => ":rails_root/public/images/hop_logos/hops/:id/HOP_LOGO.:extension"
 
-  after_save :get_orientation
-  def get_orientation
-   orientation = Paperclip::Geometry.from_file(self.logo).horizontal? ? 'horizontal' : 'vertical'
-    puts "------------------------------------------------------------------------------"
-    puts "---------------------------#{orientation}----------------------------------"
-    puts "------------------------------------------------------------------------------"
-  end
+
 
   has_many :prizes
   has_many :notifications, dependent: :destroy

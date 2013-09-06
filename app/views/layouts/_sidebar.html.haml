@@ -1,9 +1,5 @@
 %ul.nav.nav-tabs.nav-stacked.non-print
   %li
-    = link_to 'Home', root_path
-  -#%li
-  -#  = link_to 'Admin Page', admin_index_path if current_user && ! current_user.role?('user')
-  %li
     = link_to 'My Services', services_path
   %li
     = link_to 'Friends', friends_path

@@ -1,33 +1,49 @@
+<style>
+    body {
+        padding: 0%;
+        /*display: none;*/
+
+    }
+    .span12.text-center{
+      margin: 0;
+    }
+
+</style>
+<div class = 'span12 text-center'>
+
+  <fieldset   class = 'btn' >
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
+    <br />
+  <div><%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :first_name %><br />
+   <br />
+  <div><%= f.label :first_name %>
   <%= f.text_field :first_name %></div>
-
-  <div><%= f.label :last_name %><br />
+  <br >
+  <div><%= f.label :last_name %>
   <%= f.text_field :last_name %></div>
-
-  <div><%= f.label :zip %><br />
+    <br />
+  <div><%= f.label :zip %>
   <%= f.text_field :zip %></div>
-
-  <div><%= f.label :user_name %><br />
+    <br />
+  <div><%= f.label :user_name %>
   <%= f.text_field :user_name %></div>
-
-  <div><%= f.label :password%><br />
+    <br />
+  <div><%= f.label :password %>
   <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
+    <br />
+  <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :avatar %><br />
+    <br />
+  <div><%= f.label :avatar %>
   <%= f.file_field :avatar %></div>
-
-  <div><%= f.submit "Sign up" %></div>
+    <br />
+  <div><%= f.submit "Sign up", :class=> 'btn btn-success'%></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</fieldset>
+</div>
