@@ -266,6 +266,7 @@ service should be 'twitter', 'facebook', 'google'
                     "winners_first_name"=>"admin",
                     "winners_last_name"=>"CashHoppers",
                     "hop_name"=>"yesterday daily hop",
+                    "winners_avatar"=>"/images/avatars/users/1/original/USER_AVATAR.jpeg?1378453598"
                  }
         error: {"errors"=>["Missing yesterday's hop."], "success"=>false, "status"=>406}
                {"errors"=>["Missing winner for yesterday's hop."], "success"=>false, "status"=>406}
