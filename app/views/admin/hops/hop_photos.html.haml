@@ -12,8 +12,8 @@
     %a.carousel-control.left{"data-slide" => "prev", :href => "#hopPhotos"} ‹
     %a.carousel-control.right{"data-slide" => "next", :href => "#hopPhotos"} ›
   .row-fluid.banner
-    .span5.text-right#logo
-      = image_tag @hop.logo.url
+    .span5.text-right#logo{:style=> ' max-height: 100px'}
+      = image_tag @hop.logo.url , :style=> 'max-width: 100%; max-height: 100%'
     .span7#text
       =@hop.name
       %br

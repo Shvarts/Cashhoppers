@@ -15,6 +15,7 @@
           .row-fluid
             .span12.text-right
               = render partial: 'layouts/authentication'
+
         .row-fluid
           - if flash[:error]
             .alert.alert-error
@@ -31,12 +32,16 @@
               %button.close{type: :button, 'data-dismiss' => 'alert'}
                 &times;
               = flash[:notice]
-        .row-fluid{:style=>'padding-left: 5%'}
-          .span2
-            = render partial: 'layouts/sidebar'
-            = render partial: 'layouts/admin_sidebar' if current_user
-            = yield :sidebar
-            -#= controller.sidebar ? (render :partial => "#{controller.sidebar}") : ''
-          .span10
-            = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
+          -if current_user
+            .row-fluid{:style=>'padding-left: 5%'}
 
+              .span2
+                = render partial: 'layouts/sidebar'
+                = render partial: 'layouts/admin_sidebar'
+                = yield :sidebar
+
+              .span10
+                = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
+          -else
+            .row-fluid
+              = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield

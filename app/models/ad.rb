@@ -16,7 +16,7 @@ class Ad < ActiveRecord::Base
     :default_url => "/assets/no_ad_picture.png",
     :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
-  validates :price, :amt_paid, numericality: { only_integer: true }
+  #validates :price, :amt_paid, numericality: { only_integer: true }
   validates_presence_of :ad_type, :link, :advertizer_id
 
   def self.types hop

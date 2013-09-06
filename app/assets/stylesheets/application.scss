@@ -97,10 +97,10 @@
   }
   #download-button{
     font-weight: bolder;
-    margin-top: 5%;
+    margin-top: 10px;
     margin-left:0% ;
     margin-right:0% ;
-    margin-bottom:3% ;
+    margin-bottom:10px;
   }
 
 }
@@ -200,8 +200,19 @@ ul.dropdown-menu.menu{
 .dropdown-menu.button#dropdown{
   left: -1%;
 }
+.non-print.text-center.sign-in-up{
+    margin-top: 40px;
+}
 
+//sign-in sign-up design
+fieldset{
+  background-color: #BDBDBD;
 
+}
+fieldset.btn{
+  //display: none;
+  padding: 2% 10% 5% 10%;
+}
 
 @media(min-width:100px)and(max-width: 1080px){
   .dropdown-menu.button#dropdown{
@@ -314,6 +325,7 @@ ul.dropdown-menu.menu{
     width: 50px;
   }
 
+
 }
 
 @media(min-width:900px)and(max-width: 1250px){
@@ -332,13 +344,17 @@ ul.dropdown-menu.menu{
         padding-left: 1%;
         ul{
           li{
-
-
           }
         }
 
       }
     }
   }
+}
 
+@media(min-width:100px)and(max-width: 400px){
+fieldset.btn{
+  //display: none;
+  padding: 2% 2% 5% 2%;
+}
 }

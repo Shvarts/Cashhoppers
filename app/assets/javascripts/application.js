@@ -44,12 +44,23 @@ function buttonselect() {
 
     var useragent = navigator.userAgent.toLowerCase();
 
+//    if (useragent.match("iphone")) {
     if (useragent.match("iphone")) {
         $(".button-container").html("<a href='http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com'><img src = '/assets/button-app-store.png' class = 'phone-button'></a>");
+        $(".button-container a img").css('position', 'absolute');
+        $(".button-container a img").css('top', '0px');
+        $(".button-container a img").css('right', '5px');
+        $(".button-container a img").css('width', '100px');
+        $(".button-container a img").css('border', 'none');
         $('.download_app').attr('href', 'http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com');
     }
     else if (useragent.match("android")) {
-        $(".button-container").html("<a href='https://play.google.com/store'><img src = '/assets/button-google-play.jpg' class = 'phone-button'></a>");
+        $(".button-container").html("<a href='https://play.google.com/store'><img src = '/assets/button-google-play.png' class = 'phone-button'></a>");
+        $(".button-container a img").css('position', 'absolute');
+        $(".button-container a img").css('top', '0px');
+        $(".button-container a img").css('right', '5px    ');
+        $(".button-container a img").css('width', '100px');
+        $(".button-container a img").css('border', 'none');
         $('.download_app').attr('href', 'https://play.google.com/store');
     }
     else {
@@ -84,7 +95,10 @@ function dropdown() {
     $(' .btn-group> ul >li> a').css('font-weight', 'bold');
     $(' .btn-group> ul >li>a').css('padding', '9px 15px');
     $(' .btn-group> ul >li >a').css('border-bottom', '1px solid black');
-    $(' .btn-group> ul >li >a').css('border-top', '1px solid #363F43');
+    $(' ul.dropdown-menu.button#dropdown> li:last-child >a').css('border-bottom', 'none');
+    $(' .btn-group> ul >li ').css('border-top', '1px solid #363F43');
+    $(' ul.dropdown-menu.button#dropdown> li:first-child ').css('border-top', 'none');
+
     $(' .btn-group> ul.dropdown-menu.menu').css('background-color', 'rgb(51, 51, 51)');
     $(' .btn-group> ul.dropdown-menu.menu').width($('html').width());
 
