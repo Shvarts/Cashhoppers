@@ -1,79 +1,124 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <table>
-    <tr>
-      <td>Email:</td>
-      <td><%= f.email_field :email, :autofocus => true %></td>
-      <td><%= f.file_field :avatar %></td>
-    </tr>
-
-    <tr>
-      <td>First name:</td>
-      <td><%= f.text_field :first_name %></td>
-    </tr>
-
-    <tr>
-      <td>Last name</td>
-      <td><%= f.text_field :last_name  %></td>
-    </tr>
-
-    <tr>
-      <td>User name</td>
-      <td><%= f.text_field :user_name %></td>
-    </tr>
 
 
-    <tr>
-      <td class= 'span3'>Phone</td>
-      <td><%= f.text_field :phone %></td>
-    </tr>
+<style>
+    fieldset.btn{
+        padding: 2% 0% 5% 5%;
 
-    <tr>
-      <td>Contact</td>
-      <td><%= f.text_field :contact %></td>
-    </tr>
+    }
+    @media(min-width:100px)and(max-width: 790px){
 
-    <tr>
-      <td>Biography</td>
-      <td><%= f.text_area :bio , :rows => 5%></td>
-    </tr>
-
-    <tr>
-      <td><% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %></td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <td>Password <i>(leave blank if you don't want to change it)</i></td>
-      <td>  <%= f.password_field :password, :autocomplete => "off" %></td>
-    </tr>
-
-    <tr>
-      <td>Confirm password</td>
-      <td><%= f.password_field :password_confirmation %></td>
-    </tr>
-
-    <tr>
-      <td>Current password <i>(we need your current password to confirm your changes)</i></td>
-      <td><%= f.password_field :current_password %></td>
-    </tr>
-
-    <tr>
-      <td></td>
-
-      <td><%= f.submit "Update" %></td>
-    </tr>
-
-  </table>
+        fieldset.btn{
+            /*display: none;*/
+            border: none;
+            padding: 0%;
+            text-align: center;
 
 
-<% end %>
+            font-size: 80%;
 
-<%= link_to "Back", :back %>
+        }
+    }
+    body {
+        padding: 0%;
+        /*display: none;*/
+    }
+    .span12.text-center{
+        margin: 0;
+    }
+</style>
 
 
+<div class = 'span12 text-center'>
+
+  <fieldset   class = 'btn' id = 'sign-up' style ="width: 100% ;  ">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+
+
+        <br />
+        <div><%= f.label :email %>
+          <%= f.email_field :email, :autofocus => true %></div>
+        <br />
+
+        <div class ='row-fluid'>
+          <div class = 'span6'>
+            <div>
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name %></div>
+          </div>
+
+          <div class = 'span6'>
+            <div>
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name %></div>
+
+          </div>
+        </div>
+
+        <br />
+        <div class ='row-fluid'>
+          <div class = 'span6'>
+            <div><%= f.label :user_name %>
+              <%= f.text_field :user_name %></div>
+          </div>
+          <div class = 'span6'>
+            <div><%= f.label :zip %>
+              <%= f.text_field :zip %></div>
+          </div>
+        </div>
+       <br />
+        <div class ='row-fluid'>
+          <div class = 'span6'>
+            <div><label>Phone</label>
+              <%= f.text_field :phone %></div>
+          </div>
+          <div class = 'span6'>
+            <div><label>Contact</label>
+              <%= f.text_field :contact %></div>
+          </div>
+        </div>
+       <br />
+
+        <div><label>Biography</label>
+          <%=  f.text_area :bio, :rows => 5 %></div>
+        <br />
+
+
+
+       <div><%= f.label :avatar %>
+          <%= f.file_field :avatar %></div>
+        <br />
+        <br />
+        <div class ='row-fluid'>
+          <div class = 'span6'>
+            <div>Password <i>(leave blank if you don't want to change it)</i>
+              <%= f.password_field :password, :autocomplete => "off" %></div>
+            <br />
+          </div>
+          <div class = 'span6'>
+            <div><%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation %></div>
+          </div>
+        </div>
+
+
+
+        <br />
+        <div><label>Current password <i>(we need your current password to confirm your changes)</i></label>
+          <%=  f.password_field :current_password %></div>
+        <br />
+
+       <div><%= f.submit "Update", class: 'btn btn-info' %></div>
+
+    <% end %>
+
+
+
+
+
+    <%= link_to "Back", :back %>
+  </fieldset>
+</div>

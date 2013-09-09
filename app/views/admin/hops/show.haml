@@ -175,8 +175,8 @@
 -#= User.can_edit?(current_user, @hop.creator_id)
 %h4
   Hoppers:
--#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[1].id, :user_id => 55, :photo =>current_user.avatar, :comment=>'comment'  )
--#=@hop.hoppers << User.find_by_id(55)
+-#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[0].id, :user_id => current_user.id, :photo =>current_user.avatar, :comment=>'comment'  )
+-#=@hop.hoppers << current_user
 - if @hoppers.blank?
   List has no rows
 - else
