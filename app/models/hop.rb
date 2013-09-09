@@ -38,6 +38,7 @@ class Hop < ActiveRecord::Base
 
 
   def self.get_daily_by_date date
+
     Hop.where("time_start BETWEEN ? AND ? AND daily = 1", date.beginning_of_day, date.end_of_day).first
   end
 
@@ -299,9 +300,11 @@ class Hop < ActiveRecord::Base
   private
 
   def only_one_daily_hop_per_day
-    daily_hop =  Hop.get_daily_by_date(self.time_start)
-    if daily && daily_hop && daily_hop.id != self.id
-      errors.add(:start_date, "Can be only one daily hop per day.")
+    if !self.time_start.nil?
+      daily_hop =  Hop.get_daily_by_date(self.time_start)
+      if daily && daily_hop && daily_hop.id != self.id
+        errors.add(:start_date, "Can be only one daily hop per day.")
+      end
     end
   end
 
