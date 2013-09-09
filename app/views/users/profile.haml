@@ -1,27 +1,81 @@
+
+
 :css
   body {
-  padding: 0%;
+      padding: 0%;
+      /*display: none;*/
 
   }
   .span12.text-center{
-  margin: 0;
+      margin: 0;
+  }
   fieldset.btn{
-  width: 100%;
+      text-align: left;
+      width: 50%;
+  }
+  .fname, .lname{
+      display: inline;
+  }
+  fieldset.btn{
+      padding: 2% 0% 5% 5%;
 
   }
+  .span6.text-center.small-screen{
+    display: none;
+    width: 0px;
   }
+  .span6.text-center.large-screen{
+    display: block;
+     margin: 0px;
+
+  }
+
+  @media(min-width:100px)and(max-width: 790px){
+
+      fieldset.btn{
+          /*display: none;*/
+          border: none;
+          padding: 0%;
+          text-align: center;
+
+
+          font-size: 100%;
+
+      }
+      .span6.text-center.small-screen{
+        display: block;
+        width: auto;
+
+      }
+      .span6.text-center.large-screen{
+        display: none;
+
+
+      }
+      .span6.text-center{
+        margin: 0px;
+      }
+  }
+  body {
+      padding: 0%;
+
+  }
+
 
 
 
 
 
 .span12.text-center
-  %fieldset.btn.profile{:style => "padding: 2% 0% 5% 0%; width: 100%"}
+  %fieldset.btn.profile{:style => " width: 100%"}
     %h1.text-center
       = @user.first_name
     %br
     %br
     .row-fluid
+      .span6.text-center.small-screen
+        = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
+      %br
       .span6
         .row-fluid.span12
           .span6.text-center
@@ -91,8 +145,8 @@
             = link_to @user.google, @user.google if @user.google
 
 
-      .span6.text-center
-        = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
+      .span6.text-center.large-screen
+        = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%; margin-left: 60px;'
 
     = button_to 'Update information', edit_user_registration_path, :method => 'get', :class=>'btn btn-info'
     %br
@@ -114,12 +168,14 @@
           - @hops.each do |hop|
             %tr
               %td
+
+
                 = link_to hop.name, admin_hop_path(hop)
-              %td
+              %td{style: " width: 25%;"}
                 = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
-              %td
+              %td{style: " width: 25%;"}
                 =  hop.daily ? 'Daily': 'Regular'
-              %td
+              %td{style: " width: 25%;"}
                 =  link_to 'Hop photos',admin_hop_photos_path({:hop_id =>hop.id })
 
 
