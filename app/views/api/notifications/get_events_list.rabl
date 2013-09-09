@@ -58,7 +58,7 @@ end
 child :friend do
     attributes :id, :last_name, :first_name, :user_name
     node :avatar do |user|
-        user.avatar.url if user.avatar_file_size
+        user.avatar.url
     end
     node :friendship_status do |user|
         friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user.id)
