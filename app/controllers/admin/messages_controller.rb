@@ -20,7 +20,7 @@ class Admin::MessagesController < Admin::AdminController
   def message_tool
     @tab = 'message_tool'
     @message = Message.new
-    (params[:id])? @users = [params[:id].map{|id| [User.find_by_id(id).user_name, id]}, params[:id]] : @users = []
+    (params[:id])? @users = [params[:id].map{|id| [User.find_by_id(id).user_name, id]}, params[:id]] : @users = [[],[]]
   end
 
   def email_history

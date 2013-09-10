@@ -308,7 +308,9 @@ class Admin::HopsController < Admin::AdminController
    @hop=Hop.find_by_id(params[:hop_id])
    @ads = @hop.ads.all
    @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten!
-
+   puts "------------------------------#{@hop}------------------------------------------"
+   puts "------------------------------#{ @ads }------------------------------------------"
+   puts "------------------------------#{@hop.hop_tasks.all.map{|item| item.user_hop_tasks}}------------------------------------------"
 
    render :layout => 'home_layout'
 

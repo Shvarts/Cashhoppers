@@ -186,8 +186,11 @@
             %tr
               %td
                 %div{}
+                  -if User.user?(current_user)
+                    = hop.name
+                  -else
+                    = link_to hop.name, admin_hop_path(hop)
 
-                  = link_to hop.name, admin_hop_path(hop)
               %td
                 %div
                   = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer

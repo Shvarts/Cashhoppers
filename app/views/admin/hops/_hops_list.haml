@@ -10,14 +10,18 @@
       - link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
     - g.column name: 'Price', attribute: 'price'
     - g.column name: 'Jackpot', attribute: 'jackpot'
+    - g.column name: 'Hop photos' do |hop|
+      - link_to 'photo', admin_hop_photos_path({:hop_id=>hop.id})
+
     - g.column name: 'Time Start', :attribute => 'time_start', filter: false do |hop|
       - hop.time_start.to_s if hop.time_start
     - unless @tab == 'daily_hops'
       - g.column name: 'Time End', :attribute => 'time_end', filter: false do |hop|
         - hop.time_end.to_s if hop.time_end
     - if @tab == 'current_hops' || @tab == 'archived_hops'
-      - g.column name: 'Type', :attribute => 'daily', custom_filter: [['Daily', true], ['Regular', false]] do |hop|
+      - g.column name: 'Type', :attribute => 'daily', custom_filter:{'Daily'=> true, 'Regular'=> false} do |hop|
         - hop.daily ? 'Daily': 'Regular'
+
     - g.column do |hop|
       - link_to('Show', admin_hop_path(hop), class: 'btn btn-mini')
     - if (User.producer?(current_user) || User.admin?(current_user))

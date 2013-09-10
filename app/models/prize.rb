@@ -1,5 +1,5 @@
 class Prize < ActiveRecord::Base
-  attr_accessible :cost, :place, :user_id, :hop_id, :prize_type , :accept
+  attr_accessible :cost, :place, :user_id, :hop_id, :prize_type , :accept, :description
   belongs_to :hop
   belongs_to :user
   has_one :notification

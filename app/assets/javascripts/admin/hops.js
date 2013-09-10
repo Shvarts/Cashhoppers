@@ -26,7 +26,7 @@ $(function(){
 })
 
 function change_user_prize(sender){
-    if(!confirm("Are you sure you want to change user role ?")){
+    if(!confirm("Are you sure you want to change winner ?")){
         return;
 
     }
@@ -53,15 +53,18 @@ function change_user_prize(sender){
 
 function place_hide(){
 
+    $('#description').show();
     $('.place-field').hide();
 }
 function special_prize(){
 
+    $('#description').hide();
     $('.place-field').show();
     $('.place-field').attr('type','text');
 }
 function place_prize(){
 
+    $('#description').hide();
     $('.place-field').show();
     $('.place-field').attr('type','number');
 }

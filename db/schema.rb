@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910100557) do
+ActiveRecord::Schema.define(:version => 20130910140735) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20130910100557) do
     t.integer "pts"
     t.string  "prize_type"
     t.boolean "accept"
+    t.text    "description"
   end
 
   add_index "prizes", ["hop_id"], :name => "index_prizes_on_hop_id"

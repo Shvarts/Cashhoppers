@@ -10,6 +10,8 @@
       %th
         Prize
       %th
+        Description
+      %th
         User
       %th
     - @prizes.each do |prize|
@@ -28,6 +30,9 @@
           -else
             =prize.cost
 
+        %td
+          -if prize.description
+            = text_area_tag '', prize.description, :width => '100%'
         %td
 
           - if prize.user
