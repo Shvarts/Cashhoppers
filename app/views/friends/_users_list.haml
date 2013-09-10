@@ -2,7 +2,7 @@
   .span7
     = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
   .span5.text-right.row
-    = text_field_tag :input, params[:query], class: 'span7', id: 'search_field'
+    = text_field_tag :user, params[:query], class: 'span7', id: 'search_field'
     = link_to 'Search', find_friends_path, class: 'btn span4', id: 'search_button'
 %table.table.table-condensed
   %tr
@@ -25,5 +25,5 @@
               friends_create_request_path(id: user.id),
               method: :post,
               confirm: "Send friend request to #{user.first_name}?",
-              class: 'btn btn-mini'
+              class: 'btn btn-mini btn-success'
 = will_paginate @users, renderer: BootstrapPagination::Rails

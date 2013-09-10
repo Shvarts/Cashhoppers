@@ -1,7 +1,22 @@
+:css
+  body {
+      padding: 0%;
+      /*display: none;*/
+
+  }
+  .span12.text-center{
+      margin: 0;
+  }
+
+=form_tag   messages_find_friend_path, remote: true, :html => {:class => 'form-inline'}  do
+  = text_field_tag :user,'',  id: 'search_field', :placeholder=> 'put user name'
+  = submit_tag 'Search', :class => 'btn btn-success'
+#search_user
+
 - @messages.each do |message|
 
 
-  .well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message.id)}'"}
+  .well{class: "#{message.id.to_s}", style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: message.id)}'"}
     .row-fluid
       .span1
         - user = User.new(id: message.id, avatar_file_name: message.avatar_file_name)

@@ -1,0 +1,22 @@
+
+.well{style: 'cursor: pointer; position: relative', onclick: "window.location = '#{messages_friend_messages_path(friend_id: @user.id)}'"}
+  .row-fluid
+    .span1
+      - user = User.new(id: @user.id, avatar_file_name: @user.avatar_file_name)
+      %a.thumbnail
+        = image_tag user.avatar.url, style: 'width: 70px'
+    .span10
+      = @user.first_name
+      = ' '
+      = @user.last_name
+      .span{style: 'color: gray'}
+        -if !@user.incoming_messages.blank? &&  !@user.incoming_messages.where(sender_id: @user.id).blank?
+
+
+          = time_ago_in_words(@user.incoming_messages.where(sender_id: @user.id).last.created_at) + ' ago'
+      %br
+      %h4
+        -if !@user.incoming_messages.blank? &&  !@user.incoming_messages.where(sender_id: @user.id).blank?
+          =@user.incoming_messages.where(sender_id: @user.id).last.text
+    %div{style: 'position: absolute; right: 30px; top: 42%'}
+      %i.icon-chevron-right{style: 'font-size: 45px; color: darkgreen '}

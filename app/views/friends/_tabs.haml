@@ -3,13 +3,5 @@
     =link_to 'Friends', friends_path
   %li{:class => ('active' if params[:tab] == :find_friends)}
     = link_to 'Find', find_friends_path
-  %li
-    %a{href: "#"}
-      Facebook
-  %li
-    %a{href: "#"}
-      Twitter
-  %li
-    %a{href: "#"}
-      Google +
+
 = yield

@@ -1,37 +1,99 @@
-The following
-= @services.count == 1 ? 'account is' : 'accounts are'
-connected with your local account:
-%table.table.table-striped
-  %tr
-    %th
-    %th
-      Name
-    %th
-      Email
-    %th
-      Uid
-    %th
-  - @services.each do |service|
-    %tr
-      %td
-        = image_tag "#{service.provider}.png", size: '30x30'
-      %td
-        = service.uname
-      %td
-        = service.uemail != '' ? service.uemail : 'not set'
-      %td
-        = service.uid
-      %td{style: 'text-align: right'}
-        - @services.count == 1 ? @msg = 'Removing the last account linked might lock you out of your account if you do not know the email/password sign-in of your local account!' : @msg = ''
-        = link_to 'Remove this service', service, :confirm => 'Are you sure you want to remove this authentication service? ' + @msg, :method => :delete, :class => 'btn btn-danger'
-You can connect more services to your account:
-%br
-%a{href: '/auth/facebook'}
-  = image_tag 'btn_login_facebook.png', size: '165x64', alt: 'Facebook'
-%a{href: '/auth/twitter'}
-  = image_tag 'btn_login_twitter.png', size: '150x64', alt: 'Twitter'
-%a{href: '/auth/google'}
-  = image_tag 'btn_login_google.png', size: '175x64', alt: 'Twitter'
-%br
-If you signed-up for CommunityGuides via an authentication service a random password has been set for the local password.
-You can request a new password using the "Forgot your Password?" link on the sign-in page.
+:css
+  body {
+      padding: 0%;
+      /*display: none;*/
+
+  }
+  .span12.text-center{
+      margin: 0;
+  }
+  fieldset.btn.profile{
+    width: 82.9%;
+  }
+  table tr td div{
+     word-wrap: break-word;
+     width: 100px;
+  }
+
+  @media(min-width:100px)and(max-width: 790px){
+
+      fieldset.btn{
+          /*display: none;*/
+          border: none;
+          padding: 0%;
+          text-align: center;
+
+
+          font-size: 100%;
+
+      }
+      .span6.text-center.small-screen{
+        display: block;
+        width: auto;
+
+      }
+      .span6.text-center.large-screen{
+        display: none;
+
+
+      }
+      .span6.text-center{
+        margin: 0px;
+      }
+       table tr td,table tr th{
+         font-size: 80%;
+       }
+      table tr td div{
+         width: 50px;
+      }
+      fieldset.btn.profile{
+        width: 100%;
+      }
+      able tr td a.btn.btn-mini{
+        display: none;
+        width: 50px;
+        font-size: 80%;
+        height: 20px;
+      }
+  }
+
+.span12.text-center
+  %fieldset.btn.profile
+
+    The following
+    = @services.count == 1 ? 'account is' : 'accounts are'
+    connected with your local account:
+    %table.table.table-striped
+      %tr
+        %th
+        %th
+          Name
+        %th
+          Email
+        %th
+          Uid
+        %th
+      - @services.each do |service|
+        %tr
+          %td
+            = image_tag "#{service.provider}.png", size: '30x30'
+          %td
+            = service.uname
+          %td
+            = service.uemail != '' ? service.uemail : 'not set'
+          %td
+            = service.uid
+          %td{style: 'text-align: right'}
+            - @services.count == 1 ? @msg = 'Removing the last account linked might lock you out of your account if you do not know the email/password sign-in of your local account!' : @msg = ''
+            = link_to 'Remove this service', service, :confirm => 'Are you sure you want to remove this authentication service? ' + @msg, :method => :delete, :class => 'btn btn-danger'
+    You can connect more services to your account:
+    %br
+    %a{href: '/auth/facebook'}
+      = image_tag 'f.png', size: '50x50', alt: 'Facebook'
+    %a{href: '/auth/twitter'}
+      = image_tag 't.png', size: '50x50', alt: 'Twitter'
+    %a{href: '/auth/google'}
+      = image_tag 'g.2.png', size: '50x50', alt: 'Twitter'
+    %br
+    If you signed-up for CommunityGuides via an authentication service a random password has been set for the local password.
+    You can request a new password using the "Forgot your Password?" link on the sign-in page.

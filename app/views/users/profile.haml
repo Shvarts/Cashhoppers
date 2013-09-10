@@ -29,6 +29,16 @@
      margin: 0px;
 
   }
+  table tr td{
+    -#display: none;
+
+    width: 300px;
+  }
+  table tr td div{
+
+     word-wrap: break-word;
+     width: 100px;
+  }
 
   @media(min-width:100px)and(max-width: 790px){
 
@@ -55,6 +65,13 @@
       .span6.text-center{
         margin: 0px;
       }
+       table tr td,table tr th{
+         font-size: 80%;
+       }
+      table tr td div{
+         width: 50px;
+      }
+
   }
   body {
       padding: 0%;
@@ -154,7 +171,7 @@
       .span12
         %h4.text-center
           My hops:
-        %table.table.table-condensed
+        %table.table-condensed
           %tr
             %th
               Name:
@@ -168,14 +185,15 @@
           - @hops.each do |hop|
             %tr
               %td
+                %div{}
 
-
-                = link_to hop.name, admin_hop_path(hop)
-              %td{style: " width: 25%;"}
-                = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
-              %td{style: " width: 25%;"}
+                  = link_to hop.name, admin_hop_path(hop)
+              %td
+                %div
+                  = link_to(hop.producer.user_name, user_path(hop.producer)) if  hop.producer
+              %td
                 =  hop.daily ? 'Daily': 'Regular'
-              %td{style: " width: 25%;"}
+              %td
                 =  link_to 'Hop photos',admin_hop_photos_path({:hop_id =>hop.id })
 
 

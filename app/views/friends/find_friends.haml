@@ -1,2 +1,60 @@
-#users_list
-  = render :partial => 'users_list'
+:css
+  body {
+      padding: 0%;
+      /*display: none;*/
+
+  }
+  .span12.text-center{
+      margin: 0;
+  }
+  fieldset.btn.profile{
+    width: 82.9%;
+  }
+
+  @media(min-width:100px)and(max-width: 790px){
+
+      fieldset.btn{
+          /*display: none;*/
+          border: none;
+          padding: 0%;
+          text-align: center;
+
+
+          font-size: 100%;
+
+      }
+      .span6.text-center.small-screen{
+        display: block;
+        width: auto;
+
+      }
+      .span6.text-center.large-screen{
+        display: none;
+
+
+      }
+      .span6.text-center{
+        margin: 0px;
+      }
+       table tr td,table tr th{
+         font-size: 80%;
+       }
+      table tr td div{
+         width: 50px;
+      }
+      fieldset.btn.profile{
+        width: 100%;
+      }
+      able tr td a.btn.btn-mini{
+        display: none;
+        width: 50px;
+        font-size: 80%;
+        height: 20px;
+      }
+  }
+
+.span12.text-center
+  %fieldset.btn.profile
+
+    #users_list
+      = render :partial => 'users_list'
