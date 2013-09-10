@@ -5,23 +5,29 @@
    Grab your mobile phone and GET HOPPIN in the newest
    HOP:
 %br
-%b
+%br
+- if @hop_name
+   = @hop_name
+-else
    = @hop.name
-%br
-hop start:
-= @hop.time_start
-hop end:
-= @hop.time_end
-%br
-Hop prizes
-%br
-- for i in @hop.prizes
    %br
-   place:
-   = i.place
-   = '  '
-   cost:
-   =i.cost
+   hop start:
+   = @hop.time_start
+   hop end:
+   = @hop.time_end
+   %br
+   Hop prizes
+   %br
+   - for i in @hop.prizes
+      %br
+      place:
+      = i.place
+      = '  '
+      cost:
+      -if i.cost.to_s.match(/[a-zA-Z]/).nil?
+         = number_to_currency(i.cost )
+      -else
+         = i.cost
 
 %br
 %br

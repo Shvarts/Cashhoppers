@@ -2,18 +2,24 @@
 %h3{style: 'color: green;'}
   CONGRATULATIONS!
 %p
-  Your cashhopper skills have paid off-you have won
-.text-center
-  %br
-  In the Hop:
-  %b
-    =@hop.name
+  Your cashhopper skills have paid off-you have won:
 %br
-.text-center
-  Your place:
-  %br
-    %b
-      =@place
+%p
+  -if @prize.cost.to_s.match(/[a-zA-Z]/).nil?
+    = number_to_currency(@prize.cost )
+  -else
+    = @prize.cost
+%br
+In the HOP:
+%br
+%p
+  = @hop.name
+%br
+For:
+%br
+%p
+  = @prize.place
+
 %br
 %br
 Please respond to

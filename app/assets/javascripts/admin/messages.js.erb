@@ -1,4 +1,4 @@
-$(document).ready(function(){
+    $(document).ready(function(){
     search('/admin/messages/hops_list', '#search_hop')
     search('/admin/messages/users_list', '#search_user')
 
@@ -73,5 +73,20 @@ function winner_hop(select){
         $('.subject').val('')
      $('.hop-winner').hide();
    }
+}
+
+function select_all(select){
+
+    "<%@users = User.all%>"
+
+    "<%for i in @users do%>"
+
+      $('#users_ids_').append("<option selected value=" + "<%=i.id.to_s%>" + ">" +  "<%=i.user_name.to_s%>" +"</option>");
+      $('#users_ids_').trigger("liszt:updated");
+
+    "<%end%>"
+    select.preventDefault();
+    return false;
+
 }
 

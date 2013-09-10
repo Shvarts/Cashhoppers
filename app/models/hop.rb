@@ -14,7 +14,7 @@ class Hop < ActiveRecord::Base
   has_many :prizes
   has_many :notifications, dependent: :destroy
 
-  attr_accessible :close, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
+  attr_accessible :close, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end,  :producer_id, unless: :daily?
@@ -300,12 +300,13 @@ class Hop < ActiveRecord::Base
   private
 
   def only_one_daily_hop_per_day
-    if !self.time_start.nil?
-      daily_hop =  Hop.get_daily_by_date(self.time_start)
-      if daily && daily_hop && daily_hop.id != self.id
-        errors.add(:start_date, "Can be only one daily hop per day.")
-      end
-    end
+    #zips = self.zip.split(',')
+    #if !self.time_start.nil?
+    #  daily_hop =  Hop.get_daily_by_date(self.time_start)
+    #  if daily && daily_hop && daily_hop.id != self.id
+    #    errors.add(:start_date, "Can be only one daily hop per day.")
+    #  end
+    #end
   end
 
 end

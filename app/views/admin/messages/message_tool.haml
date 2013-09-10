@@ -22,21 +22,25 @@
 = form_for @message, url: admin_messages_message_create_path do |f|
   .row-fluid
 
-    .span3
+    .span4
       Filters:
-    .span3
+    .span2
       Hops:
 
       %br
       = select_tag 'hops_ids[]','', :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Hops"}
-    .span3
+    .span2
       Zip codes:
       %br
       = select_tag 'zip_codes[]', options_for_select(User.zip_codes.map!{ |item| [item['zip'], item['zip']]}), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Zip Codes"}
-    .span3
+    .span2
       Users:
       %br
-      = select_tag 'users_ids[]', options_for_select(@users), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+      %div{:style => 'max-height: 150px; overflow: auto;'}
+        = select_tag 'users_ids[]', options_for_select(@users), :multiple => true, :class => 'span12 chzn-select', data: {placeholder: "Chose Users"}
+    .span2
+      %br
+      = link_to 'Select all users','#',  :class => 'btn btn-success select-all', :onclick =>'select_all(this);return false'
   .row-fluid
     .span3
       Send from:

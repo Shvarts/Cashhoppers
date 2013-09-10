@@ -120,7 +120,9 @@ class Admin::MessagesController < Admin::AdminController
       end
     end
 
-    @email = EmailAlert.new if @users.blank? || ( template_data[:hop_name] && !Hop.find_by_name( template_data[:hop_name]))
+    @email = EmailAlert.new if @users.blank? || template_data[:hop_name]
+
+
 
     if  @users.blank?
       flash[:error] = 'Receivers not selected.'
@@ -130,17 +132,12 @@ class Admin::MessagesController < Admin::AdminController
       @hop_name = ''
 
       render action: 'email_tool'
-    elsif  !template_data[:hop_name].blank? && !Hop.find_by_name( template_data[:hop_name])
 
-      flash[:error] = 'same field was blank or Hop not exist'
-      @users =  [@users.map{|user| [user.user_name, user.id]},@users.map{|user| user.id}]
-      @prize = Prize.new
-      @prize.place=''
-      @hop_name = ''
-      render action: 'email_tool'
     else
       @messages.each{|m| m.save}
-       UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
+      puts"---------------------------------------------#{params[:email_alert]}----------------------"
+
+      UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
 
         redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
     end

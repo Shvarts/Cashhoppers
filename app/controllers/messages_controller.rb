@@ -48,9 +48,6 @@ class MessagesController < ApplicationController
 
 
     @user = current_user.friends.where(:user_name => params[:user]).first
-    puts '--------------------------------------------------------------------------------'
-    puts "----------------------------------#{ params }----------------------------------------------"
-    puts '--------------------------------------------------------------------------------'
 
     respond_to do |format|
       format.js
