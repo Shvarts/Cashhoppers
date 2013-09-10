@@ -1,7 +1,7 @@
 class Api::UserHopTasksController < Api::ApplicationController
   respond_to :json
-  before_filter :load_hop_task, only: [:create, :get_hop_task_by_id]
-  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments, :notify_by_share, :get_user_hop_task_by_id]
+  before_filter :load_hop_task, only: [:create, :get_hop_task_by_id, :notify_by_share]
+  before_filter :load_user_hop_task, only: [:like, :likes_count, :comment, :comments, :get_user_hop_task_by_id]
 
   def create
     if UserHopTask.where(user_id: @current_user.id, hop_task_id: @hop_task.id).first
@@ -125,30 +125,35 @@ class Api::UserHopTasksController < Api::ApplicationController
   end
 
   def notify_by_share
-    shared = false
-    case params[:service]
-    when 'facebook'
-      shared = true if @user_hop_task.facebook_shared
-      @user_hop_task.update_attribute :facebook_shared, true
-    when 'twitter'
-      shared = true if @user_hop_task.twitter_shared
-      @user_hop_task.update_attribute :twitter_shared, true
-    when 'google'
-      shared = true if @user_hop_task.google_shared
-      @user_hop_task.update_attribute :google_shared, true
-    end
-    if !shared
-      @user_hop_task.hop_task.hop.increase_score @current_user, @user_hop_task.hop_task.bonus
-      respond_to do |format|
-        format.json{
-          render :json => {success: true,
-                           info: 'Success.',
-                           status: 200
+    user_hop_task = UserHopTask.where(hop_task_id: @hop_task.id, user_id: @current_user.id).first
+    if user_hop_task
+      shared = false
+      case params[:service]
+      when 'facebook'
+        shared = true if user_hop_task.facebook_shared
+        user_hop_task.update_attribute :facebook_shared, true
+      when 'twitter'
+        shared = true if user_hop_task.twitter_shared
+        user_hop_task.update_attribute :twitter_shared, true
+      when 'google'
+        shared = true if user_hop_task.google_shared
+        user_hop_task.update_attribute :google_shared, true
+      end
+      if !shared
+        user_hop_task.hop_task.hop.increase_score @current_user, user_hop_task.hop_task.bonus
+        respond_to do |format|
+          format.json{
+            render :json => {success: true,
+                             info: 'Success.',
+                             status: 200
+            }
           }
-        }
+        end
+      else
+        bad_request(['Already shared.'], 406)
       end
     else
-      bad_request(['Already shared.'], 406)
+      bad_request(['Cant find feed by.'], 406)
     end
   end
 

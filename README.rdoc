@@ -246,10 +246,11 @@ assigned: true if user assigned to hop of false if not
 ====notify server of share action(method: POST)
 service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/task/notify_by_share.json
-    data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct","user_hop_task_id":"13","service":"facebook"}
+    data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct","hop_task_id":"13","service":"facebook"}
     response:
         success: {"success"=>true, "info"=>"Success.", "status"=>200}
         error: {"errors"=>["Already shared."], "success"=>false, "status"=>406}
+        error: {"errors"=>["Cant find feed by."], "success"=>false, "status"=>406}
 ====get yesterday's winner(method: GET)
     url: http://localhost:3000/api/hops/yesterdays_winner.json?api_key=123&authentication_token=G6ajYbKhqOaZCQc69mHn4uYGl03w96
     data: {"api_key":"123","authentication_token":"dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct"}
