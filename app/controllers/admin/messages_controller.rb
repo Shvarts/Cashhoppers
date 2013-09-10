@@ -1,6 +1,7 @@
 class Admin::MessagesController < Admin::AdminController
   authorize_resource
   before_filter :authenticate_user!
+  respond_to :json
 
   def email_tool
     @tab = 'email_tool'
@@ -176,6 +177,17 @@ class Admin::MessagesController < Admin::AdminController
 
   def sub_layout
     'admin/messages_tabs'
+  end
+
+  def get_user_list
+    json = []
+    User.all.each do |user|
+      user_info = {}
+      user_info[:id] = user.id
+      user_info[:name] = user.user_name
+      json.push user_info
+    end
+    render json: json.to_json
   end
 
 end

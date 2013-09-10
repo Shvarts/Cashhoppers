@@ -76,16 +76,19 @@ function winner_hop(select){
 }
 
 function select_all(select){
-
-    "<%@users = User.all%>"
-
-    "<%for i in @users do%>"
-
-      $('#users_ids_').append("<option selected value=" + "<%=i.id.to_s%>" + ">" +  "<%=i.user_name.to_s%>" +"</option>");
-      $('#users_ids_').trigger("liszt:updated");
-
-    "<%end%>"
-    select.preventDefault();
+    $.ajax({
+        url: '/admin/messages/get_user_list.json',
+        method: 'POST',
+        success: function(data){
+            $.each(data, function(index, value){
+                $('#users_ids_').append("<option selected value=" + value.id + ">" +  value.name +"</option>");
+                $('#users_ids_').trigger("liszt:updated");
+            });
+        },
+        error: function(data){
+            console.log('eror');
+        }
+    });
     return false;
 
 }
