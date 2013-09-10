@@ -90,6 +90,5 @@ function select_all(select){
         }
     });
     return false;
-
 }
 
