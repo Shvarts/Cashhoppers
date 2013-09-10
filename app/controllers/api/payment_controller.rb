@@ -35,7 +35,7 @@ class Api::PaymentController < Api::ApplicationController
     elsif user.frog_legs < 20
       bad_request ['You dont have enough many.'], 406
     else
-      user.user_settings.update_attribute :ad_enable, true
+      user.user_settings.update_attribute :ad_enable, 0
       user.update_attribute :frog_legs, user.frog_legs - 20 #need refactor
       message = 'Succesfully disabled ads.'
       render :json => {
