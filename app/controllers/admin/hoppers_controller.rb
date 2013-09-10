@@ -131,5 +131,15 @@ class Admin::HoppersController < Admin::AdminController
       }
     end
   end
+  def select_all
+    @users = User.all
+
+    @id_array = @users.map{|user| user.id }
+
+    session[:last_hoppers]= @id_array
+    render :partial => 'generate_hop_list'
+
+
+  end
 
 end

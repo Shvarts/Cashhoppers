@@ -14,6 +14,7 @@
     %br
     = submit_tag("Find hopper by hop", :class=>"btn btn-success", :onclick=>'search_hop()' )
     = submit_tag("Find hopper by zip", :class=>"btn btn-success", :onclick=>'search_zip()' )
+    = submit_tag("Find all hoppers", :class=>"btn btn-success", :onclick=>'select_all()' )
 #container
   -if @users
     =render partial: 'generate_hop_list'

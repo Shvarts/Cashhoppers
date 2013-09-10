@@ -26,7 +26,8 @@
             %td.span1
               = i.first_name
             %td.span1
-              = i.last_name
+              = link_to i.last_name, user_path(:id => i.id)
+
             %td.span1
               =i.user_name
             %td.span1
@@ -38,6 +39,7 @@
     .span2
 
       =  link_to "Email to list", admin_messages_email_tool_path({:id=> @id_array}),:class=>"btn btn-success"
+      %br
       %br
       = link_to "Messages to list", admin_messages_message_tool_path({:id=> @id_array}) , :class=>"btn btn-success "
     .span10.text-right
