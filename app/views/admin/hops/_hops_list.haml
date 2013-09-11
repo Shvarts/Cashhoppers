@@ -25,15 +25,18 @@
     - g.column do |hop|
       - link_to('Show', admin_hop_path(hop), class: 'btn btn-mini')
     - if (User.producer?(current_user) || User.admin?(current_user))
+
       - g.column do |hop|
-        -if User.can_edit?(current_user, hop.creator_id)
+
+        -if User.can_edit?(current_user, hop.creator_id) && !(hop.close == true)
           - link_to('Edit', admin_edit_regular_hop_path(hop), class: 'btn btn-mini btn-info')
+
       - g.column do |hop|
-        -if User.can_edit?(current_user, hop.creator_id)
+        -if User.can_edit?(current_user, hop.creator_id) && !(hop.close == true)
           - link_to('Destroy', admin_hop_path(hop), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
       - unless @tab == 'archived_hops'
         - g.column do |hop|
-          -if User.can_edit?(current_user, hop.creator_id)
+          -if User.can_edit?(current_user, hop.creator_id) && !(hop.close == true)
             - link_to('Close', admin_close_hop_path(hop), method: :post, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
       %br
 
