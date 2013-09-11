@@ -5,13 +5,14 @@
   %table.table.table-condensed
     %tr
       %th
-        Ask
+        Question
       %th
         Answer
       - @asks.each do |ask|
         %tr
           %td
             = text_area_tag :text,  ask.ask, :width => '100%'
+
           %td
             = text_area_tag :text,  ask.answer, :width => '100%'
           %td

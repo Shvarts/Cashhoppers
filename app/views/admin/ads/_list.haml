@@ -38,7 +38,7 @@
             = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
           %td{style: 'text-align: right'}
 
-            -if (!User.user?(current_user)) && User.can_edit?(current_user,ad.creator_id)
+            -if (!User.user?(current_user)) && User.can_edit?(current_user,ad.creator_id)&& !ad.hop.close == true
               %button.btn.btn-info.btn-mini{onclick: 'ads_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit ad", "' + edit_admin_ad_path(ad) + '")'}
                 Edit
               %button.btn.btn-danger.btn-mini{onclick: 'ads_modal.removeRecord("' + admin_ad_path(ad) + '", {hop_id: ' + @hop.id.to_s + '})'}

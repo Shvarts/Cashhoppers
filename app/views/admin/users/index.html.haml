@@ -1,4 +1,4 @@
-
+=current_user.roles.first.name
 .row-fluid
   .span12
     .grid
@@ -8,8 +8,12 @@
         -g.column name:'First name', attribute: 'first_name'
         -g.column name:'Last name', attribute: 'last_name'
         -g.column name:'Email', attribute: 'email'
-        -#-g.column name:'role', attribute: 'role'
-        - g.column  name: 'Role', class: 'role' do |user|
+        -g.column name: 'Search role', model: 'Role',  attribute: 'name' do |user|
+          -user.roles.first.name
 
+        -#- g.column name: 'Role', attribute: "name" do |user|
+        -#  -user.roles.first.name
+
+        - g.column  name: 'Change Role', class: 'role' do |user|
           - select_tag :role, options_for_select(Role.all.map{ |u| [u.name, u.id] }, user.roles.first.id),
                      :user_id => user.id, :onchange => "change_user_role(this);"

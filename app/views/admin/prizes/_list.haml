@@ -38,7 +38,7 @@
           - if prize.user
             = link_to "#{  prize.user.first_name}  #{ prize.user.last_name} ",  admin_users_tasks_photo_path({:user_id =>prize.user.id, :hop_id => prize.hop.id})
         %td.buttons-section{style: 'text-align: right'}
-          -if (User.producer?(current_user) || User.admin?(current_user)) && !prize.accept
+          -if (User.producer?(current_user) || User.admin?(current_user)) && !prize.accept && !prize.hop.close == true
             -if  (prize.prize_type == 'place' || prize.prize_type == 'random' )&& prize.hop.hop_end
               %button.btn.btn-warning.btn-mini{onclick: 'prizes_modal.rundomeaRecord("' + admin_random_user_path({:prize_id=>prize.id}) + '", {hop_id: ' + @hop.id.to_s + '}); update_hoppers('+ @hop.id.to_s+');'}
                 Randomly
