@@ -11,11 +11,11 @@ node :hop_id do |task|
 end
 
 node :small_photo do |task|
-    task.photo.url(:small) if task.photo
+    task.photo.url(:small)
 end
 
 node :photo do |task|
-    task.photo.url(:original) if task.photo
+    task.photo.url(:original)
 end
 
 node :likes_count do |task|

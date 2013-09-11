@@ -11,7 +11,7 @@ node :hop_task_text do |task|
 end
 
 node :photo do |task|
-    task.photo.url if task.photo
+    task.photo.url
 end
 
 node :likes_count do |task|

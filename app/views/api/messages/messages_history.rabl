@@ -8,9 +8,9 @@ end
 
 node :friend_avatar do |message|
     if message.sender_id == @current_user.id
-        message.receiver.avatar.url if message.receiver && message.receiver.avatar_file_size
+        message.receiver.avatar.url if message.receiver
     else
-        message.sender.avatar.url if message.sender && message.sender.avatar_file_size
+        message.sender.avatar.url if message.sender
     end
 end
 
