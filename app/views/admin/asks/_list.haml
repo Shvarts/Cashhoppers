@@ -11,10 +11,12 @@
       - @asks.each do |ask|
         %tr
           %td
-            = text_area_tag :text,  ask.ask, :width => '100%'
+            %div{stule: 'max-width: 100%; word-wrap: break-word;'}
+              =ask.ask
 
-          %td
-            = text_area_tag :text,  ask.answer, :width => '100%'
+          %td{stule: 'width: 50px'}
+            %div{stule: 'width: 50px; word-wrap: break-word;'}
+              =ask.answer
           %td
           %td{style: 'text-align: right'}
             %button.btn.btn-info.btn-mini{onclick: 'asks_modal.editRecord({}, "Edit ask", "' + edit_admin_ask_path(ask) + '")'}

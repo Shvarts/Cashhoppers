@@ -22,6 +22,7 @@ CashHoppers::Application.routes.draw do
     post "users/change_user_role"
     get "users/tasks_photo"
     get "users/index"
+    post "users/unsubscribe_user"
 
     resources :applications
 

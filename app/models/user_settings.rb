@@ -6,8 +6,11 @@ class UserSettings < ActiveRecord::Base
                   :new_hop,
                   :hop_about_to_end,
                   :comment_or_like,
-                  :user_id
+                  :user_id,
+                  :unsubscribe
+
   before_create :init_settings
+
 
   private
 

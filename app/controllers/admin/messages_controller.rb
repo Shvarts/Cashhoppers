@@ -111,13 +111,15 @@ class Admin::MessagesController < Admin::AdminController
     @email = nil
     @messages = []
     @users.each do |user|
-      message_data = params[:email_alert]
-      message_data[:receiver_id] = user.id
-      message = EmailAlert.new(message_data)
-      @messages << message
-      unless message.valid?
-        @email = message
-        break
+      if !(user.user_settings && user.user_settings.unsubscribe)
+        message_data = params[:email_alert]
+        message_data[:receiver_id] = user.id
+        message = EmailAlert.new(message_data)
+        @messages << message
+        unless message.valid?
+          @email = message
+          break
+        end
       end
     end
 

@@ -4,3 +4,6 @@
     %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => "Content-Type"}
 %body
   = render partial: "template_#{@message.template_id.to_i}"
+  %div
+    =link_to 'UNSUBSCRIBE', 'http://perechin.net:3000/users/sign_in'
+    (Go to your profile ('my page') page and uncheck checkbox 'Send email notification')

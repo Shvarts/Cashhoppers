@@ -39,6 +39,9 @@
      word-wrap: break-word;
      width: 100px;
   }
+  .row-fluid.span10{
+    margin-left: 0px;
+  }
 
   @media(min-width:100px)and(max-width: 790px){
 
@@ -71,6 +74,13 @@
       table tr td div{
          width: 50px;
       }
+      .row-fluid .span4{
+        float: left;
+        width: 100px;
+      }
+      .row-fluid.span10 .span4 strong,.row-fluid.span10 .span8 {
+        padding-left: 10%;
+      }
 
   }
   body {
@@ -94,77 +104,82 @@
         = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
       %br
       .span6
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               First name:
-          .span6.text-center
+          .span8.text-left
             = @user.first_name
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Last name:
-          .span6.text-center
+          .span8.text-left
             = @user.last_name
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               User name:
-          .span6.text-center
+          .span8.text-left
             = @user.user_name
-        .row-fluid.span12.email
-          .span6.text-center
+        .row-fluid.span10.email
+          .span4.text-left
             %strong
               Email:
-          .span6.text-center
+          .span8.text-left
             = @user.email
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Zip:
-          .span6.text-center
+          .span8.text-left
             = @user.zip
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Contact:
-          .span6.text-center
+          .span8.text-left
             = @user.contact
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Phone:
-          .span6.text-center
+          .span8.text-left
             = @user.phone
-        .row-fluid.span12.email
-          .span6.text-center
+        .row-fluid.span10.email
+          .span4.text-left
             %strong
               Bio:
-          .span6.text-center
-            = text_area_tag :text,   @user.bio, :width => '100%',style: 'resize: none'
-        .row-fluid.span12
-          .span6.text-center
+          .span8.text-left
+            %div{stule: 'max-width = 100%; word-wrap: break-word;'}
+              = @user.bio
+
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Twitter:
-          .span6.text-center
+          .span8.text-left
             = link_to @user.twitter, @user.twitter if @user.twitter
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Facebook:
-          .span6.text-center
+          .span8.text-left
             = link_to @user.facebook, @user.facebook if @user.facebook
-        .row-fluid.span12
-          .span6.text-center
+        .row-fluid.span10
+          .span4.text-left
             %strong
               Google +:
-          .span6.text-center
+          .span8.text-left
             = link_to @user.google, @user.google if @user.google
 
 
       .span6.text-center.large-screen
-        = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%; margin-left: 60px;'
-
+        = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
+    %br
+    #subscribe
+      = render partial: 'subscribe'
+    %br
     = button_to 'Update information', edit_user_registration_path, :method => 'get', :class=>'btn btn-info'
     %br
     .row-fluid

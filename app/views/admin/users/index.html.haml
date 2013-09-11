@@ -1,19 +1,2 @@
-=current_user.roles.first.name
-.row-fluid
-  .span12
-    .grid
-      =grid(@users_grid, upper_pagination_panel: true) do |g|
-        -g.column name:'ID', attribute: 'id'
-        -g.column name:'User name', attribute: 'user_name'
-        -g.column name:'First name', attribute: 'first_name'
-        -g.column name:'Last name', attribute: 'last_name'
-        -g.column name:'Email', attribute: 'email'
-        -g.column name: 'Search role', model: 'Role',  attribute: 'name' do |user|
-          -user.roles.first.name
-
-        -#- g.column name: 'Role', attribute: "name" do |user|
-        -#  -user.roles.first.name
-
-        - g.column  name: 'Change Role', class: 'role' do |user|
-          - select_tag :role, options_for_select(Role.all.map{ |u| [u.name, u.id] }, user.roles.first.id),
-                     :user_id => user.id, :onchange => "change_user_role(this);"
+#container
+  = render :partial=> 'user_list'

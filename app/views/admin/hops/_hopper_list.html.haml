@@ -29,6 +29,7 @@
           -else
             = image_tag user.avatar.url, class: 'img-polaroid',  style: 'max-width: 250px; max-height: 250px'
         %td
-          -id = (user.prizes.where(:hop_id=>@hop.id).blank?)?  0 : user.prizes.where(:hop_id=>@hop.id).first.id
-          = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => nil).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
+          -if !(@hop.close==true)
+            -id = (user.prizes.where(:hop_id=>@hop.id).blank?)?  0 : user.prizes.where(:hop_id=>@hop.id).first.id
+            = select_tag :role, options_for_select(Prize.where(:hop_id => @hop.id, :accept => nil).map{ |u| [u.place, u.id] }, id, ),include_blank: true,
                                  :user_id => user.id, :onchange => "change_user_prize(this); update_hoppers("+ @hop.id.to_s+");"
