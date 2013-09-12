@@ -32,3 +32,14 @@ node :purchased do |hop|
         hop.assigned? @current_user
     end
 end
+
+node :completed do |hop|
+    completed = true
+    hop.hop_tasks.each do |task|
+        user_hop_task = UserHopTask.where(user_id: @current_user.id, hop_task_id: task.id).first
+        unless user_hop_task
+            completed = false
+        end
+    end
+    completed
+end
