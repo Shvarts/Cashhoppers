@@ -1,5 +1,6 @@
 %ul.nav.nav-tabs.nav-stacked.non-print
-
+  %li
+    = link_to 'My page', user_path(current_user.id)
   %li
     = link_to 'Friends', friends_path
   %li
