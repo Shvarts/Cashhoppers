@@ -1,4 +1,4 @@
-collection :@daily_hops
+object :@daily_hop
 attributes :id,
            :name,
            :time_start,

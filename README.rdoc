@@ -189,7 +189,7 @@ assigned: true if user assigned to hop of false if not
     url: http://localhost:3000/api/hops/daily.json?api_key=123&authentication_token=ZyI1Lpv0jrujOodUCwcsdzDYRWUc5y&page=1&per_page=10
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, page: 1, per_page: 10}
     response:
-        success: {"daily_hops"=>[
+        success: {"daily_hop"=>
                                     {
                                         "id"=>35,
                                         "name"=>"broken daily hop",
@@ -210,10 +210,8 @@ assigned: true if user assigned to hop of false if not
                                         "zip":"88000, 23233, 11111",
                                         "completed"=>true
                                     }
-                                    ,
-                                    ...
-                ]}
-        error: {"errors"=>["Daily hops not found."], "success"=>false, "status"=>406}
+                 }
+        error: {"errors"=>["Daily hop not found."], "success"=>false, "status"=>406}
 ==== get hops(order by date, my assigned hops first)(method: GET)
 assigned: true if user assigned to hop of false if not
     url: http://localhost:3000/api/hops/regular.json?api_key=123&authentication_token=kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO&page=1&per_page=10
