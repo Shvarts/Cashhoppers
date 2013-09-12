@@ -172,10 +172,21 @@ class Admin::MessagesController < Admin::AdminController
   end
 
   def destroy_message
-    @message = Message.find_by_id(params[:id])
-    @message.destroy
-    redirect_to admin_messages_message_history_path, notice:"Message was succesfully removed."
+
+    if params[:type]
+      @message =  EmailAlert.find_by_id(params[:id])
+      @message.destroy
+      redirect_to admin_messages_email_history_path, notice:"Email was succesfully removed."
+
+
+    else
+      @message = Message.find_by_id(params[:id])
+      @message.destroy
+      redirect_to admin_messages_message_history_path, notice:"Message was succesfully removed."
+
+    end
   end
+
 
   def sub_layout
     'admin/messages_tabs'

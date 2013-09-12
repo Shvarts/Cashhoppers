@@ -7,6 +7,6 @@
       - link_to(full_user_name(message.receiver), user_path(message.receiver)) if  message.receiver
     - g.column name: 'Created at', attribute: 'created_at', filter: false
     - g.column do |message|
-      - link_to('Remove', admin_messages_destroy_message_path(id: message.id), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
+      - link_to('Remove', admin_messages_destroy_message_path({id: message.id, :type => 'email'}), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' })
 
 

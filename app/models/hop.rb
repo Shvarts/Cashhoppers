@@ -21,7 +21,7 @@ class Hop < ActiveRecord::Base
   #validates :jackpot, numericality: { only_integer: true }, unless: :daily?
   validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
-  validates :logo, format: { with: /.png|.gif|.jpg/,
+  validates :logo, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                                 message: "only image (.jpg, .png, .gif)" }
 
   before_create :init_hop

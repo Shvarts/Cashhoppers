@@ -63,8 +63,8 @@ class Admin::HopsController < Admin::AdminController
       @hop.time_end = @hop.time_start
     end
     if @hop.save
-      if @hop.jackpot
-        Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1st', :user_id=>'', :prize_type=>'place', :accept=>nil)
+      if !@hop.jackpot.blank?
+        Prize.create(:hop_id=>@hop.id, :cost=>@hop.jackpot, :place => '1', :user_id=>'', :prize_type=>'place', :accept=>nil)
       end
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else

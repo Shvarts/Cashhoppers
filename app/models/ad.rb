@@ -18,10 +18,10 @@ class Ad < ActiveRecord::Base
 
 
   validates_presence_of :ad_type, :link, :advertizer_id,  :picture
-  validates :link, format: { with: /^http:\/\/.*\..*/,
+  validates :link, format: { with: /^http:\/\/.*\..*|^https:\/\/.*\..*/,
                                     message: "only 'http://'" }
 
-  validates :picture, format: { with: /.png|.gif|.jpg/,
+  validates :picture, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                                     message: "only image (.jpg, .png, .gif)" }
 
   def self.types hop
