@@ -1,4 +1,4 @@
-object :@daily_hop
+collection :@daily_hops
 attributes :id,
            :name,
            :time_start,
@@ -10,7 +10,8 @@ attributes :id,
            :close,
            :event,
            :created_at,
-           :updated_at
+           :updated_at,
+           :zip
 
 node :assigned do |hop|
    (hop.hoppers.include? @current_user) ? true : false
