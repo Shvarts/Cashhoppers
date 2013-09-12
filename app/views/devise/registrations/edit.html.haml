@@ -1,0 +1,114 @@
+:css
+  body {
+      padding: 0%;
+      /*display: none;*/
+
+  }
+  .span12.text-center{
+      margin: 0;
+  }
+  fieldset.btn{
+      text-align: left;
+      width: 50%;
+  }
+  .fname, .lname{
+      display: inline;
+  }
+  fieldset.btn{
+      padding: 2% 0% 5% 5%;
+
+  }
+  @media(min-width:100px)and(max-width: 790px){
+
+      fieldset.btn{
+          /*display: none;*/
+          border: none;
+          padding: 0%;
+          text-align: center;
+
+
+          font-size: 80%;
+
+      }
+  }
+  body {
+      padding: 0%;
+      /*display: none;*/
+  }
+  .span12.text-center{
+      margin: 0;
+  }
+.span12.text-center
+  %fieldset#sign-up.btn{:style => "width: 100% ;  "}
+    %h2
+      Edit #{resource_name.to_s.humanize}
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      %br/
+      %div
+        = f.label :email
+        = f.email_field :email, :autofocus => true
+      %br/
+      .row-fluid
+        .span6
+          %div
+            = f.label :first_name
+            = f.text_field :first_name
+        .span6
+          %div
+            = f.label :last_name
+            = f.text_field :last_name
+      %br/
+      .row-fluid
+        .span6
+          %div
+            = f.label :user_name
+            = f.text_field :user_name
+        .span6
+          %div
+            = f.label :zip
+            = f.text_field :zip
+      %br/
+      .row-fluid
+        .span6
+          %div
+            %label Phone
+            = f.text_field :phone
+        .span6
+          %div
+            %label Contact
+            = f.text_field :contact
+      %br/
+      %div
+        %label Biography
+        = f.text_area :bio, :rows => 5
+      %br/
+      .row-fluid
+        .span12
+          .fileupload.fileupload-new{'data-provides' => 'fileupload'}
+            .fileupload-preview.fileupload-exists.thumbnail{style: 'max-width: 200px; max-height: 150px; line-height: 20px;'}
+              = image_tag resource.avatar.url, style: 'max-width: 200px; max-height: 150px;'
+            %div
+              = f.file_field :avatar
+      %br/
+      %br/
+      .row-fluid
+        .span6
+          %div
+            Password
+            %i (leave blank if you don't want to change it)
+            = f.password_field :password, :autocomplete => "off"
+          %br/
+        .span6
+          %div
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation
+      %br/
+      %div
+        %label
+          Current password
+          %i (we need your current password to confirm your changes)
+        = f.password_field :current_password
+      %br/
+      %div= f.submit "Update", class: 'btn btn-info'
+    = link_to "Back", :back
