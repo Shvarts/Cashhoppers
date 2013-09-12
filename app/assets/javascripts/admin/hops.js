@@ -11,8 +11,8 @@ $(function(){
         }
         else{
             e.preventDefault();
-            $('.align-error').html('File was no choose or bad file formal');
-            alert('File was no choose or bad file formal')
+            $('.align-error').html("<div class='alert alert-error'>File was no choose or bad file formal</div>");
+
         }
 
     })

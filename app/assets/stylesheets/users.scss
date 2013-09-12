@@ -20,6 +20,138 @@ fieldset.btn.profile{
 
   }
 }
-//.row-fluid>.span6:second-child{
-//
-//}
+
+
+fieldset.btn.profile{
+  padding: 0;
+    body {
+    padding: 0%;
+    /*display: none;*/
+
+  }
+  .span12.text-center{
+    margin: 0;
+  }
+  fieldset.btn{
+
+    width: 50%;
+  }
+  .fname, .lname{
+    display: inline;
+  }
+
+  .span6.text-center.small-screen{
+    display: none;
+    width: 0px;
+  }
+  .span6.text-center.large-screen{
+    display: block;
+    margin: 0px;
+
+  }
+
+
+  .row-fluid.span10{
+    margin-left: 0px;
+  }
+  .row-fluid.span10 .span4{
+    width: 100px;
+    float: left;
+  }
+
+}
+@media(min-width:100px)and(max-width: 790px){
+
+
+  .span6.text-center.large-screen{
+    display: none;
+
+
+  }
+  .span6.text-center{
+    margin: 0px;
+  }
+
+
+
+  .row-fluid.span10 .span4 strong,.row-fluid.span10 .span8 {
+    padding-left: 10%;
+  }
+
+
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* Чередование фона */
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+td, th {
+  padding: 6px;
+  border: 1px solid #ccc;
+
+}
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+/* Таблица больше не обычная таблица */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  table {
+    width: auto;
+  }
+
+/* Скрываем заголовки */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr { border: 1px solid #ccc; }
+
+  td {
+    /* Ведет себя как строка */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Теперь как заголовок таблицы */
+    position: absolute;
+    /* Отступы сверху и слева */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+/*
+Заголовки
+*/
+  td:nth-of-type(1):before { content: " Name"; }
+  td:nth-of-type(2):before { content: "Producer"; }
+  td:nth-of-type(3):before { content: "Type"; }
+  td:nth-of-type(4):before { content: "Hop photos"; }
+
+
+  .table-condensed td{
+    padding: 0;
+  }
+  tr th{
+    display: none;
+  }
+}
+

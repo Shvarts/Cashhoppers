@@ -1,98 +1,8 @@
-
-
 :css
   body {
-      padding: 0%;
-      /*display: none;*/
+     padding: 0%;
 
-  }
-  .span12.text-center{
-      margin: 0;
-  }
-  fieldset.btn{
-      text-align: left;
-      width: 50%;
-  }
-  .fname, .lname{
-      display: inline;
-  }
-  fieldset.btn{
-      padding: 2% 0% 5% 5%;
-
-  }
-  .span6.text-center.small-screen{
-    display: none;
-    width: 0px;
-  }
-  .span6.text-center.large-screen{
-    display: block;
-     margin: 0px;
-
-  }
-  table tr td{
-    -#display: none;
-
-    width: 300px;
-  }
-  table tr td div{
-
-     word-wrap: break-word;
-     width: 100px;
-  }
-  .row-fluid.span10{
-    margin-left: 0px;
-  }
-
-  @media(min-width:100px)and(max-width: 790px){
-
-      fieldset.btn{
-          /*display: none;*/
-          border: none;
-          padding: 0%;
-          text-align: center;
-
-
-          font-size: 100%;
-
-      }
-      .span6.text-center.small-screen{
-        display: block;
-        width: auto;
-
-      }
-      .span6.text-center.large-screen{
-        display: none;
-
-
-      }
-      .span6.text-center{
-        margin: 0px;
-      }
-       table tr td,table tr th{
-         font-size: 80%;
-       }
-      table tr td div{
-         width: 50px;
-      }
-      .row-fluid .span4{
-        float: left;
-        width: 100px;
-      }
-      .row-fluid.span10 .span4 strong,.row-fluid.span10 .span8 {
-        padding-left: 10%;
-      }
-
-  }
-  body {
-      padding: 0%;
-
-  }
-
-
-
-
-
-
+   }
 .span12.text-center
   %fieldset.btn.profile{:style => " width: 100%"}
     %h1.text-center
@@ -186,7 +96,7 @@
       .span12
         %h4.text-center
           My hops:
-        %table.table-condensed
+        %table
           %tr
             %th
               Name:

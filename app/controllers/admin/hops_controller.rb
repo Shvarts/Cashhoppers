@@ -68,9 +68,12 @@ class Admin::HopsController < Admin::AdminController
       end
       redirect_to [:admin, @hop ] , notice: 'Hop was successfully created.'
     else
+      @hop.logo = nil
       if @hop.daily
+
         render action: 'new_daily'
       else
+
         render action: 'new_regular'
       end
     end

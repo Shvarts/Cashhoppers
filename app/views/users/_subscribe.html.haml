@@ -1,4 +1,4 @@
 -subscribe =  (current_user.user_settings && current_user.user_settings.unsubscribe)? false : true
 = check_box_tag :unsubscribe, true, subscribe ,  :subscribe=> subscribe, :user_id => current_user.id,
-                :onchange => "unsubscribe_user(this);"
+                :onchange => "unsubscribe_user_profile(this);"
 Send email notification

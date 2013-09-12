@@ -1,47 +1,48 @@
-- if @prize.errors.any?
-  - @prize.errors.full_messages.each do |msg|
-    .alert.alert-error
-      %button.close{type: :button, 'data-dismiss' => 'alert'}
-      = msg
-= form_for([:admin, @prize]) do |f|
-  = f.hidden_field :hop_id
-  %table.hops-form
-    %tr
-      %td
-        %b
-          Hop:
-      %td
-        = @prize.hop.name
-    %tr
-      %td
-        %b
-          Prize:
-      %td
-        = f.text_field :cost, class: 'span12'
-    %tr
-      %td
-        %b
-          Special place:
-      %td
-        Place
-        =radio_button(:prize, :prize_type, "place", :checked => true,:onclick => 'place_prize();')
-        Special prize
-        =  radio_button(:prize, :prize_type, "special", :onclick => 'special_prize();')
-        Random prize
-        =  radio_button(:prize, :prize_type, "random", :onclick => 'place_hide();')
+.div{style: 'height: auto'}
+  - if @prize.errors.any?
+    - @prize.errors.full_messages.each do |msg|
+      .alert.alert-error
+        %button.close{type: :button, 'data-dismiss' => 'alert'}
+        = msg
+  = form_for([:admin, @prize]) do |f|
+    = f.hidden_field :hop_id
+    %table.hops-form
+      %tr
+        %td
+          %b
+            Hop:
+        %td
+          = @prize.hop.name
+      %tr
+        %td
+          %b
+            Prize:
+        %td
+          = f.text_field :cost, class: 'span12'
+      %tr
+        %td
+          %b
+            Special place:
+        %td
+          Place
+          =radio_button(:prize, :prize_type, "place", :checked => true,:onclick => 'place_prize();')
+          Special prize
+          =  radio_button(:prize, :prize_type, "special", :onclick => 'special_prize();')
+          Random prize
+          =  radio_button(:prize, :prize_type, "random", :onclick => 'place_hide();')
 
-    %tr
-      %td
-        %b
-          Place № /title :
-      %td
-        = f.number_field :place, class: 'span12 place-field'
-    %tr#description{style: 'display: none;'}
-      %td
-        %b
-          Description:
-      %td
-        = f.text_area :description, class: 'span12 ', :rows=>5
-    %tr
-      %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info create-prize', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); update_hoppers('+  @prize.hop.id.to_s+'); return false;'
+      %tr
+        %td
+          %b
+            Place № /title :
+        %td
+          = f.number_field :place, class: 'span12 place-field'
+      %tr#description{style: 'display: none;'}
+        %td
+          %b
+            Description:
+        %td
+          = f.text_area :description, class: 'span12 ', :rows=>5
+      %tr
+        %td{colspan: 2}
+          = link_to 'Submit', '#', class: 'btn btn-info create-prize', onclick: 'prizes_modal.submitForm({hop_id: ' + @prize.hop.id.to_s + '}); update_hoppers('+  @prize.hop.id.to_s+'); return false;'

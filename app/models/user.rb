@@ -48,6 +48,9 @@ class User < ActiveRecord::Base
 
   validates :zip, :presence => true
   validates :zip, numericality: {only_integer: true, allow_blank: true}
+  validates :avatar, format: { with: /.png|.gif|.jpg/,
+                             message: "only image (.jpg, .png, .gif)" }
+
 
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)

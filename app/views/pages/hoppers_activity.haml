@@ -15,107 +15,69 @@
      width: 100px;
   }
 
-  @media(min-width:100px)and(max-width: 790px){
 
-      fieldset.btn{
-          /*display: none;*/
-          border: none;
-          padding: 0%;
-          text-align: center;
-
-
-          font-size: 100%;
-
-      }
-      .span6.text-center.small-screen{
-        display: block;
-        width: auto;
-
-      }
-      .span6.text-center.large-screen{
-        display: none;
-
-
-      }
-      .span6.text-center{
-        margin: 0px;
-      }
-       table tr td,table tr th{
-         font-size: 80%;
-       }
-      table tr td div{
-         width: 50px;
-      }
-      fieldset.btn.profile{
-        width: 100%;
-      }
-      able tr td a.btn.btn-mini{
-        display: none;
-        width: 50px;
-        font-size: 80%;
-        height: 20px;
-      }
-  }
 
 .span12.text-center
   %fieldset.btn.profile
 
-    = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
-    %table.table.table-condensed
-      %tr
-        %th
-          User Name
-        %th
-          Hop Name
-        %th
-          task
-        %th
-          created at
-        %th
-          Comment
-        %th
-          Likes
-        %th
-          Photo
-      - @user_hop_tasks.each do |task|
+    = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
+    #hopper-activity
+      %table.table.table-condensed
         %tr
-          %td
-            %div
+          %th
+            User Name
+          %th
+            Hop Name
+          %th
+            task
+          %th
+            created at
+          %th
+            Comment
+          %th
+            Likes
+          %th
+            Photo
+        - @user_hop_tasks.each do |task|
+          -if task.hop_task && task.hop_task.hop
+            %tr
+              %td
+                %div
 
-              = link_to task.user.first_name, user_path(task.user) if task.user
-          %td
-            %div
-              = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
-          %td
-            %div
-              = task.hop_task.text if task.hop_task
-          %td
-            %div
-              = task.created_at
-          %td
-            %div
-              = task.comment
-          %td
-            = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
-          %td{style: 'text-align: right'}
-            = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px; width: 110px' if task.photo.exists?
-        %tr
-          %td{style: 'width: 100%', colspan: 7}
+                  = link_to task.user.first_name, user_path(task.user) if task.user
+              %td
+                %div
+                  = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
+              %td
+                %div
+                  = task.hop_task.text if task.hop_task
+              %td
+                %div
+                  = task.created_at
+              %td
+                %div
+                  = task.comment
+              %td
+                = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
+              %td.photo
+                = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px; width: 110px' if task.photo.exists?
+            %tr
+              %td{style: 'width: 100%', colspan: 7}
 
-            Hop Score:
-            = task.hop_task.hop.score(current_user) if current_user && task.hop_task && task.hop_task.hop
-            - task.comments.each do |comment|
-              .well
-                .row_fluid
+                Hop Score:
+                = task.hop_task.hop.score(current_user) if current_user && task.hop_task && task.hop_task.hop
+                - task.comments.each do |comment|
+                  .well
+                    .row_fluid
 
-                  .span1
-                    = image_tag comment.user.avatar.url, class: 'img-polaroid', style: 'height: 50px;'
-                  .span11
-                    = comment.user.first_name
-                    = comment.user.last_name
-                    = comment.created_at
-                    %br
-                    %b
-                      = comment.text
+                      .span1
+                        = image_tag comment.user.avatar.url, class: 'img-polaroid', style: 'height: 50px;'
+                      .span11
+                        = comment.user.first_name
+                        = comment.user.last_name
+                        = comment.created_at
+                        %br
+                        %b
+                          = comment.text
 
     = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
