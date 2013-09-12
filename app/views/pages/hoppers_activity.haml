@@ -61,8 +61,7 @@
                 = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
               %td.photo
                 = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px; width: 110px' if task.photo.exists?
-            %tr
-              %td{style: 'width: 100%', colspan: 7}
+
 
 
 
