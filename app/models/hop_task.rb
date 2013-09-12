@@ -17,6 +17,9 @@ class HopTask < ActiveRecord::Base
   validates :text, length: { minimum: 5, maximum:140 }
   validates :sponsor_id,  :presence => true
   validate :only_one_task_for_daily_hop
+  validates :logo, format: { with: /.png|.gif|.jpg/,
+                             message: "only image (.jpg, .png, .gif)" }
+
 
   private
 
