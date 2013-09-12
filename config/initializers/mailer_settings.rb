@@ -5,18 +5,18 @@
 #  ActionMailer::Base.delivery_method = :smtp
 #
 #end
-  ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.delivery_method = :smtp
 
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.default :charset => "utf-8"
-  ActionMailer::Base.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :authentication => "plain",
-      :domain               => 'gmail.com',
-      :host                 => 'http://perechin.net:3000',
-      :user_name            => 'misha.skubenich@gmail.com',
-      :password             => 'wolverine',
-      :enable_starttls_auto => true
-  }
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.default :charset => "utf-8"
+ActionMailer::Base.smtp_settings = {
+  :address => "smtp.cashhoppers.com",
+  :port => 587,
+  :authentication => "login",
+  :domain               => 'cashhoppers.com',
+  :host                 => 'http://perechin.net:3000',
+  :user_name            => 'HopMaster@CASHHOPPERS.com',
+  :password             => 'secret',
+  :enable_starttls_auto => true
+}
