@@ -1,40 +1,8 @@
-:javascript
-  $(function(){
-   function unsubscribe_user(sender){
-
-
-       $.ajax({
-           url: "",
-           data: { user_id: $(sender).attr('user_id'), subscribe: $(sender).attr('subscribe')},
-           type: 'GET',
-           beforeSend: function () {
-           },
-           complete: function(){
-           },
-           error: function(err){
-               alert("error");
-           },
-           success: function(data){
-
-               $('#subscribe').html(data);
-           }
-       });
-
-
-   };
-  });
-
 :css
-   body {
+  body {
      padding: 0%;
 
    }
-
-
-
-
-
-
 .span12.text-center
   %fieldset.btn.profile{:style => " width: 100%"}
     %h1.text-center
