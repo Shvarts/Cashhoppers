@@ -39,7 +39,7 @@
           %th
             Photo
         - @user_hop_tasks.each do |task|
-          -if task.hop_task && task.hop_task.hop
+          -if task.hop_task && task.hop_task.hop && task.hop_task.hop.name && task.hop_task.text
             %tr
               %td
                 %div
