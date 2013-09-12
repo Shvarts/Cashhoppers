@@ -5,15 +5,39 @@ class Api::HopsController < Api::ApplicationController
   def regular
     params[:page] ||= 1
     params[:per_page] ||= 10
-    @hops =  Hop.find_by_sql("SELECT hops.*, IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) AS isnull
-                              FROM hops
-                              LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id
-                              LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
-                              LEFT JOIN prizes ON prizes.hop_id = hops.id
-                              WHERE hops.daily = 0 AND close = 0 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
-                              GROUP BY hops.id
-                              ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
-                              LIMIT #{params[:per_page].to_i} OFFSET #{(params[:page].to_i - 1) * params[:per_page].to_i};")
+
+    hops = Hop.arel_table
+    hop_tasks = HopTask.arel_table
+    prizes = Prize.arel_table
+    where_conditions = hops[:daily].eq(false)
+                       .and(hops[:close].eq(false))
+                       .and(hop_tasks[:id].not_eq(nil))
+                       .and(prizes[:id].not_eq(nil))
+                       .and((hops[:zip].matches('%'+@current_user.zip+'%')).or(hops[:zip].eq(nil)).or(hops[:zip].eq('')))
+
+    #@hops =  Hop.find_by_sql("SELECT hops.*, IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) AS isnull
+    #                          FROM hops
+    #                          LEFT JOIN hoppers_hops on hoppers_hops.hop_id = hops.id
+    #                          LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
+    #                          LEFT JOIN prizes ON prizes.hop_id = hops.id
+    #                          WHERE hops.daily = 0 AND close = 0 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
+    #                              AND ( hops.zip IS NULL OR hops.zip = '')
+    #                          GROUP BY hops.id
+    #                          ORDER BY  isnull != #{@current_user.id} , hops.created_at DESC
+    #                          LIMIT #{params[:per_page].to_i} OFF
+    #                              AND ( hops.zip IS NULL OR hops.zip = '')
+
+    @hops = Hop
+      .includes(:hop_tasks)
+      .includes(:prizes)
+      .includes(:hoppers)
+      .select('hops.*')
+      .where(where_conditions)
+      .group('hops.id')
+      .order("IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) != #{@current_user.id} , hops.created_at DESC")
+      .limit(params[:per_page].to_i)
+      .offset((params[:page].to_i - 1) * params[:per_page].to_i)
+
     if @hops.blank?
       bad_request(['Hops not found.'], 406)
     else
