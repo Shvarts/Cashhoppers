@@ -7,7 +7,7 @@ node :role do |user|
 end
 
 node :avatar do |user|
-    user.avatar.url if user.avatar_file_size
+    user.avatar.url
 end
 
 node :friends_count do |user|

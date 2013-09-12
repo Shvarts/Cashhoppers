@@ -5,8 +5,4 @@ class Prize < ActiveRecord::Base
   has_one :notification
   #validates :place, numericality: { only_integer: true }, if: "prize_type.nil?"
   validates_presence_of :cost
-
-
-
-
 end

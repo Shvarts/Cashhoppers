@@ -7,5 +7,5 @@ node :completed do |task|
 end
 
 node :logo do |task|
-   task.logo.url if task.logo.present?
+   task.logo.url
 end

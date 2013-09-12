@@ -21,7 +21,7 @@ node :score do |hop|
 end
 
 node :logo do |hop|
-   hop.logo.url if hop.logo.present?
+   hop.logo.url
 end
 
 node :purchased do |hop|

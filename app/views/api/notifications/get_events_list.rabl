@@ -16,7 +16,7 @@ child :comment do
             user.last_name || ''
         end
         node :avatar do |user|
-            user.avatar.url if user.avatar_file_size
+            user.avatar.url
         end
         node :friendship_status do |user|
             friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user.id)
@@ -32,7 +32,7 @@ child :like do
     child :user do
         attributes :id, :last_name, :first_name, :user_name
         node :avatar do |user|
-            user.avatar.url if user.avatar_file_size
+            user.avatar.url
         end
         node :friendship_status do |user|
             friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user.id)
@@ -46,7 +46,7 @@ child :prize do
     child :user do
         attributes :id, :last_name, :first_name, :user_name
         node :avatar do |user|
-            user.avatar.url if user.avatar_file_size
+            user.avatar.url
         end
         node :friendship_status do |user|
             friendship = Friendship.find_by_user_id_and_friend_id(@current_user.id, user.id)
@@ -73,7 +73,7 @@ end
 child :hop do
     attributes :id, :name, :time_start, :time_end, :price, :daily, :event
     node :logo do |hop|
-       hop.logo.url if hop.logo.present?
+       hop.logo.url
     end
 end
 

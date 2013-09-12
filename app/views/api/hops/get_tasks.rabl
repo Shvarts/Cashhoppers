@@ -12,7 +12,7 @@ node :logo do |task|
 end
 
 node :photo do |task|
-   @user_hop_task.photo.url if @user_hop_task && @user_hop_task.photo
+   @user_hop_task.photo.url if @user_hop_task
 end
 
 node :comment do |task|
