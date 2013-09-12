@@ -25,7 +25,8 @@
           = user.user_name
         %td
           -if @hop.daily?
-            = image_tag UserHopTask.where(:hop_task_id =>@hop.hop_tasks.first.id, :user_id => user.id ).first.photo.url
+            - uht = UserHopTask.where(:hop_task_id =>@hop.hop_tasks.first.id, :user_id => user.id ).first
+            = image_tag uht.photo.url if uht
           -else
             = image_tag user.avatar.url, class: 'img-polaroid',  style: 'max-width: 250px; max-height: 250px'
         %td

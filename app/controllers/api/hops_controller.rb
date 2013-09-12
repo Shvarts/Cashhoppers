@@ -46,16 +46,41 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def daily
-    @daily_hop = Hop.find_by_sql(["SELECT hops.*
-                                FROM hops
-                                LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
-                                LEFT JOIN prizes ON prizes.hop_id = hops.id
-                                WHERE hops.daily = 1 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
-                                    AND time_start BETWEEN ? AND ? AND close = 0
-                                GROUP BY hops.id
-                                LIMIT 1;", DateTime.now.beginning_of_day, DateTime.now.end_of_day]).first
-    if @daily_hop == nil
-      bad_request(['Daily hop not found.'], 406)
+    #@daily_hops = Hop.find_by_sql(["SELECT hops.*
+    #                            FROM hops
+    #                            LEFT JOIN hop_tasks ON hop_tasks.hop_id = hops.id
+    #                            LEFT JOIN prizes ON prizes.hop_id = hops.id
+    #                            WHERE hops.daily = 1 AND hop_tasks.id IS NOT NULL AND prizes.id IS NOT NULL
+    #                                AND time_start BETWEEN ? AND ? AND close = 0
+    #                            GROUP BY hops.id
+    #                            ", DateTime.now.beginning_of_day, DateTime.now.end_of_day])
+
+    params[:page] ||= 1
+    params[:per_page] ||= 10
+
+    hops = Hop.arel_table
+    hop_tasks = HopTask.arel_table
+    prizes = Prize.arel_table
+    where_conditions = hops[:daily].eq(true)
+      .and(hops[:close].eq(false))
+      .and(hop_tasks[:id].not_eq(nil))
+      .and(prizes[:id].not_eq(nil))
+      .and((hops[:zip].matches('%'+@current_user.zip+'%')).or(hops[:zip].eq(nil)).or(hops[:zip].eq('')))
+      .and(hops[:time_start].in(DateTime.now.beginning_of_day..DateTime.now.end_of_day))
+
+    @daily_hops = Hop
+      .includes(:hop_tasks)
+      .includes(:prizes)
+      .includes(:hoppers)
+      .select('hops.*')
+      .where(where_conditions)
+      .group('hops.id')
+      .order("IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) != #{@current_user.id} , hops.created_at DESC")
+      .limit(params[:per_page].to_i)
+      .offset((params[:page].to_i - 1) * params[:per_page].to_i)
+
+    if @daily_hops.blank?
+      bad_request(['Daily hops not found.'], 406)
     else
       render 'daily', content_type: 'application/json'
     end
