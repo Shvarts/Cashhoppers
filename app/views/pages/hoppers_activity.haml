@@ -39,44 +39,45 @@
           %th
             Photo
         - @user_hop_tasks.each do |task|
-          %tr
-            %td
-              %div
+          -if task.hop_task && task.hop_task.hop
+            %tr
+              %td
+                %div
 
-                = link_to task.user.first_name, user_path(task.user) if task.user
-            %td
-              %div
-                = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
-            %td
-              %div
-                = task.hop_task.text if task.hop_task
-            %td
-              %div
-                = task.created_at
-            %td
-              %div
-                = task.comment
-            %td
-              = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
-            %td.photo
-              = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px; width: 110px' if task.photo.exists?
-          %tr
-            %td{style: 'width: 100%', colspan: 7}
+                  = link_to task.user.first_name, user_path(task.user) if task.user
+              %td
+                %div
+                  = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
+              %td
+                %div
+                  = task.hop_task.text if task.hop_task
+              %td
+                %div
+                  = task.created_at
+              %td
+                %div
+                  = task.comment
+              %td
+                = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count
+              %td.photo
+                = image_tag task.photo, class: 'img-polaroid', style: 'height: 110px; width: 110px' if task.photo.exists?
+            %tr
+              %td{style: 'width: 100%', colspan: 7}
 
-              Hop Score:
-              = task.hop_task.hop.score(current_user) if current_user && task.hop_task && task.hop_task.hop
-              - task.comments.each do |comment|
-                .well
-                  .row_fluid
+                Hop Score:
+                = task.hop_task.hop.score(current_user) if current_user && task.hop_task && task.hop_task.hop
+                - task.comments.each do |comment|
+                  .well
+                    .row_fluid
 
-                    .span1
-                      = image_tag comment.user.avatar.url, class: 'img-polaroid', style: 'height: 50px;'
-                    .span11
-                      = comment.user.first_name
-                      = comment.user.last_name
-                      = comment.created_at
-                      %br
-                      %b
-                        = comment.text
+                      .span1
+                        = image_tag comment.user.avatar.url, class: 'img-polaroid', style: 'height: 50px;'
+                      .span11
+                        = comment.user.first_name
+                        = comment.user.last_name
+                        = comment.created_at
+                        %br
+                        %b
+                          = comment.text
 
     = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
