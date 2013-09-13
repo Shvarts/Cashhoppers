@@ -2,6 +2,8 @@ class ServicesController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:create, :add_zip]
 
   def index
+
+
     # get all authentication services assigned to the current user
     @services = current_user.services.all
   end
@@ -18,6 +20,10 @@ class ServicesController < ApplicationController
   end
 
   def add_zip
+    puts "--------------zip--------------#{params}-----------------------------------------"
+    puts "----------------------------#{params}-----------------------------------------"
+    puts "-----------zip-----------------#{params}-----------------------------------------"
+
     omniauth = request.env['omniauth.auth']
     if omniauth && params[:service]
       service_route = params[:service]
@@ -80,9 +86,17 @@ class ServicesController < ApplicationController
       redirect_to new_user_session_path
     end
   end
-  
+
+
+
+
+
 
   def create
+    puts "--------------create--------------#{params}-----------------------------------------"
+    puts "----------------------------#{params}-----------------------------------------"
+    puts "----------create-----------------#{params}-----------------------------------------"
+
     @email = params[:email]
     @service = params[:service]
     @name = params[:name]

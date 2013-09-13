@@ -87,15 +87,16 @@
       .span6.text-center.large-screen
         = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
     %br
-    #subscribe
-      = render partial: 'subscribe'
-    %br
-    = button_to 'Update information', edit_user_registration_path, :method => 'get', :class=>'btn btn-info'
+    - if @user.id == current_user.id
+      #subscribe
+        = render partial: 'subscribe'
+      %br
+      = button_to 'Update information', edit_user_registration_path, :method => 'get', :class=>'btn btn-info'
     %br
     .row-fluid
       .span12
         %h4.text-center
-          My hops:
+          Hops:
         %table
           %tr
             %th
