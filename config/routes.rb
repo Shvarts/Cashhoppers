@@ -191,4 +191,6 @@ CashHoppers::Application.routes.draw do
   post 'messages/synchronize'
   post 'messages/send_message'
   post 'messages/find_friend'
+
+  get '/auth/failure' => 'pages#home'
 end
