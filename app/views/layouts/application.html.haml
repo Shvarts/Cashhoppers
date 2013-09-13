@@ -43,5 +43,5 @@
               .span10
                 = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield
           -else
-            .row-fluid
+            .span12
               = controller.sub_layout ? (render :partial => "#{controller.sub_layout}") : yield

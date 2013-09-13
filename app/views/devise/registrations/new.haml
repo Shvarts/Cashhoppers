@@ -1,0 +1,37 @@
+#sign-up
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    %br
+    .row-fluid
+      .span8.offset2{style: 'border: 1px solid red'}
+        .row-fluid
+          .span12
+            %h2
+              Sign Up
+          .span12
+            = f.label :email, :class=> 'email'
+            = f.email_field :email, :autofocus => true
+          .span6
+            = f.label :first_name
+            = f.text_field :first_name
+          .span6
+            = f.label :last_name
+            = f.text_field :last_name
+          .span6
+            = f.label :user_name
+            = f.text_field :user_name
+          .span6
+            = f.label :zip
+            = f.text_field :zip
+          .span6
+            = f.label :password
+            = f.password_field :password
+          .span6
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation
+          .span12
+            = f.label :avatar
+            = f.file_field :avatar
+          .span12
+            = f.submit "Sign up", :class=> 'btn btn-success'
+            = render "devise/shared/links"

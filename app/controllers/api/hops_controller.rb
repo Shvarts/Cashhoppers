@@ -68,7 +68,7 @@ class Api::HopsController < Api::ApplicationController
       .and((hops[:zip].matches('%'+@current_user.zip+'%')).or(hops[:zip].eq(nil)).or(hops[:zip].eq('')))
       .and(hops[:time_start].in(DateTime.now.beginning_of_day..DateTime.now.end_of_day))
 
-    @daily_hops = Hop
+    @daily_hop = Hop
       .includes(:hop_tasks)
       .includes(:prizes)
       .includes(:hoppers)
@@ -77,9 +77,9 @@ class Api::HopsController < Api::ApplicationController
       .group('hops.id')
       .order("IF(hoppers_hops.user_id IS NULL , -1, hoppers_hops.user_id) != #{@current_user.id} , hops.created_at DESC")
       .limit(params[:per_page].to_i)
-      .offset((params[:page].to_i - 1) * params[:per_page].to_i)
+      .offset((params[:page].to_i - 1) * params[:per_page].to_i).first
 
-    if @daily_hops.blank?
+    if @daily_hop
       bad_request(['Daily hops not found.'], 406)
     else
       render 'daily', content_type: 'application/json'
