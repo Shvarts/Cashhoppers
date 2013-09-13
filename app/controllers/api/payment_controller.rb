@@ -45,20 +45,22 @@ class Api::PaymentController < Api::ApplicationController
   end
 
   def buy_hop
-    unless @current_user.user_settings
-      @current_user.user_settings = UserSettings.create
+    user = User.find(@current_user.id)
+
+    unless user.user_settings
+      user.user_settings = UserSettings.create
     end
 
     @hop = Hop.where(id: params[:hop_id]).first
 
     if @hop
-      if @hop.assigned?(@current_user)
+      if @hop.assigned?(user)
         bad_request ['Already paid hop.'], 406
-      elsif User.find(@current_user.id).frog_legs < @hop.price
+      elsif User.find(user.id).frog_legs < @hop.price
         bad_request ['You dont have enough many.'], 406
       else
-        @hop.assign @current_user
-        @current_user.update_attribute :frog_legs, (User.find(@current_user.id).frog_legs - @hop.price)
+        @hop.assign user
+        user.update_attribute :frog_legs, (user.frog_legs - @hop.price)
         render :json => {
           message: 'Succesfully paid hop.'
         }
