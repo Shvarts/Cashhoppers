@@ -8,9 +8,14 @@
       margin: 0;
   }
 
+
+
 =form_tag   messages_find_friend_path, remote: true, :html => {:class => 'form-inline'}  do
-  = text_field_tag :user,'',  id: 'search_field', :placeholder=> 'put user name'
-  = submit_tag 'Search', :class => 'btn btn-success'
+
+  .input-append
+    = text_field_tag :user,'',  id: 'appendedInputButton', :placeholder=> 'put user name', style: 'size: 16; width: 70%'
+    %button.btn.btn-success Find
+
 #search_user
 
 - @messages.each do |message|

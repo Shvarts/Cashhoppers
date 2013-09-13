@@ -1,4 +1,87 @@
 input.col-input{
   width: 90% !important;
-  margin-right: 5% !important;
+  margin-right: 5% ;
+}
+#sign-up{
+  row-fluid.sign-up-frame{
+    #user_avatar{
+      width: 100%;
+    }
+  }
+
+}
+
+.span8.offset2 .row-fluid .span6 input, #user_email, #user_avatar, h2{
+  margin-left: 5px;
+  max-width: 350px;
+}
+.span8.offset2 .row-fluid .span6 label, label.email{
+  margin-left: 5px;
+}
+
+input#user_email{
+
+  width: 90%;
+}
+
+#links{
+  font-size: 120%;
+  line-height: 1.8;
+}
+
+
+.fileupload.fileupload-new{
+
+    .fileupload-preview.fileupload-exists.thumbnail{
+
+      max-width: 350px;
+      width: 46%;
+      max-height: 150px;
+      line-height: 20px;
+      margin-left: 5px;
+      margin-right: 3%;
+
+      img#img-upload{
+        max-width: 200px;
+        max-height: 150px;
+        width: 90% ;
+      }
+    }
+    div.span6.input-container{
+      margin-left: 5px;
+
+      input#lefile{
+
+
+      }
+      .input-append{
+        width: 90%;
+        margin-left: 2.564102564102564%;
+        text-align: left;
+      }
+    }
+  }
+
+
+@media(min-width:100px)and(max-width: 750px){
+
+  #sign-up{
+    .row-fluid.sign-up-frame{
+       text-align: center;
+
+
+    }
+    .span8.offset2 .row-fluid .span6 input, #user_email{
+      margin-left: 5px;
+    }
+    #user_avatar{
+      width: 90%;
+    }
+    input.col-input{
+
+      margin-right: 0% ;
+    }
+
+
+  }
 }

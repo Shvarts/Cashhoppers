@@ -31,7 +31,10 @@ $(document).ready(function () {
 
 
     $(".collapse").collapse();
-
+//    sign-up insert url-file
+    $('input[id=lefile]').change(function() {
+        $('#photoCover').val($(this).val());
+    });
 
     dropdown();
     service_menu();
@@ -181,4 +184,7 @@ function unsubscribe_user_profile(sender){
 
 
 };
+
+
+
 
