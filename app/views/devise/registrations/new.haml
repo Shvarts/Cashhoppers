@@ -8,30 +8,36 @@
           .span12
             %h2
               Sign Up
+        .row-fluid
           .span12
             = f.label :email, :class=> 'email'
             = f.email_field :email, :autofocus => true
+        .row-fluid
           .span6
             = f.label :first_name
-            = f.text_field :first_name
+            = f.text_field :first_name, class: 'col-input'
           .span6
             = f.label :last_name
-            = f.text_field :last_name
+            = f.text_field :last_name, class: 'col-input'
+        .row-fluid
           .span6
             = f.label :user_name
-            = f.text_field :user_name
+            = f.text_field :user_name, class: 'col-input'
           .span6
             = f.label :zip
-            = f.text_field :zip
+            = f.text_field :zip, class: 'col-input'
+        .row-fluid
           .span6
             = f.label :password
-            = f.password_field :password
+            = f.password_field :password, class: 'col-input'
           .span6
             = f.label :password_confirmation
-            = f.password_field :password_confirmation
+            = f.password_field :password_confirmation, class: 'col-input'
+        .row-fluid
           .span12
             = f.label :avatar
             = f.file_field :avatar
+        .row-fluid
           .span12
             = f.submit "Sign up", :class=> 'btn btn-success'
             = render "devise/shared/links"
