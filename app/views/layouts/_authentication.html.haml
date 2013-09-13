@@ -1,8 +1,14 @@
+:css
+  .non-print.text-center.sign-in-up a:hover{
+    opacity: 0.6;
+  }
+
+
 -unless current_user
   .non-print.text-center.sign-in-up
-    %a{href: '/auth/facebook', class: 'services'}
+    %a{href: '/auth/facebook', class: 'services', style: 'text-decoration: none;', onclick: "$(this).css('opacity', '0.9')" }
       = image_tag 'f.png', size: '50x50', alt: 'Facebook'
-    %a{href: '/auth/twitter', class: 'services'}
+    %a{href: '/auth/twitter', class: 'services', style: 'text-decoration: none;', onclick: "$(this).css('opacity', '0.9')"}
       = image_tag 't.png', size: '50x50', alt: 'Twitter'
-    %a{href: '/auth/google', class: 'services'}
+    %a{href: '/auth/google', class: 'services', style: 'text-decoration: none;', onclick: "$(this).css('opacity', '0.9')"}
       = image_tag 'g.2.png', size: '50x50', alt: 'Twitter'

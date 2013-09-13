@@ -1,11 +1,16 @@
+:css
+  .social-links#social1 a:hover{
+    opacity: 0.6;
+  }
+
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.png"});  position: relative;"}
   %h2{:id=>"first-page"}
   .social-links#social1
-    %a{href: '/auth/facebook', class: 'services facebook', :style=>''}
+    %a{href: '/auth/facebook', class: 'services facebook', :style=>'',onclick: "$(this).css('opacity', '0.9')"}
       =image_tag('f.png', :style=>'height:50px')
-    %a{href: '/auth/twitter', class: 'services'}
+    %a{href: '/auth/twitter', class: 'services', onclick: "$(this).css('opacity', '0.9')"}
       =image_tag('t.png', :style=>'height:50px')
-    %a{href: '/auth/google', class: 'services'}
+    %a{href: '/auth/google', class: 'services', onclick: "$(this).css('opacity', '0.9')"}
       =image_tag('g.2.png', :style=>'height: 50px; width: 50px;')
   .divas1
     -#-if  flash[:notice]
@@ -71,7 +76,7 @@
             %span.weight PLAY
           %br
           .video-container
-            = video_tag ["video/media.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true
+            = video_tag ["video/video_2.mp4"],  :controls => true,:type=>"video/mp4", :autobuffer => true
           .video-text
             %ul
               %li
@@ -156,7 +161,9 @@
                   = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning business-button'
 
                 %li
-                  = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button'
+                  -#%a.navigation.btn.btn-success.business-button{:href=>"#gray-page"}SIGN ME UP
+
+                  = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button navigation'
 
 
     .span2
@@ -194,7 +201,7 @@
                   = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning business-button'
                 %li
 
-                  = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn  btn-success business-button mini-button long-text'
+                  = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn navigation btn-success business-button mini-button long-text'
     .span2
 
 

@@ -1,3 +1,8 @@
+:css
+  .text-center.back-button-info a:hover{
+    opacity: 0.6;
+  }
+
 .body
   .row-fluid{style: 'margin-top: 40px;'}
     .span12.text-center
@@ -99,8 +104,8 @@
 
   .row-fluid
     .span12
-      .text-center
-        %a{:href=> root_path  }
+      .text-center.back-button-info
+        %a{:href=> root_path, :onclick => "$(this).css('opacity', '1')" }
           =image_tag('/assets/arrow.jpg', :class=> 'link-back')
 
   .page-divider
