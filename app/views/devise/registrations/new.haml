@@ -11,7 +11,7 @@
     = devise_error_messages!
     %br
     .row-fluid.sign-up-frame
-      .span8.offset2{style: 'border: 1px solid green'}
+      .insert{style: 'border: 1px solid green; max-width: 725px'}
         .row-fluid
           .span12
             %h2
@@ -43,21 +43,22 @@
             = f.label :password_confirmation
             = f.password_field :password_confirmation, class: 'col-input'
         .row-fluid
+          = f.label :avatar, :id=>'avatar-label'
+
           .fileupload.fileupload-new.span12.text-center{'data-provides' => 'fileupload'}
-            = f.label :avatar
-            .fileupload-preview.fileupload-exists.thumbnail.span6.text-center{}
-              = image_tag resource.avatar.url, :id => 'img-upload'
-            %br
-            %br
             %div.span6.input-container
               %input#lefile{:style => "display:none", :type => "file"}
                 .input-append
                   %input#photoCover.input-large{:type => "text", :style => "margin: 0px;"}
                     %a.btn{:onclick => "$('input[id=lefile]').click();"}
                       Browse
-                  .input-append
-                    %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload'}
+                  .input-append{:style => "margin: 0px;"}
+                    %a{href: "#", class: "btn fileupload-exists", 'data-dismiss' => 'fileupload', :onclick => "alert($('.fileupload-preview.fileupload-exists.thumbnail').css('min-width',$('.fileupload-preview.fileupload-exists.thumbnail').width());)"}
                       Remove
+            .fileupload-preview.fileupload-exists.thumbnail.span6.text-center{}
+              = image_tag resource.avatar.url, :id => 'img-upload'
+            %br
+            %br
 
 
         %br
