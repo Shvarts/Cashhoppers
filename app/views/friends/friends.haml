@@ -66,7 +66,7 @@
               = link_to friend.first_name, user_path(friend)
             %td
               = friend.last_name
-            %td{style: 'text-align: right'}
+            %td.delete-button
               = link_to "Delete", friends_delete_friend_path(id: friend.id), confirm: "Really delete friendship with #{friend.first_name}?", method: :post, class: 'btn btn-mini btn-danger'
     %h3
       = pluralize(current_user.requested_friends.count, "requested friend")
