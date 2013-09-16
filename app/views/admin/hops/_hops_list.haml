@@ -20,7 +20,7 @@
       - g.column name: 'Time End', :attribute => 'time_end', filter: false do |hop|
         - hop.time_end.to_s if hop.time_end
     - if @tab == 'current_hops' || @tab == 'archived_hops'
-      - g.column name: 'Type', :attribute => 'daily' do |hop|
+      - g.column name: 'Type', :attribute => 'daily',  filter: false do |hop|
         - hop.daily ? 'Daily': 'Regular'
 
     - g.column do |hop|

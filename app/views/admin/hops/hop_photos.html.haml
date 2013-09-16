@@ -18,7 +18,7 @@
       .span7#text
         =@hop.name
         %br
-        =@hop.time_start
+        =@hop.time_start.to_datetime.strftime(format='%Y-%m-%d %H:%M') + ' EST'
 -else
   .text{:style=>'position: absolute; top: 40%; left: 40%'}
     .alert-error

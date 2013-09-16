@@ -61,7 +61,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.new(params[:hop])
     if @hop.daily
 
-      @hop.time_end = DateTime.new(@hop.time_start.year , @hop.time_start.month , (@hop.time_start.day.to_i+1),0,0,0, @hop.time_start.zone.to_s )
+      @hop.time_end = @hop.time_start.end_of_day
 
     end
     if @hop.save
@@ -101,15 +101,18 @@ class Admin::HopsController < Admin::AdminController
   def update
     @hop = Hop.find(params[:id])
     if @hop.daily && params[:hop][:time_start]
-      begin
-        params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%d/%m/%Y %H:%M:%S')
-      rescue Exception =>e
-        params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%Y-%m-%d %H:%M:%S %z')
-       end
-      params[:hop][:time_end] = DateTime.new( params[:hop][:time_start].year , params[:hop][:time_start].month , ( params[:hop][:time_start].day.to_i+1),0,0,0,  params[:hop][:time_start].zone.to_s )
+      #begin
+      #  params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%d/%m/%Y %H:%M:%S')
+      #rescue Exception =>e
+      #  params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%Y-%m-%d %H:%M:%S %z')
+      # end
+      #params[:hop][:time_end] = DateTime.new( params[:hop][:time_start].year , params[:hop][:time_start].month , ( params[:hop][:time_start].day.to_i+1),0,0,0,  params[:hop][:time_start].zone.to_s )
 
     end
     if User.can_edit?(current_user, @hop.creator_id) && @hop.update_attributes(params[:hop])
+      if @hop.daily
+        @hop.update_attributes(:time_end=>  @hop.time_start.end_of_day)
+      end
 
 
       for i in params[:hop]
@@ -117,7 +120,7 @@ class Admin::HopsController < Admin::AdminController
         if i.include?('jackpot')
 
 
-          prize = Prize.where(:hop_id => @hop.id, :place=>'1st').first
+          prize = Prize.where(:hop_id => @hop.id, :place=>'1').first
           puts params[:hop][:jackpot].inspect
           if prize
             prize.update_attributes(:cost => params[:hop][:jackpot])

@@ -1,0 +1,97 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td.wrap{
+  width: 250px;
+  .wrap{
+    //width: 100%;
+    word-wrap: break-word ;
+    max-width: 250px;
+  }
+}
+/* Чередование фона */
+tr:nth-of-type(odd){
+  background: #eee;
+}
+th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+td, th {
+  padding: 6px;
+  border: 1px solid #ccc;
+
+}
+td.field-button{
+  text-align: right;
+}
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+/* Таблица больше не обычная таблица */
+  table, thead, tbody, th, td, tr {
+    display: block;
+
+  }
+  table {
+    width: auto;
+  }
+
+/* Скрываем заголовки */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr { border: 1px solid #ccc; }
+
+  td {
+    /* Ведет себя как строка */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Теперь как заголовок таблицы */
+    position: absolute;
+    /* Отступы сверху и слева */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+/*
+Заголовки
+*/
+  td:nth-of-type(1):before { content: " Name"; }
+  td:nth-of-type(2):before { content: "Producer"; }
+  td:nth-of-type(3):before { content: "Type"; }
+  td:nth-of-type(4):before { content: "Hop photos"; }
+
+
+  .table-condensed td{
+    padding: 0;
+  }
+  tr th{
+    display: none;
+  }
+
+  .table tr td{
+    text-align:   center;
+
+  }
+  td.field-button{
+    text-align: center;
+  }
+
+}
+

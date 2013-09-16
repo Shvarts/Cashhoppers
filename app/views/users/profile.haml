@@ -110,8 +110,8 @@
             %th
           - @hops.each do |hop|
             %tr
-              %td
-                %div{}
+              %td.wrap
+                .wrap
                   -if User.user?(current_user)
                     = hop.name
                   -else
