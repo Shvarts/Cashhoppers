@@ -115,6 +115,7 @@ CashHoppers::Application.routes.draw do
     get 'hop/score',                       to: 'hops#score'
     get 'hops/yesterdays_winner',          to: 'hops#yesterdays_winner'
     get 'hop/prizes',                      to: 'hops#prizes'
+    post 'hop/disable_password',            to: 'hops#disable_password'
     get 'task/get_hop_task',               to: 'user_hop_tasks#get_hop_task_by_id'
     post 'payment/buy_hop',                to: 'payment#buy_hop'
 

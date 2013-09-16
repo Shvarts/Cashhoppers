@@ -14,7 +14,8 @@ class Hop < ActiveRecord::Base
   has_many :prizes
   has_many :notifications, dependent: :destroy
 
-  attr_accessible :close, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end
+  attr_accessible :close, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end, :id, :logo_file_name
+  attr_accessor :new_var
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end,  :producer_id, unless: :daily?
@@ -47,9 +48,15 @@ class Hop < ActiveRecord::Base
   def assign user
     unless hoppers.include? user
       hoppers << User.find(user.id)
-      ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
+      ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = 0, ask_password = 1 WHERE user_id = #{user.id} AND hop_id = #{id}")
       ActiveRecord::Base.connection.close
     end
+  end
+
+  def disable_password user
+    assign user
+    ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET ask_password = 0 WHERE user_id = #{user.id} AND hop_id = #{id}")
+    ActiveRecord::Base.connection.close
   end
 
   def assigned? user
