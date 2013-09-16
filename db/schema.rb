@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910140735) do
+ActiveRecord::Schema.define(:version => 20130916103830) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130910140735) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "creator_id"
+    t.datetime "time_start"
+    t.datetime "time_end"
   end
 
   create_table "android_logs", :force => true do |t|
@@ -228,6 +230,7 @@ ActiveRecord::Schema.define(:version => 20130910140735) do
     t.boolean "new_hop"
     t.boolean "hop_about_to_end"
     t.boolean "comment_or_like"
+    t.boolean "unsubscribe"
   end
 
   create_table "users", :force => true do |t|

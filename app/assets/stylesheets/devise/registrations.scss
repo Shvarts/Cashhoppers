@@ -5,6 +5,7 @@ input.col-input{
 #sign-up{
    .insert{
      margin: 0 auto;
+     max-width: 750px;
    }
   .row-fluid.sign-up-frame{
 
@@ -39,6 +40,7 @@ input#user_email{
 .fileupload.fileupload-new{
     text-align: left;
      margin-left: 5px;
+
     .fileupload-preview.fileupload-exists.thumbnail{
 
       max-width: 350px;
@@ -100,7 +102,7 @@ input#user_email{
       margin-right: 0% ;
     }
     .fileupload.fileupload-new{
-
+      margin-left: 0px;
       .fileupload-preview.fileupload-exists.thumbnail{
        margin: 0px;
        max-width: 100%;
@@ -112,6 +114,7 @@ input#user_email{
       div.span6.input-container{
         width: auto;
         >.input-append{
+          margin-left: 15px;
           text-align:  center;
 
         }
@@ -126,7 +129,7 @@ input#user_email{
     .fileupload.fileupload-new{
 
       .fileupload-preview.fileupload-exists.thumbnail{
-
+        max-width: 100%;
 
       }
       div.span6.input-container{
@@ -148,7 +151,7 @@ input#user_email{
     .fileupload.fileupload-new{
 
       .fileupload-preview.fileupload-exists.thumbnail{
-
+        max-width: 100%;
 
       }
       div.span6.input-container{

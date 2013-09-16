@@ -9,7 +9,9 @@ class Ad < ActiveRecord::Base
                   :amt_paid,
                   :link,
                   :picture,
-                  :creator_id
+                  :creator_id,
+                  :time_start,
+                  :time_end
 
   has_attached_file :picture,
     :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",

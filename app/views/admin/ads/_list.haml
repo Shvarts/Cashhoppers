@@ -9,13 +9,15 @@
         %th
           Advertizer
         %th
-          Hop
-        %th
           Price
         %th
           AMT/PAID
         %th
           Link
+        %th
+          Time start
+        %th
+          Time end
         %th
           Picture
         %th
@@ -26,14 +28,16 @@
               = ad.advertizer.first_name
               = ad.advertizer.last_name
           %td
-            = ad.hop.name
-          %td
             = ad.price
           %td
             = ad.amt_paid
           %td
             = ad.link
 
+          %td
+            = ad.time_start
+          %td
+            =ad.time_end
           %td
             = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
           %td{style: 'text-align: right'}

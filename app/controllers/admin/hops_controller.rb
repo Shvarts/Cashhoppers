@@ -60,7 +60,9 @@ class Admin::HopsController < Admin::AdminController
     params[:hop][:close] = false
     @hop = Hop.new(params[:hop])
     if @hop.daily
-      @hop.time_end = @hop.time_start
+
+      @hop.time_end = DateTime.new(@hop.time_start.year , @hop.time_start.month , (@hop.time_start.day.to_i+1),0,0,0, @hop.time_start.zone.to_s )
+
     end
     if @hop.save
       if !@hop.jackpot.blank?
@@ -98,8 +100,14 @@ class Admin::HopsController < Admin::AdminController
 
   def update
     @hop = Hop.find(params[:id])
-    if @hop.daily
-      @hop.time_end = @hop.time_start
+    if @hop.daily && params[:hop][:time_start]
+      begin
+        params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%d/%m/%Y %H:%M:%S')
+      rescue Exception =>e
+        params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%Y-%m-%d %H:%M:%S %z')
+       end
+      params[:hop][:time_end] = DateTime.new( params[:hop][:time_start].year , params[:hop][:time_start].month , ( params[:hop][:time_start].day.to_i+1),0,0,0,  params[:hop][:time_start].zone.to_s )
+
     end
     if User.can_edit?(current_user, @hop.creator_id) && @hop.update_attributes(params[:hop])
 
@@ -311,9 +319,6 @@ class Admin::HopsController < Admin::AdminController
    @hop=Hop.find_by_id(params[:hop_id])
    @ads = @hop.ads.all
    @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten!
-   puts "------------------------------#{@hop}------------------------------------------"
-   puts "------------------------------#{ @ads }------------------------------------------"
-   puts "------------------------------#{@hop.hop_tasks.all.map{|item| item.user_hop_tasks}}------------------------------------------"
 
    render :layout => 'home_layout'
 

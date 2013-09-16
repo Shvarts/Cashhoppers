@@ -35,7 +35,8 @@ $(document).ready(function () {
     $('input[id=lefile]').change(function() {
         $('.fileupload-preview.fileupload-exists.thumbnail').css('max-width', $('.fileupload-preview.fileupload-exists.thumbnail').width());
         $('.fileupload-preview.fileupload-exists.thumbnail').css('margin', $('.fileupload-preview.fileupload-exists.thumbnail').css('margin'));
-       $('#photoCover').css('max-width',($('#photoCover').css('width')));
+        $('.span6.input-container').css('margin-left','0px');
+        $('#photoCover').css('max-width',($('#photoCover').css('width')));
         $('#photoCover').val($(this).val());
 
 

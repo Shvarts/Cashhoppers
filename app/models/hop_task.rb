@@ -25,7 +25,7 @@ class HopTask < ActiveRecord::Base
 
   def only_one_task_for_daily_hop
     if self.hop.daily && !self.hop.hop_tasks.blank?
-      errors.add(:id, "Can be only one task for daily_hop.")
+      errors.add(:Daily_hop, "Can be only one task for daily_hop.")
     end
   end
 

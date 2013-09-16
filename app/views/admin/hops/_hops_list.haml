@@ -1,3 +1,4 @@
+
 .grid
   = grid(@hops_grid, upper_pagination_panel: true) do |g|
     - g.blank_slate content_tag(:div, 'No records found')
@@ -19,7 +20,7 @@
       - g.column name: 'Time End', :attribute => 'time_end', filter: false do |hop|
         - hop.time_end.to_s if hop.time_end
     - if @tab == 'current_hops' || @tab == 'archived_hops'
-      - g.column name: 'Type' do |hop|
+      - g.column name: 'Type', :attribute => 'daily' do |hop|
         - hop.daily ? 'Daily': 'Regular'
 
     - g.column do |hop|
