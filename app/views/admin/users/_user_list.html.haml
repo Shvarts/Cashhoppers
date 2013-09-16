@@ -10,7 +10,7 @@
         -g.column name:'Email', attribute: 'email'
         -g.column name: 'Search role', model: 'Role',  attribute: 'name' do |user|
           -user.roles.first.name
-        -g.column name: 'unsubscribe', model: 'UserSettings',  attribute: 'unsubscribe', :filter => false do |user|
+        -g.column name: 'Subscribe', model: 'UserSettings',  attribute: 'unsubscribe', :filter=> false do |user|
           -subscribe =  (user.user_settings && user.user_settings.unsubscribe)? false : true
           - check_box_tag :unsubscribe, true, subscribe ,  :subscribe=> subscribe, :user_id => user.id,
           :onchange => "unsubscribe_user(this);"

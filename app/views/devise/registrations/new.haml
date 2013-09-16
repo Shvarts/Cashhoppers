@@ -1,17 +1,26 @@
+:css
+  body{
+    padding: 0%;
+    /*display: none;*/
+  }
+
+
+
 #sign-up
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     = devise_error_messages!
     %br
-    .row-fluid
-      .span8.offset2{style: 'border: 1px solid red'}
-        .row-fluid
+    .row-fluid.sign-up-frame
+      .insert{style: 'border: 2px solid green; max-width: 725px'}
+        .row-fluid.first-fluid
           .span12
             %h2
               Sign Up
         .row-fluid
-          .span12
+          .span6
             = f.label :email, :class=> 'email'
             = f.email_field :email, :autofocus => true
+          .span6
         .row-fluid
           .span6
             = f.label :first_name
@@ -34,10 +43,28 @@
             = f.label :password_confirmation
             = f.password_field :password_confirmation, class: 'col-input'
         .row-fluid
-          .span12
-            = f.label :avatar
-            = f.file_field :avatar
+          = f.label :avatar, :id=>'avatar-label'
+
+          .fileupload.fileupload-new.span12.text-center{'data-provides' => 'fileupload'}
+            %div.span6.input-container
+              %input#lefile{:style => "display:none", :type => "file"}
+                .input-append
+                  %input#photoCover.input-large{:type => "text", :style => "margin: 0px;"}
+                    %a.btn.btn-success{:onclick => "$('input[id=lefile]').click();"}
+                      Browse
+                  .input-append{:style => "margin: 0px;"}
+                    %a{href: "#", class: "btn btn-info fileupload-exists", 'data-dismiss' => 'fileupload'}
+                      Remove
+            .fileupload-preview.fileupload-exists.thumbnail.span6.text-center{}
+              = image_tag resource.avatar.url, :id => 'img-upload'
+            %br
+            %br
+
+
+        %br
+
         .row-fluid
-          .span12
+          .span12.text-center
             = f.submit "Sign up", :class=> 'btn btn-success'
+            %br
             = render "devise/shared/links"

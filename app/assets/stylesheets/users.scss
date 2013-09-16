@@ -84,6 +84,15 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+
+td.wrap{
+  width: 250px;
+  .wrap{
+    //width: 100%;
+    word-wrap: break-word ;
+    max-width: 250px;
+  }
+}
 /* Чередование фона */
 tr:nth-of-type(odd) {
   background: #eee;
@@ -153,5 +162,16 @@ only screen and (max-width: 760px),
   tr th{
     display: none;
   }
+  td.wrap{
+    //width: 100px;
+    .wrap{
+      //width: 100%;
+      word-wrap: break-word ;
+      //max-width: 150px;
+    }
+  }
+
 }
+
+
 

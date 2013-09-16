@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
          :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
          :bio, :twitter, :facebook, :google, :avatar_file_name, :id
 
-  validates :zip, :presence => true
+  validates :zip, :user_name , :presence => true
   validates :zip, numericality: {only_integer: true, allow_blank: true}
   validates :avatar, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                              message: "only image (.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG)" }

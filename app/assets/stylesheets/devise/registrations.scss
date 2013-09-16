@@ -1,4 +1,169 @@
 input.col-input{
   width: 90% !important;
-  margin-right: 5% !important;
+  margin-right: 5% ;
+}
+#sign-up{
+   .insert{
+     margin: 0 auto;
+     max-width: 750px;
+   }
+  .row-fluid.sign-up-frame{
+
+    #user_avatar{
+
+      width: 750px;
+    }
+  }
+
+}
+
+.insert .row-fluid .span6 input, #user_email, #user_avatar{
+  margin-left: 5px;
+  max-width: 350px;
+  width: 350px;
+}
+.insert .row-fluid .span6 label, label.email, h2, #avatar-label{
+  margin-left: 5px;
+}
+
+input#user_email{
+
+  width: 90%;
+}
+
+#links{
+  font-size: 120%;
+  line-height: 1.8;
+}
+
+
+.fileupload.fileupload-new{
+    text-align: left;
+     margin-left: 5px;
+
+    .fileupload-preview.fileupload-exists.thumbnail{
+
+      max-width: 350px;
+      width: 46%;
+      max-height: 150px;
+      line-height: 20px;
+      margin-left:  2%;
+      margin-right: 3%;
+
+      img#img-upload{
+        max-width: 200px;
+        max-height: 150px;
+        width: 90% ;
+      }
+    }
+    div.span6.input-container{
+
+      text-align: left;
+      input#lefile{
+
+
+      }
+      .input-append{
+        width: 90%;
+
+        text-align: left;
+        input.input-large{
+          width:170px;
+        }
+        .input-append{
+          width:auto;
+        }
+      }
+
+    }
+  }
+
+
+@media(max-width: 750px){
+
+  #sign-up{
+    .insert{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    .row-fluid.sign-up-frame{
+       text-align: center;
+
+
+    }
+    .insert .row-fluid .span6 input, #user_email{
+      margin-left: 5px;
+    }
+    #user_avatar{
+      width: 90%;
+    }
+    input.col-input{
+
+      margin-right: 0% ;
+    }
+    .fileupload.fileupload-new{
+      margin-left: 0px;
+      .fileupload-preview.fileupload-exists.thumbnail{
+       margin: 0px;
+       max-width: 100%;
+        width: 100%;
+        border: none;
+
+
+      }
+      div.span6.input-container{
+        width: auto;
+        >.input-append{
+          margin-left: 15px;
+          text-align:  center;
+
+        }
+      }
+    }
+
+  }
+}
+@media(max-width: 350px){
+  #sign-up{
+
+    .fileupload.fileupload-new{
+
+      .fileupload-preview.fileupload-exists.thumbnail{
+        max-width: 100%;
+
+      }
+      div.span6.input-container{
+        .input-append{
+          margin: 0px;
+          .input-large{
+            width: 50%;
+            max-width: 50%;
+
+          }
+        }
+      }
+    }
+  }
+}
+@media(max-width: 350px){
+  #sign-up{
+
+    .fileupload.fileupload-new{
+
+      .fileupload-preview.fileupload-exists.thumbnail{
+        max-width: 100%;
+
+      }
+      div.span6.input-container{
+        .input-append{
+
+          .input-large{
+            width: 60px;
+            max-width: 60px;
+
+          }
+        }
+      }
+    }
+  }
 }

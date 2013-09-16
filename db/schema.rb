@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130916112946) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "creator_id"
+    t.datetime "time_start"
+    t.datetime "time_end"
   end
 
   create_table "android_logs", :force => true do |t|

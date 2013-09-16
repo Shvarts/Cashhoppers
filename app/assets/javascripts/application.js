@@ -31,7 +31,16 @@ $(document).ready(function () {
 
 
     $(".collapse").collapse();
+//    sign-up insert url-file
+    $('input[id=lefile]').change(function() {
+        $('.fileupload-preview.fileupload-exists.thumbnail').css('max-width', $('.fileupload-preview.fileupload-exists.thumbnail').width());
+        $('.fileupload-preview.fileupload-exists.thumbnail').css('margin', $('.fileupload-preview.fileupload-exists.thumbnail').css('margin'));
+        $('.span6.input-container').css('margin-left','0px');
+        $('#photoCover').css('max-width',($('#photoCover').css('width')));
+        $('#photoCover').val($(this).val());
 
+
+    });
 
     dropdown();
     service_menu();
@@ -181,4 +190,7 @@ function unsubscribe_user_profile(sender){
 
 
 };
+
+
+
 
