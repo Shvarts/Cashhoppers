@@ -127,19 +127,9 @@ class Api::UserHopTasksController < Api::ApplicationController
   def notify_by_share
     user_hop_task = UserHopTask.where(hop_task_id: @hop_task.id, user_id: @current_user.id).first
     if user_hop_task
-      shared = false
-      case params[:service]
-      when 'facebook'
-        shared = true if user_hop_task.facebook_shared
-        user_hop_task.update_attribute :facebook_shared, true
-      when 'twitter'
-        shared = true if user_hop_task.twitter_shared
-        user_hop_task.update_attribute :twitter_shared, true
-      when 'google'
-        shared = true if user_hop_task.google_shared
-        user_hop_task.update_attribute :google_shared, true
-      end
+      shared = user_hop_task.shared ? true : false
       if !shared
+        user_hop_task.update_attribute :shared, true
         user_hop_task.hop_task.hop.increase_score @current_user, user_hop_task.hop_task.bonus
         respond_to do |format|
           format.json{
