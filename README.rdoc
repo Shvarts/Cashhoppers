@@ -236,7 +236,8 @@ assigned: true if user assigned to hop of false if not
                                 "logo"=>"/images/hop_logos/hops/1/HOP_LOGO.jpg?1374831944",
                                 "purchased"=>true,
                                 "zip":"88000, 23233, 11111",
-                                "completed"=>true
+                                "completed"=>true,
+                                "ask_password"=>nil
                             },
                             ...
                           ]}
@@ -316,6 +317,18 @@ service should be 'twitter', 'facebook', 'google'
                     ]
                  }
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
+====disable hop password(method: POST)
+    url: http://localhost:3000/api/hop/disable_password.json
+    data: {
+            api_key: "123",
+            authentication_token: "dtaLlmSO6QcrAUtZsWiY15H2Cv38Ct",
+            hop_id: 1,
+            password: "p@ssw0rd"
+          }
+    response:
+        success: {"success"=>true, "info"=>"Password successfully disabled.", "status"=>200}
+        error: {"errors"=>["Wrong password."], "success"=>false, "status"=>200}
+
 ===Hop Tasks
 ====submit users hop task(automatikally assign you to hop)(method: POST)
     url: http://localhost:3000/api/task/submit.json

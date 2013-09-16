@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910140735) do
+ActiveRecord::Schema.define(:version => 20130916112946) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -75,13 +75,6 @@ ActiveRecord::Schema.define(:version => 20130910140735) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "faqs", :force => true do |t|
-    t.string   "ask"
-    t.text     "answer"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -113,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130910140735) do
     t.integer "user_id"
     t.integer "hop_id"
     t.integer "pts"
+    t.boolean "ask_password"
   end
 
   create_table "hops", :force => true do |t|
@@ -228,6 +222,7 @@ ActiveRecord::Schema.define(:version => 20130910140735) do
     t.boolean "new_hop"
     t.boolean "hop_about_to_end"
     t.boolean "comment_or_like"
+    t.boolean "unsubscribe"
   end
 
   create_table "users", :force => true do |t|
