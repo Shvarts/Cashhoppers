@@ -208,7 +208,8 @@ assigned: true if user assigned to hop of false if not
                                         "logo"=>nil,
                                         "purchased"=>nil,
                                         "zip":"88000, 23233, 11111",
-                                        "completed"=>true
+                                        "completed"=>true,
+                                        "ask_password"=>nil
                                     }, ...]
                  }
         error: {"errors"=>["Daily hop not found."], "success"=>false, "status"=>406}
