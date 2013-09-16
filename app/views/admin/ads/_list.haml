@@ -35,9 +35,9 @@
             = ad.link
 
           %td
-            = ad.time_start
+            = ad.time_start.to_datetime.strftime(format='%Y-%m-%d %H:%M') + ' EST'
           %td
-            =ad.time_end
+            =ad.time_end.to_datetime.strftime(format='%Y-%m-%d %H:%M') + ' EST'
           %td
             = image_tag ad.picture.url, class: 'img-polaroid', style: 'height: 90px; max-width: 300px'
           %td{style: 'text-align: right'}
