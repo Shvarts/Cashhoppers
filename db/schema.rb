@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916112946) do
+ActiveRecord::Schema.define(:version => 20130916163309) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -208,9 +208,7 @@ ActiveRecord::Schema.define(:version => 20130916112946) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "comment"
-    t.boolean  "facebook_shared"
-    t.boolean  "twitter_shared"
-    t.boolean  "google_shared"
+    t.boolean  "shared"
   end
 
   add_index "user_hop_tasks", ["hop_task_id"], :name => "index_user_hop_tasks_on_hop_task_id"
