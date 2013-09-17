@@ -93,8 +93,7 @@
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     .row-fluid.container-grid .span10, .row-fluid.container-grid .span2{
-        padding-left: 8px;
-        padding-bottom: 8px;
+       padding-bottom: 8px;
     }
 
 

@@ -1,0 +1,16 @@
+
+.row-fluid#user_menu
+
+  .span12
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle.text-center.collapsed{:style=>"word-wrap: break-word", "data-parent" => "#accordion-demo", "data-toggle" => "collapse", :href => "#text"}
+          User menu
+          %span.caret{style: 'vertical-align: middle'}
+      .accordion-body.in.collapse{:style => "height: 0px;", :id => "text"}
+        .accordion-inner
+          %form{:id => "text"}
+            = render partial: 'layouts/sidebar'
+            = render partial: 'layouts/admin_sidebar'
+
+

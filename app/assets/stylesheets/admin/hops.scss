@@ -67,6 +67,7 @@ body#fone{
     }
   }
   #text{
+    word-wrap: break-word;
     color: green;
     font-size: 200%;
     line-height: 1.5;
@@ -112,6 +113,10 @@ body#fone{
       width:430px;
     }
   }
+}
+.photo-backgraund{
+ margin-top: 25px;
+
 }
 @media(min-width:600px)and(max-width: 790px){
   .photo-backgraund{
@@ -228,10 +233,10 @@ body#fone{
   }
   #hopPhotos{
     a.carousel-control.left{
-      left:0%
+      left:5px;
     }
     a.carousel-control.right{
-      right: 0%;
+      right: 5px;
     }
 
     .carousel-inner{
