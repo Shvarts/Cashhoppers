@@ -1,67 +1,94 @@
-= form_tag(controller: "services", action: "create", :method => "post") do
-  .control-group
-    .control-label
-      Service:
-      = @service
-      = hidden_field_tag :service, @service, class: 'span12'
-  .control-group
-    .control-label
-      Name:
-      = @name
-      = hidden_field_tag :name, @name, class: 'span12'
-  .control-group
-    .control-label
-      First Name:
-      = @first_name
-      = hidden_field_tag :first_name, @first_name, class: 'span12'
-  .control-group
-    .control-label
-      Last Name:
-      = @last_name
-      = hidden_field_tag :last_name, @last_name, class: 'span12'
-  .control-group
-    .control-label
-      UID:
-      = @uid
-      = hidden_field_tag :uid, @uid, class: 'span12'
-  .control-group
-    .control-label
-      Provider:
-      = @provider
-      = hidden_field_tag :provider, @provider, class: 'span12'
-  - if @service == 'twitter'
-    .control-group
-      .control-label
-        = label_tag :email, 'Put your email:'
-      .controls
-        = email_field_tag :email, '', class: 'span12'
-    .control-group
-      .control-label
-        Link:
-        = @twitter_link
-        = hidden_field_tag :twitter_link, @twitter_link, class: 'span12'
-  - elsif @service == 'facebook'
-    .control-group
-      .control-label
-        E-mail:
-        = @email
-        = hidden_field_tag :email, @email, class: 'span12'
-    .control-group
-      .control-label
-        Link:
-        = @facebook_link
-        = hidden_field_tag :facebook_link, @facebook_link, class: 'span12'
-  - elsif @service == 'google'
-    .control-group
-      .control-label
-        E-mail:
-        = @email
-        = hidden_field_tag :email, @email, class: 'span12'
-  .control-group
-    .control-label
-      = label_tag :zip, 'Put your zip:'
-    .controls
-      = text_field_tag :zip, '', class: 'span12'
-  .control-group
-    .controls
-      = submit_tag 'Sign up'
+:css
+  #container {
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      padding-top: 10px;
+      background-color: #e6e6e6;;
+  }
+  body{
+    padding: 0px;
+  }
+
+
+.row-fluid
+  .span3
+  .span6.text-center
+    #container
+      = form_tag({controller: "services", action: "create"}, :method => "post", :class=>'bs-docs-example form-horizontal ') do
+        .control-group
+          .control-label
+            Service:
+          .controls
+            = @service
+            = hidden_field_tag :service, @service, class: 'span12'
+        .control-group
+          .control-label
+            Name:
+          .controls
+            = @name
+          .controls
+            = hidden_field_tag :name, @name, class: 'span12'
+        .control-group
+          .control-label
+            First Name:
+          .controls
+            = @first_name
+            = hidden_field_tag :first_name, @first_name, class: 'span12'
+        .control-group
+          .control-label
+            Last Name:
+          .controls
+            = @last_name
+            = hidden_field_tag :last_name, @last_name, class: 'span12'
+        .control-group
+          .control-label
+            UID:
+          .controls
+            = @uid
+            = hidden_field_tag :uid, @uid, class: 'span12'
+        .control-group
+          .control-label
+            Provider:
+          .controls
+            = @provider
+            = hidden_field_tag :provider, @provider, class: 'span12'
+        - if @service == 'twitter'
+          .control-group
+            .control-label
+              = label_tag :email, 'Put your email:'
+            .controls
+              = email_field_tag :email, '', class: 'span12'
+          .control-group
+            .control-label
+              Link:
+            .controls
+              = @twitter_link
+              = hidden_field_tag :twitter_link, @twitter_link, class: 'span12'
+        - elsif @service == 'facebook'
+          .control-group
+            .control-label
+              E-mail:
+            .controls
+              = @email
+              = hidden_field_tag :email, @email, class: 'span12'
+          .control-group
+            .control-label
+              Link:
+            .controls
+              = @facebook_link
+              = hidden_field_tag :facebook_link, @facebook_link, class: 'span12'
+        - elsif @service == 'google'
+          .control-group
+            .control-label
+              E-mail:
+            .controls
+              = @email
+              = hidden_field_tag :email, @email, class: 'span12'
+        .control-group
+          .control-label
+            = label_tag :zip, 'Put your zip:'
+          .controls
+            = text_field_tag :zip, '', class: 'span12', :style=>'max-width: 250px'
+        .control-group
+          .controls
+            = submit_tag 'Sign up', :class=>'btn btn-success'

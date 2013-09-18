@@ -45,9 +45,12 @@
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
       %br/
-      %div
-        = f.label :email
-        = f.email_field :email, :autofocus => true
+      .row-fluid
+        .span6
+          %div
+            = f.label :email
+            = f.email_field :email, :autofocus => true
+        .span6.blank-div
       %br/
       .row-fluid
         .span6
@@ -79,7 +82,7 @@
             %label Contact
             = f.text_field :contact
       %br/
-      %div
+      %div.bio
         %label Biography
         = f.text_area :bio, :rows => 5
       %br/
@@ -107,10 +110,11 @@
             = f.password_field :password_confirmation
       %br/
       %div
-        %label
+        %label.password
           Current password
           %i (we need your current password to confirm your changes)
         = f.password_field :current_password
       %br/
       %div= f.submit "Update", class: 'btn btn-info'
-    = link_to "Back", :back
+      %br
+      = link_to "Back", :back , :id=>'back'

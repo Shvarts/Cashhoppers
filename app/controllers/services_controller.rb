@@ -20,9 +20,6 @@ class ServicesController < ApplicationController
   end
 
   def add_zip
-    puts "--------------zip--------------#{params}-----------------------------------------"
-    puts "----------------------------#{params}-----------------------------------------"
-    puts "-----------zip-----------------#{params}-----------------------------------------"
 
     omniauth = request.env['omniauth.auth']
     if omniauth && params[:service]
