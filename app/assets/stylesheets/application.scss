@@ -377,3 +377,43 @@ fieldset.btn{
   }
 
 }
+.row-fluid#user_menu{
+  display: none;
+}
+
+@media(min-width:100px)and(max-width: 800px){
+  .row-fluid#user_menu{
+    .accordion-heading a{
+      font-weight: bold;
+    }
+    display: block;
+    margin-top: 45px;
+    margin-bottom: 8px;
+    .accordion-inner{
+      padding: 0px;
+      ul{
+        li{
+          a{
+            //font-weight: bold;
+            padding: 9px 15px;
+          }
+
+        }
+      }
+    }
+  }
+
+  .span2#side-bar{
+    display: none;
+    width: 0px;
+  }
+  .span10.offset1{
+    .page-header{
+      height: 0px;
+      margin: 0px;
+    }
+  }
+
+
+
+}

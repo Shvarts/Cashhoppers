@@ -43,13 +43,12 @@
             %tr
               %td
                 %div
-
                   = link_to task.user.first_name, user_path(task.user) if task.user
               %td
-                %div
+                %div.hop-name
                   = task.hop_task.hop.name if task.hop_task && task.hop_task.hop
               %td
-                %div
+                %div.task-div
                   = task.hop_task.text if task.hop_task
               %td
                 %div

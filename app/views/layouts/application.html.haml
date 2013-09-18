@@ -10,7 +10,7 @@
   %body
     =render partial: "layouts/header"
     .row-fluid.container-grid
-      .span10.offset1
+      .span10.offset1{}
         .page-header
           .row-fluid
             .span12.text-right
@@ -34,8 +34,12 @@
               = flash[:notice]
           -if current_user
             .row-fluid{:style=>''}
+              .span12
+                = render partial: 'layouts/user_menu'
+            .row-fluid{:style=>''}
 
-              .span2
+
+              .span2#side-bar
                 = render partial: 'layouts/sidebar'
                 = render partial: 'layouts/admin_sidebar'
                 = yield :sidebar
