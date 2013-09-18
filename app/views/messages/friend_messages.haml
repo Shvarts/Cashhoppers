@@ -1,4 +1,7 @@
-
+:css
+  body{
+   padding-right: 0px;
+  }
 :javascript
   function synchronize_messages(friend_id, friend_first_name, friend_last_name){
       $.ajax({
@@ -26,18 +29,18 @@
       setInterval("synchronize_messages('#{@friend.id}', '#{@friend.first_name}', '#{@friend.last_name}')", 5000);
   });
 .row-fluid
-  .span1
+  .span1.text-center
     = image_tag @friend.avatar.url, style: 'width: 70px', class: 'img-polaroid'
   .span11
-    %h4{style: 'color: darkgreen'}
+    %h4.text-center{style: 'color: darkgreen'}
       = link_to full_user_name(@friend), user_path(@friend)
 #messages{style: 'height: 400px; overflow: auto '}
   = render partial: 'messages'
 %hr
   .row-fluid
     .span1
-    .span7
-      %textarea#new_message.triangle-border.right{style: 'border-color: green; width: 100%', :placeholder=> 'put your message here'}
+    .span7.text-center
+      %textarea#new_message.triangle-border.right{style: 'border-color: green; width: 80%', :placeholder=> 'put your message here'}
     .span4.text-right
-      %button.btn.btn-large.btn-success{style: 'margin-top: 15px;', onclick: "send_message(" + @friend.id.to_s + "); $('#new_message').val('');"}
+      %button.btn.btn-large.btn-success{style: 'margin-top: 15px;margin-right: 15px;', onclick: "send_message(" + @friend.id.to_s + "); $('#new_message').val('');"}
         Send

@@ -56,6 +56,8 @@ only screen and (max-width: 760px),
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
+    text-align: left;
+    padding-left: 50%;
   }
 
   td:before {
@@ -67,6 +69,7 @@ only screen and (max-width: 760px),
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
+
   }
 
 /*
@@ -91,6 +94,12 @@ only screen and (max-width: 760px),
   }
   td.delete-button{
     text-align: center;
+  }
+  .table tr td{
+    text-align: left;
+
+    padding: 4px 5px;
+    padding-left: 50%;
   }
 
 }

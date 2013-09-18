@@ -95,6 +95,12 @@ only screen and (max-width: 760px),
     .row-fluid.container-grid .span10, .row-fluid.container-grid .span2{
        padding-bottom: 8px;
     }
+    form.find-form{
+        text-align: center;
+    }
+    .span1 a.thumbnail{
+        border: none;
+    }
 
 
 }

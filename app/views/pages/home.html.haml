@@ -26,7 +26,8 @@
         .carousel.slide#myCarousel
           .carousel-inner
             - @user_hop_tasks.each do |task|
-              .item{class: "#{(task.id == @user_hop_tasks.first.id) ? 'active' : ''}", style: "background-image: url(#{task.photo.url})"}
+              .item{class: "#{(task.id == @user_hop_tasks.first.id) ? 'active' : ''}", style: "background-image: url(#{task.photo.url})", onclick:"window.location.href='#{admin_hop_photos_path({hop_id: task.hop_task.hop.id})}'"}
+
           %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
           %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 

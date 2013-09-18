@@ -27,8 +27,9 @@
 
 %br
 %br
-.row-fluid
-  .span4
-  .span4.text-center
-    =link_to 'My page', user_path(current_user.id)
-  .span4
+- if current_user
+  .row-fluid
+    .span4
+    .span4.text-center
+      =link_to 'My page', user_path(current_user.id)
+    .span4

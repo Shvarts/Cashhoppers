@@ -1,5 +1,7 @@
 class Admin::HopsController < Admin::AdminController
-  authorize_resource
+  layout "home_layout", only: :hop_photos
+
+  authorize_resource  :unless => :hop_photos
   before_filter :init_hop, only: [:show, :edit_regular, :edit_daily, :tasks]
 
   def regular
@@ -287,10 +289,6 @@ class Admin::HopsController < Admin::AdminController
         @hop = Hop.create!(@new_hop)
 
       rescue Exception =>e
-        #puts '---------------------------2222222-----------------------------------------'
-        #puts "----------------#{e.message}---------------"
-        #puts '---------------------------2222222-----------------------------------------'
-
 
         redirect_to admin_regular_hops_path({:error =>"bad data syntax in file" })
       else
@@ -320,10 +318,9 @@ class Admin::HopsController < Admin::AdminController
 
 
    @hop=Hop.find_by_id(params[:hop_id])
-   @ads = @hop.ads.all
-   @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten!
+   @ads = @hop.ads.all if  @hop
+   @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten! if @hop
 
-   render :layout => 'home_layout'
 
 
  end

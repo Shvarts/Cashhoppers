@@ -10,6 +10,14 @@
   fieldset.btn.profile{
     width: 82.9%;
   }
+    fieldset.btn.profile{
+     border-top: none;
+      width: 80.1%;
+    }
+    .nav.nav-tabs.hoppers>li{
+
+      margin-bottom: -4px;
+    }
 
   @media(min-width:100px)and(max-width: 790px){
 
@@ -83,7 +91,7 @@
               = requester.first_name
             %td
               = requester.last_name
-            %td{style: 'text-align: right'}
+            %td.button.delete-button
               = link_to "Accept", friends_accept_request_path(id: requester.id), method: :post, class: 'btn btn-mini btn-success'
               = link_to "Decline", friends_decline_request_path(id: requester.id), confirm: "Really decline friendship with #{requester.first_name}?", method: :post, class: 'btn btn-mini btn-danger'
     %h3
@@ -101,7 +109,7 @@
               = friend.first_name
             %td
               = friend.last_name
-            %td{style: 'text-align: right'}
+            %td.delete-button
               = link_to "Cancel",
                     friends_cancel_request_path(id: friend.id),
                     confirm: "Cancel friendship request?",

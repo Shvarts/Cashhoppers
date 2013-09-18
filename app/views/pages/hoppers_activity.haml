@@ -18,6 +18,7 @@
 
 
 .span12.text-center
+
   %fieldset.btn.profile
 
     = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
@@ -64,4 +65,4 @@
 
 
 
-    = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails
+    = will_paginate @user_hop_tasks, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
