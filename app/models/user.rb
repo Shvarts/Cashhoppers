@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",
                     :default_url => "/assets/no_avatar.png",
                     :path => ":rails_root/public/images/avatars/users/:id/:style/USER_AVATAR.:extension"
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
   has_many :prizes, dependent: :delete_all
 
   has_one :user_settings
