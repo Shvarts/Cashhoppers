@@ -59,6 +59,16 @@ class Hop < ActiveRecord::Base
     ActiveRecord::Base.connection.close
   end
 
+  def is_password_disabled? user
+    hoppers_hops = ActiveRecord::Base.connection.select_all("SELECT ask_password FROM hoppers_hops WHERE user_id = #{user.id} AND hop_id = #{id} LIMIT 1")
+    ActiveRecord::Base.connection.close
+    if hoppers_hops.length == 0
+      nil
+    else
+      hoppers_hops[0]['ask_password']
+    end
+  end
+
   def assigned? user
     self.hoppers.include? User.find(user.id)
   end

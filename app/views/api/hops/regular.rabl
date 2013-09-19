@@ -1,82 +1,48 @@
 collection :@hops
-
-node :id do |hop|
-    hop["id"]
-end
-
-node :name do |hop|
-    hop["name"]
-end
-
-node :time_start do |hop|
-    hop["time_start"]
-end
-
-node :time_end do |hop|
-    hop["time_end"]
-end
-
-node :code do |hop|
-    hop["code"]
-end
-
-node :price do |hop|
-    hop["price"]
-end
-
-node :jackpot do |hop|
-    hop["jackpot"]
-end
-
-node :daily do |hop|
-    hop["daily"]
-end
-
-node :close do |hop|
-    hop["close"]
-end
-
-node :event do |hop|
-    hop["event"]
-end
-
-node :created_at do |hop|
-    hop["created_at"]
-end
-
-node :zip do |hop|
-    hop["zip"]
-end
+attributes :id,
+           :name,
+           :time_start,
+           :time_end,
+           :code,
+           :price,
+           :jackpot,
+           :daily,
+           :close,
+           :event,
+           :created_at,
+           :updated_at
 
 node :assigned do |hop|
-   hop["hoppers_hops_id"] == nil ? false : true
+   (hop.hoppers.include? @current_user) ? true : false
 end
 
 node :score do |hop|
-   hop["score"]
+   hop.score @current_user
 end
 
 node :logo do |hop|
-   @hop = Hop.new(id: hop['id'], logo_file_name: hop['logo_file_name'])
-   @hop.logo.url
+   hop.logo.url
 end
 
 node :purchased do |hop|
-    if hop["price"].blank? || hop["price"] == 0
+    if hop.free?
         nil
     else
-        hop["hoppers_hops_id"] == nil ? false : true
+        hop.assigned? @current_user
     end
 end
 
 node :completed do |hop|
-    if hop["hop_tasks_count"] == hop["user_hop_tasks_count"]
-        true
-    else
-        false
+    completed = true
+    hop.hop_tasks.each do |task|
+        user_hop_task = UserHopTask.where(user_id: @current_user.id, hop_task_id: task.id).first
+        unless user_hop_task
+            completed = false
+        end
     end
+    completed
 end
 
 node :ask_password do |hop|
-    hop["ask_password"]
+    hop.is_password_disabled? @current_user
 end
