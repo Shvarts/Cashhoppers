@@ -3,7 +3,7 @@ class UserMailer  < ActionMailer::Base
   def confirmation_instructions(user)
   	puts user.email
     @user = user
-    @url  = "http://perechin.net:3000/users/sign_in"
+    @url  = "http://ec2-54-227-42-108.compute-1.amazonaws.com/users/sign_in"
     attachments['logo_1.jpg'] = File.read("#{Rails.root}/app/assets/images/template_1.jpg")
     mail(:to =>  user.email, :from => 'sender@gmail.com', :subject => "Welcome to My Awesome Site")
   end
