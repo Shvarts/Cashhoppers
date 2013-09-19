@@ -65,7 +65,7 @@ module CashHoppers
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.action_mailer.default_url_options = { :host => "http://ec2-54-227-42-108.compute-1.amazonaws.com" }
+    config.action_mailer.default_url_options = { :host => "ec2-54-227-42-108.compute-1.amazonaws.com" }
     # generators configuration
     config.generators do |g|
       g.test_framework :rspec, :fixture => true
