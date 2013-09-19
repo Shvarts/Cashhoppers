@@ -37,6 +37,7 @@ class Api::ApplicationController < ApplicationController
   end
 
   def bad_request(errors, status = 200)
+    status = 200
     warden.custom_failure!
     render(:json => {:errors => errors,  :success => false, :status => status}, :status => status) and return
   end
