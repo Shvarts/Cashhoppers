@@ -103,4 +103,11 @@ only screen and (max-width: 760px),
     }
 
 
+    .span10.offset1 .page-header{
+         height: 0px;
+        margin: 0px;
+      }
+
+
+
 }
