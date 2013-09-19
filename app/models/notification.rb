@@ -46,9 +46,10 @@ class Notification < ActiveRecord::Base
 
   def push
     require 'rest-client'
-    user_sessions = CashHoppers::Application::SESSIONS.select{|session|
-      session if session[:user_id] == user_id
-    }
+    #user_sessions = CashHoppers::Application::SESSIONS.select{|session|
+    #  session if session[:user_id] == user_id
+    #}
+    user_sessions = Session.where(:user_id => user_id).first
     text = ""
     case event_type
       when "Friend invite"

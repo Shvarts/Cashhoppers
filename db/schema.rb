@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916163309) do
+ActiveRecord::Schema.define(:version => 20130919143930) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20130916163309) do
     t.datetime "file_updated_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "faqs", :force => true do |t|
+    t.string   "ask"
+    t.text     "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "friendships", :force => true do |t|
@@ -198,6 +205,16 @@ ActiveRecord::Schema.define(:version => 20130916163309) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "sessions", :force => true do |t|
+    t.string   "auth_token"
+    t.string   "device"
+    t.string   "device_token"
+    t.integer  "user_id"
+    t.datetime "updated_at",   :null => false
+    t.string   "api_key"
+    t.datetime "created_at",   :null => false
+  end
+
   create_table "user_hop_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hop_task_id"
@@ -223,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20130916163309) do
     t.boolean "hop_about_to_end"
     t.boolean "comment_or_like"
     t.boolean "unsubscribe"
+    t.integer "password_ask"
   end
 
   create_table "users", :force => true do |t|

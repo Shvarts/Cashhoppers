@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
            :source => :friend,
            :conditions => "status = 'pending'"
   has_many :comments
+  has_many :sessions
   has_many :likes
   has_attached_file :avatar, :styles => { :original => "400x400>", :small => "50x50" },
                     :url  => "/images/avatars/users/:id/:style/USER_AVATAR.:extension",

@@ -50,9 +50,10 @@ class Api::SessionsController < Api::ApplicationController
   end
 
   def destroy
-    session = CashHoppers::Application::SESSIONS.select{|session|
-      session if session[:auth_token] == params[:authentication_token]
-    }.first
+    #session = CashHoppers::Application::SESSIONS.select{|session|
+    #  session if session[:auth_token] == params[:authentication_token]
+    #}.first
+    session = Session.where(:auth_token => params[:authentication_token]).first
     if session
       destroy_session session
       render :json => { :success => true,  :info => "Logged out", :status => 200 }
@@ -154,8 +155,12 @@ class Api::SessionsController < Api::ApplicationController
       session[:device] = params[:device]
       session[:device_token] = params[:device_token]
     end
-    CashHoppers::Application::SESSIONS << session
-    CashHoppers::Application::USERS << user
+    puts "---------------------------------#{session}------------------------"
+    puts "---------------------------------#{session}------------------------"
+    puts "---------------------------------#{session}------------------------"
+    new_session = Session.create(session)
+    #CashHoppers::Application::SESSIONS << session
+    #CashHoppers::Application::USERS << user
     session
   end
 
