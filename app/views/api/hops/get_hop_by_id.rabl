@@ -42,3 +42,7 @@ node :completed do |hop|
     end
     completed
 end
+
+node :ask_password do |hop|
+    hop.is_password_disabled? @current_user
+end
