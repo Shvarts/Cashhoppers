@@ -20,4 +20,3 @@ ActionMailer::Base.smtp_settings = {
   :password             => 'Frog0727',
   :enable_starttls_auto => true
 }
-height
