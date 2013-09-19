@@ -1,5 +1,5 @@
 :css
-  .social-links#social1 a:hover{
+  .social-links#social1 a:hover, .social-links#bottom a img:hover{
     opacity: 0.6;
   }
 
@@ -238,7 +238,7 @@
               AND SEE WHAT OTHERS
               ARE DOING, JOIN US.
             .center.text-center
-              .social-links
+              .social-links#bottom
                 %a{href: '/auth/facebook', class: 'services'}
                   =image_tag('f.png', :style=>'height:50px')
                 %a{href: '/auth/twitter', class: 'services'}
