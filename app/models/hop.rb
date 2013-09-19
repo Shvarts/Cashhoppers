@@ -60,7 +60,7 @@ class Hop < ActiveRecord::Base
   end
 
   def assigned? user
-    hoppers.include? User.find(user.id)
+    self.hoppers.include? User.find(user.id)
   end
 
   def score user
