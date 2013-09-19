@@ -17,6 +17,6 @@ ActionMailer::Base.smtp_settings = {
   :domain               => 'cashhoppers.com',
   :host                 => 'http://perechin.net:3000',
   :user_name            => 'HopMaster@CASHHOPPERS.com',
-  :password             => 'secret',
+  :password             => 'Frog0727',
   :enable_starttls_auto => true
 }
