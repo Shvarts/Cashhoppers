@@ -166,7 +166,8 @@ class Api::SessionsController < Api::ApplicationController
 
   def destroy_session session
     CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
-    CashHoppers::Application::SESSIONS.delete session
+    #CashHoppers::Application::SESSIONS.delete session
+    session.destroy
   end
 
 end
