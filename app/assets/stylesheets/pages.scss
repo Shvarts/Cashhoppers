@@ -871,6 +871,11 @@ only screen and (max-width: 760px),
   tr th{
     display: none;
   }
+  .span10.offset1 .page-header{
+    height: 0px;
+    margin: 0px;
+  }
+
 
 }
 
