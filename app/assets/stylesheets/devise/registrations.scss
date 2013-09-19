@@ -1,7 +1,4 @@
-input.col-input{
-  width: 90% !important;
-  margin-right: 5% ;
-}
+
 #sign-up{
    .insert{
      margin: 0 auto;
@@ -19,8 +16,8 @@ input.col-input{
 
 .insert .row-fluid .span6 input, #user_email, #user_avatar{
   margin-left: 5px;
-  width: 206px;;
-  width: 350px;
+  width: 305px;
+
 }
 .insert .row-fluid .span6 label, label.email, h2, #avatar-label{
   margin-left: 5px;
@@ -28,8 +25,8 @@ input.col-input{
 
 input#user_email{
 
-  width: 206px;
-  margin-left: 0px;
+  width: 305px;
+
 }
 
 #links{
@@ -83,6 +80,11 @@ input#user_email{
 
 
 @media(max-width: 750px){
+  .insert .row-fluid .span6 input, input#user_email, #user_avatar{
+    margin-left: 5px;
+    width: 200px;
+
+  }
 
   h2{
     text-align: center ;
@@ -164,7 +166,7 @@ input#user_email{
       }
       div.span6.input-container{
         .input-append{
-          margin: 0px;
+
           .input-large{
             width: 50%;
             max-width: 50%;
