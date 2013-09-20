@@ -39,6 +39,7 @@ class Api::SessionsController < Api::ApplicationController
 
     if @user && @user.valid_password?(params[:password])
       session = create_session @user
+      puts
       render :json => {:success=>true,
                        :info => "Logged in",
                        :data => {authentication_token: session[:auth_token], email: @user.email},
@@ -155,9 +156,9 @@ class Api::SessionsController < Api::ApplicationController
       session[:device] = params[:device]
       session[:device_token] = params[:device_token]
     end
-    puts "---------------------------------#{session}------------------------"
-    puts "---------------------------------#{session}------------------------"
-    puts "---------------------------------#{session}------------------------"
+    puts "-------222--------------------------#{session}------------------------"
+    puts "--------222-------------------------#{session}------------------------"
+    puts "---------222------------------------#{session}------------------------"
     new_session = Session.create(session)
     #CashHoppers::Application::SESSIONS << session
     #CashHoppers::Application::USERS << user
@@ -165,7 +166,7 @@ class Api::SessionsController < Api::ApplicationController
   end
 
   def destroy_session session
-    CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
+    #CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
     #CashHoppers::Application::SESSIONS.delete session
     session.destroy
   end

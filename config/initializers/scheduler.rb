@@ -12,7 +12,7 @@ scheduler.every("1w") do
   #}
   expired_sessions = Session.where(:updated_at < Time.now - 1.week)
   expired_sessions.each do |session|
-    CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
+    #CashHoppers::Application::USERS.delete_if{|user| user.id < session[:user_id]}
 
     #CashHoppers::Application::SESSIONS.delete session
     expired_sessions.destroy

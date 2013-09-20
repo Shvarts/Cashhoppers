@@ -28,7 +28,8 @@ class Ad < ActiveRecord::Base
 
   def self.types hop
     if hop == nil
-      [['RPOU', 'RPOU','FULL'], ['ROTATE CH', 'RCH','FULL']]
+
+      [['RPOU', 'RPOU'], ['ROTATE CH', 'RCH'], ['FULL', 'FULL']]
     elsif hop.daily
       [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL']]
     else
