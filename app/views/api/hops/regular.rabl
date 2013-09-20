@@ -12,6 +12,14 @@ attributes :id,
            :created_at,
            :updated_at
 
+node :time_start do |hop|
+   hop.time_start.strftime("%Y-%m-%dT%H:%M:%SZ")
+end
+
+node :time_end do |hop|
+    hop.time_end.strftime("%Y-%m-%dT%H:%M:%SZ")
+end
+
 node :assigned do |hop|
    (hop.hoppers.include? @current_user) ? true : false
 end
