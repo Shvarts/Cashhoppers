@@ -130,6 +130,7 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def disable_password
+    @hop = Hop.find_by_id(params[:hop_id])
     if params[:password] == @hop.code
       @hop.disable_password @current_user
       respond_to do |format|

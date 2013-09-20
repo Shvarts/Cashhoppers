@@ -49,7 +49,11 @@ class Notification < ActiveRecord::Base
     #user_sessions = CashHoppers::Application::SESSIONS.select{|session|
     #  session if session[:user_id] == user_id
     #}
-    user_sessions = Session.where(:user_id => user_id).first
+    user_sessions = Session.where(:user_id => user_id)
+
+    puts "-------------------------------#{user_sessions}----------------------------------"
+    puts "-------------------------------#{user_sessions}----------------------------------"
+    puts "-------------------------------#{user_sessions}----------------------------------"
     text = ""
     case event_type
       when "Friend invite"
