@@ -4,6 +4,8 @@ class HopTask < ActiveRecord::Base
   belongs_to :sponsor, class_name: 'User', foreign_key: :sponsor_id
 
 
+
+
   attr_accessible :price, :amt_paid,:creator_id, :bonus, :pts, :sponsor_id, :text, :hop_id, :logo, :logo_file_name
 
 
@@ -21,7 +23,12 @@ class HopTask < ActiveRecord::Base
                              message: "only image (.jpg, .png, .gif)" }
 
 
+  before_save :pts_default
+
   private
+  def pts_default
+     pts = 0 unless pts
+  end
 
   def only_one_task_for_daily_hop
     if self.hop.daily && !self.hop.hop_tasks.blank?
