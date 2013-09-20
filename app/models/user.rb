@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :last_name, :first_name, 
          :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
-         :bio, :twitter, :facebook, :google, :avatar_file_name, :id, :frog_legs
+         :bio, :twitter, :facebook, :google, :avatar_file_name, :id
 
 
   validates :zip, :user_name , :presence => true

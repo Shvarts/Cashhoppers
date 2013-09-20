@@ -256,6 +256,8 @@ assigned: true if user assigned to hop of false if not
                          "pts"=>343,
                          "sponsor_id"=>1,
                          "text"=>"tester #dgs",
+                         "link"=>"http://link.com",
+                         "share"=>"true",
                          "hop_id"=>1,
                          "completed"=>false,
                          "logo"=>"/images/hop_task_logos/hop_tasks/205/Task_LOGO.png?1375717339",

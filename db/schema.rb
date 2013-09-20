@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919143930) do
+ActiveRecord::Schema.define(:version => 20130920134603) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130919143930) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "creator_id"
+    t.string   "link"
   end
 
   add_index "hop_tasks", ["hop_id"], :name => "index_hop_tasks_on_hop_id"

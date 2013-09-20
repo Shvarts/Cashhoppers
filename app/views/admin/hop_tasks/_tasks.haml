@@ -8,6 +8,8 @@
       %th
         Sponsor
       %th
+        link
+      %th
         Price
       %th
         AMT
@@ -24,6 +26,8 @@
           - if task.sponsor
             = task.sponsor.first_name
             = task.sponsor.last_name
+        %td
+          = task.link
         %td
           = task.price
         %td

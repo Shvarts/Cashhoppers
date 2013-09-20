@@ -6,7 +6,7 @@ class HopTask < ActiveRecord::Base
 
 
 
-  attr_accessible :price, :amt_paid,:creator_id, :bonus, :pts, :sponsor_id, :text, :hop_id, :logo, :logo_file_name
+  attr_accessible :price, :amt_paid,:creator_id, :link, :bonus, :pts, :sponsor_id, :text, :hop_id, :logo, :logo_file_name
 
 
   has_attached_file :logo,
@@ -21,6 +21,7 @@ class HopTask < ActiveRecord::Base
   validate :only_one_task_for_daily_hop
   validates :logo, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                              message: "only image (.jpg, .png, .gif)" }
+  validates :link, format: { with: /^http:\/\/.*\..*|^https:\/\/.*\..* | ""/, message: "only 'http://'" },  if: :link?
 
 
   before_save :pts_default
@@ -35,5 +36,9 @@ class HopTask < ActiveRecord::Base
       errors.add(:Daily_hop, "Can be only one task for daily_hop.")
     end
   end
+  def link_blank?
+    self.link.blank?
+  end
+
 
 end
