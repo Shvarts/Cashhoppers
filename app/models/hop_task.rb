@@ -18,7 +18,7 @@ class HopTask < ActiveRecord::Base
   #validates :bonus, :pts, numericality: { only_integer: true }
   validates :text, length: { minimum: 5, maximum:140 }
   validates :sponsor_id,  :presence => true
-  validate :only_one_task_for_daily_hop
+  validate :only_one_task_for_daily_hop, :on =>:create
   validates :logo, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                              message: "only image (.jpg, .png, .gif)" }
   validates :link, format: { with: /^http:\/\/.*\..*|^https:\/\/.*\..* | ""/, message: "only 'http://'" },  if: :link?

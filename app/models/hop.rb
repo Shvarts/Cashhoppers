@@ -27,6 +27,14 @@ class Hop < ActiveRecord::Base
 
   before_create :init_hop
   after_create :push_to_thread
+  validates :price,          :length => { :maximum => 0,  message: "Can't be code and price together"  }, if: :code?
+
+  #def has_code?
+  #   if code
+  #     false
+  #   end
+  #    true
+  #end
 
   def push_to_thread
     User.all.each do |user|
