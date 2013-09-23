@@ -2,4 +2,4 @@
 defaults:
   migrate: true
   migration_command: rake db:migrate
-  precompile_assets: true
+   precomplie_assets_task: assets:precompile
