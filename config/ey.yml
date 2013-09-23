@@ -2,13 +2,4 @@
 defaults:
   migrate: true
   migration_command: rake db:migrate
-  precompile_assets: true
-  precompile_unchanged_assets: true        # if true, does not check git for changes before precompiling assets.
-  asset_dependencies:                       # a list of relative paths to search for asset changes during each deploy.
-  - app/assets                              # default
-  - lib/assets                              # default
-  - vendor/assets                           # default
-  - Gemfile.lock                            # default
-  - config/routes.rb                        # default
-  - config/application.rb                   # default
-  - config/requirejs.yml                    # custom option (be sure to include defaults if you specify this option)
+  precompile_assets: false
