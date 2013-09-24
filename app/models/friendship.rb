@@ -39,6 +39,8 @@ class Friendship < ActiveRecord::Base
     transaction do
       destroy(find_by_user_id_and_friend_id(user, friend))
       destroy(find_by_user_id_and_friend_id(friend, user))
+      Message.where(:sender_id=>user.id, :receiver_id=>friend.id).destroy_all
+      Message.where(:sender_id=>friend.id, :receiver_id=>user.id).destroy_all
     end
   end
 
