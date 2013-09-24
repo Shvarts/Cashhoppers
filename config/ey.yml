@@ -1,5 +1,6 @@
 # This is all you need for a typical rails application.
+#precompile_assets: true
 defaults:
   migrate: true
   migration_command: rake db:migrate
-#precompile_assets: false
+  precompile_assets: true
