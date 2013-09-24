@@ -4,7 +4,10 @@
   }
 
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.png"});  position: relative;"}
-  %h2{:id=>"first-page"}
+  %h2{:id=>"first-page", style:'height: 0px margin: 0px'}
+  -if  flash[:notice]
+    .alert.alert-success.text-center{ style: 'position: relative; top: 0px;max-height: auto; opacity: 0.5'}
+      = flash[:notice]
   .social-links#social1
     %a{href: '/auth/facebook', class: 'services facebook', :style=>'',onclick: "$(this).css('opacity', '0.9')"}
       =image_tag('f.png', :style=>'height:50px')
@@ -12,10 +15,8 @@
       =image_tag('t.png', :style=>'height:50px')
     %a{href: '/auth/google', class: 'services', onclick: "$(this).css('opacity', '0.9')"}
       =image_tag('g.2.png', :style=>'height: 50px; width: 50px;')
+
   .divas1
-    -#-if  flash[:notice]
-    -#  .alert.alert-success.text-center{ style: 'margin: 5% 5%; opacity: 0.5'}
-    -#    = flash[:notice]
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
       %br

@@ -918,3 +918,14 @@ td.photo{
 .span10.offset1{
   //padding-left: 20px;
 }
+
+@media(min-width:50px)and(max-width: 250px){
+
+  body .custom-pg.first-page .divas1 .divas2{
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 0%;
+    padding-right: 0%;
+    //display: none;
+  }
+}
