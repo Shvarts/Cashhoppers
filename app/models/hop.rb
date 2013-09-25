@@ -94,9 +94,7 @@ class Hop < ActiveRecord::Base
   def increase_score user, pts
     pts ||= 0
     current_pts = self.score user
-    puts "----------------#{user}---------------------------"
-    puts "-------------------------------------------"
-    puts "------------------#{pts}-------------------------"
+
     ActiveRecord::Base.connection().execute("UPDATE hoppers_hops SET pts = #{current_pts + pts} WHERE user_id = #{user.id} AND hop_id = #{id}")
     ActiveRecord::Base.connection.close
   end

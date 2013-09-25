@@ -9,6 +9,15 @@
       = @user.first_name
     %br
     %br
+      -#"#{RAILS_ROOT}/public/layouts/mylayout.html.erb"
+      -#Rails.root.join('public', 'images', file.original_filename)
+    -#= File.exist?(Rails.root.join("public/#{@user.avatar.url.split('?')[0][1..-1]}"))
+    -#-unless File.exist?(Rails.root.join("public/#{@user.avatar.url.split('?')[0][1..-1]}"))
+    -#
+    -#  =@user.update_attributes(:avatar=>nil)
+
+    = @user.avatar.url.split('?')[0][1..-1]
+    = @user.avatar.url
     .row-fluid
       .span6.text-center.small-screen
         = image_tag @user.avatar.url, :style => 'max-height: 350px; max-width: 100%;'
