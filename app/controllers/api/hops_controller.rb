@@ -13,7 +13,7 @@ class Api::HopsController < Api::ApplicationController
     hoppers_hops = HoppersHops.arel_table
 
     where_conditions = hops[:daily].eq(false)
-                       .and(hops[:time_end].lteq(Time.now.end_of_day))
+                       .and(hops[:time_end].gteq(Time.now))
                        .and(hops[:close].eq(false))
                        .and(hop_tasks[:id].not_eq(nil))
                        .and(prizes[:id].not_eq(nil))
