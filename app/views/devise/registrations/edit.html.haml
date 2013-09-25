@@ -86,10 +86,25 @@
           %div
             %label Contact
             = f.text_field :contact
-      %br/
-      %div.bio
-        %label Biography
-        = f.text_area :bio, :rows => 5
+      .row-fluid
+        .span6
+          %div
+            %label Google
+            = f.text_field :google
+        .span6
+          %div
+            %label Facebook
+            = f.text_field :facebook
+      .row-fluid
+        .span6
+          %div
+            %label Twitter
+            = f.text_field :twitter
+        .span6
+          %div.bio
+            %label Biography
+            = f.text_area :bio, :rows => 5
+
       %br/
       .row-fluid
         .span12
@@ -98,8 +113,6 @@
               = image_tag resource.avatar.url, style: 'max-width: 200px; max-height: 150px;'
             %div
               = f.file_field :avatar
-
-
       %br/
       %br/
       .row-fluid
