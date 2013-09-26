@@ -15,7 +15,7 @@ class Ad < ActiveRecord::Base
 
   has_attached_file :picture,
     :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",
-    :default_url => "/assets/images/no_ad_picture.png",
+    :default_url => "/assets/no_ad_picture.png",
     :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
 

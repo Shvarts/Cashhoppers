@@ -30,6 +30,7 @@ gem 'rest-client'
 gem 'to_xls'
 gem 'roo'
 gem "spreadsheet"
+gem "rubyzip", :require => 'zip/zip'
 
 gem 'grocer'
 

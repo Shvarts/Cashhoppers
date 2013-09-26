@@ -5,12 +5,16 @@ attributes :id,
            :time_end,
            :code,
            :price,
-           :jackpot,
+
            :daily,
            :close,
            :event,
            :created_at,
            :updated_at
+
+node :jackpot do |hop|
+   :jackpot ||= hop.prizes.where(:place =>1)
+end
 
 node :time_start do |hop|
    hop.time_start.strftime("%Y-%m-%dT%H:%M:%SZ")

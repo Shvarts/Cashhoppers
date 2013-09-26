@@ -291,6 +291,7 @@ DEPENDENCIES
   rest-client
   roo
   rspec-rails (~> 2.0)
+  rubyzip
   rufus-scheduler
   sass-rails (~> 3.2.3)
   simplecov
