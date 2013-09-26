@@ -218,6 +218,38 @@ module PdfWritter
     end
 
 
+    def to_pdf_winner_list(prizes)
+
+      text "Winners list", :size => 16, :align => :center
+      move_down(20)
+      table([['Winners', 'Place', 'Prize', 'Prize type', 'Hop name']],
+            :column_widths => {0 => 100, 1 => 100, 2 => 100, 3 => 60, 4=> 140 }
+      )
+      winner =[]
+      prizes.each do |i|
+        winner << Prize.find_by_id(i)
+
+      end
+
+      winners = winner.map do |prize|
+
+        [
+            prize.user.user_name,
+            prize.place.to_s,
+            prize.cost.to_s,
+            prize.prize_type.to_s,
+            prize.hop.name
+
+
+
+        ]
+      end
+      table(winners, :column_widths =>  {0 => 100, 1 => 100, 2 => 100, 3 => 60, 4=> 140 })
+
+      render
+
+    end
+
   end
 
 end

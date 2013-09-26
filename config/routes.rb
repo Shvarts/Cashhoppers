@@ -75,8 +75,11 @@ CashHoppers::Application.routes.draw do
     post '/hoppers/search_by_zip' => 'hoppers#search_by_zip'
     post '/hoppers/search_by_hop' => 'hoppers#search_by_hop'
     post '/hoppers/hopper_to_pdf' => 'hoppers#hopper_to_pdf'
+    post '/hoppers/winners_to_pdf' => 'hoppers#winners_to_pdf'
     get '/hoppers/export_to_excel' => 'hoppers#export_to_excel'
+    get '/hoppers/winners_to_excel' => 'hoppers#winners_to_excel'
     post '/hoppers/select_all' => 'hoppers#select_all'
+    get '/hoppers/winners_list' => 'hoppers#winners_list'
 
     #messages
     get 'messages/email_tool'

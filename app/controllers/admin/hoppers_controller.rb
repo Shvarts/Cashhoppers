@@ -142,4 +142,64 @@ class Admin::HoppersController < Admin::AdminController
 
   end
 
+  def winners_list
+    @tab = 'winners_list'
+
+    #@winners = Prize.all.map{|prize| prize.user}.compact!
+    users=[]
+    user = User.all
+    user.each do |i|
+      users<< i.id unless i.prizes.blank?
+    end
+
+
+    @winners_grid = initialize_grid(Prize,
+                                  :include => [:user, :hop],
+                                  per_page: 20,
+                                  conditions: {:accept => true}
+
+    )
+  end
+
+  def winners_to_pdf
+     output = PdfWritter::TestDocument.new.to_pdf_winner_list(params[:winners])
+    respond_to do |format|
+      format.pdf {
+        send_data output, :filename => "Winner.pdf", :type => "application/pdf", :display=>'inline'
+      }
+   end
+
+  end
+
+  def winners_to_excel
+    winner =[]
+    params[:winners].each do |i|
+      winner << Prize.find_by_id(i)
+
+    end
+
+
+    respond_to do |format|
+      format.xls{
+
+        clients = Spreadsheet::Workbook.new
+        list = clients.create_worksheet :name => 'Winners'
+        list.row(1).push "Winners"
+        list.row(3).concat ['Winners', 'Place', 'Prize', 'Prize type', 'Hop name']
+        winner.each_with_index { |client, i|
+          list.row(i+4).push client.user.user_name,client.place,client.cost,client.prize_type,client.hop.name
+        }
+        header_format = Spreadsheet::Format.new :color =>:green, :size => 10
+        list.row(1).default_format = header_format
+        #output to blob object
+        blob = StringIO.new("")
+        clients.write blob
+        #respond with blob object as a file
+        send_data blob.string, :type => 'xls', :filename =>'Winners_list.xls'
+
+      }
+    end
+  end
+
+
 end

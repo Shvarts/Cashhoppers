@@ -1,0 +1,25 @@
+- prizes =[]
+.row-fluid
+  .span12
+    .grid
+      =grid(@winners_grid, upper_pagination_panel: true) do |g|
+        -g.column name:'Winners',  model: 'User', attribute: 'user_name' do |prize|
+          -prize.user.user_name
+        -g.column name:'Place', attribute: 'place'
+        -g.column name:'Prize', attribute: 'cost'
+        -g.column name:'Prize type', attribute: 'prize_type'
+        -g.column name: 'Hop name', model: 'Hop',  attribute: 'name' do |prize|
+
+          -prize.hop.name
+        -g.column name: '' do |prize|
+          -prizes << prize.id if prize
+          -link_to 'email to user',  admin_messages_email_tool_path({:id=> [prize.user.id]}), class: 'btn btn-mini btn-success'
+        -g.column name: '' do |prize|
+          -link_to 'message to user', admin_messages_message_tool_path({:id=> [prize.user.id]}), class: 'btn btn-mini btn-success'
+
+.row-fluid
+  -if !prizes.blank?
+    .span6.text-left
+      =link_to 'Export to Excel', admin_hoppers_winners_to_excel_path({winners: prizes, :format => 'xls'}), class: 'btn btn-success'
+    .span6.text-right
+      =button_to 'Export to PDF', admin_hoppers_winners_to_pdf_path({winners: prizes, :format => 'pdf'}), class: 'btn btn-success' ,:target => '_blank'
