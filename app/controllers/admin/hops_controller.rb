@@ -316,60 +316,51 @@ class Admin::HopsController < Admin::AdminController
   end
 
  def hop_photos
-   @hop=Hop.find_by_id(params[:hop_id])
-   @ads = @hop.ads.all if  @hop
-   @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten! if @hop
+   if params[:task_id]
+     @hop_task_photo = UserHopTask.where(hop_task_id: params[:task_id]).map{|item| item}
+     @hop = @hop_task_photo.first.hop_task.hop
+
+   else
+     @hop=Hop.find_by_id(params[:hop_id])
+     @ads = @hop.ads.all if  @hop
+     @hop_task_photo = @hop.hop_tasks.all.map{|item| item.user_hop_tasks}.flatten! if @hop
+   end
+
  end
 
   def export_photos_zip
 
     input_filenames =[]
+
     params[:id].each do |id|
       task = UserHopTask.find_by_id(id)
-      input_filenames << task
-
-    end
+      input_filenames << task unless task.photo_file_name.nil?
+   end
     temp = Tempfile.new("Photo.zip")
 
     input_filenames.compact!
-    folder = Rails.root.join("app/assets/images")
-    #input_filenames = ['f.png', 'g.2.png', 'businesspage.jpg']
     zipfile_name = Rails.root.join.to_s  + temp.path
 
 
     begin
       Zip::ZipFile.open(zipfile_name , Zip::ZipFile::CREATE) do |zipfile|
         input_filenames.each do |filename|
-          puts '----------------------222'
+
           zipfile.add(rand(3).to_s+rand(3).to_s+ rand(3).to_s + filename.photo_file_name , filename.photo.path) unless filename.photo_file_name.nil?
-          puts '----------------------333'
+
         end
       end
 
-      send_file zipfile_name , :type => 'application/zip', :disposition => 'attachment', :filename => "Photos.zip"
+     send_file zipfile_name , :type => 'application/zip', :disposition => 'attachment', :filename => "Photos.zip"
      temp.delete
 
     rescue Exception => e
-      puts '----------------------3444444444444444444444444444444'
+
       puts "---------------------#{e}----------------"
 
       temp.delete
     end
-    #folder = "Users/me/Desktop/stuff_to_zip"
-    #input_filenames = ['image.jpg', 'description.txt', 'stats.csv']
-    #
-    #zipfile_name = "/Users/me/Desktop/archive.zip"
-    #
-    #Zip::ZipFile.open(zipfile_name, Zip::ZipFile::CREATE) do |zipfile|
-    #  input_filenames.each do |filename|
-    #    # Two arguments:
-    #    # - The name of the file as it will appear in the archive
-    #    # - The original file, including the path to find it
-    #    zipfile.add(filename, folder + '/' + filename)
-    #  end
 
-
-    #render :text => params
 
 
   end

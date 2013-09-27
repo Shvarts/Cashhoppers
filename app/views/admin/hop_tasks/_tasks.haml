@@ -18,6 +18,7 @@
       %th
         Bonus point for sharing
       %th
+        Photos
     - @tasks.each do |task|
       %tr
         %td
@@ -37,6 +38,8 @@
           = task.pts
         %td
           = task.bonus
+        %td
+          =link_to 'photos', admin_hop_photos_path({:task_id=>task.id})
         %td{style: 'text-align: right'}
           -if (User.producer?(current_user) || User.admin?(current_user)|| User.sponsor?(current_user))&& User.can_edit?(current_user,task.creator_id) && !task.hop.close == true
             %button.btn.btn-info.btn-mini{onclick: 'tasks_modal.editRecord({hop_id: ' + @hop.id.to_s + '}, "Edit hop task", "' + edit_admin_hop_task_path(task) + '")'}
