@@ -318,7 +318,7 @@ class Admin::HopsController < Admin::AdminController
  def hop_photos
    if params[:task_id]
      @hop_task_photo = UserHopTask.where(hop_task_id: params[:task_id]).map{|item| item}
-     @hop = @hop_task_photo.first.hop_task.hop
+     @hop = @hop_task_photo.first.hop_task.hop  unless  @hop_task_photo.nil?
 
    else
      @hop=Hop.find_by_id(params[:hop_id])
@@ -339,10 +339,11 @@ class Admin::HopsController < Admin::AdminController
     temp = Tempfile.new("Photo.zip")
 
     input_filenames.compact!
+
     zipfile_name = Rails.root.join.to_s  + temp.path
 
 
-    begin
+    #begin
       Zip::ZipFile.open(zipfile_name , Zip::ZipFile::CREATE) do |zipfile|
         input_filenames.each do |filename|
 
@@ -351,15 +352,31 @@ class Admin::HopsController < Admin::AdminController
         end
       end
 
+
+
+    #folder = Rails.root.join('app/assets/images')
+    #input_filenames = ['arrow.jpg', 'background1.png','background2.png','background3.png', 'f.png', 'face.png','facebook.png', 'business_info1.png', 'business_info.png', 'business_info2.png']
+    #
+    #zipfile_name = Rails.root.join('app/zip.zip')
+    #
+    #Zip::ZipFile.open(zipfile_name, Zip::ZipFile::CREATE) do |zipfile|
+    #  input_filenames.each do |filename|
+    #    # Two arguments:
+    #    # - The name of the file as it will appear in the archive
+    #    # - The original file, including the path to find it
+    #    zipfile.add(filename, folder  + filename)
+    #  end
+    #end
+
      send_file zipfile_name , :type => 'application/zip', :disposition => 'attachment', :filename => "Photos.zip"
      temp.delete
 
-    rescue Exception => e
+    #rescue Exception => e
 
-      puts "---------------------#{e}----------------"
+      #puts "---------------------#{e}----------------"
 
-      temp.delete
-    end
+      #temp.delete
+    #end
 
 
 
