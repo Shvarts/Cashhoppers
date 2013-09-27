@@ -8,6 +8,7 @@ attributes :id,
            :daily,
            :close,
            :event,
+           :link,
            :created_at,
            :updated_at
 

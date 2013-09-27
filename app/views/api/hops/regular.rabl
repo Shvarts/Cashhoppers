@@ -5,7 +5,7 @@ attributes :id,
            :time_end,
            :code,
            :price,
-
+           :link,
            :daily,
            :close,
            :event,

@@ -7,6 +7,7 @@ attributes :id,
            :price,
            :daily,
            :close,
+           :link,
            :event,
            :created_at,
            :updated_at

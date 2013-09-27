@@ -14,12 +14,13 @@ class Hop < ActiveRecord::Base
   has_many :prizes
   has_many :notifications, dependent: :destroy
 
-  attr_accessible :close, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end, :id, :logo_file_name
+  attr_accessible :close,:link, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end, :id, :logo_file_name
   attr_accessor :new_var
 
   validates_presence_of :time_start, :name
   validates_presence_of :time_end,  :producer_id, unless: :daily?
   #validates :jackpot, numericality: { only_integer: true }, unless: :daily?
+  validates :link, format: { with: /^http:\/\/.*\..*|^https:\/\/.*\..* | ""/, message: "only 'http://'" },  if: :link?
   validates :price, numericality: { greater_than: 0, allow_blank: true }
   validate :only_one_daily_hop_per_day
   validates :logo, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,

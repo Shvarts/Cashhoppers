@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920134603) do
+ActiveRecord::Schema.define(:version => 20130927102838) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -77,13 +77,6 @@ ActiveRecord::Schema.define(:version => 20130920134603) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "faqs", :force => true do |t|
-    t.string   "ask"
-    t.text     "answer"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -139,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20130920134603) do
     t.boolean  "notificated_about_end"
     t.integer  "creator_id"
     t.string   "zip"
+    t.string   "link"
   end
 
   create_table "likes", :force => true do |t|
@@ -241,7 +235,6 @@ ActiveRecord::Schema.define(:version => 20130920134603) do
     t.boolean "hop_about_to_end"
     t.boolean "comment_or_like"
     t.boolean "unsubscribe"
-    t.integer "password_ask"
   end
 
   create_table "users", :force => true do |t|
