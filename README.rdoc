@@ -337,7 +337,7 @@ service should be 'twitter', 'facebook', 'google'
     url: http://localhost:3000/api/task/submit.json
     data: {api_key: 123, authentication_token: H2zCS5AfvAIbS0OdRY6SCJAjM6RM2F, hop_task_id: 1, photo: #<File:1.jpg>, comment: 'comment text'}
     response:
-        success: {"success"=>true, "info"=>"Task create!", "status"=>200}
+        success: {"success"=>true, "info"=>"Task create!", "status"=>200, "url"=>"/images/user_hop_task_photos/tasks/8/original/PHOTO.jpeg?1380267396"}
         error: {"errors"=>["Hop task not found."], "success"=>false, "status"=>406}
                {"errors"=>["Hop task already comleted."], "success"=>false, "status"=>406}
                {"errors"=>["Hop is paid."], "success"=>false, "status"=>200}

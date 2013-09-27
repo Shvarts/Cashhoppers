@@ -5,12 +5,17 @@ attributes :id,
            :time_end,
            :code,
            :price,
-           :jackpot,
            :daily,
            :close,
            :event,
            :created_at,
            :updated_at
+
+node :jackpot do |hop|
+
+   (hop.jackpot == 0)? hop.prizes.find_by_place('1').cost : hop.jackpot
+
+end
 
 node :time_start do |hop|
    hop.time_start.strftime("%Y-%m-%dT%H:%M:%SZ")

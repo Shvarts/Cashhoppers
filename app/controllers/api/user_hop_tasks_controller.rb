@@ -25,6 +25,7 @@ class Api::UserHopTasksController < Api::ApplicationController
         @hop_task.hop.increase_score @current_user, @hop_task.pts
         render :json => {success: true,
                          info: "Task create!",
+                         url: @task.photo.url,
                          status: 200
         }
       else

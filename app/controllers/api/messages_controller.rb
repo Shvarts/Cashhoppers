@@ -56,8 +56,8 @@ class Api::MessagesController < Api::ApplicationController
     respond_to do |format|
       format.json{
         render :json => {success: true,
-                         #last_sync_time: @last_sync_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                         last_sync_time: @last_sync_time,
+                         last_sync_time: @last_sync_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                         #last_sync_time: @last_sync_time,
                          messages: @messages.map{|m|
                            m.to_json @current_user
                          },

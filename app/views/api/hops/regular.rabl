@@ -13,7 +13,9 @@ attributes :id,
            :updated_at
 
 node :jackpot do |hop|
-   :jackpot ||= hop.prizes.where(:place =>1)
+
+   (hop.jackpot == 0)? hop.prizes.find_by_place('1').cost : hop.jackpot
+
 end
 
 node :time_start do |hop|

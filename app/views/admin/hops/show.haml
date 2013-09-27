@@ -47,8 +47,9 @@
         = link_to('Destroy', admin_hop_path(@hop), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
 
 %br
-
-
+=@hop.jackpot==0
+= @hop.prizes.find_by_place(1).cost #.to_s + '$'
+-#
 
 .row-fluid
   .span6
