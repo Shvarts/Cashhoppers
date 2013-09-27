@@ -197,7 +197,7 @@ assigned: true if user assigned to hop of false if not
                                         "time_end"=>"2013-08-06T10:33:57Z",
                                         "code"=>nil,
                                         "price"=>nil,
-                                        "jackpot"=>nil,
+                                        "jackpot"=>"very big prize",
                                         "link"=>"http://perechin.net",
                                         "daily"=>true,
                                         "close"=>false,
@@ -227,7 +227,7 @@ assigned: true if user assigned to hop of false if not
                                 "time_end"=>"01/07/2013 11:35:32",
                                 "code"=>"345",
                                 "price"=>"2",
-                                "jackpot"=>34,
+                                "jackpot"=>"very big prize",
                                 "daily"=>false,
                                 "link"=>"http://perechin.net",
                                 "close"=>false,
@@ -273,7 +273,7 @@ assigned: true if user assigned to hop of false if not
     data: {api_key: 123, authentication_token: kNvOIDu1WR0f8MUYjnYdHpXgnYC0dO, hop_id: 1}
     response:
         success: {"hop"=>{"id"=>2,"link"=>"http://perechin.net", "name"=>"admin reg hop #2", "time_start"=>"08/07/2013 09:38:42", "time_end"=>"08/07/2013 09:38:42",
-                  "code"=>"34", "price"=>"34", "jackpot"=>34, "daily"=>false, "close"=>false, "event"=>"34", "created_at"=>"2013-07-23T06:39:03Z",
+                  "code"=>"34", "price"=>"34", "jackpot"=>"very big prize", "daily"=>false, "close"=>false, "event"=>"34", "created_at"=>"2013-07-23T06:39:03Z",
                   "updated_at"=>"2013-07-23T06:39:03Z", "assigned"=>true, "score"=>0, "logo"=>"/images/hop_logos/hops/1/HOP_LOGO.jpg?1374831944"
                   , "purchased"=>nil, "completed"=>true}}
         error: {"errors"=>["Hop not found."], "success"=>false, "status"=>406}
@@ -581,7 +581,7 @@ if sender_id is nil that means sender is administrator
     response:
         success: {
                   "success"=>true,
-                  "last_sync_time"=>"2013-08-06T13:15:36+03:00",
+                  "last_sync_time"=>"2013-08-06T13:15:36Z",
                   "messages"=>[
                     {"sender_id"=>19,
                      "receiver_id"=>20,

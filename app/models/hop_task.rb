@@ -21,7 +21,7 @@ class HopTask < ActiveRecord::Base
   validate :only_one_task_for_daily_hop, :on =>:create
   validates :logo, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.GIF|.PNG|.JPG/,
                              message: "only image (.jpg, .png, .gif)" }
-  validates :link, format: { with: /^http:\/\/.*\..*|^https:\/\/.*\..* | ""/, message: "only 'http://'" },  if: :link?
+  validates :link, format: { with: /(^http:\/\/.*\..*)|(^https:\/\/.*\..*)|""/, message: "only 'http://'" },  if: :link?
 
 
   before_save :pts_default

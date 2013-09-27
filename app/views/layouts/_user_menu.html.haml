@@ -2,8 +2,8 @@
 .row-fluid#user_menu
 
   .span12
-    .accordion-group
-      .accordion-heading
+    .accordion-group{:style=>'border: none'}
+      .accordion-heading{style: 'border: 1px solid #DDD; border-radius: 3px;'}
         %a.accordion-toggle.text-center.collapsed{:style=>"word-wrap: break-word", "data-parent" => "#accordion-demo", "data-toggle" => "collapse", :href => "#text"}
           User menu
           %span.caret{style: 'vertical-align: middle'}

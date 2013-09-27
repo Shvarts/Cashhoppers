@@ -1,10 +1,14 @@
 = javascript_include_tag 'modal_crud'
 :javascript
   $(function(){
-   $('.height-fix').css('max-height','400px');
+
+   $('.height-fix').css('max-height',(($(window).height())-180)+'px');
+
+
   });
 
-#modal-crud-window.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'false',overflow: 'hidden',  style: 'width: auto; margin-left: -27%; height:auto'}
+
+#modal-crud-window.modal.hide.fade{tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'false',overflow: 'hidden'}
   .modal-header
     %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true}
       ×

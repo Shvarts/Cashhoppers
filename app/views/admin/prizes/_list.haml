@@ -31,8 +31,9 @@
             =prize.cost
 
         %td
-          -if prize.description
-            = text_area_tag '', prize.description, :width => '100%'
+          -unless prize.description.blank?
+            .fix-size-field{style: ' max-width: 100%' }
+              =  prize.description
         %td
 
           - if prize.user
