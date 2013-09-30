@@ -64,7 +64,7 @@ class Admin::HopsController < Admin::AdminController
     @hop = Hop.new(params[:hop])
     if @hop.daily
 
-      @hop.time_end = @hop.time_start.end_of_day
+      @hop.time_end = @hop.time_start.end_of_day if @hop.time_start
 
     end
     if @hop.save
