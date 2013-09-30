@@ -347,10 +347,11 @@ class Admin::HopsController < Admin::AdminController
       Zip::ZipFile.open(zipfile_name , Zip::ZipFile::CREATE) do |zipfile|
         i = 0
         input_filenames.each do |filename|
+          if filename.photo_file_name && filename.photo.path
+            zipfile.add(i.to_s + rand(3).to_s+rand(3).to_s+ rand(3).to_s + filename.photo_file_name , filename.photo.path) unless filename.photo_file_name.nil?
 
-          zipfile.add(i.to_s + rand(3).to_s+rand(3).to_s+ rand(3).to_s + filename.photo_file_name , filename.photo.path) unless filename.photo_file_name.nil?
-
-          i = i + 1
+            i = i + 1
+          end
         end
       end
 
