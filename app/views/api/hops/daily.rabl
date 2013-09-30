@@ -14,7 +14,7 @@ attributes :id,
 
 node :jackpot do |hop|
 
-   (hop.jackpot == 0)? hop.prizes.find_by_place('1').cost : hop.jackpot
+   (hop.jackpot == '0')? hop.prizes.find_by_place('1').cost : hop.jackpot
 
 end
 

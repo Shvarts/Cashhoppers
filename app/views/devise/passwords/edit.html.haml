@@ -1,0 +1,25 @@
+:css
+  body{
+    padding: 0px;
+  }
+
+.row-fluid
+  .span3
+  .span6.text-center
+    #container
+      %h2 Change your password
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class=>'bs-docs-example' }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        %div
+          = f.label :password, "New password"
+
+          = f.password_field :password, :autofocus => true
+          %br/
+        %div
+          %br/
+          = f.label :password_confirmation, "Confirm new password"
+
+          = f.password_field :password_confirmation
+        %div= f.submit "Change my password", :class=>'btn btn-success'
+      = render "devise/shared/links"
