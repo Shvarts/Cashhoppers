@@ -15,7 +15,7 @@ attributes :id,
 node :jackpot do |hop|
 
    prize =((hop.jackpot=='0'||hop.jackpot == '') && hop.prizes.find_by_place('1'))? hop.prizes.find_by_place('1').cost : hop.jackpot
-    (prize.to_s.match(/[a-zA-Z]/).nil?)? ("$" + prize.to_s) : prize
+    (prize.to_s.match(/[a-zA-Z]/).nil?&& !hop.jackpot.blank?)? ("$" + prize.to_s) : prize
 end
 
 

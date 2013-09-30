@@ -6,7 +6,8 @@
 .span12.text-center
   %fieldset.btn.profile{:style => " width: 100%"}
     %h1.text-center
-      = @user.first_name
+      .fix-long-div
+        = @user.first_name
     %br
     %br
 
@@ -20,25 +21,29 @@
             %strong
               First name:
           .span8.text-left
-            = @user.first_name
+            .fix-long-div
+              = @user.first_name
         .row-fluid.span10
           .span4.text-left
             %strong
               Last name:
           .span8.text-left
-            = @user.last_name
+            .fix-long-div
+              = @user.last_name
         .row-fluid.span10
           .span4.text-left
             %strong
               User name:
           .span8.text-left
-            = @user.user_name
+            .fix-long-div
+              = @user.user_name
         .row-fluid.span10.email
           .span4.text-left
             %strong
               Email:
           .span8.text-left
-            = @user.email
+            .fix-long-div
+              = @user.email
         .row-fluid.span10
           .span4.text-left
             %strong
@@ -70,19 +75,22 @@
             %strong
               Twitter:
           .span8.text-left
-            = link_to @user.twitter, @user.twitter if @user.twitter
+            .fix-long-div
+              = link_to @user.twitter, @user.twitter if @user.twitter
         .row-fluid.span10
           .span4.text-left
             %strong
               Facebook:
           .span8.text-left
-            = link_to @user.facebook, @user.facebook if @user.facebook
+            .fix-long-div
+              = link_to @user.facebook, @user.facebook if @user.facebook
         .row-fluid.span10
           .span4.text-left
             %strong
               Google +:
           .span8.text-left
-            = link_to @user.google, @user.google if @user.google
+            .fix-long-div
+              = link_to @user.google, @user.google if @user.google
 
 
       .span6.text-center.large-screen

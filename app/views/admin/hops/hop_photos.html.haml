@@ -36,7 +36,7 @@
 
 %br
 %br
-- if current_user
+- if current_user && !@hop_task_photo.blank?
   .row-fluid
     .span4
     .span4.text-center
@@ -44,9 +44,9 @@
     .span4
 
   -unless User.user?(current_user)
-
-    .row-fluid
-      .span4
-      .span4.text-center
-        =link_to 'Download photos as zip',  admin_export_photos_zip_path({:id =>@hop_task_photo}), :class => 'btn btn-success'
-      .span4
+    -unless @hop_task_photo.blank?
+      .row-fluid
+        .span4
+        .span4.text-center
+          =link_to 'Download photos as zip',  admin_export_photos_zip_path({:id =>@hop_task_photo}), :class => 'btn btn-success'
+        .span4
