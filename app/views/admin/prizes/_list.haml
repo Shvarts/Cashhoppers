@@ -37,7 +37,8 @@
         %td
 
           - if prize.user
-            = link_to "#{  prize.user.first_name}  #{ prize.user.last_name} ",  admin_users_tasks_photo_path({:user_id =>prize.user.id, :hop_id => prize.hop.id})
+            .fix-long-div
+              = link_to "#{  prize.user.first_name}  #{ prize.user.last_name} ",  admin_users_tasks_photo_path({:user_id =>prize.user.id, :hop_id => prize.hop.id})
         %td.buttons-section{style: 'text-align: right'}
           -if (User.producer?(current_user) || User.admin?(current_user)) && !prize.accept && !prize.hop.close == true
             -if  (prize.prize_type == 'place' || prize.prize_type == 'random' )&& prize.hop.hop_end

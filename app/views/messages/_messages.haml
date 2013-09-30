@@ -5,11 +5,13 @@
         = time_ago_in_words(message['created_at']) + " ago. You: "
       .oval-thought-border.left
         %b
-          = message.text
+          .fix-long-div{ style: 'max-width: none'}
+            = message.text
     - else
       .thought-meta
         = time_ago_in_words(message['created_at']) + " ago. #{full_user_name(@friend)}: "
       .oval-thought-border.right
         %b#message-text
-          = message.text
+          .fix-long-div{ style: 'max-width: none'}
+            = message.text
 = hidden_field_tag :last_sync_date, @last_sync_date

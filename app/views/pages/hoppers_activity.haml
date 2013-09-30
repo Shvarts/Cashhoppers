@@ -55,7 +55,7 @@
                 %div
                   = task.created_at
               %td
-                %div
+                %div.fix-long-div
                   = task.comment
               %td
                 = Like.where(target_object_id: task.id, target_object: 'UserHopTask').count

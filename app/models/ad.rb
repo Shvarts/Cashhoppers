@@ -31,9 +31,9 @@ class Ad < ActiveRecord::Base
 
       [['RPOU', 'RPOU'], ['ROTATE CH', 'RCH'], ['FULL', 'FULL']]
     elsif hop.daily
-      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL']]
+      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL'], ['COUPON SCREEN', 'CS']]
     else
-      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL'], ['POP - UP ROTATE', 'ROPU']]
+      [['SPONSOR FULL PG', 'SP'], ['FULL PG - ROTATE', 'ROFL'], ['POP - UP ROTATE', 'ROPU'], ['COUPON SCREEN', 'CS']]
     end
   end
 

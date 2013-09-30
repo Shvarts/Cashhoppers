@@ -6,9 +6,10 @@
         %a.thumbnail
           = image_tag user.avatar.url, style: 'width: 70px'
       .span10
-        = @user.first_name
-        = ' '
-        = @user.last_name
+        .fix-long-div
+          = @user.first_name
+          = ' '
+          = @user.last_name
         .span{style: 'color: gray'}
           -if !@user.incoming_messages.blank? &&  !@user.incoming_messages.where(sender_id: @user.id).blank?
 

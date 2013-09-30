@@ -11,12 +11,17 @@ class Api::AdsController < Api::ApplicationController
 
       types << type[1]
     end
-
+    puts "----------types--------#{types}------------------------"
+    puts "----------ad--------#{params[:ad_type]}------------------------"
+    puts "----------ad--------#{ params[:hop_id]}------------------------"
 
 
     if params[:ad_type].present? && @hop && types.include?(params[:ad_type])
       @ad = Ad.where(hop_id: params[:hop_id], ad_type: params[:ad_type]).order("RAND()").first
       if params[:ad_type] == 'SP' && @ad == nil
+        @ad = Ad.where(hop_id: params[:hop_id], ad_type: 'ROFL').order("RAND()").first
+      end
+      if params[:ad_type] == 'CS' && @ad == nil
         @ad = Ad.where(hop_id: params[:hop_id], ad_type: 'ROFL').order("RAND()").first
       end
       bad_request ['Ads not found.'], 406 unless @ad
