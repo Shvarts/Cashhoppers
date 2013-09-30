@@ -28,9 +28,10 @@
         %a.thumbnail
           = image_tag user.avatar.url, style: 'width: 70px'
       .span10
-        = message.first_name
-        = ' '
-        = message.last_name
+        .fix-long-div{ style: 'max-width: none'}
+          = message.first_name
+          = ' '
+          = message.last_name
         .span{style: 'color: gray'}
           -if !message.incoming_messages.blank? &&  !message.incoming_messages.where(sender_id: message.id).blank?
 
@@ -39,7 +40,8 @@
         %br
         %h4
           -if !message.incoming_messages.blank? &&  !message.incoming_messages.where(sender_id: message.id).blank?
-            =message.incoming_messages.where(sender_id: message.id).last.text
+            .fix-long-div{ style: 'max-width: none'}
+              =message.incoming_messages.where(sender_id: message.id).last.text
 
 
       .span1

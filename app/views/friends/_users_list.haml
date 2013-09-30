@@ -1,10 +1,12 @@
 .span10.offset1
 .row-fluid
   .span7
-    = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0
-  .span5.text-right.row
-    = text_field_tag :user, params[:query], class: 'span7', id: 'search_field', :placeholder=> "Enter FIRST or LAST name"
-    = link_to 'Search', find_friends_path, class: 'btn span4', id: 'search_button'
+    = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 0, outer_window: 0, :style=>'margin: 0px 0px;'
+  .span5.text-center.row
+
+    .input-append{style: 'font-size: 100%'}
+      = text_field_tag :user, params[:query], class: '', id: 'search_field', :placeholder=> "Enter FIRST or LAST name"
+      = link_to 'Find', find_friends_path, class: 'btn btn-success', id: 'search_button', :style =>'line-height: 20px; margin-left: -4px; font-size: 100%'
 %table.table
   %tr
     %th
