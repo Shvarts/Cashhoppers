@@ -61,7 +61,8 @@
           %b
             Name:
         %td
-          = @hop.name
+          .fix-long-div
+            = @hop.name
       %tr
         %td
           %b
@@ -98,8 +99,9 @@
               Producer:
           %td
             - if @hop.producer
-              = @hop.producer.first_name
-              = @hop.producer.last_name
+              .fix-long-div
+                = @hop.producer.first_name
+                = @hop.producer.last_name
         %tr
           %td
             %b
@@ -120,7 +122,8 @@
               Producer Email:
           %td
             - if @hop.producer
-              = @hop.producer.email
+              .fix-long-div
+                = @hop.producer.email
         %tr
           %td
             %b

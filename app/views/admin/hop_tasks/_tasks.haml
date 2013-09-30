@@ -26,8 +26,9 @@
           = task.text
         %td
           - if task.sponsor
-            = task.sponsor.first_name
-            = task.sponsor.last_name
+            .fix-long-div
+              = task.sponsor.first_name
+              = task.sponsor.last_name
         %td
           = task.link
         %td
