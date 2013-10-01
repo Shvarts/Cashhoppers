@@ -9,8 +9,7 @@
         -g.column name:'Prize', attribute: 'cost'
         -g.column name:'Prize type', attribute: 'prize_type'
         -g.column name: 'Hop name', model: 'Hop',  attribute: 'name' do |prize|
-
-          -prize.hop.name  if prize.hop
+          -link_to prize.hop.name, admin_hop_path(prize.hop) if prize.hop
         -g.column name: '' do |prize|
           -prizes << prize.id if prize
           -link_to 'email to user',  admin_messages_email_tool_path({:id=> [prize.user.id]}), class: 'btn btn-mini btn-success'
