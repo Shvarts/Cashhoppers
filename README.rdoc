@@ -534,6 +534,13 @@ service should be 'twitter', 'facebook', 'google'
                         "friend"=>nil,
                         "message"=>nil,
                         "hop"=>{
+                            "id"=>12,
+                            "code"=>"",
+                            "jackpot"=>"$123",
+                            "link"=>"",
+                            "score"=>0,
+                            "purchased"=>nil,
+                            "complited"=>true,
                             "name"=>"the new hop 2",
                             "time_start"=>"2013-08-05T17:28:32Z",
                             "time_end"=>"2013-08-28T17:28:32Z",

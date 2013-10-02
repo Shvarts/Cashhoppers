@@ -71,9 +71,38 @@ child :message do
 end
 
 child :hop do
-    attributes :id, :name, :time_start, :time_end, :price, :daily, :event
+    attributes :id, :name, :time_start, :time_end, :price, :daily, :event, :code, :link
+
+    node :jackpot do |hop|
+      prize = ((hop.jackpot == '0' || hop.jackpot == '') && hop.prizes.find_by_place('1'))? hop.prizes.find_by_place('1').cost : hop.jackpot
+      (prize.to_s.match(/[a-zA-Z]/).nil? && !hop.jackpot.blank?)? ("$" + prize.to_s) : prize
+    end
+
     node :logo do |hop|
        hop.logo.url
+    end
+
+    node :purchased do |hop|
+        if hop.free?
+            nil
+        else
+            hop.assigned? @current_user
+        end
+    end
+
+    node :completed do |hop|
+        completed = true
+        hop.hop_tasks.each do |task|
+            user_hop_task = UserHopTask.where(user_id: @current_user.id, hop_task_id: task.id).first
+            unless user_hop_task
+                completed = false
+            end
+        end
+        completed
+    end
+
+    node :score do |hop|
+       hop.score @current_user
     end
 end
 

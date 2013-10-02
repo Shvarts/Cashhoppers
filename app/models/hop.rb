@@ -308,7 +308,15 @@ class Hop < ActiveRecord::Base
     puts @hops.count
     @hops.each do |hop|
       hop.hoppers.each do |user|
+        puts "1111111----------------------------------------------"
+        puts "11111111---------------------------------------------"
+        puts "111111111111"
+
         if !hop.completed? user
+          puts "text"
+          puts "text"
+          puts "text"
+          puts "text"
           Notification.create(user_id: user.id, friend_id: nil, event_type: 'Hop about to end', hop_id: hop.id)
         end
       end

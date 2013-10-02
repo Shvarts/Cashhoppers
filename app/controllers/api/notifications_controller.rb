@@ -1,5 +1,6 @@
 class Api::NotificationsController < Api::ApplicationController
   def get_events_list
+
     @events = Notification.paginate(conditions: {user_id: @current_user.id},
                                    page:       params[:page],
                                    per_page:   params[:per_page],
