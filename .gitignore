@@ -12,8 +12,9 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-#/tmp
+/tmp
 config/database.yml
 .idea
-#public/images
+public/images
+public/new_images
 public/assets
