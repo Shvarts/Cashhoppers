@@ -141,7 +141,7 @@
             %b
               Jackpot:
           %td
-            -if @hop.jackpot.to_s.match(/[a-zA-Z]/).nil? && !@hop.jackpot.blank?
+            -if @hop.jackpot.to_s.match(/(\$)|[a-zA-Z]/).nil? && !@hop.jackpot.blank?
               = number_to_currency(@hop.jackpot )
             -else
               =@hop.jackpot

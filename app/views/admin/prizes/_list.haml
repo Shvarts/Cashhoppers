@@ -25,7 +25,8 @@
           -else
             = prize.place
         %td
-          -if prize.cost.to_s.match(/[a-zA-Z]/).nil?
+
+          -if prize.cost.to_s.match(/(\$)|[a-zA-Z]/).nil?
             = number_to_currency(prize.cost )
           -else
             =prize.cost
