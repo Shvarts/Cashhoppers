@@ -4,9 +4,9 @@ class UserHopTask < ActiveRecord::Base
   has_many :comments, foreign_key: 'commentable_id'
   has_many :likes, foreign_key: 'target_object_id'
   has_attached_file :photo, :styles => { :small => "150x150>" },
-                    :url  => "/images/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension",
+                    :url  => "/system/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension",
                     :default_url => "/assets/no_feed_image.png",
-                    :path => ":rails_root/public/images/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension"
+                    :path => ":rails_root/public/system/user_hop_task_photos/tasks/:id/:style/PHOTO.:extension"
 
   attr_accessible :user_id, :hop_task_id, :photo, :comment, :shared
 

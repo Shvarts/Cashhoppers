@@ -14,9 +14,9 @@ class Ad < ActiveRecord::Base
                   :time_end
 
   has_attached_file :picture,
-    :url  => "/images/ad_pictures/ads/:id/AD_PICTURE.:extension",
+    :url  => "/system/ad_pictures/ads/:id/AD_PICTURE.:extension",
     :default_url => "/assets/no_ad_picture.png",
-    :path => ":rails_root/public/images/ad_pictures/ads/:id/AD_PICTURE.:extension"
+    :path => ":rails_root/public/system/ad_pictures/ads/:id/AD_PICTURE.:extension"
 
 
   validates_presence_of :ad_type, :link, :advertizer_id,  :picture

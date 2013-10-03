@@ -5,9 +5,9 @@ class Hop < ActiveRecord::Base
   has_many :ads,  :dependent => :destroy
   belongs_to :producer, :class_name => 'User'
   has_attached_file :logo,
-                    :url  => "/images/hop_logos/hops/:id/HOP_LOGO.:extension",
+                    :url  => "/system/hop_logos/hops/:id/HOP_LOGO.:extension",
                     :default_url => "/assets/no_hop_logo.png",
-                    :path => ":rails_root/public/images/hop_logos/hops/:id/HOP_LOGO.:extension"
+                    :path => ":rails_root/public/system/hop_logos/hops/:id/HOP_LOGO.:extension"
 
 
 
