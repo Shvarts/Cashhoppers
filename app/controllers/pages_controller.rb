@@ -3,6 +3,12 @@ class PagesController < ApplicationController
   layout "home_layout", :only => [:trade_show, :terms, :business_level, :faq ]
 
   def home
+    puts "------------_#{params}_____________________"
+    puts "------------_#{params}_____________________"
+    puts "------------_#{params}_____________________"
+    puts "------------_#{current_user.inspect}_____________________"
+    puts "------------_#{current_user.inspect}_____________________"
+
 
     tasks_count = 5
     @user_hop_tasks = UserHopTask.limit(tasks_count).order("created_at DESC")
