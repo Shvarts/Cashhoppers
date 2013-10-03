@@ -28,7 +28,8 @@ node :time_end do |hop|
 end
 
 node :assigned do |hop|
-   (hop.hoppers.include? @current_user) ? true : false
+
+   @current_user.games.include? hop
 end
 
 node :score do |hop|
@@ -43,7 +44,7 @@ node :purchased do |hop|
     if hop.free?
         nil
     else
-        hop.assigned? @current_user
+        @current_user.games.include? hop
     end
 end
 

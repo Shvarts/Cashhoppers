@@ -38,7 +38,7 @@ class Api::HopsController < Api::ApplicationController
   end
 
   def daily
-
+    #.joins("LEFT OUTER JOIN `hoppers_hops` ON `hoppers_hops`.`hop_id` = `hops`.`id`")
     params[:page] ||= 1
     params[:per_page] ||= 10
 

@@ -10,9 +10,9 @@ class HopTask < ActiveRecord::Base
 
 
   has_attached_file :logo,
-                    :url  => "/images/hop_task_logos/hop_tasks/:id/Task_LOGO.:extension",
+                    :url  => "/new_images/hop_task_logos/hop_tasks/:id/Task_LOGO.:extension",
                     :default_url => "/assets/no_hop_logo.png",
-                    :path => ":rails_root/public/images/hop_task_logos/hop_tasks/:id/Task_LOGO.:extension"
+                    :path => ":rails_root/public/new_images/hop_task_logos/hop_tasks/:id/Task_LOGO.:extension"
 
 
   #validates :bonus, :pts, numericality: { only_integer: true }
