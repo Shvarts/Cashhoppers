@@ -12,9 +12,9 @@ class FriendsController < ApplicationController
   def find_friends
     params[:tab] = :find_friends
 
-    conditions = []
+    conditions = {deleted: !true}
     unless params[:query].blank?
-      conditions = ["first_name LIKE ? OR last_name LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"]
+      conditions = ["(first_name LIKE ? OR last_name LIKE ? ) AND deleted != 1", "%#{params[:query]}%", "%#{params[:query]}%"]
     end
 
     @users = User.paginate(page: params[:page], per_page:10, conditions: conditions  )

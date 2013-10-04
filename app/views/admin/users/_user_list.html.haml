@@ -9,7 +9,7 @@
         -g.column name:'Last name', attribute: 'last_name'
         -g.column name:'Email', attribute: 'email'
         -g.column name: 'Search role', model: 'Role',  attribute: 'name' do |user|
-          -user.roles.first.name
+          -user.roles.first.name + user.deleted.inspect.to_s
         -g.column name: 'Subscribe', model: 'UserSettings',  attribute: 'unsubscribe', :filter=> false do |user|
           -subscribe =  (user.user_settings && user.user_settings.unsubscribe)? false : true
           - check_box_tag :unsubscribe, true, subscribe ,  :subscribe=> subscribe, :user_id => user.id,
@@ -23,3 +23,6 @@
         - g.column  name: 'Change Role', class: 'role' do |user|
           - select_tag :role, options_for_select(Role.all.map{ |u| [u.name, u.id] }, user.roles.first.id),
                      :user_id => user.id, :onchange => "change_user_role(this);"
+
+        - g.column do |user|
+          - button_to('delete',  admin_users_delete_user_path({user_id: user.id}),confirm: 'Are you sure?', remote: true, class: 'btn btn-mini btn-danger')

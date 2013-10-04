@@ -36,7 +36,7 @@ CashHoppers::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = {
-    :host => 'ec2-54-227-42-108.compute-1.amazonaws.com',
+    :host => 'cashhoppers.com',
 
   }
 end

@@ -28,7 +28,7 @@ class Admin::HoppersController < Admin::AdminController
   end
 
   def search_by_name
-    conditions = ["user_name LIKE ? OR user_name LIKE ?", "%#{params[:qwery]}%", "%#{params[:qwery]}%"]
+    conditions = ["(user_name LIKE ? OR user_name LIKE ? ) AND deleted not 1", "%#{params[:qwery]}%", "%#{params[:query1]}%"]
     @users = User.paginate(page: params[:page], per_page:9, conditions:  conditions)
     render :partial=> 'users_list'
   end
@@ -36,7 +36,7 @@ class Admin::HoppersController < Admin::AdminController
   def search_user
     params[:page] ||= 1
     params[:per_page] ||= 7
-    @users = User.paginate page: params[:page], per_page: params[:per_page]
+    @users = User.paginate page: params[:page], per_page: params[:per_page], conditions: {:deleted=> !true}
     render :partial=> 'users_list'
   end
 
@@ -50,7 +50,7 @@ class Admin::HoppersController < Admin::AdminController
   def search_zip_list
     params[:page] ||= 1
     params[:per_page] ||= 7
-    @zips = User.group(:zip).select(:zip).paginate page: params[:page], per_page: params[:per_page]
+    @zips = User.group(:zip).select(:zip).paginate page: params[:page], per_page: params[:per_page], conditions: {:deleted=> !true}
      render partial: 'users_zip_list'
   end
 
@@ -62,7 +62,7 @@ class Admin::HoppersController < Admin::AdminController
   end
 
   def select_hop
-    @users = Hop.find_by_id(params[:id]).hoppers.all
+    @users = Hop.find_by_id(params[:id]).hoppers.where(deleted: !true)
 
     @id_array = @users.map{|user| user.id }
     #session[:last_hoppers]= @id_array
@@ -70,7 +70,7 @@ class Admin::HoppersController < Admin::AdminController
   end
 
   def select_zip
-    @users = User.where(:zip => params[:zip]).all
+    @users = User.where(:zip => params[:zip], deleted: !true).all
 
     @id_array = @users.map{|user| user.id }
 
@@ -132,7 +132,7 @@ class Admin::HoppersController < Admin::AdminController
     end
   end
   def select_all
-    @users = User.all
+    @users = User.where(deleted:  !true)
 
     @id_array = @users.map{|user| user.id }
 
@@ -147,7 +147,7 @@ class Admin::HoppersController < Admin::AdminController
 
     #@winners = Prize.all.map{|prize| prize.user}.compact!
     users=[]
-    user = User.all
+    user = User.where(deleted: !true)
     user.each do |i|
       users<< i.id unless i.prizes.blank?
     end

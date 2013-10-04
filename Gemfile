@@ -15,7 +15,7 @@ gem 'rabl-rails'
 gem 'oj'
 
 # authentification
-gem 'devise'
+gem "devise", "~> 2.2.4"
 gem 'cancan'
 gem 'wice_grid', '3.2.1'
 gem 'paperclip'
@@ -23,14 +23,14 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'will_paginate-bootstrap'
 gem 'rufus-scheduler'
-gem 'chosen-rails'
+gem "chosen-rails", "~> 0.13.2"
 gem 'prawn' #, :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
 gem 'rest-client'
 
 gem 'to_xls'
 gem 'roo'
 gem "spreadsheet"
-gem "rubyzip", :require => 'zip/zip'
+gem "rubyzip", "~> 0.9.9", :require => 'zip/zip'
 
 gem 'grocer'
 

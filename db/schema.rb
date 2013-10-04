@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927145707) do
+ActiveRecord::Schema.define(:version => 20131004102009) do
 
   create_table "ads", :force => true do |t|
     t.integer  "advertizer_id"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20130927145707) do
     t.string   "facebook"
     t.string   "google"
     t.integer  "frog_legs"
+    t.boolean  "deleted"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

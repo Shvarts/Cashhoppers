@@ -9,10 +9,11 @@ class Message < ActiveRecord::Base
   attr_accessible :receiver_id, :sender_id, :schedule_date, :synchronized, :text, :sended
 
   validates :text, presence: true
-  validate :schedule_date_in_future
+  validate :schedule_date_in_future, :not_delete
 
   after_create :push_to_thread
   before_create :set_synchronized
+
 
   def self.thread user, page = nil, per_page = nil
     pagination = ""
@@ -44,6 +45,9 @@ class Message < ActiveRecord::Base
     ActiveRecord::Base.connection.close
     thread
   end
+
+
+
 
   def push_to_thread
     if self.sended
@@ -84,6 +88,12 @@ class Message < ActiveRecord::Base
   end
 
   private
+
+  def not_delete
+    if self.receiver.deleted
+      self.errors.add :receiver_id, 'receiver has deleted'
+    end
+  end
 
   def schedule_date_in_future
     if self.schedule_date && self.schedule_date < Time.now + 5.minutes

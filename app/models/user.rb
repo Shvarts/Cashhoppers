@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+
   has_and_belongs_to_many :games, :join_table => "hoppers_hops" , :class_name=>"Hop"
   has_many :incoming_messages, :class_name =>  'Message' ,  :foreign_key => :sender_id, conditions: ['sended = 1']
   has_many :outcoming_messages, :class_name => 'Message' , :foreign_key => :receiver_id, conditions: ['sended = 1']
@@ -35,8 +36,9 @@ class User < ActiveRecord::Base
   has_one :user_settings
 
   before_create :before_create
+
   after_create :after_create
-  # Include default devise modules. Others available are:
+  # Include default custom_devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -45,13 +47,18 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :last_name, :first_name, 
          :user_name, :password_confirmation, :remember_me, :zip, :avatar, :contact, :phone,
-         :bio, :twitter, :facebook, :google, :avatar_file_name, :id
+         :bio, :twitter, :facebook, :google, :avatar_file_name, :id, :deleted
 
 
   validates :zip, :user_name , :presence => true
   validates :zip, numericality: {only_integer: true, allow_blank: true}
   validates :avatar, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                              message: "only image (.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG)" }
+
+
+
+
+
 
 
   def role?(role)
@@ -88,7 +95,9 @@ class User < ActiveRecord::Base
 
   def before_create
     frog_legs = 0
+
   end
+
 
   def after_create
     self.roles << Role.find_by_name(:user)

@@ -23,6 +23,7 @@ CashHoppers::Application.routes.draw do
     get "users/tasks_photo"
     get "users/index"
     post "users/unsubscribe_user"
+    post 'users/delete_user',              to:  'users#delete_user'
 
     resources :applications
 
@@ -152,6 +153,7 @@ CashHoppers::Application.routes.draw do
     delete 'messages/remove_message',      to: 'messages#remove_message'
 
     #users
+
     get "users/index"
     get 'users/get_users',                 to: 'users#index'
     get 'users/get_my_info',               to: 'users#get_my_info'
@@ -172,10 +174,11 @@ CashHoppers::Application.routes.draw do
 
   end
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions =>'CustomDevise::Sessions'}
 
   get 'hop/:id/edit_regular',            to: 'hops#edit_regular',      as: 'edit_regular_hop'
   get 'user/:id',                        to: 'users#profile',          as: 'user'
+
 
   match '/auth/:service/callback' => 'services#add_zip'
   get 'services/add_zip', :to => 'services#add_zip'
@@ -190,6 +193,7 @@ CashHoppers::Application.routes.draw do
   post 'friends/accept_request', to: 'friends#accept_request'
   post 'friends/decline_request', to: 'friends#decline_request'
   post 'friends/delete_friend', to: 'friends#delete_friend'
+
 
   get 'messages/friends_list'
   get 'messages/friend_messages'

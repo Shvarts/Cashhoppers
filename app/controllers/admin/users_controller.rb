@@ -1,15 +1,12 @@
 class Admin::UsersController < Admin::AdminController
   load_and_authorize_resource
   def index
+    conditions = {deleted: !true}
     @users_grid = initialize_grid(User,
-                                 :include => [:roles, :user_settings],
-                                  per_page: 20
+                                 :include => [:roles, :user_settings], :conditions => conditions,
+                                  per_page: 20,
+
                                      )
-
-
-    puts "----------------------------------------------#{params}----------------------------"
-    puts "----------------------------------------------#{params}----------------------------"
-    puts "----------------------------------------------#{params}----------------------------"
     if params[:subscribe]
       user = User.find_by_id(params[:user_id].to_i)
       subscribe = (params[:subscribe]== 'true')?  true : false
@@ -18,10 +15,7 @@ class Admin::UsersController < Admin::AdminController
         set.save
       else
        test = user.user_settings.update_attributes(:unsubscribe =>  subscribe)
-        puts "----------------------------------------------#{ subscribe}----------------------------"
-        puts "----------------------------------------------#{ subscribe}----------------------------"
-        puts "----------------------------------------------#{ subscribe}----------------------------"
-      end
+     end
       render :partial => 'user_list'
     end
 
@@ -48,5 +42,28 @@ class Admin::UsersController < Admin::AdminController
 
   def unsubscribe_user
     render :partial => 'user_list'
+  end
+
+  def delete_user
+    user = User.find_by_id(params[:user_id])
+
+    user.update_attributes(deleted: true, email: 'deleted@user.com' + user.id.to_s, user_name: 'deleted', first_name: 'deleted', last_name: 'deleted')
+    conditions = {deleted: !true}
+    @users_grid = initialize_grid(User,  :conditions => conditions,
+                                  :include => [:roles, :user_settings],
+                                  per_page: 20
+    )
+
+    messages = Message.where(:sender_id=>user.id)
+    notifications = Notification.where(message_id: messages.map{|mes| mes.id})
+    messages2 = Message.where(:receiver_id=>user.id)
+    notifications2 = Notification.where(message_id: messages.map{|mes| mes.id})
+    messages.destroy_all
+    messages2.destroy_all
+    notifications.destroy_all
+    notifications2.destroy_all
+    respond_to do |format|
+      format.js
+    end
   end
 end

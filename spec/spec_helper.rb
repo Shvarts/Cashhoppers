@@ -70,6 +70,6 @@ def api_key_error
 end
   # required for device sessions request
 def device_mapping(user = :user)
-  @request.env["devise.mapping"] = Devise.mappings[user]
+  @request.env["custom_devise.mapping"] = Devise.mappings[user]
 end
 
