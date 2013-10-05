@@ -116,7 +116,7 @@
 ##  puts i.update_attributes(:picture=>File.new(Rails.root.join("app/assets/images/no_ad_picture.png"), 'rb'))  unless File.exist?(Rails.root.join("public/#{i.picture.url.split('?')[0][1..-1]}"))
 ##
 ##end
-users = User.where(:deleted=>['Null', 'null'])
+users = User.where(:deleted=>['Null', 'null', nil])
 
 users.each do |i|
   i.update_attributes(:deleted=>false)
