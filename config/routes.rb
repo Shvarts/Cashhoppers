@@ -49,6 +49,8 @@ CashHoppers::Application.routes.draw do
     get 'hops/render_hoppers',            to: 'hops#render_hoppers',           as: 'render_hoppers'
     get 'hops/hop_photos',                to: 'hops#hop_photos',               as: 'hop_photos'
     get 'hops/export_photos_zip',         to: 'hops#export_photos_zip',        as: 'export_photos_zip'
+    get 'hops/edit_photo',                to: 'hops#edit_photo',               as: 'edit_photo'
+    post 'hops/delete_photo',                to: 'hops#delete_photo',           as: 'delete_photo'
 
     #hop_tasks
     resources :hop_tasks

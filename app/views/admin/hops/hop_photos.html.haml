@@ -48,5 +48,13 @@
       .row-fluid
         .span4
         .span4.text-center
+          =link_to 'Photo as list',  admin_edit_photo_path({:id =>@hop_task_photo}), :class => 'btn btn-success'
+        .span4
+      %br
+      .row-fluid
+        .span4
+        .span4.text-center
           =link_to 'Download photos as zip',  admin_export_photos_zip_path({:id =>@hop_task_photo}), :class => 'btn btn-success'
         .span4
+
+

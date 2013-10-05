@@ -317,8 +317,9 @@ class Admin::HopsController < Admin::AdminController
 
  def hop_photos
    if params[:task_id]
-     @hop_task_photo = UserHopTask.where(hop_task_id: params[:task_id]).map{|item| item}
-     @hop = @hop_task_photo.first.hop_task.hop  unless  @hop_task_photo.nil?
+     @task = HopTask.find_by_id(params[:task_id])
+     @hop_task_photo = UserHopTask.where(hop_task_id: @task.id).map{|item| item}
+     @hop = @hop_task_photo.first.hop_task.hop  unless  @hop_task_photo.blank?
 
    else
      @hop=Hop.find_by_id(params[:hop_id])
@@ -364,11 +365,30 @@ class Admin::HopsController < Admin::AdminController
 
       temp.delete
     end
-
-
-
   end
 
+  def edit_photo
+    @photos_id =params[:id]
+    @photos = UserHopTask.where(:id=> @photos_id)
+
+    @hop = @photos.first.hop_task.hop if  @photos.first.hop_task
+  end
+
+  def delete_photo
+
+
+
+    params[:photos].delete(params[:id])
+    @photos_id =  params[:photos]
+
+    @hop = Hop.find_by_id(params[:hop])
+    @photos = UserHopTask.where(:id=> @photos_id)
+    photo = UserHopTask.find_by_id(params[:id])
+    photo.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
   private
 
   def init_hop

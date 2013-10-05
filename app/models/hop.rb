@@ -11,7 +11,7 @@ class Hop < ActiveRecord::Base
 
 
 
-  has_many :prizes
+  has_many :prizes, :dependent => :destroy
   has_many :notifications, dependent: :destroy
 
   attr_accessible :close,:link, :zip, :event,:creator_id, :daily, :code, :price, :jackpot, :name, :producer_id, :time_end, :time_start, :logo, :notificated_about_end, :id, :logo_file_name

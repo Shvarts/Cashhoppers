@@ -82,11 +82,11 @@
 ##
 ##user.update_attribute :frog_legs, 20000
 ##end
-#
+
 #users =User.all
 #users.each do |i|
 #
-#  i.update_attributes(:avatar=>nil)  unless File.exist?(Rails.root.join("public/#{i.avatar.url.split('?')[0][1..-1]}"))
+#  i.update_attributes(:photo=>File.new(Rails.root.join("public/system/user_hop_task_photos/tasks/92/original/PHOTO.jpeg")))  unless File.exist?(Rails.root.join("public/#{i.avatar.url.split('?')[0][1..-1]}"))
 #
 #
 #end
@@ -104,13 +104,13 @@
 #
 #
 #end
-user_tasks =UserHopTask.all
-user_tasks.each do |i|
-
-  i.update_attributes(:photo=>File.new(Rails.root.join("public/system/user_hop_task_photos/tasks/92/original/PHOTO.jpeg")))  unless File.exist?(Rails.root.join("public/#{i.photo.url.split('?')[0][1..-1]}"))
+#user_tasks =UserHopTask.all
+#user_tasks.each do |i|
 #
-#
-end
+#  i.update_attributes(:photo=>File.new(Rails.root.join("public/system/user_hop_task_photos/tasks/92/original/PHOTO.jpeg")))  unless File.exist?(Rails.root.join("public/#{i.photo.url.split('?')[0][1..-1]}"))
+##
+##
+#end
 #ads=Ad.all
 #ads.each do |i|
 #  puts i.update_attributes(:picture=>File.new(Rails.root.join("app/assets/images/no_ad_picture.png"), 'rb'))  unless File.exist?(Rails.root.join("public/#{i.picture.url.split('?')[0][1..-1]}"))

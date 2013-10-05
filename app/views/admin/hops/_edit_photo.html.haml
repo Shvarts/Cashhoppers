@@ -1,0 +1,23 @@
+.row-fluid
+  .span12
+    %table
+      %tr
+        %td.span3
+          Hop task text
+        %td.span3
+          Hop task logo
+        %td.span4.text-center
+          Photo
+      - if @photos
+        -for i in @photos
+          %tr
+            %td
+              = HopTask.find_by_id(i.hop_task_id).text
+            %td
+              = image_tag HopTask.find_by_id(i.hop_task_id).logo, :size => "260x200"
+            %td.text-right
+              = image_tag i.photo
+            %td.text-right
+              = button_to 'delete', admin_delete_photo_path({:id=>i.id, photos:  @photos_id, hop: @hop}) , :remote=> true , :class=>'btn btn-danger'
+
+= link_to "Back", admin_hop_path(@hop), :size => "260x200"
