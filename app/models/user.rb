@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
 
 
 
+
+
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
   end
@@ -92,6 +94,7 @@ class User < ActiveRecord::Base
   end
 
   private
+
 
   def before_create
     frog_legs = 0
