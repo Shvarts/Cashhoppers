@@ -61,12 +61,16 @@
               = image_tag resource.avatar.url, :id => 'img-upload'
             %br
             %br
+            %br
+        .row-fluid
+          .span4.text-center
 
-
+            = check_box_tag :agreement,'',false, style: 'margin: 0 0'
+            =link_to 'I accept with agreement',  pages_terms_path
         %br
 
         .row-fluid
           .span12.text-center
-            = f.submit "Sign up", :class=> 'btn btn-success'
+            = f.submit "Sign up", :class=> 'btn btn-success sign-up-button', :disabled=>'disabled'
             %br
             = render "devise/shared/links"

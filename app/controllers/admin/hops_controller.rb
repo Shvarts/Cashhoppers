@@ -343,7 +343,7 @@ class Admin::HopsController < Admin::AdminController
     zipfile_name = Rails.root.join.to_s  + temp.path
 
 
-    #begin
+    begin
       Zip::ZipFile.open(zipfile_name , Zip::ZipFile::CREATE) do |zipfile|
         i = 0
         input_filenames.each do |filename|
@@ -358,12 +358,12 @@ class Admin::HopsController < Admin::AdminController
      send_file zipfile_name , :type => 'application/zip', :disposition => 'attachment', :filename => "Photos.zip"
      temp.delete
 
-    #rescue Exception => e
-    #
-    #  puts "---------------------#{e}----------------"
-    #
-    #  temp.delete
-    #end
+    rescue Exception => e
+
+      puts "---------------------#{e}----------------"
+
+      temp.delete
+    end
 
 
 
