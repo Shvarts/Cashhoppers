@@ -91,6 +91,9 @@ class Api::MessagesController < Api::ApplicationController
 
   def remove_message
     @message = Message.where(sended: true, id: params[:message_id], sender_id: @current_user.id).first
+    notifications = Notification.where(message_id: @message.id)
+    notifications.destroy_all
+
     if @message
       @message.delete
       respond_to do |format|
