@@ -196,7 +196,7 @@
 -#= User.can_edit?(current_user, @hop.creator_id)
 %h4
   Hoppers:
--#- user = User.find_by_id(12)
+-#- user = User.find_by_email('viktor.danch@gmail.com')
 -#= UserHopTask.create(:hop_task_id => @hop.hop_tasks[0].id, :user_id => user.id, :photo =>user.avatar, :comment=>'comment'  )
 -#=@hop.hoppers << user
 - if @hoppers.blank?

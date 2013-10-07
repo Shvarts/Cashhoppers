@@ -21,6 +21,8 @@ class ServicesController < ApplicationController
 
   def add_zip
 
+
+
     omniauth = request.env['omniauth.auth']
     if omniauth && params[:service]
       service_route = params[:service]
@@ -44,11 +46,12 @@ class ServicesController < ApplicationController
         omniauth['uid'] ?  @uid =  omniauth['uid'] : @uid = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
       elsif service_route == 'google'
-        omniauth['info']['email'] ? @email =  omniauth['extra']['email'] : @email = ''
+        #omniauth['info']['email'] ? @email =  omniauth['extra']['email'] : @email = ''
         omniauth['info']['name'] ? @name =  omniauth['info']['name'] : @name = ''
         @first_name = omniauth['info']['name'] || ''
         @last_name = omniauth['info']['name'] || ''
         omniauth['info']['uid'] ?  @uid =  omniauth['info']['uid'] : @uid = ''
+        omniauth['info']['uid'] ?  @email =  omniauth['info']['uid'] : @email = ''
         omniauth['provider'] ? @provider =  omniauth['provider'] : @provider = ''
       else
         render :text => omniauth.to_yaml
@@ -59,7 +62,7 @@ class ServicesController < ApplicationController
           auth = Service.find_by_provider_and_uid(@provider, @uid)
           if auth
             flash[:notice] = 'Signed in successfully via ' + @provider.capitalize + '.'
-            sign_in_and_redirect( auth.user)
+            sign_in_and_redirect(:user, auth.user)
           end
         else
           auth = Service.find_by_provider_and_uid(@provider, @uid)
@@ -68,7 +71,7 @@ class ServicesController < ApplicationController
             current_user.update_attribute(:facebook, @facebook_link) if @facebook_link
             current_user.update_attribute(:twitter, @twitter_link) if @twitter_link
             flash[:notice] = 'Sign in via ' + @provider.capitalize + ' has been added to your account.'
-            redirect_to services_path
+            sign_in_and_redirect(:user, current_user)
           else
             flash[:notice] = service_route.capitalize + ' is already linked to your account.'
             redirect_to services_path

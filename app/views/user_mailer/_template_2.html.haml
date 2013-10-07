@@ -3,23 +3,24 @@
   CONGRATULATIONS!
 %p
   Your cashhopper skills have paid off-you have won:
-%br
 %p
-  -if @prize.cost.to_s.match(/[a-zA-Z]/).nil?
+  -if @prize.cost.to_s.match(/(\$)|[a-zA-Z]/).nil?
     = number_to_currency(@prize.cost )
   -else
     = @prize.cost
 %br
 In the HOP:
-%br
 %p
   = @hop.name
 %br
 For:
-%br
 %p
-  = @prize.place
+  = @prize.place.to_s + ' place'
 
+%br
+
+= @message.text
+%b
 %br
 %br
 Please respond to
@@ -37,10 +38,7 @@ and let us know how you would like to receive your prize -
 \- give us your mailing address
 
 %br
-%br
 
-= @message.text
-%b
 %p
   %b
     Thank you for being a CASHHOPPER and keep hoppin'!

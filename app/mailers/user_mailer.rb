@@ -10,6 +10,8 @@ class UserMailer  < ActionMailer::Base
 
   def email_alert(recipients, message, attachment,template_data)
     @message = message
+
+
     if !template_data.blank?
       if @hop = Hop.find_by_name(template_data[:hop_name])
 
@@ -24,11 +26,12 @@ class UserMailer  < ActionMailer::Base
 
       end
     end
+    sender = (@message.sender_id.blank?)?  'HOPMASTER@cashhoppers.com' : @message.sender.email.to_i
     attachments['image.jpg'] = attachment.read  if  attachment
     attachments['logo_1.jpg'] = File.read("#{Rails.root}/app/assets/images/template_1.jpg")
     attachments['logo_2.jpg'] = File.read("#{Rails.root}/app/assets/images/template_2.jpg")
 
-    mail(:to => recipients, :from => 'sender@gmail.com', :subject => @message.subject)
+    mail(:to => recipients, :from => sender, :subject => @message.subject)
   end
 
 end
