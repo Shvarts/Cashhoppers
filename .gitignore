@@ -13,6 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/app/models/ch_users.rb
 config/database.yml
 .idea
 public/images

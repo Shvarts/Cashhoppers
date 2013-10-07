@@ -121,3 +121,17 @@
 #users.each do |i|
 #  i.update_attributes(:deleted=>false)
 #end
+
+
+#ch_users = ChUsers.all
+#
+#ch_users.each do |i|
+#  password = SecureRandom.base64(n=6)
+#  user = User.new(first_name: i.ch_user_firstname, last_name: i.ch_user_lastname, email: i.ch_user_email, user_name: i.ch_user_firstname, zip: 46236, password: password, :password_confirmation => password, string: password )
+#
+#  user.skip_confirmation!
+#  puts "---------------------------------------------------------------"
+#  puts user.save
+#  user.roles = [Role.find_by_name(:user)]
+#end
+

@@ -5,6 +5,7 @@
     Hop task logo
   .span4.text-center
     Photo
+  .span2
 - if @photos
   -for i in @photos
     .row-fluid
@@ -14,7 +15,7 @@
         = image_tag HopTask.find_by_id(i.hop_task_id).logo, :size => "260x200"
       .span4
         = image_tag i.photo, :size => "260x200"
-      .span3
+      .span2
         = button_to 'delete', admin_delete_photo_path({:id=>i.id, photos:  @photos_id, hop: @hop}) , :remote=> true , :class=>'btn btn-danger'
 
-= link_to "Back", admin_hop_path(@hop), :size => "260x200"
+= link_to "Back", admin_hop_path(@hop)
