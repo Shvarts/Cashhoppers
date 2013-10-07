@@ -59,7 +59,7 @@ class ServicesController < ApplicationController
           auth = Service.find_by_provider_and_uid(@provider, @uid)
           if auth
             flash[:notice] = 'Signed in successfully via ' + @provider.capitalize + '.'
-            sign_in_and_redirect(:user, auth.user)
+            sign_in_and_redirect( auth.user)
           end
         else
           auth = Service.find_by_provider_and_uid(@provider, @uid)
