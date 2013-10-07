@@ -5,9 +5,9 @@ gem 'haml-rails'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'omniauth-google'
+gem 'omniauth-facebook', "~> 1.4.0"
+gem 'omniauth-twitter', "~> 1.0.0"
+gem 'omniauth-google' , "~> 0.2.0"
 gem 'will_paginate', '~> 3.0'
 
 # json stuff
