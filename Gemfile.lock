@@ -280,9 +280,9 @@ DEPENDENCIES
   mysql2
   oj
   omniauth
-  omniauth-facebook
-  omniauth-google
-  omniauth-twitter
+  omniauth-facebook (~> 1.4.0)
+  omniauth-google (~> 1.0.2)
+  omniauth-twitter (~> 1.0.0)
   paperclip
   prawn
   quiet_assets
