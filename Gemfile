@@ -5,8 +5,8 @@ gem 'haml-rails'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'omniauth'
-gem 'omniauth-facebook', "~> 1.4.0"
-gem 'omniauth-twitter', "~> 1.0.0"
+gem 'omniauth-facebook', "~> 1.3.0"
+gem 'omniauth-twitter', "~> 0.0.16"
 gem 'omniauth-google' , "~> 1.0.2"
 gem 'will_paginate', '~> 3.0'
 
