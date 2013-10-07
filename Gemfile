@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook', "~> 1.4.0"
 gem 'omniauth-twitter', "~> 1.0.0"
-gem 'omniauth-google' , "~> 0.2.0"
+gem 'omniauth-google' , "~> 1.0.2"
 gem 'will_paginate', '~> 3.0'
 
 # json stuff
