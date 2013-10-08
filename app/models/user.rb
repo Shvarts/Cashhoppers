@@ -88,6 +88,18 @@ class User < ActiveRecord::Base
    user.id == id || (user.role? :admin)
   end
 
+  def user_full_name
+    first_name =last_name = ""
+
+     if self.first_name.nil? && self.last_name.nil?
+      first_name = self.user_name
+
+     else
+       first_name = (self.first_name.nil?)? "" : self.first_name
+       last_name = (self.last_name.nil?)? "" : self.last_name
+     end
+    return first_name, last_name
+  end
   private
 
 
