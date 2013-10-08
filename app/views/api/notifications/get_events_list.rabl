@@ -10,11 +10,11 @@ child :comment do
     child :user do
         attributes :id, :user_name
         node :first_name do |user|
-        f_name = user.first_name.nil? user.user_name : user.first_name
+        f_name = (user.first_name.nil?)? user.user_name : user.first_name
             f_name || ''
         end
         node :last_name do |user|
-            l_name = user.last_name.nil? user.user_name : user.last_name
+            l_name = (user.last_name.nil?)? user.user_name : user.last_name
             l_name || ''
         end
         node :avatar do |user|
@@ -34,10 +34,10 @@ child :like do
     child :user do
         attributes :id,  :user_name
         node :first_name do |user|
-           user.first_name.nil? user.user_name : user.first_name
+           (user.first_name.nil?)? user.user_name : user.first_name
         end
         node :last_name do |user|
-           user.last_name.nil? user.user_name : user.last_name
+           (user.last_name.nil?)? user.user_name : user.last_name
         end
         node :avatar do |user|
             user.avatar.url
@@ -55,10 +55,10 @@ child :prize do
         attributes :id, :last_name
 
         node :first_name do |user|
-           user.first_name.nil? user.user_name : user.first_name
+           (user.first_name.nil?)? user.user_name : user.first_name
         end
         node :last_name do |user|
-           user.last_name.nil? user.user_name : user.last_name
+           (user.last_name.nil?)? user.user_name : user.last_name
         end
         node :avatar do |user|
             user.avatar.url
@@ -74,10 +74,10 @@ child :friend do
     attributes :id,  :user_name
 
     node :first_name do |user|
-       user.first_name.nil? user.user_name : user.first_name
+       (user.first_name.nil?)? user.user_name : user.first_name
     end
     node :last_name do |user|
-       user.last_name.nil? user.user_name : user.last_name
+       (user.last_name.nil?)? user.user_name : user.last_name
     end
     node :avatar do |user|
         user.avatar.url
