@@ -89,8 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def user_full_name
-    f
-    l
+    f = l = ""
 
      if (self.first_name.nil? && self.last_name.nil?) || (self.first_name.blank? && self.last_name.blank?)
       f = self.user_name
