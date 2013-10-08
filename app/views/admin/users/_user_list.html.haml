@@ -25,4 +25,4 @@
                      :user_id => user.id, :onchange => "change_user_role(this);"
 
         - g.column do |user|
-          - button_to('delete',  admin_users_delete_user_path({user_id: user.id}), class: 'btn btn-mini btn-danger delete-user ')
+          - button_to('delete', '#', class: 'btn btn-mini btn-danger delete-user ')
