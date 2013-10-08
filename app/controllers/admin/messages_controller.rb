@@ -138,11 +138,17 @@ class Admin::MessagesController < Admin::AdminController
 
     else
       @messages.each{|m| m.save}
-      puts"---------------------------------------------#{params[:email_alert]}----------------------"
-
-      UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
-
+      exist = false
+      begin
+        UserMailer.email_alert(@users.map{|u| u.email}, EmailAlert.new(params[:email_alert]), params[:file],template_data ).deliver
+      rescue  Exception => e
+         exist = true
+      end
+      if exist
+        redirect_to admin_messages_email_tool_path , notice: "Emails doesn't exist."
+      else
         redirect_to admin_messages_email_tool_path , notice: 'Emails was successfully sended.'
+      end
     end
 
   end
