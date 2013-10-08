@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   before_create :before_create
 
   after_create :after_create
+  default_scope where(:deleted => false)
+
   # Include default custom_devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -54,13 +56,6 @@ class User < ActiveRecord::Base
   validates :zip, numericality: {only_integer: true, allow_blank: true}
   validates :avatar, format: { with: /.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG/,
                              message: "only image (.png|.gif|.jpg|.jpeg|.JPEG|.PNG|.JPG)" }
-
-
-
-
-
-
-
 
 
   def role?(role)

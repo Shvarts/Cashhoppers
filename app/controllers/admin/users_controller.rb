@@ -1,6 +1,8 @@
 class Admin::UsersController < Admin::AdminController
   load_and_authorize_resource
   def index
+    puts '___________________________________delete_____________'
+    puts "----------------------#{params}----"
     conditions = {deleted: !true}
     @users_grid = initialize_grid(User,
                                  :include => [:roles, :user_settings], :conditions => conditions,
@@ -17,7 +19,13 @@ class Admin::UsersController < Admin::AdminController
        test = user.user_settings.update_attributes(:unsubscribe =>  subscribe)
      end
       render :partial => 'user_list'
+    #elsif params[:delete]
+    #  #render :partial => 'user_list'
+    #  respond_to do |format|
+    #    format.js
+    #   end
     end
+
 
   end
 
@@ -32,6 +40,7 @@ class Admin::UsersController < Admin::AdminController
       render :text => "error"
     end
   end
+
   def tasks_photo
     @hop = params[:hop_id]
 
@@ -45,14 +54,16 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def delete_user
-    user = User.find_by_id(params[:user_id])
+    if params[:id]
+      user = User.find_by_id(params[:id])
 
-    user.update_attributes(deleted: true, email: 'deleted@user.com' + user.id.to_s, user_name: 'deleted', first_name: 'deleted', last_name: 'deleted')
-    conditions = {deleted: !true}
-    @users_grid = initialize_grid(User,  :conditions => conditions,
-                                  :include => [:roles, :user_settings],
-                                  per_page: 20
-    )
+      user.update_attributes(deleted: true, email: 'deleted@user.com' + user.id.to_s, user_name: 'deleted', first_name: 'deleted', last_name: 'deleted')
+    end
+    #  conditions = {deleted: !true}
+    #@users_grid = initialize_grid(User,  :conditions => conditions,
+    #                              :include => [:roles, :user_settings],
+    #                              per_page: 20
+    #)
 
     messages = Message.where(:sender_id=>user.id)
     notifications = Notification.where(message_id: messages.map{|mes| mes.id})
@@ -63,7 +74,9 @@ class Admin::UsersController < Admin::AdminController
     notifications.destroy_all
     notifications2.destroy_all
     respond_to do |format|
-      format.js
+      #format.js
+      format.json { render :json => "Deleted successfully!", status: 200 }
     end
+    #redirect_to admin_users_index_path({:delete=>true})
   end
 end

@@ -23,7 +23,7 @@ CashHoppers::Application.routes.draw do
     get "users/tasks_photo"
     get "users/index"
     post "users/unsubscribe_user"
-    post 'users/delete_user',              to:  'users#delete_user'
+    delete'users/delete_user/:id',              to:  'users#delete_user'
 
     resources :applications
 

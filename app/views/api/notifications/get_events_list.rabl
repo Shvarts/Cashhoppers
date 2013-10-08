@@ -10,10 +10,12 @@ child :comment do
     child :user do
         attributes :id, :user_name
         node :first_name do |user|
-            user.first_name || ''
+        f_name = user.first_name.nil? user.user_name : user.first_name
+            f_name || ''
         end
         node :last_name do |user|
-            user.last_name || ''
+            l_name = user.last_name.nil? user.user_name : user.last_name
+            l_name || ''
         end
         node :avatar do |user|
             user.avatar.url
@@ -30,7 +32,13 @@ child :like do
         comment.target_object_id
     end
     child :user do
-        attributes :id, :last_name, :first_name, :user_name
+        attributes :id,  :user_name
+        node :first_name do |user|
+           user.first_name.nil? user.user_name : user.first_name
+        end
+        node :last_name do |user|
+           user.last_name.nil? user.user_name : user.last_name
+        end
         node :avatar do |user|
             user.avatar.url
         end
@@ -44,7 +52,14 @@ end
 child :prize do
     attributes :cost, :place, :hop_id
     child :user do
-        attributes :id, :last_name, :first_name, :user_name
+        attributes :id, :last_name
+
+        node :first_name do |user|
+           user.first_name.nil? user.user_name : user.first_name
+        end
+        node :last_name do |user|
+           user.last_name.nil? user.user_name : user.last_name
+        end
         node :avatar do |user|
             user.avatar.url
         end
@@ -56,7 +71,14 @@ child :prize do
 end
 
 child :friend do
-    attributes :id, :last_name, :first_name, :user_name
+    attributes :id,  :user_name
+
+    node :first_name do |user|
+       user.first_name.nil? user.user_name : user.first_name
+    end
+    node :last_name do |user|
+       user.last_name.nil? user.user_name : user.last_name
+    end
     node :avatar do |user|
         user.avatar.url
     end

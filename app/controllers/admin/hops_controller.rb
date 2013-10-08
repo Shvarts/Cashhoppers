@@ -104,12 +104,6 @@ class Admin::HopsController < Admin::AdminController
   def update
     @hop = Hop.find(params[:id])
     if @hop.daily && params[:hop][:time_start]
-      #begin
-      #  params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%d/%m/%Y %H:%M:%S')
-      #rescue Exception =>e
-      #  params[:hop][:time_start]= DateTime.strptime( params[:hop][:time_start], '%Y-%m-%d %H:%M:%S %z')
-      # end
-      #params[:hop][:time_end] = DateTime.new( params[:hop][:time_start].year , params[:hop][:time_start].month , ( params[:hop][:time_start].day.to_i+1),0,0,0,  params[:hop][:time_start].zone.to_s )
 
     end
     if User.can_edit?(current_user, @hop.creator_id) && @hop.update_attributes(params[:hop])

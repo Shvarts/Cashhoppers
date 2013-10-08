@@ -11,9 +11,7 @@ class Api::AdsController < Api::ApplicationController
 
       types << type[1]
     end
-    puts "----------types--------#{types}------------------------"
-    puts "----------ad--------#{params[:ad_type]}------------------------"
-    puts "----------ad--------#{ params[:hop_id]}------------------------"
+
 
 
     if params[:ad_type].present? && @hop && types.include?(params[:ad_type])

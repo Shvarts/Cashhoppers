@@ -25,7 +25,7 @@ function unsubscribe_user(sender){
 
 
     $.ajax({
-        url: "",
+        url: "/admin/users/index",
         data: { user_id: $(sender).attr('user_id'), subscribe: $(sender).attr('subscribe')},
         type: 'GET',
         beforeSend: function () {
@@ -36,9 +36,41 @@ function unsubscribe_user(sender){
             alert("error");
         },
         success: function(data){
-            $('#container').html(data);
+//            $('#container').html(data);
         }
     });
 
 
 }
+
+$(document).ready(function() {
+  $('.delete-user').on("click", function(e){
+      if(confirm("Are you sure?")) {
+          e.preventDefault();
+          //user_id = $(this).closest('tr').data('id')
+          tr = $(this).closest('tr')
+          user_id = tr.find('td').first().text();
+          $.ajax({
+              type: 'DELETE',
+              url: "/admin/users/delete_user/" + user_id,
+              dataType: "json",
+              cache: false,
+              contentType: "'application/json; charset=utf-8'",
+//              data: {id: user_id },
+              beforeSend: function () {
+              },
+              error: function(xhr){
+                  console.log(xhr);
+                  $(tr).remove();
+
+              },
+              success: function(data){
+                  $(tr).remove();
+              }
+
+          });
+
+      }
+      return false;
+  });
+});
