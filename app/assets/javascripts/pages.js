@@ -14,6 +14,8 @@ $(document).ready(function(){
     $('.carousel').carousel({
         interval: 4000
     })
+    $("#notice-alert").delay(2500).fadeOut();
+
 
 //
 });
