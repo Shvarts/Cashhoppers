@@ -11,7 +11,7 @@
         %b
           Text:
       %td
-        = f.text_area :text, :rows=>3, class: 'span12'
+        = f.text_area :text, :rows=>3, class: 'span12', :required=> 'required'
     - unless @hop_task.hop.daily
       %tr
         %td
@@ -42,7 +42,7 @@
         %b
           Link:
       %td
-        = f.text_field :link, class: 'span12'
+        = f.url_field :link, class: 'span12'
     %tr
       %td
         %b
@@ -65,4 +65,4 @@
               Remove
     %tr
       %td{colspan: 2}
-        = link_to 'Submit', '#', class: 'btn btn-info', onclick: 'tasks_modal.submitForm({hop_id: ' + @hop_task.hop.id.to_s + '}); return false;'
+        = button_to 'Submit', '#', class: 'btn btn-info', onclick: 'tasks_modal.submitForm({hop_id: ' + @hop_task.hop.id.to_s + '}); return false;'
