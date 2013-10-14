@@ -11,7 +11,9 @@ class Api::ApplicationController < ApplicationController
   def check_api_key
 
     applications = CashHoppers::Application::APPLICATIONS.select{|application|
+
       application if application.api_key == params[:api_key]
+
     }.first
     if applications.blank?
       bad_request('Bad api key', 401)

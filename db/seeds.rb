@@ -12,14 +12,14 @@
 #[:admin, :user,:sponsor,:producer,:advertiser  ].each do |role|
 #  Role.create(:name => role)
 #end
-#
+###
 #User.destroy_all
-admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
-admin.skip_confirmation!
-admin.save
-admin.roles = [Role.find_by_name(:admin)]
-#
+#admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
+#                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
+#admin.skip_confirmation!
+#admin.save
+#admin.roles = [Role.find_by_name(:admin)]
+##
 #
 #admin = User.new(:email => 'sponsor@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
 #                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
@@ -44,7 +44,7 @@ admin.roles = [Role.find_by_name(:admin)]
 #friend.skip_confirmation!
 #friend.save
 #friend.roles = [Role.find_by_name(:user)]
-#
+
 #other_user = User.new(:email => 'other_user@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'other_user',
 #                  :last_name => 'other_user', :zip => 88000, :user_name => 'other_user', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png')))
 #other_user.skip_confirmation!
@@ -53,6 +53,7 @@ admin.roles = [Role.find_by_name(:admin)]
 #
 #Friendship.request(admin, friend)
 #Friendship.accept(friend, admin)
+#
 #
 #5.times do |t|
 #  user = User.new(:email => "admin_#{t}@cashhoppers.com", :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
@@ -74,7 +75,7 @@ admin.roles = [Role.find_by_name(:admin)]
 #puts 'Create applications...'
 #
 #Application.create(:name => 'dev key', :api_key => '123')
-#
+
 #puts 'Create hops...'
 
 ##'----------add---ribbits-------------'
