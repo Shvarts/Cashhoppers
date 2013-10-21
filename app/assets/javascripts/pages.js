@@ -16,11 +16,32 @@ $(document).ready(function(){
     })
     $("#notice-alert").delay(2500).fadeOut();
 
+     //iframe
+
+    var iWin = document.getElementById('frem').contentWindow,
+        iDoc = iWin.document;
+
+    if( ! iWin.$ ){
+        var jq = iDoc.createElement('script');
+        jq.type = 'text/javascript';
+        jq.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+        jq.onload = ready;
+        iDoc.head.appendChild(jq);
+    }else{
+        ready(); // the stuff you want to do
+    }
+
+
 
 //
 });
 
 
+function ready(){
+
+    $("#player").width('100%');
+    alert('ready');
+}
 
 //$('.button-container').device_detector({
 //    var useragent = navigator.userAgent.toLowerCase();
