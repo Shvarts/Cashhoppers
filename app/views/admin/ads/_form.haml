@@ -34,6 +34,23 @@
           Price:
       %td
         = f.text_field :price, class: 'span12'
+    - if @ad.ad_type == 'CS'
+
+      %tr#task
+        %td
+          %b
+            Task:
+        %td
+          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]}),{},{required: 'required', :class => 'span12'}
+
+    -else
+      %tr#task{style: 'display: none;'}
+        %td
+          %b
+            Task:
+        %td
+          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]}),{},{ :class => 'span12'}
+
     %tr
       %td
         %b

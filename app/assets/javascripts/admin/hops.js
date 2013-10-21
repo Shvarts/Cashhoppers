@@ -91,3 +91,22 @@ $('#hopPhotos .carousel-inner .active.item img').each(function() {
     $(this).css('margin-top', ($(this).parent().height() - $(this).height())/2 + 'px' ) ;
 });
 }
+
+$(document).on("ready",function(e){
+  $(document).on('change', '#ad_ad_type', function(e){
+    if($(this).val() == 'CS'){
+        $('tr#task').show();
+
+      }else{
+        $('tr#task').hide();
+    }
+
+  })
+
+});
+
+//function select_task_show(e){
+//   alert(change);
+//   alert(e.val());
+//
+//}

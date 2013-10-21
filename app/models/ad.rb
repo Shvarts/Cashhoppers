@@ -11,7 +11,8 @@ class Ad < ActiveRecord::Base
                   :picture,
                   :creator_id,
                   :time_start,
-                  :time_end
+                  :time_end,
+                  :hop_task_id
 
   has_attached_file :picture,
     :url  => "/system/ad_pictures/ads/:id/AD_PICTURE.:extension",
