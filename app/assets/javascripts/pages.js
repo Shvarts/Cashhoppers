@@ -40,7 +40,7 @@ $(document).ready(function(){
 function ready(){
 
     $("#player").width('100%');
-    alert('ready');
+
 }
 
 //$('.button-container').device_detector({
