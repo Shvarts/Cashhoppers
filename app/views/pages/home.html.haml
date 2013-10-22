@@ -3,7 +3,10 @@
     opacity: 0.6;
   }
 
+
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.png"});  position: relative;"}
+
+  = image_tag 'template_1.jpg',  id: 'logo'
   %h2{:id=>"first-page", style:'height: 0px margin: 0px'}
   -if  flash[:notice]
     .alert.alert-success.text-center#notice-alert{ style: 'position: relative; top: 0px;max-height: auto; opacity: 0.5'}
@@ -20,7 +23,7 @@
     .top-sign#firsttop-sign
       IT PAYS TO GET AROUND
       %br
-        %p The photo-scavenger game that pays you cash
+      %p The photo-scavenger game that pays you cash
 
     .divas2
       .phone
@@ -133,39 +136,39 @@
 .custom-pg.business-page
   %h2{:id=>"business-page"}
   .row-fluid#business
-    .span2
-    .span8.text-center.page-3
-      .top-sign
-        = succeed "HOPPERS" do
-          %span.weight CASH
-        FOR
-        %span.weight BUSINESS
-      %br
-      .row-fluid.business-block
-        .span12.text-left
-          = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img", :style=>'max-height: 600px; max-width: 400px; float: right; '
+    .container
+      .span2
+      .span8.text-center.page-3
+        .top-sign
+          = succeed "HOPPERS" do
+            %span.weight CASH
+          FOR
+          %span.weight BUSINESS
+        %br
+        .row-fluid.business-block
+          .span12.text-left
+            = image_tag 'home_business.png', :class => 'business-img', :id=>"business-img", :style=>'max-height: 600px; max-width: 400px; float: right; '
 
-          .business
-            The CASHHOPPERS game is a great tool to add to your marketing
-            and advertising mix. SPONSOR a HOP item, and drive players to your
-            booth, building or web site. ADVERTISE within the app and reach
-            players with promotional opportunities, product discounts or brand
-            messages. You can also create private HOPs - for your customers
-            only - to highlight new products, grand openings, or any other
-            big news that will have your customer base HOPPIN!
-            %br
-            %br
-              Find out how to use CASHHOPPERS to your bussiness's advantage.
-            %br
-            .two-buttons
-              %ul
-                %li
-                  = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning business-button'
+            .business
+              The CASHHOPPERS game is a great tool to add to your marketing
+              and advertising mix. SPONSOR a HOP item, and drive players to your
+              booth, building or web site. ADVERTISE within the app and reach
+              players with promotional opportunities, product discounts or brand
+              messages. You can also create private HOPs - for your customers
+              only - to highlight new products, grand openings, or any other
+              big news that will have your customer base HOPPIN!
+              %br
+              %br
+                Find out how to use CASHHOPPERS to your bussiness's advantage.
+              %br
+              .two-buttons
+                %ul
+                  %li
+                    = link_to 'LEARN MORE', pages_business_level_path ,:class => 'btn btn-warning business-button'
 
-                %li
-                  -#%a.navigation.btn.btn-success.business-button{:href=>"#gray-page"}SIGN ME UP
+                  %li
 
-                  = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button navigation'
+                    = link_to 'SIGN ME UP','#last-page',:class => 'btn  btn-success business-button navigation'
 
 
     .span2
@@ -176,78 +179,80 @@
 .custom-pg.events-page
   %h2{:id=>"events-page"}
   .row-fluid
-    .span2
-    .span8.text-center.page-3
-      .top-sign
-        = succeed "HOPPERS" do
-          %span.weight CASH
-        FOR TRADE
-        %span.weight SHOWS
-        &
-        %span.weight EVENTS
-      %br
-      .row-fluid
-        .span6.text-left
-          = image_tag 'home_event.png', :class => 'event-img', :id => "event-img"
-        .span6.text-left
-          .text.text-event
-            Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
-            has been proven to engage show visitors more, increase traffic at participating booth, initiate
-            customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
-            %br
-              Find out how you can use CASHHOPPERS at your next trade show or event
-            %br
-            .two-buttons
-              %ul
-                %li
-                  = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning business-button'
-                %li
+    .container
+      .span2
+      .span8.text-center.page-3
+        .top-sign
+          = succeed "HOPPERS" do
+            %span.weight CASH
+          FOR TRADE
+          %span.weight SHOWS
+          &
+          %span.weight EVENTS
+        %br
+        .row-fluid
+          .span6.text-left
+            = image_tag 'home_event.png', :class => 'event-img', :id => "event-img"
+          .span6.text-left
+            .text.text-event
+              Let CASHHOPPERS drive consumers to your exhibitors' boothe! This exciting and affordable game
+              has been proven to engage show visitors more, increase traffic at participating booth, initiate
+              customer relationships, and INCREASE PROFITS FOR TRADE SHOW PRODUCERS like no other tool.
+              %br
+                Find out how you can use CASHHOPPERS at your next trade show or event
+              %br
+              .two-buttons
+                %ul
+                  %li
+                    = link_to 'LEARN MORE',  pages_trade_show_path ,:class => 'btn btn-warning business-button'
+                  %li
 
-                  = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn navigation btn-success business-button mini-button long-text'
-    .span2
+                    = link_to 'SET AN APPOINTMENT', "#last-page",:class => 'btn navigation btn-success business-button mini-button long-text'
+      .span2
 
 
 .page-divider
 .custom-pg.page-last{style: ' display: table'}
-  .divas1
-    .divas2
-      .row-fluid#last-page
-        .span1
-        .span5
-          .top-sign
-            WANT TO
-            %span.weight LEARN
-            MORE ?
-          %br
-          %br
-            Contact CashHoppers for more information:
+  .container
+    .divas1
+      .divas2
+        .row-fluid#last-page
+          .span1
+          .span5
+            .top-sign
+              WANT TO
+              %span.weight LEARN
+              MORE ?
             %br
             %br
-            %span.weight
-              (317) 572-8002
+              Contact CashHoppers for more information:
+              %br
+              %br
+              %span.weight
+                (317) 572-8002
+              %br
+              %br
+              %span.weight
+                =mail_to 'HopMaster@CASHHOPPERS.com', 'HopMaster@CASHHOPPERS.com'
             %br
             %br
-            %span.weight
-              =mail_to 'HopMaster@CASHHOPPERS.com', 'HopMaster@CASHHOPPERS.com'
-          %br
-          %br
-        .span4
-          .top-sign
-            WE'RE SOCIAL.
-          %br
-            .last-list
-              TO KEEP IN-THE-KNOW
-              AND SEE WHAT OTHERS
-              ARE DOING, JOIN US.
-            .center.text-center
-              .social-links#bottom
-                %a{href: '/auth/facebook', class: 'services'}
-                  =image_tag('f.png', :style=>'height:50px')
-                %a{href: '/auth/twitter', class: 'services'}
-                  =image_tag('t.png', :style=>'height:50px')
-                %a{href: '/auth/google', class: 'services'}
-                  =image_tag('g.2.png', :style=>'height:50px')
-.span2
+          .span4
+            .top-sign
+              WE'RE SOCIAL.
+            %br
+              .last-list
+                TO KEEP IN-THE-KNOW
+                AND SEE WHAT OTHERS
+                ARE DOING, JOIN US.
+              .center.text-center
+                .social-links#bottom
+                  %a{href: '/auth/facebook', class: 'services'}
+                    =image_tag('f.png', :style=>'height:50px')
+                  %a{href: '/auth/twitter', class: 'services'}
+                    =image_tag('t.png', :style=>'height:50px')
+                  %a{href: '/auth/google', class: 'services'}
+                    =image_tag('g.2.png', :style=>'height:50px')
+  .span2
 .page-divider
 %br
 %br

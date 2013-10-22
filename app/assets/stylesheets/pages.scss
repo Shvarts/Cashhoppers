@@ -1,14 +1,15 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-html{
-  overflow-x: hidden ;
+html {
+  overflow-x: hidden;
 }
-html, body, head, header{
-    height: 100%;
-    width: 100%;
 
-  .custom-pg{
+html, body, head, header {
+  height: 100%;
+  width: 100%;
+
+  .custom-pg {
 
     width: 100%;
     min-height: 95%;
@@ -17,59 +18,56 @@ html, body, head, header{
     background-position: center;
     background-size: cover;
 
-
   }
-  #last-page .span5{
+  #last-page .span5 {
     padding: 2%;
   }
-  #firsttop-sign p, #firsttop-sign{
-     line-height: 1.5;
-     text-align: center;
-     color: white;
-     height:10%;
+  #firsttop-sign p, #firsttop-sign {
+    line-height: 1.5;
+    text-align: center;
+    color: white;
+    height: 10%;
   }
- #firsttop-sign{
+  #firsttop-sign {
 
-      font-size: 200%;
-      margin:0% ;
- }
- #firsttop-sign p{
-      font-size: 50%;
- }
+    font-size: 200%;
+    margin: 0%;
+  }
+  #firsttop-sign p {
+    font-size: 50%;
+  }
 
-
-  .first-page{
-
+  .first-page {
 
     width: 100%;
     margin-top: 15px;
 
-      .divas1{
-        width: 100%;
-        height: 90%;
-        display:block;
-        vertical-align: middle;
-        .divas2{
+    .divas1 {
+      width: 100%;
+      height: 90%;
+      display: block;
+      vertical-align: middle;
+      .divas2 {
 
-          width: 860px;
-          //height: 380px;
-          margin: 0 auto;
-          .phone{
+        width: 860px;
+        //height: 380px;
+        margin: 0 auto;
+        .phone {
 
-              vertical-align: middle;
-              display: block;
-              position: relative;
-              width: 870px;
-              height: 420px;
-              background-image: url('phone.png');
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: cover;
-          }
+          vertical-align: middle;
+          display: block;
+          position: relative;
+          width: 870px;
+          height: 420px;
+          background-image: url('phone.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
         }
       }
     }
-  .carousel.slide#myCarousel{
+  }
+  .carousel.slide#myCarousel {
     margin: 0% 0%;
     padding: 0% 0%;
     position: absolute;
@@ -79,11 +77,11 @@ html, body, head, header{
     right: 135px;
     height: 370px;
     width: 617px;
-    background-color:gainsboro;
-    .carousel-inner{
+    background-color: gainsboro;
+    .carousel-inner {
       width: 100%;
       height: 100%;
-      .item{
+      .item {
         width: 100%;
         height: 100%;
         background-repeat: no-repeat;
@@ -92,234 +90,261 @@ html, body, head, header{
         -moz-background-size: contain;
         -o-background-size: contain;
         background-position: center center;
-        img{
+        img {
           height: auto;
           width: auto;
         }
       }
 
     }
-    a.carousel-control.right{
+    a.carousel-control.right {
       top: 50%;
-      right:0%;
+      right: 2px;
+      background: #41B3E6;
+      border: none;
+      opacity: 1;
+
     }
-    a.carousel-control.left{
+    a.carousel-control.left {
       left: 2px;
       top: 50%;
+      background: #41B3E6;
+      border: none;
+      opacity: 1;
+    }
+    a.carousel-control:hover{
+
+      opacity: 0.5 ;
+
     }
   }
-  .gallery{
+  .gallery {
     position: center;
     width: 100%;
-   }
-  .gallery-2{
+  }
+  .gallery-2 {
     width: 20%;
 
     height: 60px;
     margin: 0% 0%;
     padding: 0% 0%;
     margin-left: 12%;
-    item{
-      img{
+    item {
+      img {
         max-height: 100%;
         max-width: 100%;
       }
     }
-    a.carousel-control{
+    a.carousel-control {
       margin-top: 5%;
+      background: #41B3E6;
+      border: none;
+      opacity: 1;
     }
+    a.carousel-control:hover{
 
+      opacity: 0.5 ;
+
+    }
   }
 
-  a.services{
+  a.services {
     text-decoration: none;
   }
-  #social1{
+  #social1 {
 
-
-  float: right;
+    float: right;
     margin-bottom: 30px;
 
   }
-  .social-links{
-      display: inline;
-      width: 100%;
-      text-align: right;
-      height: 18px;
-      padding-bottom: 3%;
-      padding-right: 1%;
+  .social-links {
+    display: inline;
+    width: 100%;
+    text-align: right;
+    height: 18px;
+    padding-bottom: 3%;
+    padding-right: 1%;
+    color: white;
+    a {
       color: white;
-      a{
-          color: white;
-      }
+    }
   }
 
-
-  #firsttop-sign{
+  #firsttop-sign {
     margin: 5%;
     margin-top: 80px;
     margin-bottom: 0%;
   }
 
-  .gray-page{
+  .gray-page {
 
-        background-color: #E9EEF4;
+    background-color: #E9EEF4;
   }
-  .yellow-page{
+  .yellow-page {
 
-        background-color: #FAEBD6;
+    background-color: #FAEBD6;
   }
-  .what-page{
-
-        background-color: #FFFFFF;
-  }
-  .business-page{
-
-        background-color: #FFFFFF;
-  }
-  .events-page{
+  .what-page {
 
     background-color: #FFFFFF;
   }
-  .page-last{
-      min-height: 50%;
-      background-color: #E8FBDB;
+  .business-page {
+
+    background-color: #FFFFFF;
+  }
+  .events-page {
+
+    background-color: #FFFFFF;
+  }
+  .page-last {
+    min-height: 50%;
+    background-color: #E8FBDB;
   }
 
-  .page-divider
-  {
-      margin: top;
-      background: white;
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwLjUxNzI0MSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3ODc4NyIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODc4Nzg3IiAvPjxyZWN0IHg9Ii0zNyUiIHk9Ii03NCUiIHdpZHRoPSIxNzQlIiBoZWlnaHQ9IjM0OCUiIGZpbGw9InVybCgjZykiIC8+PC9zdmc+);
-      background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 728, color-stop(51.7241%, #ffffff), color-stop(100%, #878787));
-      background-image: -webkit-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
-      background-image: -moz-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
-      background-image: -ms-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
-      background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
-      background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
-      padding: 1%;
+  .page-divider {
+    margin: top;
+    background: white;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwLjUxNzI0MSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzg3ODc4NyIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjODc4Nzg3IiAvPjxyZWN0IHg9Ii0zNyUiIHk9Ii03NCUiIHdpZHRoPSIxNzQlIiBoZWlnaHQ9IjM0OCUiIGZpbGw9InVybCgjZykiIC8+PC9zdmc+);
+    background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 728, color-stop(51.7241%, #ffffff), color-stop(100%, #878787));
+    background-image: -webkit-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -moz-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -ms-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: -o-radial-gradient(center bottom, farthest-side, #ffffff 90%, #878787 174%);
+    background-image: radial-gradient(farthest-side at center bottom, #ffffff 90%, #878787 174%);
+    padding: 1%;
   }
 
-  .two-buttons{
-      ul{
-        margin-left: 0;
-        li{
-          margin-top: 5%;
-          list-style-type: none;
-        }
+  .two-buttons {
+    ul {
+      margin-left: 0;
+      li {
+        margin-top: 2%;
+        list-style-type: none;
       }
     }
+  }
 
-  .top-sign{
-    font-family: 'topfont', sans-serif ;
+  .top-sign {
+    font-family: 'topfont', sans-serif;
     text-align: center;
     font-size: 200%;
     opacity: 0.7;
     line-height: 1.2;
   }
 
-
-  .last-list{
-    font-family:'topfont', sans-serif ;;
+  .last-list {
+    font-family: 'topfont', sans-serif;;
     line-height: 1.7;
     text-align: center;
     font-size: 160%;
     opacity: 0.7;
   }
-  .video{
+  .video {
     text-align: center;
   }
-  video{
+  video {
     width: 70%;
-//    height: 70%;
+    //    height: 70%;
   }
-  .video-text{
+  .video-text {
 
-    width:60%;
+    width: 60%;
     text-align: justify;
-    width: 80% ;
+    width: 80%;
     padding: 5% 10%;
 
   }
-  .weight{
-    font-weight: bold ;
+  .weight {
+    font-weight: bold;
   }
 
-  .span6 img{
+  .span6 img {
     width: 60%;
     height: 65%
   }
-  .trade{
+  .trade {
     width: 60%;
     height: 200%;
     float: right;
   }
-  .trade-list{
-    background-size:800px auto;
+  .trade-list {
+    background-size: 800px auto;
     background-position: right center;
     background-repeat: no-repeat;
     background-image: url('trade_show.jpg');
-    .trade_img{
+    .trade_img {
       display: none;
     }
   }
-  .trade-list a img.link-back{
-    width:10%;
+  .trade-list a img.link-back {
+    width: 10%;
   }
-  .red{
+  .red {
     color: red;
   }
-  img.business-info{
+  img.business-info {
     margin: 0 auto;
-    margin-top: 20% ;
+    margin-top: 20%;
     width: 100%;
   }
-  .top-sign.page-text{
+  .top-sign.page-text {
     padding-top: 30px;
     padding-bottom: 30px;
   }
-  .page-text{
-    padding:5%;
+  .page-text {
+    padding: 5%;
     padding-top: 0%;
   }
-  img.download{
+  img.download {
     margin-top: 5%;
     width: 100%;
   }
 
-  ul.dropdown-menu.button a img{
+  ul.dropdown-menu.button a img {
     border: none;
 
-    width:100%;
+    width: 100%;
   }
-  .business-button{
-      width: 150px;;
+  .business-button {
+    width: 150px;;
   }
-  #business-img{
+  #business-img {
     margin: 0;
   }
-  .business{
+  .business {
     margin-top: 8%;
   }
-  a.btn.long-text{
+  a.btn.long-text {
     //display: none;
     //width: 100px;
     font-size: 85%;
   }
-  .top-sign.page-text.business-page{
+  .top-sign.page-text.business-page {
     padding-top: 20px;
     padding-bottom: 30px;
   }
-  .page-text.top-section.text-left.top-event{
+  .page-text.top-section.text-left.top-event {
     padding-left: 10%;
   }
+
+}
+.text-event{
+   padding-top: 30px;
+}
+
+#logo{
+
+  position: absolute;
+  top: 30px;
+  right: 44%;
+  width: 15%;
 
 }
 
 
 
 
-@media(min-width:100px)and(max-width: 399px){
+@media(min-width:100px)and(max-width: 410px){
 
 html,body,head,header{
     padding-left: 0px !important;
@@ -369,7 +394,7 @@ html,body,head,header{
     }
 
   .social-links{
-    margin-top: 15px;
+    margin-top: 64px;
     text-align: center;
   }
   .carousel.slide#myCarousel{
@@ -474,7 +499,7 @@ html,body,head,header{
 
   #firsttop-sign{
       margin: 0% 5%;
-      margin-top: 50px;
+      margin-top: 120px;
       margin-bottom: 10px;
     }
   .trade-list{
@@ -510,6 +535,14 @@ html,body,head,header{
   .business-button{
     width: 30%;
   }
+
+  }
+  #logo{
+
+    position: absolute;
+
+    right: 35%;
+    width: 30%;
 
   }
 }
@@ -651,11 +684,20 @@ html,body,head,header{
   a.btn.long-text{
     font-size: 90%;
   }
+  #logo{
+
+
+
+    right: 38%;
+    width: 24%;
+
+  }
 
 
 }
 
 @media(min-width:768px)and(max-width: 950px){
+
   html,body,head,header{
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -797,6 +839,14 @@ html,body,head,header{
     .top-section-img{
       width: 50%;
     }
+  }
+  #logo{
+
+    position: absolute;
+    top: 30px;
+    right: 40%;
+    width: 20%;
+
   }
 
 
