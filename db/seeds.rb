@@ -134,5 +134,9 @@
 #  puts "---------------------------------------------------------------"
 #  puts user.save
 #  user.roles = [Role.find_by_name(:user)]
-#end
+users = User.all
+users.each do |user|
+user.roles = [Role.find_by_name('user')] unless user.roles.first
+end
+
 

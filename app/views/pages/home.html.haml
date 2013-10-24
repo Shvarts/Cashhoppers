@@ -6,7 +6,7 @@
 
 .custom-pg.first-page{style: "background-image: url(#{asset_path "background#{rand(3)+1}.png"});  position: relative;"}
 
-  = image_tag 'template_1.jpg',  id: 'logo'
+  = image_tag 'cashhoppers_logo.jpg',  id: 'logo'
   %h2{:id=>"first-page", style:'height: 0px margin: 0px'}
   -if  flash[:notice]
     .alert.alert-success.text-center#notice-alert{ style: 'position: relative; top: 0px;max-height: auto; opacity: 0.5'}
