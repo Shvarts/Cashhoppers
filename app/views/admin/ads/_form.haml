@@ -41,7 +41,8 @@
           %b
             Task:
         %td
-          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]}),{},{required: 'required', :class => 'span12'}
+
+          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]},  @ad.hop_task_id),{},{required: 'required', :class => 'span12'}
 
     -else
       %tr#task{style: 'display: none;'}
@@ -49,7 +50,9 @@
           %b
             Task:
         %td
-          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]}),{},{ :class => 'span12'}
+
+
+          = f.select :hop_task_id, options_for_select(@hop.hop_tasks.map{|i| [i.text[0..25], i.id]}, @ad.hop_task_id),{},{ :class => 'span12'}
 
     %tr
       %td
