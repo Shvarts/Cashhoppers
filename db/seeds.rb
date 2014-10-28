@@ -9,31 +9,31 @@ puts 'Create users ...'
 
 User.destroy_all
 admin = User.new(:email => 'admin@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png', deleted: false)))
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(Rails.root.join('app', 'assets', 'images', 'rails.png')), deleted: false)
 admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:admin)]
 
 admin = User.new(:email => 'sponsor@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png', deleted: false)))
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(Rails.root.join('app', 'assets', 'images', 'rails.png')), deleted: false)
 admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:sponsor)]
 
 admin = User.new(:email => 'advertiser@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png', deleted: false)))
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(Rails.root.join('app', 'assets', 'images', 'rails.png')), deleted: false)
 admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:advertiser)]
 
 admin = User.new(:email => 'producer@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'admin',
-                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png', deleted: false)))
+                 :last_name => 'CashHoppers', :zip => 88000, :user_name => 'admin', :avatar => File.open(Rails.root.join('app', 'assets', 'images', 'rails.png')), deleted: false)
 admin.skip_confirmation!
 admin.save
 admin.roles = [Role.find_by_name(:producer)]
 
 other_user = User.new(:email => 'other_user@cashhoppers.com', :password => 'qwerty11', :password_confirmation => 'qwerty11', :first_name => 'other_user',
-                  :last_name => 'other_user', :zip => 88000, :user_name => 'other_user', :avatar => File.open(File.join(Rails.root, '/app/assets/images/rails.png', deleted: false)))
+                  :last_name => 'other_user', :zip => 88000, :user_name => 'other_user', :avatar => File.open(Rails.root.join('app', 'assets', 'images', 'rails.png')), deleted: false)
 other_user.skip_confirmation!
 other_user.save
 other_user.roles = [Role.find_by_name(:user)]
