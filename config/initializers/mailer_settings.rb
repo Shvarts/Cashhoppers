@@ -5,18 +5,17 @@
 #  ActionMailer::Base.delivery_method = :smtp
 #
 #end
-ActionMailer::Base.delivery_method = :smtp
 
+ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default :charset => "utf-8"
 ActionMailer::Base.smtp_settings = {
-  :address => "smtp.cashhoppers.com",
-  :port => 587,
-  :authentication => "login",
-  :domain               => 'cashhoppers.com',
-  :host                 => 'cashhoppers.com',
-  :user_name            => 'HopMaster@CASHHOPPERS.com',
-  :password             => 'Frog0727',
-  :enable_starttls_auto => true
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "cashhoppers.com",
+    :authentication => "plain",
+    :user_name =>  'mykhaylo.skubenich@swanteams.com',
+    :password => 'secret',
+    :enable_starttls_auto => true
 }
