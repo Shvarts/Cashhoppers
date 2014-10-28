@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  #protect_from_forgery # TODO uncomment after deploy to production server
   before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
