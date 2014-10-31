@@ -81,7 +81,7 @@ class Notification < ActiveRecord::Base
         #identifier:        1234,                 # optional
         #content_available: true                  # optional; any truthy value will set 'content-available' to 1
         )
-        # CashHoppers::Application::IOS_PUSHER.push(notification)
+        CashHoppers::Application::IOS_PUSHER.push(notification)
       elsif session && session[:device] == 'Android'
         url = 'https://android.googleapis.com/gcm/send'
         headers = {
